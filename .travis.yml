@@ -4,10 +4,11 @@ jdk:
   - oraclejdk7
   - openjdk7
 
-before_script:
-  - echo "<settings><servers><server><id>\${env.FTP_RELEASES_ID}</id><username>\${env.FTP_RELEASES_USER}</username><password>\${env.FTP_RELEASES_PASSWORD}</password></server><server><id>\${env.FTP_SNAPSHOTS_ID}</id><username>\${env.FTP_SNAPSHOTS_USER}</username><password>\${env.FTP_SNAPSHOTS_PASSWORD}</password></server><server><id>\${env.FTP_SITE_ID}</id><username>\${env.FTP_SITE_USER}</username><password>\${env.FTP_SITE_PASSWORD}</password></server></servers></settings>" > ~/settings.xml
+before_install:
+  - chmod +x ./.scripts/create-maven-settings.sh
   - chmod +x ./.scripts/deploy.sh
   - chmod +x ./.scripts/deploy-site.sh
+  - ./.scripts/create-maven-settings.sh
 script:
   - mvn clean verify
 after_success:
