@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.wandrell.tabletop</groupId>
+	<artifactId>tabletop-dice</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Dice Notation Tools for Java</name>
+	<description>Utilities for representing and handling dice and dice notation.</description>
+	<url />
+
+	<licenses>
+		<license>
+			<name>Apache v2 License</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:https://github.com/Bernardo-MG/Tabletop-Dice-Java.git</connection>
+		<developerConnection>scm:git:https://github.com/Bernardo-MG/Tabletop-Dice-Java.git</developerConnection>
+		<tag>head</tag>
+		<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java</url>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/Bernardo-MG/Tabletop-Dice-Java</url>
+		<notifiers />
+	</ciManagement>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>wandrell-releases</id>
+			<name>Project Releases Repository</name>
+			<url>https://api.bintray.com/maven/bernardo-mg/maven/tabletop-dice</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>wandrell-snapshots</id>
+			<name>Project Snapshots Repository</name>
+			<url>ftp://maven.wandrell.com</url>
+		</snapshotRepository>
+		<site>
+			<id>wandrell-site</id>
+			<name>Project Documentation Site</name>
+			<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
+		</site>
+	</distributionManagement>
+
+	<organization>
+		<name />
+		<url />
+	</organization>
+
+	<developers>
+		<developer>
+			<id>bmg</id>
+			<name>Bernardo Martínez Garrido</name>
+			<email>programming@wandrell.com</email>
+			<url />
+			<organization />
+			<organizationUrl />
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>+1</timezone>
+			<properties />
+		</developer>
+	</developers>
+
+	<properties>
+		<!-- Encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+		<!-- Java version -->
+		<java.version.source>1.7</java.version.source>
+		<java.version.target>${java.version.source}</java.version.target>
+		<!-- Manifest data -->
+		<manifest.name>com/wandrell/tabletop/core</manifest.name>
+		<!-- Dependencies versions -->
+		<antlr.version>4.5</antlr.version>
+		<guava.version>18.0</guava.version>
+		<jaxen.version>1.1.6</jaxen.version>
+		<jdom.version>2.0.5</jdom.version>
+		<mockito.version>1.9.5</mockito.version>
+		<powermock.version>1.5.6</powermock.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<tabletop.version>0.1.0-SNAPSHOT</tabletop.version>
+		<testng.version>6.8.8</testng.version>
+		<wandrell.version>0.1.0-SNAPSHOT</wandrell.version>
+		<!-- Plugins versions -->
+		<plugin.antlr.version>4.5</plugin.antlr.version>
+		<plugin.checkstyle.version>2.13</plugin.checkstyle.version>
+		<plugin.compiler.version>3.2</plugin.compiler.version>
+		<plugin.deploy.version>2.8.2</plugin.deploy.version>
+		<plugin.failsafe.version>2.18</plugin.failsafe.version>
+		<plugin.findbugs.version>3.0.0</plugin.findbugs.version>
+		<plugin.jacoco.version>0.7.2.201409121644</plugin.jacoco.version>
+		<plugin.jar.version>2.5</plugin.jar.version>
+		<plugin.javadoc.version>2.10.1</plugin.javadoc.version>
+		<plugin.jdepend.version>2.0</plugin.jdepend.version>
+		<plugin.jxr.version>2.5</plugin.jxr.version>
+		<plugin.pmd.version>3.3</plugin.pmd.version>
+		<plugin.reports.version>2.7</plugin.reports.version>
+		<plugin.site.version>3.4</plugin.site.version>
+		<plugin.source.version>2.4</plugin.source.version>
+		<plugin.surefire.version>2.18</plugin.surefire.version>
+		<plugin.taglist.version>2.4</plugin.taglist.version>
+		<!-- Extensions versions -->
+		<extension.wagon.version>2.8</extension.wagon.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>wandrell-releases</id>
+			<name>Wandrell releases repository</name>
+			<url>http://dl.bintray.com/bernardo-mg/maven</url>
+		</repository>
+		<repository>
+			<id>wandrell-snapshots</id>
+			<name>Wandrell snapshots repository</name>
+			<url>http://maven.wandrell.com</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<!-- Antlr -->
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Guava -->
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Java Patterns -->
+			<groupId>com.wandrell</groupId>
+			<artifactId>java-patterns</artifactId>
+			<version>${wandrell.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Java Utils -->
+			<groupId>com.wandrell</groupId>
+			<artifactId>java-utils</artifactId>
+			<version>${wandrell.version}</version>
+		</dependency>
+		<dependency>
+			<!-- Jaxen -->
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>${jaxen.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- JDom 2 -->
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>${jdom.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Mockito -->
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- PowerMock -->
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- SLF4J API -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- SLF4J LOG4J-12 Binding -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- Tabletop API -->
+			<groupId>com.wandrell.tabletop</groupId>
+			<artifactId>tabletop-api</artifactId>
+			<version>${tabletop.version}</version>
+		</dependency>
+		<dependency>
+			<!-- TestNG -->
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>clean package install</defaultGoal>
+		<extensions>
+			<extension>
+				<!-- Wagon -->
+				<!-- Enables the use of FTP -->
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>${extension.wagon.version}</version>
+			</extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jacoco</groupId>
+										<artifactId>jacoco-maven-plugin</artifactId>
+										<versionRange>[0.5,)
+										</versionRange>
+										<goals>
+											<goal>prepare-agent</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<!-- m2e doesn't know what to do with jacoco, let's ignore it or 
+											annoying error markers appear see http://wiki.eclipse.org/M2E_plugin_execution_not_covered -->
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+			<!-- ANTLR -->
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>${plugin.antlr.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Compiler -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.compiler.version}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${java.version.source}</source>
+					<target>${java.version.target}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Failsafe -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${plugin.failsafe.version}</version>
+				<configuration>
+					<properties>
+						<property>
+							<name>usedefaultlisteners</name>
+							<key>false</key>
+						</property>
+						<property>
+							<name>suitename</name>
+							<value>${project.artifactId}_(${project.groupId})_Integration_Suite</value>
+						</property>
+					</properties>
+					<suiteXmlFiles>
+						<suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_integration_suite.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+				<executions>
+					<execution>
+						<id>failsafe-integration-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>failsafe-verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- JaCoCo -->
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${plugin.jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-test-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Jar -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.jar.version}</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addExtensions>false</addExtensions>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<packageName>${project.groupId}</packageName>
+						</manifest>
+						<manifestEntries>
+							<name>${manifest.name}</name>
+							<url>${project.url}</url>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Source -->
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.source.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Javadoc -->
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.javadoc.version}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Deploy -->
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${plugin.deploy.version}</version>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+						<configuration>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+							<url>${project.distributionManagement.snapshotRepository.url}</url>
+							<artifactId>${project.artifactId}</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<version>${project.version}</version>
+							<file>${project.build.directory}/${project.build.finalName}.jar</file>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Surefire -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${plugin.surefire.version}</version>
+				<configuration>
+					<properties>
+						<property>
+							<name>usedefaultlisteners</name>
+							<key>false</key>
+						</property>
+						<property>
+							<name>suitename</name>
+							<value>${project.artifactId}_(${project.groupId})_Unit_Suite</value>
+						</property>
+					</properties>
+					<suiteXmlFiles>
+						<suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<!-- Checkstyle -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${plugin.checkstyle.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<configLocation>src/checkstyle/checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- FindBugs -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${plugin.findbugs.version}</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- JaCoCo -->
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${plugin.jacoco.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Javadoc -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.javadoc.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<!-- JDepend -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>${plugin.jdepend.version}</version>
+			</plugin>
+			<plugin>
+				<!-- JXR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${plugin.jxr.version}</version>
+			</plugin>
+			<plugin>
+				<!-- PMD -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${plugin.pmd.version}</version>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>${java.version.source}</targetJdk>
+					<excludes>
+						<exclude>**/*Bean.java</exclude>
+						<exclude>**/generated/*.java</exclude>
+					</excludes>
+					<excludeRoots>
+						<excludeRoot>target/generated-sources/stubs</excludeRoot>
+					</excludeRoots>
+					<rulesets>
+						<ruleset>src/pmd/default-pmd.xml</ruleset>
+					</rulesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Reports -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${plugin.reports.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Site -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugin.site.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Surefire -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${plugin.surefire.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Taglist -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>${plugin.taglist.version}</version>
+				<configuration>
+					<tagListOptions>
+						<tagClasses>
+							<tagClass>
+								<displayName>Deprecation</displayName>
+								<tags>
+									<tag>
+										<matchString>deprecated</matchString>
+										<matchType>ignoreCase</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+							<tagClass>
+								<displayName>Todo Work</displayName>
+								<tags>
+									<tag>
+										<matchString>todo</matchString>
+										<matchType>ignoreCase</matchType>
+									</tag>
+									<tag>
+										<matchString>FIXME</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+						</tagClasses>
+					</tagListOptions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

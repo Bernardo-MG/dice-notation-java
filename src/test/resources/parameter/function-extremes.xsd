@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="test_data">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="data" type="values" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="values">
+		<xs:sequence>
+			<xs:element name="count" type="xs:integer" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="rolls" type="rolls" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="results" type="results" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="rolls">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="roll" type="xs:integer" maxOccurs="1"
+				minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="results">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="result" type="xs:integer" maxOccurs="1"
+				minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
