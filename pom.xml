@@ -52,12 +52,33 @@
 			<name>Project Snapshots Repository</name>
 			<url>ftp://maven.wandrell.com</url>
 		</snapshotRepository>
-		<site>
-			<id>wandrell-site</id>
-			<name>Project Documentation Site</name>
-			<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
-		</site>
 	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<site>
+					<id>wandrell-site</id>
+					<name>Project Documentation Site</name>
+					<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
+				</site>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<id>development</id>
+			<distributionManagement>
+				<site>
+					<id>wandrell-site-development</id>
+					<name>Project Development Documentation Site</name>
+					<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
+				</site>
+			</distributionManagement>
+		</profile>
+	</profiles>
 
 	<organization>
 		<name />
