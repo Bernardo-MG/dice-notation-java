@@ -14,8 +14,9 @@ The grammar being used on this library has been created for ANTLR4 and can be fo
 Currently the project has no webpage.
 
 #### Documentation webpage
-The project has a [Maven site][] and [Javadoc page][] with the information from the
-latest release.
+The project has a [Maven site][] and [Javadoc page][] with the information from the latest release.
+
+There is also a [development Maven site][] and a [development Javadoc page][], generated from the latest development snapshot.
 
 ### Status
 The project is still under development, so expect a certain degree of volatility.
@@ -29,7 +30,10 @@ Issues are managed at the GitHub [project issues page][].
 The application is coded in Java, using Maven to handle the project's configuration and tests.
 
 ### Prerequisites
-Requires JDK 8.
+Has been tested on the following Java versions:
+* JDK 7
+* JDK 8
+* OpenJDK 7
 
 All other dependencies are handled through Maven, and noted in the included POM file.
 
@@ -53,7 +57,9 @@ The continuous integration information can be found at the [project CI page][] b
 The project is released under version 2.0 of the [Apache License][].
 
 [Apache License]: http://www.apache.org/licenses/LICENSE-2.0
-[Javadoc page]: http://docs.wandrell.com/maven/tabletop-dice/apidocs
+[development Javadoc page]: http://docs.wandrell.com/development/maven/tabletop-dice-java/apidocs
+[development Maven site]: http://docs.wandrell.com/development/maven/tabletop-dice-java
+[Javadoc page]: http://docs.wandrell.com/maven/tabletop-dice-java/apidocs
 [Maven site]: http://docs.wandrell.com/maven/tabletop-dice-java
 [project CI page]: https://travis-ci.org/Bernardo-MG/Tabletop-Dice-Java
 [project issues page]: https://github.com/Bernardo-MG/Tabletop-Dice-Java/issues
