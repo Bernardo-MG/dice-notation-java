@@ -14,8 +14,11 @@
  * the License.
  */
 /**
- * Offers classes for handling dice, including rolling them and dice/RPG
- * notation.
+ * Contains grammar parsers for dice/RPG notation. These will parse a string
+ * containing dice notation.
+ * <p>
+ * Classes on this package have been created automatically using ANTLR 4 and a
+ * grammar file.
  */
-package com.wandrell.tabletop.dice;
+package com.wandrell.tabletop.dice.grammar;
 

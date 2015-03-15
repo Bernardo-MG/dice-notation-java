@@ -14,8 +14,9 @@
  * the License.
  */
 /**
- * Offers classes for handling dice, including rolling them and dice/RPG
- * notation.
+ * Contains classes for generating dice roll. In practice, this is generating a
+ * random value from the information contained in a
+ * {@link com.wandrell.tabletop.dice.Dice Dice} class.
  */
-package com.wandrell.tabletop.dice;
+package com.wandrell.tabletop.dice.roller;
 
