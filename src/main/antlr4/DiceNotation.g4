@@ -90,7 +90,7 @@ GROUP_MODIFIER
 
 FUNCTION
 :
-	( '+' | '-' ) ( 'L' | 'H' )
+	( '+' | '-' ) ( 'L' | 'H' ) ( LPAREN NUMBER RPAREN )?
 ;
 
 OPERATOR_ADD

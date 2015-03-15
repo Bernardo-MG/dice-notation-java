@@ -121,6 +121,18 @@
 	<data>
 		<text>3d6-L</text>
 	</data>
+	<data>
+		<text>3d6+H(12)</text>
+	</data>
+	<data>
+		<text>3d6+L(12)</text>
+	</data>
+	<data>
+		<text>3d6-H(12)</text>
+	</data>
+	<data>
+		<text>3d6-L(12)</text>
+	</data>
 	<!-- Operations and functions -->
 	<data>
 		<text>3d6+H+3</text>

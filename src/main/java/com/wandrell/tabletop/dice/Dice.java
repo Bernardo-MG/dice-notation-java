@@ -40,8 +40,8 @@ package com.wandrell.tabletop.dice;
  * "(number)d(sides)+modifier)". For example, a single die of six sides is a
  * "1d6", and three dice of twenty sides are "3d20".
  * <p>
- * This textual representation is also one of the most basic structures used
- * on dice/RPG notation.
+ * This textual representation is also one of the most basic structures used on
+ * dice/RPG notation.
  * 
  * @author Bernardo Martínez Garrido
  */
