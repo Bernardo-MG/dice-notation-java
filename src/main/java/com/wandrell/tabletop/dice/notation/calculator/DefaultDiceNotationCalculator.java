@@ -29,7 +29,7 @@ public final class DefaultDiceNotationCalculator implements
             if (operandCurrent == null) {
                 operandCurrent = itrOperands.next();
             }
-            if (itrOperations.hasNext()) {
+            while (itrOperations.hasNext()) {
                 operation = itrOperations.next();
 
                 if (itrOperands.hasNext()) {
@@ -40,9 +40,6 @@ public final class DefaultDiceNotationCalculator implements
                     // TODO
                     throw new RuntimeException();
                 }
-            } else {
-                // TODO
-                throw new RuntimeException();
             }
         }
 
