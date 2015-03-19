@@ -17,5 +17,5 @@
  * Contains parsers for dice functions. These represent functions used on dice
  * notation.
  */
-package com.wandrell.tabletop.dice.notation.function;
+package com.wandrell.tabletop.dice.function;
 

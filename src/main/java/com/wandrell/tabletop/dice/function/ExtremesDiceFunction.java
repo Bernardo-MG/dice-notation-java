@@ -1,4 +1,4 @@
-package com.wandrell.tabletop.dice.notation.function;
+package com.wandrell.tabletop.dice.function;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
