@@ -7,8 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.function.DiceFunction;
-import com.wandrell.tabletop.dice.function.ExtremesDiceFunction;
+import com.wandrell.tabletop.dice.notation.function.DiceFunction;
+import com.wandrell.tabletop.dice.notation.function.ExtremesDiceFunction;
 import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceFunctionValuesTestParametersFactory;
 
 public final class TestExtremesDiceFunction {

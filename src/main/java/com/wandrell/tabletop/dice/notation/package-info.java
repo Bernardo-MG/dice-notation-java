@@ -14,8 +14,7 @@
  * the License.
  */
 /**
- * Contains parsers for dice functions. These represent functions used on dice
- * notation.
+ * Offers classes to represent and handle dice notation.
  */
-package com.wandrell.tabletop.dice.function;
+package com.wandrell.tabletop.dice.notation;
 
