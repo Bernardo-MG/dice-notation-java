@@ -109,7 +109,7 @@
 		<java.version.source>1.7</java.version.source>
 		<java.version.target>${java.version.source}</java.version.target>
 		<!-- Manifest data -->
-		<manifest.name>com/wandrell/tabletop/core</manifest.name>
+		<manifest.name>com/wandrell/tabletop/dice</manifest.name>
 		<!-- Dependencies versions -->
 		<antlr.version>4.5</antlr.version>
 		<guava.version>18.0</guava.version>
