@@ -10,13 +10,16 @@ grammar DiceNotation;
  * Rules.
  */
 
-// 1d6: from 1 to second number
-
 formula
 :
 	integerDice 
-	| integerDice OPERATOR_ADD NUMBER
+	| integerOpAdd
 	| value
+;
+
+integerOpAdd
+:
+	integerDice OPERATOR_ADD NUMBER
 ;
 
 integerDice

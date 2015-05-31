@@ -7,15 +7,15 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.notation.DiceFormula;
-import com.wandrell.tabletop.dice.notation.constant.DiceConstant;
-import com.wandrell.tabletop.dice.parser.DiceFormulaParser;
+import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
+import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
 import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestParseDiceDiceFormulaParser {
 
-    protected static final String             DATA = "data";
-    private final Parser<String, DiceFormula> parser;
+    protected static final String                DATA = "data";
+    private final Parser<String, DiceExpression> parser;
 
     @DataProvider(name = DATA)
     public final static Iterator<Object[]> getData() throws Exception {
@@ -23,7 +23,7 @@ public final class TestParseDiceDiceFormulaParser {
     }
 
     {
-        parser = new DiceFormulaParser();
+        parser = new DiceExpressionParser();
     }
 
     public TestParseDiceDiceFormulaParser() {
@@ -33,15 +33,15 @@ public final class TestParseDiceDiceFormulaParser {
     @Test(dataProvider = DATA)
     public final void testParse_Dice_Valid(final String text,
             final Integer quantity, final Integer sides) throws Exception {
-        final DiceFormula formula;
-        final DiceConstant dice;
+        final DiceExpression formula;
+        final DiceOperand dice;
 
         formula = parser.parse(text);
 
-        dice = (DiceConstant) formula.getComponents().iterator().next();
+        dice = (DiceOperand) formula.getComponents().iterator().next();
 
-        Assert.assertEquals(dice.getDice().getQuantity(), quantity);
-        Assert.assertEquals(dice.getDice().getSides(), sides);
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), quantity);
+        Assert.assertEquals(dice.getDice().getDice().getSides(), sides);
     }
 
 }

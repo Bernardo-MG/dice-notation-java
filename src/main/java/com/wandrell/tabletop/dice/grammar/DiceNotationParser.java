@@ -27,10 +27,11 @@ public class DiceNotationParser extends Parser {
     public static final int                       OPERATOR_ADD        = 1,
             SEPARATOR = 2, NUMBER = 3;
     public static final int                       RULE_formula        = 0,
-            RULE_integerDice = 1, RULE_diceHeader = 2, RULE_diceSides = 3,
-            RULE_value = 4;
+            RULE_integerOpAdd = 1, RULE_integerDice = 2, RULE_diceHeader = 3,
+            RULE_diceSides = 4, RULE_value = 5;
     public static final String[]                  ruleNames           = {
-            "formula", "integerDice", "diceHeader", "diceSides", "value" };
+            "formula", "integerOpAdd", "integerDice", "diceHeader",
+            "diceSides", "value"                                     };
 
     private static final String[]                 _LITERAL_NAMES      = {};
     private static final String[]                 _SYMBOLIC_NAMES     = { null,
@@ -100,12 +101,8 @@ public class DiceNotationParser extends Parser {
             return getRuleContext(IntegerDiceContext.class, 0);
         }
 
-        public TerminalNode OPERATOR_ADD() {
-            return getToken(DiceNotationParser.OPERATOR_ADD, 0);
-        }
-
-        public TerminalNode NUMBER() {
-            return getToken(DiceNotationParser.NUMBER, 0);
+        public IntegerOpAddContext integerOpAdd() {
+            return getRuleContext(IntegerOpAddContext.class, 0);
         }
 
         public ValueContext value() {
@@ -138,33 +135,88 @@ public class DiceNotationParser extends Parser {
         FormulaContext _localctx = new FormulaContext(_ctx, getState());
         enterRule(_localctx, 0, RULE_formula);
         try {
-            setState(16);
+            setState(15);
             switch (getInterpreter().adaptivePredict(_input, 0, _ctx)) {
                 case 1:
                     enterOuterAlt(_localctx, 1);
                     {
-                        setState(10);
+                        setState(12);
                         integerDice();
                     }
                     break;
                 case 2:
                     enterOuterAlt(_localctx, 2);
                     {
-                        setState(11);
-                        integerDice();
-                        setState(12);
-                        match(OPERATOR_ADD);
                         setState(13);
-                        match(NUMBER);
+                        integerOpAdd();
                     }
                     break;
                 case 3:
                     enterOuterAlt(_localctx, 3);
                     {
-                        setState(15);
+                        setState(14);
                         value();
                     }
                     break;
+            }
+        } catch (RecognitionException re) {
+            _localctx.exception = re;
+            _errHandler.reportError(this, re);
+            _errHandler.recover(this, re);
+        } finally {
+            exitRule();
+        }
+        return _localctx;
+    }
+
+    public static class IntegerOpAddContext extends ParserRuleContext {
+        public IntegerDiceContext integerDice() {
+            return getRuleContext(IntegerDiceContext.class, 0);
+        }
+
+        public TerminalNode OPERATOR_ADD() {
+            return getToken(DiceNotationParser.OPERATOR_ADD, 0);
+        }
+
+        public TerminalNode NUMBER() {
+            return getToken(DiceNotationParser.NUMBER, 0);
+        }
+
+        public IntegerOpAddContext(ParserRuleContext parent, int invokingState) {
+            super(parent, invokingState);
+        }
+
+        @Override
+        public int getRuleIndex() {
+            return RULE_integerOpAdd;
+        }
+
+        @Override
+        public void enterRule(ParseTreeListener listener) {
+            if (listener instanceof DiceNotationListener)
+                ((DiceNotationListener) listener).enterIntegerOpAdd(this);
+        }
+
+        @Override
+        public void exitRule(ParseTreeListener listener) {
+            if (listener instanceof DiceNotationListener)
+                ((DiceNotationListener) listener).exitIntegerOpAdd(this);
+        }
+    }
+
+    public final IntegerOpAddContext integerOpAdd() throws RecognitionException {
+        IntegerOpAddContext _localctx = new IntegerOpAddContext(_ctx,
+                getState());
+        enterRule(_localctx, 2, RULE_integerOpAdd);
+        try {
+            enterOuterAlt(_localctx, 1);
+            {
+                setState(17);
+                integerDice();
+                setState(18);
+                match(OPERATOR_ADD);
+                setState(19);
+                match(NUMBER);
             }
         } catch (RecognitionException re) {
             _localctx.exception = re;
@@ -209,13 +261,13 @@ public class DiceNotationParser extends Parser {
 
     public final IntegerDiceContext integerDice() throws RecognitionException {
         IntegerDiceContext _localctx = new IntegerDiceContext(_ctx, getState());
-        enterRule(_localctx, 2, RULE_integerDice);
+        enterRule(_localctx, 4, RULE_integerDice);
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(18);
+                setState(21);
                 diceHeader();
-                setState(19);
+                setState(22);
                 diceSides();
             }
         } catch (RecognitionException re) {
@@ -261,21 +313,21 @@ public class DiceNotationParser extends Parser {
 
     public final DiceHeaderContext diceHeader() throws RecognitionException {
         DiceHeaderContext _localctx = new DiceHeaderContext(_ctx, getState());
-        enterRule(_localctx, 4, RULE_diceHeader);
+        enterRule(_localctx, 6, RULE_diceHeader);
         int _la;
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(22);
+                setState(25);
                 _la = _input.LA(1);
                 if (_la == NUMBER) {
                     {
-                        setState(21);
+                        setState(24);
                         match(NUMBER);
                     }
                 }
 
-                setState(24);
+                setState(27);
                 match(SEPARATOR);
             }
         } catch (RecognitionException re) {
@@ -317,11 +369,11 @@ public class DiceNotationParser extends Parser {
 
     public final DiceSidesContext diceSides() throws RecognitionException {
         DiceSidesContext _localctx = new DiceSidesContext(_ctx, getState());
-        enterRule(_localctx, 6, RULE_diceSides);
+        enterRule(_localctx, 8, RULE_diceSides);
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(26);
+                setState(29);
                 match(NUMBER);
             }
         } catch (RecognitionException re) {
@@ -363,11 +415,11 @@ public class DiceNotationParser extends Parser {
 
     public final ValueContext value() throws RecognitionException {
         ValueContext _localctx = new ValueContext(_ctx, getState());
-        enterRule(_localctx, 8, RULE_value);
+        enterRule(_localctx, 10, RULE_value);
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(28);
+                setState(31);
                 match(NUMBER);
             }
         } catch (RecognitionException re) {
@@ -380,15 +432,16 @@ public class DiceNotationParser extends Parser {
         return _localctx;
     }
 
-    public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\5!\4\2\t\2\4\3\t"
-                                                      + "\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\3\2\3\2\3\2\5\2\23\n\2\3\3\3\3"
-                                                      + "\3\3\3\4\5\4\31\n\4\3\4\3\4\3\5\3\5\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\2\36"
-                                                      + "\2\22\3\2\2\2\4\24\3\2\2\2\6\30\3\2\2\2\b\34\3\2\2\2\n\36\3\2\2\2\f\23"
-                                                      + "\5\4\3\2\r\16\5\4\3\2\16\17\7\3\2\2\17\20\7\5\2\2\20\23\3\2\2\2\21\23"
-                                                      + "\5\n\6\2\22\f\3\2\2\2\22\r\3\2\2\2\22\21\3\2\2\2\23\3\3\2\2\2\24\25\5"
-                                                      + "\6\4\2\25\26\5\b\5\2\26\5\3\2\2\2\27\31\7\5\2\2\30\27\3\2\2\2\30\31\3"
-                                                      + "\2\2\2\31\32\3\2\2\2\32\33\7\4\2\2\33\7\3\2\2\2\34\35\7\5\2\2\35\t\3\2"
-                                                      + "\2\2\36\37\7\5\2\2\37\13\3\2\2\2\4\22\30";
+    public static final String _serializedATN = "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\5$\4\2\t\2\4\3\t"
+                                                      + "\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\2\5\2\22\n\2\3\3\3\3\3\3"
+                                                      + "\3\3\3\4\3\4\3\4\3\5\5\5\34\n\5\3\5\3\5\3\6\3\6\3\7\3\7\3\7\2\2\b\2\4"
+                                                      + "\6\b\n\f\2\2 \2\21\3\2\2\2\4\23\3\2\2\2\6\27\3\2\2\2\b\33\3\2\2\2\n\37"
+                                                      + "\3\2\2\2\f!\3\2\2\2\16\22\5\6\4\2\17\22\5\4\3\2\20\22\5\f\7\2\21\16\3"
+                                                      + "\2\2\2\21\17\3\2\2\2\21\20\3\2\2\2\22\3\3\2\2\2\23\24\5\6\4\2\24\25\7"
+                                                      + "\3\2\2\25\26\7\5\2\2\26\5\3\2\2\2\27\30\5\b\5\2\30\31\5\n\6\2\31\7\3\2"
+                                                      + "\2\2\32\34\7\5\2\2\33\32\3\2\2\2\33\34\3\2\2\2\34\35\3\2\2\2\35\36\7\4"
+                                                      + "\2\2\36\t\3\2\2\2\37 \7\5\2\2 \13\3\2\2\2!\"\7\5\2\2\"\r\3\2\2\2\4\21"
+                                                      + "\33";
     public static final ATN    _ATN           = new ATNDeserializer()
                                                       .deserialize(_serializedATN
                                                               .toCharArray());

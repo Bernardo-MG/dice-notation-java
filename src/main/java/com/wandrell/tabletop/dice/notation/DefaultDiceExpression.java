@@ -4,30 +4,30 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
-public final class DefaultDiceFormula implements DiceFormula {
+public final class DefaultDiceExpression implements DiceExpression {
 
-    private final Collection<DiceFormulaComponent> components = new LinkedList<>();
+    private final Collection<DiceExpressionComponent> components = new LinkedList<>();
 
-    public DefaultDiceFormula() {
+    public DefaultDiceExpression() {
         super();
     }
 
-    public DefaultDiceFormula(final DiceFormulaComponent... components) {
+    public DefaultDiceExpression(final DiceExpressionComponent... components) {
         super();
 
-        for (final DiceFormulaComponent component : components) {
+        for (final DiceExpressionComponent component : components) {
             getComponentsModifiable().add(component);
         }
     }
 
     @Override
     public final void addDiceNotationComponent(
-            final DiceFormulaComponent component) {
+            final DiceExpressionComponent component) {
         getComponentsModifiable().add(component);
     }
 
     @Override
-    public final Collection<DiceFormulaComponent> getComponents() {
+    public final Collection<DiceExpressionComponent> getComponents() {
         return Collections.unmodifiableCollection(getComponentsModifiable());
     }
 
@@ -37,7 +37,7 @@ public final class DefaultDiceFormula implements DiceFormula {
 
         builder = new StringBuilder();
 
-        for (final DiceFormulaComponent component : getComponentsModifiable()) {
+        for (final DiceExpressionComponent component : getComponentsModifiable()) {
             if (builder.length() > 0) {
                 builder.append(' ');
             }
@@ -50,11 +50,11 @@ public final class DefaultDiceFormula implements DiceFormula {
 
     @Override
     public final void removeDiceNotationComponent(
-            final DiceFormulaComponent component) {
+            final DiceExpressionComponent component) {
         getComponentsModifiable().remove(component);
     }
 
-    private final Collection<DiceFormulaComponent> getComponentsModifiable() {
+    private final Collection<DiceExpressionComponent> getComponentsModifiable() {
         return components;
     }
 

@@ -40,6 +40,26 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
+    public void enterIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx) {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     */
+    @Override
+    public void exitIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx) {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     */
+    @Override
     public void enterIntegerDice(DiceNotationParser.IntegerDiceContext ctx) {}
 
     /**

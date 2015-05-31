@@ -1,9 +1,9 @@
-package com.wandrell.tabletop.dice.notation.constant;
+package com.wandrell.tabletop.dice.notation.operation.constant;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceFormulaComponent;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
-public final class DiceConstant implements DiceFormulaComponent {
+public final class DiceConstant implements DiceExpressionComponent {
 
     private final Dice dice;
 

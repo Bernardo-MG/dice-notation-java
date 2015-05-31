@@ -4,9 +4,9 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.notation.DefaultDiceFormula;
-import com.wandrell.tabletop.dice.notation.DiceFormula;
-import com.wandrell.tabletop.dice.notation.DiceFormulaComponent;
+import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
+import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
 public final class TestDefaultDiceFormula {
 
@@ -16,22 +16,22 @@ public final class TestDefaultDiceFormula {
 
     @Test
     public final void testGetPrintableText() {
-        final DiceFormula formula;
-        DiceFormulaComponent component;
+        final DiceExpression formula;
+        DiceExpressionComponent component;
 
-        formula = new DefaultDiceFormula();
+        formula = new DefaultDiceExpression();
 
-        component = Mockito.mock(DiceFormulaComponent.class);
+        component = Mockito.mock(DiceExpressionComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("A");
 
         formula.addDiceNotationComponent(component);
 
-        component = Mockito.mock(DiceFormulaComponent.class);
+        component = Mockito.mock(DiceExpressionComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("B");
 
         formula.addDiceNotationComponent(component);
 
-        component = Mockito.mock(DiceFormulaComponent.class);
+        component = Mockito.mock(DiceExpressionComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("A");
 
         formula.addDiceNotationComponent(component);

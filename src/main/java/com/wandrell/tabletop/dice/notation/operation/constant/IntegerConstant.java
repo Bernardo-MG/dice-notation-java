@@ -1,8 +1,9 @@
-package com.wandrell.tabletop.dice.notation.constant;
+package com.wandrell.tabletop.dice.notation.operation.constant;
 
-import com.wandrell.tabletop.dice.notation.DiceFormulaComponent;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.operation.Operand;
 
-public final class IntegerConstant implements DiceFormulaComponent {
+public final class IntegerConstant implements DiceExpressionComponent, Operand {
 
     private final Integer value;
 
@@ -17,6 +18,7 @@ public final class IntegerConstant implements DiceFormulaComponent {
         return getValue().toString();
     }
 
+    @Override
     public final Integer getValue() {
         return value;
     }

@@ -1,7 +1,9 @@
 package com.wandrell.tabletop.dice.notation.operation;
 
-public interface BinaryOperation {
+public interface BinaryOperation extends Operation {
 
-    public Operand operate(final Operand operand1, final Operand operand2);
+    public Operand getLeft();
+
+    public Operand getRight();
 
 }

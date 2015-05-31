@@ -4,16 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.notation.DiceFormula;
-import com.wandrell.tabletop.dice.notation.constant.IntegerConstant;
-import com.wandrell.tabletop.dice.parser.DiceFormulaParser;
+import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
+import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
 
 public final class TestDiceFormulaParser {
 
-    private final Parser<String, DiceFormula> parser;
+    private final Parser<String, DiceExpression> parser;
 
     {
-        parser = new DiceFormulaParser();
+        parser = new DiceExpressionParser();
     }
 
     public TestDiceFormulaParser() {
@@ -32,7 +32,7 @@ public final class TestDiceFormulaParser {
 
     @Test
     public final void testParseDice_Number() throws Exception {
-        final DiceFormula formula;
+        final DiceExpression formula;
         final IntegerConstant value;
 
         formula = parser.parse("12");
@@ -44,7 +44,7 @@ public final class TestDiceFormulaParser {
 
     @Test
     public final void testParseDice_Zero() throws Exception {
-        final DiceFormula formula;
+        final DiceExpression formula;
         final IntegerConstant value;
 
         formula = parser.parse("0");

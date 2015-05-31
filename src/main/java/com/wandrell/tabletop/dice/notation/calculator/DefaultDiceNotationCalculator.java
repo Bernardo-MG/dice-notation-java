@@ -19,7 +19,7 @@ public final class DefaultDiceNotationCalculator implements
         final Iterator<BinaryOperation> itrOperations;
         final Iterator<Operand> itrOperands;
         Operand operandCurrent;
-        Operand operandTop;
+        //Operand operandTop;
         BinaryOperation operation;
 
         itrOperands = operands.iterator();
@@ -33,9 +33,8 @@ public final class DefaultDiceNotationCalculator implements
                 operation = itrOperations.next();
 
                 if (itrOperands.hasNext()) {
-                    operandTop = itrOperands.next();
-                    operandCurrent = operation.operate(operandCurrent,
-                            operandTop);
+                    itrOperands.next();
+                    operandCurrent = operation.operate();
                 } else {
                     // TODO
                     throw new RuntimeException();

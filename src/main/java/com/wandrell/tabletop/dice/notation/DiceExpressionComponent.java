@@ -1,6 +1,6 @@
 package com.wandrell.tabletop.dice.notation;
 
-public interface DiceFormulaComponent {
+public interface DiceExpressionComponent {
 
     public String getPrintableText();
 

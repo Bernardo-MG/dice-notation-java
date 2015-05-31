@@ -24,6 +24,22 @@ public interface DiceNotationListener extends ParseTreeListener {
     void exitFormula(DiceNotationParser.FormulaContext ctx);
 
     /**
+     * Enter a parse tree produced by {@link DiceNotationParser#integerOpAdd}.
+     * 
+     * @param ctx
+     *            the parse tree
+     */
+    void enterIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link DiceNotationParser#integerOpAdd}.
+     * 
+     * @param ctx
+     *            the parse tree
+     */
+    void exitIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx);
+
+    /**
      * Enter a parse tree produced by {@link DiceNotationParser#integerDice}.
      * 
      * @param ctx

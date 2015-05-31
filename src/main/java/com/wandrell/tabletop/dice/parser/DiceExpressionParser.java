@@ -10,17 +10,18 @@ import org.antlr.v4.runtime.TokenStream;
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.dice.grammar.DiceNotationLexer;
 import com.wandrell.tabletop.dice.grammar.DiceNotationParser;
-import com.wandrell.tabletop.dice.notation.DiceFormula;
+import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
 
-public final class DiceFormulaParser implements Parser<String, DiceFormula> {
+public final class DiceExpressionParser implements
+        Parser<String, DiceExpression> {
 
-    public DiceFormulaParser() {
+    public DiceExpressionParser() {
         super();
     }
 
     @Override
-    public final DiceFormula parse(final String string) {
+    public final DiceExpression parse(final String string) {
         final ANTLRInputStream input;
         final DiceNotationLexer lexer;
         final TokenStream tokens;
