@@ -9,11 +9,13 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.TokenStream;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.grammar.DiceNotationLexer;
-import com.wandrell.tabletop.dice.grammar.DiceNotationParser;
+import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedLexer;
+import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedParser;
+import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedParser.NotationContext;
 import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestDiceGrammar {
@@ -31,20 +33,24 @@ public final class TestDiceGrammar {
 
     @Test(dataProvider = DATA)
     public final void testParse_Valid(final String text) {
-        getParser(text).notation();
+        final NotationContext context;
+
+        context = getParser(text).notation();
+
+        Assert.assertNull(context.exception);
     }
 
-    private final DiceNotationParser getParser(final String text) {
+    private final DiceNotationExtendedParser getParser(final String text) {
         final CharStream in;
-        final DiceNotationLexer lexer;
+        final DiceNotationExtendedLexer lexer;
         final TokenStream tokens;
-        final DiceNotationParser parser;
+        final DiceNotationExtendedParser parser;
 
         in = new ANTLRInputStream(text);
-        lexer = new DiceNotationLexer(in);
+        lexer = new DiceNotationExtendedLexer(in);
         tokens = new CommonTokenStream(lexer);
 
-        parser = new DiceNotationParser(tokens);
+        parser = new DiceNotationExtendedParser(tokens);
 
         parser.addErrorListener(new BaseErrorListener() {
             @Override

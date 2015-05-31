@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.wandrell.tabletop</groupId>
-	<artifactId>tabletop-dice</artifactId>
+	<artifactId>dice</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -120,7 +120,8 @@
 		<slf4j.version>1.7.7</slf4j.version>
 		<tabletop.version>0.1.0-SNAPSHOT</tabletop.version>
 		<testng.version>6.8.8</testng.version>
-		<wandrell.version>0.1.0-SNAPSHOT</wandrell.version>
+		<wandrell.patterns.version>0.4.0</wandrell.patterns.version>
+		<wandrell.utils.version>0.1.0-SNAPSHOT</wandrell.utils.version>
 		<!-- Plugins versions -->
 		<plugin.antlr.version>4.5</plugin.antlr.version>
 		<plugin.checkstyle.version>2.13</plugin.checkstyle.version>
@@ -173,13 +174,13 @@
 			<!-- Java Patterns -->
 			<groupId>com.wandrell</groupId>
 			<artifactId>java-patterns</artifactId>
-			<version>${wandrell.version}</version>
+			<version>${wandrell.patterns.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Java Utils -->
 			<groupId>com.wandrell</groupId>
 			<artifactId>java-utils</artifactId>
-			<version>${wandrell.version}</version>
+			<version>${wandrell.utils.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Jaxen -->

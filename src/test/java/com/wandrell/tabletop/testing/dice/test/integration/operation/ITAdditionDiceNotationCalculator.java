@@ -20,15 +20,17 @@ public final class ITAdditionDiceNotationCalculator {
     }
 
     @Test
-    public void test_same_positive() {
+    public void test_both_negative() {
         final BinaryOperation operation1;
         final Operand value1;
+        final Operand value2;
         final Integer result;
         final DiceNotationCalculator calculator;
         final Collection<Operand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerOperand(10);
+        value1 = new IntegerOperand(-10);
+        value2 = new IntegerOperand(-5);
 
         operation1 = new AdditionOperation();
 
@@ -38,15 +40,15 @@ public final class ITAdditionDiceNotationCalculator {
         operations = new LinkedList<>();
 
         operands.add(value1);
-        operands.add(value1);
+        operands.add(value2);
 
         operations.add(operation1);
 
         result = calculator.execute(operands, operations);
 
-        Assert.assertEquals(result, (Integer) 20);
+        Assert.assertEquals(result, (Integer) (0 - 15));
     }
-    
+
     @Test
     public void test_both_positive() {
         final BinaryOperation operation1;
@@ -75,36 +77,6 @@ public final class ITAdditionDiceNotationCalculator {
         result = calculator.execute(operands, operations);
 
         Assert.assertEquals(result, (Integer) 15);
-    }
-
-    @Test
-    public void test_one_negative() {
-        final BinaryOperation operation1;
-        final Operand value1;
-        final Operand value2;
-        final Integer result;
-        final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
-        final Collection<BinaryOperation> operations;
-
-        value1 = new IntegerOperand(10);
-        value2 = new IntegerOperand(-5);
-
-        operation1 = new AdditionOperation();
-
-        calculator = new DefaultDiceNotationCalculator();
-
-        operands = new LinkedList<>();
-        operations = new LinkedList<>();
-
-        operands.add(value1);
-        operands.add(value2);
-
-        operations.add(operation1);
-
-        result = calculator.execute(operands, operations);
-
-        Assert.assertEquals(result, (Integer) 5);
     }
 
     @Test
@@ -154,7 +126,7 @@ public final class ITAdditionDiceNotationCalculator {
     }
 
     @Test
-    public void test_both_negative() {
+    public void test_one_negative() {
         final BinaryOperation operation1;
         final Operand value1;
         final Operand value2;
@@ -163,7 +135,7 @@ public final class ITAdditionDiceNotationCalculator {
         final Collection<Operand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerOperand(-10);
+        value1 = new IntegerOperand(10);
         value2 = new IntegerOperand(-5);
 
         operation1 = new AdditionOperation();
@@ -180,7 +152,35 @@ public final class ITAdditionDiceNotationCalculator {
 
         result = calculator.execute(operands, operations);
 
-        Assert.assertEquals(result, (Integer) (0-15));
+        Assert.assertEquals(result, (Integer) 5);
+    }
+
+    @Test
+    public void test_same_positive() {
+        final BinaryOperation operation1;
+        final Operand value1;
+        final Integer result;
+        final DiceNotationCalculator calculator;
+        final Collection<Operand> operands;
+        final Collection<BinaryOperation> operations;
+
+        value1 = new IntegerOperand(10);
+
+        operation1 = new AdditionOperation();
+
+        calculator = new DefaultDiceNotationCalculator();
+
+        operands = new LinkedList<>();
+        operations = new LinkedList<>();
+
+        operands.add(value1);
+        operands.add(value1);
+
+        operations.add(operation1);
+
+        result = calculator.execute(operands, operations);
+
+        Assert.assertEquals(result, (Integer) 20);
     }
 
 }

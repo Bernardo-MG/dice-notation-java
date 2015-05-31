@@ -8,28 +8,20 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface DiceNotationListener extends ParseTreeListener {
     /**
-     * Enter a parse tree produced by {@link DiceNotationParser#dice}.
+     * Enter a parse tree produced by {@link DiceNotationParser#formula}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void enterDice(DiceNotationParser.DiceContext ctx);
+    void enterFormula(DiceNotationParser.FormulaContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link DiceNotationParser#expression}.
+     * Exit a parse tree produced by {@link DiceNotationParser#formula}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void enterExpression(DiceNotationParser.ExpressionContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link DiceNotationParser#fudgeDice}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void enterFudgeDice(DiceNotationParser.FudgeDiceContext ctx);
+    void exitFormula(DiceNotationParser.FormulaContext ctx);
 
     /**
      * Enter a parse tree produced by {@link DiceNotationParser#integerDice}.
@@ -40,64 +32,6 @@ public interface DiceNotationListener extends ParseTreeListener {
     void enterIntegerDice(DiceNotationParser.IntegerDiceContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link DiceNotationParser#notation}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void enterNotation(DiceNotationParser.NotationContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link DiceNotationParser#operand}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void enterOperand(DiceNotationParser.OperandContext ctx);
-
-    /**
-     * Enter a parse tree produced by
-     * {@link DiceNotationParser#operationParenthesis}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void enterOperationParenthesis(
-            DiceNotationParser.OperationParenthesisContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link DiceNotationParser#percentileDice}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void enterPercentileDice(DiceNotationParser.PercentileDiceContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link DiceNotationParser#dice}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void exitDice(DiceNotationParser.DiceContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link DiceNotationParser#expression}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void exitExpression(DiceNotationParser.ExpressionContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link DiceNotationParser#fudgeDice}.
-     * 
-     * @param ctx
-     *            the parse tree
-     */
-    void exitFudgeDice(DiceNotationParser.FudgeDiceContext ctx);
-
-    /**
      * Exit a parse tree produced by {@link DiceNotationParser#integerDice}.
      * 
      * @param ctx
@@ -106,36 +40,50 @@ public interface DiceNotationListener extends ParseTreeListener {
     void exitIntegerDice(DiceNotationParser.IntegerDiceContext ctx);
 
     /**
-     * Exit a parse tree produced by {@link DiceNotationParser#notation}.
+     * Enter a parse tree produced by {@link DiceNotationParser#diceHeader}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void exitNotation(DiceNotationParser.NotationContext ctx);
+    void enterDiceHeader(DiceNotationParser.DiceHeaderContext ctx);
 
     /**
-     * Exit a parse tree produced by {@link DiceNotationParser#operand}.
+     * Exit a parse tree produced by {@link DiceNotationParser#diceHeader}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void exitOperand(DiceNotationParser.OperandContext ctx);
+    void exitDiceHeader(DiceNotationParser.DiceHeaderContext ctx);
 
     /**
-     * Exit a parse tree produced by
-     * {@link DiceNotationParser#operationParenthesis}.
+     * Enter a parse tree produced by {@link DiceNotationParser#diceSides}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void exitOperationParenthesis(
-            DiceNotationParser.OperationParenthesisContext ctx);
+    void enterDiceSides(DiceNotationParser.DiceSidesContext ctx);
 
     /**
-     * Exit a parse tree produced by {@link DiceNotationParser#percentileDice}.
+     * Exit a parse tree produced by {@link DiceNotationParser#diceSides}.
      * 
      * @param ctx
      *            the parse tree
      */
-    void exitPercentileDice(DiceNotationParser.PercentileDiceContext ctx);
+    void exitDiceSides(DiceNotationParser.DiceSidesContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link DiceNotationParser#value}.
+     * 
+     * @param ctx
+     *            the parse tree
+     */
+    void enterValue(DiceNotationParser.ValueContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link DiceNotationParser#value}.
+     * 
+     * @param ctx
+     *            the parse tree
+     */
+    void exitValue(DiceNotationParser.ValueContext ctx);
 }

@@ -20,7 +20,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void enterDice(DiceNotationParser.DiceContext ctx) {}
+    public void enterFormula(DiceNotationParser.FormulaContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -30,27 +30,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void enterEveryRule(ParserRuleContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void enterExpression(DiceNotationParser.ExpressionContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void enterFudgeDice(DiceNotationParser.FudgeDiceContext ctx) {}
+    public void exitFormula(DiceNotationParser.FormulaContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -70,7 +50,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void enterNotation(DiceNotationParser.NotationContext ctx) {}
+    public void exitIntegerDice(DiceNotationParser.IntegerDiceContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -80,7 +60,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void enterOperand(DiceNotationParser.OperandContext ctx) {}
+    public void enterDiceHeader(DiceNotationParser.DiceHeaderContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -90,8 +70,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void enterOperationParenthesis(
-            DiceNotationParser.OperationParenthesisContext ctx) {}
+    public void exitDiceHeader(DiceNotationParser.DiceHeaderContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -101,8 +80,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void
-            enterPercentileDice(DiceNotationParser.PercentileDiceContext ctx) {}
+    public void enterDiceSides(DiceNotationParser.DiceSidesContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -112,7 +90,37 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void exitDice(DiceNotationParser.DiceContext ctx) {}
+    public void exitDiceSides(DiceNotationParser.DiceSidesContext ctx) {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     */
+    @Override
+    public void enterValue(DiceNotationParser.ValueContext ctx) {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     */
+    @Override
+    public void exitValue(DiceNotationParser.ValueContext ctx) {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * The default implementation does nothing.
+     * </p>
+     */
+    @Override
+    public void enterEveryRule(ParserRuleContext ctx) {}
 
     /**
      * {@inheritDoc}
@@ -132,69 +140,7 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      * </p>
      */
     @Override
-    public void exitExpression(DiceNotationParser.ExpressionContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void exitFudgeDice(DiceNotationParser.FudgeDiceContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void exitIntegerDice(DiceNotationParser.IntegerDiceContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void exitNotation(DiceNotationParser.NotationContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void exitOperand(DiceNotationParser.OperandContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void exitOperationParenthesis(
-            DiceNotationParser.OperationParenthesisContext ctx) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void
-            exitPercentileDice(DiceNotationParser.PercentileDiceContext ctx) {}
+    public void visitTerminal(TerminalNode node) {}
 
     /**
      * {@inheritDoc}
@@ -205,14 +151,4 @@ public class DiceNotationBaseListener implements DiceNotationListener {
      */
     @Override
     public void visitErrorNode(ErrorNode node) {}
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>
-     * The default implementation does nothing.
-     * </p>
-     */
-    @Override
-    public void visitTerminal(TerminalNode node) {}
 }

@@ -9,106 +9,44 @@ grammar DiceNotation;
 /**
  * Rules.
  */
-notation
-:
-	expression
-;
-
-expression
-:
-	operand ( OPERATOR_DIV | ( '+' | '-' ) ) expression
-	| dice FUNCTION
-	| operand
-	| ( '+' | '-' ) operand
-;
-
-operand
-:
-	dice
-	| NUMBER
-	| operationParenthesis
-;
-
-// Parenthesis operation
-// For example (1d6) or 2x(1d6)
-
-operationParenthesis
-:
-	LPAREN expression RPAREN
-	| GROUP_MODIFIER operationParenthesis
-;
-
-// All the allowed dice
-
-dice
-:
-	integerDice
-	| percentileDice
-	| fudgeDice
-;
 
 // 1d6: from 1 to second number
 
+formula
+:
+	integerDice 
+	| integerDice OPERATOR_ADD NUMBER
+	| value
+;
+
 integerDice
 :
-	DiceHeader NUMBER
+	diceHeader diceSides
 ;
 
-// 1d%: from 1 to 100
-
-percentileDice
-:
-	DiceHeader PERCENTILE
-;
-
-// 1dF: from -1 to 1
-
-fudgeDice
-:
-	DiceHeader FUDGE
-;
-
-DiceHeader
+diceHeader
 :
 	NUMBER? SEPARATOR
+;
+
+diceSides
+:
+	NUMBER
+;
+
+value
+:
+	NUMBER
 ;
 
 /**
  * Tokens.
  */
 
-// Modifiers
-
-// Modifies the following group operation
-
-GROUP_MODIFIER
-:
-	NUMBER TIMES
-;
 
 // Functions
 
-FUNCTION
-:
-	( '+' | '-' ) ( 'L' | 'H' ) ( LPAREN NUMBER RPAREN )?
-;
-
 OPERATOR_ADD
-:
-	( '+' | '-' )
-;
-
-OPERATOR_DIV
-:
-	( '/' | '*' )
-;
-
-TIMES
-:
-	'x'
-;
-
-SIGN
 :
 	( '+' | '-' )
 ;
@@ -119,30 +57,6 @@ SEPARATOR
 :
 	( 'd' | 'D' )
 ;
-
-PERCENTILE
-:
-	'%'
-;
-
-FUDGE
-:
-	'F'
-;
-
-// Parenthesis
-
-LPAREN
-:
-	'('
-;
-
-RPAREN
-:
-	')'
-;
-
-// Numeric
 
 NUMBER
 :

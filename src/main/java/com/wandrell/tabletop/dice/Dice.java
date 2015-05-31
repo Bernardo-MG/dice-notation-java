@@ -15,6 +15,8 @@
  */
 package com.wandrell.tabletop.dice;
 
+import com.wandrell.tabletop.dice.notation.DiceNotationComponent;
+
 /**
  * Represents a group of dice, all with the same number of sides.
  * <p>
@@ -45,7 +47,7 @@ package com.wandrell.tabletop.dice;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface Dice {
+public interface Dice extends DiceNotationComponent {
 
     /**
      * Returns the dice in a printable text format.
@@ -55,6 +57,7 @@ public interface Dice {
      * 
      * @return the dice in text format
      */
+    @Override
     public String getPrintableText();
 
     /**
