@@ -6,28 +6,28 @@ import java.util.LinkedList;
 
 public final class DefaultDiceFormula implements DiceFormula {
 
-    private final Collection<DiceNotationComponent> components = new LinkedList<>();
+    private final Collection<DiceFormulaComponent> components = new LinkedList<>();
 
     public DefaultDiceFormula() {
         super();
     }
 
-    public DefaultDiceFormula(final DiceNotationComponent... components) {
+    public DefaultDiceFormula(final DiceFormulaComponent... components) {
         super();
 
-        for (final DiceNotationComponent component : components) {
+        for (final DiceFormulaComponent component : components) {
             getComponentsModifiable().add(component);
         }
     }
 
     @Override
     public final void addDiceNotationComponent(
-            final DiceNotationComponent component) {
+            final DiceFormulaComponent component) {
         getComponentsModifiable().add(component);
     }
 
     @Override
-    public final Collection<DiceNotationComponent> getComponents() {
+    public final Collection<DiceFormulaComponent> getComponents() {
         return Collections.unmodifiableCollection(getComponentsModifiable());
     }
 
@@ -37,7 +37,7 @@ public final class DefaultDiceFormula implements DiceFormula {
 
         builder = new StringBuilder();
 
-        for (final DiceNotationComponent component : getComponentsModifiable()) {
+        for (final DiceFormulaComponent component : getComponentsModifiable()) {
             if (builder.length() > 0) {
                 builder.append(' ');
             }
@@ -50,11 +50,11 @@ public final class DefaultDiceFormula implements DiceFormula {
 
     @Override
     public final void removeDiceNotationComponent(
-            final DiceNotationComponent component) {
+            final DiceFormulaComponent component) {
         getComponentsModifiable().remove(component);
     }
 
-    private final Collection<DiceNotationComponent> getComponentsModifiable() {
+    private final Collection<DiceFormulaComponent> getComponentsModifiable() {
         return components;
     }
 

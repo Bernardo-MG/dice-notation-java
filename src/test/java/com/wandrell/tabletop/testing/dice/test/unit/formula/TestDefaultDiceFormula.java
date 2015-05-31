@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DefaultDiceFormula;
 import com.wandrell.tabletop.dice.notation.DiceFormula;
-import com.wandrell.tabletop.dice.notation.DiceNotationComponent;
+import com.wandrell.tabletop.dice.notation.DiceFormulaComponent;
 
 public final class TestDefaultDiceFormula {
 
@@ -17,21 +17,21 @@ public final class TestDefaultDiceFormula {
     @Test
     public final void testGetPrintableText() {
         final DiceFormula formula;
-        DiceNotationComponent component;
+        DiceFormulaComponent component;
 
         formula = new DefaultDiceFormula();
 
-        component = Mockito.mock(DiceNotationComponent.class);
+        component = Mockito.mock(DiceFormulaComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("A");
 
         formula.addDiceNotationComponent(component);
 
-        component = Mockito.mock(DiceNotationComponent.class);
+        component = Mockito.mock(DiceFormulaComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("B");
 
         formula.addDiceNotationComponent(component);
 
-        component = Mockito.mock(DiceNotationComponent.class);
+        component = Mockito.mock(DiceFormulaComponent.class);
         Mockito.when(component.getPrintableText()).thenReturn("A");
 
         formula.addDiceNotationComponent(component);
