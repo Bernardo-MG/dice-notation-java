@@ -12,6 +12,14 @@ public final class DefaultDiceFormula implements DiceFormula {
         super();
     }
 
+    public DefaultDiceFormula(final DiceNotationComponent... components) {
+        super();
+
+        for (final DiceNotationComponent component : components) {
+            getComponentsModifiable().add(component);
+        }
+    }
+
     @Override
     public final void addDiceNotationComponent(
             final DiceNotationComponent component) {
