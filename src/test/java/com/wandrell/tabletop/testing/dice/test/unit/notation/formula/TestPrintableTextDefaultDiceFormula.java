@@ -28,13 +28,13 @@ public final class TestPrintableTextDefaultDiceFormula {
         final Operand diceOperand;
         final Operand intOperand;
         final Operation operation;
-        
-        dice = new DefaultDice(2,6);
-        
+
+        dice = new DefaultDice(2, 6);
+
         diceOperand = new DiceOperand(new DiceConstant(dice));
         intOperand = new IntegerConstant(5);
-        
-        operation = new AdditionOperation(diceOperand,intOperand);
+
+        operation = new AdditionOperation(diceOperand, intOperand);
 
         formula = new DefaultDiceExpression();
 
@@ -50,13 +50,13 @@ public final class TestPrintableTextDefaultDiceFormula {
         final Operand diceOperand;
         final Operand intOperand;
         final Operation operation;
-        
-        dice = new DefaultDice(2,6);
-        
+
+        dice = new DefaultDice(2, 6);
+
         diceOperand = new DiceOperand(new DiceConstant(dice));
         intOperand = new IntegerConstant(5);
-        
-        operation = new SubstractionOperation(diceOperand,intOperand);
+
+        operation = new SubstractionOperation(diceOperand, intOperand);
 
         formula = new DefaultDiceExpression();
 

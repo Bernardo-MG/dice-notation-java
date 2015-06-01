@@ -2,8 +2,6 @@ package com.wandrell.tabletop.dice.parser.listener;
 
 import java.util.Stack;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.grammar.DiceNotationBaseListener;
@@ -15,6 +13,7 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.Operand;
+import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
 import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
@@ -26,9 +25,6 @@ public final class DiceFormulaBuilder extends DiceNotationBaseListener {
     public DiceFormulaBuilder() {
         super();
     }
-
-    @Override
-    public final void enterEveryRule(final ParserRuleContext ctx) {}
 
     @Override
     public final void enterFormula(final DiceNotationParser.FormulaContext ctx) {
@@ -54,17 +50,26 @@ public final class DiceFormulaBuilder extends DiceNotationBaseListener {
 
         dice = new DefaultDice(count, sides);
 
-        // formula.addDiceNotationComponent(new DiceConstant(dice));
-
         getOperandsStack().push(new DiceOperand(new DiceConstant(dice)));
     }
 
     @Override
     public void exitIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx) {
         final BinaryOperation opAdd;
+        final String operator;
+        final Operand left;
+        final Operand right;
 
-        opAdd = new AdditionOperation((Operand) getOperandsStack().pop(),
-                (Operand) getOperandsStack().pop());
+        operator = ctx.OPERATOR_ADD().getText();
+
+        right = (Operand) getOperandsStack().pop();
+        left = (Operand) getOperandsStack().pop();
+
+        if (operator.equals("+")) {
+            opAdd = new AdditionOperation(left, right);
+        } else {
+            opAdd = new SubstractionOperation(left, right);
+        }
 
         getOperandsStack().push(opAdd);
     }
@@ -74,8 +79,6 @@ public final class DiceFormulaBuilder extends DiceNotationBaseListener {
         final Integer value;
 
         value = Integer.parseInt(ctx.getText());
-
-        // formula.addDiceNotationComponent(new IntegerConstant(value));
 
         getOperandsStack().push(new IntegerConstant(value));
     }

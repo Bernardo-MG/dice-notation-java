@@ -178,8 +178,8 @@ public class DiceNotationParser extends Parser {
             return getToken(DiceNotationParser.OPERATOR_ADD, 0);
         }
 
-        public TerminalNode NUMBER() {
-            return getToken(DiceNotationParser.NUMBER, 0);
+        public ValueContext value() {
+            return getRuleContext(ValueContext.class, 0);
         }
 
         public IntegerOpAddContext(ParserRuleContext parent, int invokingState) {
@@ -216,7 +216,7 @@ public class DiceNotationParser extends Parser {
                 setState(18);
                 match(OPERATOR_ADD);
                 setState(19);
-                match(NUMBER);
+                value();
             }
         } catch (RecognitionException re) {
             _localctx.exception = re;
@@ -438,7 +438,7 @@ public class DiceNotationParser extends Parser {
                                                       + "\6\b\n\f\2\2 \2\21\3\2\2\2\4\23\3\2\2\2\6\27\3\2\2\2\b\33\3\2\2\2\n\37"
                                                       + "\3\2\2\2\f!\3\2\2\2\16\22\5\6\4\2\17\22\5\4\3\2\20\22\5\f\7\2\21\16\3"
                                                       + "\2\2\2\21\17\3\2\2\2\21\20\3\2\2\2\22\3\3\2\2\2\23\24\5\6\4\2\24\25\7"
-                                                      + "\3\2\2\25\26\7\5\2\2\26\5\3\2\2\2\27\30\5\b\5\2\30\31\5\n\6\2\31\7\3\2"
+                                                      + "\3\2\2\25\26\5\f\7\2\26\5\3\2\2\2\27\30\5\b\5\2\30\31\5\n\6\2\31\7\3\2"
                                                       + "\2\2\32\34\7\5\2\2\33\32\3\2\2\2\33\34\3\2\2\2\34\35\3\2\2\2\35\36\7\4"
                                                       + "\2\2\36\t\3\2\2\2\37 \7\5\2\2 \13\3\2\2\2!\"\7\5\2\2\"\r\3\2\2\2\4\21"
                                                       + "\33";

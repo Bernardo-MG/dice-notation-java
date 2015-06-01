@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
+import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
+import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
 
@@ -18,6 +21,27 @@ public final class TestDiceFormulaParser {
 
     public TestDiceFormulaParser() {
         super();
+    }
+
+    @Test
+    public final void testParseDice_Add() throws Exception {
+        final DiceExpression formula;
+        final AdditionOperation operation;
+        final IntegerConstant integer;
+        final DiceOperand dice;
+
+        formula = parser.parse("2d6+5");
+
+        operation = (AdditionOperation) formula.getComponents().iterator()
+                .next();
+
+        dice = (DiceOperand) operation.getLeft();
+        integer = (IntegerConstant) operation.getRight();
+
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+
+        Assert.assertEquals(integer.getValue(), (Integer) 5);
     }
 
     @Test(expectedExceptions = IllegalStateException.class)
@@ -40,6 +64,27 @@ public final class TestDiceFormulaParser {
         value = (IntegerConstant) formula.getComponents().iterator().next();
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
+    }
+
+    @Test
+    public final void testParseDice_Sub() throws Exception {
+        final DiceExpression formula;
+        final SubstractionOperation operation;
+        final IntegerConstant integer;
+        final DiceOperand dice;
+
+        formula = parser.parse("2d6-5");
+
+        operation = (SubstractionOperation) formula.getComponents().iterator()
+                .next();
+
+        dice = (DiceOperand) operation.getLeft();
+        integer = (IntegerConstant) operation.getRight();
+
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+
+        Assert.assertEquals(integer.getValue(), (Integer) 5);
     }
 
     @Test

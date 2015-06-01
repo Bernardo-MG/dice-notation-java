@@ -19,7 +19,7 @@ formula
 
 integerOpAdd
 :
-	integerDice OPERATOR_ADD NUMBER
+	integerDice OPERATOR_ADD value
 ;
 
 integerDice

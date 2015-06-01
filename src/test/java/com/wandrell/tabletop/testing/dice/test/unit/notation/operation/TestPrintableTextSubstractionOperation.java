@@ -19,14 +19,14 @@ public final class TestPrintableTextSubstractionOperation {
         final DiceExpressionComponent operation;
         final Operand operandA;
         final Operand operandB;
-        
+
         operandA = Mockito.mock(Operand.class);
         Mockito.when(operandA.getPrintableText()).thenReturn("A");
-        
+
         operandB = Mockito.mock(Operand.class);
         Mockito.when(operandB.getPrintableText()).thenReturn("B");
 
-        operation = new SubstractionOperation(operandA,operandB);
+        operation = new SubstractionOperation(operandA, operandB);
 
         Assert.assertEquals(operation.getPrintableText(), "A - B");
     }

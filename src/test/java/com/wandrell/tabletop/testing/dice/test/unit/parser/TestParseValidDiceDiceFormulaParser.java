@@ -12,7 +12,7 @@ import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
 import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceValuesTestParametersFactory;
 
-public final class TestParseDiceDiceFormulaParser {
+public final class TestParseValidDiceDiceFormulaParser {
 
     protected static final String                DATA = "data";
     private final Parser<String, DiceExpression> parser;
@@ -26,7 +26,7 @@ public final class TestParseDiceDiceFormulaParser {
         parser = new DiceExpressionParser();
     }
 
-    public TestParseDiceDiceFormulaParser() {
+    public TestParseValidDiceDiceFormulaParser() {
         super();
     }
 

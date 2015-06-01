@@ -88,8 +88,8 @@ public final class ITAdditionDiceNotationCalculator {
         final Operand value4;
         final Operand value5;
         final Operand value6;
-        //final Integer result;
-        //final DiceNotationCalculator calculator;
+        // final Integer result;
+        // final DiceNotationCalculator calculator;
         final Collection<Operand> operands;
         final Collection<BinaryOperation> operations;
 
@@ -102,7 +102,7 @@ public final class ITAdditionDiceNotationCalculator {
 
         operation1 = new AdditionOperation(value1, value2);
 
-        //calculator = new DefaultDiceNotationCalculator();
+        // calculator = new DefaultDiceNotationCalculator();
 
         operands = new LinkedList<>();
         operations = new LinkedList<>();
@@ -120,7 +120,7 @@ public final class ITAdditionDiceNotationCalculator {
         operations.add(operation1);
         operations.add(operation1);
 
-        //result = calculator.execute(operands, operations);
+        // result = calculator.execute(operands, operations);
 
         // TODO: Fix this
         // Assert.assertEquals(result, (Integer) 17);
