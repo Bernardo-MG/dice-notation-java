@@ -28,7 +28,7 @@ public final class TestPrintableTextSubstractionOperation {
 
         operation = new SubstractionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getPrintableText(), "A - B");
+        Assert.assertEquals(operation.getPrintableText(), "A-B");
     }
 
 }

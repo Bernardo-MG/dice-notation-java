@@ -27,7 +27,7 @@ public final class AdditionOperation implements BinaryOperation {
         left = getLeft().getPrintableText();
         right = getRight().getPrintableText();
 
-        return String.format("%s + %s", left, right);
+        return String.format("%s+%s", left, right);
     }
 
     @Override

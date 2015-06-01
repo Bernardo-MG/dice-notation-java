@@ -28,7 +28,7 @@ public final class TestPrintableTextAdditionOperation {
 
         operation = new AdditionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getPrintableText(), "A + B");
+        Assert.assertEquals(operation.getPrintableText(), "A+B");
     }
 
 }
