@@ -19,7 +19,7 @@ public final class DiceConstant implements DiceExpressionComponent {
 
     @Override
     public final String getPrintableText() {
-        return getDice().toString();
+        return getDice().getPrintableText();
     }
 
 }
