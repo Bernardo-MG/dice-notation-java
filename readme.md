@@ -11,58 +11,69 @@ With the pass of years it has evolved, and while it never underwent a formal sta
 
 To handle this, and a few additional modifications, a grammar has been created using ANTLR4, which can be found in the path [src/main/antlr4/DiceNotation.g4](src/main/antlr4/DiceNotation.g4).
 
-### Webpage
-Currently the project has no webpage.
+## Features
 
-#### Documentation webpage
-The project has a [Maven site][] and [Javadoc page][] with the information from the latest release.
+The library contains the following features:
 
-There is also a [development Maven site][] and a [development Javadoc page][], generated from the latest development snapshot.
+- ANTLR4 grammar
+- Model for dice and dice notation, along classes to generate values from them
+- Parser to create model instances from the notation
 
-### Status
-The project is still under development, so expect a certain degree of volatility.
+## Documentation
+Documentation is always generated for the latest release:
 
-Still, it is mostly stable, and classpath or name changes should be infrequent, but classes may be added or removed without warning.
+- The [latest release documentation page][site-release].
+- The [the latest release Javadoc site][javadoc-release].
 
-#### Issues management
-Issues are managed at the GitHub [project issues page][].
+Documentation is also generated from the latest snapshot, taken from the 'develop' branch:
+
+- The [the latest snapshot documentation page][site-develop].
+- The [the latest snapshot Javadoc site][javadoc-develop].
+
+The site sources come along the source code, so it is always possible to generate them using the Maven site command.
 
 ## Building the code
 The application is coded in Java, using Maven to handle the project's configuration and tests.
 
 ### Prerequisites
-Has been tested on the following Java versions:
+The project has been tested on the following Java versions:
 * JDK 7
 * JDK 8
 * OpenJDK 7
 
 All other dependencies are handled through Maven, and noted in the included POM file.
 
+### Installing
+
+Thanks to Maven, the project is easy to install, by just using the following command:
+
+```mvn install```
+
+But the recommended way to install the project is by using the code repositories, where the releases and snapshots are stored. The way to set this is detailed on the documentation page.
+
+## Collaborate
+
+The project is still under ongoing development, and any help will be well received.
+
+There are two ways to help: reporting errors and asking for extensions through the issues management, or forking the repository and extending the project.
+
+### Issues management
+Issues are managed at the GitHub [project issues page][issues].
+
+Everybody is allowed to report bugs or ask for features.
+
 ### Getting the code
-The code can be found at the GitHub [project page][].
+The latest version of the code can be found at the [GitHub project page][scm].
 
-To acquire it through Git use the following clone URI:
-
-`git clone https://github.com/Bernardo-MG/Tabletop-Dice-Java.git`
-
-#### Repository
-Releases can be found in the [releases repository][] on Bintray.
-
-It can be added to Maven as a repository using the following URI:
-`http://dl.bintray.com/bernardo-mg/maven`
-
-## Continuous integration
-The continuous integration information can be found at the [project CI page][] based on Travis CI.
+Feel free to fork it, and share the changes.
 
 ## License
-The project is released under version 2.0 of the [Apache License][].
+The project is released under the [MIT License][license].
 
-[Apache License]: http://www.apache.org/licenses/LICENSE-2.0
-[development Javadoc page]: http://docs.wandrell.com/development/maven/tabletop-dice-java/apidocs
-[development Maven site]: http://docs.wandrell.com/development/maven/tabletop-dice-java
-[Javadoc page]: http://docs.wandrell.com/maven/tabletop-dice-java/apidocs
-[Maven site]: http://docs.wandrell.com/maven/tabletop-dice-java
-[project CI page]: https://travis-ci.org/Bernardo-MG/Tabletop-Dice-Java
-[project issues page]: https://github.com/Bernardo-MG/Tabletop-Dice-Java/issues
-[project page]: http://github.com/Bernardo-MG/Tabletop-Dice-Java
-[releases repository]: http://dl.bintray.com/bernardo-mg/tabletop-dice-java
+[issues]: https://github.com/Bernardo-MG/tabletop-dice-java/issues
+[javadoc-develop]: http://docs.wandrell.com/development/maven/tabletop-dice/apidocs
+[javadoc-release]: http://docs.wandrell.com/maven/tabletop-dice/apidocs
+[license]: http://www.apache.org/licenses/LICENSE-2.0
+[scm]: http://github.com/Bernardo-MG/tabletop-dice-java
+[site-develop]: http://docs.wandrell.com/development/maven/tabletop-dice
+[site-release]: http://docs.wandrell.com/maven/tabletop-dice

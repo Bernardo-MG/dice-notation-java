@@ -42,14 +42,14 @@
 	<distributionManagement>
 		<repository>
 			<uniqueVersion>false</uniqueVersion>
-			<id>wandrell-releases</id>
-			<name>Project Releases Repository</name>
-			<url>https://api.bintray.com/maven/bernardo-mg/maven/tabletop-dice</url>
+			<id>releases</id>
+			<name>Releases Repository</name>
+			<url>https://api.bintray.com/maven/bernardo-mg/tabletop/dice</url>
 		</repository>
 		<snapshotRepository>
 			<uniqueVersion>true</uniqueVersion>
-			<id>wandrell-snapshots</id>
-			<name>Project Snapshots Repository</name>
+			<id>snapshots</id>
+			<name>Snapshots Repository</name>
 			<url>ftp://maven.wandrell.com</url>
 		</snapshotRepository>
 	</distributionManagement>
@@ -64,7 +64,7 @@
 				<site>
 					<id>wandrell-site</id>
 					<name>Project Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
+					<url>ftp://docs.wandrell.com/tabletop-dice</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -74,7 +74,7 @@
 				<site>
 					<id>wandrell-site-development</id>
 					<name>Project Development Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice-java</url>
+					<url>ftp://docs.wandrell.com/tabletop-dice</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -116,16 +116,14 @@
 		<jaxen.version>1.1.6</jaxen.version>
 		<jdom.version>2.0.5</jdom.version>
 		<mockito.version>1.9.5</mockito.version>
-		<powermock.version>1.5.6</powermock.version>
 		<slf4j.version>1.7.7</slf4j.version>
-		<tabletop.version>0.1.0-SNAPSHOT</tabletop.version>
 		<testng.version>6.8.8</testng.version>
 		<wandrell.patterns.version>0.4.0</wandrell.patterns.version>
 		<wandrell.utils.version>0.1.0-SNAPSHOT</wandrell.utils.version>
 		<!-- Plugins versions -->
-		<plugin.antlr.version>4.5</plugin.antlr.version>
 		<plugin.checkstyle.version>2.13</plugin.checkstyle.version>
 		<plugin.compiler.version>3.2</plugin.compiler.version>
+		<plugin.changes.version>2.11</plugin.changes.version>
 		<plugin.deploy.version>2.8.2</plugin.deploy.version>
 		<plugin.failsafe.version>2.18</plugin.failsafe.version>
 		<plugin.findbugs.version>3.0.0</plugin.findbugs.version>
@@ -135,24 +133,35 @@
 		<plugin.jdepend.version>2.0</plugin.jdepend.version>
 		<plugin.jxr.version>2.5</plugin.jxr.version>
 		<plugin.pmd.version>3.3</plugin.pmd.version>
-		<plugin.reports.version>2.7</plugin.reports.version>
+		<plugin.reports.version>2.8</plugin.reports.version>
 		<plugin.site.version>3.4</plugin.site.version>
+		<plugin.site.reflow.version>1.1.1</plugin.site.reflow.version>
+		<plugin.site.velocity.version>1.7</plugin.site.velocity.version>
 		<plugin.source.version>2.4</plugin.source.version>
 		<plugin.surefire.version>2.18</plugin.surefire.version>
 		<plugin.taglist.version>2.4</plugin.taglist.version>
 		<!-- Extensions versions -->
 		<extension.wagon.version>2.8</extension.wagon.version>
+		<!-- Maven Site -->
+		<site.skin.version>1.1.1</site.skin.version>
+		<site.download>https://bintray.com/bernardo-mg/maven/${repoProjectId}/view</site.download>
+		<javaVersion>JDK 7, JDK 8 and OpenJDK 7</javaVersion>
+		<scmName>GitHub</scmName>
+		<scmURL>${project.scm.url}</scmURL>
+		<ciName>${project.ciManagement.system}</ciName>
+		<ciURL>${project.ciManagement.url}</ciURL>
+		<license>MIT</license>
 	</properties>
 
 	<repositories>
 		<repository>
-			<id>wandrell-releases</id>
-			<name>Wandrell releases repository</name>
+			<id>releases</id>
+			<name>Releases repository</name>
 			<url>http://dl.bintray.com/bernardo-mg/maven</url>
 		</repository>
 		<repository>
-			<id>wandrell-snapshots</id>
-			<name>Wandrell snapshots repository</name>
+			<id>snapshots</id>
+			<name>Snapshots repository</name>
 			<url>http://maven.wandrell.com</url>
 		</repository>
 	</repositories>
@@ -204,13 +213,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<!-- PowerMock -->
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-mockito</artifactId>
-			<version>${powermock.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<!-- SLF4J API -->
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -223,12 +225,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- Tabletop API -->
-			<groupId>com.wandrell.tabletop</groupId>
-			<artifactId>tabletop-api</artifactId>
-			<version>${tabletop.version}</version>
 		</dependency>
 		<dependency>
 			<!-- TestNG -->
@@ -284,19 +280,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-			<!-- ANTLR -->
-				<groupId>org.antlr</groupId>
-				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>${plugin.antlr.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>antlr4</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<!-- Compiler -->
 				<groupId>org.apache.maven.plugins</groupId>
@@ -389,6 +372,27 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- Site -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugin.site.version}</version>
+				<dependencies>
+					<dependency>
+						<!-- Reflow Skin -->
+						<groupId>lt.velykis.maven.skins</groupId>
+						<artifactId>reflow-velocity-tools</artifactId>
+						<version>${plugin.site.reflow.version}</version>
+					</dependency>
+					<dependency>
+						<!-- Velocity -->
+						<!-- Reflow skin requires Velocity >= 1.7 -->
+						<groupId>org.apache.velocity</groupId>
+						<artifactId>velocity</artifactId>
+						<version>${plugin.site.velocity.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<!-- Source -->
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${plugin.source.version}</version>
@@ -466,36 +470,38 @@
 	<reporting>
 		<plugins>
 			<plugin>
-				<!-- Checkstyle -->
+				<!-- Reports -->
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${plugin.checkstyle.version}</version>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${plugin.reports.version}</version>
 				<reportSets>
 					<reportSet>
 						<reports>
-							<report>checkstyle</report>
+							<report>summary</report>
+							<report>license</report>
+							<report>modules</report>
+							<report>project-team</report>
+							<report>dependency-info</report>
+							<report>distribution-management</report>
+							<report>dependencies</report>
+							<report>dependency-management</report>
+							<report>plugins</report>
+							<report>plugin-management</report>
 						</reports>
 					</reportSet>
 				</reportSets>
-				<configuration>
-					<configLocation>src/checkstyle/checkstyle.xml</configLocation>
-				</configuration>
 			</plugin>
 			<plugin>
-				<!-- FindBugs -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>${plugin.findbugs.version}</version>
-				<configuration>
-					<effort>Max</effort>
-					<threshold>Low</threshold>
-				</configuration>
+				<!-- JXR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${plugin.jxr.version}</version>
 			</plugin>
 			<plugin>
-				<!-- JaCoCo -->
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${plugin.jacoco.version}</version>
+				<!-- Site -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugin.site.version}</version>
 			</plugin>
 			<plugin>
 				<!-- Javadoc -->
@@ -511,56 +517,17 @@
 				</reportSets>
 			</plugin>
 			<plugin>
-				<!-- JDepend -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-				<version>${plugin.jdepend.version}</version>
-			</plugin>
-			<plugin>
-				<!-- JXR -->
+				<!-- Changes -->
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>${plugin.jxr.version}</version>
-			</plugin>
-			<plugin>
-				<!-- PMD -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>${plugin.pmd.version}</version>
-				<configuration>
-					<linkXref>true</linkXref>
-					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-					<targetJdk>${java.version.source}</targetJdk>
-					<excludes>
-						<exclude>**/*Bean.java</exclude>
-						<exclude>**/generated/*.java</exclude>
-					</excludes>
-					<excludeRoots>
-						<excludeRoot>target/generated-sources/stubs</excludeRoot>
-					</excludeRoots>
-					<rulesets>
-						<ruleset>src/pmd/default-pmd.xml</ruleset>
-					</rulesets>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Reports -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${plugin.reports.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Site -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${plugin.site.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Surefire -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${plugin.surefire.version}</version>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${plugin.changes.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 			<plugin>
 				<!-- Taglist -->
@@ -595,6 +562,72 @@
 						</tagClasses>
 					</tagListOptions>
 				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Checkstyle -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${plugin.checkstyle.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<configLocation>src/checkstyle/checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- FindBugs -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${plugin.findbugs.version}</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- PMD -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${plugin.pmd.version}</version>
+				<configuration>
+					<linkXref>true</linkXref>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>${java.version.source}</targetJdk>
+					<excludes>
+						<exclude>**/*Bean.java</exclude>
+						<exclude>**/generated/*.java</exclude>
+					</excludes>
+					<excludeRoots>
+						<excludeRoot>target/generated-sources/stubs</excludeRoot>
+					</excludeRoots>
+					<rulesets>
+						<ruleset>src/pmd/default-pmd.xml</ruleset>
+					</rulesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Surefire -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${plugin.surefire.version}</version>
+			</plugin>
+			<plugin>
+				<!-- JaCoCo -->
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${plugin.jacoco.version}</version>
+			</plugin>
+			<plugin>
+				<!-- JDepend -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>${plugin.jdepend.version}</version>
 			</plugin>
 		</plugins>
 	</reporting>

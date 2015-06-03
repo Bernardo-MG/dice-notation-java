@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+	<bannerLeft>
+		<name>${project.name}</name>
+		<href>./</href>
+	</bannerLeft>
+
+	<publishDate position="bottom" format="yyyy-MM-dd" />
+	<version position="bottom" />
+
+	<skin>
+		<groupId>lt.velykis.maven.skins</groupId>
+		<artifactId>reflow-maven-skin</artifactId>
+		<version>${site.skin.version}</version>
+	</skin>
+
+	<custom>
+		<reflowSkin>
+			<smoothScroll>true</smoothScroll>
+			<theme>default</theme>
+			<highlightJs>true</highlightJs>
+			<highlightJsTheme>github</highlightJsTheme>
+			<brand>
+				<!-- Brand text in top-left part of the site -->
+				<name>${project.name}</name>
+				<href>./</href>
+			</brand>
+			<slogan>${project.description}</slogan>
+			<titleTemplate>%2$s | %1$s</titleTemplate>
+			<!-- Use Table of Contents at the top of the page (max 6 elements) -->
+			<toc>top</toc>
+			<tocTopMax>6</tocTopMax>
+			<topNav>Documentation|reports|Contribute</topNav>
+			<!-- Split menus in the bottom navigation -->
+			<bottomNav maxSpan="9">
+				<column>Main</column>
+				<column>Download|Contribute</column>
+				<column>Documentation</column>
+				<column>reports</column>
+			</bottomNav>
+			<bottomDescription>
+	        <![CDATA[
+	          The Java Patterns libraries contains several common design patterns
+	          which can be reused through Java applications.
+	        ]]>
+			</bottomDescription>
+			<pages>
+				<index project="${project.artifactId}">
+					<!-- Override the title -->
+					<titleTemplate>${project.name}</titleTemplate>
+					<!-- no breadcrumbs on the main index page -->
+					<breadcrumbs>false</breadcrumbs>
+					<!-- no ToC on the main index page -->
+					<toc>false</toc>
+					<markPageHeader>false</markPageHeader>
+					<sections>
+						<columns>2</columns>
+						<body />
+						<sidebar />
+					</sections>
+				</index>
+				<!-- Documentation pages -->
+				<usage>
+					<sections>
+						<body />
+						<columns>2</columns>
+					</sections>
+				</usage>
+				<command>
+					<sections>
+						<body />
+						<columns>2</columns>
+						<body />
+					</sections>
+				</command>
+				<outputter>
+					<sections>
+						<body />
+						<columns>2</columns>
+						<body />
+					</sections>
+				</outputter>
+				<parser>
+					<sections>
+						<body />
+						<columns>2</columns>
+						<body />
+					</sections>
+				</parser>
+				<contribute>
+					<breadcrumbs>false</breadcrumbs>
+				</contribute>
+				<!-- Disable source highlighting for Maven reports -->
+				<source-repository>
+					<highlightJs>false</highlightJs>
+				</source-repository>
+				<issue-tracking>
+					<highlightJs>false</highlightJs>
+					<toc>false</toc>
+				</issue-tracking>
+				<license>
+					<highlightJs>false</highlightJs>
+					<toc>false</toc>
+				</license>
+				<!-- Disable ToC for some Maven reports -->
+				<project-info>
+					<toc>false</toc>
+				</project-info>
+				<github-report>
+					<toc>false</toc>
+				</github-report>
+				<dependencies>
+					<tocTopMax>4</tocTopMax>
+				</dependencies>
+			</pages>
+		</reflowSkin>
+	</custom>
+
+	<body>
+		<links>
+			<item name="GitHub project" href="${scm.url}" />
+			<item name="JavaDocs" href="./apidocs/" />
+		</links>
+
+		<menu name="Main" inherit="top">
+			<item name="Home" href="./" />
+			<item name="GitHub project" href="${scm.url}" />
+			<item name="Changes Log" href="./changes-report.html" />
+		</menu>
+		<menu name="Acquire" inherit="top">
+			<item name="Download" href="${site.download}" />
+			<item name="GitHub" href="${scm.url}" />
+			<item name="License" href="./license.html" />
+		</menu>
+		<menu name="Documentation" inherit="bottom">
+			<item name="Usage" href="./usage.html" />
+		</menu>
+		<menu name="Reports" ref="reports" inherit="bottom" />
+		<menu name="Contribute" inherit="bottom">
+			<item name="Issues" href="${issueManagement.url}" />
+			<item name="Fork on GitHub" href="${scm.url}" />
+		</menu>
+	</body>
+
+</project>
