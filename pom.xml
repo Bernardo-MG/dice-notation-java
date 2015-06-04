@@ -11,7 +11,7 @@
 
 	<name>Dice Notation Tools for Java</name>
 	<description>Utilities for representing and handling dice and dice notation.</description>
-	<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java</url>
+	<url>https://github.com/bernardo-mg/tabletop-dice-java</url>
 
 	<licenses>
 		<license>
@@ -22,20 +22,20 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:https://github.com/Bernardo-MG/Tabletop-Dice-Java.git</connection>
-		<developerConnection>scm:git:https://github.com/Bernardo-MG/Tabletop-Dice-Java.git</developerConnection>
+		<connection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</connection>
+		<developerConnection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</developerConnection>
 		<tag>head</tag>
-		<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java</url>
+		<url>https://github.com/bernardo-mg/tabletop-dice-java</url>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java/issues</url>
+		<url>https://github.com/bernardo-mg/tabletop-dice-java/issues</url>
 	</issueManagement>
 
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/Bernardo-MG/Tabletop-Dice-Java</url>
+		<url>https://travis-ci.org/bernardo-mg/tabletop-dice-java</url>
 		<notifiers />
 	</ciManagement>
 
@@ -64,7 +64,7 @@
 				<site>
 					<id>site</id>
 					<name>Project Documentation Site</name>
-					<url>ftp://docs.wandrell.com/java-patterns</url>
+					<url>ftp://docs.wandrell.com/tabletop-dice</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -74,7 +74,7 @@
 				<site>
 					<id>site-development</id>
 					<name>Project Development Documentation Site</name>
-					<url>ftp://docs.wandrell.com/java-patterns</url>
+					<url>ftp://docs.wandrell.com/tabletop-dice</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -82,7 +82,7 @@
 
 	<organization>
 		<name>Bernardo Martínez Garrido</name>
-		<url>https://github.com/Bernardo-MG</url>
+		<url>https://github.com/bernardo-mg</url>
 	</organization>
 
 	<developers>
@@ -90,9 +90,9 @@
 			<id>bmg</id>
 			<name>Bernardo Martínez Garrido</name>
 			<email>programming@wandrell.com</email>
-			<url>https://github.com/Bernardo-MG</url>
+			<url>https://github.com/bernardo-mg</url>
 			<organization>Bernardo Martínez Garrido</organization>
-			<organizationUrl>https://github.com/Bernardo-MG</organizationUrl>
+			<organizationUrl>https://github.com/bernardo-mg</organizationUrl>
 			<roles>
 				<role>Developer</role>
 			</roles>
