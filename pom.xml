@@ -11,7 +11,7 @@
 
 	<name>Dice Notation Tools for Java</name>
 	<description>Utilities for representing and handling dice and dice notation.</description>
-	<url />
+	<url>https://github.com/Bernardo-MG/Tabletop-Dice-Java</url>
 
 	<licenses>
 		<license>
@@ -62,9 +62,9 @@
 			</activation>
 			<distributionManagement>
 				<site>
-					<id>wandrell-site</id>
+					<id>site</id>
 					<name>Project Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice</url>
+					<url>ftp://docs.wandrell.com/java-patterns</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -72,17 +72,17 @@
 			<id>development</id>
 			<distributionManagement>
 				<site>
-					<id>wandrell-site-development</id>
+					<id>site-development</id>
 					<name>Project Development Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice</url>
+					<url>ftp://docs.wandrell.com/java-patterns</url>
 				</site>
 			</distributionManagement>
 		</profile>
 	</profiles>
 
 	<organization>
-		<name />
-		<url />
+		<name>Bernardo Martínez Garrido</name>
+		<url>https://github.com/Bernardo-MG</url>
 	</organization>
 
 	<developers>
@@ -90,11 +90,11 @@
 			<id>bmg</id>
 			<name>Bernardo Martínez Garrido</name>
 			<email>programming@wandrell.com</email>
-			<url />
-			<organization />
-			<organizationUrl />
+			<url>https://github.com/Bernardo-MG</url>
+			<organization>Bernardo Martínez Garrido</organization>
+			<organizationUrl>https://github.com/Bernardo-MG</organizationUrl>
 			<roles>
-				<role>developer</role>
+				<role>Developer</role>
 			</roles>
 			<timezone>+1</timezone>
 			<properties />
