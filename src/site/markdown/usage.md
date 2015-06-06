@@ -15,9 +15,9 @@ To use the library on Maven the Bintray repository should be added to the reposi
 		<snapshots>
 			<enabled>false</enabled>
 		</snapshots>
-		<id>bintray-bernardo-mg-maven</id>
+		<id>bintray-tabletop-toolkits</id>
 		<name>bintray</name>
-		<url>http://dl.bintray.com/bernardo-mg/maven</url>
+		<url>http://dl.bintray.com/bernardo-mg/tabletop-toolkits</url>
 	</repository>
 	...
 </repositories>
@@ -29,9 +29,9 @@ Then just add the dependency:
 <dependencies>
 	...
 	<dependency>
-		<groupId>com.wandrell</groupId>
-		<artifactId>java-patterns</artifactId>
-		<version>${wandrell.patterns.version}</version>
+		<groupId>com.wandrell.tabletop</groupId>
+		<artifactId>dice</artifactId>
+		<version>${tabletop.dice.version}</version>
 	</dependency>
 	...
 </dependencies>
@@ -46,7 +46,7 @@ It is possible to acquire the library through Gradle. For this, just add the rep
 ```
 repositories {
     maven {
-        url  "http://dl.bintray.com/bernardo-mg/maven" 
+        url  "http://dl.bintray.com/bernardo-mg/tabletop-toolkits" 
     }
 }
 ```
@@ -55,10 +55,10 @@ Then just add the dependency:
 	
 ```
 dependencies {
-	compile(group: 'com.wandrell', name: 'java-patterns', version: 'x.y.z')
+	compile(group: 'com.wandrell.tabletop', name: 'dice', version: 'x.y.z')
 }
 ```
 
 Of course, the 'x.y.z' version should be set to the current one for the project.
 
-[bintray]: https://bintray.com/bernardo-mg/maven/java-patterns/view}Bintray
+[bintray]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view}Bintray
