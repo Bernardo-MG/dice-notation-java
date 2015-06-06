@@ -149,7 +149,7 @@
 		<scmURL>${project.scm.url}</scmURL>
 		<ciName>${project.ciManagement.system}</ciName>
 		<ciURL>${project.ciManagement.url}</ciURL>
-		<license>MIT</license>
+		<license>Apache 2.0</license>
 	</properties>
 
 	<repositories>
