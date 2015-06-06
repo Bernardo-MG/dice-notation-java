@@ -143,7 +143,7 @@
 		<extension.wagon.version>2.8</extension.wagon.version>
 		<!-- Maven Site -->
 		<site.skin.version>1.1.1</site.skin.version>
-		<site.download>https://bintray.com/bernardo-mg/maven/${repoProjectId}/view</site.download>
+		<site.download>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</site.download>
 		<javaVersion>JDK 7, JDK 8 and OpenJDK 7</javaVersion>
 		<scmName>GitHub</scmName>
 		<scmURL>${project.scm.url}</scmURL>
