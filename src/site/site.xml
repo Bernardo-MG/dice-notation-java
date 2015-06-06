@@ -37,7 +37,7 @@
 			<!-- Split menus in the bottom navigation -->
 			<bottomNav maxSpan="9">
 				<column>Main</column>
-				<column>Download|Contribute</column>
+				<column>Acquire|Contribute</column>
 				<column>Documentation</column>
 				<column>reports</column>
 			</bottomNav>
