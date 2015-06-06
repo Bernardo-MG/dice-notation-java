@@ -115,29 +115,29 @@
 		<guava.version>18.0</guava.version>
 		<jaxen.version>1.1.6</jaxen.version>
 		<jdom.version>2.0.5</jdom.version>
-		<mockito.version>1.9.5</mockito.version>
-		<slf4j.version>1.7.7</slf4j.version>
+		<mockito.version>1.10.19</mockito.version>
+		<log4j.version>2.3</log4j.version>
 		<testng.version>6.8.8</testng.version>
 		<wandrell.patterns.version>0.4.1</wandrell.patterns.version>
 		<!-- Plugins versions -->
-		<plugin.checkstyle.version>2.13</plugin.checkstyle.version>
-		<plugin.compiler.version>3.2</plugin.compiler.version>
+		<plugin.checkstyle.version>2.15</plugin.checkstyle.version>
 		<plugin.changes.version>2.11</plugin.changes.version>
+		<plugin.compiler.version>3.3</plugin.compiler.version>
 		<plugin.deploy.version>2.8.2</plugin.deploy.version>
-		<plugin.failsafe.version>2.18</plugin.failsafe.version>
-		<plugin.findbugs.version>3.0.0</plugin.findbugs.version>
-		<plugin.jacoco.version>0.7.2.201409121644</plugin.jacoco.version>
-		<plugin.jar.version>2.5</plugin.jar.version>
-		<plugin.javadoc.version>2.10.1</plugin.javadoc.version>
+		<plugin.failsafe.version>2.18.1</plugin.failsafe.version>
+		<plugin.findbugs.version>3.0.1</plugin.findbugs.version>
+		<plugin.jacoco.version>0.7.5.201505241946</plugin.jacoco.version>
+		<plugin.jar.version>2.6</plugin.jar.version>
+		<plugin.javadoc.version>2.10.3</plugin.javadoc.version>
 		<plugin.jdepend.version>2.0</plugin.jdepend.version>
 		<plugin.jxr.version>2.5</plugin.jxr.version>
-		<plugin.pmd.version>3.3</plugin.pmd.version>
+		<plugin.pmd.version>3.4</plugin.pmd.version>
 		<plugin.reports.version>2.8</plugin.reports.version>
 		<plugin.site.version>3.4</plugin.site.version>
 		<plugin.site.reflow.version>1.1.1</plugin.site.reflow.version>
 		<plugin.site.velocity.version>1.7</plugin.site.velocity.version>
 		<plugin.source.version>2.4</plugin.source.version>
-		<plugin.surefire.version>2.18</plugin.surefire.version>
+		<plugin.surefire.version>2.18.1</plugin.surefire.version>
 		<plugin.taglist.version>2.4</plugin.taglist.version>
 		<!-- Extensions versions -->
 		<extension.wagon.version>2.8</extension.wagon.version>
@@ -199,24 +199,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<!-- Log4J -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<!-- Mockito -->
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- SLF4J API -->
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- SLF4J LOG4J-12 Binding -->
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
