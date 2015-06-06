@@ -118,8 +118,7 @@
 		<mockito.version>1.9.5</mockito.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<testng.version>6.8.8</testng.version>
-		<wandrell.patterns.version>0.4.0</wandrell.patterns.version>
-		<wandrell.utils.version>0.1.0-SNAPSHOT</wandrell.utils.version>
+		<wandrell.patterns.version>0.4.1</wandrell.patterns.version>
 		<!-- Plugins versions -->
 		<plugin.checkstyle.version>2.13</plugin.checkstyle.version>
 		<plugin.compiler.version>3.2</plugin.compiler.version>
@@ -184,12 +183,6 @@
 			<groupId>com.wandrell</groupId>
 			<artifactId>java-patterns</artifactId>
 			<version>${wandrell.patterns.version}</version>
-		</dependency>
-		<dependency>
-			<!-- Java Utils -->
-			<groupId>com.wandrell</groupId>
-			<artifactId>java-utils</artifactId>
-			<version>${wandrell.utils.version}</version>
 		</dependency>
 		<dependency>
 			<!-- Jaxen -->
