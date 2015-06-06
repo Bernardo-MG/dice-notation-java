@@ -43,8 +43,7 @@
 			</bottomNav>
 			<bottomDescription>
 	        <![CDATA[
-	          The Java Patterns libraries contains several common design patterns
-	          which can be reused through Java applications.
+	          Utilities for parsing and handling dice notation.
 	        ]]>
 			</bottomDescription>
 			<pages>
