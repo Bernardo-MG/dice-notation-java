@@ -430,6 +430,21 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<!-- Changes -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>${plugin.changes.version}</version>
+				<executions>
+					<execution>
+						<id>check-changes</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>changes-check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<!-- Surefire -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

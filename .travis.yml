@@ -3,7 +3,17 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
-
+env:
+  - DEPLOY=false
+# Setting the JDK which will do the deployment
+matrix:
+  exclude:
+    - jdk: oraclejdk7
+      env: DEPLOY=false
+  include:
+    - jdk: oraclejdk7
+      env: DEPLOY=true
+    
 before_install:
   - chmod +x ./.scripts/create-maven-settings.sh
   - chmod +x ./.scripts/deploy.sh
