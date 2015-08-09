@@ -4,15 +4,15 @@ Created on the late 70s for Dungeons & Dragons, the tabletop notation has become
 
 These are very simple: 2d6+5 means "roll two dice, add their values and then add the number five to the result".
 
-# Why this library?
+---
+
+## Why this library?
 
 Dice notation appears through tabletop games frequently, making it necessary to handle it in all of it's aspects.
 
 It is needed not only to be able to represent it somehow, but also it should be possible to parse the written notation, and values have to be generated from the parsed notation.
 
----
-
-# The components
+## The components
 
 Several features allow handling dice notation:
 
@@ -20,14 +20,3 @@ Several features allow handling dice notation:
 - A model allows representations of said grammar and dice
 - Classes for generating random values from the notation
 - Parser which generates model instances from the notation
-
----
-
-# About the code
-
-The code is open source and freely accessible. If you want to do any kind of modification just fork it from the repository.
-
-- Java version: ${javaVersion}
-- License: [${license}](./license.html)
-- SCM: [${scmName}](${scmURL})
-- CI: [${ciName}](${ciURL})

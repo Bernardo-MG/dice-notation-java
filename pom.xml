@@ -12,6 +12,7 @@
 	<name>Dice Notation Tools for Java</name>
 	<description>Utilities for representing and handling dice and dice notation.</description>
 	<url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+	<inceptionYear>2014</inceptionYear>
 
 	<licenses>
 		<license>
@@ -120,21 +121,28 @@
 		<testng.version>6.8.8</testng.version>
 		<wandrell.patterns.version>0.4.1</wandrell.patterns.version>
 		<!-- Plugins versions -->
-		<plugin.checkstyle.version>2.15</plugin.checkstyle.version>
+		<plugin.ant.version>1.8</plugin.ant.version>
+		<plugin.assembly.version>2.5.5</plugin.assembly.version>
+		<plugin.checkstyle.version>2.16</plugin.checkstyle.version>
 		<plugin.changes.version>2.11</plugin.changes.version>
+		<plugin.clean.version>2.6.1</plugin.clean.version>
 		<plugin.compiler.version>3.3</plugin.compiler.version>
+		<plugin.dependency.version>2.10</plugin.dependency.version>
 		<plugin.deploy.version>2.8.2</plugin.deploy.version>
+		<plugin.enforcer.version>1.4</plugin.enforcer.version>
 		<plugin.failsafe.version>2.18.1</plugin.failsafe.version>
 		<plugin.findbugs.version>3.0.1</plugin.findbugs.version>
+		<plugin.install.version>2.5.2</plugin.install.version>
 		<plugin.jacoco.version>0.7.5.201505241946</plugin.jacoco.version>
 		<plugin.jar.version>2.6</plugin.jar.version>
 		<plugin.javadoc.version>2.10.3</plugin.javadoc.version>
 		<plugin.jdepend.version>2.0</plugin.jdepend.version>
 		<plugin.jxr.version>2.5</plugin.jxr.version>
-		<plugin.pmd.version>3.4</plugin.pmd.version>
+		<plugin.pmd.version>3.5</plugin.pmd.version>
+		<plugin.release.version>2.5.2</plugin.release.version>
 		<plugin.reports.version>2.8</plugin.reports.version>
+		<plugin.resources.version>2.6</plugin.resources.version>
 		<plugin.site.version>3.4</plugin.site.version>
-		<plugin.site.reflow.version>1.1.1</plugin.site.reflow.version>
 		<plugin.site.velocity.version>1.7</plugin.site.velocity.version>
 		<plugin.source.version>2.4</plugin.source.version>
 		<plugin.surefire.version>2.18.1</plugin.surefire.version>
@@ -142,14 +150,9 @@
 		<!-- Extensions versions -->
 		<extension.wagon.version>2.8</extension.wagon.version>
 		<!-- Maven Site -->
-		<site.skin.version>1.1.1</site.skin.version>
-		<site.download>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</site.download>
-		<javaVersion>JDK 7, JDK 8 and OpenJDK 7</javaVersion>
-		<scmName>GitHub</scmName>
-		<scmURL>${project.scm.url}</scmURL>
-		<ciName>${project.ciManagement.system}</ciName>
-		<ciURL>${project.ciManagement.url}</ciURL>
-		<license>Apache 2.0</license>
+		<site.skin.version>0.1.0</site.skin.version>
+		<bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
+		<mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
 	</properties>
 
 	<repositories>
@@ -263,9 +266,48 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<plugin>
+					<!-- Dependency -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${plugin.dependency.version}</version>
+				</plugin>
+				<plugin>
+					<!-- Assembly -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${plugin.assembly.version}</version>
+				</plugin>
+				<plugin>
+					<!-- Release -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${plugin.release.version}</version>
+				</plugin>
+				<plugin>
+					<!-- Ant Run -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${plugin.ant.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<!-- Clean -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>${plugin.clean.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Resources -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${plugin.resources.version}</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
 			<plugin>
 				<!-- Compiler -->
 				<groupId>org.apache.maven.plugins</groupId>
@@ -276,6 +318,31 @@
 					<source>${java.version.source}</source>
 					<target>${java.version.target}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Install -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>${plugin.install.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Enforcer -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${plugin.enforcer.version}</version>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<configuration>
+							<rules>
+								<dependencyConvergence />
+							</rules>
+						</configuration>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<!-- Failsafe -->
@@ -364,19 +431,21 @@
 				<version>${plugin.site.version}</version>
 				<dependencies>
 					<dependency>
-						<!-- Reflow Skin -->
-						<groupId>lt.velykis.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>${plugin.site.reflow.version}</version>
+						<!-- Docs Maven Skin -->
+						<groupId>com.wandrell.maven.skins</groupId>
+						<artifactId>docs-maven-skin</artifactId>
+						<version>${site.skin.version}</version>
 					</dependency>
 					<dependency>
 						<!-- Velocity -->
-						<!-- Reflow skin requires Velocity >= 1.7 -->
 						<groupId>org.apache.velocity</groupId>
 						<artifactId>velocity</artifactId>
 						<version>${plugin.site.velocity.version}</version>
 					</dependency>
 				</dependencies>
+				<configuration>
+					<relativizeDecorationLinks>false</relativizeDecorationLinks>
+				</configuration>
 			</plugin>
 			<plugin>
 				<!-- Source -->
@@ -442,6 +511,16 @@
 							<goal>changes-check</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>validate-changes</id>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>changes-validate</goal>
+						</goals>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -471,7 +550,7 @@
 	<reporting>
 		<plugins>
 			<plugin>
-				<!-- Reports -->
+				<!-- Project Info -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>${plugin.reports.version}</version>
@@ -482,9 +561,8 @@
 							<report>license</report>
 							<report>modules</report>
 							<report>project-team</report>
-							<report>dependency-info</report>
-							<report>distribution-management</report>
 							<report>dependencies</report>
+							<report>dependency-info</report>
 							<report>dependency-management</report>
 							<report>plugins</report>
 							<report>plugin-management</report>
@@ -597,6 +675,7 @@
 				<version>${plugin.pmd.version}</version>
 				<configuration>
 					<linkXref>true</linkXref>
+					<skipEmptyReport>false</skipEmptyReport>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 					<minimumTokens>100</minimumTokens>
 					<targetJdk>${java.version.source}</targetJdk>
