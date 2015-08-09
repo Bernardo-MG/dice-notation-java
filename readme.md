@@ -11,6 +11,15 @@ With the pass of years it has evolved, and while it never underwent a formal sta
 
 To handle this, and a few additional modifications, a grammar has been created using ANTLR4, which can be found in the path [src/main/antlr4/DiceNotation.g4](src/main/antlr4/DiceNotation.g4).
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.wandrell.tabletop/dice.svg)][maven-repo]
+[![Bintray](https://api.bintray.com/packages/bernardo-mg/tabletop-toolkits/dice/images/download.svg)][bintray-repo]
+
+[![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
+[![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
+
+[![Release javadocs](https://img.shields.io/badge/javadocs-release-blue.svg)][javadoc-release]
+[![Development javadocs](https://img.shields.io/badge/javadocs-develop-blue.svg)][javadoc-develop]
+
 ## Features
 
 The library contains the following features:
