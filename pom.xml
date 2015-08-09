@@ -36,7 +36,7 @@
 
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/bernardo-mg/tabletop-dice-java</url>
+		<url>https://travis-ci.org/Bernardo-MG/tabletop-dice-java</url>
 		<notifiers />
 	</ciManagement>
 
