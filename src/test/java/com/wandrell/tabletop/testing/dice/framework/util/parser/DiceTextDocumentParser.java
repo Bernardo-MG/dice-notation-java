@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.testing.dice.framework.conf.TestXMLConf;
 
-public final class DiceTextDocumentParser implements
-        Parser<Document, Collection<Collection<Object>>> {
+public final class DiceTextDocumentParser
+        implements Parser<Document, Collection<Collection<Object>>> {
 
     private static final Logger logger = LoggerFactory
-                                               .getLogger(DiceTextDocumentParser.class);
+            .getLogger(DiceTextDocumentParser.class);
 
     private static final Logger getLogger() {
         return logger;

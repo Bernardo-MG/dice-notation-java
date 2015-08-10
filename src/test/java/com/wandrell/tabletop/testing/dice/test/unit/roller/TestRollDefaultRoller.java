@@ -40,8 +40,9 @@ public final class TestRollDefaultRoller {
 
         roller = new DefaultRoller();
 
-        Assert.assertEquals((Integer) roller.roll(dice).getBareRollResults()
-                .size(), quantity);
+        Assert.assertEquals(
+                (Integer) roller.roll(dice).getBareRollResults().size(),
+                quantity);
     }
 
     @Test(dataProvider = DATA)
@@ -57,8 +58,9 @@ public final class TestRollDefaultRoller {
 
         roller = new DefaultRoller();
 
-        Assert.assertEquals((Integer) roller.roll(dice).getMappedRollResults()
-                .size(), quantity);
+        Assert.assertEquals(
+                (Integer) roller.roll(dice).getMappedRollResults().size(),
+                quantity);
     }
 
     @SuppressWarnings("unchecked")

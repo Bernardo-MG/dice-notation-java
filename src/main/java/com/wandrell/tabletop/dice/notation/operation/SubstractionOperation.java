@@ -67,7 +67,8 @@ public final class SubstractionOperation implements BinaryOperation {
 
     @Override
     public final Operand operate() {
-        return new IntegerConstant(getLeft().getValue() - getRight().getValue());
+        return new IntegerConstant(
+                getLeft().getValue() - getRight().getValue());
     }
 
     @Override

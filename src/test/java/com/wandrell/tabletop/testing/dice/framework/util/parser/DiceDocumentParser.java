@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.testing.dice.framework.conf.TestXMLConf;
 
-public final class DiceDocumentParser implements
-        Parser<Document, Collection<Collection<Object>>> {
+public final class DiceDocumentParser
+        implements Parser<Document, Collection<Collection<Object>>> {
 
     private static final Logger logger = LoggerFactory
-                                               .getLogger(DiceDocumentParser.class);
+            .getLogger(DiceDocumentParser.class);
 
     private static final Logger getLogger() {
         return logger;
@@ -45,10 +45,10 @@ public final class DiceDocumentParser implements
 
         data = new LinkedList<Object>();
 
-        quantity = Integer.parseInt(node.getChild(TestXMLConf.NODE_QUANTITY)
-                .getText());
-        sides = Integer.parseInt(node.getChild(TestXMLConf.NODE_SIDES)
-                .getText());
+        quantity = Integer
+                .parseInt(node.getChild(TestXMLConf.NODE_QUANTITY).getText());
+        sides = Integer
+                .parseInt(node.getChild(TestXMLConf.NODE_SIDES).getText());
 
         data.add(quantity);
         data.add(sides);

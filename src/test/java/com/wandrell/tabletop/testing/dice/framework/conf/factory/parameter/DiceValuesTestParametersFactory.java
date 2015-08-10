@@ -31,8 +31,8 @@ public final class DiceValuesTestParametersFactory {
         return instance;
     }
 
-    private static final Iterator<Object[]> getParameters(
-            final Collection<Collection<Object>> valuesTable) {
+    private static final Iterator<Object[]>
+            getParameters(final Collection<Collection<Object>> valuesTable) {
         final Collection<Object[]> result;
 
         result = new LinkedList<Object[]>();
@@ -114,8 +114,8 @@ public final class DiceValuesTestParametersFactory {
      * @return an {@code InputStream} pointing to the path
      */
     private final Reader getClassPathReader(final String path) {
-        return new BufferedReader(new InputStreamReader(
-                getClassPathInputStream(path)));
+        return new BufferedReader(
+                new InputStreamReader(getClassPathInputStream(path)));
     }
 
     private final Collection<Collection<Object>> getDiceAndTextValues()

@@ -18,4 +18,3 @@
  * notation.
  */
 package com.wandrell.tabletop.dice.notation.function;
-

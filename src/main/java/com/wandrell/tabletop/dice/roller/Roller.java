@@ -22,7 +22,7 @@ public interface Roller {
 
     public RollerResult<Integer> roll(final Dice dice);
 
-    public <V> RollerResult<V>
-            roll(final Dice dice, final RollMapper<V> mapper);
+    public <V> RollerResult<V> roll(final Dice dice,
+            final RollMapper<V> mapper);
 
 }

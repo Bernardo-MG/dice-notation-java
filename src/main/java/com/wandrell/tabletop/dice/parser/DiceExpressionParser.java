@@ -13,8 +13,8 @@ import com.wandrell.tabletop.dice.grammar.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
 
-public final class DiceExpressionParser implements
-        Parser<String, DiceExpression> {
+public final class DiceExpressionParser
+        implements Parser<String, DiceExpression> {
 
     public DiceExpressionParser() {
         super();
@@ -42,8 +42,8 @@ public final class DiceExpressionParser implements
                 final String message;
 
                 message = String.format(
-                        "failed to parse at line %d on char %d due to %s",
-                        line, charPositionInLine + 1, msg);
+                        "failed to parse at line %d on char %d due to %s", line,
+                        charPositionInLine + 1, msg);
 
                 throw new IllegalStateException(message, e);
             }

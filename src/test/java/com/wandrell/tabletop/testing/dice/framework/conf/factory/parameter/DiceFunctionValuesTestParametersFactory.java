@@ -29,8 +29,8 @@ public final class DiceFunctionValuesTestParametersFactory {
         return instance;
     }
 
-    private static final Iterator<Object[]> getParameters(
-            final Collection<Collection<Object>> valuesTable) {
+    private static final Iterator<Object[]>
+            getParameters(final Collection<Collection<Object>> valuesTable) {
         final Collection<Object[]> result;
 
         result = new LinkedList<Object[]>();
@@ -116,8 +116,8 @@ public final class DiceFunctionValuesTestParametersFactory {
      * @return an {@code InputStream} pointing to the path
      */
     private final Reader getClassPathReader(final String path) {
-        return new BufferedReader(new InputStreamReader(
-                getClassPathInputStream(path)));
+        return new BufferedReader(
+                new InputStreamReader(getClassPathInputStream(path)));
     }
 
     private final Collection<Collection<Object>> getHighestKeepValues()
@@ -128,9 +128,8 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new FunctionExtremesDocumentParser();
 
-        return parserParams
-                .parse(parserFile
-                        .parse(getClassPathReader(DiceParametersConf.FUNCTION_EXTREMES_KEEP_HIGHEST)));
+        return parserParams.parse(parserFile.parse(getClassPathReader(
+                DiceParametersConf.FUNCTION_EXTREMES_KEEP_HIGHEST)));
     }
 
     private final Collection<Collection<Object>> getHighestRemoveValues()
@@ -141,9 +140,8 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new FunctionExtremesDocumentParser();
 
-        return parserParams
-                .parse(parserFile
-                        .parse(getClassPathReader(DiceParametersConf.FUNCTION_EXTREMES_REMOVE_HIGHEST)));
+        return parserParams.parse(parserFile.parse(getClassPathReader(
+                DiceParametersConf.FUNCTION_EXTREMES_REMOVE_HIGHEST)));
     }
 
     private final Collection<Collection<Object>> getLowestKeepValues()
@@ -154,9 +152,8 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new FunctionExtremesDocumentParser();
 
-        return parserParams
-                .parse(parserFile
-                        .parse(getClassPathReader(DiceParametersConf.FUNCTION_EXTREMES_KEEP_LOWEST)));
+        return parserParams.parse(parserFile.parse(getClassPathReader(
+                DiceParametersConf.FUNCTION_EXTREMES_KEEP_LOWEST)));
     }
 
     private final Collection<Collection<Object>> getLowestRemoveValues()
@@ -167,9 +164,8 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new FunctionExtremesDocumentParser();
 
-        return parserParams
-                .parse(parserFile
-                        .parse(getClassPathReader(DiceParametersConf.FUNCTION_EXTREMES_REMOVE_LOWEST)));
+        return parserParams.parse(parserFile.parse(getClassPathReader(
+                DiceParametersConf.FUNCTION_EXTREMES_REMOVE_LOWEST)));
     }
 
 }

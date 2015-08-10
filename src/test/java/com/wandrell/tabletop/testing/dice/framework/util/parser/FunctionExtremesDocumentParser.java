@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.testing.dice.framework.conf.TestXMLConf;
 
-public final class FunctionExtremesDocumentParser implements
-        Parser<Document, Collection<Collection<Object>>> {
+public final class FunctionExtremesDocumentParser
+        implements Parser<Document, Collection<Collection<Object>>> {
 
     private static final Logger logger = LoggerFactory
-                                               .getLogger(FunctionExtremesDocumentParser.class);
+            .getLogger(FunctionExtremesDocumentParser.class);
 
     private static final Logger getLogger() {
         return logger;
@@ -46,8 +46,8 @@ public final class FunctionExtremesDocumentParser implements
 
         data = new LinkedList<Object>();
 
-        count = Integer.parseInt(node.getChild(TestXMLConf.NODE_COUNT)
-                .getText());
+        count = Integer
+                .parseInt(node.getChild(TestXMLConf.NODE_COUNT).getText());
 
         rolls = new LinkedList<>();
         for (final Element roll : node.getChild(TestXMLConf.NODE_ROLLS)
@@ -65,9 +65,9 @@ public final class FunctionExtremesDocumentParser implements
         data.add(rolls);
         data.add(results);
 
-        getLogger().debug(
-                String.format("Read count %d, rolls %s and results %s", count,
-                        rolls.toString(), results.toString()));
+        getLogger()
+                .debug(String.format("Read count %d, rolls %s and results %s",
+                        count, rolls.toString(), results.toString()));
 
         return data;
     }

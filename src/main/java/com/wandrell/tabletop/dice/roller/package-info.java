@@ -19,4 +19,3 @@
  * {@link com.wandrell.tabletop.dice.Dice Dice} class.
  */
 package com.wandrell.tabletop.dice.roller;
-

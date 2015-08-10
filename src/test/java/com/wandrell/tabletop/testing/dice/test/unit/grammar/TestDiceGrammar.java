@@ -60,8 +60,8 @@ public final class TestDiceGrammar {
                 final String message;
 
                 message = String.format(
-                        "failed to parse at line %d on char %d due to %s",
-                        line, charPositionInLine + 1, msg);
+                        "failed to parse at line %d on char %d due to %s", line,
+                        charPositionInLine + 1, msg);
 
                 throw new IllegalStateException(message, e);
             }

@@ -37,8 +37,8 @@ public final class ExtremesDiceFunction implements DiceFunction {
     }
 
     @Override
-    public final Collection<Integer> applyFunction(
-            final Collection<Integer> rolls) {
+    public final Collection<Integer>
+            applyFunction(final Collection<Integer> rolls) {
         final Collection<Integer> result;
 
         checkNotNull(rolls, "Received a null pointer as rolls");
@@ -54,12 +54,12 @@ public final class ExtremesDiceFunction implements DiceFunction {
                 case HIGHEST:
                     switch (getKeepRemove()) {
                         case KEEP:
-                            result = removeLowest(rolls, rolls.size()
-                                    - getCount());
+                            result = removeLowest(rolls,
+                                    rolls.size() - getCount());
                             break;
                         case REMOVE:
-                            result = keepLowest(rolls, rolls.size()
-                                    - getCount());
+                            result = keepLowest(rolls,
+                                    rolls.size() - getCount());
                             break;
                         default:
                             result = new LinkedList<>();
@@ -97,8 +97,8 @@ public final class ExtremesDiceFunction implements DiceFunction {
         return keepRemove;
     }
 
-    private final Collection<Integer> keepLowest(
-            final Collection<Integer> rolls, final Integer count) {
+    private final Collection<Integer>
+            keepLowest(final Collection<Integer> rolls, final Integer count) {
         List<Integer> values;
 
         values = new LinkedList<Integer>(rolls);
@@ -130,8 +130,8 @@ public final class ExtremesDiceFunction implements DiceFunction {
         return result;
     }
 
-    private final Collection<Integer> removeLowest(
-            final Collection<Integer> rolls, final Integer count) {
+    private final Collection<Integer>
+            removeLowest(final Collection<Integer> rolls, final Integer count) {
         List<Integer> values;
 
         values = new LinkedList<Integer>(rolls);

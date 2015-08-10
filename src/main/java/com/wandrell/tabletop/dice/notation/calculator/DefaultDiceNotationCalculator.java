@@ -6,8 +6,8 @@ import java.util.Iterator;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.Operand;
 
-public final class DefaultDiceNotationCalculator implements
-        DiceNotationCalculator {
+public final class DefaultDiceNotationCalculator
+        implements DiceNotationCalculator {
 
     public DefaultDiceNotationCalculator() {
         super();
@@ -19,7 +19,7 @@ public final class DefaultDiceNotationCalculator implements
         final Iterator<BinaryOperation> itrOperations;
         final Iterator<Operand> itrOperands;
         Operand operandCurrent;
-        //Operand operandTop;
+        // Operand operandTop;
         BinaryOperation operation;
 
         itrOperands = operands.iterator();

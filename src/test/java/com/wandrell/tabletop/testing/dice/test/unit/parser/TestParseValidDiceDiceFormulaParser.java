@@ -32,7 +32,7 @@ public final class TestParseValidDiceDiceFormulaParser {
 
     @Test(dataProvider = DATA)
     public final void testParse_Dice_Valid(final String text,
-            final Integer quantity, final Integer sides) throws Exception {
+            final Integer quantity, final Integer sides) {
         final DiceExpression formula;
         final DiceOperand dice;
 

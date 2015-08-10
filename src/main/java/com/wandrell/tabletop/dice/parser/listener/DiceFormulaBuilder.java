@@ -27,7 +27,8 @@ public final class DiceFormulaBuilder extends DiceNotationBaseListener {
     }
 
     @Override
-    public final void enterFormula(final DiceNotationParser.FormulaContext ctx) {
+    public final void
+            enterFormula(final DiceNotationParser.FormulaContext ctx) {
         formula = new DefaultDiceExpression();
     }
 
@@ -39,8 +40,8 @@ public final class DiceFormulaBuilder extends DiceNotationBaseListener {
     }
 
     @Override
-    public final void exitIntegerDice(
-            final DiceNotationParser.IntegerDiceContext ctx) {
+    public final void
+            exitIntegerDice(final DiceNotationParser.IntegerDiceContext ctx) {
         final Dice dice;
         final Integer count;
         final Integer sides;

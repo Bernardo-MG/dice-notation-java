@@ -48,10 +48,9 @@ public final class TestExtremesDiceFunction {
     }
 
     @Test(dataProvider = HIGHEST_KEEP)
-    public final void
-            testKeep_Highest(final Integer count,
-                    final Collection<Integer> rolls,
-                    final Collection<Integer> expected) {
+    public final void testKeep_Highest(final Integer count,
+            final Collection<Integer> rolls,
+            final Collection<Integer> expected) {
         final DiceFunction function;
 
         function = new ExtremesDiceFunction(
@@ -62,24 +61,21 @@ public final class TestExtremesDiceFunction {
     }
 
     @Test(dataProvider = LOWEST_KEEP)
-    public final void
-            testKeep_Lowest(final Integer count,
-                    final Collection<Integer> rolls,
-                    final Collection<Integer> expected) {
+    public final void testKeep_Lowest(final Integer count,
+            final Collection<Integer> rolls,
+            final Collection<Integer> expected) {
         final DiceFunction function;
 
-        function = new ExtremesDiceFunction(
-                ExtremesDiceFunction.Extreme.LOWEST,
+        function = new ExtremesDiceFunction(ExtremesDiceFunction.Extreme.LOWEST,
                 ExtremesDiceFunction.KeepRemove.KEEP, count);
 
         Assert.assertEquals(function.applyFunction(rolls), expected);
     }
 
     @Test(dataProvider = HIGHEST_REMOVE)
-    public final void
-            testRemove_Highest(final Integer count,
-                    final Collection<Integer> rolls,
-                    final Collection<Integer> expected) {
+    public final void testRemove_Highest(final Integer count,
+            final Collection<Integer> rolls,
+            final Collection<Integer> expected) {
         final DiceFunction function;
 
         function = new ExtremesDiceFunction(
@@ -90,14 +86,12 @@ public final class TestExtremesDiceFunction {
     }
 
     @Test(dataProvider = LOWEST_REMOVE)
-    public final void
-            testRemove_Lowest(final Integer count,
-                    final Collection<Integer> rolls,
-                    final Collection<Integer> expected) {
+    public final void testRemove_Lowest(final Integer count,
+            final Collection<Integer> rolls,
+            final Collection<Integer> expected) {
         final DiceFunction function;
 
-        function = new ExtremesDiceFunction(
-                ExtremesDiceFunction.Extreme.LOWEST,
+        function = new ExtremesDiceFunction(ExtremesDiceFunction.Extreme.LOWEST,
                 ExtremesDiceFunction.KeepRemove.REMOVE, count);
 
         Assert.assertEquals(function.applyFunction(rolls), expected);

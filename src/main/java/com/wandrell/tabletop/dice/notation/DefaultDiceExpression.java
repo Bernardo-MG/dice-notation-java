@@ -24,8 +24,8 @@ public final class DefaultDiceExpression implements DiceExpression {
     }
 
     @Override
-    public final void addDiceNotationComponent(
-            final DiceExpressionComponent component) {
+    public final void
+            addDiceNotationComponent(final DiceExpressionComponent component) {
         getComponentsModifiable().add(component);
     }
 
@@ -89,7 +89,8 @@ public final class DefaultDiceExpression implements DiceExpression {
                 .toString();
     }
 
-    private final Collection<DiceExpressionComponent> getComponentsModifiable() {
+    private final Collection<DiceExpressionComponent>
+            getComponentsModifiable() {
         return components;
     }
 
