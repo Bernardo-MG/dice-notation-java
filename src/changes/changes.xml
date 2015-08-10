@@ -12,5 +12,11 @@
 				supporting only basic dice notation.
 			</action>
 		</release>
+		<release version="0.1.1" date="2015-08-10" description="String representation">
+			<action dev="bmg" type="update">
+				Changed the getPrintableText methods
+				name to getStringRepresentation.
+			</action>
+		</release>
 	</body>
 </document>

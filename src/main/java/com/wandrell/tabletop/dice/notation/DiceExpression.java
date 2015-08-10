@@ -9,7 +9,7 @@ public interface DiceExpression {
 
     public Collection<DiceExpressionComponent> getComponents();
 
-    public String getPrintableText();
+    public String getStringRepresentation();
 
     public void removeDiceNotationComponent(
             final DiceExpressionComponent component);

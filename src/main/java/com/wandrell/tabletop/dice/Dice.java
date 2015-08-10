@@ -48,16 +48,6 @@ package com.wandrell.tabletop.dice;
 public interface Dice {
 
     /**
-     * Returns the dice in a printable text format.
-     * <p>
-     * For example, in the commonly used format, two dice of six sides are
-     * "2d6", and one dice of twenty sides is "1d20".
-     * 
-     * @return the dice in text format
-     */
-    public String getPrintableText();
-
-    /**
      * Returns the number of dice which compose this group.
      * <p>
      * This is expected to be a positive value or zero.
@@ -76,5 +66,15 @@ public interface Dice {
      * @return the die's number of sides
      */
     public Integer getSides();
+
+    /**
+     * Returns the string representation of the dice.
+     * <p>
+     * For example, in the commonly used format, two dice of six sides are
+     * "2d6", and one dice of twenty sides is "1d20".
+     * 
+     * @return the dice in text format
+     */
+    public String getStringRepresentation();
 
 }

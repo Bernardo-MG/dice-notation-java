@@ -41,8 +41,8 @@ public final class DiceConstant implements DiceExpressionComponent {
     }
 
     @Override
-    public final String getPrintableText() {
-        return getDice().getPrintableText();
+    public final String getStringRepresentation() {
+        return getDice().getStringRepresentation();
     }
 
     @Override

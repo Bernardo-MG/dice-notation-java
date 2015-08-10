@@ -30,7 +30,7 @@ public final class TestPrintableTextDefaultDice {
 
         dice = new DefaultDice(quantity, sides);
 
-        Assert.assertEquals(dice.getPrintableText(), text);
+        Assert.assertEquals(dice.getStringRepresentation(), text);
     }
 
 }

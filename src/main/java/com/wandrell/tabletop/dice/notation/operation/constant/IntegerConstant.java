@@ -37,7 +37,7 @@ public final class IntegerConstant implements DiceExpressionComponent, Operand {
     }
 
     @Override
-    public final String getPrintableText() {
+    public final String getStringRepresentation() {
         return getValue().toString();
     }
 

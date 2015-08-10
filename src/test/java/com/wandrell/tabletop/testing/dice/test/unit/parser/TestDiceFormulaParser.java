@@ -47,7 +47,7 @@ public final class TestDiceFormulaParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getPrintableText(), notation);
+        Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
     @Test
@@ -64,7 +64,7 @@ public final class TestDiceFormulaParser {
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
 
-        Assert.assertEquals(formula.getPrintableText(), notation);
+        Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
     @Test
@@ -91,7 +91,7 @@ public final class TestDiceFormulaParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getPrintableText(), notation);
+        Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
     @Test
@@ -108,7 +108,7 @@ public final class TestDiceFormulaParser {
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
 
-        Assert.assertEquals(formula.getPrintableText(), notation);
+        Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
 }

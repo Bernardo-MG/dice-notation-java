@@ -45,19 +45,19 @@ public final class SubstractionOperation implements BinaryOperation {
     }
 
     @Override
-    public final String getPrintableText() {
-        final String left;
-        final String right;
-
-        left = getLeft().getPrintableText();
-        right = getRight().getPrintableText();
-
-        return String.format("%s-%s", left, right);
+    public final Operand getRight() {
+        return operandRight;
     }
 
     @Override
-    public final Operand getRight() {
-        return operandRight;
+    public final String getStringRepresentation() {
+        final String left;
+        final String right;
+
+        left = getLeft().getStringRepresentation();
+        right = getRight().getStringRepresentation();
+
+        return String.format("%s-%s", left, right);
     }
 
     @Override
