@@ -51,6 +51,7 @@
 		<menu name="General Info" inherit="top">
 			<item name="Acquire" href="./acquire.html" />
 			<item name="Changes Log" href="./changes-report.html" />
+			<item name="JavaDocs" href="./apidocs/" />
 		</menu>
 		<menu name="Documentation" inherit="bottom">
 			<item name="Acquire" href="./acquire.html" />
