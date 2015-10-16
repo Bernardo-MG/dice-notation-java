@@ -13,7 +13,7 @@
 		<skinConfig>
 			<keywords>Java, ANTLR, RPG, dice notation</keywords>
 			<descriptionUrl>Check the documentation for ${projectName}</descriptionUrl>
-			<twitterSite>@wandrell</twitterSite>
+			<twitterSite>@Wandrell_BMG</twitterSite>
 			<interpreters>
 				<interpreter>JDK 7</interpreter>
 				<interpreter>JDK 8</interpreter>

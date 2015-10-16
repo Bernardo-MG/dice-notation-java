@@ -12,10 +12,13 @@
 				supporting only basic dice notation.
 			</action>
 		</release>
-		<release version="0.1.1" date="2015-08-10" description="String representation">
+		<release version="0.2.0" date="2015-10-16" description="Maven Site Skin">
 			<action dev="bmg" type="update">
 				Changed the getPrintableText methods
 				name to getStringRepresentation.
+			</action>
+			<action dev="bmg" type="update">
+				Updated Maven Site Skin.
 			</action>
 		</release>
 	</body>
