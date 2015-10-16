@@ -6,7 +6,7 @@
 
 	<groupId>com.wandrell.tabletop</groupId>
 	<artifactId>dice</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<packaging>jar</packaging>
 
 	<name>Dice Notation Tools for Java</name>
@@ -150,7 +150,7 @@
 		<!-- Extensions versions -->
 		<extension.wagon.version>2.8</extension.wagon.version>
 		<!-- Maven Site -->
-		<site.skin.version>0.1.0</site.skin.version>
+		<site.skin.version>0.2.0</site.skin.version>
 		<bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
 		<mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
 	</properties>

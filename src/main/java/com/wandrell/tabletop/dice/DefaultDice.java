@@ -106,11 +106,6 @@ public final class DefaultDice implements Dice {
                 && Objects.equal(diceSides, other.diceSides);
     }
 
-    @Override
-    public final String getPrintableText() {
-        return String.format("%dd%d", getQuantity(), getSides());
-    }
-
     /**
      * Returns the number of dice which compose this group.
      * <p>
@@ -135,6 +130,11 @@ public final class DefaultDice implements Dice {
     @Override
     public final Integer getSides() {
         return diceSides;
+    }
+
+    @Override
+    public final String getStringRepresentation() {
+        return String.format("%dd%d", getQuantity(), getSides());
     }
 
     @Override

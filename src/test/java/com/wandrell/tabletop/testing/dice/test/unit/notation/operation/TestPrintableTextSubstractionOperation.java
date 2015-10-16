@@ -21,14 +21,14 @@ public final class TestPrintableTextSubstractionOperation {
         final Operand operandB;
 
         operandA = Mockito.mock(Operand.class);
-        Mockito.when(operandA.getPrintableText()).thenReturn("A");
+        Mockito.when(operandA.getStringRepresentation()).thenReturn("A");
 
         operandB = Mockito.mock(Operand.class);
-        Mockito.when(operandB.getPrintableText()).thenReturn("B");
+        Mockito.when(operandB.getStringRepresentation()).thenReturn("B");
 
         operation = new SubstractionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getPrintableText(), "A-B");
+        Assert.assertEquals(operation.getStringRepresentation(), "A-B");
     }
 
 }

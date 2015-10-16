@@ -53,8 +53,8 @@ public final class DiceOperand implements Operand {
     }
 
     @Override
-    public final String getPrintableText() {
-        return getDice().getPrintableText();
+    public final String getStringRepresentation() {
+        return getDice().getStringRepresentation();
     }
 
     @Override

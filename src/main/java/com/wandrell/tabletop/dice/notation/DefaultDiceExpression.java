@@ -56,7 +56,7 @@ public final class DefaultDiceExpression implements DiceExpression {
     }
 
     @Override
-    public final String getPrintableText() {
+    public final String getStringRepresentation() {
         final StringBuilder builder;
 
         builder = new StringBuilder();
@@ -66,7 +66,7 @@ public final class DefaultDiceExpression implements DiceExpression {
                 builder.append(' ');
             }
 
-            builder.append(component.getPrintableText());
+            builder.append(component.getStringRepresentation());
         }
 
         return builder.toString();

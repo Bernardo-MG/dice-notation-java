@@ -13,7 +13,7 @@
 		<skinConfig>
 			<keywords>Java, ANTLR, RPG, dice notation</keywords>
 			<descriptionUrl>Check the documentation for ${projectName}</descriptionUrl>
-			<twitterSite>@wandrell</twitterSite>
+			<twitterSite>@Wandrell_BMG</twitterSite>
 			<interpreters>
 				<interpreter>JDK 7</interpreter>
 				<interpreter>JDK 8</interpreter>
@@ -51,6 +51,7 @@
 		<menu name="General Info" inherit="top">
 			<item name="Acquire" href="./acquire.html" />
 			<item name="Changes Log" href="./changes-report.html" />
+			<item name="JavaDocs" href="./apidocs/" />
 		</menu>
 		<menu name="Documentation" inherit="bottom">
 			<item name="Acquire" href="./acquire.html" />

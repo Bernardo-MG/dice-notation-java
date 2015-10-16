@@ -40,7 +40,7 @@ public final class TestPrintableTextDefaultDiceFormula {
 
         formula.addDiceNotationComponent(operation);
 
-        Assert.assertEquals(formula.getPrintableText(), "2d6+5");
+        Assert.assertEquals(formula.getStringRepresentation(), "2d6+5");
     }
 
     @Test
@@ -62,7 +62,7 @@ public final class TestPrintableTextDefaultDiceFormula {
 
         formula.addDiceNotationComponent(operation);
 
-        Assert.assertEquals(formula.getPrintableText(), "2d6-5");
+        Assert.assertEquals(formula.getStringRepresentation(), "2d6-5");
     }
 
 }
