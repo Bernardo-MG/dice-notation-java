@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.parser;
 
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceV
 public final class TestParseValidDiceDiceFormulaParser {
 
     protected static final String                DATA = "data";
+
     private final Parser<String, DiceExpression> parser;
 
     @DataProvider(name = DATA)

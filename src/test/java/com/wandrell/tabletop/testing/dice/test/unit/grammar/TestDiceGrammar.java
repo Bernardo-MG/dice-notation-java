@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.grammar;
 
 import java.util.Iterator;
@@ -53,6 +54,7 @@ public final class TestDiceGrammar {
         parser = new DiceNotationExtendedParser(tokens);
 
         parser.addErrorListener(new BaseErrorListener() {
+
             @Override
             public void syntaxError(Recognizer<?, ?> recognizer,
                     Object offendingSymbol, int line, int charPositionInLine,

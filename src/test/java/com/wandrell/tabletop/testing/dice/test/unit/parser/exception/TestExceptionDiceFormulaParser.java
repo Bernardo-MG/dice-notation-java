@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.parser.exception;
 
 import org.testng.annotations.Test;

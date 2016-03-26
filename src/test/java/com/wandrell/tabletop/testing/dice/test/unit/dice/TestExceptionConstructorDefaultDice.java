@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.dice;
 
 import org.testng.annotations.Test;

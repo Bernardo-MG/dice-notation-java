@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.roller;
 
 import java.util.Iterator;

@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.notation.operation;
 
 import org.mockito.Mockito;

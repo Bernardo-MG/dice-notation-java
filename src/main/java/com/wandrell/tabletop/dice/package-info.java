@@ -17,4 +17,5 @@
  * Offers classes for handling dice, including rolling them and dice/RPG
  * notation.
  */
+
 package com.wandrell.tabletop.dice;

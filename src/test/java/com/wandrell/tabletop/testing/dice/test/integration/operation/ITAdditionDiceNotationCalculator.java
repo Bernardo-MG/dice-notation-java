@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.integration.operation;
 
 import java.util.Collection;

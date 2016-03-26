@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.wandrell.tabletop.dice;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -38,6 +39,7 @@ public final class DefaultDice implements Dice {
      * This is greater or equal to zero.
      */
     private final Integer diceQuantity;
+
     /**
      * Number of sides in each die.
      * <p>

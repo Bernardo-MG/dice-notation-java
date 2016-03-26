@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter;
 
 import static com.google.common.base.Preconditions.checkArgument;

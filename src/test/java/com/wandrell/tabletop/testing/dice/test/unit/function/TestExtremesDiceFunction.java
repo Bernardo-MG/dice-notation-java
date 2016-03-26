@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.unit.function;
 
 import java.util.Collection;
@@ -14,8 +15,11 @@ import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceF
 public final class TestExtremesDiceFunction {
 
     protected static final String HIGHEST_KEEP   = "highest_keep";
+
     protected static final String HIGHEST_REMOVE = "highest_remove";
+
     protected static final String LOWEST_KEEP    = "lowest_keep";
+
     protected static final String LOWEST_REMOVE  = "lowest_remove";
 
     @DataProvider(name = HIGHEST_KEEP)

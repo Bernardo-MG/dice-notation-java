@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.test.integration.notation.formula;
 
 import org.testng.annotations.Test;

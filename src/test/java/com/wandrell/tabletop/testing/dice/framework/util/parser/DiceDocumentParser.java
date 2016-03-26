@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.testing.dice.framework.util.parser;
 
 import java.util.Collection;
