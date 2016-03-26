@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.function;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -11,7 +12,9 @@ import java.util.List;
 public final class ExtremesDiceFunction implements DiceFunction {
 
     private final Extreme    extreme;
+
     private final Integer    functionCount;
+
     private final KeepRemove keepRemove;
 
     public enum Extreme {

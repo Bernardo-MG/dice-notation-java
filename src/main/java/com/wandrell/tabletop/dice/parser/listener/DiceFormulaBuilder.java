@@ -1,11 +1,12 @@
+
 package com.wandrell.tabletop.dice.parser.listener;
 
 import java.util.Stack;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.grammar.DiceNotationBaseListener;
-import com.wandrell.tabletop.dice.grammar.DiceNotationParser;
+import com.wandrell.tabletop.dice.generated.basic.DiceNotationBaseListener;
+import com.wandrell.tabletop.dice.generated.basic.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
@@ -20,6 +21,7 @@ import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 public final class DiceFormulaBuilder extends DiceNotationBaseListener {
 
     private DiceExpression                       formula;
+
     private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
 
     public DiceFormulaBuilder() {

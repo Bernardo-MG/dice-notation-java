@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.roller;
 
 import com.wandrell.tabletop.dice.roller.Roller.RollMapper;

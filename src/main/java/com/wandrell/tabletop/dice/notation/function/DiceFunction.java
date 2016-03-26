@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.function;
 
 import java.util.Collection;

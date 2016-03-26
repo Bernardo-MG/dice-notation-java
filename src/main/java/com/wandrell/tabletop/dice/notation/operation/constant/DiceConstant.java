@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.operation.constant;
 
 import com.google.common.base.MoreObjects;

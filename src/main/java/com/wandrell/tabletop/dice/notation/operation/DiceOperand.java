@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.operation;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
 public final class DiceOperand implements Operand {
 
     private final DiceConstant dice;
+
     private final Roller       roller;
 
     public DiceOperand(final DiceConstant dice) {

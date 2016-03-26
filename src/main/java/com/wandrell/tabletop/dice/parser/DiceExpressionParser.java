@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.parser;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -8,8 +9,8 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.TokenStream;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.grammar.DiceNotationLexer;
-import com.wandrell.tabletop.dice.grammar.DiceNotationParser;
+import com.wandrell.tabletop.dice.generated.basic.DiceNotationLexer;
+import com.wandrell.tabletop.dice.generated.basic.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
 
@@ -35,6 +36,7 @@ public final class DiceExpressionParser
         parser = new DiceNotationParser(tokens);
 
         parser.addErrorListener(new BaseErrorListener() {
+
             @Override
             public void syntaxError(Recognizer<?, ?> recognizer,
                     Object offendingSymbol, int line, int charPositionInLine,

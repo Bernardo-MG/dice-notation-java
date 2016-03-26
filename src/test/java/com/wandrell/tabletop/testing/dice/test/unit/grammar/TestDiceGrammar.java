@@ -14,9 +14,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedLexer;
-import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedParser;
-import com.wandrell.tabletop.dice.grammar.DiceNotationExtendedParser.NotationContext;
+import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedLexer;
+import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedParser;
+import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedParser.NotationContext;
 import com.wandrell.tabletop.testing.dice.framework.conf.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestDiceGrammar {

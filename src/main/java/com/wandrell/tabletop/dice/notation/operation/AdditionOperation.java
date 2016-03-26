@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.operation;
 
 import com.google.common.base.MoreObjects;
@@ -7,6 +8,7 @@ import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 public final class AdditionOperation implements BinaryOperation {
 
     final Operand operandLeft;
+
     final Operand operandRight;
 
     public AdditionOperation(final Operand operandLeft,

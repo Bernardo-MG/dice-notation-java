@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.roller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -10,6 +11,7 @@ import com.wandrell.tabletop.dice.Dice;
 public final class DefaultRoller implements Roller {
 
     private final RollMapper<Integer> defaultMapper;
+
     private final RandomGenerator     generator;
 
     public interface RandomGenerator {

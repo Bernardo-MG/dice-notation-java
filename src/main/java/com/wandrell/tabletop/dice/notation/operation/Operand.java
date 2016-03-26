@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.notation.operation;
 
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;

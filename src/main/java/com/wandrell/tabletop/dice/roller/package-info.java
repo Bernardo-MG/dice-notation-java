@@ -18,4 +18,5 @@
  * random value from the information contained in a
  * {@link com.wandrell.tabletop.dice.Dice Dice} class.
  */
+
 package com.wandrell.tabletop.dice.roller;

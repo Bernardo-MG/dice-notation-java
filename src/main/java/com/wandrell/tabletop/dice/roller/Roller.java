@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dice.roller;
 
 import java.util.Collection;
