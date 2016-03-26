@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dice.test.util.conf.factory.parameter;
+package com.wandrell.tabletop.dice.test.util.config.factory.parameter;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -19,8 +19,8 @@ import org.jdom2.Document;
 
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.pattern.parser.xml.XMLFileParser;
-import com.wandrell.tabletop.dice.test.util.conf.DiceParametersConf;
-import com.wandrell.tabletop.dice.test.util.util.parser.FunctionExtremesDocumentParser;
+import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
+import com.wandrell.tabletop.dice.test.util.parser.FunctionExtremesDocumentParser;
 
 public final class DiceFunctionValuesTestParametersFactory {
 
@@ -130,7 +130,7 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserParams = new FunctionExtremesDocumentParser();
 
         return parserParams.parse(parserFile.parse(getClassPathReader(
-                DiceParametersConf.FUNCTION_EXTREMES_KEEP_HIGHEST)));
+                ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST)));
     }
 
     private final Collection<Collection<Object>> getHighestRemoveValues()
@@ -142,7 +142,7 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserParams = new FunctionExtremesDocumentParser();
 
         return parserParams.parse(parserFile.parse(getClassPathReader(
-                DiceParametersConf.FUNCTION_EXTREMES_REMOVE_HIGHEST)));
+                ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST)));
     }
 
     private final Collection<Collection<Object>> getLowestKeepValues()
@@ -154,7 +154,7 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserParams = new FunctionExtremesDocumentParser();
 
         return parserParams.parse(parserFile.parse(getClassPathReader(
-                DiceParametersConf.FUNCTION_EXTREMES_KEEP_LOWEST)));
+                ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST)));
     }
 
     private final Collection<Collection<Object>> getLowestRemoveValues()
@@ -166,7 +166,7 @@ public final class DiceFunctionValuesTestParametersFactory {
         parserParams = new FunctionExtremesDocumentParser();
 
         return parserParams.parse(parserFile.parse(getClassPathReader(
-                DiceParametersConf.FUNCTION_EXTREMES_REMOVE_LOWEST)));
+                ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST)));
     }
 
 }

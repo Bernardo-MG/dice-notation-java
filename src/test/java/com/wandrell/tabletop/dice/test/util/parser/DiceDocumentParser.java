@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dice.test.util.util.parser;
+package com.wandrell.tabletop.dice.test.util.parser;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.test.util.conf.TestXMLConf;
+import com.wandrell.tabletop.dice.test.util.config.XmlNodes;
 
 public final class DiceDocumentParser
         implements Parser<Document, Collection<Collection<Object>>> {
@@ -47,9 +47,8 @@ public final class DiceDocumentParser
         data = new LinkedList<Object>();
 
         quantity = Integer
-                .parseInt(node.getChild(TestXMLConf.NODE_QUANTITY).getText());
-        sides = Integer
-                .parseInt(node.getChild(TestXMLConf.NODE_SIDES).getText());
+                .parseInt(node.getChild(XmlNodes.NODE_QUANTITY).getText());
+        sides = Integer.parseInt(node.getChild(XmlNodes.NODE_SIDES).getText());
 
         data.add(quantity);
         data.add(sides);

@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dice.test.util.conf.factory.parameter;
+package com.wandrell.tabletop.dice.test.util.config.factory.parameter;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -19,10 +19,10 @@ import org.jdom2.Document;
 
 import com.wandrell.pattern.parser.Parser;
 import com.wandrell.pattern.parser.xml.XMLFileParser;
-import com.wandrell.tabletop.dice.test.util.conf.DiceParametersConf;
-import com.wandrell.tabletop.dice.test.util.util.parser.DiceAndTextDocumentParser;
-import com.wandrell.tabletop.dice.test.util.util.parser.DiceDocumentParser;
-import com.wandrell.tabletop.dice.test.util.util.parser.DiceTextDocumentParser;
+import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
+import com.wandrell.tabletop.dice.test.util.parser.DiceAndTextDocumentParser;
+import com.wandrell.tabletop.dice.test.util.parser.DiceDocumentParser;
+import com.wandrell.tabletop.dice.test.util.parser.DiceTextDocumentParser;
 
 public final class DiceValuesTestParametersFactory {
 
@@ -128,7 +128,7 @@ public final class DiceValuesTestParametersFactory {
         parserParams = new DiceAndTextDocumentParser();
 
         return parserParams.parse(parserFile
-                .parse(getClassPathReader(DiceParametersConf.DICE_AND_TEXT)));
+                .parse(getClassPathReader(ParameterPaths.DICE_AND_TEXT)));
     }
 
     private final Collection<Collection<Object>> getDiceTextValues()
@@ -139,8 +139,8 @@ public final class DiceValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new DiceTextDocumentParser();
 
-        return parserParams.parse(parserFile
-                .parse(getClassPathReader(DiceParametersConf.DICE_TEXT)));
+        return parserParams.parse(
+                parserFile.parse(getClassPathReader(ParameterPaths.DICE_TEXT)));
     }
 
     private final Collection<Collection<Object>> getDiceValues()
@@ -151,8 +151,8 @@ public final class DiceValuesTestParametersFactory {
         parserFile = new XMLFileParser();
         parserParams = new DiceDocumentParser();
 
-        return parserParams.parse(parserFile
-                .parse(getClassPathReader(DiceParametersConf.DEFAULT)));
+        return parserParams.parse(
+                parserFile.parse(getClassPathReader(ParameterPaths.DEFAULT)));
     }
 
 }

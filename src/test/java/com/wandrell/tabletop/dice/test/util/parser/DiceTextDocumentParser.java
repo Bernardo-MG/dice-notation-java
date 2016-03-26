@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dice.test.util.util.parser;
+package com.wandrell.tabletop.dice.test.util.parser;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,19 +11,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.test.util.conf.TestXMLConf;
+import com.wandrell.tabletop.dice.test.util.config.XmlNodes;
 
-public final class DiceAndTextDocumentParser
+public final class DiceTextDocumentParser
         implements Parser<Document, Collection<Collection<Object>>> {
 
     private static final Logger logger = LoggerFactory
-            .getLogger(DiceAndTextDocumentParser.class);
+            .getLogger(DiceTextDocumentParser.class);
 
     private static final Logger getLogger() {
         return logger;
     }
 
-    public DiceAndTextDocumentParser() {
+    public DiceTextDocumentParser() {
         super();
     }
 
@@ -41,23 +41,15 @@ public final class DiceAndTextDocumentParser
 
     private final Collection<Object> readNode(final Element node) {
         final Collection<Object> data;
-        final Integer quantity;
-        final Integer sides;
         final String text;
 
         data = new LinkedList<Object>();
 
-        text = node.getChild(TestXMLConf.NODE_TEXT).getText();
-        quantity = Integer
-                .parseInt(node.getChild(TestXMLConf.NODE_QUANTITY).getText());
-        sides = Integer
-                .parseInt(node.getChild(TestXMLConf.NODE_SIDES).getText());
+        text = node.getChild(XmlNodes.NODE_TEXT).getText();
 
         data.add(text);
-        data.add(quantity);
-        data.add(sides);
 
-        getLogger().debug(String.format("Read dice %dd%d", quantity, sides));
+        getLogger().debug(String.format("Read dice %s", text));
 
         return data;
     }

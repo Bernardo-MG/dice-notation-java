@@ -1,7 +1,7 @@
 
-package com.wandrell.tabletop.dice.test.util.conf;
+package com.wandrell.tabletop.dice.test.util.config;
 
-public final class DiceParametersConf {
+public final class ParameterPaths {
 
     public static final String DEFAULT                          = "parameter/dice.xml";
 
@@ -17,7 +17,7 @@ public final class DiceParametersConf {
 
     public static final String FUNCTION_EXTREMES_REMOVE_LOWEST  = "parameter/function-extremes-remove-lowest.xml";
 
-    private DiceParametersConf() {
+    private ParameterPaths() {
         super();
     }
 

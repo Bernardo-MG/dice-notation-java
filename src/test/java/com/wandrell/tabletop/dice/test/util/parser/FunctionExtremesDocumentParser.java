@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dice.test.util.util.parser;
+package com.wandrell.tabletop.dice.test.util.parser;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wandrell.pattern.parser.Parser;
-import com.wandrell.tabletop.dice.test.util.conf.TestXMLConf;
+import com.wandrell.tabletop.dice.test.util.config.XmlNodes;
 
 public final class FunctionExtremesDocumentParser
         implements Parser<Document, Collection<Collection<Object>>> {
@@ -47,17 +47,16 @@ public final class FunctionExtremesDocumentParser
 
         data = new LinkedList<Object>();
 
-        count = Integer
-                .parseInt(node.getChild(TestXMLConf.NODE_COUNT).getText());
+        count = Integer.parseInt(node.getChild(XmlNodes.NODE_COUNT).getText());
 
         rolls = new LinkedList<>();
-        for (final Element roll : node.getChild(TestXMLConf.NODE_ROLLS)
+        for (final Element roll : node.getChild(XmlNodes.NODE_ROLLS)
                 .getChildren()) {
             rolls.add(Integer.parseInt(roll.getText()));
         }
 
         results = new LinkedList<>();
-        for (final Element roll : node.getChild(TestXMLConf.NODE_RESULTS)
+        for (final Element roll : node.getChild(XmlNodes.NODE_RESULTS)
                 .getChildren()) {
             results.add(Integer.parseInt(roll.getText()));
         }

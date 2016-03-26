@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.test.util.conf.factory.parameter.DiceValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestPrintableTextDefaultDice {
 

@@ -1,7 +1,7 @@
 
-package com.wandrell.tabletop.dice.test.util.conf;
+package com.wandrell.tabletop.dice.test.util.config;
 
-public final class TestXMLConf {
+public final class XmlNodes {
 
     public static final String NODE_COUNT    = "count";
 
@@ -15,7 +15,7 @@ public final class TestXMLConf {
 
     public static final String NODE_TEXT     = "text";
 
-    private TestXMLConf() {
+    private XmlNodes() {
         super();
     }
 }

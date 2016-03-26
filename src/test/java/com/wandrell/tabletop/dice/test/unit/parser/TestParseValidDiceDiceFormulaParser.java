@@ -11,7 +11,7 @@ import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
-import com.wandrell.tabletop.dice.test.util.conf.factory.parameter.DiceValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestParseValidDiceDiceFormulaParser {
 

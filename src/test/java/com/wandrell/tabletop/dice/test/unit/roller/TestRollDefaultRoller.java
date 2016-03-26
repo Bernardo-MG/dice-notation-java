@@ -13,7 +13,7 @@ import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 import com.wandrell.tabletop.dice.roller.Roller.RollMapper;
-import com.wandrell.tabletop.dice.test.util.conf.factory.parameter.DiceValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestRollDefaultRoller {
 

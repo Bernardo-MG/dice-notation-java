@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.function.DiceFunction;
 import com.wandrell.tabletop.dice.notation.function.ExtremesDiceFunction;
-import com.wandrell.tabletop.dice.test.util.conf.factory.parameter.DiceFunctionValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceFunctionValuesTestParametersFactory;
 
 public final class TestExtremesDiceFunction {
 
