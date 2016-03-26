@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>0.2.0-SNAPSHOT</version>
+   <version>0.2.1-SNAPSHOT</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>

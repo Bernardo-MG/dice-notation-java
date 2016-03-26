@@ -1,25 +1,36 @@
-<document xmlns="http://maven.apache.org/changes/1.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
-	<properties>
-		<title>Project Changes</title>
-		<author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
-	</properties>
-	<body>
-		<release version="0.1.0" date="2015-08-10" description="First release">
-			<action dev="bmg" type="update">
-				Initial test version of the library,
-				supporting only basic dice notation.
-			</action>
-		</release>
-		<release version="0.2.0" date="2015-10-16" description="Maven Site Skin">
-			<action dev="bmg" type="update">
-				Changed the getPrintableText methods
-				name to getStringRepresentation.
-			</action>
-			<action dev="bmg" type="update">
-				Updated Maven Site Skin.
-			</action>
-		</release>
-	</body>
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+   <properties>
+      <title>Project Changes</title>
+      <author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
+   </properties>
+   <body>
+      <release version="0.1.0" date="2015-08-10" description="First release">
+         <action dev="bmg" type="update">
+            Initial test version of the library,
+            supporting only basic dice notation.
+         </action>
+      </release>
+      <release version="0.2.0" date="2015-10-16" description="Maven Site Skin">
+         <action dev="bmg" type="update">
+            Changed the getPrintableText methods
+            name to getStringRepresentation.
+         </action>
+         <action dev="bmg" type="update">
+            Updated Maven Site Skin.
+         </action>
+      </release>
+      <release version="0.2.1" date="In development" description="Configuration updates">
+         <action dev="bmg" type="update">
+            The ANTLR code is now generated
+            automatically by Maven.
+         </action>
+         <action dev="bmg" type="update">
+            The project now makes use of a base POM.
+         </action>
+         <action dev="bmg" type="update">
+            Changed the tests class path.
+         </action>
+      </release>
+   </body>
 </document>

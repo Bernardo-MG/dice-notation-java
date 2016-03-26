@@ -4,7 +4,7 @@
 
 	<test name="tabletop_dice_integration">
 		<packages>
-			<package name="com.wandrell.tabletop.testing.dice.test.integration.*" />
+			<package name="com.wandrell.tabletop.dice.test.integration.*" />
 		</packages>
 	</test>
 
