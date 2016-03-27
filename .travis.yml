@@ -5,9 +5,6 @@ jdk:
 # JDK 7 is set to deploy the artifacts in the configuration matrix
 #  - oraclejdk7
   - openjdk7
-env:
-  - DEPLOY=false DEPLOY_DOCS=false
-# Setting the JDK which will do the deployment
 matrix:
   include:
     # Code artifacts deployed with JDK7
