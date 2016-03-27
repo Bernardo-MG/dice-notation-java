@@ -14,13 +14,11 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
-import org.jdom2.Document;
+import org.yaml.snakeyaml.Yaml;
 
-import com.wandrell.pattern.parser.Parser;
-import com.wandrell.pattern.parser.xml.XMLFileParser;
 import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
-import com.wandrell.tabletop.dice.test.util.parser.FunctionExtremesDocumentParser;
 
 public final class DiceFunctionValuesTestParametersFactory {
 
@@ -30,20 +28,9 @@ public final class DiceFunctionValuesTestParametersFactory {
         return instance;
     }
 
-    private static final Iterator<Object[]>
-            getParameters(final Collection<Collection<Object>> valuesTable) {
-        final Collection<Object[]> result;
-
-        result = new LinkedList<Object[]>();
-        for (final Collection<Object> values : valuesTable) {
-            result.add(values.toArray());
-        }
-
-        return result.iterator();
-    }
-
     private DiceFunctionValuesTestParametersFactory() {
         super();
+        // TODO: Make these methods final
     }
 
     /**
@@ -60,20 +47,20 @@ public final class DiceFunctionValuesTestParametersFactory {
         return this.getClass().getClassLoader().getResource(path);
     }
 
-    public final Iterator<Object[]> getHighestKeep() throws Exception {
-        return getParameters(getHighestKeepValues());
+    public final Iterator<Object[]> getHighestKeep() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST);
     }
 
-    public final Iterator<Object[]> getHighestRemove() throws Exception {
-        return getParameters(getHighestRemoveValues());
+    public final Iterator<Object[]> getHighestRemove() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST);
     }
 
-    public final Iterator<Object[]> getLowestKeep() throws Exception {
-        return getParameters(getLowestKeepValues());
+    public final Iterator<Object[]> getLowestKeep() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST);
     }
 
-    public final Iterator<Object[]> getLowestRemove() throws Exception {
-        return getParameters(getLowestRemoveValues());
+    public final Iterator<Object[]> getLowestRemove() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST);
     }
 
     /**
@@ -121,52 +108,40 @@ public final class DiceFunctionValuesTestParametersFactory {
                 new InputStreamReader(getClassPathInputStream(path)));
     }
 
-    private final Collection<Collection<Object>> getHighestKeepValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
+    @SuppressWarnings("unchecked")
+    private final Collection<Integer> getCollection(final Object obj) {
+        final Collection<Integer> col;
 
-        parserFile = new XMLFileParser();
-        parserParams = new FunctionExtremesDocumentParser();
+        if ((obj != null) && (obj instanceof Collection)) {
+            col = (Collection<Integer>) obj;
+        } else {
+            col = new LinkedList<Integer>();
+        }
 
-        return parserParams.parse(parserFile.parse(getClassPathReader(
-                ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST)));
+        return col;
     }
 
-    private final Collection<Collection<Object>> getHighestRemoveValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
+    @SuppressWarnings("unchecked")
+    private final Iterator<Object[]> getParameters(final String path) {
+        final Yaml yaml;
+        final Collection<Map<String, Object>> data;
+        final Collection<Object[]> result;
+        Collection<Object> group;
 
-        parserFile = new XMLFileParser();
-        parserParams = new FunctionExtremesDocumentParser();
+        yaml = new Yaml();
+        data = (Collection<Map<String, Object>>) yaml
+                .load(getClassPathReader(path));
+        result = new LinkedList<Object[]>();
+        for (final Map<String, Object> map : data) {
+            group = new LinkedList<Object>();
+            group.add(map.get("count"));
+            group.add(getCollection(map.get("rolls")));
+            group.add(getCollection(map.get("results")));
 
-        return parserParams.parse(parserFile.parse(getClassPathReader(
-                ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST)));
-    }
+            result.add(group.toArray());
+        }
 
-    private final Collection<Collection<Object>> getLowestKeepValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
-
-        parserFile = new XMLFileParser();
-        parserParams = new FunctionExtremesDocumentParser();
-
-        return parserParams.parse(parserFile.parse(getClassPathReader(
-                ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST)));
-    }
-
-    private final Collection<Collection<Object>> getLowestRemoveValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
-
-        parserFile = new XMLFileParser();
-        parserParams = new FunctionExtremesDocumentParser();
-
-        return parserParams.parse(parserFile.parse(getClassPathReader(
-                ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST)));
+        return result.iterator();
     }
 
 }

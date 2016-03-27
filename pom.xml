@@ -215,6 +215,7 @@
       <jaxen.version>1.1.6</jaxen.version>
       <jdom.version>2.0.5</jdom.version>
       <mockito.version>1.10.19</mockito.version>
+      <snakeyaml.version>1.17</snakeyaml.version>
       <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
       <testng.version>6.8.8</testng.version>
@@ -278,6 +279,13 @@
          <groupId>org.mockito</groupId>
          <artifactId>mockito-all</artifactId>
          <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- SnakeYAML -->
+         <groupId>org.yaml</groupId>
+         <artifactId>snakeyaml</artifactId>
+         <version>${snakeyaml.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
