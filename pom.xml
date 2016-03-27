@@ -215,6 +215,7 @@
       <jaxen.version>1.1.6</jaxen.version>
       <jdom.version>2.0.5</jdom.version>
       <mockito.version>1.10.19</mockito.version>
+      <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
       <testng.version>6.8.8</testng.version>
       <wandrell.patterns.version>0.4.4</wandrell.patterns.version>
@@ -277,6 +278,13 @@
          <groupId>org.mockito</groupId>
          <artifactId>mockito-all</artifactId>
          <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Super CSV -->
+         <groupId>net.sf.supercsv</groupId>
+         <artifactId>super-csv</artifactId>
+         <version>${supercsv.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>

@@ -5,9 +5,9 @@ public final class ParameterPaths {
 
     public static final String DEFAULT                          = "parameter/dice.xml";
 
-    public static final String DICE_AND_TEXT                    = "parameter/dice-text.xml";
+    public static final String DICE_AND_TEXT                    = "parameter/dice-text.csv";
 
-    public static final String DICE_TEXT                        = "parameter/dice-grammar.xml";
+    public static final String DICE_TEXT                        = "parameter/dice-grammar.csv";
 
     public static final String FUNCTION_EXTREMES_KEEP_HIGHEST   = "parameter/function-extremes-keep-highest.xml";
 

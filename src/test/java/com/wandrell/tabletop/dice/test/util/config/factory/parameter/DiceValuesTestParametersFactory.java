@@ -14,15 +14,15 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
+import org.supercsv.cellprocessor.ParseInt;
+import org.supercsv.cellprocessor.constraint.NotNull;
+import org.supercsv.cellprocessor.ift.CellProcessor;
+import org.supercsv.io.CsvListReader;
+import org.supercsv.io.ICsvListReader;
+import org.supercsv.prefs.CsvPreference;
 
-import org.jdom2.Document;
-
-import com.wandrell.pattern.parser.Parser;
-import com.wandrell.pattern.parser.xml.XMLFileParser;
 import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
-import com.wandrell.tabletop.dice.test.util.parser.DiceAndTextDocumentParser;
-import com.wandrell.tabletop.dice.test.util.parser.DiceDocumentParser;
-import com.wandrell.tabletop.dice.test.util.parser.DiceTextDocumentParser;
 
 public final class DiceValuesTestParametersFactory {
 
@@ -32,46 +32,34 @@ public final class DiceValuesTestParametersFactory {
         return instance;
     }
 
-    private static final Iterator<Object[]>
-            getParameters(final Collection<Collection<Object>> valuesTable) {
-        final Collection<Object[]> result;
-
-        result = new LinkedList<Object[]>();
-        for (final Collection<Object> values : valuesTable) {
-            result.add(values.toArray());
-        }
-
-        return result.iterator();
-    }
-
     private DiceValuesTestParametersFactory() {
         super();
-    }
-
-    /**
-     * Creates an {@code URL} pointing to the file specified by the path, if it
-     * exists.
-     * 
-     * @param path
-     *            the path to transform
-     * @return an URL pointing inside the class path
-     */
-    public final URL getClassPathURL(final String path) {
-        checkNotNull(path, "Received a null pointer as path");
-
-        return this.getClass().getClassLoader().getResource(path);
+        // TODO: Make these methods final
     }
 
     public final Iterator<Object[]> getDice() throws Exception {
-        return getParameters(getDiceValues());
+        final CellProcessor[] processors;
+
+        processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
+
+        return getParameters(ParameterPaths.DEFAULT, processors);
     }
 
     public final Iterator<Object[]> getDiceAndText() throws Exception {
-        return getParameters(getDiceAndTextValues());
+        final CellProcessor[] processors;
+
+        processors = new CellProcessor[] { new NotNull(), new ParseInt(),
+                new ParseInt() };
+
+        return getParameters(ParameterPaths.DICE_AND_TEXT, processors);
     }
 
     public final Iterator<Object[]> getDiceText() throws Exception {
-        return getParameters(getDiceTextValues());
+        final CellProcessor[] processors;
+
+        processors = new CellProcessor[] { new NotNull() };
+
+        return getParameters(ParameterPaths.DICE_TEXT, processors);
     }
 
     /**
@@ -119,40 +107,36 @@ public final class DiceValuesTestParametersFactory {
                 new InputStreamReader(getClassPathInputStream(path)));
     }
 
-    private final Collection<Collection<Object>> getDiceAndTextValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
+    /**
+     * Creates an {@code URL} pointing to the file specified by the path, if it
+     * exists.
+     * 
+     * @param path
+     *            the path to transform
+     * @return an URL pointing inside the class path
+     */
+    private final URL getClassPathURL(final String path) {
+        checkNotNull(path, "Received a null pointer as path");
 
-        parserFile = new XMLFileParser();
-        parserParams = new DiceAndTextDocumentParser();
-
-        return parserParams.parse(parserFile
-                .parse(getClassPathReader(ParameterPaths.DICE_AND_TEXT)));
+        return this.getClass().getClassLoader().getResource(path);
     }
 
-    private final Collection<Collection<Object>> getDiceTextValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
+    private final Iterator<Object[]> getParameters(final String path,
+            final CellProcessor[] processors) throws IOException {
+        final Collection<Object[]> values;
+        final ICsvListReader reader;
+        List<Object> nextLine;
 
-        parserFile = new XMLFileParser();
-        parserParams = new DiceTextDocumentParser();
+        reader = new CsvListReader(getClassPathReader(path),
+                CsvPreference.STANDARD_PREFERENCE);
+        reader.getHeader(true);
+        values = new LinkedList<Object[]>();
+        while ((nextLine = reader.read(processors)) != null) {
+            values.add(nextLine.toArray());
+        }
+        reader.close();
 
-        return parserParams.parse(
-                parserFile.parse(getClassPathReader(ParameterPaths.DICE_TEXT)));
-    }
-
-    private final Collection<Collection<Object>> getDiceValues()
-            throws Exception {
-        final Parser<Reader, Document> parserFile;
-        final Parser<Document, Collection<Collection<Object>>> parserParams;
-
-        parserFile = new XMLFileParser();
-        parserParams = new DiceDocumentParser();
-
-        return parserParams.parse(
-                parserFile.parse(getClassPathReader(ParameterPaths.DEFAULT)));
+        return values.iterator();
     }
 
 }
