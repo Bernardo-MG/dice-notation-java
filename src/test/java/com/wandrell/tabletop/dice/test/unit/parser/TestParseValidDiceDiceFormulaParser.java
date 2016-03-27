@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
@@ -15,9 +14,9 @@ import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesT
 
 public final class TestParseValidDiceDiceFormulaParser {
 
-    protected static final String                DATA = "data";
+    protected static final String      DATA = "data";
 
-    private final Parser<String, DiceExpression> parser;
+    private final DiceExpressionParser parser;
 
     @DataProvider(name = DATA)
     public final static Iterator<Object[]> getData() throws Exception {

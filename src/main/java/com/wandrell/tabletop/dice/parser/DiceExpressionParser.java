@@ -8,20 +8,17 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.TokenStream;
 
-import com.wandrell.pattern.parser.Parser;
 import com.wandrell.tabletop.dice.generated.basic.DiceNotationLexer;
 import com.wandrell.tabletop.dice.generated.basic.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
 
-public final class DiceExpressionParser
-        implements Parser<String, DiceExpression> {
+public final class DiceExpressionParser {
 
     public DiceExpressionParser() {
         super();
     }
 
-    @Override
     public final DiceExpression parse(final String string) {
         final ANTLRInputStream input;
         final DiceNotationLexer lexer;

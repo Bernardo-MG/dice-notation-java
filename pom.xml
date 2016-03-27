@@ -219,7 +219,6 @@
       <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
       <testng.version>6.8.8</testng.version>
-      <wandrell.patterns.version>0.4.4</wandrell.patterns.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
       <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
@@ -243,12 +242,6 @@
          <groupId>com.google.guava</groupId>
          <artifactId>guava</artifactId>
          <version>${guava.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Java Patterns -->
-         <groupId>com.wandrell</groupId>
-         <artifactId>java-patterns</artifactId>
-         <version>${wandrell.patterns.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
