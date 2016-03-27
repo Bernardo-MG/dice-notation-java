@@ -210,15 +210,13 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.5</antlr.version>
+      <antlr.version>4.5.2-1</antlr.version>
       <guava.version>18.0</guava.version>
-      <jaxen.version>1.1.6</jaxen.version>
-      <jdom.version>2.0.5</jdom.version>
       <mockito.version>1.10.19</mockito.version>
       <snakeyaml.version>1.17</snakeyaml.version>
       <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
-      <testng.version>6.8.8</testng.version>
+      <testng.version>6.9.10</testng.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
       <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
@@ -246,20 +244,6 @@
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
       <!-- ============================================== -->
-      <dependency>
-         <!-- Jaxen -->
-         <groupId>jaxen</groupId>
-         <artifactId>jaxen</artifactId>
-         <version>${jaxen.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- JDom 2 -->
-         <groupId>org.jdom</groupId>
-         <artifactId>jdom2</artifactId>
-         <version>${jdom.version}</version>
-         <scope>test</scope>
-      </dependency>
       <dependency>
          <!-- Log4J -->
          <groupId>org.apache.logging.log4j</groupId>
