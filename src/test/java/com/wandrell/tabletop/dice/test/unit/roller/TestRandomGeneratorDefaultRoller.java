@@ -24,10 +24,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.generator.RandomGenerator;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
-import com.wandrell.tabletop.dice.roller.DefaultRoller.RandomGenerator;
 import com.wandrell.tabletop.dice.roller.Roller;
-import com.wandrell.tabletop.dice.roller.Roller.RollerResult;
+import com.wandrell.tabletop.dice.roller.RollerResult;
 
 public final class TestRandomGeneratorDefaultRoller {
 

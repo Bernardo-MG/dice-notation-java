@@ -16,25 +16,10 @@
 
 package com.wandrell.tabletop.dice.roller;
 
-import java.util.Collection;
-
 import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.mapper.RollMapper;
 
 public interface Roller {
-
-    public interface RollerResult<V> {
-
-        public Collection<Integer> getBareRollResults();
-
-        public Collection<V> getMappedRollResults();
-
-    }
-
-    public interface RollMapper<V> {
-
-        public V getValueFor(final Integer roll);
-
-    }
 
     public RollerResult<Integer> roll(final Dice dice);
 

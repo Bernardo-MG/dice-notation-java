@@ -14,25 +14,13 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.roller;
+package com.wandrell.tabletop.dice.mapper;
 
-import com.wandrell.tabletop.dice.roller.Roller.RollMapper;
-
-public final class FudgeRollMapper implements RollMapper<Integer> {
+public final class ZeroBiasedRollMapper implements RollMapper<Integer> {
 
     @Override
     public final Integer getValueFor(final Integer roll) {
-        final Integer result;
-
-        if (roll <= 2) {
-            result = -1;
-        } else if (roll >= 5) {
-            result = 1;
-        } else {
-            result = 0;
-        }
-
-        return result;
+        return roll - 1;
     }
 
 }

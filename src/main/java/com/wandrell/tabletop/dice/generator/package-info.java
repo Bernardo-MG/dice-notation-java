@@ -14,32 +14,9 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.roller;
+/**
+ * Contains classes for generating random values. These are used by the roll
+ * generators to create the actual result.
+ */
 
-import java.util.Collection;
-
-public final class DefaultRollerResult<V> implements RollerResult<V> {
-
-    final Collection<Integer> bare;
-
-    final Collection<V>       mapped;
-
-    public DefaultRollerResult(final Collection<Integer> bare,
-            final Collection<V> mapped) {
-        super();
-
-        this.bare = bare;
-        this.mapped = mapped;
-    }
-
-    @Override
-    public final Collection<Integer> getBareRollResults() {
-        return bare;
-    }
-
-    @Override
-    public final Collection<V> getMappedRollResults() {
-        return mapped;
-    }
-
-}
+package com.wandrell.tabletop.dice.generator;

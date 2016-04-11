@@ -25,10 +25,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.mapper.RollMapper;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
-import com.wandrell.tabletop.dice.roller.Roller.RollMapper;
-import com.wandrell.tabletop.dice.roller.Roller.RollerResult;
+import com.wandrell.tabletop.dice.roller.RollerResult;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestRollMapperDefaultRoller {

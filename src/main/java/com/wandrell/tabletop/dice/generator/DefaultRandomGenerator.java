@@ -14,11 +14,9 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.roller;
+package com.wandrell.tabletop.dice.generator;
 
 import java.util.Random;
-
-import com.wandrell.tabletop.dice.roller.DefaultRoller.RandomGenerator;
 
 public final class DefaultRandomGenerator implements RandomGenerator {
 

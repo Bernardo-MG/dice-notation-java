@@ -22,18 +22,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.generator.DefaultRandomGenerator;
+import com.wandrell.tabletop.dice.generator.RandomGenerator;
+import com.wandrell.tabletop.dice.mapper.RollMapper;
 
 public final class DefaultRoller implements Roller {
 
     private final RollMapper<Integer> defaultMapper;
 
     private final RandomGenerator     generator;
-
-    public interface RandomGenerator {
-
-        public Integer generate(final Integer sides);
-
-    }
 
     {
         defaultMapper = new RollMapper<Integer>() {
