@@ -58,7 +58,8 @@ public final class DiceConstant implements DiceExpressionComponent {
 
     @Override
     public final String getStringRepresentation() {
-        return getDice().getStringRepresentation();
+        return String.format("%dd%d", getDice().getQuantity(),
+                getDice().getSides());
     }
 
     @Override

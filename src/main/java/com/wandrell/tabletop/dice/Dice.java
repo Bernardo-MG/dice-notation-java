@@ -68,14 +68,4 @@ public interface Dice {
      */
     public Integer getSides();
 
-    /**
-     * Returns the string representation of the dice.
-     * <p>
-     * For example, in the commonly used format, two dice of six sides are
-     * "2d6", and one dice of twenty sides is "1d20".
-     * 
-     * @return the dice in text format
-     */
-    public String getStringRepresentation();
-
 }

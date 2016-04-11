@@ -135,11 +135,6 @@ public final class DefaultDice implements Dice {
     }
 
     @Override
-    public final String getStringRepresentation() {
-        return String.format("%dd%d", getQuantity(), getSides());
-    }
-
-    @Override
     public final int hashCode() {
         return Objects.hashCode(diceQuantity, diceSides);
     }
