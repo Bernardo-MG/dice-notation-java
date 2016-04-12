@@ -17,13 +17,9 @@
 package com.wandrell.tabletop.dice.roller;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.mapper.RollMapper;
 
-public interface Roller {
+public interface Roller<V> {
 
-    public RollerResult<Integer> roll(final Dice dice);
-
-    public <V> RollerResult<V> roll(final Dice dice,
-            final RollMapper<V> mapper);
+    public RollerResult<V> roll(final Dice dice);
 
 }

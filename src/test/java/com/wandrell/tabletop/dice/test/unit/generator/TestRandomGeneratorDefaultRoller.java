@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.unit.roller;
+package com.wandrell.tabletop.dice.test.unit.generator;
 
 import java.util.Iterator;
 
@@ -24,8 +24,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generator.RandomGenerator;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
+import com.wandrell.tabletop.dice.generator.RandomNumberGenerator;
+import com.wandrell.tabletop.dice.roller.IntegerRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 import com.wandrell.tabletop.dice.roller.RollerResult;
 
@@ -38,9 +38,9 @@ public final class TestRandomGeneratorDefaultRoller {
     @Test
     public final void testRandomGenerator_Bare_Returns() {
         final Dice dice;
-        final Roller roller;
+        final Roller<Integer> roller;
         final RollerResult<Integer> result;
-        final RandomGenerator generator;
+        final RandomNumberGenerator generator;
         final Iterator<Integer> itrInteger;
 
         dice = Mockito.mock(Dice.class);
@@ -48,11 +48,11 @@ public final class TestRandomGeneratorDefaultRoller {
         Mockito.when(dice.getQuantity()).thenReturn(3);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        generator = Mockito.mock(RandomGenerator.class);
+        generator = Mockito.mock(RandomNumberGenerator.class);
 
         Mockito.when(generator.generate(Matchers.anyInt())).thenReturn(3, 5, 1);
 
-        roller = new DefaultRoller(generator);
+        roller = new IntegerRoller(generator);
 
         result = roller.roll(dice);
 
@@ -66,9 +66,9 @@ public final class TestRandomGeneratorDefaultRoller {
     @Test
     public final void testRandomGenerator_Mapped_Returns() {
         final Dice dice;
-        final Roller roller;
+        final Roller<Integer> roller;
         final RollerResult<Integer> result;
-        final RandomGenerator generator;
+        final RandomNumberGenerator generator;
         final Iterator<Integer> itrInteger;
 
         dice = Mockito.mock(Dice.class);
@@ -76,11 +76,11 @@ public final class TestRandomGeneratorDefaultRoller {
         Mockito.when(dice.getQuantity()).thenReturn(3);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        generator = Mockito.mock(RandomGenerator.class);
+        generator = Mockito.mock(RandomNumberGenerator.class);
 
         Mockito.when(generator.generate(Matchers.anyInt())).thenReturn(3, 5, 1);
 
-        roller = new DefaultRoller(generator);
+        roller = new IntegerRoller(generator);
 
         result = roller.roll(dice);
 

@@ -22,53 +22,30 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generator.DefaultRandomGenerator;
-import com.wandrell.tabletop.dice.generator.RandomGenerator;
+import com.wandrell.tabletop.dice.generator.RandomNumberGenerator;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
 
-public final class DefaultRoller implements Roller {
+public final class MappedRoller<V> implements Roller<V> {
 
-    private final RollMapper<Integer> defaultMapper;
+    private final RandomNumberGenerator generator;
 
-    private final RandomGenerator     generator;
+    private final RollMapper<V>         mapper;
 
-    {
-        defaultMapper = new RollMapper<Integer>() {
-
-            @Override
-            public final Integer getValueFor(final Integer roll) {
-                return roll;
-            }
-
-        };
-    }
-
-    public DefaultRoller() {
+    public MappedRoller(final RollMapper<V> mapper,
+            final RandomNumberGenerator generator) {
         super();
 
-        generator = new DefaultRandomGenerator();
-    }
-
-    public DefaultRoller(final RandomGenerator generator) {
-        super();
-
+        this.mapper = mapper;
         this.generator = generator;
     }
 
     @Override
-    public final RollerResult<Integer> roll(final Dice dice) {
-        return roll(dice, getDefaultMapper());
-    }
-
-    @Override
-    public final <V> RollerResult<V> roll(final Dice dice,
-            final RollMapper<V> mapper) {
+    public final RollerResult<V> roll(final Dice dice) {
         final Collection<Integer> bare;
         final Collection<V> mapped;
         Integer roll;   // Stores each of the roll results
 
         checkNotNull(dice, "Received a null pointer as dice");
-        checkNotNull(mapper, "Received a null pointer as mapper");
 
         bare = new LinkedList<>();
         mapped = new LinkedList<>();
@@ -76,17 +53,17 @@ public final class DefaultRoller implements Roller {
             roll = getRandomGenerator().generate(dice.getSides());
 
             bare.add(roll);
-            mapped.add(mapper.getValueFor(roll));
+            mapped.add(getMapper().getValueFor(roll));
         }
 
         return new DefaultRollerResult<V>(bare, mapped);
     }
 
-    private final RollMapper<Integer> getDefaultMapper() {
-        return defaultMapper;
+    private final RollMapper<V> getMapper() {
+        return mapper;
     }
 
-    private final RandomGenerator getRandomGenerator() {
+    private final RandomNumberGenerator getRandomGenerator() {
         return generator;
     }
 

@@ -16,36 +16,32 @@
 
 package com.wandrell.tabletop.dice.generator;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.Random;
 
-public final class DefaultRandomGenerator implements RandomGenerator {
+public final class DefaultRandomNumberGenerator
+        implements RandomNumberGenerator {
+
+    private static final Integer LOWER_LIMIT = 1;
 
     /**
      * Random number generator for generating roll values.
      * <p>
      * To keep the seed, a single instance is used on all the rolls.
      */
-    private final Random random = new Random();
+    private final Random         random      = new Random();
 
-    public DefaultRandomGenerator() {
+    public DefaultRandomNumberGenerator() {
         super();
     }
 
     @Override
-    public final Integer generate(final Integer sides) {
-        final Integer lowerLimit;
-        Integer result;
+    public final Integer generate(final Integer max) {
+        checkArgument(max >= 1, "The maximum value can't be lower than 1");
 
-        lowerLimit = 1;
-
-        result = getRandom().nextInt(Math.abs(lowerLimit - sides) + 1)
-                + lowerLimit;
-
-        if (sides < 0) {
-            result += -1;
-        }
-
-        return result;
+        return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
+                + LOWER_LIMIT;
     }
 
     private final Random getRandom() {

@@ -21,23 +21,23 @@ import java.util.Collection;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
+import com.wandrell.tabletop.dice.roller.IntegerRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 public final class DiceOperand implements Operand {
 
-    private final DiceConstant dice;
+    private final DiceConstant    dice;
 
-    private final Roller       roller;
+    private final Roller<Integer> roller;
 
     public DiceOperand(final DiceConstant dice) {
         super();
 
         this.dice = dice;
-        this.roller = new DefaultRoller();
+        this.roller = new IntegerRoller();
     }
 
-    public DiceOperand(final DiceConstant dice, final Roller roller) {
+    public DiceOperand(final DiceConstant dice, final Roller<Integer> roller) {
         super();
 
         this.dice = dice;
@@ -99,7 +99,7 @@ public final class DiceOperand implements Operand {
         return MoreObjects.toStringHelper(this).add("dice", dice).toString();
     }
 
-    private final Roller getRoller() {
+    private final Roller<Integer> getRoller() {
         return roller;
     }
 

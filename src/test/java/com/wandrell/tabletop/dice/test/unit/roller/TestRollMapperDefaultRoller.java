@@ -25,10 +25,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.generator.DefaultRandomNumberGenerator;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
+import com.wandrell.tabletop.dice.roller.MappedRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
-import com.wandrell.tabletop.dice.roller.RollerResult;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestRollMapperDefaultRoller {
@@ -45,10 +45,36 @@ public final class TestRollMapperDefaultRoller {
     }
 
     @SuppressWarnings("unchecked")
+    @Test(dataProvider = DATA)
+    public final void testRoll_ResultsSize_MappedRollValues_Mapped(
+            final Integer quantity, final Integer sides) {
+        final Dice dice;
+        final Roller<String> roller;
+        final RollMapper<String> mapper;
+
+        dice = Mockito.mock(Dice.class);
+
+        Mockito.when(dice.getQuantity()).thenReturn(quantity);
+        Mockito.when(dice.getSides()).thenReturn(sides);
+
+        mapper = Mockito.mock(RollMapper.class);
+
+        Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
+                .thenReturn("ABC");
+
+        roller = new MappedRoller<String>(mapper,
+                new DefaultRandomNumberGenerator());
+
+        Assert.assertEquals(
+                (Integer) roller.roll(dice).getMappedRollResults().size(),
+                quantity);
+    }
+
+    @SuppressWarnings("unchecked")
     @Test
     public final void testRollMapper_Alphanumeric_Returns() {
         final Dice dice;
-        final Roller roller;
+        final Roller<String> roller;
         final RollMapper<String> mapper;
         final String value;
         final Iterator<String> itrValues;
@@ -65,42 +91,23 @@ public final class TestRollMapperDefaultRoller {
         Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
                 .thenReturn(value);
 
-        roller = new DefaultRoller();
+        roller = new MappedRoller<String>(mapper,
+                new DefaultRandomNumberGenerator());
 
-        itrValues = roller.roll(dice, mapper).getMappedRollResults().iterator();
+        itrValues = roller.roll(dice).getMappedRollResults().iterator();
 
         Assert.assertEquals(itrValues.next(), value);
         Assert.assertEquals(itrValues.next(), value);
         Assert.assertEquals(itrValues.next(), value);
         Assert.assertEquals(itrValues.next(), value);
         Assert.assertEquals(itrValues.next(), value);
-    }
-
-    @Test(dataProvider = DATA)
-    public final void testRollMapper_Default_ResultsEqual(
-            final Integer quantity, final Integer sides) {
-        final Dice dice;
-        final Roller roller;
-        final RollerResult<Integer> result;
-
-        dice = Mockito.mock(Dice.class);
-
-        Mockito.when(dice.getQuantity()).thenReturn(quantity);
-        Mockito.when(dice.getSides()).thenReturn(sides);
-
-        roller = new DefaultRoller();
-
-        result = roller.roll(dice);
-
-        Assert.assertEquals(result.getBareRollResults(),
-                result.getMappedRollResults());
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public final void testRollMapper_Returns() {
         final Dice dice;
-        final Roller roller;
+        final Roller<Integer> roller;
         final RollMapper<Integer> mapper;
         final Iterator<Integer> itrValues;
 
@@ -114,9 +121,10 @@ public final class TestRollMapperDefaultRoller {
         Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
                 .thenReturn(11, 14, 1);
 
-        roller = new DefaultRoller();
+        roller = new MappedRoller<Integer>(mapper,
+                new DefaultRandomNumberGenerator());
 
-        itrValues = roller.roll(dice, mapper).getMappedRollResults().iterator();
+        itrValues = roller.roll(dice).getMappedRollResults().iterator();
 
         Assert.assertEquals(itrValues.next(), (Integer) 11);
         Assert.assertEquals(itrValues.next(), (Integer) 14);
