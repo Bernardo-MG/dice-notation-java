@@ -18,9 +18,9 @@ package com.wandrell.tabletop.dice.mapper;
 
 public final class ZeroBiasedRollMapper implements RollMapper<Integer> {
 
-    @Override
-    public final Integer getValueFor(final Integer roll) {
-        return roll - 1;
-    }
+	@Override
+	public final Integer getValueFor(final Integer roll) {
+		return roll - 1;
+	}
 
 }

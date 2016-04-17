@@ -33,116 +33,116 @@ import com.google.common.base.Objects;
  */
 public final class DefaultDice implements Dice {
 
-    /**
-     * Number of dice.
-     * <p>
-     * This is greater or equal to zero.
-     */
-    private final Integer diceQuantity;
+	/**
+	 * Number of dice.
+	 * <p>
+	 * This is greater or equal to zero.
+	 */
+	private final Integer diceQuantity;
 
-    /**
-     * Number of sides in each die.
-     * <p>
-     * This is greater than zero.
-     */
-    private final Integer diceSides;
+	/**
+	 * Number of sides in each die.
+	 * <p>
+	 * This is greater than zero.
+	 */
+	private final Integer diceSides;
 
-    /**
-     * Copy constructor for {@code DefaultDice}.
-     * 
-     * @param dice
-     *            the dice to copy
-     */
-    public DefaultDice(final DefaultDice dice) {
-        super();
+	/**
+	 * Copy constructor for {@code DefaultDice}.
+	 * 
+	 * @param dice
+	 *            the dice to copy
+	 */
+	public DefaultDice(final DefaultDice dice) {
+		super();
 
-        checkNotNull(dice, "Received a null pointer as dice");
+		checkNotNull(dice, "Received a null pointer as dice");
 
-        diceSides = dice.diceSides;
-        diceQuantity = dice.diceQuantity;
-    }
+		diceSides = dice.diceSides;
+		diceQuantity = dice.diceQuantity;
+	}
 
-    /**
-     * Constructs a {@code DefaultDice} with the specified quantity and sides.
-     * <p>
-     * The quantity can't be a negative value, and the number of sides should be
-     * greater than zero. Otherwise an exception is thrown.
-     * 
-     * @param quantity
-     *            the number of dice
-     * @param sides
-     *            the sides each die has
-     */
-    public DefaultDice(final Integer quantity, final Integer sides) {
-        super();
+	/**
+	 * Constructs a {@code DefaultDice} with the specified quantity and sides.
+	 * <p>
+	 * The quantity can't be a negative value, and the number of sides should be
+	 * greater than zero. Otherwise an exception is thrown.
+	 * 
+	 * @param quantity
+	 *            the number of dice
+	 * @param sides
+	 *            the sides each die has
+	 */
+	public DefaultDice(final Integer quantity, final Integer sides) {
+		super();
 
-        checkNotNull(quantity, "Received a null pointer as quantity");
-        checkNotNull(sides, "Received a null pointer as sides");
+		checkNotNull(quantity, "Received a null pointer as quantity");
+		checkNotNull(sides, "Received a null pointer as sides");
 
-        checkArgument(quantity >= 0, "The quantity of dice can't be negative");
-        checkArgument(sides >= 1, "The number of sides can't be lower than 1");
+		checkArgument(quantity >= 0, "The quantity of dice can't be negative");
+		checkArgument(sides >= 1, "The number of sides can't be lower than 1");
 
-        diceSides = sides;
-        diceQuantity = quantity;
-    }
+		diceSides = sides;
+		diceQuantity = quantity;
+	}
 
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
+	@Override
+	public final boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
 
-        if (obj == null) {
-            return false;
-        }
+		if (obj == null) {
+			return false;
+		}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-        final DefaultDice other;
+		final DefaultDice other;
 
-        other = (DefaultDice) obj;
+		other = (DefaultDice) obj;
 
-        return Objects.equal(diceQuantity, other.diceQuantity)
-                && Objects.equal(diceSides, other.diceSides);
-    }
+		return Objects.equal(diceQuantity, other.diceQuantity)
+				&& Objects.equal(diceSides, other.diceSides);
+	}
 
-    /**
-     * Returns the number of dice which compose this group.
-     * <p>
-     * This is a positive value or zero.
-     * 
-     * @return the number of dice being rolled
-     */
-    @Override
-    public final Integer getQuantity() {
-        return diceQuantity;
-    }
+	/**
+	 * Returns the number of dice which compose this group.
+	 * <p>
+	 * This is a positive value or zero.
+	 * 
+	 * @return the number of dice being rolled
+	 */
+	@Override
+	public final Integer getQuantity() {
+		return diceQuantity;
+	}
 
-    /**
-     * Returns the number of sides of the die being rolled.
-     * <p>
-     * All the dice will have this same number of sides.
-     * <p>
-     * This is a positive value greater than zero.
-     * 
-     * @return the die's number of sides
-     */
-    @Override
-    public final Integer getSides() {
-        return diceSides;
-    }
+	/**
+	 * Returns the number of sides of the die being rolled.
+	 * <p>
+	 * All the dice will have this same number of sides.
+	 * <p>
+	 * This is a positive value greater than zero.
+	 * 
+	 * @return the die's number of sides
+	 */
+	@Override
+	public final Integer getSides() {
+		return diceSides;
+	}
 
-    @Override
-    public final int hashCode() {
-        return Objects.hashCode(diceQuantity, diceSides);
-    }
+	@Override
+	public final int hashCode() {
+		return Objects.hashCode(diceQuantity, diceSides);
+	}
 
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("quantity", diceQuantity)
-                .add("sides", diceSides).toString();
-    }
+	@Override
+	public final String toString() {
+		return MoreObjects.toStringHelper(this).add("quantity", diceQuantity)
+				.add("sides", diceSides).toString();
+	}
 
 }

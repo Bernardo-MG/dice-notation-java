@@ -9,37 +9,52 @@ grammar DiceNotation;
 /**
  * Rules.
  */
-
-formula
+ 
+parse
 :
-	integerDice 
-	| integerOpAdd
+	function
+;
+
+function
+:
+	binaryOp
+	| operand
+;
+
+unaryOp
+:
+	OPERATOR function
+;
+
+binaryOp
+:
+	operand OPERATOR function
+;
+
+operand
+:
+	dice
 	| value
 ;
 
-integerOpAdd
+dice
 :
-	integerDice OPERATOR_ADD value
+	quantity SEPARATOR sides
 ;
 
-integerDice
+quantity
 :
-	diceHeader diceSides
+	DIGIT
 ;
 
-diceHeader
+sides
 :
-	NUMBER? SEPARATOR
-;
-
-diceSides
-:
-	NUMBER
+	DIGIT
 ;
 
 value
 :
-	NUMBER
+	DIGIT
 ;
 
 /**
@@ -49,9 +64,21 @@ value
 
 // Functions
 
-OPERATOR_ADD
+OPERATOR
 :
-	( '+' | '-' )
+	( ADD | SUB )
+;
+
+// Operators
+
+ADD
+:
+	'+'
+;
+
+SUB
+:
+	'-'
 ;
 
 // Dice markers
@@ -61,7 +88,7 @@ SEPARATOR
 	( 'd' | 'D' )
 ;
 
-NUMBER
+DIGIT
 :
-	[0-9] [0-9]*
+	('0'..'9')+
 ;

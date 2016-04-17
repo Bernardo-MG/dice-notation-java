@@ -29,62 +29,62 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedLexer;
-import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedParser;
-import com.wandrell.tabletop.dice.generated.extended.DiceNotationExtendedParser.NotationContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestDiceGrammar {
 
-    protected static final String DATA = "data";
+	protected static final String DATA = "data";
 
-    @DataProvider(name = DATA)
-    public final static Iterator<Object[]> getData() throws Exception {
-        return DiceValuesTestParametersFactory.getInstance().getDiceText();
-    }
+	@DataProvider(name = DATA)
+	public final static Iterator<Object[]> getData() throws Exception {
+		return DiceValuesTestParametersFactory.getInstance().getDiceText();
+	}
 
-    public TestDiceGrammar() {
-        super();
-    }
+	public TestDiceGrammar() {
+		super();
+	}
 
-    @Test(dataProvider = DATA)
-    public final void testParse_Valid(final String text) {
-        final NotationContext context;
+	private final DiceNotationParser getParser(final String text) {
+		final CharStream in;
+		final DiceNotationLexer lexer;
+		final TokenStream tokens;
+		final DiceNotationParser parser;
 
-        context = getParser(text).notation();
+		in = new ANTLRInputStream(text);
+		lexer = new DiceNotationLexer(in);
+		tokens = new CommonTokenStream(lexer);
 
-        Assert.assertNull(context.exception);
-    }
+		parser = new DiceNotationParser(tokens);
 
-    private final DiceNotationExtendedParser getParser(final String text) {
-        final CharStream in;
-        final DiceNotationExtendedLexer lexer;
-        final TokenStream tokens;
-        final DiceNotationExtendedParser parser;
+		parser.addErrorListener(new BaseErrorListener() {
 
-        in = new ANTLRInputStream(text);
-        lexer = new DiceNotationExtendedLexer(in);
-        tokens = new CommonTokenStream(lexer);
+			@Override
+			public void syntaxError(Recognizer<?, ?> recognizer,
+					Object offendingSymbol, int line, int charPositionInLine,
+					String msg, RecognitionException e) {
+				final String message;
 
-        parser = new DiceNotationExtendedParser(tokens);
+				message = String.format(
+						"failed to parse at line %d on char %d due to %s",
+						line, charPositionInLine + 1, msg);
 
-        parser.addErrorListener(new BaseErrorListener() {
+				throw new IllegalStateException(message, e);
+			}
+		});
 
-            @Override
-            public void syntaxError(Recognizer<?, ?> recognizer,
-                    Object offendingSymbol, int line, int charPositionInLine,
-                    String msg, RecognitionException e) {
-                final String message;
+		return parser;
+	}
 
-                message = String.format(
-                        "failed to parse at line %d on char %d due to %s", line,
-                        charPositionInLine + 1, msg);
+	@Test(dataProvider = DATA)
+	public final void testParse_Valid(final String text) {
+		final ParseContext context;
 
-                throw new IllegalStateException(message, e);
-            }
-        });
+		context = getParser(text).parse();
 
-        return parser;
-    }
+		Assert.assertNull(context.exception);
+	}
 
 }

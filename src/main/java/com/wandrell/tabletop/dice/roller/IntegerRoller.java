@@ -23,39 +23,39 @@ import com.wandrell.tabletop.dice.mapper.RollMapper;
 
 public final class IntegerRoller implements Roller<Integer> {
 
-    private final Roller<Integer> roller;
+	private final Roller<Integer> roller;
 
-    public IntegerRoller() {
-        super();
+	public IntegerRoller() {
+		super();
 
-        roller = new MappedRoller<Integer>(getIntegerMapper(),
-                new DefaultRandomNumberGenerator());
-    }
+		roller = new MappedRoller<Integer>(getIntegerMapper(),
+				new DefaultRandomNumberGenerator());
+	}
 
-    public IntegerRoller(final RandomNumberGenerator generator) {
-        super();
+	public IntegerRoller(final RandomNumberGenerator generator) {
+		super();
 
-        roller = new MappedRoller<Integer>(getIntegerMapper(), generator);
-    }
+		roller = new MappedRoller<Integer>(getIntegerMapper(), generator);
+	}
 
-    @Override
-    public final RollerResult<Integer> roll(final Dice dice) {
-        return getRoller().roll(dice);
-    }
+	private final RollMapper<Integer> getIntegerMapper() {
+		return new RollMapper<Integer>() {
 
-    private final RollMapper<Integer> getIntegerMapper() {
-        return new RollMapper<Integer>() {
+			@Override
+			public final Integer getValueFor(final Integer roll) {
+				return roll;
+			}
 
-            @Override
-            public final Integer getValueFor(final Integer roll) {
-                return roll;
-            }
+		};
+	}
 
-        };
-    }
+	private final Roller<Integer> getRoller() {
+		return roller;
+	}
 
-    private final Roller<Integer> getRoller() {
-        return roller;
-    }
+	@Override
+	public final RollerResult<Integer> roll(final Dice dice) {
+		return getRoller().roll(dice);
+	}
 
 }

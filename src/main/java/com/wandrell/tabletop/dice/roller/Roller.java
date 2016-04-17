@@ -20,6 +20,6 @@ import com.wandrell.tabletop.dice.Dice;
 
 public interface Roller<V> {
 
-    public RollerResult<V> roll(final Dice dice);
+	public RollerResult<V> roll(final Dice dice);
 
 }

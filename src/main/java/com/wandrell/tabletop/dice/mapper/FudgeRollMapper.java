@@ -18,19 +18,19 @@ package com.wandrell.tabletop.dice.mapper;
 
 public final class FudgeRollMapper implements RollMapper<Integer> {
 
-    @Override
-    public final Integer getValueFor(final Integer roll) {
-        final Integer result;
+	@Override
+	public final Integer getValueFor(final Integer roll) {
+		final Integer result;
 
-        if (roll <= 2) {
-            result = -1;
-        } else if (roll >= 5) {
-            result = 1;
-        } else {
-            result = 0;
-        }
+		if (roll <= 2) {
+			result = -1;
+		} else if (roll >= 5) {
+			result = 1;
+		} else {
+			result = 0;
+		}
 
-        return result;
-    }
+		return result;
+	}
 
 }

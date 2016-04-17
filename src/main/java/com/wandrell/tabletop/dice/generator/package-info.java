@@ -20,3 +20,4 @@
  */
 
 package com.wandrell.tabletop.dice.generator;
+

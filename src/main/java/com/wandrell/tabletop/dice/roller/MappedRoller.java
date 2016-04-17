@@ -27,44 +27,44 @@ import com.wandrell.tabletop.dice.mapper.RollMapper;
 
 public final class MappedRoller<V> implements Roller<V> {
 
-    private final RandomNumberGenerator generator;
+	private final RandomNumberGenerator generator;
 
-    private final RollMapper<V>         mapper;
+	private final RollMapper<V> mapper;
 
-    public MappedRoller(final RollMapper<V> mapper,
-            final RandomNumberGenerator generator) {
-        super();
+	public MappedRoller(final RollMapper<V> mapper,
+			final RandomNumberGenerator generator) {
+		super();
 
-        this.mapper = mapper;
-        this.generator = generator;
-    }
+		this.mapper = mapper;
+		this.generator = generator;
+	}
 
-    @Override
-    public final RollerResult<V> roll(final Dice dice) {
-        final Collection<Integer> bare;
-        final Collection<V> mapped;
-        Integer roll;   // Stores each of the roll results
+	private final RollMapper<V> getMapper() {
+		return mapper;
+	}
 
-        checkNotNull(dice, "Received a null pointer as dice");
+	private final RandomNumberGenerator getRandomGenerator() {
+		return generator;
+	}
 
-        bare = new LinkedList<>();
-        mapped = new LinkedList<>();
-        for (Integer i = 0; i < dice.getQuantity(); i++) {
-            roll = getRandomGenerator().generate(dice.getSides());
+	@Override
+	public final RollerResult<V> roll(final Dice dice) {
+		final Collection<Integer> bare;
+		final Collection<V> mapped;
+		Integer roll; // Stores each of the roll results
 
-            bare.add(roll);
-            mapped.add(getMapper().getValueFor(roll));
-        }
+		checkNotNull(dice, "Received a null pointer as dice");
 
-        return new DefaultRollerResult<V>(bare, mapped);
-    }
+		bare = new LinkedList<>();
+		mapped = new LinkedList<>();
+		for (Integer i = 0; i < dice.getQuantity(); i++) {
+			roll = getRandomGenerator().generate(dice.getSides());
 
-    private final RollMapper<V> getMapper() {
-        return mapper;
-    }
+			bare.add(roll);
+			mapped.add(getMapper().getValueFor(roll));
+		}
 
-    private final RandomNumberGenerator getRandomGenerator() {
-        return generator;
-    }
+		return new DefaultRollerResult<V>(bare, mapped);
+	}
 
 }

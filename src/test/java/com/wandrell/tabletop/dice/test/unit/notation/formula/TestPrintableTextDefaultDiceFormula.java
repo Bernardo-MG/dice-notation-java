@@ -33,52 +33,52 @@ import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 public final class TestPrintableTextDefaultDiceFormula {
 
-    public TestPrintableTextDefaultDiceFormula() {
-        super();
-    }
+	public TestPrintableTextDefaultDiceFormula() {
+		super();
+	}
 
-    @Test
-    public final void testGetPrintableText_Addition() {
-        final DiceExpression formula;
-        final Dice dice;
-        final Operand diceOperand;
-        final Operand intOperand;
-        final Operation operation;
+	@Test
+	public final void testGetPrintableText_Addition() {
+		final DiceExpression formula;
+		final Dice dice;
+		final Operand diceOperand;
+		final Operand intOperand;
+		final Operation operation;
 
-        dice = new DefaultDice(2, 6);
+		dice = new DefaultDice(2, 6);
 
-        diceOperand = new DiceOperand(new DiceConstant(dice));
-        intOperand = new IntegerConstant(5);
+		diceOperand = new DiceOperand(new DiceConstant(dice));
+		intOperand = new IntegerConstant(5);
 
-        operation = new AdditionOperation(diceOperand, intOperand);
+		operation = new AdditionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpression();
+		formula = new DefaultDiceExpression();
 
-        formula.addDiceNotationComponent(operation);
+		formula.addDiceNotationComponent(operation);
 
-        Assert.assertEquals(formula.getStringRepresentation(), "2d6+5");
-    }
+		Assert.assertEquals(formula.getStringRepresentation(), "2d6+5");
+	}
 
-    @Test
-    public final void testGetPrintableText_Substraction() {
-        final DiceExpression formula;
-        final Dice dice;
-        final Operand diceOperand;
-        final Operand intOperand;
-        final Operation operation;
+	@Test
+	public final void testGetPrintableText_Substraction() {
+		final DiceExpression formula;
+		final Dice dice;
+		final Operand diceOperand;
+		final Operand intOperand;
+		final Operation operation;
 
-        dice = new DefaultDice(2, 6);
+		dice = new DefaultDice(2, 6);
 
-        diceOperand = new DiceOperand(new DiceConstant(dice));
-        intOperand = new IntegerConstant(5);
+		diceOperand = new DiceOperand(new DiceConstant(dice));
+		intOperand = new IntegerConstant(5);
 
-        operation = new SubstractionOperation(diceOperand, intOperand);
+		operation = new SubstractionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpression();
+		formula = new DefaultDiceExpression();
 
-        formula.addDiceNotationComponent(operation);
+		formula.addDiceNotationComponent(operation);
 
-        Assert.assertEquals(formula.getStringRepresentation(), "2d6-5");
-    }
+		Assert.assertEquals(formula.getStringRepresentation(), "2d6-5");
+	}
 
 }

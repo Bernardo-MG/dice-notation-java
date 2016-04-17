@@ -20,8 +20,8 @@ import java.util.Stack;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generated.basic.DiceNotationBaseListener;
-import com.wandrell.tabletop.dice.generated.basic.DiceNotationParser;
+import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
@@ -35,78 +35,83 @@ import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 public final class DiceFormulaBuilder extends DiceNotationBaseListener {
 
-    private DiceExpression                       formula;
+	private DiceExpression expression;
 
-    private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
+	private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
 
-    public DiceFormulaBuilder() {
-        super();
-    }
+	public DiceFormulaBuilder() {
+		super();
+	}
 
-    @Override
-    public final void
-            enterFormula(final DiceNotationParser.FormulaContext ctx) {
-        formula = new DefaultDiceExpression();
-    }
+	@Override
+	public final void enterParse(final DiceNotationParser.ParseContext ctx) {
+		expression = new DefaultDiceExpression();
+	}
 
-    @Override
-    public final void exitFormula(final DiceNotationParser.FormulaContext ctx) {
-        while (!getOperandsStack().isEmpty()) {
-            formula.addDiceNotationComponent(getOperandsStack().pop());
-        }
-    }
+	@Override
+	public final void exitBinaryOp(DiceNotationParser.BinaryOpContext ctx) {
+		final BinaryOperation opAdd;
+		final String operator;
+		final Operand left;
+		final Operand right;
 
-    @Override
-    public final void
-            exitIntegerDice(final DiceNotationParser.IntegerDiceContext ctx) {
-        final Dice dice;
-        final Integer count;
-        final Integer sides;
+		operator = ctx.OPERATOR().getText();
 
-        count = Integer.parseInt(ctx.diceHeader().NUMBER().getText());
-        sides = Integer.parseInt(ctx.diceSides().getText());
+		right = (Operand) getOperandsStack().pop();
+		left = (Operand) getOperandsStack().pop();
 
-        dice = new DefaultDice(count, sides);
+		if (operator.equals("+")) {
+			opAdd = new AdditionOperation(left, right);
+		} else {
+			opAdd = new SubstractionOperation(left, right);
+		}
 
-        getOperandsStack().push(new DiceOperand(new DiceConstant(dice)));
-    }
+		getOperandsStack().push(opAdd);
+	}
 
-    @Override
-    public void exitIntegerOpAdd(DiceNotationParser.IntegerOpAddContext ctx) {
-        final BinaryOperation opAdd;
-        final String operator;
-        final Operand left;
-        final Operand right;
+	@Override
+	public final void exitDice(final DiceNotationParser.DiceContext ctx) {
+		final Dice dice;
+		final Integer count;
+		final Integer sides;
 
-        operator = ctx.OPERATOR_ADD().getText();
+		count = Integer.parseInt(ctx.quantity().getText());
+		sides = Integer.parseInt(ctx.sides().getText());
 
-        right = (Operand) getOperandsStack().pop();
-        left = (Operand) getOperandsStack().pop();
+		dice = new DefaultDice(count, sides);
 
-        if (operator.equals("+")) {
-            opAdd = new AdditionOperation(left, right);
-        } else {
-            opAdd = new SubstractionOperation(left, right);
-        }
+		getOperandsStack().push(new DiceOperand(new DiceConstant(dice)));
+	}
 
-        getOperandsStack().push(opAdd);
-    }
+	@Override
+	public final void exitFunction(final DiceNotationParser.FunctionContext ctx) {
+		// while (!getOperandsStack().isEmpty()) {
+		// expression.addDiceNotationComponent(getOperandsStack().pop());
+		// }
+	}
 
-    @Override
-    public final void exitValue(final DiceNotationParser.ValueContext ctx) {
-        final Integer value;
+	@Override
+	public final void exitParse(final DiceNotationParser.ParseContext ctx) {
+		while (!getOperandsStack().isEmpty()) {
+			expression.addDiceNotationComponent(getOperandsStack().pop());
+		}
+	}
 
-        value = Integer.parseInt(ctx.getText());
+	@Override
+	public final void exitValue(final DiceNotationParser.ValueContext ctx) {
+		final Integer value;
 
-        getOperandsStack().push(new IntegerConstant(value));
-    }
+		value = Integer.parseInt(ctx.getText());
 
-    public final DiceExpression getDiceFormula() {
-        return formula;
-    }
+		getOperandsStack().push(new IntegerConstant(value));
+	}
 
-    private final Stack<DiceExpressionComponent> getOperandsStack() {
-        return operandsStack;
-    }
+	public final DiceExpression getDiceExpression() {
+		return expression;
+	}
+
+	private final Stack<DiceExpressionComponent> getOperandsStack() {
+		return operandsStack;
+	}
 
 }

@@ -20,14 +20,13 @@ import java.util.Collection;
 
 public interface DiceExpression {
 
-    public void
-            addDiceNotationComponent(final DiceExpressionComponent component);
+	public void addDiceNotationComponent(final DiceExpressionComponent component);
 
-    public Collection<DiceExpressionComponent> getComponents();
+	public Collection<DiceExpressionComponent> getComponents();
 
-    public String getStringRepresentation();
+	public String getStringRepresentation();
 
-    public void removeDiceNotationComponent(
-            final DiceExpressionComponent component);
+	public void removeDiceNotationComponent(
+			final DiceExpressionComponent component);
 
 }

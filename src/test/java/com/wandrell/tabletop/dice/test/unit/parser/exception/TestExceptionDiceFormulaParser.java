@@ -22,24 +22,24 @@ import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
 
 public final class TestExceptionDiceFormulaParser {
 
-    private final DiceExpressionParser parser;
+	private final DiceExpressionParser parser;
 
-    {
-        parser = new DiceExpressionParser();
-    }
+	{
+		parser = new DiceExpressionParser();
+	}
 
-    public TestExceptionDiceFormulaParser() {
-        super();
-    }
+	public TestExceptionDiceFormulaParser() {
+		super();
+	}
 
-    @Test(expectedExceptions = Exception.class)
-    public final void testParseDice_Empty() {
-        parser.parse("");
-    }
+	@Test(expectedExceptions = Exception.class)
+	public final void testParseDice_Empty() {
+		parser.parse("");
+	}
 
-    @Test(expectedExceptions = Exception.class)
-    public final void testParseDice_Invalid() {
-        parser.parse("abc");
-    }
+	@Test(expectedExceptions = Exception.class)
+	public final void testParseDice_Invalid() {
+		parser.parse("abc");
+	}
 
 }

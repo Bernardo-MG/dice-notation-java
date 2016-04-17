@@ -20,26 +20,26 @@ import java.util.Collection;
 
 public final class DefaultRollerResult<V> implements RollerResult<V> {
 
-    final Collection<Integer> bare;
+	final Collection<Integer> bare;
 
-    final Collection<V>       mapped;
+	final Collection<V> mapped;
 
-    public DefaultRollerResult(final Collection<Integer> bare,
-            final Collection<V> mapped) {
-        super();
+	public DefaultRollerResult(final Collection<Integer> bare,
+			final Collection<V> mapped) {
+		super();
 
-        this.bare = bare;
-        this.mapped = mapped;
-    }
+		this.bare = bare;
+		this.mapped = mapped;
+	}
 
-    @Override
-    public final Collection<Integer> getBareRollResults() {
-        return bare;
-    }
+	@Override
+	public final Collection<Integer> getBareRollResults() {
+		return bare;
+	}
 
-    @Override
-    public final Collection<V> getMappedRollResults() {
-        return mapped;
-    }
+	@Override
+	public final Collection<V> getMappedRollResults() {
+		return mapped;
+	}
 
 }

@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 
 public final class ITPrintableTextDefaultDiceFormula {
 
-    public ITPrintableTextDefaultDiceFormula() {
-        super();
-    }
+	public ITPrintableTextDefaultDiceFormula() {
+		super();
+	}
 
-    @Test
-    public final void testGetPrintableText_Dice_Sum() {
+	@Test
+	public final void testGetPrintableText_Dice_Sum() {
 
-    }
+	}
 }

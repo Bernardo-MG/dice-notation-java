@@ -20,32 +20,32 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Random;
 
-public final class DefaultRandomNumberGenerator
-        implements RandomNumberGenerator {
+public final class DefaultRandomNumberGenerator implements
+		RandomNumberGenerator {
 
-    private static final Integer LOWER_LIMIT = 1;
+	private static final Integer LOWER_LIMIT = 1;
 
-    /**
-     * Random number generator for generating roll values.
-     * <p>
-     * To keep the seed, a single instance is used on all the rolls.
-     */
-    private final Random         random      = new Random();
+	/**
+	 * Random number generator for generating roll values.
+	 * <p>
+	 * To keep the seed, a single instance is used on all the rolls.
+	 */
+	private final Random random = new Random();
 
-    public DefaultRandomNumberGenerator() {
-        super();
-    }
+	public DefaultRandomNumberGenerator() {
+		super();
+	}
 
-    @Override
-    public final Integer generate(final Integer max) {
-        checkArgument(max >= 1, "The maximum value can't be lower than 1");
+	@Override
+	public final Integer generate(final Integer max) {
+		checkArgument(max >= 1, "The maximum value can't be lower than 1");
 
-        return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
-                + LOWER_LIMIT;
-    }
+		return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
+				+ LOWER_LIMIT;
+	}
 
-    private final Random getRandom() {
-        return random;
-    }
+	private final Random getRandom() {
+		return random;
+	}
 
 }

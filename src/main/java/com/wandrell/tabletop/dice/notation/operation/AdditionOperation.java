@@ -22,76 +22,75 @@ import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 public final class AdditionOperation implements BinaryOperation {
 
-    final Operand operandLeft;
+	final Operand operandLeft;
 
-    final Operand operandRight;
+	final Operand operandRight;
 
-    public AdditionOperation(final Operand operandLeft,
-            final Operand operandRight) {
-        super();
+	public AdditionOperation(final Operand operandLeft,
+			final Operand operandRight) {
+		super();
 
-        this.operandLeft = operandLeft;
-        this.operandRight = operandRight;
-    }
+		this.operandLeft = operandLeft;
+		this.operandRight = operandRight;
+	}
 
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
+	@Override
+	public final boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
 
-        if (obj == null) {
-            return false;
-        }
+		if (obj == null) {
+			return false;
+		}
 
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 
-        final AdditionOperation other;
+		final AdditionOperation other;
 
-        other = (AdditionOperation) obj;
+		other = (AdditionOperation) obj;
 
-        return Objects.equal(operandLeft, other.operandLeft)
-                && Objects.equal(operandRight, other.operandRight);
-    }
+		return Objects.equal(operandLeft, other.operandLeft)
+				&& Objects.equal(operandRight, other.operandRight);
+	}
 
-    @Override
-    public final Operand getLeft() {
-        return operandLeft;
-    }
+	@Override
+	public final Operand getLeft() {
+		return operandLeft;
+	}
 
-    @Override
-    public final Operand getRight() {
-        return operandRight;
-    }
+	@Override
+	public final Operand getRight() {
+		return operandRight;
+	}
 
-    @Override
-    public final String getStringRepresentation() {
-        final String left;
-        final String right;
+	@Override
+	public final String getStringRepresentation() {
+		final String left;
+		final String right;
 
-        left = getLeft().getStringRepresentation();
-        right = getRight().getStringRepresentation();
+		left = getLeft().getStringRepresentation();
+		right = getRight().getStringRepresentation();
 
-        return String.format("%s+%s", left, right);
-    }
+		return String.format("%s+%s", left, right);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(operandLeft, operandRight);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(operandLeft, operandRight);
+	}
 
-    @Override
-    public final Operand operate() {
-        return new IntegerConstant(
-                getLeft().getValue() + getRight().getValue());
-    }
+	@Override
+	public final Operand operate() {
+		return new IntegerConstant(getLeft().getValue() + getRight().getValue());
+	}
 
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("left", operandLeft)
-                .add("right", operandRight).toString();
-    }
+	@Override
+	public final String toString() {
+		return MoreObjects.toStringHelper(this).add("left", operandLeft)
+				.add("right", operandRight).toString();
+	}
 
 }

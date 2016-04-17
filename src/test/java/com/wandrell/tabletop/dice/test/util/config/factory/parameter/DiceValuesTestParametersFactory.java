@@ -42,117 +42,117 @@ import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
 
 public final class DiceValuesTestParametersFactory {
 
-    private static final DiceValuesTestParametersFactory instance = new DiceValuesTestParametersFactory();
+	private static final DiceValuesTestParametersFactory instance = new DiceValuesTestParametersFactory();
 
-    public static final DiceValuesTestParametersFactory getInstance() {
-        return instance;
-    }
+	public static final DiceValuesTestParametersFactory getInstance() {
+		return instance;
+	}
 
-    private DiceValuesTestParametersFactory() {
-        super();
-        // TODO: Make these methods final
-    }
+	private DiceValuesTestParametersFactory() {
+		super();
+		// TODO: Make these methods final
+	}
 
-    public final Iterator<Object[]> getDice() throws Exception {
-        final CellProcessor[] processors;
+	/**
+	 * Creates an {@code InputStream} pointing to the file specified by the
+	 * path, if it exists.
+	 * <p>
+	 * If any problem occurs during this process a {@code RuntimeException} is
+	 * thrown, or an {@code IllegalArgumentException} if the file is not found.
+	 * 
+	 * @param path
+	 *            the path to transform
+	 * @return an {@code InputStream} pointing to the path
+	 */
+	private final InputStream getClassPathInputStream(final String path) {
+		final URL url; // URL parsed from the path
+		final InputStream stream; // Stream for the file
 
-        processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
+		url = getClassPathURL(path);
 
-        return getParameters(ParameterPaths.DEFAULT, processors);
-    }
+		checkArgument(url != null,
+				String.format("The path %s is invalid", path));
 
-    public final Iterator<Object[]> getDiceAndText() throws Exception {
-        final CellProcessor[] processors;
+		try {
+			stream = new BufferedInputStream(url.openStream());
+		} catch (final IOException e) {
+			throw new RuntimeException(e);
+		}
 
-        processors = new CellProcessor[] { new NotNull(), new ParseInt(),
-                new ParseInt() };
+		return stream;
+	}
 
-        return getParameters(ParameterPaths.DICE_AND_TEXT, processors);
-    }
+	/**
+	 * Creates a {@code Reader} pointing to the file specified by the path, if
+	 * it exists.
+	 * <p>
+	 * If any problem occurs during this process a {@code RuntimeException} is
+	 * thrown, or an {@code IllegalArgumentException} if the file is not found.
+	 * 
+	 * @param path
+	 *            the path to transform
+	 * @return an {@code InputStream} pointing to the path
+	 */
+	private final Reader getClassPathReader(final String path) {
+		return new BufferedReader(new InputStreamReader(
+				getClassPathInputStream(path)));
+	}
 
-    public final Iterator<Object[]> getDiceText() throws Exception {
-        final CellProcessor[] processors;
+	/**
+	 * Creates an {@code URL} pointing to the file specified by the path, if it
+	 * exists.
+	 * 
+	 * @param path
+	 *            the path to transform
+	 * @return an URL pointing inside the class path
+	 */
+	private final URL getClassPathURL(final String path) {
+		checkNotNull(path, "Received a null pointer as path");
 
-        processors = new CellProcessor[] { new NotNull() };
+		return this.getClass().getClassLoader().getResource(path);
+	}
 
-        return getParameters(ParameterPaths.DICE_TEXT, processors);
-    }
+	public final Iterator<Object[]> getDice() throws Exception {
+		final CellProcessor[] processors;
 
-    /**
-     * Creates an {@code InputStream} pointing to the file specified by the
-     * path, if it exists.
-     * <p>
-     * If any problem occurs during this process a {@code RuntimeException} is
-     * thrown, or an {@code IllegalArgumentException} if the file is not found.
-     * 
-     * @param path
-     *            the path to transform
-     * @return an {@code InputStream} pointing to the path
-     */
-    private final InputStream getClassPathInputStream(final String path) {
-        final URL url;                  // URL parsed from the path
-        final InputStream stream;       // Stream for the file
+		processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
 
-        url = getClassPathURL(path);
+		return getParameters(ParameterPaths.DEFAULT, processors);
+	}
 
-        checkArgument(url != null,
-                String.format("The path %s is invalid", path));
+	public final Iterator<Object[]> getDiceAndText() throws Exception {
+		final CellProcessor[] processors;
 
-        try {
-            stream = new BufferedInputStream(url.openStream());
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
+		processors = new CellProcessor[] { new NotNull(), new ParseInt(),
+				new ParseInt() };
 
-        return stream;
-    }
+		return getParameters(ParameterPaths.DICE_AND_TEXT, processors);
+	}
 
-    /**
-     * Creates a {@code Reader} pointing to the file specified by the path, if
-     * it exists.
-     * <p>
-     * If any problem occurs during this process a {@code RuntimeException} is
-     * thrown, or an {@code IllegalArgumentException} if the file is not found.
-     * 
-     * @param path
-     *            the path to transform
-     * @return an {@code InputStream} pointing to the path
-     */
-    private final Reader getClassPathReader(final String path) {
-        return new BufferedReader(
-                new InputStreamReader(getClassPathInputStream(path)));
-    }
+	public final Iterator<Object[]> getDiceText() throws Exception {
+		final CellProcessor[] processors;
 
-    /**
-     * Creates an {@code URL} pointing to the file specified by the path, if it
-     * exists.
-     * 
-     * @param path
-     *            the path to transform
-     * @return an URL pointing inside the class path
-     */
-    private final URL getClassPathURL(final String path) {
-        checkNotNull(path, "Received a null pointer as path");
+		processors = new CellProcessor[] { new NotNull() };
 
-        return this.getClass().getClassLoader().getResource(path);
-    }
+		return getParameters(ParameterPaths.DICE_TEXT, processors);
+	}
 
-    private final Iterator<Object[]> getParameters(final String path,
-            final CellProcessor[] processors) throws IOException {
-        final Collection<Object[]> values;
-        final ICsvListReader reader;
-        List<Object> nextLine;
+	private final Iterator<Object[]> getParameters(final String path,
+			final CellProcessor[] processors) throws IOException {
+		final Collection<Object[]> values;
+		final ICsvListReader reader;
+		List<Object> nextLine;
 
-        reader = new CsvListReader(getClassPathReader(path),
-                CsvPreference.STANDARD_PREFERENCE);
-        reader.getHeader(true);
-        values = new LinkedList<Object[]>();
-        while ((nextLine = reader.read(processors)) != null) {
-            values.add(nextLine.toArray());
-        }
-        reader.close();
+		reader = new CsvListReader(getClassPathReader(path),
+				CsvPreference.STANDARD_PREFERENCE);
+		reader.getHeader(true);
+		values = new LinkedList<Object[]>();
+		while ((nextLine = reader.read(processors)) != null) {
+			values.add(nextLine.toArray());
+		}
+		reader.close();
 
-        return values.iterator();
-    }
+		return values.iterator();
+	}
 
 }
