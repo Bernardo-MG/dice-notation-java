@@ -25,20 +25,20 @@ import org.antlr.v4.runtime.TokenStream;
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
-import com.wandrell.tabletop.dice.parser.listener.DefaultDiceFormulaBuilder;
-import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
+import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
+import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
 
 public final class DefaultDiceExpressionParser implements DiceExpressionParser {
 
-	final DiceFormulaBuilder diceNotationListener;
+	final DiceExpressionBuilder diceNotationListener;
 
 	public DefaultDiceExpressionParser() {
 		super();
 
-		diceNotationListener = new DefaultDiceFormulaBuilder();
+		diceNotationListener = new DefaultDiceExpressionBuilder();
 	}
 
-	public DefaultDiceExpressionParser(final DiceFormulaBuilder listener) {
+	public DefaultDiceExpressionParser(final DiceExpressionBuilder listener) {
 		super();
 
 		diceNotationListener = checkNotNull(listener,
@@ -72,7 +72,7 @@ public final class DefaultDiceExpressionParser implements DiceExpressionParser {
 		return new DiceNotationParser(tokens);
 	}
 
-	private final DiceFormulaBuilder getDiceNotationListener() {
+	private final DiceExpressionBuilder getDiceNotationListener() {
 		return diceNotationListener;
 	}
 

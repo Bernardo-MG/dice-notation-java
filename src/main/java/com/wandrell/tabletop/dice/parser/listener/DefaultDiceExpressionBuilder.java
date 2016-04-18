@@ -33,14 +33,14 @@ import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
 import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
-public final class DefaultDiceFormulaBuilder extends DiceNotationBaseListener
-		implements DiceFormulaBuilder {
+public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
+		implements DiceExpressionBuilder {
 
 	private DiceExpression expression;
 
 	private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
 
-	public DefaultDiceFormulaBuilder() {
+	public DefaultDiceExpressionBuilder() {
 		super();
 	}
 
