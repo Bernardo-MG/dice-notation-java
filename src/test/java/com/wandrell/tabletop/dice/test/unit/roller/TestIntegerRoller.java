@@ -24,9 +24,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.roller.IntegerRoller;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
-import com.wandrell.tabletop.dice.roller.RollerResult;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestIntegerRoller {
@@ -43,8 +42,8 @@ public final class TestIntegerRoller {
 	}
 
 	@Test(dataProvider = DATA)
-	public final void testRoll_ResultsSize_BaredRollValues(
-			final Integer quantity, final Integer sides) {
+	public final void testRoll_ResultsSize(final Integer quantity,
+			final Integer sides) {
 		final Dice dice;
 		final Roller<Integer> roller;
 
@@ -53,27 +52,9 @@ public final class TestIntegerRoller {
 		Mockito.when(dice.getQuantity()).thenReturn(quantity);
 		Mockito.when(dice.getSides()).thenReturn(sides);
 
-		roller = new IntegerRoller();
+		roller = new DefaultRoller();
 
-		Assert.assertEquals((Integer) roller.roll(dice).getBareRollResults()
-				.size(), quantity);
-	}
-
-	@Test(dataProvider = DATA)
-	public final void testRoll_ResultsSize_MappedRollValues_Default(
-			final Integer quantity, final Integer sides) {
-		final Dice dice;
-		final Roller<Integer> roller;
-
-		dice = Mockito.mock(Dice.class);
-
-		Mockito.when(dice.getQuantity()).thenReturn(quantity);
-		Mockito.when(dice.getSides()).thenReturn(sides);
-
-		roller = new IntegerRoller();
-
-		Assert.assertEquals((Integer) roller.roll(dice).getMappedRollResults()
-				.size(), quantity);
+		Assert.assertEquals((Integer) roller.roll(dice).size(), quantity);
 	}
 
 	@Test(dataProvider = DATA)
@@ -90,12 +71,11 @@ public final class TestIntegerRoller {
 		Mockito.when(dice.getQuantity()).thenReturn(quantity);
 		Mockito.when(dice.getSides()).thenReturn(sides);
 
-		roller = new IntegerRoller();
+		roller = new DefaultRoller();
 
 		if (quantity == 0) {
 			for (Integer i = 0; i < times; i++) {
-				for (final Integer roll : roller.roll(dice)
-						.getBareRollResults()) {
+				for (final Integer roll : roller.roll(dice)) {
 					Assert.assertTrue(roll == 0);
 				}
 			}
@@ -104,33 +84,12 @@ public final class TestIntegerRoller {
 			upperLimit = sides;
 
 			for (Integer i = 0; i < times; i++) {
-				for (final Integer roll : roller.roll(dice)
-						.getBareRollResults()) {
+				for (final Integer roll : roller.roll(dice)) {
 					Assert.assertTrue(roll >= lowerLimit);
 					Assert.assertTrue(roll <= upperLimit);
 				}
 			}
 		}
-	}
-
-	@Test(dataProvider = DATA)
-	public final void testRollMapper_Default_ResultsEqual(
-			final Integer quantity, final Integer sides) {
-		final Dice dice;
-		final Roller<Integer> roller;
-		final RollerResult<Integer> result;
-
-		dice = Mockito.mock(Dice.class);
-
-		Mockito.when(dice.getQuantity()).thenReturn(quantity);
-		Mockito.when(dice.getSides()).thenReturn(sides);
-
-		roller = new IntegerRoller();
-
-		result = roller.roll(dice);
-
-		Assert.assertEquals(result.getBareRollResults(),
-				result.getMappedRollResults());
 	}
 
 }

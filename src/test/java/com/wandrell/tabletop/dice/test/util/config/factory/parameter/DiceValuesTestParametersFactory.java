@@ -53,6 +53,31 @@ public final class DiceValuesTestParametersFactory {
 		// TODO: Make these methods final
 	}
 
+	public final Iterator<Object[]> getDice() throws Exception {
+		final CellProcessor[] processors;
+
+		processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
+
+		return getParameters(ParameterPaths.DEFAULT, processors);
+	}
+
+	public final Iterator<Object[]> getDiceAndText() throws Exception {
+		final CellProcessor[] processors;
+
+		processors = new CellProcessor[] { new NotNull(), new ParseInt(),
+				new ParseInt() };
+
+		return getParameters(ParameterPaths.DICE_AND_TEXT, processors);
+	}
+
+	public final Iterator<Object[]> getDiceText() throws Exception {
+		final CellProcessor[] processors;
+
+		processors = new CellProcessor[] { new NotNull() };
+
+		return getParameters(ParameterPaths.DICE_TEXT, processors);
+	}
+
 	/**
 	 * Creates an {@code InputStream} pointing to the file specified by the
 	 * path, if it exists.
@@ -110,31 +135,6 @@ public final class DiceValuesTestParametersFactory {
 		checkNotNull(path, "Received a null pointer as path");
 
 		return this.getClass().getClassLoader().getResource(path);
-	}
-
-	public final Iterator<Object[]> getDice() throws Exception {
-		final CellProcessor[] processors;
-
-		processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
-
-		return getParameters(ParameterPaths.DEFAULT, processors);
-	}
-
-	public final Iterator<Object[]> getDiceAndText() throws Exception {
-		final CellProcessor[] processors;
-
-		processors = new CellProcessor[] { new NotNull(), new ParseInt(),
-				new ParseInt() };
-
-		return getParameters(ParameterPaths.DICE_AND_TEXT, processors);
-	}
-
-	public final Iterator<Object[]> getDiceText() throws Exception {
-		final CellProcessor[] processors;
-
-		processors = new CellProcessor[] { new NotNull() };
-
-		return getParameters(ParameterPaths.DICE_TEXT, processors);
 	}
 
 	private final Iterator<Object[]> getParameters(final String path,

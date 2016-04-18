@@ -22,49 +22,99 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generator.RandomNumberGenerator;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
+import com.wandrell.tabletop.dice.number.NumberGenerator;
 
+/**
+ * Generates a random result from a {@link Dice}, by mapping the integers
+ * generated from it into any kind of value.
+ * <p>
+ * As the {@code Dice} are just value objects, and don't generate random numbers
+ * by themselves, a {@link NumberGenerator} is used for the actual creation of
+ * random values.
+ * <p>
+ * These numbers are then transformed with the help of a {@link RollMapper} into
+ * the actual results.
+ * 
+ * @author Bernardo Martínez Garrido
+ * @param <V>
+ *            the type of value to return
+ * @see Dice
+ * @see NumberGenerator
+ * @see RollMapper
+ */
 public final class MappedRoller<V> implements Roller<V> {
 
-	private final RandomNumberGenerator generator;
+	/**
+	 * The random numbers generator.
+	 * <p>
+	 * It will use the dice for the interval in which the values should be
+	 * created.
+	 */
+	private final NumberGenerator generator;
 
+	/**
+	 * The mapper for the generated numbers.
+	 * <p>
+	 * It will transform the values created from the dice into the actual
+	 * results.
+	 */
 	private final RollMapper<V> mapper;
 
+	/**
+	 * Constructs an instance with the specified mapper and random number
+	 * generator.
+	 * <p>
+	 * These are the two objects in charge of generating the results of rolling
+	 * a dice.
+	 * 
+	 * @param mapper
+	 *            the roll mapper to use
+	 * @param generator
+	 *            the random number generator to use
+	 */
 	public MappedRoller(final RollMapper<V> mapper,
-			final RandomNumberGenerator generator) {
+			final NumberGenerator generator) {
 		super();
 
-		this.mapper = mapper;
-		this.generator = generator;
-	}
-
-	private final RollMapper<V> getMapper() {
-		return mapper;
-	}
-
-	private final RandomNumberGenerator getRandomGenerator() {
-		return generator;
+		this.mapper = checkNotNull(mapper, "Received a null pointer as mapper");
+		this.generator = checkNotNull(generator,
+				"Received a null pointer as generator");
 	}
 
 	@Override
-	public final RollerResult<V> roll(final Dice dice) {
-		final Collection<Integer> bare;
-		final Collection<V> mapped;
+	public final Collection<V> roll(final Dice dice) {
+		final Collection<V> mapped; // Mapped results
 		Integer roll; // Stores each of the roll results
 
 		checkNotNull(dice, "Received a null pointer as dice");
 
-		bare = new LinkedList<>();
 		mapped = new LinkedList<>();
 		for (Integer i = 0; i < dice.getQuantity(); i++) {
-			roll = getRandomGenerator().generate(dice.getSides());
+			roll = getNumberGenerator().generate(dice.getSides());
 
-			bare.add(roll);
 			mapped.add(getMapper().getValueFor(roll));
 		}
 
-		return new DefaultRollerResult<V>(bare, mapped);
+		return mapped;
+	}
+
+	/**
+	 * Returns the roll values mapper.
+	 * 
+	 * @return the roll values mapper
+	 */
+	private final RollMapper<V> getMapper() {
+		return mapper;
+	}
+
+	/**
+	 * Returns the random number generator.
+	 * 
+	 * @return the random number generator
+	 */
+	private final NumberGenerator getNumberGenerator() {
+		return generator;
 	}
 
 }

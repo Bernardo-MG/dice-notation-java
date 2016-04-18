@@ -14,15 +14,27 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.generator;
+package com.wandrell.tabletop.dice.number;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Random;
 
-public final class DefaultRandomNumberGenerator implements
-		RandomNumberGenerator {
+/**
+ * Default number generation, which just generates a random value.
+ * <p>
+ * It makes use of the {@link Random} class for generating then ubers.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public final class DefaultNumberGenerator implements NumberGenerator {
 
+	/**
+	 * Lower limit for the number generation procedure.
+	 * <p>
+	 * As dice should always have a positive number of sides, the lowest allowed
+	 * value will be one. Even if there are no dice with less that two sides.
+	 */
 	private static final Integer LOWER_LIMIT = 1;
 
 	/**
@@ -32,7 +44,10 @@ public final class DefaultRandomNumberGenerator implements
 	 */
 	private final Random random = new Random();
 
-	public DefaultRandomNumberGenerator() {
+	/**
+	 * Default constructor.
+	 */
+	public DefaultNumberGenerator() {
 		super();
 	}
 
@@ -44,6 +59,11 @@ public final class DefaultRandomNumberGenerator implements
 				+ LOWER_LIMIT;
 	}
 
+	/**
+	 * Returns the random numbers generator class.
+	 * 
+	 * @return the random numbers generator class
+	 */
 	private final Random getRandom() {
 		return random;
 	}

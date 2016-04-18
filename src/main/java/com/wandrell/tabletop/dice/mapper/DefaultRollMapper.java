@@ -16,21 +16,32 @@
 
 package com.wandrell.tabletop.dice.mapper;
 
-public final class FudgeRollMapper implements RollMapper<Integer> {
+/**
+ * Returns the rolls as received.
+ * <p>
+ * This is used to skip mapping the values.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public final class DefaultRollMapper implements RollMapper<Integer> {
 
+	/**
+	 * Default constructor.
+	 */
+	public DefaultRollMapper() {
+		super();
+	}
+
+	/**
+	 * Returns the roll value as received.
+	 * 
+	 * @param roll
+	 *            the roll value
+	 * @return the roll value just as received
+	 */
 	@Override
 	public final Integer getValueFor(final Integer roll) {
-		final Integer result;
-
-		if (roll <= 2) {
-			result = -1;
-		} else if (roll >= 5) {
-			result = 1;
-		} else {
-			result = 0;
-		}
-
-		return result;
+		return roll;
 	}
 
 }

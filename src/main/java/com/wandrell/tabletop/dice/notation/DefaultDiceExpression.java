@@ -71,10 +71,6 @@ public final class DefaultDiceExpression implements DiceExpression {
 		return Collections.unmodifiableCollection(getComponentsModifiable());
 	}
 
-	private final Collection<DiceExpressionComponent> getComponentsModifiable() {
-		return components;
-	}
-
 	@Override
 	public final String getStringRepresentation() {
 		final StringBuilder builder;
@@ -107,6 +103,10 @@ public final class DefaultDiceExpression implements DiceExpression {
 	public final String toString() {
 		return MoreObjects.toStringHelper(this).add("components", components)
 				.toString();
+	}
+
+	private final Collection<DiceExpressionComponent> getComponentsModifiable() {
+		return components;
 	}
 
 }

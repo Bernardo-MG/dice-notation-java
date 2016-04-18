@@ -47,6 +47,15 @@ public final class TestDiceGrammar {
 		super();
 	}
 
+	@Test(dataProvider = DATA)
+	public final void testParse_Valid(final String text) {
+		final ParseContext context;
+
+		context = getParser(text).parse();
+
+		Assert.assertNull(context.exception);
+	}
+
 	private final DiceNotationParser getParser(final String text) {
 		final CharStream in;
 		final DiceNotationLexer lexer;
@@ -76,15 +85,6 @@ public final class TestDiceGrammar {
 		});
 
 		return parser;
-	}
-
-	@Test(dataProvider = DATA)
-	public final void testParse_Valid(final String text) {
-		final ParseContext context;
-
-		context = getParser(text).parse();
-
-		Assert.assertNull(context.exception);
 	}
 
 }

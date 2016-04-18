@@ -14,32 +14,25 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.roller;
+package com.wandrell.tabletop.dice.number;
 
-import java.util.Collection;
+/**
+ * Generates a random integer value.
+ * <p>
+ * This allows hiding the actual method used for generating said value, allowing
+ * tuning the actual probabilities of the values.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public interface NumberGenerator {
 
-public final class DefaultRollerResult<V> implements RollerResult<V> {
-
-	final Collection<Integer> bare;
-
-	final Collection<V> mapped;
-
-	public DefaultRollerResult(final Collection<Integer> bare,
-			final Collection<V> mapped) {
-		super();
-
-		this.bare = bare;
-		this.mapped = mapped;
-	}
-
-	@Override
-	public final Collection<Integer> getBareRollResults() {
-		return bare;
-	}
-
-	@Override
-	public final Collection<V> getMappedRollResults() {
-		return mapped;
-	}
+	/**
+	 * Generates a random value in the interval [1,max].
+	 * 
+	 * @param max
+	 *            the maximum value allowed
+	 * @return a random value in the interval [1,max]
+	 */
+	public Integer generate(final Integer max);
 
 }

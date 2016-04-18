@@ -49,6 +49,36 @@ public final class DiceFunctionValuesTestParametersFactory {
 	}
 
 	/**
+	 * Creates an {@code URL} pointing to the file specified by the path, if it
+	 * exists.
+	 * 
+	 * @param path
+	 *            the path to transform
+	 * @return an URL pointing inside the class path
+	 */
+	public final URL getClassPathURL(final String path) {
+		checkNotNull(path, "Received a null pointer as path");
+
+		return this.getClass().getClassLoader().getResource(path);
+	}
+
+	public final Iterator<Object[]> getHighestKeep() {
+		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST);
+	}
+
+	public final Iterator<Object[]> getHighestRemove() {
+		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST);
+	}
+
+	public final Iterator<Object[]> getLowestKeep() {
+		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST);
+	}
+
+	public final Iterator<Object[]> getLowestRemove() {
+		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST);
+	}
+
+	/**
 	 * Creates an {@code InputStream} pointing to the file specified by the
 	 * path, if it exists.
 	 * <p>
@@ -93,20 +123,6 @@ public final class DiceFunctionValuesTestParametersFactory {
 				getClassPathInputStream(path)));
 	}
 
-	/**
-	 * Creates an {@code URL} pointing to the file specified by the path, if it
-	 * exists.
-	 * 
-	 * @param path
-	 *            the path to transform
-	 * @return an URL pointing inside the class path
-	 */
-	public final URL getClassPathURL(final String path) {
-		checkNotNull(path, "Received a null pointer as path");
-
-		return this.getClass().getClassLoader().getResource(path);
-	}
-
 	@SuppressWarnings("unchecked")
 	private final Collection<Integer> getCollection(final Object obj) {
 		final Collection<Integer> col;
@@ -118,22 +134,6 @@ public final class DiceFunctionValuesTestParametersFactory {
 		}
 
 		return col;
-	}
-
-	public final Iterator<Object[]> getHighestKeep() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST);
-	}
-
-	public final Iterator<Object[]> getHighestRemove() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST);
-	}
-
-	public final Iterator<Object[]> getLowestKeep() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST);
-	}
-
-	public final Iterator<Object[]> getLowestRemove() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST);
 	}
 
 	@SuppressWarnings("unchecked")

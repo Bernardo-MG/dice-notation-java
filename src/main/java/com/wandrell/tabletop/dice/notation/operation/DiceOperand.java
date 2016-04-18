@@ -21,7 +21,7 @@ import java.util.Collection;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
-import com.wandrell.tabletop.dice.roller.IntegerRoller;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 public final class DiceOperand implements Operand {
@@ -34,7 +34,7 @@ public final class DiceOperand implements Operand {
 		super();
 
 		this.dice = dice;
-		this.roller = new IntegerRoller();
+		this.roller = new DefaultRoller();
 	}
 
 	public DiceOperand(final DiceConstant dice, final Roller<Integer> roller) {
@@ -69,10 +69,6 @@ public final class DiceOperand implements Operand {
 		return dice;
 	}
 
-	private final Roller<Integer> getRoller() {
-		return roller;
-	}
-
 	@Override
 	public final String getStringRepresentation() {
 		return getDice().getStringRepresentation();
@@ -83,7 +79,7 @@ public final class DiceOperand implements Operand {
 		final Collection<Integer> values;
 		Integer sum;
 
-		values = getRoller().roll(getDice().getDice()).getBareRollResults();
+		values = getRoller().roll(getDice().getDice());
 
 		sum = 0;
 		for (final Integer value : values) {
@@ -101,6 +97,10 @@ public final class DiceOperand implements Operand {
 	@Override
 	public final String toString() {
 		return MoreObjects.toStringHelper(this).add("dice", dice).toString();
+	}
+
+	private final Roller<Integer> getRoller() {
+		return roller;
 	}
 
 }

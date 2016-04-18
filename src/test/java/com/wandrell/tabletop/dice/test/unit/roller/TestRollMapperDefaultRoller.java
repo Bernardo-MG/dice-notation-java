@@ -25,8 +25,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generator.DefaultRandomNumberGenerator;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
+import com.wandrell.tabletop.dice.number.DefaultNumberGenerator;
 import com.wandrell.tabletop.dice.roller.MappedRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
@@ -46,8 +46,8 @@ public final class TestRollMapperDefaultRoller {
 
 	@SuppressWarnings("unchecked")
 	@Test(dataProvider = DATA)
-	public final void testRoll_ResultsSize_MappedRollValues_Mapped(
-			final Integer quantity, final Integer sides) {
+	public final void testRoll_ResultsSize(final Integer quantity,
+			final Integer sides) {
 		final Dice dice;
 		final Roller<String> roller;
 		final RollMapper<String> mapper;
@@ -62,11 +62,9 @@ public final class TestRollMapperDefaultRoller {
 		Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
 				.thenReturn("ABC");
 
-		roller = new MappedRoller<String>(mapper,
-				new DefaultRandomNumberGenerator());
+		roller = new MappedRoller<String>(mapper, new DefaultNumberGenerator());
 
-		Assert.assertEquals((Integer) roller.roll(dice).getMappedRollResults()
-				.size(), quantity);
+		Assert.assertEquals((Integer) roller.roll(dice).size(), quantity);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -90,10 +88,9 @@ public final class TestRollMapperDefaultRoller {
 		Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
 				.thenReturn(value);
 
-		roller = new MappedRoller<String>(mapper,
-				new DefaultRandomNumberGenerator());
+		roller = new MappedRoller<String>(mapper, new DefaultNumberGenerator());
 
-		itrValues = roller.roll(dice).getMappedRollResults().iterator();
+		itrValues = roller.roll(dice).iterator();
 
 		Assert.assertEquals(itrValues.next(), value);
 		Assert.assertEquals(itrValues.next(), value);
@@ -120,10 +117,9 @@ public final class TestRollMapperDefaultRoller {
 		Mockito.when(mapper.getValueFor(Matchers.any(Integer.class)))
 				.thenReturn(11, 14, 1);
 
-		roller = new MappedRoller<Integer>(mapper,
-				new DefaultRandomNumberGenerator());
+		roller = new MappedRoller<Integer>(mapper, new DefaultNumberGenerator());
 
-		itrValues = roller.roll(dice).getMappedRollResults().iterator();
+		itrValues = roller.roll(dice).iterator();
 
 		Assert.assertEquals(itrValues.next(), (Integer) 11);
 		Assert.assertEquals(itrValues.next(), (Integer) 14);
