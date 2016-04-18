@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
-import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
+import com.wandrell.tabletop.dice.parser.DefaultDiceExpressionParser;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 public final class TestParseValidDiceDiceFormulaParser {
@@ -36,10 +36,10 @@ public final class TestParseValidDiceDiceFormulaParser {
 		return DiceValuesTestParametersFactory.getInstance().getDiceAndText();
 	}
 
-	private final DiceExpressionParser parser;
+	private final DefaultDiceExpressionParser parser;
 
 	{
-		parser = new DiceExpressionParser();
+		parser = new DefaultDiceExpressionParser();
 	}
 
 	public TestParseValidDiceDiceFormulaParser() {

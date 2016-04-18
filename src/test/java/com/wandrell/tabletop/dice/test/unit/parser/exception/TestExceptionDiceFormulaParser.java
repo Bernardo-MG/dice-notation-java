@@ -18,14 +18,14 @@ package com.wandrell.tabletop.dice.test.unit.parser.exception;
 
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.parser.DiceExpressionParser;
+import com.wandrell.tabletop.dice.parser.DefaultDiceExpressionParser;
 
 public final class TestExceptionDiceFormulaParser {
 
-	private final DiceExpressionParser parser;
+	private final DefaultDiceExpressionParser parser;
 
 	{
-		parser = new DiceExpressionParser();
+		parser = new DefaultDiceExpressionParser();
 	}
 
 	public TestExceptionDiceFormulaParser() {
