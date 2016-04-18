@@ -24,14 +24,14 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
-import com.wandrell.tabletop.dice.parser.DefaultDiceExpressionParser;
+import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 
 public final class TestDiceFormulaParser {
 
-	private final DefaultDiceExpressionParser parser;
+	private final DefaultDiceNotationParser parser;
 
 	{
-		parser = new DefaultDiceExpressionParser();
+		parser = new DefaultDiceNotationParser();
 	}
 
 	public TestDiceFormulaParser() {
