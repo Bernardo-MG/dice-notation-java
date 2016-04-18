@@ -14,8 +14,10 @@
  * the License.
  */
 /**
- * Offers classes for handling dice, including rolling them and dice/RPG
- * notation.
+ * Support for dice notation.
+ * <p>
+ * This goes from represeting dice, to generating random values from them
+ * and even parsing dice notation.
  */
 
 package com.wandrell.tabletop.dice;

@@ -15,7 +15,7 @@
  */
 
 /**
- * Contains classes for mapping dice values and transforming them.
+ * Transformers for converting an integer into other values.
  */
 
 package com.wandrell.tabletop.dice.mapper;

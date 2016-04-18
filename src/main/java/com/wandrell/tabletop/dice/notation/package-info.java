@@ -15,7 +15,7 @@
  */
 
 /**
- * Offers classes to represent and handle dice notation.
+ * Representations for the dice notation components.
  */
 
 package com.wandrell.tabletop.dice.notation;

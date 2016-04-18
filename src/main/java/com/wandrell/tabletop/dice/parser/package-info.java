@@ -15,9 +15,8 @@
  */
 
 /**
- * Random generation of numbers. These are used by the rollers
- * to create the actual result.
+ * Parsers for dice notation.
  */
 
-package com.wandrell.tabletop.dice.number;
+package com.wandrell.tabletop.dice.parser;
 

@@ -15,10 +15,10 @@
  */
 
 /**
- * Representation and execution of dice rolls.<p> In practice, this is generating a
- * random value from the information contained in a
- * {@link com.wandrell.tabletop.dice.Dice Dice} class.
+ * Listeners for the dice notation parser.
+ * <p>
+ * These are used for the visitor pattern, and will help to build the final result.
  */
 
-package com.wandrell.tabletop.dice.roller;
+package com.wandrell.tabletop.dice.parser.listener;
 

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.number;
+package com.wandrell.tabletop.dice.random;
 
 /**
  * Generates a random integer value.

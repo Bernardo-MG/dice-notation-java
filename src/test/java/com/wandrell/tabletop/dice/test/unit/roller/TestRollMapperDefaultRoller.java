@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
-import com.wandrell.tabletop.dice.number.DefaultNumberGenerator;
+import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
 import com.wandrell.tabletop.dice.roller.MappedRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.number;
+package com.wandrell.tabletop.dice.random;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

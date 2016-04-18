@@ -22,8 +22,8 @@ import java.util.Collection;
 
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.mapper.DefaultRollMapper;
-import com.wandrell.tabletop.dice.number.DefaultNumberGenerator;
-import com.wandrell.tabletop.dice.number.NumberGenerator;
+import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
+import com.wandrell.tabletop.dice.random.NumberGenerator;
 
 /**
  * Generates random integer values from a {@link Dice}.

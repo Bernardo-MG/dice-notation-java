@@ -23,7 +23,7 @@ import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.mapper.RollMapper;
-import com.wandrell.tabletop.dice.number.NumberGenerator;
+import com.wandrell.tabletop.dice.random.NumberGenerator;
 
 /**
  * Generates a random result from a {@link Dice}, by mapping the integers
