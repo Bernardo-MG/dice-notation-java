@@ -16,60 +16,61 @@
 
 package com.wandrell.tabletop.dice.parser;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.TokenStream;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.parser.listener.DefaultDiceFormulaBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DiceFormulaBuilder;
 
 public final class DiceExpressionParser {
 
+	final DiceFormulaBuilder diceNotationListener;
+
 	public DiceExpressionParser() {
 		super();
+
+		diceNotationListener = new DefaultDiceFormulaBuilder();
+	}
+
+	public DiceExpressionParser(final DiceFormulaBuilder listener) {
+		super();
+
+		diceNotationListener = checkNotNull(listener,
+				"Received a null pointer as listener");
 	}
 
 	public final DiceExpression parse(final String string) {
+		final DiceNotationParser parser;
+
+		parser = buildDiceNotationParser(string);
+
+		parser.addErrorListener(new DefaultErrorListener());
+		parser.addParseListener(getDiceNotationListener());
+		parser.parse();
+
+		return getDiceNotationListener().getDiceExpression();
+	}
+
+	private final DiceNotationParser buildDiceNotationParser(final String string) {
 		final ANTLRInputStream input;
 		final DiceNotationLexer lexer;
 		final TokenStream tokens;
-		final DiceNotationParser parser;
-		final DiceFormulaBuilder diceNotationListener;
 
 		input = new ANTLRInputStream(string);
 		lexer = new DiceNotationLexer(input);
 		tokens = new CommonTokenStream(lexer);
 
-		parser = new DiceNotationParser(tokens);
+		return new DiceNotationParser(tokens);
+	}
 
-		parser.addErrorListener(new BaseErrorListener() {
-
-			@Override
-			public void syntaxError(Recognizer<?, ?> recognizer,
-					Object offendingSymbol, int line, int charPositionInLine,
-					String msg, RecognitionException e) {
-				final String message;
-
-				message = String.format(
-						"failed to parse at line %d on char %d due to %s",
-						line, charPositionInLine + 1, msg);
-
-				throw new IllegalStateException(message, e);
-			}
-		});
-
-		diceNotationListener = new DiceFormulaBuilder();
-
-		parser.addParseListener(diceNotationListener);
-
-		parser.parse();
-
-		return diceNotationListener.getDiceExpression();
+	private final DiceFormulaBuilder getDiceNotationListener() {
+		return diceNotationListener;
 	}
 
 }
