@@ -26,81 +26,81 @@ import com.wandrell.tabletop.dice.roller.Roller;
 
 public final class DiceOperand implements Operand {
 
-	private final DiceConstant dice;
+    private final DiceConstant dice;
 
-	private final Roller<Integer> roller;
+    private final Roller       roller;
 
-	public DiceOperand(final DiceConstant dice) {
-		super();
+    public DiceOperand(final DiceConstant dice) {
+        super();
 
-		this.dice = dice;
-		this.roller = new DefaultRoller();
-	}
+        this.dice = dice;
+        this.roller = new DefaultRoller();
+    }
 
-	public DiceOperand(final DiceConstant dice, final Roller<Integer> roller) {
-		super();
+    public DiceOperand(final DiceConstant dice, final Roller roller) {
+        super();
 
-		this.dice = dice;
-		this.roller = roller;
-	}
+        this.dice = dice;
+        this.roller = roller;
+    }
 
-	@Override
-	public final boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
 
-		if (obj == null) {
-			return false;
-		}
+        if (obj == null) {
+            return false;
+        }
 
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
 
-		final DiceOperand other;
+        final DiceOperand other;
 
-		other = (DiceOperand) obj;
+        other = (DiceOperand) obj;
 
-		return Objects.equal(dice, other.dice);
-	}
+        return Objects.equal(dice, other.dice);
+    }
 
-	public final DiceConstant getDice() {
-		return dice;
-	}
+    public final DiceConstant getDice() {
+        return dice;
+    }
 
-	@Override
-	public final String getStringRepresentation() {
-		return getDice().getStringRepresentation();
-	}
+    @Override
+    public final String getStringRepresentation() {
+        return getDice().getStringRepresentation();
+    }
 
-	@Override
-	public final Integer getValue() {
-		final Collection<Integer> values;
-		Integer sum;
+    @Override
+    public final Integer getValue() {
+        final Collection<Integer> values;
+        Integer sum;
 
-		values = getRoller().roll(getDice().getDice());
+        values = getRoller().roll(getDice().getDice());
 
-		sum = 0;
-		for (final Integer value : values) {
-			sum += value;
-		}
+        sum = 0;
+        for (final Integer value : values) {
+            sum += value;
+        }
 
-		return sum;
-	}
+        return sum;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(dice);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dice);
+    }
 
-	@Override
-	public final String toString() {
-		return MoreObjects.toStringHelper(this).add("dice", dice).toString();
-	}
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("dice", dice).toString();
+    }
 
-	private final Roller<Integer> getRoller() {
-		return roller;
-	}
+    private final Roller getRoller() {
+        return roller;
+    }
 
 }

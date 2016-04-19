@@ -37,126 +37,126 @@ import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
 
 public final class DiceFunctionValuesTestParametersFactory {
 
-	private static final DiceFunctionValuesTestParametersFactory instance = new DiceFunctionValuesTestParametersFactory();
+    private static final DiceFunctionValuesTestParametersFactory instance = new DiceFunctionValuesTestParametersFactory();
 
-	public static final DiceFunctionValuesTestParametersFactory getInstance() {
-		return instance;
-	}
+    public static final DiceFunctionValuesTestParametersFactory getInstance() {
+        return instance;
+    }
 
-	private DiceFunctionValuesTestParametersFactory() {
-		super();
-		// TODO: Make these methods final
-	}
+    private DiceFunctionValuesTestParametersFactory() {
+        super();
+        // TODO: Make these methods final
+    }
 
-	/**
-	 * Creates an {@code URL} pointing to the file specified by the path, if it
-	 * exists.
-	 * 
-	 * @param path
-	 *            the path to transform
-	 * @return an URL pointing inside the class path
-	 */
-	public final URL getClassPathURL(final String path) {
-		checkNotNull(path, "Received a null pointer as path");
+    /**
+     * Creates an {@code URL} pointing to the file specified by the path, if it
+     * exists.
+     * 
+     * @param path
+     *            the path to transform
+     * @return an URL pointing inside the class path
+     */
+    public final URL getClassPathURL(final String path) {
+        checkNotNull(path, "Received a null pointer as path");
 
-		return this.getClass().getClassLoader().getResource(path);
-	}
+        return this.getClass().getClassLoader().getResource(path);
+    }
 
-	public final Iterator<Object[]> getHighestKeep() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST);
-	}
+    public final Iterator<Object[]> getHighestKeep() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_HIGHEST);
+    }
 
-	public final Iterator<Object[]> getHighestRemove() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST);
-	}
+    public final Iterator<Object[]> getHighestRemove() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_HIGHEST);
+    }
 
-	public final Iterator<Object[]> getLowestKeep() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST);
-	}
+    public final Iterator<Object[]> getLowestKeep() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_KEEP_LOWEST);
+    }
 
-	public final Iterator<Object[]> getLowestRemove() {
-		return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST);
-	}
+    public final Iterator<Object[]> getLowestRemove() {
+        return getParameters(ParameterPaths.FUNCTION_EXTREMES_REMOVE_LOWEST);
+    }
 
-	/**
-	 * Creates an {@code InputStream} pointing to the file specified by the
-	 * path, if it exists.
-	 * <p>
-	 * If any problem occurs during this process a {@code RuntimeException} is
-	 * thrown, or an {@code IllegalArgumentException} if the file is not found.
-	 * 
-	 * @param path
-	 *            the path to transform
-	 * @return an {@code InputStream} pointing to the path
-	 */
-	private final InputStream getClassPathInputStream(final String path) {
-		final URL url; // URL parsed from the path
-		final InputStream stream; // Stream for the file
+    /**
+     * Creates an {@code InputStream} pointing to the file specified by the
+     * path, if it exists.
+     * <p>
+     * If any problem occurs during this process a {@code RuntimeException} is
+     * thrown, or an {@code IllegalArgumentException} if the file is not found.
+     * 
+     * @param path
+     *            the path to transform
+     * @return an {@code InputStream} pointing to the path
+     */
+    private final InputStream getClassPathInputStream(final String path) {
+        final URL url; // URL parsed from the path
+        final InputStream stream; // Stream for the file
 
-		url = getClassPathURL(path);
+        url = getClassPathURL(path);
 
-		checkArgument(url != null,
-				String.format("The path %s is invalid", path));
+        checkArgument(url != null,
+                String.format("The path %s is invalid", path));
 
-		try {
-			stream = new BufferedInputStream(url.openStream());
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
+        try {
+            stream = new BufferedInputStream(url.openStream());
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
 
-		return stream;
-	}
+        return stream;
+    }
 
-	/**
-	 * Creates a {@code Reader} pointing to the file specified by the path, if
-	 * it exists.
-	 * <p>
-	 * If any problem occurs during this process a {@code RuntimeException} is
-	 * thrown, or an {@code IllegalArgumentException} if the file is not found.
-	 * 
-	 * @param path
-	 *            the path to transform
-	 * @return an {@code InputStream} pointing to the path
-	 */
-	private final Reader getClassPathReader(final String path) {
-		return new BufferedReader(new InputStreamReader(
-				getClassPathInputStream(path)));
-	}
+    /**
+     * Creates a {@code Reader} pointing to the file specified by the path, if
+     * it exists.
+     * <p>
+     * If any problem occurs during this process a {@code RuntimeException} is
+     * thrown, or an {@code IllegalArgumentException} if the file is not found.
+     * 
+     * @param path
+     *            the path to transform
+     * @return an {@code InputStream} pointing to the path
+     */
+    private final Reader getClassPathReader(final String path) {
+        return new BufferedReader(new InputStreamReader(
+                getClassPathInputStream(path)));
+    }
 
-	@SuppressWarnings("unchecked")
-	private final Collection<Integer> getCollection(final Object obj) {
-		final Collection<Integer> col;
+    @SuppressWarnings("unchecked")
+    private final Collection<Integer> getCollection(final Object obj) {
+        final Collection<Integer> col;
 
-		if ((obj != null) && (obj instanceof Collection)) {
-			col = (Collection<Integer>) obj;
-		} else {
-			col = new LinkedList<Integer>();
-		}
+        if ((obj != null) && (obj instanceof Collection)) {
+            col = (Collection<Integer>) obj;
+        } else {
+            col = new LinkedList<Integer>();
+        }
 
-		return col;
-	}
+        return col;
+    }
 
-	@SuppressWarnings("unchecked")
-	private final Iterator<Object[]> getParameters(final String path) {
-		final Yaml yaml;
-		final Collection<Map<String, Object>> data;
-		final Collection<Object[]> result;
-		Collection<Object> group;
+    @SuppressWarnings("unchecked")
+    private final Iterator<Object[]> getParameters(final String path) {
+        final Yaml yaml;
+        final Collection<Map<String, Object>> data;
+        final Collection<Object[]> result;
+        Collection<Object> group;
 
-		yaml = new Yaml();
-		data = (Collection<Map<String, Object>>) yaml
-				.load(getClassPathReader(path));
-		result = new LinkedList<Object[]>();
-		for (final Map<String, Object> map : data) {
-			group = new LinkedList<Object>();
-			group.add(map.get("count"));
-			group.add(getCollection(map.get("rolls")));
-			group.add(getCollection(map.get("results")));
+        yaml = new Yaml();
+        data = (Collection<Map<String, Object>>) yaml
+                .load(getClassPathReader(path));
+        result = new LinkedList<Object[]>();
+        for (final Map<String, Object> map : data) {
+            group = new LinkedList<Object>();
+            group.add(map.get("count"));
+            group.add(getCollection(map.get("rolls")));
+            group.add(getCollection(map.get("results")));
 
-			result.add(group.toArray());
-		}
+            result.add(group.toArray());
+        }
 
-		return result.iterator();
-	}
+        return result.iterator();
+    }
 
 }

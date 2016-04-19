@@ -36,55 +36,55 @@ import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesT
 
 public final class TestDiceGrammar {
 
-	protected static final String DATA = "data";
+    protected static final String DATA = "data";
 
-	@DataProvider(name = DATA)
-	public final static Iterator<Object[]> getData() throws Exception {
-		return DiceValuesTestParametersFactory.getInstance().getDiceText();
-	}
+    @DataProvider(name = DATA)
+    public final static Iterator<Object[]> getData() throws Exception {
+        return DiceValuesTestParametersFactory.getInstance().getDiceText();
+    }
 
-	public TestDiceGrammar() {
-		super();
-	}
+    public TestDiceGrammar() {
+        super();
+    }
 
-	@Test(dataProvider = DATA)
-	public final void testParse_Valid(final String text) {
-		final ParseContext context;
+    @Test(dataProvider = DATA)
+    public final void testParse_Valid(final String text) {
+        final ParseContext context;
 
-		context = getParser(text).parse();
+        context = getParser(text).parse();
 
-		Assert.assertNull(context.exception);
-	}
+        Assert.assertNull(context.exception);
+    }
 
-	private final DiceNotationParser getParser(final String text) {
-		final CharStream in;
-		final DiceNotationLexer lexer;
-		final TokenStream tokens;
-		final DiceNotationParser parser;
+    private final DiceNotationParser getParser(final String text) {
+        final CharStream in;
+        final DiceNotationLexer lexer;
+        final TokenStream tokens;
+        final DiceNotationParser parser;
 
-		in = new ANTLRInputStream(text);
-		lexer = new DiceNotationLexer(in);
-		tokens = new CommonTokenStream(lexer);
+        in = new ANTLRInputStream(text);
+        lexer = new DiceNotationLexer(in);
+        tokens = new CommonTokenStream(lexer);
 
-		parser = new DiceNotationParser(tokens);
+        parser = new DiceNotationParser(tokens);
 
-		parser.addErrorListener(new BaseErrorListener() {
+        parser.addErrorListener(new BaseErrorListener() {
 
-			@Override
-			public void syntaxError(Recognizer<?, ?> recognizer,
-					Object offendingSymbol, int line, int charPositionInLine,
-					String msg, RecognitionException e) {
-				final String message;
+            @Override
+            public void syntaxError(Recognizer<?, ?> recognizer,
+                    Object offendingSymbol, int line, int charPositionInLine,
+                    String msg, RecognitionException e) {
+                final String message;
 
-				message = String.format(
-						"failed to parse at line %d on char %d due to %s",
-						line, charPositionInLine + 1, msg);
+                message = String.format(
+                        "failed to parse at line %d on char %d due to %s",
+                        line, charPositionInLine + 1, msg);
 
-				throw new IllegalStateException(message, e);
-			}
-		});
+                throw new IllegalStateException(message, e);
+            }
+        });
 
-		return parser;
-	}
+        return parser;
+    }
 
 }

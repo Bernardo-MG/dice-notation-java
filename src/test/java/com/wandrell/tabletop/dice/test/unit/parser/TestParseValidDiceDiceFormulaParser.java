@@ -29,35 +29,35 @@ import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesT
 
 public final class TestParseValidDiceDiceFormulaParser {
 
-	protected static final String DATA = "data";
+    protected static final String DATA = "data";
 
-	@DataProvider(name = DATA)
-	public final static Iterator<Object[]> getData() throws Exception {
-		return DiceValuesTestParametersFactory.getInstance().getDiceAndText();
-	}
+    @DataProvider(name = DATA)
+    public final static Iterator<Object[]> getData() throws Exception {
+        return DiceValuesTestParametersFactory.getInstance().getDiceAndText();
+    }
 
-	private final DefaultDiceNotationParser parser;
+    private final DefaultDiceNotationParser parser;
 
-	{
-		parser = new DefaultDiceNotationParser();
-	}
+    {
+        parser = new DefaultDiceNotationParser();
+    }
 
-	public TestParseValidDiceDiceFormulaParser() {
-		super();
-	}
+    public TestParseValidDiceDiceFormulaParser() {
+        super();
+    }
 
-	@Test(dataProvider = DATA)
-	public final void testParse_Dice_Valid(final String text,
-			final Integer quantity, final Integer sides) {
-		final DiceExpression formula;
-		final DiceOperand dice;
+    @Test(dataProvider = DATA)
+    public final void testParse_Dice_Valid(final String text,
+            final Integer quantity, final Integer sides) {
+        final DiceExpression formula;
+        final DiceOperand dice;
 
-		formula = parser.parse(text);
+        formula = parser.parse(text);
 
-		dice = (DiceOperand) formula.getComponents().iterator().next();
+        dice = (DiceOperand) formula.getComponents().iterator().next();
 
-		Assert.assertEquals(dice.getDice().getDice().getQuantity(), quantity);
-		Assert.assertEquals(dice.getDice().getDice().getSides(), sides);
-	}
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), quantity);
+        Assert.assertEquals(dice.getDice().getDice().getSides(), sides);
+    }
 
 }

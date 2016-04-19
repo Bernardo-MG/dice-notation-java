@@ -29,43 +29,43 @@ import java.util.Random;
  */
 public final class DefaultNumberGenerator implements NumberGenerator {
 
-	/**
-	 * Lower limit for the number generation procedure.
-	 * <p>
-	 * As dice should always have a positive number of sides, the lowest allowed
-	 * value will be one. Even if there are no dice with less that two sides.
-	 */
-	private static final Integer LOWER_LIMIT = 1;
+    /**
+     * Lower limit for the number generation procedure.
+     * <p>
+     * As dice should always have a positive number of sides, the lowest allowed
+     * value will be one. Even if there are no dice with less that two sides.
+     */
+    private static final Integer LOWER_LIMIT = 1;
 
-	/**
-	 * Random number generator for generating roll values.
-	 * <p>
-	 * To keep the seed, a single instance is used on all the rolls.
-	 */
-	private final Random random = new Random();
+    /**
+     * Random number generator for generating roll values.
+     * <p>
+     * To keep the seed, a single instance is used on all the rolls.
+     */
+    private final Random         random      = new Random();
 
-	/**
-	 * Default constructor.
-	 */
-	public DefaultNumberGenerator() {
-		super();
-	}
+    /**
+     * Default constructor.
+     */
+    public DefaultNumberGenerator() {
+        super();
+    }
 
-	@Override
-	public final Integer generate(final Integer max) {
-		checkArgument(max >= 1, "The maximum value can't be lower than 1");
+    @Override
+    public final Integer generate(final Integer max) {
+        checkArgument(max >= 1, "The maximum value can't be lower than 1");
 
-		return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
-				+ LOWER_LIMIT;
-	}
+        return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
+                + LOWER_LIMIT;
+    }
 
-	/**
-	 * Returns the random numbers generator class.
-	 * 
-	 * @return the random numbers generator class
-	 */
-	private final Random getRandom() {
-		return random;
-	}
+    /**
+     * Returns the random numbers generator class.
+     * 
+     * @return the random numbers generator class
+     */
+    private final Random getRandom() {
+        return random;
+    }
 
 }

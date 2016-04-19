@@ -53,8 +53,7 @@ public final class TestDiceFormulaParser {
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerConstant) operation.getLeft();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(),
-                (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
@@ -83,8 +82,7 @@ public final class TestDiceFormulaParser {
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerConstant) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(),
-                (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
@@ -154,8 +152,7 @@ public final class TestDiceFormulaParser {
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerConstant) operation.getLeft();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(),
-                (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
@@ -184,8 +181,7 @@ public final class TestDiceFormulaParser {
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerConstant) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(),
-                (Integer) 2);
+        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);

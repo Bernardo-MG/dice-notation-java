@@ -26,13 +26,13 @@ package com.wandrell.tabletop.dice.random;
  */
 public interface NumberGenerator {
 
-	/**
-	 * Generates a random value in the interval [1,max].
-	 * 
-	 * @param max
-	 *            the maximum value allowed
-	 * @return a random value in the interval [1,max]
-	 */
-	public Integer generate(final Integer max);
+    /**
+     * Generates a random value in the interval [1,max].
+     * 
+     * @param max
+     *            the maximum value allowed
+     * @return a random value in the interval [1,max]
+     */
+    public Integer generate(final Integer max);
 
 }

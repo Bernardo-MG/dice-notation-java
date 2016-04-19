@@ -15,8 +15,8 @@
  */
 
 /**
- * Random generation of numbers. These are used by the rollers
- * to create the actual result.
+ * Random generation of numbers. These are used by the rollers to create the
+ * actual result.
  */
 
 package com.wandrell.tabletop.dice.random;

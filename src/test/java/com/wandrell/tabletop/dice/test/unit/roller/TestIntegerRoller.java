@@ -30,66 +30,66 @@ import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesT
 
 public final class TestIntegerRoller {
 
-	protected static final String DATA = "data";
+    protected static final String DATA = "data";
 
-	@DataProvider(name = DATA)
-	public final static Iterator<Object[]> getData() throws Exception {
-		return DiceValuesTestParametersFactory.getInstance().getDice();
-	}
+    @DataProvider(name = DATA)
+    public final static Iterator<Object[]> getData() throws Exception {
+        return DiceValuesTestParametersFactory.getInstance().getDice();
+    }
 
-	public TestIntegerRoller() {
-		super();
-	}
+    public TestIntegerRoller() {
+        super();
+    }
 
-	@Test(dataProvider = DATA)
-	public final void testRoll_ResultsSize(final Integer quantity,
-			final Integer sides) {
-		final Dice dice;
-		final Roller<Integer> roller;
+    @Test(dataProvider = DATA)
+    public final void testRoll_ResultsSize(final Integer quantity,
+            final Integer sides) {
+        final Dice dice;
+        final Roller roller;
 
-		dice = Mockito.mock(Dice.class);
+        dice = Mockito.mock(Dice.class);
 
-		Mockito.when(dice.getQuantity()).thenReturn(quantity);
-		Mockito.when(dice.getSides()).thenReturn(sides);
+        Mockito.when(dice.getQuantity()).thenReturn(quantity);
+        Mockito.when(dice.getSides()).thenReturn(sides);
 
-		roller = new DefaultRoller();
+        roller = new DefaultRoller();
 
-		Assert.assertEquals((Integer) roller.roll(dice).size(), quantity);
-	}
+        Assert.assertEquals((Integer) roller.roll(dice).size(), quantity);
+    }
 
-	@Test(dataProvider = DATA)
-	public final void testRoll_ValuesInBounds(final Integer quantity,
-			final Integer sides) {
-		final Dice dice;
-		final Integer times = 100;
-		final Integer lowerLimit;
-		final Integer upperLimit;
-		final Roller<Integer> roller;
+    @Test(dataProvider = DATA)
+    public final void testRoll_ValuesInBounds(final Integer quantity,
+            final Integer sides) {
+        final Dice dice;
+        final Integer times = 100;
+        final Integer lowerLimit;
+        final Integer upperLimit;
+        final Roller roller;
 
-		dice = Mockito.mock(Dice.class);
+        dice = Mockito.mock(Dice.class);
 
-		Mockito.when(dice.getQuantity()).thenReturn(quantity);
-		Mockito.when(dice.getSides()).thenReturn(sides);
+        Mockito.when(dice.getQuantity()).thenReturn(quantity);
+        Mockito.when(dice.getSides()).thenReturn(sides);
 
-		roller = new DefaultRoller();
+        roller = new DefaultRoller();
 
-		if (quantity == 0) {
-			for (Integer i = 0; i < times; i++) {
-				for (final Integer roll : roller.roll(dice)) {
-					Assert.assertTrue(roll == 0);
-				}
-			}
-		} else {
-			lowerLimit = 1;
-			upperLimit = sides;
+        if (quantity == 0) {
+            for (Integer i = 0; i < times; i++) {
+                for (final Integer roll : roller.roll(dice)) {
+                    Assert.assertTrue(roll == 0);
+                }
+            }
+        } else {
+            lowerLimit = 1;
+            upperLimit = sides;
 
-			for (Integer i = 0; i < times; i++) {
-				for (final Integer roll : roller.roll(dice)) {
-					Assert.assertTrue(roll >= lowerLimit);
-					Assert.assertTrue(roll <= upperLimit);
-				}
-			}
-		}
-	}
+            for (Integer i = 0; i < times; i++) {
+                for (final Integer roll : roller.roll(dice)) {
+                    Assert.assertTrue(roll >= lowerLimit);
+                    Assert.assertTrue(roll <= upperLimit);
+                }
+            }
+        }
+    }
 
 }

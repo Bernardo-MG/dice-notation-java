@@ -25,24 +25,19 @@ import com.wandrell.tabletop.dice.Dice;
  * <p>
  * The name makes reference to the act of rolling the dice, which is the way to
  * generate random values from them.
- * <p>
- * A {@code Roller} does not need to generate integer values, it can return any
- * kind of value, allowing the dice to be mapped to anything as needed.
  * 
  * @author Bernardo Martínez Garrido
- * @param <V>
- *            the type of value to return
  * @see Dice
  */
-public interface Roller<V> {
+public interface Roller {
 
-	/**
-	 * Generates a collection of random values from the received {@code Dice}.
-	 * 
-	 * @param dice
-	 *            the dice to roll
-	 * @return a collection of random values
-	 */
-	public Collection<V> roll(final Dice dice);
+    /**
+     * Generates a collection of random values from the received {@code Dice}.
+     * 
+     * @param dice
+     *            the dice to roll
+     * @return a collection of random values
+     */
+    public Collection<Integer> roll(final Dice dice);
 
 }

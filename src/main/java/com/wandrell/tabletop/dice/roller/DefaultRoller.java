@@ -19,9 +19,9 @@ package com.wandrell.tabletop.dice.roller;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.mapper.DefaultRollMapper;
 import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
 import com.wandrell.tabletop.dice.random.NumberGenerator;
 
@@ -31,59 +31,61 @@ import com.wandrell.tabletop.dice.random.NumberGenerator;
  * @author Bernardo Martínez Garrido
  * @see Dice
  */
-public final class DefaultRoller implements Roller<Integer> {
+public final class DefaultRoller implements Roller {
 
-	/**
-	 * The base roller.
-	 * <p>
-	 * This is to apply extension through composition.
-	 */
-	private final Roller<Integer> roller;
+    /**
+     * edRoller<V> implements Roller<V> {
+     * 
+     * /** The random numbers generator.
+     * <p>
+     * It will use the dice for the interval in which the values should be
+     * created.
+     */
+    private final NumberGenerator generator;
 
-	/**
-	 * Default constructor.
-	 */
-	public DefaultRoller() {
-		super();
+    /**
+     * Default constructor.
+     */
+    public DefaultRoller() {
+        super();
 
-		roller = new MappedRoller<Integer>(new DefaultRollMapper(),
-				new DefaultNumberGenerator());
-	}
+        this.generator = new DefaultNumberGenerator();
+    }
 
-	/**
-	 * Constructs an instance with the specified random number generator.
-	 * 
-	 * @param generator
-	 *            the random number generator to use
-	 */
-	public DefaultRoller(final NumberGenerator generator) {
-		super();
+    /**
+     * Constructs an instance with the specified random number generator.
+     * 
+     * @param generator
+     *            the random number generator to use
+     */
+    public DefaultRoller(final NumberGenerator generator) {
+        super();
 
-		checkNotNull(generator, "Received a null pointer as number generator");
+        this.generator = checkNotNull(generator,
+                "Received a null pointer as generator");
+    }
 
-		roller = new MappedRoller<Integer>(new DefaultRollMapper(), generator);
-	}
+    @Override
+    public final Collection<Integer> roll(final Dice dice) {
+        final Collection<Integer> rolls; // Roll results
 
-	/**
-	 * Generates a collection of random integer values from the received
-	 * {@code Dice}.
-	 * 
-	 * @param dice
-	 *            the dice to roll
-	 * @return a collection of random values
-	 */
-	@Override
-	public final Collection<Integer> roll(final Dice dice) {
-		return getRoller().roll(dice);
-	}
+        checkNotNull(dice, "Received a null pointer as dice");
 
-	/**
-	 * The base roller.
-	 * 
-	 * @return the base roller
-	 */
-	private final Roller<Integer> getRoller() {
-		return roller;
-	}
+        rolls = new LinkedList<Integer>();
+        for (Integer i = 0; i < dice.getQuantity(); i++) {
+            rolls.add(getNumberGenerator().generate(dice.getSides()));
+        }
+
+        return rolls;
+    }
+
+    /**
+     * Returns the random number generator.
+     * 
+     * @return the random number generator
+     */
+    private final NumberGenerator getNumberGenerator() {
+        return generator;
+    }
 
 }

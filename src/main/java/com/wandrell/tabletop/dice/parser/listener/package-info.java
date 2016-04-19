@@ -17,7 +17,8 @@
 /**
  * Listeners for the dice notation parser.
  * <p>
- * These are used for the visitor pattern, and will help to build the final result.
+ * These are used for the visitor pattern, and will help to build the final
+ * result.
  */
 
 package com.wandrell.tabletop.dice.parser.listener;

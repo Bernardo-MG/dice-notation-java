@@ -48,24 +48,24 @@ package com.wandrell.tabletop.dice;
  */
 public interface Dice {
 
-	/**
-	 * Returns the number of dice which compose this group.
-	 * <p>
-	 * This is expected to be a positive value or zero.
-	 * 
-	 * @return the number of dice being rolled
-	 */
-	public Integer getQuantity();
+    /**
+     * Returns the number of dice which compose this group.
+     * <p>
+     * This is expected to be a positive value or zero.
+     * 
+     * @return the number of dice being rolled
+     */
+    public Integer getQuantity();
 
-	/**
-	 * Returns the number of sides of the die being rolled.
-	 * <p>
-	 * All the dice will have this same number of sides.
-	 * <p>
-	 * This is expected to be a positive value greater than zero.
-	 * 
-	 * @return the die's number of sides
-	 */
-	public Integer getSides();
+    /**
+     * Returns the number of sides of the die being rolled.
+     * <p>
+     * All the dice will have this same number of sides.
+     * <p>
+     * This is expected to be a positive value greater than zero.
+     * 
+     * @return the die's number of sides
+     */
+    public Integer getSides();
 
 }

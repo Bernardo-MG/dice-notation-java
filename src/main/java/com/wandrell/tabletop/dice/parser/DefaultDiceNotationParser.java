@@ -29,50 +29,52 @@ import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
 
 public final class DefaultDiceNotationParser implements DiceNotationParser {
 
-	final DiceExpressionBuilder diceNotationListener;
+    final DiceExpressionBuilder diceNotationListener;
 
-	public DefaultDiceNotationParser() {
-		super();
+    public DefaultDiceNotationParser() {
+        super();
 
-		diceNotationListener = new DefaultDiceExpressionBuilder();
-	}
+        diceNotationListener = new DefaultDiceExpressionBuilder();
+    }
 
-	public DefaultDiceNotationParser(final DiceExpressionBuilder listener) {
-		super();
+    public DefaultDiceNotationParser(final DiceExpressionBuilder listener) {
+        super();
 
-		diceNotationListener = checkNotNull(listener,
-				"Received a null pointer as listener");
-	}
+        diceNotationListener = checkNotNull(listener,
+                "Received a null pointer as listener");
+    }
 
-	@Override
-	public final DiceExpression parse(final String string) {
-		final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
+    @Override
+    public final DiceExpression parse(final String string) {
+        final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
 
-		checkNotNull(string, "Received a null pointer as string");
+        checkNotNull(string, "Received a null pointer as string");
 
-		parser = buildDiceNotationParser(string);
+        parser = buildDiceNotationParser(string);
 
-		parser.addErrorListener(new DefaultErrorListener());
-		parser.addParseListener(getDiceNotationListener());
-		parser.parse();
+        parser.addErrorListener(new DefaultErrorListener());
+        parser.addParseListener(getDiceNotationListener());
+        parser.parse();
 
-		return getDiceNotationListener().getDiceExpression();
-	}
+        return getDiceNotationListener().getDiceExpression();
+    }
 
-	private final com.wandrell.tabletop.dice.generated.DiceNotationParser buildDiceNotationParser(final String string) {
-		final ANTLRInputStream input;
-		final DiceNotationLexer lexer;
-		final TokenStream tokens;
+    private final com.wandrell.tabletop.dice.generated.DiceNotationParser
+            buildDiceNotationParser(final String string) {
+        final ANTLRInputStream input;
+        final DiceNotationLexer lexer;
+        final TokenStream tokens;
 
-		input = new ANTLRInputStream(string);
-		lexer = new DiceNotationLexer(input);
-		tokens = new CommonTokenStream(lexer);
+        input = new ANTLRInputStream(string);
+        lexer = new DiceNotationLexer(input);
+        tokens = new CommonTokenStream(lexer);
 
-		return new com.wandrell.tabletop.dice.generated.DiceNotationParser(tokens);
-	}
+        return new com.wandrell.tabletop.dice.generated.DiceNotationParser(
+                tokens);
+    }
 
-	private final DiceExpressionBuilder getDiceNotationListener() {
-		return diceNotationListener;
-	}
+    private final DiceExpressionBuilder getDiceNotationListener() {
+        return diceNotationListener;
+    }
 
 }

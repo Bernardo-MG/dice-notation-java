@@ -16,8 +16,8 @@
 /**
  * Support for dice notation.
  * <p>
- * This goes from represeting dice, to generating random values from them
- * and even parsing dice notation.
+ * This goes from represeting dice, to generating random values from them and
+ * even parsing dice notation.
  */
 
 package com.wandrell.tabletop.dice;
