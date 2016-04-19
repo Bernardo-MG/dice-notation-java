@@ -27,45 +27,80 @@ import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
 
+/**
+ * Default parser for dice notation. It will transform a dice notation
+ * expression, received as a string, into an object representing it.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
 public final class DefaultDiceNotationParser implements DiceNotationParser {
 
-    final DiceExpressionBuilder diceNotationListener;
+    /**
+     * Visitor used to build the returned object.
+     * <p>
+     * It is a listener which will react when the parser goes through each node
+     * on the generated tree.
+     */
+    final DiceExpressionBuilder expressionBuilder;
 
+    /**
+     * Default constructor.
+     */
     public DefaultDiceNotationParser() {
         super();
 
-        diceNotationListener = new DefaultDiceExpressionBuilder();
+        expressionBuilder = new DefaultDiceExpressionBuilder();
     }
 
-    public DefaultDiceNotationParser(final DiceExpressionBuilder listener) {
+    /**
+     * Constructs a parser with the specified builder.
+     * 
+     * @param builder
+     *            builder to generate the returned object
+     */
+    public DefaultDiceNotationParser(final DiceExpressionBuilder builder) {
         super();
 
-        diceNotationListener = checkNotNull(listener,
+        expressionBuilder = checkNotNull(builder,
                 "Received a null pointer as listener");
     }
 
     @Override
-    public final DiceExpression parse(final String string) {
+    public final DiceExpression parse(final String expression) {
         final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
 
-        checkNotNull(string, "Received a null pointer as string");
+        checkNotNull(expression, "Received a null pointer as string");
 
-        parser = buildDiceNotationParser(string);
+        parser = buildDiceNotationParser(expression);
 
         parser.addErrorListener(new DefaultErrorListener());
-        parser.addParseListener(getDiceNotationListener());
+        parser.addParseListener(getDiceExpressionBuilder());
         parser.parse();
 
-        return getDiceNotationListener().getDiceExpression();
+        return getDiceExpressionBuilder().getDiceExpression();
     }
 
+    /**
+     * Created the ANTLR4 parser which will be used to process the received
+     * expression.
+     * <p>
+     * Combining this with the builder, which is actually a listener used for
+     * the visitor pattern, it is possible creating the expected result.
+     * <p>
+     * The received expression will be processed in a few steps, which end in
+     * the creation of the ANTLR4 parser.
+     * 
+     * @param expression
+     *            expression used to generate the parser
+     * @return an ANTLR4 parser tailored for the expression
+     */
     private final com.wandrell.tabletop.dice.generated.DiceNotationParser
-            buildDiceNotationParser(final String string) {
+            buildDiceNotationParser(final String expression) {
         final ANTLRInputStream input;
         final DiceNotationLexer lexer;
         final TokenStream tokens;
 
-        input = new ANTLRInputStream(string);
+        input = new ANTLRInputStream(expression);
         lexer = new DiceNotationLexer(input);
         tokens = new CommonTokenStream(lexer);
 
@@ -73,8 +108,15 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
                 tokens);
     }
 
-    private final DiceExpressionBuilder getDiceNotationListener() {
-        return diceNotationListener;
+    /**
+     * Listener used for the visitor pattern in the ANTLR4 parser.
+     * <p>
+     * It takes care of creating the returned object.
+     * 
+     * @return the ANTLR4 parser listener
+     */
+    private final DiceExpressionBuilder getDiceExpressionBuilder() {
+        return expressionBuilder;
     }
 
 }

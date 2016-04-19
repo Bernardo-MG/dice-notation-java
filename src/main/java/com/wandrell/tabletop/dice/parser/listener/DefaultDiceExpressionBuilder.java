@@ -33,13 +33,30 @@ import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
 import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
+/**
+ * Default {@code DiceExpression} builder.
+ * <p>
+ * It implements the visitor pattern, and will build the {@code DiceExpression}
+ * by pieces, after entering or exiting nodes in the parsed tree.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
 public final class DefaultDiceExpressionBuilder extends
         DiceNotationBaseListener implements DiceExpressionBuilder {
 
+    /**
+     * Generated dice expression.
+     */
     private DiceExpression                       expression;
 
+    /**
+     * Stack to store operands from the outer nodes on operations.
+     */
     private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
 
+    /**
+     * Default constructor.
+     */
     public DefaultDiceExpressionBuilder() {
         super();
     }
@@ -85,14 +102,6 @@ public final class DefaultDiceExpressionBuilder extends
     }
 
     @Override
-    public final void
-            exitFunction(final DiceNotationParser.FunctionContext ctx) {
-        // while (!getOperandsStack().isEmpty()) {
-        // expression.addDiceNotationComponent(getOperandsStack().pop());
-        // }
-    }
-
-    @Override
     public final void exitParse(final DiceNotationParser.ParseContext ctx) {
         while (!getOperandsStack().isEmpty()) {
             expression.addDiceNotationComponent(getOperandsStack().pop());
@@ -113,6 +122,11 @@ public final class DefaultDiceExpressionBuilder extends
         return expression;
     }
 
+    /**
+     * Returns the operands stack.
+     * 
+     * @return the operands stack
+     */
     private final Stack<DiceExpressionComponent> getOperandsStack() {
         return operandsStack;
     }
