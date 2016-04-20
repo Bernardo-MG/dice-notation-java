@@ -25,21 +25,45 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
+import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 
-public final class TestDiceFormulaParser {
+/**
+ * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
+ * concrete notation cases.
+ * <p>
+ * Checks the following cases:
+ * <ol>
+ * <li>An addition with the number to left is parsed correctly.</li>
+ * <li>An addition with the number to right is parsed correctly.</li>
+ * <li>A subtraction with the number to left is parsed correctly.</li>
+ * <li>A subtraction with the number to right is parsed correctly.</li>
+ * <li>A lone number is parsed correctly.</li>
+ * <li>An addition with only numbers is parsed correctly.</li>
+ * <li>A subtraction with only numbers is parsed correctly.</li>
+ * </ol>
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public final class TestDefaultDiceNotationParser {
 
-    public TestDiceFormulaParser() {
+    /**
+     * Default constructor.
+     */
+    public TestDefaultDiceNotationParser() {
         super();
     }
 
+    /**
+     * Tests that an addition with the number to left is parsed correctly.
+     */
     @Test
     public final void testParseDice_Add_Left() {
+        final DiceNotationParser parser;
         final DiceExpression formula;
         final AdditionOperation operation;
         final IntegerConstant integer;
         final DiceOperand dice;
         final String notation;
-        final DefaultDiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -61,6 +85,9 @@ public final class TestDiceFormulaParser {
         Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
+    /**
+     * Tests that an addition with the number to right is parsed correctly.
+     */
     @Test
     public final void testParseDice_Add_Right() {
         final DiceExpression formula;
@@ -68,7 +95,7 @@ public final class TestDiceFormulaParser {
         final IntegerConstant integer;
         final DiceOperand dice;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -90,12 +117,15 @@ public final class TestDiceFormulaParser {
         Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
+    /**
+     * Tests that a lone number is parsed correctly.
+     */
     @Test
     public final void testParseDice_Number() {
         final DiceExpression formula;
         final IntegerConstant value;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -110,12 +140,15 @@ public final class TestDiceFormulaParser {
         Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
+    /**
+     * Tests that an addition with only numbers is parsed correctly.
+     */
     @Test
     public final void testParseDice_Number_Add() {
         final DiceExpression formula;
         final AdditionOperation value;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -131,6 +164,34 @@ public final class TestDiceFormulaParser {
         Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
+    /**
+     * Tests that a subtraction with only numbers is parsed correctly.
+     */
+    @Test
+    public final void testParseDice_Number_Sub() {
+        final DiceExpression formula;
+        final SubstractionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser();
+
+        notation = "12-1";
+
+        formula = parser.parse(notation);
+
+        value = (SubstractionOperation) formula.getComponents().iterator()
+                .next();
+
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
+        Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+
+        Assert.assertEquals(formula.getStringRepresentation(), notation);
+    }
+
+    /**
+     * Tests that a subtraction with the number to left is parsed correctly.
+     */
     @Test
     public final void testParseDice_Sub_Left() {
         final DiceExpression formula;
@@ -138,7 +199,7 @@ public final class TestDiceFormulaParser {
         final IntegerConstant integer;
         final DiceOperand dice;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -160,6 +221,9 @@ public final class TestDiceFormulaParser {
         Assert.assertEquals(formula.getStringRepresentation(), notation);
     }
 
+    /**
+     * Tests that a subtraction with the number to right is parsed correctly.
+     */
     @Test
     public final void testParseDice_Sub_Right() {
         final DiceExpression formula;
@@ -167,7 +231,7 @@ public final class TestDiceFormulaParser {
         final IntegerConstant integer;
         final DiceOperand dice;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
@@ -194,7 +258,7 @@ public final class TestDiceFormulaParser {
         final DiceExpression formula;
         final IntegerConstant value;
         final String notation;
-        final DefaultDiceNotationParser parser;
+        final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser();
 
