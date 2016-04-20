@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dice.notation.operation;
 
+import com.wandrell.tabletop.dice.notation.operand.Operand;
+
 public interface BinaryOperation extends Operation {
 
     public Operand getLeft();

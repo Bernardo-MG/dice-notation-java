@@ -21,7 +21,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 
 public final class TestPrintableTextSubstractionOperation {

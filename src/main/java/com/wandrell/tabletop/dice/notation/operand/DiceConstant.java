@@ -14,21 +14,21 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.notation.operation.constant;
+package com.wandrell.tabletop.dice.notation.operand;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
 
-public final class IntegerConstant implements DiceExpressionComponent, Operand {
+public final class DiceConstant implements DiceExpressionComponent {
 
-    private final Integer value;
+    private final Dice dice;
 
-    public IntegerConstant(final Integer value) {
+    public DiceConstant(final Dice dice) {
         super();
 
-        this.value = value;
+        this.dice = dice;
     }
 
     @Override
@@ -45,31 +45,31 @@ public final class IntegerConstant implements DiceExpressionComponent, Operand {
             return false;
         }
 
-        final IntegerConstant other;
+        final DiceConstant other;
 
-        other = (IntegerConstant) obj;
+        other = (DiceConstant) obj;
 
-        return Objects.equal(value, other.value);
+        return Objects.equal(dice, other.dice);
+    }
+
+    public final Dice getDice() {
+        return dice;
     }
 
     @Override
     public final String getStringRepresentation() {
-        return getValue().toString();
-    }
-
-    @Override
-    public final Integer getValue() {
-        return value;
+        return String.format("%dd%d", getDice().getQuantity(), getDice()
+                .getSides());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value);
+        return Objects.hashCode(dice);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("value", value).toString();
+        return MoreObjects.toStringHelper(this).add("dice", dice).toString();
     }
 
 }

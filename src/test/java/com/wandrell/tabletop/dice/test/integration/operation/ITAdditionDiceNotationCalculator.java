@@ -24,10 +24,10 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.calculator.DefaultDiceNotationCalculator;
 import com.wandrell.tabletop.dice.notation.calculator.DiceNotationCalculator;
+import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 public final class ITAdditionDiceNotationCalculator {
 

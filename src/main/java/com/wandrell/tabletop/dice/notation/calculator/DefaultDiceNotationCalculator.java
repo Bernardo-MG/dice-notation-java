@@ -19,8 +19,8 @@ package com.wandrell.tabletop.dice.notation.calculator;
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
 
 public final class DefaultDiceNotationCalculator implements
         DiceNotationCalculator {

@@ -17,6 +17,7 @@
 package com.wandrell.tabletop.dice.notation.operation;
 
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 
 public interface Operation extends DiceExpressionComponent {
 

@@ -25,13 +25,13 @@ import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.operand.DiceConstant;
+import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
-import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 /**
  * Default {@code DiceExpression} builder.

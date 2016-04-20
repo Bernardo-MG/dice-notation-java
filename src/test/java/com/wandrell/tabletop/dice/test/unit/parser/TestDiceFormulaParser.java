@@ -20,10 +20,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 
 public final class TestDiceFormulaParser {

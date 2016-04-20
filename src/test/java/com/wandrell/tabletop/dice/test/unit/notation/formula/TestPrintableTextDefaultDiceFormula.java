@@ -23,13 +23,13 @@ import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.DiceConstant;
+import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
-import com.wandrell.tabletop.dice.notation.operation.Operand;
 import com.wandrell.tabletop.dice.notation.operation.Operation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
-import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
 
 public final class TestPrintableTextDefaultDiceFormula {
 

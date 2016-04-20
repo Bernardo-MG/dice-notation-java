@@ -20,7 +20,8 @@ import java.util.Collection;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.operation.constant.DiceConstant;
+import com.wandrell.tabletop.dice.notation.operand.DiceConstant;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 

@@ -18,7 +18,8 @@ package com.wandrell.tabletop.dice.notation.operation;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.operand.Operand;
 
 public final class AdditionOperation implements BinaryOperation {
 
