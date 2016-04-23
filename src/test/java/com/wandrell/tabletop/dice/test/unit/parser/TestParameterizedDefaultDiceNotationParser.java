@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dice.notation.operand.DiceExpression;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
-import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.parameter.DiceParametersFactory;
 
 /**
  * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
@@ -61,7 +61,7 @@ public final class TestParameterizedDefaultDiceNotationParser {
      */
     @DataProvider(name = SIMPLE_DICE)
     public final static Iterator<Object[]> getData() throws Exception {
-        return DiceValuesTestParametersFactory.getInstance().getDiceAndText();
+        return DiceParametersFactory.getInstance().getDiceAndText();
     }
 
     /**

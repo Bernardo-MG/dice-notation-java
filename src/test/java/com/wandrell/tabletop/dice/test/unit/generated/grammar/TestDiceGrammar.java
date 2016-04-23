@@ -30,7 +30,7 @@ import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
 import com.wandrell.tabletop.dice.parser.DefaultErrorListener;
-import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
+import com.wandrell.tabletop.dice.test.util.config.parameter.DiceParametersFactory;
 
 /**
  * Unit tests for the generated grammar classes, testing that they can process
@@ -62,7 +62,7 @@ public final class TestDiceGrammar {
      */
     @DataProvider(name = NOTATION)
     public final static Iterator<Object[]> getNotationData() throws Exception {
-        return DiceValuesTestParametersFactory.getInstance().getDiceText();
+        return DiceParametersFactory.getInstance().getDiceText();
     }
 
     /**

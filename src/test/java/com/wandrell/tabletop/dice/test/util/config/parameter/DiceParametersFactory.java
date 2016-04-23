@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.util.config.factory.parameter;
+package com.wandrell.tabletop.dice.test.util.config.parameter;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -40,25 +40,16 @@ import org.supercsv.prefs.CsvPreference;
 
 import com.wandrell.tabletop.dice.test.util.config.ParameterPaths;
 
-public final class DiceValuesTestParametersFactory {
+public final class DiceParametersFactory {
 
-    private static final DiceValuesTestParametersFactory instance = new DiceValuesTestParametersFactory();
+    private static final DiceParametersFactory instance = new DiceParametersFactory();
 
-    public static final DiceValuesTestParametersFactory getInstance() {
+    public static final DiceParametersFactory getInstance() {
         return instance;
     }
 
-    private DiceValuesTestParametersFactory() {
+    private DiceParametersFactory() {
         super();
-        // TODO: Make these methods final
-    }
-
-    public final Iterator<Object[]> getDice() throws Exception {
-        final CellProcessor[] processors;
-
-        processors = new CellProcessor[] { new ParseInt(), new ParseInt() };
-
-        return getParameters(ParameterPaths.DEFAULT, processors);
     }
 
     public final Iterator<Object[]> getDiceAndText() throws Exception {
