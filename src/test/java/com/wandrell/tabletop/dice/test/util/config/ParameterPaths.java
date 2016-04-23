@@ -18,9 +18,9 @@ package com.wandrell.tabletop.dice.test.util.config;
 
 public final class ParameterPaths {
 
-    public static final String DICE_AND_TEXT                    = "parameter/dice-text.csv";
+    public static final String DICE_AND_TEXT = "parameter/dice-text.csv";
 
-    public static final String DICE_TEXT                        = "parameter/dice-grammar.csv";
+    public static final String DICE_TEXT     = "parameter/dice-grammar.csv";
 
     private ParameterPaths() {
         super();

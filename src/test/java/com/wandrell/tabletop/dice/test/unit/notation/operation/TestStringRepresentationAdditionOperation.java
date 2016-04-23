@@ -24,27 +24,27 @@ import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 
-public final class TestPrintableTextAdditionOperation {
+public final class TestStringRepresentationAdditionOperation {
 
-    public TestPrintableTextAdditionOperation() {
+    public TestStringRepresentationAdditionOperation() {
         super();
     }
 
     @Test
-    public final void testGetPrintableText() {
+    public final void testGetStringRepresentation() {
         final DiceExpressionComponent operation;
         final DiceNotationOperand operandA;
         final DiceNotationOperand operandB;
 
         operandA = Mockito.mock(DiceNotationOperand.class);
-        Mockito.when(operandA.getStringRepresentation()).thenReturn("A");
+        Mockito.when(operandA.getStringRepresentation()).thenReturn("1");
 
         operandB = Mockito.mock(DiceNotationOperand.class);
-        Mockito.when(operandB.getStringRepresentation()).thenReturn("B");
+        Mockito.when(operandB.getStringRepresentation()).thenReturn("2");
 
         operation = new AdditionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getStringRepresentation(), "A+B");
+        Assert.assertEquals(operation.getStringRepresentation(), "1+2");
     }
 
 }

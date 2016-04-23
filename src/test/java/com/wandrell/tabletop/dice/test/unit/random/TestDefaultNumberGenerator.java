@@ -49,7 +49,7 @@ public final class TestDefaultNumberGenerator {
      * Tests that the generated numbers are kept inside the expected interval.
      */
     @Test
-    public final void testRoll_ValuesInBounds() {
+    public final void testGenerate_ValuesInBounds() {
         final NumberGenerator generator;   // Tested generator
         final Integer lowerLimit;          // Lowest allowed number
         final Integer upperLimit;          // Highest allowed number

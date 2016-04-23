@@ -24,27 +24,27 @@ import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 
-public final class TestPrintableTextSubstractionOperation {
+public final class TestStringRepresentationSubstractionOperation {
 
-    public TestPrintableTextSubstractionOperation() {
+    public TestStringRepresentationSubstractionOperation() {
         super();
     }
 
     @Test
-    public final void testGetPrintableText() {
+    public final void testGetStringRepresentation() {
         final DiceExpressionComponent operation;
         final DiceNotationOperand operandA;
         final DiceNotationOperand operandB;
 
         operandA = Mockito.mock(DiceNotationOperand.class);
-        Mockito.when(operandA.getStringRepresentation()).thenReturn("A");
+        Mockito.when(operandA.getStringRepresentation()).thenReturn("1");
 
         operandB = Mockito.mock(DiceNotationOperand.class);
-        Mockito.when(operandB.getStringRepresentation()).thenReturn("B");
+        Mockito.when(operandB.getStringRepresentation()).thenReturn("2");
 
         operation = new SubstractionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getStringRepresentation(), "A-B");
+        Assert.assertEquals(operation.getStringRepresentation(), "1-2");
     }
 
 }

@@ -45,7 +45,7 @@ public final class TestExceptionDefaultNumberGenerator {
      * Tests that generating a value for a negative max throws an exception.
      */
     @Test(expectedExceptions = { IllegalArgumentException.class })
-    public final void testRoll_NegativeMax() {
+    public final void testGenerate_NegativeMax() {
         final NumberGenerator generator; // Tested generator
 
         generator = new DefaultNumberGenerator();

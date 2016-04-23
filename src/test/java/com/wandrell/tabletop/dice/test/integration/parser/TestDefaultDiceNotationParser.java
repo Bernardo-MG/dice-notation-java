@@ -58,7 +58,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParseDice_Add_Left() {
+    public final void testParse_Add_Left() {
         final DiceNotationParser parser;
         final DiceExpressionRoot formula;
         final AdditionOperation operation;
@@ -90,7 +90,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParseDice_Add_Right() {
+    public final void testParse_Add_Right() {
         final DiceExpressionRoot formula;
         final AdditionOperation operation;
         final IntegerExpression integer;
@@ -122,7 +122,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that a lone number is parsed correctly.
      */
     @Test
-    public final void testParseDice_Number() {
+    public final void testParse_Number() {
         final DiceExpressionRoot formula;
         final IntegerExpression value;
         final String notation;
@@ -145,7 +145,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that an addition with only numbers is parsed correctly.
      */
     @Test
-    public final void testParseDice_Number_Add() {
+    public final void testParse_Number_Add() {
         final DiceExpressionRoot formula;
         final AdditionOperation value;
         final String notation;
@@ -169,7 +169,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that a subtraction with only numbers is parsed correctly.
      */
     @Test
-    public final void testParseDice_Number_Sub() {
+    public final void testParse_Number_Sub() {
         final DiceExpressionRoot formula;
         final SubstractionOperation value;
         final String notation;
@@ -194,7 +194,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParseDice_Sub_Left() {
+    public final void testParse_Sub_Left() {
         final DiceExpressionRoot formula;
         final SubstractionOperation operation;
         final IntegerExpression integer;
@@ -226,7 +226,7 @@ public final class TestDefaultDiceNotationParser {
      * Tests that a subtraction with the number to right is parsed correctly.
      */
     @Test
-    public final void testParseDice_Sub_Right() {
+    public final void testParse_Sub_Right() {
         final DiceExpressionRoot formula;
         final SubstractionOperation operation;
         final IntegerExpression integer;
@@ -255,7 +255,7 @@ public final class TestDefaultDiceNotationParser {
     }
 
     @Test
-    public final void testParseDice_Zero() {
+    public final void testParse_Zero() {
         final DiceExpressionRoot formula;
         final IntegerExpression value;
         final String notation;

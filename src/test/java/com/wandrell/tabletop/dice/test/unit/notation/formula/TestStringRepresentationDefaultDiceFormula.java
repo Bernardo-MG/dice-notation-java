@@ -31,14 +31,15 @@ import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
-public final class TestPrintableTextDefaultDiceFormula {
+public final class TestStringRepresentationDefaultDiceFormula {
 
-    public TestPrintableTextDefaultDiceFormula() {
+    public TestStringRepresentationDefaultDiceFormula() {
         super();
+        // TODO: Use mocks
     }
 
     @Test
-    public final void testGetPrintableText_Addition() {
+    public final void testGetStringRepresentation_Addition() {
         final DiceExpressionRoot formula;
         final Dice dice;
         final DiceNotationOperand diceOperand;
@@ -60,7 +61,7 @@ public final class TestPrintableTextDefaultDiceFormula {
     }
 
     @Test
-    public final void testGetPrintableText_Substraction() {
+    public final void testGetStringRepresentation_Substraction() {
         final DiceExpressionRoot formula;
         final Dice dice;
         final DiceNotationOperand diceOperand;
