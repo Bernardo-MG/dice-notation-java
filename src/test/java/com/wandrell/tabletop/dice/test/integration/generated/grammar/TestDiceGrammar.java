@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.unit.generated.grammar;
+package com.wandrell.tabletop.dice.test.integration.generated.grammar;
 
 import java.util.Iterator;
 

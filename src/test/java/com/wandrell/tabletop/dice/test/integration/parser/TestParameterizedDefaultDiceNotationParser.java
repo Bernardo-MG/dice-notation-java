@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.unit.parser;
+package com.wandrell.tabletop.dice.test.integration.parser;
 
 import java.util.Iterator;
 
