@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.Operation;
+import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
@@ -43,7 +43,7 @@ public final class TestPrintableTextDefaultDiceFormula {
         final Dice dice;
         final DiceNotationOperand diceOperand;
         final DiceNotationOperand intOperand;
-        final Operation operation;
+        final BinaryOperation operation;
 
         dice = new DefaultDice(2, 6);
 
@@ -65,7 +65,7 @@ public final class TestPrintableTextDefaultDiceFormula {
         final Dice dice;
         final DiceNotationOperand diceOperand;
         final DiceNotationOperand intOperand;
-        final Operation operation;
+        final BinaryOperation operation;
 
         dice = new DefaultDice(2, 6);
 

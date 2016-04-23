@@ -34,7 +34,7 @@ import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.Operation;
+import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.roller.Roller;
 
@@ -85,7 +85,7 @@ public final class DefaultDiceExpressionBuilder extends
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
-        final Operation opAdd;
+        final BinaryOperation opAdd;
         final String operator;
         final DiceNotationOperand left;
         final DiceNotationOperand right;

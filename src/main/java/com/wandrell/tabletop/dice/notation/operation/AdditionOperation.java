@@ -19,7 +19,6 @@ package com.wandrell.tabletop.dice.notation.operation;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
-import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 
 public final class AdditionOperation implements BinaryOperation {
 
@@ -80,18 +79,12 @@ public final class AdditionOperation implements BinaryOperation {
 
     @Override
     public final Integer getValue() {
-        return operate().getValue();
+        return getLeft().getValue() + getRight().getValue();
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(operandLeft, operandRight);
-    }
-
-    @Override
-    public final DiceNotationOperand operate() {
-        return new IntegerExpression(getLeft().getValue()
-                + getRight().getValue());
     }
 
     @Override
