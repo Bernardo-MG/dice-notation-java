@@ -21,15 +21,15 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
-import com.wandrell.tabletop.dice.notation.DiceExpression;
-import com.wandrell.tabletop.dice.notation.operand.DiceConstant;
-import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
-import com.wandrell.tabletop.dice.notation.operand.Operand;
+import com.wandrell.tabletop.dice.notation.DefaultDiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
+import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.Operation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 public final class TestPrintableTextDefaultDiceFormula {
 
@@ -39,20 +39,20 @@ public final class TestPrintableTextDefaultDiceFormula {
 
     @Test
     public final void testGetPrintableText_Addition() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final Dice dice;
-        final Operand diceOperand;
-        final Operand intOperand;
+        final DiceNotationOperand diceOperand;
+        final DiceNotationOperand intOperand;
         final Operation operation;
 
         dice = new DefaultDice(2, 6);
 
-        diceOperand = new DiceOperand(new DiceConstant(dice));
-        intOperand = new IntegerConstant(5);
+        diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
+        intOperand = new IntegerExpression(5);
 
         operation = new AdditionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpression();
+        formula = new DefaultDiceExpressionRoot();
 
         formula.addDiceNotationComponent(operation);
 
@@ -61,20 +61,20 @@ public final class TestPrintableTextDefaultDiceFormula {
 
     @Test
     public final void testGetPrintableText_Substraction() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final Dice dice;
-        final Operand diceOperand;
-        final Operand intOperand;
+        final DiceNotationOperand diceOperand;
+        final DiceNotationOperand intOperand;
         final Operation operation;
 
         dice = new DefaultDice(2, 6);
 
-        diceOperand = new DiceOperand(new DiceConstant(dice));
-        intOperand = new IntegerConstant(5);
+        diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
+        intOperand = new IntegerExpression(5);
 
         operation = new SubstractionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpression();
+        formula = new DefaultDiceExpressionRoot();
 
         formula.addDiceNotationComponent(operation);
 

@@ -22,10 +22,8 @@ import java.util.LinkedList;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.notation.calculator.DefaultDiceNotationCalculator;
-import com.wandrell.tabletop.dice.notation.calculator.DiceNotationCalculator;
-import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
-import com.wandrell.tabletop.dice.notation.operand.Operand;
+import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
+import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 
@@ -38,19 +36,16 @@ public final class ITAdditionDiceNotationCalculator {
     @Test
     public void test_both_negative() {
         final BinaryOperation operation1;
-        final Operand value1;
-        final Operand value2;
+        final DiceNotationOperand value1;
+        final DiceNotationOperand value2;
         final Integer result;
-        final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
+        final Collection<DiceNotationOperand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerConstant(-10);
-        value2 = new IntegerConstant(-5);
+        value1 = new IntegerExpression(-10);
+        value2 = new IntegerExpression(-5);
 
         operation1 = new AdditionOperation(value1, value2);
-
-        calculator = new DefaultDiceNotationCalculator();
 
         operands = new LinkedList<>();
         operations = new LinkedList<>();
@@ -60,7 +55,7 @@ public final class ITAdditionDiceNotationCalculator {
 
         operations.add(operation1);
 
-        result = calculator.execute(operands, operations);
+        result = operation1.getValue();
 
         Assert.assertEquals(result, (Integer) (0 - 15));
     }
@@ -68,19 +63,16 @@ public final class ITAdditionDiceNotationCalculator {
     @Test
     public void test_both_positive() {
         final BinaryOperation operation1;
-        final Operand value1;
-        final Operand value2;
+        final DiceNotationOperand value1;
+        final DiceNotationOperand value2;
         final Integer result;
-        final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
+        final Collection<DiceNotationOperand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerConstant(10);
-        value2 = new IntegerConstant(5);
+        value1 = new IntegerExpression(10);
+        value2 = new IntegerExpression(5);
 
         operation1 = new AdditionOperation(value1, value2);
-
-        calculator = new DefaultDiceNotationCalculator();
 
         operands = new LinkedList<>();
         operations = new LinkedList<>();
@@ -90,7 +82,7 @@ public final class ITAdditionDiceNotationCalculator {
 
         operations.add(operation1);
 
-        result = calculator.execute(operands, operations);
+        result = operation1.getValue();
 
         Assert.assertEquals(result, (Integer) 15);
     }
@@ -98,23 +90,23 @@ public final class ITAdditionDiceNotationCalculator {
     @Test
     public void test_long() {
         final BinaryOperation operation1;
-        final Operand value1;
-        final Operand value2;
-        final Operand value3;
-        final Operand value4;
-        final Operand value5;
-        final Operand value6;
+        final DiceNotationOperand value1;
+        final DiceNotationOperand value2;
+        final DiceNotationOperand value3;
+        final DiceNotationOperand value4;
+        final DiceNotationOperand value5;
+        final DiceNotationOperand value6;
         // final Integer result;
         // final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
+        final Collection<DiceNotationOperand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerConstant(10);
-        value2 = new IntegerConstant(-5);
-        value3 = new IntegerConstant(5);
-        value4 = new IntegerConstant(1);
-        value5 = new IntegerConstant(5);
-        value6 = new IntegerConstant(1);
+        value1 = new IntegerExpression(10);
+        value2 = new IntegerExpression(-5);
+        value3 = new IntegerExpression(5);
+        value4 = new IntegerExpression(1);
+        value5 = new IntegerExpression(5);
+        value6 = new IntegerExpression(1);
 
         operation1 = new AdditionOperation(value1, value2);
 
@@ -145,19 +137,16 @@ public final class ITAdditionDiceNotationCalculator {
     @Test
     public void test_one_negative() {
         final BinaryOperation operation1;
-        final Operand value1;
-        final Operand value2;
+        final DiceNotationOperand value1;
+        final DiceNotationOperand value2;
         final Integer result;
-        final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
+        final Collection<DiceNotationOperand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerConstant(10);
-        value2 = new IntegerConstant(-5);
+        value1 = new IntegerExpression(10);
+        value2 = new IntegerExpression(-5);
 
         operation1 = new AdditionOperation(value1, value2);
-
-        calculator = new DefaultDiceNotationCalculator();
 
         operands = new LinkedList<>();
         operations = new LinkedList<>();
@@ -167,7 +156,7 @@ public final class ITAdditionDiceNotationCalculator {
 
         operations.add(operation1);
 
-        result = calculator.execute(operands, operations);
+        result = operation1.getValue();
 
         Assert.assertEquals(result, (Integer) 5);
     }
@@ -175,17 +164,14 @@ public final class ITAdditionDiceNotationCalculator {
     @Test
     public void test_same_positive() {
         final BinaryOperation operation1;
-        final Operand value1;
+        final DiceNotationOperand value1;
         final Integer result;
-        final DiceNotationCalculator calculator;
-        final Collection<Operand> operands;
+        final Collection<DiceNotationOperand> operands;
         final Collection<BinaryOperation> operations;
 
-        value1 = new IntegerConstant(10);
+        value1 = new IntegerExpression(10);
 
         operation1 = new AdditionOperation(value1, value1);
-
-        calculator = new DefaultDiceNotationCalculator();
 
         operands = new LinkedList<>();
         operations = new LinkedList<>();
@@ -195,7 +181,7 @@ public final class ITAdditionDiceNotationCalculator {
 
         operations.add(operation1);
 
-        result = calculator.execute(operands, operations);
+        result = operation1.getValue();
 
         Assert.assertEquals(result, (Integer) 20);
     }

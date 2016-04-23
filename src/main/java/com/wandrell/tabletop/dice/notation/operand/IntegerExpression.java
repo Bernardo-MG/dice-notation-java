@@ -20,11 +20,12 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
-public final class IntegerConstant implements DiceExpressionComponent, Operand {
+public final class IntegerExpression implements DiceExpressionComponent,
+        DiceNotationOperand {
 
     private final Integer value;
 
-    public IntegerConstant(final Integer value) {
+    public IntegerExpression(final Integer value) {
         super();
 
         this.value = value;
@@ -44,9 +45,9 @@ public final class IntegerConstant implements DiceExpressionComponent, Operand {
             return false;
         }
 
-        final IntegerConstant other;
+        final IntegerExpression other;
 
-        other = (IntegerConstant) obj;
+        other = (IntegerExpression) obj;
 
         return Objects.equal(value, other.value);
     }

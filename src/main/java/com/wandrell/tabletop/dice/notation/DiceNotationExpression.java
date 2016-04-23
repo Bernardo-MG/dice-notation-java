@@ -14,16 +14,10 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.notation.calculator;
+package com.wandrell.tabletop.dice.notation;
 
-import java.util.Collection;
+public interface DiceNotationExpression {
 
-import com.wandrell.tabletop.dice.notation.operand.Operand;
-import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-
-public interface DiceNotationCalculator {
-
-    public Integer execute(final Collection<Operand> operands,
-            final Collection<BinaryOperation> operations);
+    public Integer generateResult();
 
 }

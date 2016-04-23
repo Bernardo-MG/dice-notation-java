@@ -18,17 +18,17 @@ package com.wandrell.tabletop.dice.notation.operation;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
-import com.wandrell.tabletop.dice.notation.operand.Operand;
+import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
+import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 
 public final class AdditionOperation implements BinaryOperation {
 
-    final Operand operandLeft;
+    final DiceNotationOperand operandLeft;
 
-    final Operand operandRight;
+    final DiceNotationOperand operandRight;
 
-    public AdditionOperation(final Operand operandLeft,
-            final Operand operandRight) {
+    public AdditionOperation(final DiceNotationOperand operandLeft,
+            final DiceNotationOperand operandRight) {
         super();
 
         this.operandLeft = operandLeft;
@@ -58,12 +58,12 @@ public final class AdditionOperation implements BinaryOperation {
     }
 
     @Override
-    public final Operand getLeft() {
+    public final DiceNotationOperand getLeft() {
         return operandLeft;
     }
 
     @Override
-    public final Operand getRight() {
+    public final DiceNotationOperand getRight() {
         return operandRight;
     }
 
@@ -79,13 +79,19 @@ public final class AdditionOperation implements BinaryOperation {
     }
 
     @Override
+    public final Integer getValue() {
+        return operate().getValue();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hashCode(operandLeft, operandRight);
     }
 
     @Override
-    public final Operand operate() {
-        return new IntegerConstant(getLeft().getValue() + getRight().getValue());
+    public final DiceNotationOperand operate() {
+        return new IntegerExpression(getLeft().getValue()
+                + getRight().getValue());
     }
 
     @Override

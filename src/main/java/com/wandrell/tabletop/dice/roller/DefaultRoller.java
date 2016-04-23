@@ -71,8 +71,10 @@ public final class DefaultRoller implements Roller {
         final Collection<Integer> rolls; // Roll results
 
         checkNotNull(dice, "Received a null pointer as dice");
-        checkArgument(dice.getQuantity() >= 0, "The quantity of dice can not be negative");
-        checkArgument(dice.getSides() >= 0, "The number of sides can not be negative");
+        checkArgument(dice.getQuantity() >= 0,
+                "The quantity of dice can not be negative");
+        checkArgument(dice.getSides() >= 0,
+                "The number of sides can not be negative");
 
         rolls = new LinkedList<Integer>();
         for (Integer i = 0; i < dice.getQuantity(); i++) {

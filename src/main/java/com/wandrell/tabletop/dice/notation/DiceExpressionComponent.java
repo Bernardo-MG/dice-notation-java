@@ -20,4 +20,6 @@ public interface DiceExpressionComponent {
 
     public String getStringRepresentation();
 
+    public Integer getValue();
+
 }

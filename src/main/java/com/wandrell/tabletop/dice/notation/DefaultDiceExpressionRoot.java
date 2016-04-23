@@ -23,15 +23,16 @@ import java.util.LinkedList;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-public final class DefaultDiceExpression implements DiceExpression {
+public final class DefaultDiceExpressionRoot implements DiceExpressionRoot {
 
     private final Collection<DiceExpressionComponent> components = new LinkedList<>();
 
-    public DefaultDiceExpression() {
+    public DefaultDiceExpressionRoot() {
         super();
     }
 
-    public DefaultDiceExpression(final DiceExpressionComponent... components) {
+    public DefaultDiceExpressionRoot(
+            final DiceExpressionComponent... components) {
         super();
 
         for (final DiceExpressionComponent component : components) {
@@ -59,9 +60,9 @@ public final class DefaultDiceExpression implements DiceExpression {
             return false;
         }
 
-        final DefaultDiceExpression other;
+        final DefaultDiceExpressionRoot other;
 
-        other = (DefaultDiceExpression) obj;
+        other = (DefaultDiceExpressionRoot) obj;
 
         return Objects.equal(components, other.components);
     }
@@ -86,6 +87,18 @@ public final class DefaultDiceExpression implements DiceExpression {
         }
 
         return builder.toString();
+    }
+
+    @Override
+    public final Integer getValue() {
+        Integer value;
+
+        value = 0;
+        for (final DiceExpressionComponent component : getComponentsModifiable()) {
+            value += component.getValue();
+        }
+
+        return null;
     }
 
     @Override

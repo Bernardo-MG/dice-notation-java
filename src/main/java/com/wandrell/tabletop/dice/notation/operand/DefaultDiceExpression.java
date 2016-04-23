@@ -16,18 +16,25 @@
 
 package com.wandrell.tabletop.dice.notation.operand;
 
+import java.util.Collection;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.roller.Roller;
 
-public final class DiceConstant implements DiceExpressionComponent {
+public final class DefaultDiceExpression implements DiceExpressionComponent,
+        DiceExpression {
 
-    private final Dice dice;
+    private final Dice   dice;
 
-    public DiceConstant(final Dice dice) {
+    private final Roller roller;
+
+    public DefaultDiceExpression(final Dice dice, final Roller roller) {
         super();
 
+        this.roller = roller;
         this.dice = dice;
     }
 
@@ -45,13 +52,14 @@ public final class DiceConstant implements DiceExpressionComponent {
             return false;
         }
 
-        final DiceConstant other;
+        final DefaultDiceExpression other;
 
-        other = (DiceConstant) obj;
+        other = (DefaultDiceExpression) obj;
 
         return Objects.equal(dice, other.dice);
     }
 
+    @Override
     public final Dice getDice() {
         return dice;
     }
@@ -63,6 +71,21 @@ public final class DiceConstant implements DiceExpressionComponent {
     }
 
     @Override
+    public final Integer getValue() {
+        final Collection<Integer> rolls;
+        Integer result;
+
+        rolls = getRoller().roll(getDice());
+
+        result = 0;
+        for (final Integer roll : rolls) {
+            result += roll;
+        }
+
+        return result;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hashCode(dice);
     }
@@ -70,6 +93,10 @@ public final class DiceConstant implements DiceExpressionComponent {
     @Override
     public final String toString() {
         return MoreObjects.toStringHelper(this).add("dice", dice).toString();
+    }
+
+    private final Roller getRoller() {
+        return roller;
     }
 
 }

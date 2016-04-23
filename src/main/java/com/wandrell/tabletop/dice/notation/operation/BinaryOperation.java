@@ -16,12 +16,12 @@
 
 package com.wandrell.tabletop.dice.notation.operation;
 
-import com.wandrell.tabletop.dice.notation.operand.Operand;
+import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 
 public interface BinaryOperation extends Operation {
 
-    public Operand getLeft();
+    public DiceNotationOperand getLeft();
 
-    public Operand getRight();
+    public DiceNotationOperand getRight();
 
 }

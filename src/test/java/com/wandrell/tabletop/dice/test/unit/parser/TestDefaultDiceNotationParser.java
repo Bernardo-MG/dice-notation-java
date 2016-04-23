@@ -19,13 +19,14 @@ package com.wandrell.tabletop.dice.test.unit.parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.notation.DiceExpression;
-import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.operand.DiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
@@ -59,13 +60,13 @@ public final class TestDefaultDiceNotationParser {
     @Test
     public final void testParseDice_Add_Left() {
         final DiceNotationParser parser;
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final AdditionOperation operation;
-        final IntegerConstant integer;
-        final DiceOperand dice;
+        final IntegerExpression integer;
+        final DiceExpression dice;
         final String notation;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "5+2d6";
 
@@ -74,11 +75,11 @@ public final class TestDefaultDiceNotationParser {
         operation = (AdditionOperation) formula.getComponents().iterator()
                 .next();
 
-        dice = (DiceOperand) operation.getRight();
-        integer = (IntegerConstant) operation.getLeft();
+        dice = (DiceExpression) operation.getRight();
+        integer = (IntegerExpression) operation.getLeft();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
@@ -90,14 +91,14 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Add_Right() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final AdditionOperation operation;
-        final IntegerConstant integer;
-        final DiceOperand dice;
+        final IntegerExpression integer;
+        final DiceExpression dice;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "2d6+5";
 
@@ -106,11 +107,11 @@ public final class TestDefaultDiceNotationParser {
         operation = (AdditionOperation) formula.getComponents().iterator()
                 .next();
 
-        dice = (DiceOperand) operation.getLeft();
-        integer = (IntegerConstant) operation.getRight();
+        dice = (DiceExpression) operation.getLeft();
+        integer = (IntegerExpression) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
@@ -122,18 +123,18 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Number() {
-        final DiceExpression formula;
-        final IntegerConstant value;
+        final DiceExpressionRoot formula;
+        final IntegerExpression value;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12";
 
         formula = parser.parse(notation);
 
-        value = (IntegerConstant) formula.getComponents().iterator().next();
+        value = (IntegerExpression) formula.getComponents().iterator().next();
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
 
@@ -145,12 +146,12 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Number_Add() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final AdditionOperation value;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12+1";
 
@@ -169,12 +170,12 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Number_Sub() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final SubstractionOperation value;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12-1";
 
@@ -194,14 +195,14 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Sub_Left() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final SubstractionOperation operation;
-        final IntegerConstant integer;
-        final DiceOperand dice;
+        final IntegerExpression integer;
+        final DiceExpression dice;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "5-2d6";
 
@@ -210,11 +211,11 @@ public final class TestDefaultDiceNotationParser {
         operation = (SubstractionOperation) formula.getComponents().iterator()
                 .next();
 
-        dice = (DiceOperand) operation.getRight();
-        integer = (IntegerConstant) operation.getLeft();
+        dice = (DiceExpression) operation.getRight();
+        integer = (IntegerExpression) operation.getLeft();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
@@ -226,14 +227,14 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParseDice_Sub_Right() {
-        final DiceExpression formula;
+        final DiceExpressionRoot formula;
         final SubstractionOperation operation;
-        final IntegerConstant integer;
-        final DiceOperand dice;
+        final IntegerExpression integer;
+        final DiceExpression dice;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "2d6-5";
 
@@ -242,11 +243,11 @@ public final class TestDefaultDiceNotationParser {
         operation = (SubstractionOperation) formula.getComponents().iterator()
                 .next();
 
-        dice = (DiceOperand) operation.getLeft();
-        integer = (IntegerConstant) operation.getRight();
+        dice = (DiceExpression) operation.getLeft();
+        integer = (IntegerExpression) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getDice().getSides(), (Integer) 6);
+        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
@@ -255,18 +256,18 @@ public final class TestDefaultDiceNotationParser {
 
     @Test
     public final void testParseDice_Zero() {
-        final DiceExpression formula;
-        final IntegerConstant value;
+        final DiceExpressionRoot formula;
+        final IntegerExpression value;
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "0";
 
         formula = parser.parse(notation);
 
-        value = (IntegerConstant) formula.getComponents().iterator().next();
+        value = (IntegerExpression) formula.getComponents().iterator().next();
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
 

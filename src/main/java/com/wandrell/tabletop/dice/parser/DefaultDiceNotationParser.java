@@ -23,9 +23,10 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
-import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
+import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
  * Default parser for dice notation. It will transform a dice notation
@@ -44,15 +45,6 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     final DiceExpressionBuilder expressionBuilder;
 
     /**
-     * Default constructor.
-     */
-    public DefaultDiceNotationParser() {
-        super();
-
-        expressionBuilder = new DefaultDiceExpressionBuilder();
-    }
-
-    /**
      * Constructs a parser with the specified builder.
      * 
      * @param builder
@@ -65,8 +57,20 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
                 "Received a null pointer as listener");
     }
 
+    /**
+     * Default constructor.
+     * 
+     * @param roller
+     *            roller for the dice expressions
+     */
+    public DefaultDiceNotationParser(final Roller roller) {
+        super();
+
+        expressionBuilder = new DefaultDiceExpressionBuilder(roller);
+    }
+
     @Override
-    public final DiceExpression parse(final String expression) {
+    public final DiceExpressionRoot parse(final String expression) {
         final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
 
         checkNotNull(expression, "Received a null pointer as string");

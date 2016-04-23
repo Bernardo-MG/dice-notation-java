@@ -16,22 +16,27 @@
 
 package com.wandrell.tabletop.dice.parser.listener;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Stack;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser;
-import com.wandrell.tabletop.dice.notation.DefaultDiceExpression;
-import com.wandrell.tabletop.dice.notation.DiceExpression;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.ValueContext;
+import com.wandrell.tabletop.dice.notation.DefaultDiceExpressionRoot;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operand.DiceConstant;
-import com.wandrell.tabletop.dice.notation.operand.IntegerConstant;
-import com.wandrell.tabletop.dice.notation.operand.Operand;
+import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
+import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
+import com.wandrell.tabletop.dice.notation.operation.Operation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
  * Default {@code DiceExpression} builder.
@@ -47,7 +52,7 @@ public final class DefaultDiceExpressionBuilder extends
     /**
      * Generated dice expression.
      */
-    private DiceExpression                       expression;
+    private DiceExpressionRoot                   expression;
 
     /**
      * Stack to store operands from the outer nodes on operations.
@@ -55,28 +60,42 @@ public final class DefaultDiceExpressionBuilder extends
     private final Stack<DiceExpressionComponent> operandsStack = new Stack<>();
 
     /**
-     * Default constructor.
+     * Roller for the dice expressions.
      */
-    public DefaultDiceExpressionBuilder() {
+    private final Roller                         roller;
+
+    /**
+     * Default constructor.
+     * 
+     * @param roller
+     *            roller for the dice expressions
+     */
+    public DefaultDiceExpressionBuilder(final Roller roller) {
         super();
+
+        this.roller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
-    public final void enterParse(final DiceNotationParser.ParseContext ctx) {
-        expression = new DefaultDiceExpression();
+    public final void enterParse(final ParseContext ctx) {
+        checkNotNull(ctx, "Received a null pointer as context");
+
+        expression = new DefaultDiceExpressionRoot();
     }
 
     @Override
-    public final void exitBinaryOp(DiceNotationParser.BinaryOpContext ctx) {
-        final BinaryOperation opAdd;
+    public final void exitBinaryOp(final BinaryOpContext ctx) {
+        final Operation opAdd;
         final String operator;
-        final Operand left;
-        final Operand right;
+        final DiceNotationOperand left;
+        final DiceNotationOperand right;
+
+        checkNotNull(ctx, "Received a null pointer as context");
 
         operator = ctx.OPERATOR().getText();
 
-        right = (Operand) getOperandsStack().pop();
-        left = (Operand) getOperandsStack().pop();
+        right = (DiceNotationOperand) getOperandsStack().pop();
+        left = (DiceNotationOperand) getOperandsStack().pop();
 
         if (operator.equals("+")) {
             opAdd = new AdditionOperation(left, right);
@@ -88,37 +107,43 @@ public final class DefaultDiceExpressionBuilder extends
     }
 
     @Override
-    public final void exitDice(final DiceNotationParser.DiceContext ctx) {
+    public final void exitDice(final DiceContext ctx) {
         final Dice dice;
         final Integer count;
         final Integer sides;
+
+        checkNotNull(ctx, "Received a null pointer as context");
 
         count = Integer.parseInt(ctx.quantity().getText());
         sides = Integer.parseInt(ctx.sides().getText());
 
         dice = new DefaultDice(count, sides);
 
-        getOperandsStack().push(new DiceOperand(new DiceConstant(dice)));
+        getOperandsStack().push(new DefaultDiceExpression(dice, getRoller()));
     }
 
     @Override
-    public final void exitParse(final DiceNotationParser.ParseContext ctx) {
+    public final void exitParse(final ParseContext ctx) {
+        checkNotNull(ctx, "Received a null pointer as context");
+
         while (!getOperandsStack().isEmpty()) {
             expression.addDiceNotationComponent(getOperandsStack().pop());
         }
     }
 
     @Override
-    public final void exitValue(final DiceNotationParser.ValueContext ctx) {
+    public final void exitValue(final ValueContext ctx) {
         final Integer value;
+
+        checkNotNull(ctx, "Received a null pointer as context");
 
         value = Integer.parseInt(ctx.getText());
 
-        getOperandsStack().push(new IntegerConstant(value));
+        getOperandsStack().push(new IntegerExpression(value));
     }
 
     @Override
-    public final DiceExpression getDiceExpression() {
+    public final DiceExpressionRoot getDiceExpression() {
         return expression;
     }
 
@@ -129,6 +154,15 @@ public final class DefaultDiceExpressionBuilder extends
      */
     private final Stack<DiceExpressionComponent> getOperandsStack() {
         return operandsStack;
+    }
+
+    /**
+     * Returns the roller for the dice expressions.
+     * 
+     * @return the roller for the dice expressions
+     */
+    private final Roller getRoller() {
+        return roller;
     }
 
 }

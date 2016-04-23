@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceNotationParser}, checking that it throws
@@ -49,7 +50,7 @@ public final class TestExceptionDefaultDiceNotationParser {
     public final void testParse_Empty() {
         final DiceNotationParser parser; // Tested parser
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         parser.parse("");
     }
@@ -61,7 +62,7 @@ public final class TestExceptionDefaultDiceNotationParser {
     public final void testParseDice_Invalid() {
         final DiceNotationParser parser; // Tested parser
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         parser.parse("abc");
     }

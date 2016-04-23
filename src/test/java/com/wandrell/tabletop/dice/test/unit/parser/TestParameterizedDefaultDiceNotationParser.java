@@ -23,10 +23,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceExpression;
-import com.wandrell.tabletop.dice.notation.operation.DiceOperand;
+import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.operand.DiceExpression;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.test.util.config.factory.parameter.DiceValuesTestParametersFactory;
 
 /**
@@ -84,15 +85,15 @@ public final class TestParameterizedDefaultDiceNotationParser {
     public final void testParse_Dice_Valid(final String expression,
             final Integer quantity, final Integer sides) {
         final DiceNotationParser parser; // Tested parser
-        final DiceExpression parsed;     // Parsed expression
+        final DiceExpressionRoot parsed;     // Parsed expression
         final Dice dice;                 // Resulting dice
 
-        parser = new DefaultDiceNotationParser();
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         parsed = parser.parse(expression);
 
-        dice = ((DiceOperand) parsed.getComponents().iterator().next())
-                .getDice().getDice();
+        dice = ((DiceExpression) parsed.getComponents().iterator().next())
+                .getDice();
 
         Assert.assertEquals(dice.getQuantity(), quantity);
         Assert.assertEquals(dice.getSides(), sides);
