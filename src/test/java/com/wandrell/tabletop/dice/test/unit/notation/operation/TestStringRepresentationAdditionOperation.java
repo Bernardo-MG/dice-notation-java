@@ -21,7 +21,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 
 public final class TestStringRepresentationAdditionOperation {
@@ -33,13 +32,13 @@ public final class TestStringRepresentationAdditionOperation {
     @Test
     public final void testGetStringRepresentation() {
         final DiceExpressionComponent operation;
-        final DiceNotationOperand operandA;
-        final DiceNotationOperand operandB;
+        final DiceExpressionComponent operandA;
+        final DiceExpressionComponent operandB;
 
-        operandA = Mockito.mock(DiceNotationOperand.class);
+        operandA = Mockito.mock(DiceExpressionComponent.class);
         Mockito.when(operandA.getStringRepresentation()).thenReturn("1");
 
-        operandB = Mockito.mock(DiceNotationOperand.class);
+        operandB = Mockito.mock(DiceExpressionComponent.class);
         Mockito.when(operandB.getStringRepresentation()).thenReturn("2");
 
         operation = new AdditionOperation(operandA, operandB);

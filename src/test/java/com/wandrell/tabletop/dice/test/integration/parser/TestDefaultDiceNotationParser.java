@@ -19,9 +19,8 @@ package com.wandrell.tabletop.dice.test.integration.parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
-import com.wandrell.tabletop.dice.notation.operand.DiceExpression;
-import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
+import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
+import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
@@ -60,30 +59,26 @@ public final class TestDefaultDiceNotationParser {
     @Test
     public final void testParse_Add_Left() {
         final DiceNotationParser parser;
-        final DiceExpressionRoot formula;
         final AdditionOperation operation;
-        final IntegerExpression integer;
-        final DiceExpression dice;
+        final IntegerOperand integer;
+        final DiceOperand dice;
         final String notation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "5+2d6";
 
-        formula = parser.parse(notation);
+        operation = (AdditionOperation) parser.parse(notation);
 
-        operation = (AdditionOperation) formula.getComponents().iterator()
-                .next();
-
-        dice = (DiceExpression) operation.getRight();
-        integer = (IntegerExpression) operation.getLeft();
+        dice = (DiceOperand) operation.getRight();
+        integer = (IntegerOperand) operation.getLeft();
 
         Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getStringRepresentation(), notation);
     }
 
     /**
@@ -91,10 +86,9 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Add_Right() {
-        final DiceExpressionRoot formula;
         final AdditionOperation operation;
-        final IntegerExpression integer;
-        final DiceExpression dice;
+        final IntegerOperand integer;
+        final DiceOperand dice;
         final String notation;
         final DiceNotationParser parser;
 
@@ -102,20 +96,17 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "2d6+5";
 
-        formula = parser.parse(notation);
+        operation = (AdditionOperation) parser.parse(notation);
 
-        operation = (AdditionOperation) formula.getComponents().iterator()
-                .next();
-
-        dice = (DiceExpression) operation.getLeft();
-        integer = (IntegerExpression) operation.getRight();
+        dice = (DiceOperand) operation.getLeft();
+        integer = (IntegerOperand) operation.getRight();
 
         Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getStringRepresentation(), notation);
     }
 
     /**
@@ -123,8 +114,7 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Number() {
-        final DiceExpressionRoot formula;
-        final IntegerExpression value;
+        final IntegerOperand value;
         final String notation;
         final DiceNotationParser parser;
 
@@ -132,13 +122,11 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "12";
 
-        formula = parser.parse(notation);
-
-        value = (IntegerExpression) formula.getComponents().iterator().next();
+        value = (IntegerOperand) parser.parse(notation);
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getStringRepresentation(), notation);
     }
 
     /**
@@ -146,7 +134,6 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Number_Add() {
-        final DiceExpressionRoot formula;
         final AdditionOperation value;
         final String notation;
         final DiceNotationParser parser;
@@ -155,14 +142,12 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "12+1";
 
-        formula = parser.parse(notation);
-
-        value = (AdditionOperation) formula.getComponents().iterator().next();
+        value = (AdditionOperation) parser.parse(notation);
 
         Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
         Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getStringRepresentation(), notation);
     }
 
     /**
@@ -170,7 +155,6 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Number_Sub() {
-        final DiceExpressionRoot formula;
         final SubstractionOperation value;
         final String notation;
         final DiceNotationParser parser;
@@ -179,15 +163,12 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "12-1";
 
-        formula = parser.parse(notation);
-
-        value = (SubstractionOperation) formula.getComponents().iterator()
-                .next();
+        value = (SubstractionOperation) parser.parse(notation);
 
         Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
         Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getStringRepresentation(), notation);
     }
 
     /**
@@ -195,10 +176,9 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Sub_Left() {
-        final DiceExpressionRoot formula;
         final SubstractionOperation operation;
-        final IntegerExpression integer;
-        final DiceExpression dice;
+        final IntegerOperand integer;
+        final DiceOperand dice;
         final String notation;
         final DiceNotationParser parser;
 
@@ -206,20 +186,17 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "5-2d6";
 
-        formula = parser.parse(notation);
+        operation = (SubstractionOperation) parser.parse(notation);
 
-        operation = (SubstractionOperation) formula.getComponents().iterator()
-                .next();
-
-        dice = (DiceExpression) operation.getRight();
-        integer = (IntegerExpression) operation.getLeft();
+        dice = (DiceOperand) operation.getRight();
+        integer = (IntegerOperand) operation.getLeft();
 
         Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getStringRepresentation(), notation);
     }
 
     /**
@@ -227,10 +204,9 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Sub_Right() {
-        final DiceExpressionRoot formula;
         final SubstractionOperation operation;
-        final IntegerExpression integer;
-        final DiceExpression dice;
+        final IntegerOperand integer;
+        final DiceOperand dice;
         final String notation;
         final DiceNotationParser parser;
 
@@ -238,26 +214,22 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "2d6-5";
 
-        formula = parser.parse(notation);
+        operation = (SubstractionOperation) parser.parse(notation);
 
-        operation = (SubstractionOperation) formula.getComponents().iterator()
-                .next();
-
-        dice = (DiceExpression) operation.getLeft();
-        integer = (IntegerExpression) operation.getRight();
+        dice = (DiceOperand) operation.getLeft();
+        integer = (IntegerOperand) operation.getRight();
 
         Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
         Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getStringRepresentation(), notation);
     }
 
     @Test
     public final void testParse_Zero() {
-        final DiceExpressionRoot formula;
-        final IntegerExpression value;
+        final IntegerOperand value;
         final String notation;
         final DiceNotationParser parser;
 
@@ -265,13 +237,11 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "0";
 
-        formula = parser.parse(notation);
-
-        value = (IntegerExpression) formula.getComponents().iterator().next();
+        value = (IntegerOperand) parser.parse(notation);
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
 
-        Assert.assertEquals(formula.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getStringRepresentation(), notation);
     }
 
 }

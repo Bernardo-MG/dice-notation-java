@@ -21,11 +21,9 @@ import java.util.Collection;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.roller.Roller;
 
-public final class DefaultDiceExpression implements DiceExpressionComponent,
-        DiceExpression {
+public final class DefaultDiceExpression implements DiceOperand {
 
     private final Dice   dice;
 

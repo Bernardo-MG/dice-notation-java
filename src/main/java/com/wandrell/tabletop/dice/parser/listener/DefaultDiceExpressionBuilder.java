@@ -25,14 +25,10 @@ import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.ValueContext;
-import com.wandrell.tabletop.dice.notation.DefaultDiceExpressionRoot;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
-import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
-import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
+import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
@@ -52,7 +48,7 @@ public final class DefaultDiceExpressionBuilder extends
     /**
      * Generated dice expression.
      */
-    private DiceExpressionRoot                   expression;
+    private DiceExpressionComponent              expression;
 
     /**
      * Stack to store operands from the outer nodes on operations.
@@ -77,25 +73,18 @@ public final class DefaultDiceExpressionBuilder extends
     }
 
     @Override
-    public final void enterParse(final ParseContext ctx) {
-        checkNotNull(ctx, "Received a null pointer as context");
-
-        expression = new DefaultDiceExpressionRoot();
-    }
-
-    @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
         final BinaryOperation opAdd;
         final String operator;
-        final DiceNotationOperand left;
-        final DiceNotationOperand right;
+        final DiceExpressionComponent left;
+        final DiceExpressionComponent right;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
         operator = ctx.OPERATOR().getText();
 
-        right = (DiceNotationOperand) getOperandsStack().pop();
-        left = (DiceNotationOperand) getOperandsStack().pop();
+        right = getOperandsStack().pop();
+        left = getOperandsStack().pop();
 
         if (operator.equals("+")) {
             opAdd = new AdditionOperation(left, right);
@@ -104,6 +93,8 @@ public final class DefaultDiceExpressionBuilder extends
         }
 
         getOperandsStack().push(opAdd);
+
+        expression = getOperandsStack().peek();
     }
 
     @Override
@@ -120,15 +111,8 @@ public final class DefaultDiceExpressionBuilder extends
         dice = new DefaultDice(count, sides);
 
         getOperandsStack().push(new DefaultDiceExpression(dice, getRoller()));
-    }
 
-    @Override
-    public final void exitParse(final ParseContext ctx) {
-        checkNotNull(ctx, "Received a null pointer as context");
-
-        while (!getOperandsStack().isEmpty()) {
-            expression.addDiceNotationComponent(getOperandsStack().pop());
-        }
+        expression = getOperandsStack().peek();
     }
 
     @Override
@@ -139,11 +123,13 @@ public final class DefaultDiceExpressionBuilder extends
 
         value = Integer.parseInt(ctx.getText());
 
-        getOperandsStack().push(new IntegerExpression(value));
+        getOperandsStack().push(new IntegerOperand(value));
+
+        expression = getOperandsStack().peek();
     }
 
     @Override
-    public final DiceExpressionRoot getDiceExpression() {
+    public final DiceExpressionComponent getDiceExpression() {
         return expression;
     }
 

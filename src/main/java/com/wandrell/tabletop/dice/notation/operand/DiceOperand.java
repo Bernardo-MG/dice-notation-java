@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.notation;
+package com.wandrell.tabletop.dice.notation.operand;
 
-public interface DiceNotationExpression {
+import com.wandrell.tabletop.dice.Dice;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
-    public Integer generateResult();
+public interface DiceOperand extends DiceExpressionComponent {
+
+    public Dice getDice();
 
 }

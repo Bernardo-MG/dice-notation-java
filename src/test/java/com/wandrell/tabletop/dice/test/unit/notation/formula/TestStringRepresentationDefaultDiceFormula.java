@@ -21,11 +21,9 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DefaultDiceExpressionRoot;
-import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
-import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
-import com.wandrell.tabletop.dice.notation.operand.IntegerExpression;
+import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
@@ -40,46 +38,36 @@ public final class TestStringRepresentationDefaultDiceFormula {
 
     @Test
     public final void testGetStringRepresentation_Addition() {
-        final DiceExpressionRoot formula;
         final Dice dice;
-        final DiceNotationOperand diceOperand;
-        final DiceNotationOperand intOperand;
+        final DiceExpressionComponent diceOperand;
+        final DiceExpressionComponent intOperand;
         final BinaryOperation operation;
 
         dice = new DefaultDice(2, 6);
 
         diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
-        intOperand = new IntegerExpression(5);
+        intOperand = new IntegerOperand(5);
 
         operation = new AdditionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpressionRoot();
-
-        formula.addDiceNotationComponent(operation);
-
-        Assert.assertEquals(formula.getStringRepresentation(), "2d6+5");
+        Assert.assertEquals(operation.getStringRepresentation(), "2d6+5");
     }
 
     @Test
     public final void testGetStringRepresentation_Substraction() {
-        final DiceExpressionRoot formula;
         final Dice dice;
-        final DiceNotationOperand diceOperand;
-        final DiceNotationOperand intOperand;
+        final DiceExpressionComponent diceOperand;
+        final DiceExpressionComponent intOperand;
         final BinaryOperation operation;
 
         dice = new DefaultDice(2, 6);
 
         diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
-        intOperand = new IntegerExpression(5);
+        intOperand = new IntegerOperand(5);
 
         operation = new SubstractionOperation(diceOperand, intOperand);
 
-        formula = new DefaultDiceExpressionRoot();
-
-        formula.addDiceNotationComponent(operation);
-
-        Assert.assertEquals(formula.getStringRepresentation(), "2d6-5");
+        Assert.assertEquals(operation.getStringRepresentation(), "2d6-5");
     }
 
 }

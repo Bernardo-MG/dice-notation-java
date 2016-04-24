@@ -17,12 +17,11 @@
 package com.wandrell.tabletop.dice.notation.operation;
 
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
 
 public interface BinaryOperation extends DiceExpressionComponent {
 
-    public DiceNotationOperand getLeft();
+    public DiceExpressionComponent getLeft();
 
-    public DiceNotationOperand getRight();
+    public DiceExpressionComponent getRight();
 
 }

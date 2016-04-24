@@ -23,7 +23,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
-import com.wandrell.tabletop.dice.notation.DiceExpressionRoot;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
 import com.wandrell.tabletop.dice.roller.Roller;
@@ -70,7 +70,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     }
 
     @Override
-    public final DiceExpressionRoot parse(final String expression) {
+    public final DiceExpressionComponent parse(final String expression) {
         final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
 
         checkNotNull(expression, "Received a null pointer as string");

@@ -18,16 +18,16 @@ package com.wandrell.tabletop.dice.notation.operation;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.operand.DiceNotationOperand;
+import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
 public final class SubstractionOperation implements BinaryOperation {
 
-    final DiceNotationOperand operandLeft;
+    final DiceExpressionComponent operandLeft;
 
-    final DiceNotationOperand operandRight;
+    final DiceExpressionComponent operandRight;
 
-    public SubstractionOperation(final DiceNotationOperand operandLeft,
-            final DiceNotationOperand operandRight) {
+    public SubstractionOperation(final DiceExpressionComponent operandLeft,
+            final DiceExpressionComponent operandRight) {
         super();
 
         this.operandLeft = operandLeft;
@@ -57,12 +57,12 @@ public final class SubstractionOperation implements BinaryOperation {
     }
 
     @Override
-    public final DiceNotationOperand getLeft() {
+    public final DiceExpressionComponent getLeft() {
         return operandLeft;
     }
 
     @Override
-    public final DiceNotationOperand getRight() {
+    public final DiceExpressionComponent getRight() {
         return operandRight;
     }
 
