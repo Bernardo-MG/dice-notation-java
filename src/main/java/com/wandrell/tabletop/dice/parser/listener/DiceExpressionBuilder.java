@@ -20,13 +20,21 @@ import com.wandrell.tabletop.dice.generated.DiceNotationGrammarListener;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
 /**
- * Listener to create a {@code DiceExpression} from an ANTLR4 parser by using
- * the visitor pattern.
+ * Creates a {@code DiceExpressionComponent} from an ANTLR4 parser by using the
+ * visitor pattern.
+ * <p>
+ * This {@code DiceExpressionComponent} is the root for a tree representing the
+ * expression received by the parser.
  * 
  * @author Bernardo Martínez Garrido
  */
 public interface DiceExpressionBuilder extends DiceNotationGrammarListener {
 
-    public DiceExpressionComponent getDiceExpression();
+    /**
+     * Returns the root for the tree of dice notation model objects.
+     * 
+     * @return the tree of dice notation model objects
+     */
+    public DiceExpressionComponent getDiceExpressionRoot();
 
 }

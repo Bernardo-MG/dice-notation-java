@@ -23,7 +23,7 @@ import org.antlr.v4.runtime.Recognizer;
 /**
  * Basic error listener for an ANTLR4 parser.
  * <p>
- * It just generates an exception warning of the error.
+ * It just throws an exception for any error the listener reacts to.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -41,7 +41,7 @@ public class DefaultErrorListener extends BaseErrorListener {
             final Object offendingSymbol, final int line,
             final int charPositionInLine, final String msg,
             final RecognitionException e) {
-        final String message;
+        final String message; // Final exception message
 
         message = String.format(
                 "Failed to parse at line %$1d on char %$2d due to %$3s", line,

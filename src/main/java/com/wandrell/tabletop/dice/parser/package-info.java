@@ -19,6 +19,13 @@
  * <p>
  * These will take a string with a dice notation expression and return a tree of
  * dice notation model objects.
+ * <p>
+ * The {@link com.wandrell.tabletop.dice.parser.DiceNotationParser
+ * DiceNotationParser} allows creating custom parsers, but one is already
+ * implemented, the
+ * {@link com.wandrell.tabletop.dice.parser.AntlrDiceNotationParser
+ * AntlrDiceNotationParser}, which makes use of the classes generated from an
+ * ANTLR4 grammar to parse dice expressions.
  */
 
 package com.wandrell.tabletop.dice.parser;

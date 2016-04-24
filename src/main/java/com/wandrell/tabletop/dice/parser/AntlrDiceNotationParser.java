@@ -42,7 +42,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class DefaultDiceNotationParser implements DiceNotationParser {
+public final class AntlrDiceNotationParser implements DiceNotationParser {
 
     /**
      * Visitor used to build the returned object.
@@ -59,7 +59,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * @param builder
      *            builder to generate the returned tree
      */
-    public DefaultDiceNotationParser(final DiceExpressionBuilder builder) {
+    public AntlrDiceNotationParser(final DiceExpressionBuilder builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -74,7 +74,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * @param roller
      *            roller for the dice expressions
      */
-    public DefaultDiceNotationParser(final Roller roller) {
+    public AntlrDiceNotationParser(final Roller roller) {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder(roller);
@@ -82,28 +82,30 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
 
     @Override
     public final DiceExpressionComponent parse(final String expression) {
-        final DiceNotationGrammarParser parser;
+        final DiceNotationGrammarParser parser; // ANTLR parser
 
         checkNotNull(expression, "Received a null pointer as string");
 
+        // Creates the ANTLR parser
         parser = buildDiceNotationParser(expression);
 
+        // Listeners are added
         parser.addErrorListener(new DefaultErrorListener());
         parser.addParseListener(getDiceExpressionBuilder());
+
+        // Parses the expression
         parser.parse();
 
-        return getDiceExpressionBuilder().getDiceExpression();
+        // Returns the tree
+        return getDiceExpressionBuilder().getDiceExpressionRoot();
     }
 
     /**
-     * Created the ANTLR4 parser which will be used to process the received
-     * expression.
+     * Creates the ANTLR4 parser to be used for processing the dice expression.
      * <p>
-     * Combining this with the builder, which is actually a listener used for
-     * the visitor pattern, it is possible creating the expected result.
-     * <p>
-     * The received expression will be processed in a few steps, which end in
-     * the creation of the ANTLR4 parser.
+     * This parser will be tailored to the received expression, but it will
+     * still need a listener which, using the visitor pattern, will create the
+     * final object.
      * 
      * @param expression
      *            expression used to generate the parser
@@ -111,9 +113,9 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      */
     private final DiceNotationGrammarParser buildDiceNotationParser(
             final String expression) {
-        final ANTLRInputStream input;
-        final DiceNotationGrammarLexer lexer;
-        final TokenStream tokens;
+        final ANTLRInputStream input;         // Input stream for the expression
+        final DiceNotationGrammarLexer lexer; // Lexer for the expression tokens
+        final TokenStream tokens;             // Expression tokens
 
         input = new ANTLRInputStream(expression);
         lexer = new DiceNotationGrammarLexer(input);
