@@ -25,8 +25,8 @@ import java.util.Random;
  * <p>
  * It makes use of the {@link Random} class for generating the numbers.
  * <p>
- * These numbers will be integers in a closed interval, beginning at 1
- * and ending in a specified value.
+ * These numbers will be integers in a closed interval, beginning at 1 and
+ * ending in a specified value.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -56,7 +56,8 @@ public final class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public final Integer generate(final Integer max) {
-        checkArgument(max >= LOWER_LIMIT, String.format("The maximum value can't be lower than %d",LOWER_LIMIT));
+        checkArgument(max >= LOWER_LIMIT, String.format(
+                "The maximum value can't be lower than %d", LOWER_LIMIT));
 
         return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
                 + LOWER_LIMIT;

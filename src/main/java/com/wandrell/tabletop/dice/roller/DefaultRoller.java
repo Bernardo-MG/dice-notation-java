@@ -23,8 +23,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
  * Generates random integer values from a {@link Dice}.

@@ -1,10 +1,9 @@
 /** 
  * Dice notation grammar.
  * 
- * Dice notation was created around Dungeons & Dragons as a way to represent
- * dice rolls, and later evolved through several other tabletop RPGs.
+ * This is the notation which RPGs and other tabletop games use to represent operations with dice.
  */
-grammar DiceNotation;
+grammar DiceNotationGrammar;
 
 /**
  * Rules.

@@ -19,12 +19,12 @@ package com.wandrell.tabletop.dice.roller.random;
 /**
  * Generates a random integer value.
  * <p>
- * This is meant to be used by the
- * implementations of {@link com.wandrell.tabletop.dice.roller.Roller},
- * to tune the actual probabilities distributions.
+ * This is meant to be used by the implementations of
+ * {@link com.wandrell.tabletop.dice.roller.Roller}, to tune the actual
+ * probabilities distributions.
  * <p>
- * The possible values which the generator may return are expected to begin at 1,
- * and end in a specified value.
+ * The possible values which the generator may return are expected to begin at
+ * 1, and end in a specified value.
  * 
  * @author Bernardo Martínez Garrido
  */

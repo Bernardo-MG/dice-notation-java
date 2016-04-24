@@ -18,8 +18,8 @@ package com.wandrell.tabletop.dice.test.unit.random;
 
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
  * Units tests for {@code DefaultNumberGenerator}, checking that it throws

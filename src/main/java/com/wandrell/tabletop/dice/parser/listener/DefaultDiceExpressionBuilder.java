@@ -22,10 +22,10 @@ import java.util.Stack;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser.ValueContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.BinaryOpContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ValueContext;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
@@ -43,7 +43,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * @author Bernardo Martínez Garrido
  */
 public final class DefaultDiceExpressionBuilder extends
-        DiceNotationBaseListener implements DiceExpressionBuilder {
+        DiceNotationGrammarBaseListener implements DiceExpressionBuilder {
 
     /**
      * Generated dice expression.

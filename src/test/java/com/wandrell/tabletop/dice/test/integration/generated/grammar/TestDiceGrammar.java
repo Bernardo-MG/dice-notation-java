@@ -26,9 +26,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser;
-import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarLexer;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ParseContext;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.test.util.config.parameter.DiceParametersFactory;
 
@@ -95,17 +95,17 @@ public final class TestDiceGrammar {
      *            notation to parse
      * @return a parse tailored the the notation
      */
-    private final DiceNotationParser getParser(final String notation) {
+    private final DiceNotationGrammarParser getParser(final String notation) {
         final CharStream in;             // Characters stream
-        final DiceNotationLexer lexer;   // Lexer
+        final DiceNotationGrammarLexer lexer;   // Lexer
         final TokenStream tokens;        // Lexical tokens
-        final DiceNotationParser parser; // Parser
+        final DiceNotationGrammarParser parser; // Parser
 
         in = new ANTLRInputStream(notation);
-        lexer = new DiceNotationLexer(in);
+        lexer = new DiceNotationGrammarLexer(in);
         tokens = new CommonTokenStream(lexer);
 
-        parser = new DiceNotationParser(tokens);
+        parser = new DiceNotationGrammarParser(tokens);
 
         parser.addErrorListener(new DefaultErrorListener());
 

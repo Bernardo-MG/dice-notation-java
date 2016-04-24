@@ -16,7 +16,7 @@
 
 package com.wandrell.tabletop.dice.parser.listener;
 
-import com.wandrell.tabletop.dice.generated.DiceNotationListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarListener;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 
 /**
@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface DiceExpressionBuilder extends DiceNotationListener {
+public interface DiceExpressionBuilder extends DiceNotationGrammarListener {
 
     public DiceExpressionComponent getDiceExpression();
 

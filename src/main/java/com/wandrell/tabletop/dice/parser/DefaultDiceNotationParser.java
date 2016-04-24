@@ -22,7 +22,8 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 
-import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarLexer;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
@@ -33,11 +34,11 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * Dice notation parser making use of ANTLR4 generated classes.
  * <p>
  * These classes are generated from an ANTRL4 BNF grammar, including the actual
- * parser, which this one wraps and sets up, mostly by setting a {@link DiceExpressionBuilder}
- * into it.
+ * parser, which this one wraps and sets up, mostly by setting a
+ * {@link DiceExpressionBuilder} into it.
  * <p>
- * The {@code DiceExpressionBuilder} is a listener making use of the visitor pattern to 
- * generate the returned tree of dice notation model objects.
+ * The {@code DiceExpressionBuilder} is a listener making use of the visitor
+ * pattern to generate the returned tree of dice notation model objects.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -46,8 +47,9 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     /**
      * Visitor used to build the returned object.
      * <p>
-     * It is a listener which will be called when the ANTLR parser goes through each node
-     * on the generated grammar tree, creating from it a tree of dice notation model objects.
+     * It is a listener which will be called when the ANTLR parser goes through
+     * each node on the generated grammar tree, creating from it a tree of dice
+     * notation model objects.
      */
     final DiceExpressionBuilder expressionBuilder;
 
@@ -80,7 +82,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
 
     @Override
     public final DiceExpressionComponent parse(final String expression) {
-        final com.wandrell.tabletop.dice.generated.DiceNotationParser parser;
+        final DiceNotationGrammarParser parser;
 
         checkNotNull(expression, "Received a null pointer as string");
 
@@ -107,18 +109,17 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      *            expression used to generate the parser
      * @return an ANTLR4 parser tailored for the expression
      */
-    private final com.wandrell.tabletop.dice.generated.DiceNotationParser
-            buildDiceNotationParser(final String expression) {
+    private final DiceNotationGrammarParser buildDiceNotationParser(
+            final String expression) {
         final ANTLRInputStream input;
-        final DiceNotationLexer lexer;
+        final DiceNotationGrammarLexer lexer;
         final TokenStream tokens;
 
         input = new ANTLRInputStream(expression);
-        lexer = new DiceNotationLexer(input);
+        lexer = new DiceNotationGrammarLexer(input);
         tokens = new CommonTokenStream(lexer);
 
-        return new com.wandrell.tabletop.dice.generated.DiceNotationParser(
-                tokens);
+        return new DiceNotationGrammarParser(tokens);
     }
 
     /**
