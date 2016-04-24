@@ -23,13 +23,13 @@ import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.Roller;
 
-public final class DefaultDiceExpression implements DiceOperand {
+public final class DefaultDiceOperand implements DiceOperand {
 
     private final Dice   dice;
 
     private final Roller roller;
 
-    public DefaultDiceExpression(final Dice dice, final Roller roller) {
+    public DefaultDiceOperand(final Dice dice, final Roller roller) {
         super();
 
         this.roller = roller;
@@ -50,9 +50,9 @@ public final class DefaultDiceExpression implements DiceOperand {
             return false;
         }
 
-        final DefaultDiceExpression other;
+        final DefaultDiceOperand other;
 
-        other = (DefaultDiceExpression) obj;
+        other = (DefaultDiceOperand) obj;
 
         return Objects.equal(dice, other.dice);
     }

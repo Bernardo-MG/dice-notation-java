@@ -23,11 +23,10 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
- * Implementation of {@code Dice} for a general use.
+ * Value entity implementation of {@code Dice}, representing a group of dice.
  * <p>
- * This just supports the most basic representation of a dice. If complex
- * notation, or operations such as dice mapping, are needed, then other classes
- * should be used.
+ * This means the class is immutable, not allowing the modification of any of
+ * its values.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -48,30 +47,15 @@ public final class DefaultDice implements Dice {
     private final Integer diceSides;
 
     /**
-     * Copy constructor for {@code DefaultDice}.
-     * 
-     * @param dice
-     *            the dice to copy
-     */
-    public DefaultDice(final DefaultDice dice) {
-        super();
-
-        checkNotNull(dice, "Received a null pointer as dice");
-
-        diceSides = dice.diceSides;
-        diceQuantity = dice.diceQuantity;
-    }
-
-    /**
-     * Constructs a {@code DefaultDice} with the specified quantity and sides.
+     * Constructs a dice group with the specified quantity and number sides.
      * <p>
      * The quantity can't be a negative value, and the number of sides should be
-     * greater than zero. Otherwise an exception is thrown.
+     * greater than zero.
      * 
      * @param quantity
      *            the number of dice
      * @param sides
-     *            the sides each die has
+     *            the number sides each die has
      */
     public DefaultDice(final Integer quantity, final Integer sides) {
         super();

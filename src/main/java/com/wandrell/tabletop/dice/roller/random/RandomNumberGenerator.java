@@ -14,20 +14,23 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.random;
+package com.wandrell.tabletop.dice.roller.random;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Random;
 
 /**
- * Default number generation, which just generates a random value.
+ * {@link Random}-based number generator.
  * <p>
- * It makes use of the {@link Random} class for generating then ubers.
+ * It makes use of the {@link Random} class for generating the numbers.
+ * <p>
+ * These numbers will be integers in a closed interval, beginning at 1
+ * and ending in a specified value.
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class DefaultNumberGenerator implements NumberGenerator {
+public final class RandomNumberGenerator implements NumberGenerator {
 
     /**
      * Lower limit for the number generation procedure.
@@ -47,13 +50,13 @@ public final class DefaultNumberGenerator implements NumberGenerator {
     /**
      * Default constructor.
      */
-    public DefaultNumberGenerator() {
+    public RandomNumberGenerator() {
         super();
     }
 
     @Override
     public final Integer generate(final Integer max) {
-        checkArgument(max >= 1, "The maximum value can't be lower than 1");
+        checkArgument(max >= LOWER_LIMIT, String.format("The maximum value can't be lower than %d",LOWER_LIMIT));
 
         return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
                 + LOWER_LIMIT;

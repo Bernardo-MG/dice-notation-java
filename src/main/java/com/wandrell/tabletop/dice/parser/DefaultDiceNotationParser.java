@@ -25,12 +25,19 @@ import org.antlr.v4.runtime.TokenStream;
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
+import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
- * Default parser for dice notation. It will transform a dice notation
- * expression, received as a string, into an object representing it.
+ * Dice notation parser making use of ANTLR4 generated classes.
+ * <p>
+ * These classes are generated from an ANTRL4 BNF grammar, including the actual
+ * parser, which this one wraps and sets up, mostly by setting a {@link DiceExpressionBuilder}
+ * into it.
+ * <p>
+ * The {@code DiceExpressionBuilder} is a listener making use of the visitor pattern to 
+ * generate the returned tree of dice notation model objects.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -39,8 +46,8 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     /**
      * Visitor used to build the returned object.
      * <p>
-     * It is a listener which will react when the parser goes through each node
-     * on the generated tree.
+     * It is a listener which will be called when the ANTLR parser goes through each node
+     * on the generated grammar tree, creating from it a tree of dice notation model objects.
      */
     final DiceExpressionBuilder expressionBuilder;
 
@@ -48,7 +55,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * Constructs a parser with the specified builder.
      * 
      * @param builder
-     *            builder to generate the returned object
+     *            builder to generate the returned tree
      */
     public DefaultDiceNotationParser(final DiceExpressionBuilder builder) {
         super();
@@ -59,6 +66,8 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
 
     /**
      * Default constructor.
+     * <p>
+     * It makes use of a {@link DefaultDiceExpressionBuilder}.
      * 
      * @param roller
      *            roller for the dice expressions

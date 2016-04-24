@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.ParseContext;
-import com.wandrell.tabletop.dice.parser.DefaultErrorListener;
+import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.test.util.config.parameter.DiceParametersFactory;
 
 /**

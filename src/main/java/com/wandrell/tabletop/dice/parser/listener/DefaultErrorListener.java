@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.parser;
+package com.wandrell.tabletop.dice.parser.listener;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;

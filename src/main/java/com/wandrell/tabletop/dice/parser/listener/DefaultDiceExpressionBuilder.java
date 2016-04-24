@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationParser.ValueContext;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
@@ -110,7 +110,7 @@ public final class DefaultDiceExpressionBuilder extends
 
         dice = new DefaultDice(count, sides);
 
-        getOperandsStack().push(new DefaultDiceExpression(dice, getRoller()));
+        getOperandsStack().push(new DefaultDiceOperand(dice, getRoller()));
 
         expression = getOperandsStack().peek();
     }

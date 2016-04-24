@@ -18,8 +18,8 @@ package com.wandrell.tabletop.dice.test.unit.random;
 
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
-import com.wandrell.tabletop.dice.random.NumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
 
 /**
  * Units tests for {@code DefaultNumberGenerator}, checking that it throws
@@ -48,7 +48,7 @@ public final class TestExceptionDefaultNumberGenerator {
     public final void testGenerate_NegativeMax() {
         final NumberGenerator generator; // Tested generator
 
-        generator = new DefaultNumberGenerator();
+        generator = new RandomNumberGenerator();
 
         generator.generate(-1);
     }

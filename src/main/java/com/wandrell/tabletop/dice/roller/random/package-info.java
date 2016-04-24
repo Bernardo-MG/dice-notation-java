@@ -15,9 +15,12 @@
  */
 
 /**
- * Random generation of numbers. These are used by the rollers to create the
- * actual result.
+ * Random generation of numbers.
+ * <p>
+ * These are used by the classes in the
+ * {@link com.wandrell.tabletop.dice.roller roller} package, such as the
+ * {@link com.wandrell.tabletop.dice.roller.Roller}.
  */
 
-package com.wandrell.tabletop.dice.random;
+package com.wandrell.tabletop.dice.roller.random;
 

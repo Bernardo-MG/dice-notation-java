@@ -23,24 +23,25 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
-import com.wandrell.tabletop.dice.random.NumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
 
 /**
  * Generates random integer values from a {@link Dice}.
+ * <p>
+ * To generate the actual random values a {@code NumberGenerator} is used.
  * 
  * @author Bernardo Martínez Garrido
+ * @see NumberGenerator
  * @see Dice
  */
 public final class DefaultRoller implements Roller {
 
     /**
-     * edRoller<V> implements Roller<V> {
-     * 
-     * /** The random numbers generator.
+     * The random numbers generator.
      * <p>
-     * It will use the dice for the interval in which the values should be
-     * created.
+     * Combined with the data in the rolled this, this will generate a random
+     * value in an interval.
      */
     private final NumberGenerator generator;
 
@@ -50,11 +51,11 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller() {
         super();
 
-        this.generator = new DefaultNumberGenerator();
+        this.generator = new RandomNumberGenerator();
     }
 
     /**
-     * Constructs an instance with the specified random number generator.
+     * Constructs a roller with the specified random number generator.
      * 
      * @param generator
      *            the random number generator to use

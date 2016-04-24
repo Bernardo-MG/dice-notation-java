@@ -25,9 +25,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.random.NumberGenerator;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
+import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
 
 /**
  * Units tests for {@code DefaultRoller}, checking that it returns values as

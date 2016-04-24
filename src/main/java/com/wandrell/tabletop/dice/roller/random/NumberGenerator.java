@@ -14,13 +14,17 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.random;
+package com.wandrell.tabletop.dice.roller.random;
 
 /**
  * Generates a random integer value.
  * <p>
- * This allows hiding the actual method used for generating said value, allowing
- * tuning the actual probabilities of the values.
+ * This is meant to be used by the
+ * implementations of {@link com.wandrell.tabletop.dice.roller.Roller},
+ * to tune the actual probabilities distributions.
+ * <p>
+ * The possible values which the generator may return are expected to begin at 1,
+ * and end in a specified value.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -30,7 +34,7 @@ public interface NumberGenerator {
      * Generates a random value in the interval [1,max].
      * 
      * @param max
-     *            the maximum value allowed
+     *            the maximum value which can be generated
      * @return a random value in the interval [1,max]
      */
     public Integer generate(final Integer max);

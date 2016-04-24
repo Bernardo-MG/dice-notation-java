@@ -17,8 +17,13 @@
 /**
  * Representation and execution of dice rolls.
  * <p>
- * In practice, this is generating a random value from the information contained
- * in a {@link com.wandrell.tabletop.dice.Dice Dice} class.
+ * In practice, this means generating a random value from the information
+ * contained in a {@link com.wandrell.tabletop.dice.Dice Dice} class, which is
+ * done through a {@link com.wandrell.tabletop.dice.roller.Roller Roller}.
+ * <p>
+ * To actually generate the random values a
+ * {@code com.wandrell.tabletop.dice.random.NumberGenerator NumberGenerator} is
+ * required.
  */
 
 package com.wandrell.tabletop.dice.roller;

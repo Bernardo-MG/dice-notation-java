@@ -17,7 +17,7 @@
 package com.wandrell.tabletop.dice;
 
 /**
- * Represents a group of dice, all with the same number of sides.
+ * A group of dice, all with the same number of sides.
  * <p>
  * This group is described by the exact number of dice and their sides. For
  * representing complex notation use the classes fulfilling that purpose.

@@ -22,8 +22,8 @@ import java.util.LinkedList;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.random.DefaultNumberGenerator;
-import com.wandrell.tabletop.dice.random.NumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
+import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
 
 /**
  * Units tests for {@code DefaultNumberGenerator}, checking that it generates
@@ -57,7 +57,7 @@ public final class TestDefaultNumberGenerator {
         final Integer times;               // Times to run the test loop
         final Integer max;                 // Max for the number generation
 
-        generator = new DefaultNumberGenerator();
+        generator = new RandomNumberGenerator();
 
         times = 100;
         max = 10;

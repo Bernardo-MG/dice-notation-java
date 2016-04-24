@@ -15,7 +15,10 @@
  */
 
 /**
- * Parsers for dice notation.
+ * Dice notation parsers.
+ * <p>
+ * These will take a string with a dice notation expression and return
+ * a tree of dice notation model objects.
  */
 
 package com.wandrell.tabletop.dice.parser;

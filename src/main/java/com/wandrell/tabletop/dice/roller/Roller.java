@@ -21,7 +21,7 @@ import java.util.Collection;
 import com.wandrell.tabletop.dice.Dice;
 
 /**
- * Generates a random result from a {@link Dice}.
+ * Generates random integer values from a {@link Dice}.
  * <p>
  * The name makes reference to the act of rolling the dice, which is the way to
  * generate random values from them.

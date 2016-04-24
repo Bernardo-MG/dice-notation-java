@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
-import com.wandrell.tabletop.dice.notation.operand.DefaultDiceExpression;
+import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
@@ -45,7 +45,7 @@ public final class TestStringRepresentationDefaultDiceFormula {
 
         dice = new DefaultDice(2, 6);
 
-        diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
+        diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
         intOperand = new IntegerOperand(5);
 
         operation = new AdditionOperation(diceOperand, intOperand);
@@ -62,7 +62,7 @@ public final class TestStringRepresentationDefaultDiceFormula {
 
         dice = new DefaultDice(2, 6);
 
-        diceOperand = new DefaultDiceExpression(dice, new DefaultRoller());
+        diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
         intOperand = new IntegerOperand(5);
 
         operation = new SubstractionOperation(diceOperand, intOperand);
