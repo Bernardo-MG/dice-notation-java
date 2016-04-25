@@ -214,7 +214,6 @@
       <antlr.version>4.5.2-1</antlr.version>
       <guava.version>18.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
-      <snakeyaml.version>1.17</snakeyaml.version>
       <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
       <testng.version>6.9.10</testng.version>
@@ -246,9 +245,16 @@
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
       <!-- ============================================== -->
       <dependency>
-         <!-- Log4J -->
+         <!-- Log4j core -->
          <groupId>org.apache.logging.log4j</groupId>
          <artifactId>log4j-core</artifactId>
+         <version>${log4j.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Log4j SLF4J Bridge -->
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-slf4j-impl</artifactId>
          <version>${log4j.version}</version>
          <scope>test</scope>
       </dependency>
@@ -257,13 +263,6 @@
          <groupId>org.mockito</groupId>
          <artifactId>mockito-all</artifactId>
          <version>${mockito.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <!-- SnakeYAML -->
-         <groupId>org.yaml</groupId>
-         <artifactId>snakeyaml</artifactId>
-         <version>${snakeyaml.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
