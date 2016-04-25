@@ -36,12 +36,12 @@ public final class AdditionOperation implements BinaryOperation {
     /**
      * Left sided operand.
      */
-    final DiceNotationExpression operandLeft;
+    private final DiceNotationExpression operandLeft;
 
     /**
      * Right sided operand.
      */
-    final DiceNotationExpression operandRight;
+    private final DiceNotationExpression operandRight;
 
     /**
      * Constructs an addition operation with the specified operands.
@@ -110,7 +110,7 @@ public final class AdditionOperation implements BinaryOperation {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(operandLeft, operandRight);
     }
 

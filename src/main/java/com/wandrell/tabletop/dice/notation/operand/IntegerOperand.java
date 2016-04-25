@@ -78,7 +78,7 @@ public final class IntegerOperand implements DiceNotationExpression {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(operandValue);
     }
 

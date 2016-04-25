@@ -37,12 +37,12 @@ public final class SubstractionOperation implements BinaryOperation {
     /**
      * Left sided operand.
      */
-    final DiceNotationExpression operandLeft;
+    private final DiceNotationExpression operandLeft;
 
     /**
      * Right sided operand.
      */
-    final DiceNotationExpression operandRight;
+    private final DiceNotationExpression operandRight;
 
     /**
      * Constructs a substraction operation with the specified operands.
@@ -111,7 +111,7 @@ public final class SubstractionOperation implements BinaryOperation {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(operandLeft, operandRight);
     }
 

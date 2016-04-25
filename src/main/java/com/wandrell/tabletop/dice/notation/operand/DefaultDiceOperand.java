@@ -111,7 +111,7 @@ public final class DefaultDiceOperand implements DiceOperand {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Objects.hashCode(operandDice);
     }
 
@@ -121,6 +121,11 @@ public final class DefaultDiceOperand implements DiceOperand {
                 .toString();
     }
 
+    /**
+     * Returns the roller used to generate random values from the dice.
+     * 
+     * @return the roller used for the random values
+     */
     private final Roller getRoller() {
         return diceRoller;
     }

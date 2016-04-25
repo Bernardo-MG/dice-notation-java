@@ -43,7 +43,7 @@ public final class DefaultRoller implements Roller {
      * Combined with the data in the rolled this, this will generate a random
      * value in an interval.
      */
-    private final NumberGenerator generator;
+    private final NumberGenerator numGen;
 
     /**
      * Default constructor.
@@ -51,7 +51,7 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller() {
         super();
 
-        this.generator = new RandomNumberGenerator();
+        this.numGen = new RandomNumberGenerator();
     }
 
     /**
@@ -63,8 +63,7 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller(final NumberGenerator generator) {
         super();
 
-        this.generator = checkNotNull(generator,
-                "Received a null pointer as generator");
+        numGen = checkNotNull(generator, "Received a null pointer as generator");
     }
 
     @Override
@@ -91,7 +90,7 @@ public final class DefaultRoller implements Roller {
      * @return the random number generator
      */
     private final NumberGenerator getNumberGenerator() {
-        return generator;
+        return numGen;
     }
 
 }

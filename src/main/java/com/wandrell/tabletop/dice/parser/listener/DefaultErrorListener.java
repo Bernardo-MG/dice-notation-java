@@ -27,7 +27,7 @@ import org.antlr.v4.runtime.Recognizer;
  * 
  * @author Bernardo Martínez Garrido
  */
-public class DefaultErrorListener extends BaseErrorListener {
+public final class DefaultErrorListener extends BaseErrorListener {
 
     /**
      * Default constructor.

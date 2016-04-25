@@ -15,13 +15,13 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Maven
 
 ```xml
 <repositories>
-	...
-	<repository>
-		<id>oss-sonatype-snapshots</id>
-		<name>OSS Sonatype snapshots repository</name>
-		<url>https://oss.sonatype.org/content/groups/staging</url>
-	</repository>
-	...
+    ...
+    <repository>
+        <id>oss-sonatype-snapshots</id>
+        <name>OSS Sonatype snapshots repository</name>
+        <url>https://oss.sonatype.org/content/groups/staging</url>
+    </repository>
+    ...
 </repositories>
 ```
 

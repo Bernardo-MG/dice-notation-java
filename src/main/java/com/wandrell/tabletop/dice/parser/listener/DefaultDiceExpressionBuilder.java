@@ -70,7 +70,7 @@ public final class DefaultDiceExpressionBuilder extends
      * This is used as a dependency on the dice expressions, which require a
      * roller to generate their value.
      */
-    private final Roller                        roller;
+    private final Roller                        diceRoller;
 
     /**
      * Constructs a builder with the specified roller.
@@ -81,7 +81,7 @@ public final class DefaultDiceExpressionBuilder extends
     public DefaultDiceExpressionBuilder(final Roller roller) {
         super();
 
-        this.roller = checkNotNull(roller, "Received a null pointer as roller");
+        diceRoller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
@@ -172,13 +172,14 @@ public final class DefaultDiceExpressionBuilder extends
      * @return the roller for the dice expressions
      */
     private final Roller getRoller() {
-        return roller;
+        return diceRoller;
     }
 
     /**
      * Sets the root for the tree of dice notation model objects.
      * 
      * @param expression
+     *            the expression to set as the root
      */
     private final void setDiceExpressionRoot(
             final DiceNotationExpression expression) {

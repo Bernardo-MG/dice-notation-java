@@ -51,7 +51,7 @@ public final class AntlrDiceNotationParser implements DiceNotationParser {
      * each node on the generated grammar tree, creating from it a tree of dice
      * notation model objects.
      */
-    final DiceExpressionBuilder expressionBuilder;
+    private final DiceExpressionBuilder expressionBuilder;
 
     /**
      * Constructs a parser with the specified builder.
