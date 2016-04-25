@@ -417,6 +417,18 @@
             <configuration>
                <!-- The customized rules file -->
                <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
+               <!-- Excludes generated code -->
+               <excludes>**/generated/**/*</excludes>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- Javadoc -->
+            <!-- Generates the javadocs -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+               <!-- Excludes generated code -->
+               <excludePackageNames>*.generated.*</excludePackageNames>
             </configuration>
          </plugin>
          <plugin>
@@ -427,8 +439,13 @@
             <artifactId>maven-pmd-plugin</artifactId>
             <configuration>
                <rulesets>
+                  <!-- The customized rules file -->
                   <ruleset>${project.basedir}/src/config/pmd/pmd-rules.xml</ruleset>
                </rulesets>
+               <excludes>
+                  <!-- Excludes generated code -->
+                  <exclude>**/generated/**/*</exclude>
+               </excludes>
             </configuration>
          </plugin>
       </plugins>
