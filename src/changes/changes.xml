@@ -23,7 +23,7 @@
             Updated Maven Site Skin.
          </action>
       </release>
-      <release version="0.3.0" date="2015-04-19"
+      <release version="0.3.0" date="2016-04-25"
          description="Reduced scope of the project">
          <action dev="bmg" type="update">
             The project is now much smaller,
@@ -36,9 +36,6 @@
          <action dev="bmg" type="update">
             The project now makes use of a
             base POM.
-         </action>
-         <action dev="bmg" type="update">
-            Changed the tests class path.
          </action>
       </release>
    </body>
