@@ -44,7 +44,7 @@ public final class DefaultErrorListener extends BaseErrorListener {
         final String message; // Final exception message
 
         message = String.format(
-                "Failed to parse at line %$1d on char %$2d due to %$3s", line,
+                "Failed to parse at line %1$d on char %2$d due to %3$s", line,
                 charPositionInLine + 1, msg);
 
         throw new IllegalStateException(message, e);
