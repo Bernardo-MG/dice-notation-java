@@ -16,10 +16,28 @@
 
 package com.wandrell.tabletop.dice.notation;
 
-public interface DiceExpressionComponent {
+/**
+ * A dice notation expression.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public interface DiceNotationExpression {
 
+    /**
+     * Returns the string representation of the expression.
+     * 
+     * @return the string representation of the expression
+     */
     public String getStringRepresentation();
 
+    /**
+     * Returns the integer value of the expression.
+     * <p>
+     * As the dice notation expressions are meant to generate random values, the
+     * result of this methods can not be always predicted.
+     * 
+     * @return the integer value of the expression
+     */
     public Integer getValue();
 
 }

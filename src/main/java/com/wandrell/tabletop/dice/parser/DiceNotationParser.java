@@ -16,7 +16,7 @@
 
 package com.wandrell.tabletop.dice.parser;
 
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Transforms a dice notation expression, received as a string, into a tree of
@@ -34,6 +34,6 @@ public interface DiceNotationParser {
      *            the expression to parse
      * @return the root of the dice notation tree
      */
-    public DiceExpressionComponent parse(final String expression);
+    public DiceNotationExpression parse(final String expression);
 
 }

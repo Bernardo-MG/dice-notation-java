@@ -17,10 +17,20 @@
 package com.wandrell.tabletop.dice.notation.operand;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
-public interface DiceOperand extends DiceExpressionComponent {
+/**
+ * Operand for using {@link Dice} instances along dice notation model classes.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public interface DiceOperand extends DiceNotationExpression {
 
+    /**
+     * Returns the operand dice.
+     * 
+     * @return the operand dice
+     */
     public Dice getDice();
 
 }

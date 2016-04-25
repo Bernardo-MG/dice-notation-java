@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 
 public final class TestStringRepresentationAdditionOperation {
@@ -31,14 +31,14 @@ public final class TestStringRepresentationAdditionOperation {
 
     @Test
     public final void testGetStringRepresentation() {
-        final DiceExpressionComponent operation;
-        final DiceExpressionComponent operandA;
-        final DiceExpressionComponent operandB;
+        final DiceNotationExpression operation;
+        final DiceNotationExpression operandA;
+        final DiceNotationExpression operandB;
 
-        operandA = Mockito.mock(DiceExpressionComponent.class);
+        operandA = Mockito.mock(DiceNotationExpression.class);
         Mockito.when(operandA.getStringRepresentation()).thenReturn("1");
 
-        operandB = Mockito.mock(DiceExpressionComponent.class);
+        operandB = Mockito.mock(DiceNotationExpression.class);
         Mockito.when(operandB.getStringRepresentation()).thenReturn("2");
 
         operation = new AdditionOperation(operandA, operandB);

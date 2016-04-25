@@ -16,22 +16,50 @@
 
 package com.wandrell.tabletop.dice.notation.operation;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
+/**
+ * Addition operation.
+ * <p>
+ * This substracts the value of an operand from the value of the other operand.
+ * <p>
+ * As with any other substraction, the right operand's value will be substracted
+ * from the left one's.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
 public final class SubstractionOperation implements BinaryOperation {
 
-    final DiceExpressionComponent operandLeft;
+    /**
+     * Left sided operand.
+     */
+    final DiceNotationExpression operandLeft;
 
-    final DiceExpressionComponent operandRight;
+    /**
+     * Right sided operand.
+     */
+    final DiceNotationExpression operandRight;
 
-    public SubstractionOperation(final DiceExpressionComponent operandLeft,
-            final DiceExpressionComponent operandRight) {
+    /**
+     * Constructs a substraction operation with the specified operands.
+     * 
+     * @param left
+     *            the left sided operand
+     * @param right
+     *            the right sided operand
+     */
+    public SubstractionOperation(final DiceNotationExpression left,
+            final DiceNotationExpression right) {
         super();
 
-        this.operandLeft = operandLeft;
-        this.operandRight = operandRight;
+        operandLeft = checkNotNull(left,
+                "Received a null pointer as left operand");
+        operandRight = checkNotNull(right,
+                "Received a null pointer as right operand");
     }
 
     @Override
@@ -57,19 +85,19 @@ public final class SubstractionOperation implements BinaryOperation {
     }
 
     @Override
-    public final DiceExpressionComponent getLeft() {
+    public final DiceNotationExpression getLeft() {
         return operandLeft;
     }
 
     @Override
-    public final DiceExpressionComponent getRight() {
+    public final DiceNotationExpression getRight() {
         return operandRight;
     }
 
     @Override
     public final String getStringRepresentation() {
-        final String left;
-        final String right;
+        final String left;  // Left side operand as a string
+        final String right; // Right side operand as a string
 
         left = getLeft().getStringRepresentation();
         right = getRight().getStringRepresentation();

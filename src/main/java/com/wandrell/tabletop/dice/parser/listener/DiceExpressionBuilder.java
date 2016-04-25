@@ -17,7 +17,7 @@
 package com.wandrell.tabletop.dice.parser.listener;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarListener;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Creates a {@code DiceExpressionComponent} from an ANTLR4 parser by using the
@@ -35,6 +35,6 @@ public interface DiceExpressionBuilder extends DiceNotationGrammarListener {
      * 
      * @return the tree of dice notation model objects
      */
-    public DiceExpressionComponent getDiceExpressionRoot();
+    public DiceNotationExpression getDiceExpressionRoot();
 
 }

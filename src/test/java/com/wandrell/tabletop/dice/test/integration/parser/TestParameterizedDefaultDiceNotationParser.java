@@ -23,7 +23,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.parser.AntlrDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
@@ -85,7 +85,7 @@ public final class TestParameterizedDefaultDiceNotationParser {
     public final void testParse_Dice_Valid(final String expression,
             final Integer quantity, final Integer sides) {
         final DiceNotationParser parser; // Tested parser
-        final DiceExpressionComponent parsed;     // Parsed expression
+        final DiceNotationExpression parsed;     // Parsed expression
         final Dice dice;                 // Resulting dice
 
         parser = new AntlrDiceNotationParser(new DefaultRoller());

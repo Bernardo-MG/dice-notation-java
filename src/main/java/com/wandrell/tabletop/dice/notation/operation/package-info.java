@@ -15,7 +15,7 @@
  */
 
 /**
- * Offers classes for dice notation operations.
+ * Dice notation operations.
  */
 
 package com.wandrell.tabletop.dice.notation.operation;

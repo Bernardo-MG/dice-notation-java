@@ -15,7 +15,14 @@
  */
 
 /**
- * Representations for the dice notation components.
+ * Dice notation model.
+ * <p>
+ * The classes in this package allow creating a tree representing a dice
+ * notation expression, and also generating a value from that tree.
+ * <p>
+ * As these expressions are used to handle the generation of random numbers,
+ * some of the classes from the model may generate a different value each time
+ * they generate a value.
  */
 
 package com.wandrell.tabletop.dice.notation;

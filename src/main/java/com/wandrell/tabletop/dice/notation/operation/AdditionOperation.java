@@ -16,22 +16,49 @@
 
 package com.wandrell.tabletop.dice.notation.operation;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
+/**
+ * Addition operation.
+ * <p>
+ * This adds together the values from two dice notation expressions.
+ * <p>
+ * As with any other addition, the order of the operand does not matter.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
 public final class AdditionOperation implements BinaryOperation {
 
-    final DiceExpressionComponent operandLeft;
+    /**
+     * Left sided operand.
+     */
+    final DiceNotationExpression operandLeft;
 
-    final DiceExpressionComponent operandRight;
+    /**
+     * Right sided operand.
+     */
+    final DiceNotationExpression operandRight;
 
-    public AdditionOperation(final DiceExpressionComponent operandLeft,
-            final DiceExpressionComponent operandRight) {
+    /**
+     * Constructs an addition operation with the specified operands.
+     * 
+     * @param left
+     *            the left sided operand
+     * @param right
+     *            the right sided operand
+     */
+    public AdditionOperation(final DiceNotationExpression left,
+            final DiceNotationExpression right) {
         super();
 
-        this.operandLeft = operandLeft;
-        this.operandRight = operandRight;
+        operandLeft = checkNotNull(left,
+                "Received a null pointer as left operand");
+        operandRight = checkNotNull(right,
+                "Received a null pointer as right operand");
     }
 
     @Override
@@ -57,19 +84,19 @@ public final class AdditionOperation implements BinaryOperation {
     }
 
     @Override
-    public final DiceExpressionComponent getLeft() {
+    public final DiceNotationExpression getLeft() {
         return operandLeft;
     }
 
     @Override
-    public final DiceExpressionComponent getRight() {
+    public final DiceNotationExpression getRight() {
         return operandRight;
     }
 
     @Override
     public final String getStringRepresentation() {
-        final String left;
-        final String right;
+        final String left;  // Left side operand as a string
+        final String right; // Right side operand as a string
 
         left = getLeft().getStringRepresentation();
         right = getRight().getStringRepresentation();

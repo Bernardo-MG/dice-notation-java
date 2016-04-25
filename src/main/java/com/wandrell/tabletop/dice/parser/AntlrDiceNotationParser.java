@@ -24,7 +24,7 @@ import org.antlr.v4.runtime.TokenStream;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
@@ -81,7 +81,7 @@ public final class AntlrDiceNotationParser implements DiceNotationParser {
     }
 
     @Override
-    public final DiceExpressionComponent parse(final String expression) {
+    public final DiceNotationExpression parse(final String expression) {
         final DiceNotationGrammarParser parser; // ANTLR parser
 
         checkNotNull(expression, "Received a null pointer as string");

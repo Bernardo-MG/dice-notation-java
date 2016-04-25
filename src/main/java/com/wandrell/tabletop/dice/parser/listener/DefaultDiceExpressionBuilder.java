@@ -26,7 +26,7 @@ import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.BinaryOpContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ValueContext;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
@@ -46,7 +46,7 @@ public final class DefaultDiceExpressionBuilder extends
     /**
      * Operator which indicates the operation is an addition.
      */
-    private static final String                  ADDITION_OPERATOR = "+";
+    private static final String                 ADDITION_OPERATOR = "+";
 
     /**
      * Root of the tree of dice notation model objects.
@@ -54,7 +54,7 @@ public final class DefaultDiceExpressionBuilder extends
      * This will be updated as the tree is generated, and will be the final
      * value returned by the builder.
      */
-    private DiceExpressionComponent              root;
+    private DiceNotationExpression              root;
 
     /**
      * Stack to store operands from the outer nodes in an operation.
@@ -62,7 +62,7 @@ public final class DefaultDiceExpressionBuilder extends
      * For example, when parsing an addition operation this stack will hold both
      * operands being added together.
      */
-    private final Stack<DiceExpressionComponent> operandsStack     = new Stack<>();
+    private final Stack<DiceNotationExpression> operandsStack     = new Stack<>();
 
     /**
      * Roller for the dice expressions.
@@ -70,7 +70,7 @@ public final class DefaultDiceExpressionBuilder extends
      * This is used as a dependency on the dice expressions, which require a
      * roller to generate their value.
      */
-    private final Roller                         roller;
+    private final Roller                        roller;
 
     /**
      * Constructs a builder with the specified roller.
@@ -88,8 +88,8 @@ public final class DefaultDiceExpressionBuilder extends
     public final void exitBinaryOp(final BinaryOpContext ctx) {
         final BinaryOperation operation;     // Parsed binary operation
         final String operator;               // Operator
-        final DiceExpressionComponent left;  // Left operand
-        final DiceExpressionComponent right; // Right operand
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
 
         checkNotNull(ctx, "Received a null pointer as context");
 
@@ -153,7 +153,7 @@ public final class DefaultDiceExpressionBuilder extends
     }
 
     @Override
-    public final DiceExpressionComponent getDiceExpressionRoot() {
+    public final DiceNotationExpression getDiceExpressionRoot() {
         return root;
     }
 
@@ -162,7 +162,7 @@ public final class DefaultDiceExpressionBuilder extends
      * 
      * @return the operands stack
      */
-    private final Stack<DiceExpressionComponent> getOperandsStack() {
+    private final Stack<DiceNotationExpression> getOperandsStack() {
         return operandsStack;
     }
 
@@ -181,7 +181,7 @@ public final class DefaultDiceExpressionBuilder extends
      * @param expression
      */
     private final void setDiceExpressionRoot(
-            final DiceExpressionComponent expression) {
+            final DiceNotationExpression expression) {
         root = expression;
     }
 

@@ -16,12 +16,34 @@
 
 package com.wandrell.tabletop.dice.notation.operation;
 
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
-public interface BinaryOperation extends DiceExpressionComponent {
+/**
+ * A binary operation from the dice notation.
+ * <p>
+ * Binary operation operate on pairs of operands. But it is not required giving
+ * these operands directly, instead they can be acquired from other expressions,
+ * allowing chaining them.
+ * <p>
+ * Depending on the operation, the order of the operands may be important or
+ * not.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public interface BinaryOperation extends DiceNotationExpression {
 
-    public DiceExpressionComponent getLeft();
+    /**
+     * Returns the left sided operand.
+     * 
+     * @return the left sided operand
+     */
+    public DiceNotationExpression getLeft();
 
-    public DiceExpressionComponent getRight();
+    /**
+     * Returns the right sided operand.
+     * 
+     * @return the right sided operand
+     */
+    public DiceNotationExpression getRight();
 
 }

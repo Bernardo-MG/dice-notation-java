@@ -16,18 +16,34 @@
 
 package com.wandrell.tabletop.dice.notation.operand;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.DiceExpressionComponent;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
-public final class IntegerOperand implements DiceExpressionComponent {
+/**
+ * Operand for using an integer value on a dice notation expression.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public final class IntegerOperand implements DiceNotationExpression {
 
-    private final Integer value;
+    /**
+     * Operand value.
+     */
+    private final Integer operandValue;
 
+    /**
+     * Constructs an operand with the specified value.
+     * 
+     * @param value
+     *            the operand value
+     */
     public IntegerOperand(final Integer value) {
         super();
 
-        this.value = value;
+        operandValue = checkNotNull(value, "Received a null pointer as value");
     }
 
     @Override
@@ -48,7 +64,7 @@ public final class IntegerOperand implements DiceExpressionComponent {
 
         other = (IntegerOperand) obj;
 
-        return Objects.equal(value, other.value);
+        return Objects.equal(operandValue, other.operandValue);
     }
 
     @Override
@@ -58,17 +74,18 @@ public final class IntegerOperand implements DiceExpressionComponent {
 
     @Override
     public final Integer getValue() {
-        return value;
+        return operandValue;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value);
+        return Objects.hashCode(operandValue);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("value", value).toString();
+        return MoreObjects.toStringHelper(this).add("value", operandValue)
+                .toString();
     }
 
 }

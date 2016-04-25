@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dice.notation.operand;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Collection;
 
 import com.google.common.base.MoreObjects;
@@ -23,17 +25,42 @@ import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.Roller;
 
+/**
+ * Operand for using dice values on a dice notation expression.
+ * <p>
+ * Each time the value is returned it will be generated at random from the dice
+ * data.
+ * 
+ * @author Bernardo Martínez Garrido
+ * @see Dice
+ */
 public final class DefaultDiceOperand implements DiceOperand {
 
-    private final Dice   dice;
+    /**
+     * Operand dice.
+     * <p>
+     * This will be used to generate the random value this operand uses.
+     */
+    private final Dice   operandDice;
 
-    private final Roller roller;
+    /**
+     * Roller to generate the random value from the dice.
+     */
+    private final Roller diceRoller;
 
+    /**
+     * Constructs a dice operand with the specified dice and roller.
+     * 
+     * @param dice
+     *            dice for the operand
+     * @param roller
+     *            roller for the dice
+     */
     public DefaultDiceOperand(final Dice dice, final Roller roller) {
         super();
 
-        this.roller = roller;
-        this.dice = dice;
+        operandDice = checkNotNull(dice, "Received a null pointer as dice");
+        diceRoller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
@@ -54,12 +81,12 @@ public final class DefaultDiceOperand implements DiceOperand {
 
         other = (DefaultDiceOperand) obj;
 
-        return Objects.equal(dice, other.dice);
+        return Objects.equal(operandDice, other.operandDice);
     }
 
     @Override
     public final Dice getDice() {
-        return dice;
+        return operandDice;
     }
 
     @Override
@@ -85,16 +112,17 @@ public final class DefaultDiceOperand implements DiceOperand {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(dice);
+        return Objects.hashCode(operandDice);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("dice", dice).toString();
+        return MoreObjects.toStringHelper(this).add("dice", operandDice)
+                .toString();
     }
 
     private final Roller getRoller() {
-        return roller;
+        return diceRoller;
     }
 
 }
