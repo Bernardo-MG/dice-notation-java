@@ -26,7 +26,7 @@ import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
 import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
- * Units tests for {@code DefaultNumberGenerator}, checking that it generates
+ * Units tests for {@code RandomNumberGenerator}, checking that it generates
  * values as expected.
  * <p>
  * Checks the following cases:
@@ -36,12 +36,12 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestDefaultNumberGenerator {
+public final class TestRandomNumberGenerator {
 
     /**
      * Default constructor.
      */
-    public TestDefaultNumberGenerator() {
+    public TestRandomNumberGenerator() {
         super();
     }
 
