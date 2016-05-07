@@ -24,11 +24,13 @@ package com.wandrell.tabletop.dice.notation;
 public interface DiceNotationExpression {
 
     /**
-     * Returns the string representation of the expression.
+     * Returns the expression as a string.
+     * <p>
+     * This will be the dice expression as it is written, for example "2+1d6".
      * 
-     * @return the string representation of the expression
+     * @return the expression as a string
      */
-    public String getStringRepresentation();
+    public String getExpression();
 
     /**
      * Returns the integer value of the expression.

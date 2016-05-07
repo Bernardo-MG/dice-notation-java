@@ -36,14 +36,14 @@ public final class TestStringRepresentationSubstractionOperation {
         final DiceNotationExpression operandB;
 
         operandA = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(operandA.getStringRepresentation()).thenReturn("1");
+        Mockito.when(operandA.getExpression()).thenReturn("1");
 
         operandB = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(operandB.getStringRepresentation()).thenReturn("2");
+        Mockito.when(operandB.getExpression()).thenReturn("2");
 
         operation = new SubstractionOperation(operandA, operandB);
 
-        Assert.assertEquals(operation.getStringRepresentation(), "1-2");
+        Assert.assertEquals(operation.getExpression(), "1-2");
     }
 
 }

@@ -50,7 +50,7 @@ public final class TestStringRepresentationDefaultDiceFormula {
 
         operation = new AdditionOperation(diceOperand, intOperand);
 
-        Assert.assertEquals(operation.getStringRepresentation(), "2d6+5");
+        Assert.assertEquals(operation.getExpression(), "2d6+5");
     }
 
     @Test
@@ -67,7 +67,7 @@ public final class TestStringRepresentationDefaultDiceFormula {
 
         operation = new SubstractionOperation(diceOperand, intOperand);
 
-        Assert.assertEquals(operation.getStringRepresentation(), "2d6-5");
+        Assert.assertEquals(operation.getExpression(), "2d6-5");
     }
 
 }

@@ -78,7 +78,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -106,7 +106,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -126,7 +126,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
 
-        Assert.assertEquals(value.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -147,7 +147,7 @@ public final class TestDefaultDiceNotationParser {
         Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
         Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
 
-        Assert.assertEquals(value.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -168,7 +168,7 @@ public final class TestDefaultDiceNotationParser {
         Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
         Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
 
-        Assert.assertEquals(value.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -196,7 +196,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -224,7 +224,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getStringRepresentation(), notation);
+        Assert.assertEquals(operation.getExpression(), notation);
     }
 
     @Test
@@ -241,7 +241,7 @@ public final class TestDefaultDiceNotationParser {
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
 
-        Assert.assertEquals(value.getStringRepresentation(), notation);
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
 }

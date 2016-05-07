@@ -90,7 +90,7 @@ public final class DefaultDiceOperand implements DiceOperand {
     }
 
     @Override
-    public final String getStringRepresentation() {
+    public final String getExpression() {
         return String.format("%dd%d", getDice().getQuantity(), getDice()
                 .getSides());
     }

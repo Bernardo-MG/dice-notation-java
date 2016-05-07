@@ -68,7 +68,7 @@ public final class IntegerOperand implements DiceNotationExpression {
     }
 
     @Override
-    public final String getStringRepresentation() {
+    public final String getExpression() {
         return getValue().toString();
     }
 

@@ -84,6 +84,17 @@ public final class AdditionOperation implements BinaryOperation {
     }
 
     @Override
+    public final String getExpression() {
+        final String left;  // Left side operand as a string
+        final String right; // Right side operand as a string
+
+        left = getLeft().getExpression();
+        right = getRight().getExpression();
+
+        return String.format("%s+%s", left, right);
+    }
+
+    @Override
     public final DiceNotationExpression getLeft() {
         return operandLeft;
     }
@@ -91,17 +102,6 @@ public final class AdditionOperation implements BinaryOperation {
     @Override
     public final DiceNotationExpression getRight() {
         return operandRight;
-    }
-
-    @Override
-    public final String getStringRepresentation() {
-        final String left;  // Left side operand as a string
-        final String right; // Right side operand as a string
-
-        left = getLeft().getStringRepresentation();
-        right = getRight().getStringRepresentation();
-
-        return String.format("%s+%s", left, right);
     }
 
     @Override
