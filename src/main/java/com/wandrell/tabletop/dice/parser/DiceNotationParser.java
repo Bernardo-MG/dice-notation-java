@@ -19,20 +19,22 @@ package com.wandrell.tabletop.dice.parser;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Transforms a dice notation expression, received as a string, into a tree of
- * dice notation model objects.
+ * Transforms a dice notation expression, received as a string, into the dice
+ * notation model.
+ * <p>
+ * The returned object is expected to be the root node of a tree made up by dice
+ * notation model objects.
  * 
  * @author Bernardo Martínez Garrido
  */
 public interface DiceNotationParser {
 
     /**
-     * Transforms a dice notation expression into a tree of dice notation model
-     * objects.
+     * Transforms a dice notation expression into the dice notation model.
      * 
      * @param expression
      *            the expression to parse
-     * @return the root of the dice notation tree
+     * @return a dice notation expression object
      */
     public DiceNotationExpression parse(final String expression);
 

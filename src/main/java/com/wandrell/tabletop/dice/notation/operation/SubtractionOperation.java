@@ -105,6 +105,11 @@ public final class SubtractionOperation implements BinaryOperation {
         return operandRight;
     }
 
+    /**
+     * Returns the left value after subtracting the right value from it.
+     * 
+     * @return the left value minus the right value
+     */
     @Override
     public final Integer getValue() {
         return getLeft().getValue() - getRight().getValue();

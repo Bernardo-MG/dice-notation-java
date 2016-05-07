@@ -20,10 +20,10 @@ import com.wandrell.tabletop.dice.generated.DiceNotationGrammarListener;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Creates a {@code DiceExpressionComponent} from an ANTLR4 parser by using the
+ * Creates a {@link DiceNotationExpression} from an ANTLR4 parser by using the
  * visitor pattern.
  * <p>
- * This {@code DiceExpressionComponent} is the root for a tree representing the
+ * This {@code DiceNotationExpression} is the root for a tree representing the
  * expression received by the parser.
  * 
  * @author Bernardo Martínez Garrido

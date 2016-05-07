@@ -24,9 +24,12 @@ import com.google.common.base.Objects;
 
 /**
  * Value entity implementation of {@code Dice}, representing a group of dice.
- * <p>
  * This means the class is immutable, not allowing the modification of any of
  * its values.
+ * <p>
+ * Some basic constraints are applied to the dice values. The quantity should be
+ * equal or higher than zero, and the number of sides equal or higher than one.
+ * If any other value is received then an exception will be thrown.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -50,7 +53,7 @@ public final class DefaultDice implements Dice {
      * Constructs a dice group with the specified quantity and number sides.
      * <p>
      * The quantity can't be a negative value, and the number of sides should be
-     * greater than zero.
+     * greater than zero. Otherwise an exception will be thrown.
      * 
      * @param quantity
      *            the number of dice
@@ -105,13 +108,13 @@ public final class DefaultDice implements Dice {
     }
 
     /**
-     * Returns the number of sides of the die being rolled.
+     * Returns the number of sides of the dice in the group.
      * <p>
      * All the dice will have this same number of sides.
      * <p>
      * This is a positive value greater than zero.
      * 
-     * @return the die's number of sides
+     * @return the dice's number of sides
      */
     @Override
     public final Integer getSides() {

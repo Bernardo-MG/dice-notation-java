@@ -20,22 +20,25 @@ package com.wandrell.tabletop.dice.roller.random;
  * Generates a random integer value.
  * <p>
  * This is meant to be used by the implementations of
- * {@link com.wandrell.tabletop.dice.roller.Roller}, to tune the actual
+ * {@link com.wandrell.tabletop.dice.roller.Roller Roller}, to tune the actual
  * probabilities distributions.
  * <p>
  * The possible values which the generator may return are expected to begin at
- * 1, and end in a specified value.
+ * 1, and end in a specified maximum value.
  * 
  * @author Bernardo Martínez Garrido
+ * @see com.wandrell.tabletop.dice.roller.Roller Roller
  */
 public interface NumberGenerator {
 
     /**
-     * Generates a random value in the interval [1,max].
+     * Generates a random value.
+     * <p>
+     * This is expected to be in the interval [1,max].
      * 
      * @param max
      *            the maximum value which can be generated
-     * @return a random value in the interval [1,max]
+     * @return a random value
      */
     public Integer generate(final Integer max);
 

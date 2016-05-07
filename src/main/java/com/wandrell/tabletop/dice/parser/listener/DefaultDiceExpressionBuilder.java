@@ -35,8 +35,11 @@ import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
- * Creates a {@code DiceExpressionComponent} from an ANTLR4 parser by using the
+ * Creates a {@link DiceNotationExpression} from an ANTLR4 parser by using the
  * visitor pattern.
+ * <p>
+ * This {@code DiceNotationExpression} is the root for a tree representing the
+ * expression received by the parser.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -86,8 +89,8 @@ public final class DefaultDiceExpressionBuilder extends
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
-        final BinaryOperation operation;     // Parsed binary operation
-        final String operator;               // Operator
+        final BinaryOperation operation;    // Parsed binary operation
+        final String operator;              // Operator
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 

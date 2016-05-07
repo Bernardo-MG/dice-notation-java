@@ -16,24 +16,22 @@
 /**
  * Dice notation classes.
  * <p>
- * The most basic classes for this are the
- * {@link com.wandrell.tabletop.dice.Dice} interface, and the default
- * implementation of this, the {@link com.wandrell.tabletop.dice.DefaultDice}.
+ * At the root of this package the {@link com.wandrell.tabletop.dice.Dice Dice}
+ * interface, and the default implementation of this, the
+ * {@link com.wandrell.tabletop.dice.DefaultDice DefaultDice}, offer a simple
+ * model for dice groups as they are used in dice notation expressions.
  * <p>
- * With them it is possible representing the dice as these are use in dice
- * notation expression, but they offer no kind of logic for generating random
- * values from them.
+ * To generate random values from these classes, as if these dice were rolled,
+ * the classes contained inside the {@link com.wandrell.tabletop.dice.roller
+ * roller} package can be used.
  * <p>
- * For this the classes contained inside the
- * {@link com.wandrell.tabletop.dice.roller roller} and
- * {@link com.wandrell.tabletop.dice.roller.random random} packages should be
- * used.
+ * Notation more complex than a single group of dice is represented by the
+ * classes in the {@link com.wandrell.tabletop.dice.notation notation} package,
+ * which also can generate values from the expressions they represent.
  * <p>
- * To handle more complex dice expression structures the
- * {@link com.wandrell.tabletop.dice.parser parser} and
- * {@link com.wandrell.tabletop.dice.notation notation} packages contain the
- * parser and model needed to transform dice notation expression strings into a
- * tree which can generate random values.
+ * The {@link com.wandrell.tabletop.dice.parser parser} package offers parsers
+ * which can create and populare model classes from a text dice notation
+ * expression.
  */
 
 package com.wandrell.tabletop.dice;

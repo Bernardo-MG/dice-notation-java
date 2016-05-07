@@ -66,6 +66,16 @@ public final class DefaultRoller implements Roller {
         numGen = checkNotNull(generator, "Received a null pointer as generator");
     }
 
+    /**
+     * Generates a collection of random values from the received {@code Dice}.
+     * <p>
+     * These are contained in the {@code Collection} in the same order they were
+     * generated.
+     * 
+     * @param dice
+     *            the dice to roll
+     * @return a collection of random values generated from the dice
+     */
     @Override
     public final Collection<Integer> roll(final Dice dice) {
         final Collection<Integer> rolls; // Roll results

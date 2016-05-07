@@ -27,7 +27,8 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * <p>
  * This adds together the values from two dice notation expressions.
  * <p>
- * As with any other addition, the order of the operand does not matter.
+ * As with any other addition, the order of the operands does not matter for the
+ * result.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -83,6 +84,11 @@ public final class AdditionOperation implements BinaryOperation {
                 && Objects.equal(operandRight, other.operandRight);
     }
 
+    /**
+     * Returns the values from the left and right operands added together.
+     * 
+     * @return the left and right values added together
+     */
     @Override
     public final String getExpression() {
         final String left;  // Left side operand as a string

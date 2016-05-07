@@ -28,8 +28,8 @@ import com.wandrell.tabletop.dice.roller.Roller;
 /**
  * Operand for using dice values on a dice notation expression.
  * <p>
- * Each time the value is returned it will be generated at random from the dice
- * data.
+ * The value from a dice operand is random, and will be generated each time it
+ * is acquired.
  * 
  * @author Bernardo Martínez Garrido
  * @see Dice

@@ -72,6 +72,11 @@ public final class IntegerOperand implements DiceNotationExpression {
         return getValue().toString();
     }
 
+    /**
+     * Returns the integer value of the operand.
+     * 
+     * @return the integer value of the operand
+     */
     @Override
     public final Integer getValue() {
         return operandValue;

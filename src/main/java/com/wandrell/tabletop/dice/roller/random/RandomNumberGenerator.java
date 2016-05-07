@@ -23,10 +23,8 @@ import java.util.Random;
 /**
  * {@link Random}-based number generator.
  * <p>
- * It makes use of the {@link Random} class for generating the numbers.
- * <p>
- * These numbers will be integers in a closed interval, beginning at 1 and
- * ending in a specified value.
+ * The generated numbers will be integers in a closed interval, beginning at 1
+ * and ending in a specified maximum value.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -54,6 +52,15 @@ public final class RandomNumberGenerator implements NumberGenerator {
         super();
     }
 
+    /**
+     * Generates a random value.
+     * <p>
+     * This value is in the interval [1,max].
+     * 
+     * @param max
+     *            the maximum value which can be generated
+     * @return a random value in the interval [1,max]
+     */
     @Override
     public final Integer generate(final Integer max) {
         checkArgument(max >= LOWER_LIMIT, String.format(

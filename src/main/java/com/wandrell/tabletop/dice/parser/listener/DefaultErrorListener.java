@@ -23,7 +23,7 @@ import org.antlr.v4.runtime.Recognizer;
 /**
  * Basic error listener for an ANTLR4 parser.
  * <p>
- * It just throws an exception for any error the listener reacts to.
+ * It just throws an exception for any error the listener intercepts.
  * 
  * @author Bernardo Martínez Garrido
  */

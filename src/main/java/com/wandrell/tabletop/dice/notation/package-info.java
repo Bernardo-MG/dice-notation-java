@@ -18,11 +18,15 @@
  * Dice notation model.
  * <p>
  * The classes in this package allow creating a tree representing a dice
- * notation expression, and also generating a value from that tree.
+ * notation expression, which can be used to generate values, or to get back the
+ * dice notation expression it represents.
  * <p>
- * As these expressions are used to handle the generation of random numbers,
- * some of the classes from the model may generate a different value each time
- * they generate a value.
+ * As these expressions are used to handle the generation of random numbers, in
+ * some clases this value may be different each time it is acquired.
+ * <p>
+ * It is not recommended using the classes in this package manually. Instead a
+ * parser from the {@link com.wandrell.tabletop.dice.parser parser} package
+ * should be used.
  */
 
 package com.wandrell.tabletop.dice.notation;

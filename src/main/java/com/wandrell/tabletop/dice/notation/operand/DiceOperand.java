@@ -21,6 +21,9 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Operand for using {@link Dice} instances along dice notation model classes.
+ * <p>
+ * The value from a dice operand is meant to be random, and it should not be
+ * expected to be the same each time it is acquired.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -32,5 +35,16 @@ public interface DiceOperand extends DiceNotationExpression {
      * @return the operand dice
      */
     public Dice getDice();
+
+    /**
+     * Returns the integer value of the operand.
+     * <p>
+     * As dice operands are meant to generate a random value, the returned value
+     * can change in consecutive calls.
+     * 
+     * @return the integer value of the expression
+     */
+    @Override
+    public Integer getValue();
 
 }

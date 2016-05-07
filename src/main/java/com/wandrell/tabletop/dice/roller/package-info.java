@@ -19,11 +19,10 @@
  * <p>
  * In practice, this means generating a random value from the information
  * contained in a {@link com.wandrell.tabletop.dice.Dice Dice} class, which is
- * done through a {@link com.wandrell.tabletop.dice.roller.Roller Roller}.
- * <p>
- * To actually generate the random values a
- * {@code com.wandrell.tabletop.dice.random.NumberGenerator NumberGenerator} is
- * required.
+ * done through a {@link com.wandrell.tabletop.dice.roller.Roller Roller} with
+ * the help of a
+ * {@link com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator
+ * RandomNumberGenerator}.
  */
 
 package com.wandrell.tabletop.dice.roller;

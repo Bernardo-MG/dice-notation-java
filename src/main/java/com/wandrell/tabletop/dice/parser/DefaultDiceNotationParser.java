@@ -37,7 +37,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * parser, which this one wraps and sets up, mostly by setting a
  * {@link DiceExpressionBuilder} into it.
  * <p>
- * The {@code DiceExpressionBuilder} is a listener making use of the visitor
+ * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
  * 
  * @author Bernardo Martínez Garrido
@@ -96,7 +96,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
         // Parses the expression
         parser.parse();
 
-        // Returns the tree
+        // Returns the tree root node
         return getDiceExpressionBuilder().getDiceExpressionRoot();
     }
 

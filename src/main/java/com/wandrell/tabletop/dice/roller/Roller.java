@@ -21,10 +21,17 @@ import java.util.Collection;
 import com.wandrell.tabletop.dice.Dice;
 
 /**
- * Generates random integer values from a {@link Dice}.
+ * Generates random integer values from a {@link Dice}. The name makes reference
+ * to the act of rolling the dice, which is the way to generate random values
+ * from them.
  * <p>
- * The name makes reference to the act of rolling the dice, which is the way to
- * generate random values from them.
+ * A die can be considered an interval on the range [1,(number of sides)], from
+ * which a random number is picked each time a roll is made. This is done as
+ * many times as the quantity of dice received.
+ * <p>
+ * Once all the dice have been rolled the results will be returned as a
+ * {@code Collection}. This is expected to contain the values in the same order
+ * they were generated.
  * 
  * @author Bernardo Martínez Garrido
  * @see Dice
@@ -33,10 +40,13 @@ public interface Roller {
 
     /**
      * Generates a collection of random values from the received {@code Dice}.
+     * <p>
+     * These are expected to be contained in the {@code Collection} in the same
+     * order they were generated.
      * 
      * @param dice
      *            the dice to roll
-     * @return a collection of random values
+     * @return a collection of random values generated from the dice
      */
     public Collection<Integer> roll(final Dice dice);
 
