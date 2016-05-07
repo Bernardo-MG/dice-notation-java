@@ -23,7 +23,7 @@ import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
-import com.wandrell.tabletop.dice.parser.AntlrDiceNotationParser;
+import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
@@ -64,7 +64,7 @@ public final class TestDefaultDiceNotationParser {
         final DiceOperand dice;
         final String notation;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "5+2d6";
 
@@ -92,7 +92,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "2d6+5";
 
@@ -118,7 +118,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12";
 
@@ -138,7 +138,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12+1";
 
@@ -159,7 +159,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "12-1";
 
@@ -182,7 +182,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "5-2d6";
 
@@ -210,7 +210,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "2d6-5";
 
@@ -233,7 +233,7 @@ public final class TestDefaultDiceNotationParser {
         final String notation;
         final DiceNotationParser parser;
 
-        parser = new AntlrDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "0";
 

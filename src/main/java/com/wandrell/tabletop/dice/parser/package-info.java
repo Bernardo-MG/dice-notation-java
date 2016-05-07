@@ -23,7 +23,7 @@
  * The {@link com.wandrell.tabletop.dice.parser.DiceNotationParser
  * DiceNotationParser} allows creating custom parsers, but one is already
  * implemented, the
- * {@link com.wandrell.tabletop.dice.parser.AntlrDiceNotationParser
+ * {@link com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser
  * AntlrDiceNotationParser}, which makes use of the classes generated from an
  * ANTLR4 grammar to parse dice expressions.
  */

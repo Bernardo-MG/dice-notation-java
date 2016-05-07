@@ -42,7 +42,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class AntlrDiceNotationParser implements DiceNotationParser {
+public final class DefaultDiceNotationParser implements DiceNotationParser {
 
     /**
      * Visitor used to build the returned object.
@@ -59,7 +59,7 @@ public final class AntlrDiceNotationParser implements DiceNotationParser {
      * @param builder
      *            builder to generate the returned tree
      */
-    public AntlrDiceNotationParser(final DiceExpressionBuilder builder) {
+    public DefaultDiceNotationParser(final DiceExpressionBuilder builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -74,7 +74,7 @@ public final class AntlrDiceNotationParser implements DiceNotationParser {
      * @param roller
      *            roller for the dice expressions
      */
-    public AntlrDiceNotationParser(final Roller roller) {
+    public DefaultDiceNotationParser(final Roller roller) {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder(roller);
