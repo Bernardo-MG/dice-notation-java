@@ -33,8 +33,8 @@ import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory;
 
 /**
- * Unit tests for the generated grammar classes, testing that they can process
- * dice notation.
+ * Integration tests for the generated grammar classes, testing that they can
+ * process dice notation.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -44,7 +44,7 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestDiceGrammar {
+public final class ITDiceGrammar {
 
     /**
      * Marker for the valid dice notation expression parameters.
@@ -91,7 +91,7 @@ public final class TestDiceGrammar {
     /**
      * Default constructor.
      */
-    public TestDiceGrammar() {
+    public ITDiceGrammar() {
         super();
     }
 

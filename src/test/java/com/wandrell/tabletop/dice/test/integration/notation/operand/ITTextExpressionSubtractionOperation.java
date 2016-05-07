@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.unit.notation.operand;
+package com.wandrell.tabletop.dice.test.integration.notation.operand;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,36 +29,35 @@ import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
-public final class TestTextExpressionDefaultDiceOperand {
+/**
+ * Integration tests for {@link AdditionOperation}, checking that it works as
+ * expected with its operands.
+ * <p>
+ * Checks the following cases:
+ * <ol>
+ * <li>The text expression is generated correctly.</li>
+ * </ol>
+ * 
+ * @author Bernardo Martínez Garrido
+ */
+public final class ITTextExpressionSubtractionOperation {
 
-    public TestTextExpressionDefaultDiceOperand() {
+    /**
+     * Default constructor.
+     */
+    public ITTextExpressionSubtractionOperation() {
         super();
-        // TODO: Use mocks
     }
 
+    /**
+     * Tests that the text expression is generated correctly.
+     */
     @Test
-    public final void testGetStringRepresentation_Addition() {
-        final Dice dice;
-        final DiceNotationExpression diceOperand;
-        final DiceNotationExpression intOperand;
-        final BinaryOperation operation;
-
-        dice = new DefaultDice(2, 6);
-
-        diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
-        intOperand = new IntegerOperand(5);
-
-        operation = new AdditionOperation(diceOperand, intOperand);
-
-        Assert.assertEquals(operation.getExpression(), "2d6+5");
-    }
-
-    @Test
-    public final void testGetStringRepresentation_Substraction() {
-        final Dice dice;
-        final DiceNotationExpression diceOperand;
-        final DiceNotationExpression intOperand;
-        final BinaryOperation operation;
+    public final void testTextExpression() {
+        final BinaryOperation operation;          // Tested operation
+        final DiceNotationExpression diceOperand; // Dice operand
+        final DiceNotationExpression intOperand;  // Integer operand
+        final Dice dice;                          // Dice for the operand
 
         dice = new DefaultDice(2, 6);
 

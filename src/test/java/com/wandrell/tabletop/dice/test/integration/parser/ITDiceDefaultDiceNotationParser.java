@@ -31,8 +31,8 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory;
 
 /**
- * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
- * dice notation expressions for single dice groups.
+ * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * parses dice notation expressions for single dice groups.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -41,7 +41,7 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestDiceDefaultDiceNotationParser {
+public final class ITDiceDefaultDiceNotationParser {
 
     /**
      * Marker for the single dice parameters.
@@ -68,7 +68,7 @@ public final class TestDiceDefaultDiceNotationParser {
     /**
      * Default constructor.
      */
-    public TestDiceDefaultDiceNotationParser() {
+    public ITDiceDefaultDiceNotationParser() {
         super();
     }
 

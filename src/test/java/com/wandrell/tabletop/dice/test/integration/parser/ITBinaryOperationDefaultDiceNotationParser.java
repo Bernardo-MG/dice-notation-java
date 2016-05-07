@@ -28,8 +28,8 @@ import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
- * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
- * simple binary operations.
+ * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * parses simple binary operations.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -43,12 +43,12 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestBinaryOperationDefaultDiceNotationParser {
+public final class ITBinaryOperationDefaultDiceNotationParser {
 
     /**
      * Default constructor.
      */
-    public TestBinaryOperationDefaultDiceNotationParser() {
+    public ITBinaryOperationDefaultDiceNotationParser() {
         super();
     }
 
