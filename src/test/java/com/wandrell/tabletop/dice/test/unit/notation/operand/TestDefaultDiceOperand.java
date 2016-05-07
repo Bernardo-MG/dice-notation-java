@@ -14,23 +14,19 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.integration.notation.operation;
+package com.wandrell.tabletop.dice.test.unit.notation.operand;
 
+import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
-import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
-import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
- * Integration tests for {@link AdditionOperation}, checking that it works as
- * expected with its operands.
+ * Units tests for {@code DefaultDiceOperand}.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -39,12 +35,12 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITTextExpressionAdditionOperation {
+public class TestDefaultDiceOperand {
 
     /**
      * Default constructor.
      */
-    public ITTextExpressionAdditionOperation() {
+    public TestDefaultDiceOperand() {
         super();
     }
 
@@ -53,19 +49,16 @@ public final class ITTextExpressionAdditionOperation {
      */
     @Test
     public final void testTextExpression() {
-        final BinaryOperation operation;          // Tested operation
-        final DiceNotationExpression diceOperand; // Dice operand
-        final DiceNotationExpression intOperand;  // Integer operand
+        final DiceNotationExpression diceOperand; // Tested operand
         final Dice dice;                          // Dice for the operand
 
-        dice = new DefaultDice(2, 6);
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(2);
+        Mockito.when(dice.getSides()).thenReturn(6);
 
         diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
-        intOperand = new IntegerOperand(5);
 
-        operation = new AdditionOperation(diceOperand, intOperand);
-
-        Assert.assertEquals(operation.getExpression(), "2d6+5");
+        Assert.assertEquals(diceOperand.getExpression(), "2d6");
     }
 
 }
