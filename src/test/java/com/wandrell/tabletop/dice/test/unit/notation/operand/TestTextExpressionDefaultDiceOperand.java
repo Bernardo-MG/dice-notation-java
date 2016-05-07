@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.unit.notation.formula;
+package com.wandrell.tabletop.dice.test.unit.notation.operand;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,9 +29,9 @@ import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
-public final class TestStringRepresentationDefaultDiceFormula {
+public final class TestTextExpressionDefaultDiceOperand {
 
-    public TestStringRepresentationDefaultDiceFormula() {
+    public TestTextExpressionDefaultDiceOperand() {
         super();
         // TODO: Use mocks
     }
