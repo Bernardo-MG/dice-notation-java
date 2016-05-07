@@ -216,6 +216,7 @@
       <mockito.version>1.10.19</mockito.version>
       <supercsv.version>2.4.0</supercsv.version>
       <log4j.version>2.3</log4j.version>
+      <spring.version>4.2.5.RELEASE</spring.version>
       <testng.version>6.9.10</testng.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
@@ -264,6 +265,12 @@
          <artifactId>mockito-all</artifactId>
          <version>${mockito.version}</version>
          <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Spring Core -->
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-core</artifactId>
+         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Super CSV -->
