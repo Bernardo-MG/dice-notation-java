@@ -38,7 +38,9 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * <li>A subtraction with the number to left is parsed correctly.</li>
  * <li>A subtraction with the number to right is parsed correctly.</li>
  * <li>An addition with only numbers is parsed correctly.</li>
+ * <li>An addition using only dice is parsed correctly.</li>
  * <li>A subtraction with only numbers is parsed correctly.</li>
+ * <li>A subtraction using only dice is parsed correctly.</li>
  * </ol>
  * 
  * @author Bernardo Martínez Garrido
@@ -53,10 +55,39 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
     }
 
     /**
+     * Tests that an addition using only dice is parsed correctly.
+     */
+    @Test
+    public final void testParse_Add_Dice() {
+        final DiceNotationParser parser;
+        final AdditionOperation operation;
+        final DiceOperand diceLeft;
+        final DiceOperand diceRight;
+        final String notation;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1d20+2d6";
+
+        operation = (AdditionOperation) parser.parse(notation);
+
+        diceLeft = (DiceOperand) operation.getLeft();
+        diceRight = (DiceOperand) operation.getRight();
+
+        Assert.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
+        Assert.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
+
+        Assert.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
+
+        Assert.assertEquals(operation.getExpression(), notation);
+    }
+
+    /**
      * Tests that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Left() {
+    public final void testParse_Add_LeftNumber() {
         final DiceNotationParser parser;
         final AdditionOperation operation;
         final IntegerOperand integer;
@@ -84,7 +115,7 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
      * Tests that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Right() {
+    public final void testParse_Add_RightNumber() {
         final AdditionOperation operation;
         final IntegerOperand integer;
         final DiceOperand dice;
@@ -151,10 +182,39 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
     }
 
     /**
+     * Tests that a subtraction using only dice is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_Dice() {
+        final DiceNotationParser parser;
+        final SubtractionOperation operation;
+        final DiceOperand diceLeft;
+        final DiceOperand diceRight;
+        final String notation;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1d20-2d6";
+
+        operation = (SubtractionOperation) parser.parse(notation);
+
+        diceLeft = (DiceOperand) operation.getLeft();
+        diceRight = (DiceOperand) operation.getRight();
+
+        Assert.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
+        Assert.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
+
+        Assert.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
+
+        Assert.assertEquals(operation.getExpression(), notation);
+    }
+
+    /**
      * Tests that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_Left() {
+    public final void testParse_Sub_LeftNumber() {
         final SubtractionOperation operation;
         final IntegerOperand integer;
         final DiceOperand dice;
@@ -182,7 +242,7 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
      * Tests that a subtraction with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_Right() {
+    public final void testParse_Sub_RightNumber() {
         final SubtractionOperation operation;
         final IntegerOperand integer;
         final DiceOperand dice;
