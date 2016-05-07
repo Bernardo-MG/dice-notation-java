@@ -21,7 +21,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
-import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 
 public final class TestStringRepresentationSubstractionOperation {
 
@@ -41,7 +41,7 @@ public final class TestStringRepresentationSubstractionOperation {
         operandB = Mockito.mock(DiceNotationExpression.class);
         Mockito.when(operandB.getExpression()).thenReturn("2");
 
-        operation = new SubstractionOperation(operandA, operandB);
+        operation = new SubtractionOperation(operandA, operandB);
 
         Assert.assertEquals(operation.getExpression(), "1-2");
     }

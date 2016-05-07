@@ -25,14 +25,14 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 /**
  * Addition operation.
  * <p>
- * This substracts the value of an operand from the value of the other operand.
+ * This subtracts the value of an operand from the value of the other operand.
  * <p>
- * As with any other substraction, the right operand's value will be substracted
+ * As with any other subtraction, the right operand's value will be subtracted
  * from the left one's.
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class SubstractionOperation implements BinaryOperation {
+public final class SubtractionOperation implements BinaryOperation {
 
     /**
      * Left sided operand.
@@ -45,14 +45,14 @@ public final class SubstractionOperation implements BinaryOperation {
     private final DiceNotationExpression operandRight;
 
     /**
-     * Constructs a substraction operation with the specified operands.
+     * Constructs a subtraction operation with the specified operands.
      * 
      * @param left
      *            the left sided operand
      * @param right
      *            the right sided operand
      */
-    public SubstractionOperation(final DiceNotationExpression left,
+    public SubtractionOperation(final DiceNotationExpression left,
             final DiceNotationExpression right) {
         super();
 
@@ -76,9 +76,9 @@ public final class SubstractionOperation implements BinaryOperation {
             return false;
         }
 
-        final SubstractionOperation other;
+        final SubtractionOperation other;
 
-        other = (SubstractionOperation) obj;
+        other = (SubtractionOperation) obj;
 
         return Objects.equal(operandLeft, other.operandLeft)
                 && Objects.equal(operandRight, other.operandRight);

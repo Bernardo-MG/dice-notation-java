@@ -31,7 +31,7 @@ import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
@@ -104,7 +104,7 @@ public final class DefaultDiceExpressionBuilder extends
         if (ADDITION_OPERATOR.equals(operator)) {
             operation = new AdditionOperation(left, right);
         } else {
-            operation = new SubstractionOperation(left, right);
+            operation = new SubtractionOperation(left, right);
         }
 
         // Adds to the operands stack

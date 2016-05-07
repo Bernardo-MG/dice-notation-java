@@ -6,7 +6,7 @@ This notation is widely used on tabletop games, such as wargames or RPGs, and wa
 With the pass of years it has evolved, and while it never underwent a formal standarization process a core set of rules is kept among all the variations:
 
 * A dice is represented as xdy. Where 'x' is the number of dice and 'y' the number of sides they have.
-* Integer numbers can be added and substracted from the results.
+* Integer numbers can be added and subtracted from the results.
 * It is possible to swap a dice for a constant. They are both the same kind of term inside a dice algebra operation.
 
 To handle this, and a few additional modifications, a grammar has been created using ANTLR4, which can be found in the path [src/main/antlr4/DiceNotation.g4](src/main/antlr4/DiceNotation.g4).

@@ -26,7 +26,7 @@ import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
-import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 public final class TestStringRepresentationDefaultDiceFormula {
@@ -65,7 +65,7 @@ public final class TestStringRepresentationDefaultDiceFormula {
         diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
         intOperand = new IntegerOperand(5);
 
-        operation = new SubstractionOperation(diceOperand, intOperand);
+        operation = new SubtractionOperation(diceOperand, intOperand);
 
         Assert.assertEquals(operation.getExpression(), "2d6-5");
     }

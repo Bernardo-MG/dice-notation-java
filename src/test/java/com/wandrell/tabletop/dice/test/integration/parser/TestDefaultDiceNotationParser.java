@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
-import com.wandrell.tabletop.dice.notation.operation.SubstractionOperation;
+import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.parser.AntlrDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
@@ -155,7 +155,7 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Number_Sub() {
-        final SubstractionOperation value;
+        final SubtractionOperation value;
         final String notation;
         final DiceNotationParser parser;
 
@@ -163,7 +163,7 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "12-1";
 
-        value = (SubstractionOperation) parser.parse(notation);
+        value = (SubtractionOperation) parser.parse(notation);
 
         Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
         Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
@@ -176,7 +176,7 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Sub_Left() {
-        final SubstractionOperation operation;
+        final SubtractionOperation operation;
         final IntegerOperand integer;
         final DiceOperand dice;
         final String notation;
@@ -186,7 +186,7 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "5-2d6";
 
-        operation = (SubstractionOperation) parser.parse(notation);
+        operation = (SubtractionOperation) parser.parse(notation);
 
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
@@ -204,7 +204,7 @@ public final class TestDefaultDiceNotationParser {
      */
     @Test
     public final void testParse_Sub_Right() {
-        final SubstractionOperation operation;
+        final SubtractionOperation operation;
         final IntegerOperand integer;
         final DiceOperand dice;
         final String notation;
@@ -214,7 +214,7 @@ public final class TestDefaultDiceNotationParser {
 
         notation = "2d6-5";
 
-        operation = (SubstractionOperation) parser.parse(notation);
+        operation = (SubtractionOperation) parser.parse(notation);
 
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
