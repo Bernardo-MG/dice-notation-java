@@ -45,6 +45,9 @@ public final class DiceParametersFactory {
     /**
      * Returns the parameters for tests requiring a dice string, along the
      * quantity and number of sides for that dice group.
+     * <p>
+     * This returns dice notation expressions representing only a single dice
+     * group.
      * 
      * @return arrays with a dice string, the quantity of dice and the number of
      *         sides
@@ -63,13 +66,34 @@ public final class DiceParametersFactory {
     }
 
     /**
-     * Returns the parameters for tests requiring a valid dice string.
+     * Returns the parameters for tests requiring an invalid dice notation
+     * expression.
      * 
-     * @return arrays with a valid dice string
+     * @return arrays with an invalid dice notation expression
      * @throws Exception
      *             if any error occurs while loading the parameters
      */
-    public static final Iterator<Object[]> getDiceTextValid() throws Exception {
+    public static final Iterator<Object[]> getDiceNotationInvalid()
+            throws Exception {
+        final CellProcessor[] processors; // Procesors for the CSV file
+
+        // The CSV has the following columns:
+        // Anything
+        processors = new CellProcessor[] { new NotNull() };
+
+        return getParameters(ParameterCsvPaths.DICE_TEXT_INVALID, processors);
+    }
+
+    /**
+     * Returns the parameters for tests requiring a valid dice notation
+     * expression.
+     * 
+     * @return arrays with a valid dice notation expression
+     * @throws Exception
+     *             if any error occurs while loading the parameters
+     */
+    public static final Iterator<Object[]> getDiceNotationValid()
+            throws Exception {
         final CellProcessor[] processors; // Procesors for the CSV file
 
         // The CSV has the following columns:

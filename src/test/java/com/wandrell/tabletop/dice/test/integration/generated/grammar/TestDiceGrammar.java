@@ -38,7 +38,8 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>Strings with valid notation do not generate exceptions.</li>
+ * <li>Strings with valid dice notation expressions do not generate exceptions.</li>
+ * <li>Strings with invalid dice notation expressions generate exceptions.</li>
  * </ol>
  * 
  * @author Bernardo Martínez Garrido
@@ -46,23 +47,45 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
 public final class TestDiceGrammar {
 
     /**
-     * Marker for the notation parameters.
+     * Marker for the valid dice notation expression parameters.
      */
-    protected static final String NOTATION = "notation";
+    protected static final String NOTATION_VALID   = "notation_valid";
 
     /**
-     * Dice notation parameters.
+     * Marker for the invalid dice notation expression parameters.
+     */
+    protected static final String NOTATION_INVALID = "notation_invalid";
+
+    /**
+     * Invalid dice notation expression parameters.
      * <p>
-     * It returns sets of a single parameter, containing a dice notation
+     * It returns sets of a single parameter, containing an invalid dice
+     * notation expression.
+     * 
+     * @return dice notation expressions
+     * @throws Exception
+     *             if any error occurs while preparing the parameters
+     */
+    @DataProvider(name = NOTATION_INVALID)
+    public final static Iterator<Object[]> getInvalidNotationParameters()
+            throws Exception {
+        return DiceParametersFactory.getDiceNotationInvalid();
+    }
+
+    /**
+     * Valid dice notation expression parameters.
+     * <p>
+     * It returns sets of a single parameter, containing a valid dice notation
      * expression.
      * 
      * @return dice notation expressions
      * @throws Exception
      *             if any error occurs while preparing the parameters
      */
-    @DataProvider(name = NOTATION)
-    public final static Iterator<Object[]> getNotationData() throws Exception {
-        return DiceParametersFactory.getDiceTextValid();
+    @DataProvider(name = NOTATION_VALID)
+    public final static Iterator<Object[]> getValidNotationParameters()
+            throws Exception {
+        return DiceParametersFactory.getDiceNotationValid();
     }
 
     /**
@@ -73,17 +96,32 @@ public final class TestDiceGrammar {
     }
 
     /**
-     * Tests that strings with valid notation do not generate exceptions.
+     * Tests that strings with invalid dice notation expressions generate
+     * exceptions.
      * 
-     * @param notation
-     *            the notation to parse
+     * @param expression
+     *            the expression to parse
      */
-    @Test(dataProvider = NOTATION)
-    public final void
-            testParse_ValidNotation_NoException(final String notation) {
-        final ParseContext context;
+    @Test(dataProvider = NOTATION_INVALID,
+            expectedExceptions = { Exception.class })
+    public final void testParse_InvalidExpression_Exception(
+            final String expression) {
+        getParser(expression).parse();
+    }
 
-        context = getParser(notation).parse();
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     * 
+     * @param expression
+     *            the expression to parse
+     */
+    @Test(dataProvider = NOTATION_VALID)
+    public final void testParse_ValidExpression_NoException(
+            final String expression) {
+        final ParseContext context; // Parsed context
+
+        context = getParser(expression).parse();
 
         Assert.assertNull(context.exception);
     }
