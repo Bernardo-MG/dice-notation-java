@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dice.test.integration.notation.operand;
+package com.wandrell.tabletop.dice.test.integration.notation.operation;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,6 +26,7 @@ import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
+import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
@@ -39,12 +40,12 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITTextExpressionAdditionOperation {
+public final class ITTextExpressionSubtractionOperation {
 
     /**
      * Default constructor.
      */
-    public ITTextExpressionAdditionOperation() {
+    public ITTextExpressionSubtractionOperation() {
         super();
     }
 
@@ -63,9 +64,9 @@ public final class ITTextExpressionAdditionOperation {
         diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
         intOperand = new IntegerOperand(5);
 
-        operation = new AdditionOperation(diceOperand, intOperand);
+        operation = new SubtractionOperation(diceOperand, intOperand);
 
-        Assert.assertEquals(operation.getExpression(), "2d6+5");
+        Assert.assertEquals(operation.getExpression(), "2d6-5");
     }
 
 }

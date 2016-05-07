@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="OperandUnit" parallel="methods" thread-count="4">
+<suite name="OperationUnit" parallel="methods" thread-count="4">
 
 	<test name="all" verbose="2">
 		<packages>
-			<package name="com.wandrell.tabletop.dice.test.integration.notation.operand" />
+			<package name="com.wandrell.tabletop.dice.test.integration.notation.operation" />
 		</packages>
 	</test>
 
