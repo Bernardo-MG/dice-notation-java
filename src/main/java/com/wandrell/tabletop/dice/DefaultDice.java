@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 the original author or authors
+ * Copyright 2015-2016 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.wandrell.tabletop.dice;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -22,11 +23,13 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
- * Implementation of {@code Dice} for a general use.
+ * Value entity implementation of {@code Dice}, representing a group of dice.
+ * This means the class is immutable, not allowing the modification of any of
+ * its values.
  * <p>
- * This just supports the most basic representation of a dice. If complex
- * notation, or operations such as dice mapping, are needed, then other classes
- * should be used.
+ * Some basic constraints are applied to the dice values. The quantity should be
+ * equal or higher than zero, and the number of sides equal or higher than one.
+ * If any other value is received then an exception will be thrown.
  * 
  * @author Bernardo Martínez Garrido
  */
@@ -38,6 +41,7 @@ public final class DefaultDice implements Dice {
      * This is greater or equal to zero.
      */
     private final Integer diceQuantity;
+
     /**
      * Number of sides in each die.
      * <p>
@@ -46,30 +50,15 @@ public final class DefaultDice implements Dice {
     private final Integer diceSides;
 
     /**
-     * Copy constructor for {@code DefaultDice}.
-     * 
-     * @param dice
-     *            the dice to copy
-     */
-    public DefaultDice(final DefaultDice dice) {
-        super();
-
-        checkNotNull(dice, "Received a null pointer as dice");
-
-        diceSides = dice.diceSides;
-        diceQuantity = dice.diceQuantity;
-    }
-
-    /**
-     * Constructs a {@code DefaultDice} with the specified quantity and sides.
+     * Constructs a dice group with the specified quantity and number sides.
      * <p>
      * The quantity can't be a negative value, and the number of sides should be
-     * greater than zero. Otherwise an exception is thrown.
+     * greater than zero. Otherwise an exception will be thrown.
      * 
      * @param quantity
      *            the number of dice
      * @param sides
-     *            the sides each die has
+     *            the number sides each die has
      */
     public DefaultDice(final Integer quantity, final Integer sides) {
         super();
@@ -119,22 +108,17 @@ public final class DefaultDice implements Dice {
     }
 
     /**
-     * Returns the number of sides of the die being rolled.
+     * Returns the number of sides of the dice in the group.
      * <p>
      * All the dice will have this same number of sides.
      * <p>
      * This is a positive value greater than zero.
      * 
-     * @return the die's number of sides
+     * @return the dice's number of sides
      */
     @Override
     public final Integer getSides() {
         return diceSides;
-    }
-
-    @Override
-    public final String getStringRepresentation() {
-        return String.format("%dd%d", getQuantity(), getSides());
     }
 
     @Override

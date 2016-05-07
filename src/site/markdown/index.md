@@ -16,7 +16,7 @@ It is needed not only to be able to represent it somehow, but also it should be 
 
 Several features allow handling dice notation:
 
-- There is a grammar, written on ANTLR4, defining the dice notation
-- A model allows representations of said grammar and dice
+- ANTLR 4 grammar for the dice notation
+- Model for both the dice notation and dice groups
 - Classes for generating random values from the notation
 - Parser which generates model instances from the notation

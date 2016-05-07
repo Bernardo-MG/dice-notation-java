@@ -4,31 +4,47 @@
 
 |Report|Description|
 |---|---|
-|[Surefire](./surefire-report.html)|Unit tests report.|
-|[Failsafe](./failsafe-report.html)|Integration tests report.|
-|[JaCoCo](./jacoco/index.html)|Tests coverage report.|
+|[Surefire][surefire]|Unit tests report.|
+|[Failsafe][failsafe]|Integration tests report.|
+|[JaCoCo][jacoco]|Tests coverage report.|
 
 ## Code Quality
 
 |Report|Description|
 |---|---|
-|[Checkstyle](./checkstyle.html)|Report on coding style conventions.|
-|[FindBugs](./findbugs.html)|Generates a source code report with the FindBugs Library.|
-|[PMD](./pmd.html)|Verification of coding rules.|
-|[CPD](./cpd.html)|Duplicate code detection.|
-|[JDepend](./jdepend-report.html)|Quality metrics for the project.|
-|[Tag list](./taglist.html)|List of warning tags found on the code.|
+|[Checkstyle][checkstyle]|Report on coding style conventions.|
+|[FindBugs][findbugs]|Generates a source code report with the FindBugs Library.|
+|[PMD][pmd]|Verification of coding rules.|
+|[CPD][cpd]|Duplicate code detection.|
+|[JDepend][jdepend]|Quality metrics for the project.|
+|[Tag list][taglist]|List of warning tags found on the code.|
 
 ## Dependencies
 
 |Report|Description|
 |---|---|
-|[Dependencies](./dependencies.html)|Dependencies used by the project.|
-|[Plugins](./plugins.html)|Maven plugins used by the project.|
-|[Plugins Management](./plugin-management.html)|Maven plugins that are defined through pluginManagement.|
+|[Dependencies][dependencies]|Dependencies used by the project.|
+|[Dependencies Analysis][dependency-analysis]|Dependencies analysis of the project (used declared, used undeclared, unused declared).|
+|[Plugins][plugins]|Maven plugins used by the project.|
+|[Plugins Management][plugins-manage]|Maven plugins that are defined through pluginManagement.|
 
 ## Other
 
 |Report|Description|
 |---|---|
-|[Changes](./changes-report.html)|Full history of changes.|
+|[Changes][changes]|Full history of changes.|
+
+[changes]: ./changes-report.html
+[checkstyle]: ./checkstyle.html
+[cpd]: ./cpd.html
+[dependencies]: ./dependencies.html
+[dependency-analysis]: ./dependency-analysis.html
+[failsafe]: ./failsafe-report.html
+[findbugs]: ./findbugs.html
+[jacoco]: ./jacoco/index.html
+[jdepend]: ./jdepend-report.html
+[pmd]: ./pmd.html
+[plugins]: ./plugins.html
+[plugins-manage]: ./plugin-management.html
+[surefire]: ./surefire-report.html
+[taglist]: ./taglist.html

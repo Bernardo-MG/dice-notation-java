@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2014 the original author or authors
+ * Copyright 2014-2016 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,7 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 /**
- * Offers classes to represent and handle dice notation.
+ * Dice notation model.
+ * <p>
+ * The classes in this package allow creating a tree representing a dice
+ * notation expression, which can be used to generate values, or to get back the
+ * dice notation expression it represents.
+ * <p>
+ * As these expressions are used to handle the generation of random numbers, in
+ * some clases this value may be different each time it is acquired.
+ * <p>
+ * It is not recommended using the classes in this package manually. Instead a
+ * parser from the {@link com.wandrell.tabletop.dice.parser parser} package
+ * should be used.
  */
+
 package com.wandrell.tabletop.dice.notation;
+

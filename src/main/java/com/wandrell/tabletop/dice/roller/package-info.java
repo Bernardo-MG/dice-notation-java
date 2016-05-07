@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2014 the original author or authors
+ * Copyright 2014-2016 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -13,9 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 /**
- * Contains classes for generating dice roll. In practice, this is generating a
- * random value from the information contained in a
- * {@link com.wandrell.tabletop.dice.Dice Dice} class.
+ * Representation and execution of dice rolls.
+ * <p>
+ * In practice, this means generating a random value from the information
+ * contained in a {@link com.wandrell.tabletop.dice.Dice Dice} class, which is
+ * done through a {@link com.wandrell.tabletop.dice.roller.Roller Roller} with
+ * the help of a
+ * {@link com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator
+ * RandomNumberGenerator}.
  */
+
 package com.wandrell.tabletop.dice.roller;
+

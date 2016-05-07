@@ -1,15 +1,10 @@
 # Dice Notation Tools for Java
-With the use of this library dice notation and algebra, using expressions such as "1d6+5" or "2d10*2", can be parsed and operated.
 
-This notation is widely used on tabletop games, such as wargames or RPGs, and was created on the late 70s for Dungeons & Dragons.
+This notation is widely used on tabletop games, such as wargames or RPGs, and was created on the late 70s for Dungeons & Dragons, as a way to allow generating random values in specific distributions.
 
-With the pass of years it has evolved, and while it never underwent a formal standarization process a core set of rules is kept among all the variations:
+With the pass of years it has evolved, and while it never underwent a formal standarization process a core set of rules is kept among all the variations, mostly representing dice in a format such as '1d6', and the use of algebra operations like addition and subtraction.
 
-* A dice is represented as xdy. Where 'x' is the number of dice and 'y' the number of sides they have.
-* Integer numbers can be added and substracted from the results.
-* It is possible to swap a dice for a constant. They are both the same kind of term inside a dice algebra operation.
-
-To handle this, and a few additional modifications, a grammar has been created using ANTLR4, which can be found in the path [src/main/antlr4/DiceNotation.g4](src/main/antlr4/DiceNotation.g4).
+This project aims to give support to the dice notation, allowing parsing and operating with it on any Java application.
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.wandrell.tabletop/dice.svg)][maven-repo]
 [![Bintray](https://api.bintray.com/packages/bernardo-mg/tabletop-toolkits/dice/images/download.svg)][bintray-repo]

@@ -1,715 +1,470 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+   <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.wandrell.tabletop</groupId>
-	<artifactId>dice</artifactId>
-	<version>0.2.0</version>
-	<packaging>jar</packaging>
+   <!-- ********************************************** -->
+   <!-- ****************** BASE POM ****************** -->
+   <!-- ********************************************** -->
 
-	<name>Dice Notation Tools for Java</name>
-	<description>Utilities for representing and handling dice and dice notation.</description>
-	<url>https://github.com/bernardo-mg/tabletop-dice-java</url>
-	<inceptionYear>2014</inceptionYear>
+   <parent>
+      <groupId>com.wandrell.maven</groupId>
+      <artifactId>base-pom</artifactId>
+      <version>0.1.1</version>
+   </parent>
 
-	<licenses>
-		<license>
-			<name>Apache v2 License</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+   <!-- ********************************************** -->
+   <!-- **************** PROJECT INFO **************** -->
+   <!-- ********************************************** -->
 
-	<scm>
-		<connection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</connection>
-		<developerConnection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</developerConnection>
-		<tag>head</tag>
-		<url>https://github.com/bernardo-mg/tabletop-dice-java</url>
-	</scm>
+   <groupId>com.wandrell.tabletop</groupId>
+   <artifactId>dice</artifactId>
+   <version>0.3.0</version>
+   <packaging>jar</packaging>
 
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/bernardo-mg/tabletop-dice-java/issues</url>
-	</issueManagement>
+   <name>Dice Notation Tools for Java</name>
+   <description>Utilities for representing and handling dice and dice notation.</description>
+   <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+   <inceptionYear>2014</inceptionYear>
 
-	<ciManagement>
-		<system>Travis CI</system>
-		<url>https://travis-ci.org/Bernardo-MG/tabletop-dice-java</url>
-		<notifiers />
-	</ciManagement>
+   <licenses>
+      <license>
+         <name>Apache v2 License</name>
+         <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
 
-	<distributionManagement>
-		<repository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>releases</id>
-			<name>Releases Repository</name>
-			<url>https://api.bintray.com/maven/bernardo-mg/tabletop-toolkits/dice</url>
-		</repository>
-		<snapshotRepository>
-			<uniqueVersion>true</uniqueVersion>
-			<id>snapshots</id>
-			<name>Snapshots Repository</name>
-			<url>ftp://maven.wandrell.com</url>
-		</snapshotRepository>
-	</distributionManagement>
+   <!-- ********************************************** -->
+   <!-- ********* INFRASTRUCTURE AND SERVICES ******** -->
+   <!-- ********************************************** -->
 
-	<profiles>
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<distributionManagement>
-				<site>
-					<id>site</id>
-					<name>Project Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice</url>
-				</site>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>development</id>
-			<distributionManagement>
-				<site>
-					<id>site-development</id>
-					<name>Project Development Documentation Site</name>
-					<url>ftp://docs.wandrell.com/tabletop-dice</url>
-				</site>
-			</distributionManagement>
-		</profile>
-	</profiles>
+   <scm>
+      <connection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</developerConnection>
+      <tag>head</tag>
+      <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+   </scm>
 
-	<organization>
-		<name>Bernardo Martínez Garrido</name>
-		<url>https://github.com/bernardo-mg</url>
-	</organization>
+   <issueManagement>
+      <system>GitHub Issues</system>
+      <url>https://github.com/bernardo-mg/tabletop-dice-java/issues</url>
+   </issueManagement>
 
-	<developers>
-		<developer>
-			<id>bmg</id>
-			<name>Bernardo Martínez Garrido</name>
-			<email>programming@wandrell.com</email>
-			<url>https://github.com/bernardo-mg</url>
-			<organization>Bernardo Martínez Garrido</organization>
-			<organizationUrl>https://github.com/bernardo-mg</organizationUrl>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>+1</timezone>
-			<properties />
-		</developer>
-	</developers>
+   <ciManagement>
+      <system>Travis CI</system>
+      <url>https://travis-ci.org/Bernardo-MG/tabletop-dice-java</url>
+      <notifiers />
+   </ciManagement>
 
-	<properties>
-		<!-- Encoding -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-		<!-- Java version -->
-		<java.version.source>1.7</java.version.source>
-		<java.version.target>${java.version.source}</java.version.target>
-		<!-- Manifest data -->
-		<manifest.name>com/wandrell/tabletop/dice</manifest.name>
-		<!-- Dependencies versions -->
-		<antlr.version>4.5</antlr.version>
-		<guava.version>18.0</guava.version>
-		<jaxen.version>1.1.6</jaxen.version>
-		<jdom.version>2.0.5</jdom.version>
-		<mockito.version>1.10.19</mockito.version>
-		<log4j.version>2.3</log4j.version>
-		<testng.version>6.8.8</testng.version>
-		<wandrell.patterns.version>0.4.4</wandrell.patterns.version>
-		<!-- Plugins versions -->
-		<plugin.ant.version>1.8</plugin.ant.version>
-		<plugin.assembly.version>2.5.5</plugin.assembly.version>
-		<plugin.checkstyle.version>2.16</plugin.checkstyle.version>
-		<plugin.changes.version>2.11</plugin.changes.version>
-		<plugin.clean.version>2.6.1</plugin.clean.version>
-		<plugin.compiler.version>3.3</plugin.compiler.version>
-		<plugin.dependency.version>2.10</plugin.dependency.version>
-		<plugin.deploy.version>2.8.2</plugin.deploy.version>
-		<plugin.enforcer.version>1.4</plugin.enforcer.version>
-		<plugin.failsafe.version>2.18.1</plugin.failsafe.version>
-		<plugin.findbugs.version>3.0.1</plugin.findbugs.version>
-		<plugin.install.version>2.5.2</plugin.install.version>
-		<plugin.jacoco.version>0.7.5.201505241946</plugin.jacoco.version>
-		<plugin.jar.version>2.6</plugin.jar.version>
-		<plugin.javadoc.version>2.10.3</plugin.javadoc.version>
-		<plugin.jdepend.version>2.0</plugin.jdepend.version>
-		<plugin.jxr.version>2.5</plugin.jxr.version>
-		<plugin.pmd.version>3.5</plugin.pmd.version>
-		<plugin.release.version>2.5.2</plugin.release.version>
-		<plugin.reports.version>2.8</plugin.reports.version>
-		<plugin.resources.version>2.6</plugin.resources.version>
-		<plugin.site.version>3.4</plugin.site.version>
-		<plugin.site.velocity.version>1.7</plugin.site.velocity.version>
-		<plugin.source.version>2.4</plugin.source.version>
-		<plugin.surefire.version>2.18.1</plugin.surefire.version>
-		<plugin.taglist.version>2.4</plugin.taglist.version>
-		<!-- Extensions versions -->
-		<extension.wagon.version>2.8</extension.wagon.version>
-		<!-- Maven Site -->
-		<site.skin.version>0.2.0</site.skin.version>
-		<bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
-		<mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
-	</properties>
+   <distributionManagement>
+      <repository>
+         <uniqueVersion>false</uniqueVersion>
+         <id>releases</id>
+         <name>Releases Repository</name>
+         <url>https://api.bintray.com/maven/bernardo-mg/tabletop-toolkits/dice</url>
+      </repository>
+      <snapshotRepository>
+         <uniqueVersion>false</uniqueVersion>
+         <id>snapshots</id>
+         <name>Snapshots Repository</name>
+         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      </snapshotRepository>
+   </distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>releases</id>
-			<name>Releases repository</name>
-			<url>http://dl.bintray.com/bernardo-mg/maven</url>
-		</repository>
-		<repository>
-			<id>snapshots</id>
-			<name>Snapshots repository</name>
-			<url>http://maven.wandrell.com</url>
-		</repository>
-	</repositories>
+   <!-- ********************************************** -->
+   <!-- ****************** PROFILES ****************** -->
+   <!-- ********************************************** -->
 
-	<dependencies>
-		<dependency>
-			<!-- Antlr -->
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr4</artifactId>
-			<version>${antlr.version}</version>
-		</dependency>
-		<dependency>
-			<!-- Guava -->
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
-		<dependency>
-			<!-- Java Patterns -->
-			<groupId>com.wandrell</groupId>
-			<artifactId>java-patterns</artifactId>
-			<version>${wandrell.patterns.version}</version>
-		</dependency>
-		<dependency>
-			<!-- Jaxen -->
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>${jaxen.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- JDom 2 -->
-			<groupId>org.jdom</groupId>
-			<artifactId>jdom2</artifactId>
-			<version>${jdom.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- Log4J -->
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- Mockito -->
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>${mockito.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- TestNG -->
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${testng.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+   <profiles>
+      <profile>
+         <!-- Profile for the Eclipse Maven plugin -->
+         <!-- Sets the POM so this plugin does not give the usual unregistered 
+            goals errors -->
+         <!-- It will be activated automatically on Eclipse if this has the 
+            m2e plugin, by detecting the version property -->
+         <id>eclipse-maven</id>
+         <activation>
+            <property>
+               <name>m2e.version</name>
+            </property>
+         </activation>
+         <build>
+            <pluginManagement>
+               <plugins>
+                  <plugin>
+                     <!-- m2e lifecycle mapping -->
+                     <!-- This is used to configure the Maven plugin for 
+                        Eclipse. -->
+                     <!-- Among other things, it allows registering goals, 
+                        which Eclipse would otherwise reject. -->
+                     <!-- It has no real effect on Maven. -->
+                     <groupId>org.eclipse.m2e</groupId>
+                     <artifactId>lifecycle-mapping</artifactId>
+                     <version>${plugin.lifecycle.version}</version>
+                     <configuration>
+                        <lifecycleMappingMetadata>
+                           <pluginExecutions>
+                              <pluginExecution>
+                                 <!-- Build helper plugin configuration -->
+                                 <pluginExecutionFilter>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>build-helper-maven-plugin</artifactId>
+                                    <versionRange>[1.0,)</versionRange>
+                                    <goals>
+                                       <goal>add-source</goal>
+                                       <goal>add-test-source</goal>
+                                       <goal>add-resource</goal>
+                                       <goal>add-test-resource</goal>
+                                       <goal>maven-version</goal>
+                                       <goal>parse-version</goal>
+                                       <goal>timestamp-property</goal>
+                                    </goals>
+                                 </pluginExecutionFilter>
+                                 <action>
+                                    <execute>
+                                       <runOnConfiguration>true</runOnConfiguration>
+                                       <runOnIncremental>true</runOnIncremental>
+                                    </execute>
+                                 </action>
+                              </pluginExecution>
+                           </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                        <downloadSources>true</downloadSources>
+                        <downloadJavadocs>true</downloadJavadocs>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </pluginManagement>
+         </build>
+      </profile>
+      <profile>
+         <!-- Release site deployment profile -->
+         <!-- Sets the site repository to point to the releases repo -->
+         <id>deploy-site-release</id>
+         <activation>
+            <!-- Active by default so the repository appears in the reports -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <distributionManagement>
+            <site>
+               <id>site</id>
+               <name>Project Documentation Site</name>
+               <url>ftp://docs.wandrell.com/tabletop-dice</url>
+            </site>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- Development site deployment profile -->
+         <!-- Sets the site repository to point to the development repo -->
+         <id>deploy-site-development</id>
+         <distributionManagement>
+            <site>
+               <id>site-development</id>
+               <name>Project Development Documentation Site</name>
+               <url>ftp://docs.wandrell.com/tabletop-dice</url>
+            </site>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- Deployment profile -->
+         <!-- Sets ups the environment for deployment -->
+         <id>deployment</id>
+         <properties>
+            <!-- Tests are skipped -->
+            <maven.test.skip>true</maven.test.skip>
+         </properties>
+      </profile>
+   </profiles>
 
-	<build>
-		<defaultGoal>clean package install</defaultGoal>
-		<extensions>
-			<extension>
-				<!-- Wagon -->
-				<!-- Enables the use of FTP -->
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>${extension.wagon.version}</version>
-			</extension>
-		</extensions>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.jacoco</groupId>
-										<artifactId>jacoco-maven-plugin</artifactId>
-										<versionRange>[0.5,)
-										</versionRange>
-										<goals>
-											<goal>prepare-agent</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<!-- m2e doesn't know what to do with jacoco, let's ignore it or 
-											annoying error markers appear see http://wiki.eclipse.org/M2E_plugin_execution_not_covered -->
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-				<plugin>
-					<!-- Dependency -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>${plugin.dependency.version}</version>
-				</plugin>
-				<plugin>
-					<!-- Assembly -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${plugin.assembly.version}</version>
-				</plugin>
-				<plugin>
-					<!-- Release -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${plugin.release.version}</version>
-				</plugin>
-				<plugin>
-					<!-- Ant Run -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>${plugin.ant.version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<!-- Clean -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>${plugin.clean.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Resources -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${plugin.resources.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Compiler -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${plugin.compiler.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-					<source>${java.version.source}</source>
-					<target>${java.version.target}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Install -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-install-plugin</artifactId>
-				<version>${plugin.install.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Enforcer -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>${plugin.enforcer.version}</version>
-				<executions>
-					<execution>
-						<id>enforce</id>
-						<configuration>
-							<rules>
-								<dependencyConvergence />
-							</rules>
-						</configuration>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Failsafe -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>${plugin.failsafe.version}</version>
-				<configuration>
-					<properties>
-						<property>
-							<name>usedefaultlisteners</name>
-							<key>false</key>
-						</property>
-						<property>
-							<name>suitename</name>
-							<value>${project.artifactId}_(${project.groupId})_Integration_Suite</value>
-						</property>
-					</properties>
-					<suiteXmlFiles>
-						<suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_integration_suite.xml</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-				<executions>
-					<execution>
-						<id>failsafe-integration-tests</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>failsafe-verify</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- JaCoCo -->
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${plugin.jacoco.version}</version>
-				<executions>
-					<execution>
-						<id>jacoco-initialize</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>jacoco-test-report</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Jar -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${plugin.jar.version}</version>
-				<configuration>
-					<archive>
-						<index>true</index>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<addExtensions>false</addExtensions>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-							<packageName>${project.groupId}</packageName>
-						</manifest>
-						<manifestEntries>
-							<name>${manifest.name}</name>
-							<url>${project.url}</url>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Site -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${plugin.site.version}</version>
-				<dependencies>
-					<dependency>
-						<!-- Docs Maven Skin -->
-						<groupId>com.wandrell.maven.skins</groupId>
-						<artifactId>docs-maven-skin</artifactId>
-						<version>${site.skin.version}</version>
-					</dependency>
-					<dependency>
-						<!-- Velocity -->
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity</artifactId>
-						<version>${plugin.site.velocity.version}</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<relativizeDecorationLinks>false</relativizeDecorationLinks>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Source -->
-				<artifactId>maven-source-plugin</artifactId>
-				<version>${plugin.source.version}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Javadoc -->
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${plugin.javadoc.version}</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Deploy -->
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>${plugin.deploy.version}</version>
-				<executions>
-					<execution>
-						<id>deploy</id>
-						<phase>deploy</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-						<configuration>
-							<packaging>jar</packaging>
-							<generatePom>true</generatePom>
-							<url>${project.distributionManagement.snapshotRepository.url}</url>
-							<artifactId>${project.artifactId}</artifactId>
-							<groupId>${project.groupId}</groupId>
-							<version>${project.version}</version>
-							<file>${project.build.directory}/${project.build.finalName}.jar</file>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Changes -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>${plugin.changes.version}</version>
-				<executions>
-					<execution>
-						<id>check-changes</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>changes-check</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>validate-changes</id>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>changes-validate</goal>
-						</goals>
-						<configuration>
-							<failOnError>true</failOnError>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<!-- Surefire -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${plugin.surefire.version}</version>
-				<configuration>
-					<properties>
-						<property>
-							<name>usedefaultlisteners</name>
-							<key>false</key>
-						</property>
-						<property>
-							<name>suitename</name>
-							<value>${project.artifactId}_(${project.groupId})_Unit_Suite</value>
-						</property>
-					</properties>
-					<suiteXmlFiles>
-						<suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+   <!-- ********************************************** -->
+   <!-- *********** ORGANIZATION AND MEMBERS ********* -->
+   <!-- ********************************************** -->
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<!-- Project Info -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${plugin.reports.version}</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>summary</report>
-							<report>license</report>
-							<report>modules</report>
-							<report>project-team</report>
-							<report>dependencies</report>
-							<report>dependency-info</report>
-							<report>dependency-management</report>
-							<report>plugins</report>
-							<report>plugin-management</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<!-- JXR -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>${plugin.jxr.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Site -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${plugin.site.version}</version>
-			</plugin>
-			<plugin>
-				<!-- Javadoc -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${plugin.javadoc.version}</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>javadoc</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<!-- Changes -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>${plugin.changes.version}</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>changes-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<!-- Taglist -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>taglist-maven-plugin</artifactId>
-				<version>${plugin.taglist.version}</version>
-				<configuration>
-					<tagListOptions>
-						<tagClasses>
-							<tagClass>
-								<displayName>Deprecation</displayName>
-								<tags>
-									<tag>
-										<matchString>deprecated</matchString>
-										<matchType>ignoreCase</matchType>
-									</tag>
-								</tags>
-							</tagClass>
-							<tagClass>
-								<displayName>Todo Work</displayName>
-								<tags>
-									<tag>
-										<matchString>todo</matchString>
-										<matchType>ignoreCase</matchType>
-									</tag>
-									<tag>
-										<matchString>FIXME</matchString>
-										<matchType>exact</matchType>
-									</tag>
-								</tags>
-							</tagClass>
-						</tagClasses>
-					</tagListOptions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Checkstyle -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${plugin.checkstyle.version}</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>checkstyle</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-				<configuration>
-					<configLocation>src/checkstyle/checkstyle.xml</configLocation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- FindBugs -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>${plugin.findbugs.version}</version>
-				<configuration>
-					<effort>Max</effort>
-					<threshold>Low</threshold>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- PMD -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>${plugin.pmd.version}</version>
-				<configuration>
-					<linkXref>true</linkXref>
-					<skipEmptyReport>false</skipEmptyReport>
-					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-					<targetJdk>${java.version.source}</targetJdk>
-					<excludes>
-						<exclude>**/*Bean.java</exclude>
-						<exclude>**/generated/*.java</exclude>
-					</excludes>
-					<excludeRoots>
-						<excludeRoot>target/generated-sources/stubs</excludeRoot>
-					</excludeRoots>
-					<rulesets>
-						<ruleset>src/pmd/default-pmd.xml</ruleset>
-					</rulesets>
-				</configuration>
-			</plugin>
-			<plugin>
-				<!-- Surefire -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${plugin.surefire.version}</version>
-			</plugin>
-			<plugin>
-				<!-- JaCoCo -->
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${plugin.jacoco.version}</version>
-			</plugin>
-			<plugin>
-				<!-- JDepend -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-				<version>${plugin.jdepend.version}</version>
-			</plugin>
-		</plugins>
-	</reporting>
+   <organization>
+      <name>Bernardo Martínez Garrido</name>
+      <url>https://github.com/bernardo-mg</url>
+   </organization>
+
+   <developers>
+      <developer>
+         <id>bmg</id>
+         <name>Bernardo Martínez Garrido</name>
+         <email>programming@wandrell.com</email>
+         <url>https://github.com/bernardo-mg</url>
+         <organization>Bernardo Martínez Garrido</organization>
+         <organizationUrl>https://github.com/bernardo-mg</organizationUrl>
+         <roles>
+            <role>Developer</role>
+         </roles>
+         <timezone>+1</timezone>
+         <properties />
+      </developer>
+   </developers>
+
+   <!-- ********************************************** -->
+   <!-- **************** PROPERTIES ****************** -->
+   <!-- ********************************************** -->
+
+   <properties>
+      <!-- Manifest data -->
+      <manifest.name>com/wandrell/tabletop/dice</manifest.name>
+      <!-- Dependencies versions -->
+      <antlr.version>4.5.2-1</antlr.version>
+      <guava.version>18.0</guava.version>
+      <mockito.version>1.10.19</mockito.version>
+      <supercsv.version>2.4.0</supercsv.version>
+      <log4j.version>2.3</log4j.version>
+      <spring.version>4.2.5.RELEASE</spring.version>
+      <testng.version>6.9.10</testng.version>
+      <!-- Plugins versions -->
+      <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
+      <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
+      <plugin.changes.version>2.11</plugin.changes.version>
+      <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
+      <!-- Maven Site -->
+      <site.skin.version>0.2.4</site.skin.version>
+      <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
+      <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <!-- Antlr -->
+         <groupId>org.antlr</groupId>
+         <artifactId>antlr4</artifactId>
+         <version>${antlr.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Guava -->
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guava.version}</version>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- Log4j core -->
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-core</artifactId>
+         <version>${log4j.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Log4j SLF4J Bridge -->
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-slf4j-impl</artifactId>
+         <version>${log4j.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Mockito -->
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-all</artifactId>
+         <version>${mockito.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- Spring Core -->
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-core</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Super CSV -->
+         <groupId>net.sf.supercsv</groupId>
+         <artifactId>super-csv</artifactId>
+         <version>${supercsv.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- TestNG -->
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <version>${testng.version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <!-- ********************************************** -->
+   <!-- ******************* BUILD ******************** -->
+   <!-- ********************************************** -->
+
+   <build>
+      <defaultGoal>clean package install</defaultGoal>
+      <plugins>
+         <plugin>
+            <!-- Changes -->
+            <!-- Takes care of the changes log -->
+            <!-- It is set to also validate the changes log file -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+            <version>${plugin.changes.version}</version>
+            <executions>
+               <!-- Changes plugin is bound to the pre-site phase -->
+               <execution>
+                  <id>check-changes</id>
+                  <phase>pre-site</phase>
+                  <goals>
+                     <goal>changes-check</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>validate-changes</id>
+                  <phase>pre-site</phase>
+                  <goals>
+                     <goal>changes-validate</goal>
+                  </goals>
+                  <configuration>
+                     <failOnError>true</failOnError>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <!-- Failsafe -->
+            <!-- Runs integration tests -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+               <suiteXmlFiles>
+                  <!-- Path to the integration tests suite file -->
+                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_integration_suite.xml</suiteXmlFile>
+               </suiteXmlFiles>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- Site -->
+            <!-- Generates the Maven Site -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <dependencies>
+               <dependency>
+                  <!-- Docs Maven Skin -->
+                  <groupId>com.wandrell.maven.skins</groupId>
+                  <artifactId>docs-maven-skin</artifactId>
+                  <version>${site.skin.version}</version>
+               </dependency>
+               <dependency>
+                  <!-- Velocity -->
+                  <groupId>org.apache.velocity</groupId>
+                  <artifactId>velocity</artifactId>
+                  <version>${plugin.site.velocity.version}</version>
+               </dependency>
+            </dependencies>
+         </plugin>
+         <plugin>
+            <!-- Surefire -->
+            <!-- Runs unit tests -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <suiteXmlFiles>
+                  <!-- Path to the unit tests suite file -->
+                  <suiteXmlFile>${project.build.testOutputDirectory}/tests_maven_unit_suite.xml</suiteXmlFile>
+               </suiteXmlFiles>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- ANTRL4 -->
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-maven-plugin</artifactId>
+            <version>${plugin.antlr.version}</version>
+            <executions>
+               <!-- Parse grammar is bound to the generate sources phase -->
+               <execution>
+                  <id>antlr</id>
+                  <goals>
+                     <goal>antlr4</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <!-- Build helper -->
+            <!-- Adds the generated files to the Maven classpath -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>${plugin.buildhelp.version}</version>
+            <executions>
+               <execution>
+                  <id>add-source</id>
+                  <goals>
+                     <goal>add-source</goal>
+                  </goals>
+                  <configuration>
+                     <sources>
+                        <!-- ANTLR4 grammar -->
+                        <source>${project.basedir}/src/main/antlr4</source>
+                        <!-- ANTLR4 generated code -->
+                        <source>${project.build.directory}/generated-sources/antlr4</source>
+                     </sources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+   <!-- ********************************************** -->
+   <!-- ****************** REPORTS ******************* -->
+   <!-- ********************************************** -->
+
+   <reporting>
+      <plugins>
+         <plugin>
+            <!-- FindBugs -->
+            <!-- Checks for patterns which are prone to errors -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <configuration>
+               <!-- Exclusion patterns -->
+               <excludeFilterFile>${project.basedir}/src/config/findbugs/findbugs-exclude.xml</excludeFilterFile>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- Checkstyle -->
+            <!-- Checks that the source files comply with style standards -->
+            <!-- It is using a customized rules file -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+               <!-- The customized rules file -->
+               <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
+               <!-- Excludes generated code -->
+               <excludes>**/generated/**/*</excludes>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- Javadoc -->
+            <!-- Generates the javadocs -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+               <!-- Excludes generated code -->
+               <excludePackageNames>*.generated.*</excludePackageNames>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- PMD -->
+            <!-- Checks that the code complies with a series of code quality 
+               rules -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+               <rulesets>
+                  <!-- The customized rules file -->
+                  <ruleset>${project.basedir}/src/config/pmd/pmd-rules.xml</ruleset>
+               </rulesets>
+               <excludes>
+                  <!-- Excludes generated code -->
+                  <exclude>**/generated/**/*</exclude>
+               </excludes>
+            </configuration>
+         </plugin>
+      </plugins>
+   </reporting>
 
 </project>

@@ -14,7 +14,25 @@
  * the License.
  */
 /**
- * Offers classes for handling dice, including rolling them and dice/RPG
- * notation.
+ * Dice notation classes.
+ * <p>
+ * At the root of this package the {@link com.wandrell.tabletop.dice.Dice Dice}
+ * interface, and the default implementation of this, the
+ * {@link com.wandrell.tabletop.dice.DefaultDice DefaultDice}, offer a simple
+ * model for dice groups as they are used in dice notation expressions.
+ * <p>
+ * To generate random values from these classes, as if these dice were rolled,
+ * the classes contained inside the {@link com.wandrell.tabletop.dice.roller
+ * roller} package can be used.
+ * <p>
+ * Notation more complex than a single group of dice is represented by the
+ * classes in the {@link com.wandrell.tabletop.dice.notation notation} package,
+ * which also can generate values from the expressions they represent.
+ * <p>
+ * The {@link com.wandrell.tabletop.dice.parser parser} package offers parsers
+ * which can create and populare model classes from a text dice notation
+ * expression.
  */
+
 package com.wandrell.tabletop.dice;
+

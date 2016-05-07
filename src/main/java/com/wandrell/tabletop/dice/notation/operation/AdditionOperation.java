@@ -1,20 +1,65 @@
+/**
+ * Copyright 2014-2016 the original author or authors
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package com.wandrell.tabletop.dice.notation.operation;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.wandrell.tabletop.dice.notation.operation.constant.IntegerConstant;
+import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
+/**
+ * Addition operation.
+ * <p>
+ * This adds together the values from two dice notation expressions.
+ * <p>
+ * As with any other addition, the order of the operands does not matter for the
+ * result.
+ * 
+ * @author Bernardo Martínez Garrido
+ */
 public final class AdditionOperation implements BinaryOperation {
 
-    final Operand operandLeft;
-    final Operand operandRight;
+    /**
+     * Left sided operand.
+     */
+    private final DiceNotationExpression operandLeft;
 
-    public AdditionOperation(final Operand operandLeft,
-            final Operand operandRight) {
+    /**
+     * Right sided operand.
+     */
+    private final DiceNotationExpression operandRight;
+
+    /**
+     * Constructs an addition operation with the specified operands.
+     * 
+     * @param left
+     *            the left sided operand
+     * @param right
+     *            the right sided operand
+     */
+    public AdditionOperation(final DiceNotationExpression left,
+            final DiceNotationExpression right) {
         super();
 
-        this.operandLeft = operandLeft;
-        this.operandRight = operandRight;
+        operandLeft = checkNotNull(left,
+                "Received a null pointer as left operand");
+        operandRight = checkNotNull(right,
+                "Received a null pointer as right operand");
     }
 
     @Override
@@ -39,36 +84,40 @@ public final class AdditionOperation implements BinaryOperation {
                 && Objects.equal(operandRight, other.operandRight);
     }
 
+    /**
+     * Returns the values from the left and right operands added together.
+     * 
+     * @return the left and right values added together
+     */
     @Override
-    public final Operand getLeft() {
-        return operandLeft;
-    }
+    public final String getExpression() {
+        final String left;  // Left side operand as a string
+        final String right; // Right side operand as a string
 
-    @Override
-    public final Operand getRight() {
-        return operandRight;
-    }
-
-    @Override
-    public final String getStringRepresentation() {
-        final String left;
-        final String right;
-
-        left = getLeft().getStringRepresentation();
-        right = getRight().getStringRepresentation();
+        left = getLeft().getExpression();
+        right = getRight().getExpression();
 
         return String.format("%s+%s", left, right);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(operandLeft, operandRight);
+    public final DiceNotationExpression getLeft() {
+        return operandLeft;
     }
 
     @Override
-    public final Operand operate() {
-        return new IntegerConstant(
-                getLeft().getValue() + getRight().getValue());
+    public final DiceNotationExpression getRight() {
+        return operandRight;
+    }
+
+    @Override
+    public final Integer getValue() {
+        return getLeft().getValue() + getRight().getValue();
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hashCode(operandLeft, operandRight);
     }
 
     @Override
