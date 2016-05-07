@@ -16,71 +16,73 @@
 
 package com.wandrell.tabletop.dice.test.integration.parser;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
- * Units tests for {@code DefaultDiceNotationParser}, checking that it throws
- * exceptions when required.
+ * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
+ * numbers.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>An empty text throws an exception.</li>
- * <li>An invalid text throws an exception.</li>
- * <li>A negative value throws an exception.</li>
+ * <li>A lone number is parsed correctly.</li>
+ * <li>The zero value is parsed correctly.</li>
  * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestExceptionDefaultDiceNotationParser {
+public final class TestNumberDefaultDiceNotationParser {
 
     /**
      * Default constructor.
      */
-    public TestExceptionDefaultDiceNotationParser() {
+    public TestNumberDefaultDiceNotationParser() {
         super();
     }
 
     /**
-     * Tests that an empty text throws an exception.
+     * Tests that a lone number is parsed correctly.
      */
-    @Test(expectedExceptions = Exception.class)
-    public final void testParse_Empty() {
-        final DiceNotationParser parser; // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("");
-    }
-
-    /**
-     * Tests that an invalid text throws an exception.
-     */
-    @Test(expectedExceptions = Exception.class)
-    public final void testParse_Invalid() {
-        final DiceNotationParser parser; // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("abc");
-    }
-
-    /**
-     * Tests that a negative value throws an exception.
-     */
-    @Test(expectedExceptions = { Exception.class })
-    public final void testParse_Negative() {
+    @Test
+    public final void testParse_Number() {
+        final IntegerOperand value;
         final String notation;
         final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "-1";
+        notation = "12";
 
-        parser.parse(notation);
+        value = (IntegerOperand) parser.parse(notation);
+
+        Assert.assertEquals(value.getValue(), (Integer) 12);
+
+        Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that the zero value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Zero() {
+        final IntegerOperand value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "0";
+
+        value = (IntegerOperand) parser.parse(notation);
+
+        Assert.assertEquals(value.getValue(), (Integer) 0);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
 }

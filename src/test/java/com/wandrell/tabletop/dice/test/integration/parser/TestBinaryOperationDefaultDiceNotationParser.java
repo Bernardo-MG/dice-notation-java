@@ -29,7 +29,7 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
- * concrete notation cases.
+ * simple binary operations.
  * <p>
  * Checks the following cases:
  * <ol>
@@ -37,19 +37,18 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * <li>An addition with the number to right is parsed correctly.</li>
  * <li>A subtraction with the number to left is parsed correctly.</li>
  * <li>A subtraction with the number to right is parsed correctly.</li>
- * <li>A lone number is parsed correctly.</li>
  * <li>An addition with only numbers is parsed correctly.</li>
  * <li>A subtraction with only numbers is parsed correctly.</li>
  * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestDefaultDiceNotationParser {
+public final class TestBinaryOperationDefaultDiceNotationParser {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDiceNotationParser() {
+    public TestBinaryOperationDefaultDiceNotationParser() {
         super();
     }
 
@@ -107,26 +106,6 @@ public final class TestDefaultDiceNotationParser {
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
         Assert.assertEquals(operation.getExpression(), notation);
-    }
-
-    /**
-     * Tests that a lone number is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number() {
-        final IntegerOperand value;
-        final String notation;
-        final DiceNotationParser parser;
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        notation = "12";
-
-        value = (IntegerOperand) parser.parse(notation);
-
-        Assert.assertEquals(value.getValue(), (Integer) 12);
-
-        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -225,23 +204,6 @@ public final class TestDefaultDiceNotationParser {
         Assert.assertEquals(integer.getValue(), (Integer) 5);
 
         Assert.assertEquals(operation.getExpression(), notation);
-    }
-
-    @Test
-    public final void testParse_Zero() {
-        final IntegerOperand value;
-        final String notation;
-        final DiceNotationParser parser;
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        notation = "0";
-
-        value = (IntegerOperand) parser.parse(notation);
-
-        Assert.assertEquals(value.getValue(), (Integer) 0);
-
-        Assert.assertEquals(value.getExpression(), notation);
     }
 
 }

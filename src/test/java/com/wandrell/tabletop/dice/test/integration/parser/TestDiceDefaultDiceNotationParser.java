@@ -32,21 +32,21 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
 
 /**
  * Units tests for {@code DefaultDiceNotationParser}, checking that it parses
- * dice notation expressions.
+ * dice notation expressions for single dice groups.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>Simple dice expressions are parsed correctly.</li>
+ * <li>Single dice expressions are parsed correctly.</li>
  * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class TestParameterizedDefaultDiceNotationParser {
+public final class TestDiceDefaultDiceNotationParser {
 
     /**
-     * Marker for the dice parameters.
+     * Marker for the single dice parameters.
      */
-    protected static final String SIMPLE_DICE = "simple_dice";
+    protected static final String SINGLE_DICE = "single_dice";
 
     /**
      * Simple dice expressions parameters.
@@ -59,20 +59,21 @@ public final class TestParameterizedDefaultDiceNotationParser {
      * @throws Exception
      *             if any error occurs while preparing the parameters
      */
-    @DataProvider(name = SIMPLE_DICE)
-    public final static Iterator<Object[]> getData() throws Exception {
+    @DataProvider(name = SINGLE_DICE)
+    public final static Iterator<Object[]> getSingleDiceParameters()
+            throws Exception {
         return DiceParametersFactory.getDiceAndText();
     }
 
     /**
      * Default constructor.
      */
-    public TestParameterizedDefaultDiceNotationParser() {
+    public TestDiceDefaultDiceNotationParser() {
         super();
     }
 
     /**
-     * Tests that simple dice expressions are parsed correctly.
+     * Tests that single dice expressions are parsed correctly.
      * 
      * @param expression
      *            expression to parse
@@ -81,7 +82,7 @@ public final class TestParameterizedDefaultDiceNotationParser {
      * @param sides
      *            expected number of sides
      */
-    @Test(dataProvider = SIMPLE_DICE)
+    @Test(dataProvider = SINGLE_DICE)
     public final void testParse_Dice_Valid(final String expression,
             final Integer quantity, final Integer sides) {
         final DiceNotationParser parser; // Tested parser
