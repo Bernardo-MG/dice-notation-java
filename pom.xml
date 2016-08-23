@@ -25,7 +25,7 @@
 
    <name>Dice Notation Tools for Java</name>
    <description>Utilities for representing and handling dice and dice notation.</description>
-   <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+   <url>https://github.com/bernardo-mg/dice-notation-java</url>
    <inceptionYear>2014</inceptionYear>
 
    <licenses>
@@ -41,20 +41,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</developerConnection>
+      <connection>scm:git:https://github.com/bernardo-mg/dice-notation-java.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/dice-notation-java.git</developerConnection>
       <tag>head</tag>
-      <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+      <url>https://github.com/bernardo-mg/dice-notation-java</url>
    </scm>
 
    <issueManagement>
       <system>GitHub Issues</system>
-      <url>https://github.com/bernardo-mg/tabletop-dice-java/issues</url>
+      <url>https://github.com/bernardo-mg/dice-notation-java/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>Travis CI</system>
-      <url>https://travis-ci.org/Bernardo-MG/tabletop-dice-java</url>
+      <url>https://travis-ci.org/Bernardo-MG/dice-notation-java</url>
       <notifiers />
    </ciManagement>
 
