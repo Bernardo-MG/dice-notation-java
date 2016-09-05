@@ -224,7 +224,7 @@
       <plugin.changes.version>2.11</plugin.changes.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <!-- Maven Site -->
-      <site.skin.version>0.2.4</site.skin.version>
+      <site.skin.version>0.4.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
    </properties>

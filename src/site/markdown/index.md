@@ -4,8 +4,6 @@ Created on the late 70s for Dungeons & Dragons, the tabletop notation has become
 
 These are very simple: 2d6+5 means "roll two dice, add their values and then add the number five to the result".
 
----
-
 ## Why this library?
 
 Dice notation appears through tabletop games frequently, making it necessary to handle it in all of it's aspects.
