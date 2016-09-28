@@ -211,17 +211,17 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.5.2-1</antlr.version>
-      <guava.version>18.0</guava.version>
+      <antlr.version>4.5.3</antlr.version>
+      <guava.version>19.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
       <supercsv.version>2.4.0</supercsv.version>
-      <log4j.version>2.3</log4j.version>
-      <spring.version>4.2.5.RELEASE</spring.version>
+      <log4j.version>2.6.2</log4j.version>
+      <spring.version>4.3.3.RELEASE</spring.version>
       <testng.version>6.9.10</testng.version>
       <!-- Plugins versions -->
-      <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
-      <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
-      <plugin.changes.version>2.11</plugin.changes.version>
+      <plugin.antlr.version>4.5.3</plugin.antlr.version>
+      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
+      <plugin.changes.version>2.12</plugin.changes.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <!-- Maven Site -->
       <site.skin.version>0.4.0</site.skin.version>
