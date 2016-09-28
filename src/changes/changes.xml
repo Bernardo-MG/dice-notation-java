@@ -38,5 +38,14 @@
             base POM.
          </action>
       </release>
+      <release version="0.3.1" date="2016-09-28"
+         description="Updated project config">
+         <action dev="bmg" type="update">
+            Updated the base POM.
+         </action>
+         <action dev="bmg" type="update">
+            Maven site is now deployed through SSH.
+         </action>
+      </release>
    </body>
 </document>

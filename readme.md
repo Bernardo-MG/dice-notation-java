@@ -88,9 +88,9 @@ The project has been released under version 2.0 of the [Apache License][license]
 [bintray-repo]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view
 [maven-repo]: http://mvnrepository.com/artifact/com.wandrell.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues
-[javadoc-develop]: http://docs.wandrell.com/development/maven/tabletop-dice/apidocs
-[javadoc-release]: http://docs.wandrell.com/maven/tabletop-dice/apidocs
+[javadoc-develop]: http://docs.wandrell.com/development/maven/dice/apidocs
+[javadoc-release]: http://docs.wandrell.com/maven/dice/apidocs
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [scm]: http://github.com/Bernardo-MG/dice-notation-java
-[site-develop]: http://docs.wandrell.com/development/maven/tabletop-dice
-[site-release]: http://docs.wandrell.com/maven/tabletop-dice
+[site-develop]: http://docs.wandrell.com/development/maven/dice
+[site-release]: http://docs.wandrell.com/maven/dice
