@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>0.1.1</version>
+      <version>1.0.5</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,12 +20,12 @@
 
    <groupId>com.wandrell.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>0.3.0</version>
+   <version>0.3.1</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
    <description>Utilities for representing and handling dice and dice notation.</description>
-   <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+   <url>https://github.com/bernardo-mg/dice-notation-java</url>
    <inceptionYear>2014</inceptionYear>
 
    <licenses>
@@ -41,20 +41,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/tabletop-dice-java.git</developerConnection>
+      <connection>scm:git:https://github.com/bernardo-mg/dice-notation-java.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/dice-notation-java.git</developerConnection>
       <tag>head</tag>
-      <url>https://github.com/bernardo-mg/tabletop-dice-java</url>
+      <url>https://github.com/bernardo-mg/dice-notation-java</url>
    </scm>
 
    <issueManagement>
       <system>GitHub Issues</system>
-      <url>https://github.com/bernardo-mg/tabletop-dice-java/issues</url>
+      <url>https://github.com/bernardo-mg/dice-notation-java/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>Travis CI</system>
-      <url>https://travis-ci.org/Bernardo-MG/tabletop-dice-java</url>
+      <url>https://travis-ci.org/Bernardo-MG/dice-notation-java</url>
       <notifiers />
    </ciManagement>
 
@@ -151,7 +151,7 @@
             <site>
                <id>site</id>
                <name>Project Documentation Site</name>
-               <url>ftp://docs.wandrell.com/tabletop-dice</url>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/maven/dice</url>
             </site>
          </distributionManagement>
       </profile>
@@ -163,7 +163,7 @@
             <site>
                <id>site-development</id>
                <name>Project Development Documentation Site</name>
-               <url>ftp://docs.wandrell.com/tabletop-dice</url>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/development/maven/dice</url>
             </site>
          </distributionManagement>
       </profile>
@@ -211,20 +211,20 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.5.2-1</antlr.version>
-      <guava.version>18.0</guava.version>
+      <antlr.version>4.5.3</antlr.version>
+      <guava.version>19.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
       <supercsv.version>2.4.0</supercsv.version>
-      <log4j.version>2.3</log4j.version>
-      <spring.version>4.2.5.RELEASE</spring.version>
+      <log4j.version>2.6.2</log4j.version>
+      <spring.version>4.3.3.RELEASE</spring.version>
       <testng.version>6.9.10</testng.version>
       <!-- Plugins versions -->
-      <plugin.antlr.version>4.5.2-1</plugin.antlr.version>
-      <plugin.buildhelp.version>1.10</plugin.buildhelp.version>
-      <plugin.changes.version>2.11</plugin.changes.version>
+      <plugin.antlr.version>4.5.3</plugin.antlr.version>
+      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
+      <plugin.changes.version>2.12</plugin.changes.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <!-- Maven Site -->
-      <site.skin.version>0.2.4</site.skin.version>
+      <site.skin.version>0.4.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
    </properties>

@@ -14,11 +14,6 @@
          <keywords>Java, ANTLR, RPG, dice notation</keywords>
          <descriptionUrl>Check the documentation for ${projectName}</descriptionUrl>
          <twitterSite>@Wandrell_BMG</twitterSite>
-         <interpreters>
-            <interpreter>JDK 7</interpreter>
-            <interpreter>JDK 8</interpreter>
-            <interpreter>OpenJDK 7</interpreter>
-         </interpreters>
          <releaseRepositories>
             <releaseRepository>
                <name>Bintray</name>
@@ -36,14 +31,6 @@
          <bottomNav>
             <menu>General Info</menu>
          </bottomNav>
-         <pages>
-            <index>
-               <sections>
-                  <body />
-                  <columns>2</columns>
-               </sections>
-            </index>
-         </pages>
       </skinConfig>
    </custom>
 
