@@ -28,6 +28,7 @@ import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContex
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ValueContext;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
@@ -89,12 +90,43 @@ public final class DefaultDiceExpressionBuilder extends
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
+        checkNotNull(ctx, "Received a null pointer as context");
+
+        setLatestExpression(getBinaryOperation(ctx));
+    }
+
+    @Override
+    public final void exitDice(final DiceContext ctx) {
+        checkNotNull(ctx, "Received a null pointer as context");
+
+        setLatestExpression(getDiceOperand(ctx));
+    }
+
+    @Override
+    public final void exitValue(final ValueContext ctx) {
+        checkNotNull(ctx, "Received a null pointer as context");
+
+        setLatestExpression(getIntegerOperand(ctx));
+    }
+
+    @Override
+    public final DiceNotationExpression getDiceExpressionRoot() {
+        return root;
+    }
+
+    /**
+     * Creates a binary operation from the parsed context data.
+     * 
+     * @param ctx
+     *            parsed context
+     * @return a binary operation
+     */
+    private final BinaryOperation
+            getBinaryOperation(final BinaryOpContext ctx) {
         final BinaryOperation operation;    // Parsed binary operation
         final String operator;              // Operator
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-
-        checkNotNull(ctx, "Received a null pointer as context");
 
         // Acquired operands
         right = getOperandsStack().pop();
@@ -110,54 +142,45 @@ public final class DefaultDiceExpressionBuilder extends
             operation = new SubtractionOperation(left, right);
         }
 
-        // Adds to the operands stack
-        getOperandsStack().push(operation);
-
-        // Sets as the root
-        setDiceExpressionRoot(getOperandsStack().peek());
+        return operation;
     }
 
-    @Override
-    public final void exitDice(final DiceContext ctx) {
+    /**
+     * Creates a dice operand from the parsed context data.
+     * 
+     * @param ctx
+     *            parsed context
+     * @return a dice operand
+     */
+    private final DiceOperand getDiceOperand(final DiceContext ctx) {
         final Dice dice;        // Parsed dice
         final Integer quantity; // Number of dice
         final Integer sides;    // Number of sides
 
-        checkNotNull(ctx, "Received a null pointer as context");
-
-        // Acquires the dice data
+        // Parses the dice data
         quantity = Integer.parseInt(ctx.DIGIT(0).getText());
         sides = Integer.parseInt(ctx.DIGIT(1).getText());
 
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
 
-        // Adds to the operands stack
-        getOperandsStack().push(new DefaultDiceOperand(dice, getRoller()));
-
-        // Sets as the root
-        setDiceExpressionRoot(getOperandsStack().peek());
+        return new DefaultDiceOperand(dice, getRoller());
     }
 
-    @Override
-    public final void exitValue(final ValueContext ctx) {
+    /**
+     * Creates an integer operand from the parsed context data.
+     * 
+     * @param ctx
+     *            parsed context
+     * @return an integer operand
+     */
+    private final IntegerOperand getIntegerOperand(final ValueContext ctx) {
         final Integer value; // Parsed value
 
-        checkNotNull(ctx, "Received a null pointer as context");
-
-        // Acquires the value
+        // Parses the value
         value = Integer.parseInt(ctx.getText());
 
-        // Adds to the operands stack
-        getOperandsStack().push(new IntegerOperand(value));
-
-        // Sets as the root
-        setDiceExpressionRoot(getOperandsStack().peek());
-    }
-
-    @Override
-    public final DiceNotationExpression getDiceExpressionRoot() {
-        return root;
+        return new IntegerOperand(value);
     }
 
     /**
@@ -187,6 +210,21 @@ public final class DefaultDiceExpressionBuilder extends
     private final void
             setDiceExpressionRoot(final DiceNotationExpression expression) {
         root = expression;
+    }
+
+    /**
+     * Sets the received expression as the latest parsed expression.
+     * 
+     * @param expression
+     *            expression to set as the latest parsed expression
+     */
+    private final void
+            setLatestExpression(final DiceNotationExpression expression) {
+        // Adds to the operands stack
+        getOperandsStack().push(expression);
+
+        // Sets as the root
+        setDiceExpressionRoot(getOperandsStack().peek());
     }
 
 }
