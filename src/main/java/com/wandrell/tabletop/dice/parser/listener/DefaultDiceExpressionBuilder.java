@@ -35,6 +35,7 @@ import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
@@ -77,6 +78,18 @@ public final class DefaultDiceExpressionBuilder extends
      * value returned by the builder.
      */
     private DiceNotationExpression              root;
+
+    /**
+     * Default constructor.
+     * <p>
+     * It makes use of a {@link DefaultRoller}
+     * 
+     * @param roller
+     *            roller for the dice expressions
+     */
+    public DefaultDiceExpressionBuilder() {
+        this(new DefaultRoller());
+    }
 
     /**
      * Constructs a builder with the specified roller.
@@ -132,7 +145,7 @@ public final class DefaultDiceExpressionBuilder extends
 
         // Acquired operands
         right = getOperandsStack().pop();
-        if(ctx.DIGIT()!=null){
+        if (ctx.DIGIT() != null) {
             left = getIntegerOperand(ctx.DIGIT());
         } else {
             left = getOperandsStack().pop();

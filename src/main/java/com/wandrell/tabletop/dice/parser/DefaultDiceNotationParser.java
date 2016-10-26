@@ -28,7 +28,6 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
@@ -57,14 +56,12 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     /**
      * Default constructor.
      * <p>
-     * It makes use of a {@link DefaultDiceExpressionBuilder} and a
-     * {@link DefaultRoller}.
+     * It makes use of a {@link DefaultDiceExpressionBuilder}.
      */
     public DefaultDiceNotationParser() {
         super();
 
-        expressionBuilder = new DefaultDiceExpressionBuilder(
-                new DefaultRoller());
+        expressionBuilder = new DefaultDiceExpressionBuilder();
     }
 
     /**
