@@ -52,12 +52,12 @@ public final class DefaultDiceExpressionBuilder extends
     private static final String                 ADDITION_OPERATOR = "+";
 
     /**
-     * Root of the tree of dice notation model objects.
+     * Roller for the dice expressions.
      * <p>
-     * This will be updated as the tree is generated, and will be the final
-     * value returned by the builder.
+     * This is used as a dependency on the dice expressions, which require a
+     * roller to generate their value.
      */
-    private DiceNotationExpression              root;
+    private final Roller                        diceRoller;
 
     /**
      * Stack to store operands from the outer nodes in an operation.
@@ -68,12 +68,12 @@ public final class DefaultDiceExpressionBuilder extends
     private final Stack<DiceNotationExpression> operandsStack     = new Stack<>();
 
     /**
-     * Roller for the dice expressions.
+     * Root of the tree of dice notation model objects.
      * <p>
-     * This is used as a dependency on the dice expressions, which require a
-     * roller to generate their value.
+     * This will be updated as the tree is generated, and will be the final
+     * value returned by the builder.
      */
-    private final Roller                        diceRoller;
+    private DiceNotationExpression              root;
 
     /**
      * Constructs a builder with the specified roller.

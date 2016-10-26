@@ -28,6 +28,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder;
+import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
@@ -54,6 +55,19 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     private final DiceExpressionBuilder expressionBuilder;
 
     /**
+     * Default constructor.
+     * <p>
+     * It makes use of a {@link DefaultDiceExpressionBuilder} and a
+     * {@link DefaultRoller}.
+     */
+    public DefaultDiceNotationParser() {
+        super();
+
+        expressionBuilder = new DefaultDiceExpressionBuilder(
+                new DefaultRoller());
+    }
+
+    /**
      * Constructs a parser with the specified builder.
      * 
      * @param builder
@@ -67,7 +81,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     }
 
     /**
-     * Default constructor.
+     * Constructs a parser with the specified roller.
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
      * 
@@ -111,8 +125,8 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      *            expression used to generate the parser
      * @return an ANTLR4 parser tailored for the expression
      */
-    private final DiceNotationGrammarParser buildDiceNotationParser(
-            final String expression) {
+    private final DiceNotationGrammarParser
+            buildDiceNotationParser(final String expression) {
         final ANTLRInputStream input;         // Input stream for the expression
         final DiceNotationGrammarLexer lexer; // Lexer for the expression tokens
         final TokenStream tokens;             // Expression tokens

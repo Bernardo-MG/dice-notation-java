@@ -63,7 +63,8 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller(final NumberGenerator generator) {
         super();
 
-        numGen = checkNotNull(generator, "Received a null pointer as generator");
+        numGen = checkNotNull(generator,
+                "Received a null pointer as generator");
     }
 
     /**

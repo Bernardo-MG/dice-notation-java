@@ -26,4 +26,3 @@
  */
 
 package com.wandrell.tabletop.dice.roller;
-

@@ -37,16 +37,16 @@ import com.wandrell.tabletop.dice.roller.Roller;
 public final class DefaultDiceOperand implements DiceOperand {
 
     /**
+     * Roller to generate the random value from the dice.
+     */
+    private final Roller diceRoller;
+
+    /**
      * Operand dice.
      * <p>
      * This will be used to generate the random value this operand uses.
      */
     private final Dice   operandDice;
-
-    /**
-     * Roller to generate the random value from the dice.
-     */
-    private final Roller diceRoller;
 
     /**
      * Constructs a dice operand with the specified dice and roller.
@@ -91,8 +91,8 @@ public final class DefaultDiceOperand implements DiceOperand {
 
     @Override
     public final String getExpression() {
-        return String.format("%dd%d", getDice().getQuantity(), getDice()
-                .getSides());
+        return String.format("%dd%d", getDice().getQuantity(),
+                getDice().getSides());
     }
 
     @Override
