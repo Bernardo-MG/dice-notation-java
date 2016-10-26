@@ -83,7 +83,7 @@ public final class ITDefaultDiceNotationParserException {
     /**
      * Tests that dice notation with zero sides is parsed.
      */
-    @Test
+    @Test(expectedExceptions = { Exception.class })
     public final void testParse_ZeroSides() {
         final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression

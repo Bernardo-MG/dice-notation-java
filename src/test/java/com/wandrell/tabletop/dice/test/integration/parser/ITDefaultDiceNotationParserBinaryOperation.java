@@ -299,7 +299,7 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
         notation = "3-1+2";
 
         // TODO
-        value = (AdditionOperation) parser.parse(notation);
+        // value = (AdditionOperation) parser.parse(notation);
 
         // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
         // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
