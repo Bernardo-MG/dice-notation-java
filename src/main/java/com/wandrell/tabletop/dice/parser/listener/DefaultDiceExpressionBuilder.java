@@ -83,9 +83,6 @@ public final class DefaultDiceExpressionBuilder extends
      * Default constructor.
      * <p>
      * It makes use of a {@link DefaultRoller}
-     * 
-     * @param roller
-     *            roller for the dice expressions
      */
     public DefaultDiceExpressionBuilder() {
         this(new DefaultRoller());
