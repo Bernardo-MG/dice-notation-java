@@ -144,10 +144,10 @@ public final class DefaultDiceExpressionBuilder extends
 
         // Acquired operands
         right = getOperandsStack().pop();
-        if (ctx.DIGIT() != null) {
-            left = getIntegerOperand(ctx.DIGIT());
-        } else {
+        if (ctx.DIGIT() == null) {
             left = getOperandsStack().pop();
+        } else {
+            left = getIntegerOperand(ctx.DIGIT());
         }
 
         // Acquires operator
