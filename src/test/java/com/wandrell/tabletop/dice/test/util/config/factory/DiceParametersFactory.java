@@ -118,8 +118,8 @@ public final class DiceParametersFactory {
      */
     private static final Reader getClassPathReader(final String path)
             throws IOException {
-        return new BufferedReader(new InputStreamReader(new ClassPathResource(
-                path).getInputStream()));
+        return new BufferedReader(new InputStreamReader(
+                new ClassPathResource(path).getInputStream()));
     }
 
     /**

@@ -46,10 +46,10 @@ public final class ITNumberDefaultDiceNotationParser {
     }
 
     /**
-     * Tests that a lone number is parsed correctly.
+     * Tests that positive numbers can be parsed.
      */
     @Test
-    public final void testParse_Number() {
+    public final void testParse_Positive() {
         final IntegerOperand value;
         final String notation;
         final DiceNotationParser parser;
@@ -66,7 +66,7 @@ public final class ITNumberDefaultDiceNotationParser {
     }
 
     /**
-     * Tests that the zero value is parsed correctly.
+     * Tests that the zero value can be parsed.
      */
     @Test
     public final void testParse_Zero() {

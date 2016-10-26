@@ -38,7 +38,8 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>Strings with valid dice notation expressions do not generate exceptions.</li>
+ * <li>Strings with valid dice notation expressions do not generate
+ * exceptions.</li>
  * <li>Strings with invalid dice notation expressions generate exceptions.</li>
  * </ol>
  * 
@@ -47,14 +48,14 @@ import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory
 public final class ITDiceGrammar {
 
     /**
-     * Marker for the valid dice notation expression parameters.
-     */
-    protected static final String NOTATION_VALID   = "notation_valid";
-
-    /**
      * Marker for the invalid dice notation expression parameters.
      */
     protected static final String NOTATION_INVALID = "notation_invalid";
+
+    /**
+     * Marker for the valid dice notation expression parameters.
+     */
+    protected static final String NOTATION_VALID   = "notation_valid";
 
     /**
      * Invalid dice notation expression parameters.
@@ -104,8 +105,8 @@ public final class ITDiceGrammar {
      */
     @Test(dataProvider = NOTATION_INVALID,
             expectedExceptions = { Exception.class })
-    public final void testParse_InvalidExpression_Exception(
-            final String expression) {
+    public final void
+            testParse_InvalidExpression_Exception(final String expression) {
         getParser(expression).parse();
     }
 
@@ -117,8 +118,8 @@ public final class ITDiceGrammar {
      *            the expression to parse
      */
     @Test(dataProvider = NOTATION_VALID)
-    public final void testParse_ValidExpression_NoException(
-            final String expression) {
+    public final void
+            testParse_ValidExpression_NoException(final String expression) {
         final ParseContext context; // Parsed context
 
         context = getParser(expression).parse();

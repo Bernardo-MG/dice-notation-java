@@ -150,14 +150,83 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "12+1";
+        notation = "1+2";
 
         value = (AdditionOperation) parser.parse(notation);
 
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
 
         Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that long additions can be parsed, and the result is the expected
+     * one.
+     */
+    @Test
+    public final void testParse_Number_Add_Long() {
+        final AdditionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1+2+3";
+
+        // TODO
+        value = (AdditionOperation) parser.parse(notation);
+
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+
+        // Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that longer additions can be parsed, and the result is the expected
+     * one.
+     */
+    @Test
+    public final void testParse_Number_Add_Longer() {
+        final AdditionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1+2+3+4+5";
+
+        // TODO
+        value = (AdditionOperation) parser.parse(notation);
+
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+
+        // Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that additions followed by subtractions can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_Number_AddAndSub() {
+        final AdditionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1+2-3";
+
+        // TODO
+        value = (AdditionOperation) parser.parse(notation);
+
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+
+        // Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -171,14 +240,83 @@ public final class ITBinaryOperationDefaultDiceNotationParser {
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "12-1";
+        notation = "1-2";
 
         value = (SubtractionOperation) parser.parse(notation);
 
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
 
         Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that long subtractions can be parsed, and the result is the
+     * expected one.
+     */
+    @Test
+    public final void testParse_Number_Sub_Long() {
+        final SubtractionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1-2-3";
+
+        value = (SubtractionOperation) parser.parse(notation);
+
+        // TODO
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+
+        // Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that long subtractions can be parsed, and the result is the
+     * expected one.
+     */
+    @Test
+    public final void testParse_Number_Sub_Longer() {
+        final SubtractionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "1-2-3-4-5";
+
+        value = (SubtractionOperation) parser.parse(notation);
+
+        // TODO
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+
+        // Assert.assertEquals(value.getExpression(), notation);
+    }
+
+    /**
+     * Tests that subtractions followed by additions can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_Number_SubAndAdd() {
+        final AdditionOperation value;
+        final String notation;
+        final DiceNotationParser parser;
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        notation = "3-1+2";
+
+        // TODO
+        value = (AdditionOperation) parser.parse(notation);
+
+        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+
+        // Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**

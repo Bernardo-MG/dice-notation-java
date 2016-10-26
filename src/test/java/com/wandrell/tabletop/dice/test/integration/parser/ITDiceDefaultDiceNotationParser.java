@@ -16,10 +16,7 @@
 
 package com.wandrell.tabletop.dice.test.integration.parser;
 
-import java.util.Iterator;
-
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.Dice;
@@ -28,42 +25,14 @@ import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
-import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory;
 
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses dice notation expressions for single dice groups.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>Single dice expressions are parsed correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
 public final class ITDiceDefaultDiceNotationParser {
-
-    /**
-     * Marker for the single dice parameters.
-     */
-    protected static final String SINGLE_DICE = "single_dice";
-
-    /**
-     * Simple dice expressions parameters.
-     * <p>
-     * These are sets of a dice notation expression containing just a dice, and
-     * the expected quantity and number of sides.
-     * 
-     * @return a dice expression, along the expected quantity and number of
-     *         sides
-     * @throws Exception
-     *             if any error occurs while preparing the parameters
-     */
-    @DataProvider(name = SINGLE_DICE)
-    public final static Iterator<Object[]> getSingleDiceParameters()
-            throws Exception {
-        return DiceParametersFactory.getDiceAndText();
-    }
 
     /**
      * Default constructor.
@@ -73,30 +42,99 @@ public final class ITDiceDefaultDiceNotationParser {
     }
 
     /**
-     * Tests that single dice expressions are parsed correctly.
-     * 
-     * @param expression
-     *            expression to parse
-     * @param quantity
-     *            expected quantity
-     * @param sides
-     *            expected number of sides
+     * Tests that dice notation with the maximum integer values dice is parsed.
      */
-    @Test(dataProvider = SINGLE_DICE)
-    public final void testParse_Dice_Valid(final String expression,
-            final Integer quantity, final Integer sides) {
-        final DiceNotationParser parser; // Tested parser
-        final DiceNotationExpression parsed;     // Parsed expression
-        final Dice dice;                 // Resulting dice
+    @Test
+    public final void testParse_Max() {
+        final DiceNotationParser parser;     // Tested parser
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        parsed = parser.parse(expression);
+        parsed = parser.parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), quantity);
-        Assert.assertEquals(dice.getSides(), sides);
+        Assert.assertEquals(dice.getQuantity(), new Integer(Integer.MAX_VALUE));
+        Assert.assertEquals(dice.getSides(), new Integer(Integer.MAX_VALUE));
+    }
+
+    /**
+     * Tests that dice notation with a single dice and a single side can be
+     * parsed.
+     */
+    @Test
+    public final void testParse_OnesDice_Simple() {
+        final DiceNotationParser parser;     // Tested parser
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        parsed = parser.parse("1d1");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assert.assertEquals(dice.getQuantity(), new Integer(1));
+        Assert.assertEquals(dice.getSides(), new Integer(1));
+    }
+
+    /**
+     * Tests that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Simple() {
+        final DiceNotationParser parser;     // Tested parser
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        parsed = parser.parse("1d6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assert.assertEquals(dice.getQuantity(), new Integer(1));
+        Assert.assertEquals(dice.getSides(), new Integer(6));
+    }
+
+    /**
+     * Tests that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Simple_UpperCaseSeparator() {
+        final DiceNotationParser parser;     // Tested parser
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        parsed = parser.parse("1D6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assert.assertEquals(dice.getQuantity(), new Integer(1));
+        Assert.assertEquals(dice.getSides(), new Integer(6));
+    }
+
+    /**
+     * Tests that dice notation with zero dice is parsed.
+     */
+    @Test
+    public final void testParse_ZeroQuantity() {
+        final DiceNotationParser parser;     // Tested parser
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parser = new DefaultDiceNotationParser(new DefaultRoller());
+
+        parsed = parser.parse("0d6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assert.assertEquals(dice.getQuantity(), new Integer(0));
+        Assert.assertEquals(dice.getSides(), new Integer(6));
     }
 
 }
