@@ -24,7 +24,7 @@ function
 binaryOp
 :
 	dice OPERATOR function
-	| value OPERATOR function
+	| DIGIT OPERATOR function
 ;
 
 dice

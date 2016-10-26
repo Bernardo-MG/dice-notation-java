@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Stack;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
@@ -130,7 +132,11 @@ public final class DefaultDiceExpressionBuilder extends
 
         // Acquired operands
         right = getOperandsStack().pop();
-        left = getOperandsStack().pop();
+        if(ctx.DIGIT()!=null){
+            left = getIntegerOperand(ctx.DIGIT());
+        } else {
+            left = getOperandsStack().pop();
+        }
 
         // Acquires operator
         operator = ctx.OPERATOR().getText();
@@ -165,6 +171,22 @@ public final class DefaultDiceExpressionBuilder extends
         dice = new DefaultDice(quantity, sides);
 
         return new DefaultDiceOperand(dice, getRoller());
+    }
+
+    /**
+     * Creates an integer operand from a terminal node.
+     * 
+     * @param ctx
+     *            terminal node
+     * @return an integer operand
+     */
+    private final IntegerOperand getIntegerOperand(final TerminalNode node) {
+        final Integer value; // Parsed value
+
+        // Parses the value
+        value = Integer.parseInt(node.getText());
+
+        return new IntegerOperand(value);
     }
 
     /**
