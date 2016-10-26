@@ -188,7 +188,7 @@ public final class DefaultDiceExpressionBuilder extends
     /**
      * Creates an integer operand from a terminal node.
      * 
-     * @param ctx
+     * @param node
      *            terminal node
      * @return an integer operand
      */
