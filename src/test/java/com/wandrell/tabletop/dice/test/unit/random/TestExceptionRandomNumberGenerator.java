@@ -24,11 +24,6 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 /**
  * Units tests for {@code RandomNumberGenerator}, checking that it throws
  * exceptions when required.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>Generating a value for a negative max throws an exception.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

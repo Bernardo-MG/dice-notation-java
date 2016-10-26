@@ -30,18 +30,6 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses simple binary operations.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>An addition with the number to left is parsed correctly.</li>
- * <li>An addition with the number to right is parsed correctly.</li>
- * <li>A subtraction with the number to left is parsed correctly.</li>
- * <li>A subtraction with the number to right is parsed correctly.</li>
- * <li>An addition with only numbers is parsed correctly.</li>
- * <li>An addition using only dice is parsed correctly.</li>
- * <li>A subtraction with only numbers is parsed correctly.</li>
- * <li>A subtraction using only dice is parsed correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

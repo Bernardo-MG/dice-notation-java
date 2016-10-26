@@ -29,13 +29,6 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * throws exceptions when required.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>An empty text throws an exception.</li>
- * <li>An invalid text throws an exception.</li>
- * <li>A negative value throws an exception.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

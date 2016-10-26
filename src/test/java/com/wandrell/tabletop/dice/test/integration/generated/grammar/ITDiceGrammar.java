@@ -16,78 +16,25 @@
 
 package com.wandrell.tabletop.dice.test.integration.generated.grammar;
 
-import java.util.Iterator;
-
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarLexer;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ParseContext;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
-import com.wandrell.tabletop.dice.test.util.config.factory.DiceParametersFactory;
 
 /**
  * Integration tests for the generated grammar classes, testing that they can
  * process dice notation.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>Strings with valid dice notation expressions do not generate
- * exceptions.</li>
- * <li>Strings with invalid dice notation expressions generate exceptions.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
 public final class ITDiceGrammar {
-
-    /**
-     * Marker for the invalid dice notation expression parameters.
-     */
-    protected static final String NOTATION_INVALID = "notation_invalid";
-
-    /**
-     * Marker for the valid dice notation expression parameters.
-     */
-    protected static final String NOTATION_VALID   = "notation_valid";
-
-    /**
-     * Invalid dice notation expression parameters.
-     * <p>
-     * It returns sets of a single parameter, containing an invalid dice
-     * notation expression.
-     * 
-     * @return dice notation expressions
-     * @throws Exception
-     *             if any error occurs while preparing the parameters
-     */
-    @DataProvider(name = NOTATION_INVALID)
-    public final static Iterator<Object[]> getInvalidNotationParameters()
-            throws Exception {
-        return DiceParametersFactory.getDiceNotationInvalid();
-    }
-
-    /**
-     * Valid dice notation expression parameters.
-     * <p>
-     * It returns sets of a single parameter, containing a valid dice notation
-     * expression.
-     * 
-     * @return dice notation expressions
-     * @throws Exception
-     *             if any error occurs while preparing the parameters
-     */
-    @DataProvider(name = NOTATION_VALID)
-    public final static Iterator<Object[]> getValidNotationParameters()
-            throws Exception {
-        return DiceParametersFactory.getDiceNotationValid();
-    }
 
     /**
      * Default constructor.
@@ -97,32 +44,145 @@ public final class ITDiceGrammar {
     }
 
     /**
-     * Tests that strings with invalid dice notation expressions generate
+     * Tests that strings with valid dice notation expressions do not generate
      * exceptions.
-     * 
-     * @param expression
-     *            the expression to parse
      */
-    @Test(dataProvider = NOTATION_INVALID,
-            expectedExceptions = { Exception.class })
-    public final void
-            testParse_InvalidExpression_Exception(final String expression) {
-        getParser(expression).parse();
+    @Test
+    public final void testParse_LongAdd() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1+2+3+4+5+6+7+8+9+10").parse();
+
+        Assert.assertNull(context.exception);
     }
 
     /**
      * Tests that strings with valid dice notation expressions do not generate
      * exceptions.
-     * 
-     * @param expression
-     *            the expression to parse
      */
-    @Test(dataProvider = NOTATION_VALID)
-    public final void
-            testParse_ValidExpression_NoException(final String expression) {
+    @Test
+    public final void testParse_LongMixedAdd() {
         final ParseContext context; // Parsed context
 
-        context = getParser(expression).parse();
+        context = getParser("1d6+1+2+3+4+5+6+7+8+9+10").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_LongMixedSub() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1d6-1-2-3-4-5-6-7-8-9-10").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_LongSub() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1-2-3-4-5-6-7-8-9-10").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_MaxDice() {
+        final ParseContext context; // Parsed context
+
+        context = getParser(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE)
+                .parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_MinimalDice() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1d1").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_NoQuantity() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("0d6").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_NoSides() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1d0").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_PositiveNumber() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("1").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_Zero() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("0").parse();
+
+        Assert.assertNull(context.exception);
+    }
+
+    /**
+     * Tests that strings with valid dice notation expressions do not generate
+     * exceptions.
+     */
+    @Test
+    public final void testParse_ZerosDice() {
+        final ParseContext context; // Parsed context
+
+        context = getParser("0d0").parse();
 
         Assert.assertNull(context.exception);
     }

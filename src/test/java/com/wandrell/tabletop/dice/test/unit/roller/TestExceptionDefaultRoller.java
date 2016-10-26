@@ -26,12 +26,6 @@ import com.wandrell.tabletop.dice.roller.Roller;
 /**
  * Units tests for {@code DefaultRoller}, checking that it throws exceptions
  * when required.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>Rolling a dice with negative sides throws an exception.</li>
- * <li>Rolling a dice with negative quantity throws an exception.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

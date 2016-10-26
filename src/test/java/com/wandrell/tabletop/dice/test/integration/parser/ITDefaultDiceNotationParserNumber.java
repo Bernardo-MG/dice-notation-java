@@ -27,12 +27,6 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses numbers.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>A lone number is parsed correctly.</li>
- * <li>The zero value is parsed correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

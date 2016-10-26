@@ -27,11 +27,6 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceOperand}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The text expression is generated correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
