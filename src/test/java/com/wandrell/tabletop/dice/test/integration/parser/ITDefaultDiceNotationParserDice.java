@@ -32,12 +32,12 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITDiceDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationParserDice {
 
     /**
      * Default constructor.
      */
-    public ITDiceDefaultDiceNotationParser() {
+    public ITDefaultDiceNotationParserDice() {
         super();
     }
 

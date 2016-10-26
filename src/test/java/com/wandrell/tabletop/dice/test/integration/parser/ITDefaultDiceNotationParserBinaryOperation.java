@@ -45,12 +45,12 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITBinaryOperationDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationParserBinaryOperation {
 
     /**
      * Default constructor.
      */
-    public ITBinaryOperationDefaultDiceNotationParser() {
+    public ITDefaultDiceNotationParserBinaryOperation() {
         super();
     }
 
