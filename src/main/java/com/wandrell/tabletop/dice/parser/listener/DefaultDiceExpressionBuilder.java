@@ -126,8 +126,8 @@ public final class DefaultDiceExpressionBuilder extends
         checkNotNull(ctx, "Received a null pointer as context");
 
         // Acquires the dice data
-        quantity = Integer.parseInt(ctx.quantity().getText());
-        sides = Integer.parseInt(ctx.sides().getText());
+        quantity = Integer.parseInt(ctx.DIGIT(0).getText());
+        sides = Integer.parseInt(ctx.DIGIT(1).getText());
 
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
@@ -184,8 +184,8 @@ public final class DefaultDiceExpressionBuilder extends
      * @param expression
      *            the expression to set as the root
      */
-    private final void setDiceExpressionRoot(
-            final DiceNotationExpression expression) {
+    private final void
+            setDiceExpressionRoot(final DiceNotationExpression expression) {
         root = expression;
     }
 

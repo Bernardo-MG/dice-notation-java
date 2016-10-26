@@ -16,39 +16,20 @@ parse
 
 function
 :
-	binaryOp
-	| operand
-;
-
-unaryOp
-:
-	OPERATOR function
+	dice
+	| binaryOp
+	| value
 ;
 
 binaryOp
 :
-	operand OPERATOR function
-;
-
-operand
-:
-	dice
-	| value
+	dice OPERATOR function
+	| value OPERATOR function
 ;
 
 dice
 :
-	quantity SEPARATOR sides
-;
-
-quantity
-:
-	DIGIT
-;
-
-sides
-:
-	DIGIT
+	DIGIT DSEPARATOR DIGIT
 ;
 
 value
@@ -82,7 +63,7 @@ SUB
 
 // Dice markers
 
-SEPARATOR
+DSEPARATOR
 :
 	( 'd' | 'D' )
 ;
