@@ -18,7 +18,7 @@ function
 :
 	dice
 	| binaryOp
-	| value
+	| DIGIT
 ;
 
 binaryOp
@@ -30,11 +30,6 @@ binaryOp
 dice
 :
 	DIGIT DSEPARATOR DIGIT
-;
-
-value
-:
-	DIGIT
 ;
 
 /**

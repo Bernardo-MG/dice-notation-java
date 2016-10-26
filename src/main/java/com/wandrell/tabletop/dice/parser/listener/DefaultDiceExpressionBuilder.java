@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.BinaryOpContext;
 import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.ValueContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.FunctionContext;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
@@ -118,10 +118,12 @@ public final class DefaultDiceExpressionBuilder extends
     }
 
     @Override
-    public final void exitValue(final ValueContext ctx) {
+    public final void exitFunction(final FunctionContext ctx) {
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getIntegerOperand(ctx));
+        if (ctx.DIGIT() != null) {
+            setLatestExpression(getIntegerOperand(ctx.DIGIT()));
+        }
     }
 
     @Override
@@ -198,22 +200,6 @@ public final class DefaultDiceExpressionBuilder extends
 
         // Parses the value
         value = Integer.parseInt(node.getText());
-
-        return new IntegerOperand(value);
-    }
-
-    /**
-     * Creates an integer operand from the parsed context data.
-     * 
-     * @param ctx
-     *            parsed context
-     * @return an integer operand
-     */
-    private final IntegerOperand getIntegerOperand(final ValueContext ctx) {
-        final Integer value; // Parsed value
-
-        // Parses the value
-        value = Integer.parseInt(ctx.getText());
 
         return new IntegerOperand(value);
     }
