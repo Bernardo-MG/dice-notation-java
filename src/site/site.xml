@@ -37,11 +37,13 @@
    <body>
       <menu name="General Info" inherit="top">
          <item name="Acquire" href="./acquire.html" />
+         <item name="Usage" href="./usage.html" />
          <item name="Changes Log" href="./changes-report.html" />
          <item name="JavaDocs" href="./apidocs/" />
       </menu>
       <menu name="Documentation" inherit="bottom">
          <item name="Acquire" href="./acquire.html" />
+         <item name="Usage" href="./usage.html" />
          <item name="Dice model" href="./dice.html" />
          <item name="Grammar" href="./grammar.html" />
          <item name="Notation model" href="./notation.html" />
