@@ -1,10 +1,12 @@
 # Dice Notation Tools for Java
 
+This project aims to make the dice notation readable by Java applications, and for this it offers both a model representing it and a parser which can instantiate the model from dice notation expressions.
+
 Created on the late 70s for Dungeons & Dragons, the dice notation has become a standard on tabletop games as it allows generating random values in concrete distributions with the help of simple formulas such as '2d6+5', which means "roll two dice, add their values and then add the number five to the result".
 
 With the pass of years it has evolved, and while it never underwent a formal standardization process a core set of rules is kept among all the variations, mostly representing dice in a format such as '1d6', and the use of algebra operations like addition and subtraction.
 
-This project aims to make the dice notation readable by machines through the use of a model representing it, and a parser which can instantiate the model from dice notation expressions, as long as it keeps to the basic and most common style.
+Its usefulness is very clear, it allows working with specific random values distributions. And while this is no feat for a machine, which has better tools for it, the aim of the project is not actually handling those distributions, but giving a way for applications to work with the same tools a board game would have.
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.wandrell.tabletop/dice.svg)][maven-repo]
 [![Bintray](https://api.bintray.com/packages/bernardo-mg/tabletop-toolkits/dice/images/download.svg)][bintray-repo]
@@ -17,11 +19,13 @@ This project aims to make the dice notation readable by machines through the use
 
 ## Features
 
-The library contains the following features:
-
 - ANTLR4 grammar
 - Model for dice and dice notation, along classes to generate values from them
 - Parser to create model instances from the notation
+
+## Limitations
+
+- Currently only the most basic operations (dice, numbers and additions or subtractions) are supported
 
 ## Documentation
 

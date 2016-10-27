@@ -1,12 +1,12 @@
 # Dice model and supporting classes
 
-A simple dice model is offered as part of the project. While by itself it makes little, just stores a bit of descriptive info, it can be combined with other classes for things such as generating random values.
+A simple dice model is offered as part of the project, including not only a representation for dice groups, but also a way to generate random values from them.
 
 ## Dice model
 
 ![Dice class diagram][dice-class_diagram]
 
-The [Dice][dice] interface is meant to allow creating value objects representing a dice group.
+The [Dice][dice] interface represents its namesake.
 
 ## Dice roller
 
