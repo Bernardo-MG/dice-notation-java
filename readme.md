@@ -82,7 +82,7 @@ parser = new DefaultDiceNotationParser(new DefaultRoller());
 
 parsed = parser.parse("1d6+12");
 
-System.out.println(parsed.generateValue());
+System.out.println(parsed.getValue());
 ```
 
 The previous example will process the received expression, which asks for rolling a six sided dice and adding the value twelve to it. Each time the 'generateValue' method is called the result of this expression is calculated and a new random value generated.

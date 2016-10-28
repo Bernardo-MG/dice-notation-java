@@ -12,16 +12,18 @@ The [Dice][dice] interface represents its namesake.
 
 ![Roller class diagram][roller-class_diagram]
 
-To generate random values from the dice classes there is the [Roller][roller]. The default implemention of this interface, the [DefaultRoller][default_roller] makes use of a [NumberGenerator][number_generator] to actually take care of the random number generation concern.
+The [Roller][roller] generates random values from the dice classes. The default implemention of this interface, the [DefaultRoller][default_roller] makes use of a [NumberGenerator][number_generator] to actually take care of the random number generation concern.
 
-The way a roller works is simple. It generates a random value between one and the number of sides for the dice, and repeats as many times as the quantity of dice it has received. Afterwards it returns the result.
+The way the default roller works is simple. It generates a random value between one and the number of sides for the dice, and repeats as many times as the quantity of dice it has received. Afterwards it returns the result.
 
 ### Number generator
 
-The number generators are to allow tweaking the actual way the random values are generated, in case it is needed. Most of the time just using the default implementation, the [RandomNumberGenerator][random_number_generator], which is based on the Java Random class, is enough.
+![Number generator class diagram][number_generator-class_diagram]
+
+The number generators are meant to allow tweaking how the random values are generated. Most of the time just using the default implementation, the [RandomNumberGenerator][random_number_generator], which uses the Java Random class, is enough.
 
 [dice-class_diagram]: ./images/dice_class_diagram.png
-
+[number_generator-class_diagram]: ./images/number_generator_class_diagram.png
 [roller-class_diagram]: ./images/roller_class_diagram.png
 
 [dice]: ./apidocs/com/wandrell/tabletop/dice/Dice.html

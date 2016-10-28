@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>160</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>/NumberGenerator/
+bg=cyan
+--
+
+--
+/+generate(max: Integer): Integer/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>220</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>280</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>RandomNumberGenerator
+bg=yellow
+--
+-random: Random
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
