@@ -76,15 +76,13 @@ bg=yellow
     <id>UMLClass</id>
     <coordinates>
       <x>340</x>
-      <y>150</y>
+      <y>200</y>
       <w>250</w>
-      <h>70</h>
+      <h>30</h>
     </coordinates>
     <panel_attributes>/DiceNotationExpression/
 bg=cyan
---
 
---
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -92,11 +90,11 @@ bg=cyan
     <id>Relation</id>
     <coordinates>
       <x>460</x>
-      <y>210</y>
+      <y>220</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
 </diagram>
