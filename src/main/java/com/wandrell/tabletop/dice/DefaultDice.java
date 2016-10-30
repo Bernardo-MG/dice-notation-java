@@ -23,9 +23,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
- * Value entity implementation of {@code Dice}, representing a group of dice.
- * This means the class is immutable, not allowing the modification of any of
- * its values.
+ * Immutable group of dice.
  * <p>
  * Some basic constraints are applied to the dice values. The quantity should be
  * equal or higher than zero, and the number of sides equal or higher than one.

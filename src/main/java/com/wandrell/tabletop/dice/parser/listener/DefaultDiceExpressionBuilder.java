@@ -39,11 +39,15 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
 
 /**
- * Creates a {@link DiceNotationExpression} from an ANTLR4 parser by using the
- * visitor pattern.
+ * Visitor for an ANTLR4 parser tree. It can return the fully parsed
+ * {@link DiceNotationExpression}.
  * <p>
  * This {@code DiceNotationExpression} is the root for a tree representing the
  * expression received by the parser.
+ * <p>
+ * It contains a stack which stores the operands as they are parsed, this way
+ * any operation, such as an addition, can acquire the latest operands, which
+ * will be the ones it will employ.
  * 
  * @author Bernardo Martínez Garrido
  */

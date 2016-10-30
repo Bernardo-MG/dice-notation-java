@@ -18,8 +18,6 @@ package com.wandrell.tabletop.dice.notation.operand;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Collection;
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.wandrell.tabletop.dice.Dice;
@@ -97,7 +95,7 @@ public final class DefaultDiceOperand implements DiceOperand {
 
     @Override
     public final Integer getValue() {
-        final Collection<Integer> rolls;
+        final Iterable<Integer> rolls;
         Integer result;
 
         rolls = getRoller().roll(getDice());

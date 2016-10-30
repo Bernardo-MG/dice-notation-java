@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dice.roller;
 
-import java.util.Collection;
-
 import com.wandrell.tabletop.dice.Dice;
 
 /**
@@ -41,13 +39,12 @@ public interface Roller {
     /**
      * Generates a collection of random values from the received {@code Dice}.
      * <p>
-     * These are expected to be contained in the {@code Collection} in the same
-     * order they were generated.
+     * These are expected to be returned in the same order they were generated.
      * 
      * @param dice
      *            the dice to roll
      * @return a collection of random values generated from the dice
      */
-    public Collection<Integer> roll(final Dice dice);
+    public Iterable<Integer> roll(final Dice dice);
 
 }

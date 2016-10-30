@@ -15,7 +15,7 @@
  */
 
 /**
- * Dice notation parsers.
+ * Parsers for dice notation expressions.
  * <p>
  * These will take a string with a dice notation expression and return a tree of
  * dice notation model objects.

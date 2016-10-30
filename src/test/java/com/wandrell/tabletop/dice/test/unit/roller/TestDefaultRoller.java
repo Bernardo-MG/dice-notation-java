@@ -60,7 +60,8 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assert.assertEquals(roller.roll(dice).size(), 10);
+        Assert.assertEquals(((Collection<Integer>) roller.roll(dice)).size(),
+                10);
     }
 
     /**
@@ -72,7 +73,7 @@ public final class TestDefaultRoller {
         final Roller roller;                // Roller being tested
         final Dice dice;                    // Die to roll
         final NumberGenerator generator;    // Number generator used
-        final Collection<Integer> result;   // Roll results
+        final Iterable<Integer> result;   // Roll results
         final Iterator<Integer> itrInteger; // Results iterator
 
         // Mocks dice

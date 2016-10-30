@@ -17,9 +17,8 @@
 /**
  * Random generation of numbers.
  * <p>
- * These are used by the classes in the {@link com.wandrell.tabletop.dice.roller
- * roller} package, such as the
- * {@link com.wandrell.tabletop.dice.roller.DefaultRoller DefaultRoller}.
+ * These are used by the {@link com.wandrell.tabletop.dice.roller roller}
+ * package, and are not meant to be used by themselves.
  */
 
 package com.wandrell.tabletop.dice.roller.random;

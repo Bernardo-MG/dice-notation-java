@@ -22,7 +22,7 @@
  * dice notation expression it represents.
  * <p>
  * As these expressions are used to handle the generation of random numbers, in
- * some clases this value may be different each time it is acquired.
+ * some cases the generated value may be different each time it is acquired.
  * <p>
  * It is not recommended using the classes in this package manually. Instead a
  * parser from the {@link com.wandrell.tabletop.dice.parser parser} package

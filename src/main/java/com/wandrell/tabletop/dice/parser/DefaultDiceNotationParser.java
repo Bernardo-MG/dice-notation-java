@@ -34,8 +34,8 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * Dice notation parser making use of ANTLR4 generated classes.
  * <p>
  * These classes are generated from an ANTRL4 BNF grammar, including the actual
- * parser, which this one wraps and sets up, mostly by setting a
- * {@link DiceExpressionBuilder} into it.
+ * parser, which this one wraps and sets up, mostly by adding a
+ * {@link DiceExpressionBuilder} to it.
  * <p>
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
