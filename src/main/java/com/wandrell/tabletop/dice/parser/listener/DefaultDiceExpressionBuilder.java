@@ -53,7 +53,12 @@ public final class DefaultDiceExpressionBuilder extends
     /**
      * Operator which indicates the operation is an addition.
      */
-    private static final String                 ADDITION_OPERATOR = "+";
+    private static final String                 ADDITION_OPERATOR    = "+";
+
+    /**
+     * Operator which indicates the operation is a subtraction.
+     */
+    private static final String                 SUBTRACTION_OPERATOR = "-";
 
     /**
      * Roller for the dice expressions.
@@ -69,7 +74,7 @@ public final class DefaultDiceExpressionBuilder extends
      * For example, when parsing an addition operation this stack will hold both
      * operands being added together.
      */
-    private final Stack<DiceNotationExpression> operandsStack     = new Stack<>();
+    private final Stack<DiceNotationExpression> operandsStack        = new Stack<>();
 
     /**
      * Root of the tree of dice notation model objects.
@@ -156,8 +161,11 @@ public final class DefaultDiceExpressionBuilder extends
         // Checks which kind of operation this is and creates it
         if (ADDITION_OPERATOR.equals(operator)) {
             operation = new AdditionOperation(left, right);
-        } else {
+        } else if (SUBTRACTION_OPERATOR.equals(operator)) {
             operation = new SubtractionOperation(left, right);
+        } else {
+            throw new IllegalArgumentException(
+                    String.format("The %s operator is invalid", operator));
         }
 
         return operation;
