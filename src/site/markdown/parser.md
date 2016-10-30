@@ -12,7 +12,9 @@ The [DiceNotationParser][dice_notation_parser] interface is implemented only by 
 
 ![Dice expression builder class diagram][dice_expression_builder-class_diagram]
 
-Most of the parsing is handled by ANTLR, and then adapted to the returned dice notation with the use of a visitor pattern. This visitor is a [DiceExpressionBuilder][dice_expression_buider], by default the [DefaultDiceExpressionBuilder][default_dice_expression_buider], and extends over the DiceNotationGrammarListener which is automatically generated from the ANTLR grammar file.
+Most of the parsing is handled by ANTLR, and then adapted to the returned dice notation with the use of a visitor pattern. This visitor is a [DiceExpressionBuilder][dice_expression_buider] which extends over the DiceNotationGrammarListener which is automatically generated from the ANTLR grammar file.
+
+The [DefaultDiceExpressionBuilder][default_dice_expression_buider] implements the visitor, and makes use of  a stack to hold all the operands for any operation which may appear during parsing.
 
 [dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DiceNotationParser.html
 [default_dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DefaultDiceNotationParser.html

@@ -18,19 +18,19 @@ Were each node would be an implementation of the DiceNotationExpression interfac
 
 The leaf nodes of the are composed by operands, which just store a value to be used by other components of the model.
 
-They lack a common interface, and currently only two exist, the [IntegerOperand][integer_operand] and the [DiceOperand][dice_operand].
+They lack a common interface, and currently only two exist, the integer operand and the dice operand.
 
 ### Integer operand
 
 ![Integer operand class diagram][integer_operand-class_diagram]
 
-The integer operand just stores an integer value for operations.
+The [IntegerOperand][integer_operand] just stores an integer value for operations.
 
 ### Dice operand
 
 ![Dice operand class diagram][dice_operand-class_diagram]
 
-The dice operand can generate a random value from a dice, which is needed to operate with it. The [DefaultDiceOperand][default_dice_operand] makes use of a [Roller][roller-doc] for it.
+The [DiceOperand][dice_operand] can generate a random value from a dice, which is needed to operate with it. The [DefaultDiceOperand][default_dice_operand] makes use of a [Roller][roller-doc] for it.
 
 ## Operations
 
