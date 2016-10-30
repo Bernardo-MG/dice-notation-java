@@ -23,9 +23,9 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * <p>
  * Binary operation operate on pairs of operands. But it is not required giving
  * these operands directly, instead they can be acquired from other expressions,
- * allowing chaining them.
+ * chaining them.
  * <p>
- * Depending on the operation, the order of the operands may be important or
+ * Depending on the operation, the order of the operands may be of importance or
  * not.
  * 
  * @author Bernardo Martínez Garrido

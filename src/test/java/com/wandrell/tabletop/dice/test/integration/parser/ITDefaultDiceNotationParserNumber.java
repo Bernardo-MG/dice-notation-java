@@ -27,29 +27,23 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses numbers.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>A lone number is parsed correctly.</li>
- * <li>The zero value is parsed correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITNumberDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationParserNumber {
 
     /**
      * Default constructor.
      */
-    public ITNumberDefaultDiceNotationParser() {
+    public ITDefaultDiceNotationParserNumber() {
         super();
     }
 
     /**
-     * Tests that a lone number is parsed correctly.
+     * Tests that positive numbers can be parsed.
      */
     @Test
-    public final void testParse_Number() {
+    public final void testParse_Positive() {
         final IntegerOperand value;
         final String notation;
         final DiceNotationParser parser;
@@ -66,7 +60,7 @@ public final class ITNumberDefaultDiceNotationParser {
     }
 
     /**
-     * Tests that the zero value is parsed correctly.
+     * Tests that the zero value can be parsed.
      */
     @Test
     public final void testParse_Zero() {

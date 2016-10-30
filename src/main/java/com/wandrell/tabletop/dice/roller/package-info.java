@@ -15,15 +15,12 @@
  */
 
 /**
- * Representation and execution of dice rolls.
+ * Classes to generate random values from dice groups.
  * <p>
- * In practice, this means generating a random value from the information
- * contained in a {@link com.wandrell.tabletop.dice.Dice Dice} class, which is
- * done through a {@link com.wandrell.tabletop.dice.roller.Roller Roller} with
- * the help of a
- * {@link com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator
- * RandomNumberGenerator}.
+ * The {@link com.wandrell.tabletop.dice.roller.Roller Roller}, with the help of
+ * a {@link com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator
+ * RandomNumberGenerator}, can generate random values from any
+ * {@link com.wandrell.tabletop.dice.Dice Dice}.
  */
 
 package com.wandrell.tabletop.dice.roller;
-

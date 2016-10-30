@@ -30,20 +30,15 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses complex operations.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>A complex operation is parsed correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITComplexDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationParserComplex {
 
     /**
      * Default constructor.
      */
-    public ITComplexDefaultDiceNotationParser() {
+    public ITDefaultDiceNotationParserComplex() {
         super();
     }
 

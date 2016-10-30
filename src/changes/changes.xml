@@ -47,5 +47,11 @@
             Maven site is now deployed through SSH.
          </action>
       </release>
+      <release version="1.0.0" date="2016-10-26"
+         description="Reduced the grammar">
+         <action dev="bmg" type="update">
+            Reduced the grammar.
+         </action>
+      </release>
    </body>
 </document>

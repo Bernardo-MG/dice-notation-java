@@ -27,12 +27,6 @@ import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 /**
  * Unit tests for {@link AdditionOperation}, checking that it works as expected
  * with its operands.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The text expression is generated correctly.</li>
- * <li>The value is generated correctly.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

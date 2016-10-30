@@ -34,8 +34,8 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * Dice notation parser making use of ANTLR4 generated classes.
  * <p>
  * These classes are generated from an ANTRL4 BNF grammar, including the actual
- * parser, which this one wraps and sets up, mostly by setting a
- * {@link DiceExpressionBuilder} into it.
+ * parser, which this one wraps and sets up, mostly by adding a
+ * {@link DiceExpressionBuilder} to it.
  * <p>
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
@@ -54,6 +54,17 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     private final DiceExpressionBuilder expressionBuilder;
 
     /**
+     * Default constructor.
+     * <p>
+     * It makes use of a {@link DefaultDiceExpressionBuilder}.
+     */
+    public DefaultDiceNotationParser() {
+        super();
+
+        expressionBuilder = new DefaultDiceExpressionBuilder();
+    }
+
+    /**
      * Constructs a parser with the specified builder.
      * 
      * @param builder
@@ -67,7 +78,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
     }
 
     /**
-     * Default constructor.
+     * Constructs a parser with the specified roller.
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
      * 
@@ -111,8 +122,8 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      *            expression used to generate the parser
      * @return an ANTLR4 parser tailored for the expression
      */
-    private final DiceNotationGrammarParser buildDiceNotationParser(
-            final String expression) {
+    private final DiceNotationGrammarParser
+            buildDiceNotationParser(final String expression) {
         final ANTLRInputStream input;         // Input stream for the expression
         final DiceNotationGrammarLexer lexer; // Lexer for the expression tokens
         final TokenStream tokens;             // Expression tokens

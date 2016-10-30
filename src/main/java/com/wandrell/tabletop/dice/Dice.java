@@ -17,15 +17,14 @@
 package com.wandrell.tabletop.dice;
 
 /**
- * A group of dice, all with the same number of sides. This is meant for simply
- * representing a group of dice by itself, to handle complex notation the
- * classes in the {@link com.wandrell.tabletop.dice.notation notation} package
- * should be used.
+ * A group of dice, all with the same number of sides.
  * <p>
- * There are a few constraints which implementations of this interface are
- * expected to apply. The number of dice are expected to be positive or zero,
- * and the number of sides greater than zero, as any other value would make no
- * sense.
+ * This is meant to represent a group of dice by itself, to handle complex
+ * notation the classes in the {@link com.wandrell.tabletop.dice.notation
+ * notation} package should be used.
+ * <p>
+ * The number of dice are expected to be positive or zero, and the number of
+ * sides greater than zero, as any other value would make no sense.
  * <p>
  * No other limitation is expected. In the real world the number of sides which
  * a die may physically have are limited by the rules of geometry, but there is

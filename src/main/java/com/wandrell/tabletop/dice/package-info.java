@@ -14,25 +14,24 @@
  * the License.
  */
 /**
- * Dice notation classes.
+ * Dice classes, including the model for dice.
+ * <h3>Model</h3>
  * <p>
- * At the root of this package the {@link com.wandrell.tabletop.dice.Dice Dice}
- * interface, and the default implementation of this, the
- * {@link com.wandrell.tabletop.dice.DefaultDice DefaultDice}, offer a simple
- * model for dice groups as they are used in dice notation expressions.
+ * The {@link com.wandrell.tabletop.dice.Dice Dice} interface, and the default
+ * implementation of this, the {@link com.wandrell.tabletop.dice.DefaultDice
+ * DefaultDice}, offer a simple model for dice groups.
+ * <h3>Sub-packages</h3>
  * <p>
- * To generate random values from these classes, as if these dice were rolled,
- * the classes contained inside the {@link com.wandrell.tabletop.dice.roller
- * roller} package can be used.
+ * The packages inside this one extend over the basic dice in various ways.
  * <p>
- * Notation more complex than a single group of dice is represented by the
- * classes in the {@link com.wandrell.tabletop.dice.notation notation} package,
- * which also can generate values from the expressions they represent.
+ * With the {@link com.wandrell.tabletop.dice.roller roller} package it is
+ * possible generating random values from the dice classes.
  * <p>
- * The {@link com.wandrell.tabletop.dice.parser parser} package offers parsers
- * which can create and populare model classes from a text dice notation
- * expression.
+ * For actual dice notation, including operations, the model inside the
+ * {@link com.wandrell.tabletop.dice.notation notation} package can be used.
+ * <p>
+ * The {@link com.wandrell.tabletop.dice.parser parser} package hosts parsers
+ * which can transform an expression into an equivalent object.
  */
 
 package com.wandrell.tabletop.dice;
-

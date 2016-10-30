@@ -63,21 +63,21 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller(final NumberGenerator generator) {
         super();
 
-        numGen = checkNotNull(generator, "Received a null pointer as generator");
+        numGen = checkNotNull(generator,
+                "Received a null pointer as generator");
     }
 
     /**
      * Generates a collection of random values from the received {@code Dice}.
      * <p>
-     * These are contained in the {@code Collection} in the same order they were
-     * generated.
+     * These are returned in the same order they were generated.
      * 
      * @param dice
      *            the dice to roll
      * @return a collection of random values generated from the dice
      */
     @Override
-    public final Collection<Integer> roll(final Dice dice) {
+    public final Iterable<Integer> roll(final Dice dice) {
         final Collection<Integer> rolls; // Roll results
 
         checkNotNull(dice, "Received a null pointer as dice");

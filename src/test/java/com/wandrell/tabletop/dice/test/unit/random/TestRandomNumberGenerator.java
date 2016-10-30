@@ -28,11 +28,6 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
 /**
  * Units tests for {@code RandomNumberGenerator}, checking that it generates
  * values as expected.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The generated numbers are kept inside the expected interval.</li>
- * </ol>
  * 
  * @author Bernardo Martínez Garrido
  */

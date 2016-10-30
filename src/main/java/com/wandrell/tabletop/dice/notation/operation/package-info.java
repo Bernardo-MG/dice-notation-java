@@ -19,4 +19,3 @@
  */
 
 package com.wandrell.tabletop.dice.notation.operation;
-
