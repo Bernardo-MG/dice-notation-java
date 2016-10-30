@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
+import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
@@ -157,18 +158,21 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
         final AdditionOperation value;
         final String notation;
         final DiceNotationParser parser;
+        final BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "1+2+3";
 
-        // TODO
         value = (AdditionOperation) parser.parse(notation);
 
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 3);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -180,18 +184,25 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
         final AdditionOperation value;
         final String notation;
         final DiceNotationParser parser;
+        BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "1+2+3+4+5";
 
-        // TODO
         value = (AdditionOperation) parser.parse(notation);
 
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) operation.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 3);
+
+        operation = (BinaryOperation) operation.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 4);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 5);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -200,21 +211,24 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
      */
     @Test
     public final void testParse_Number_AddAndSub() {
-        final AdditionOperation value;
+        final BinaryOperation value;
         final String notation;
         final DiceNotationParser parser;
+        final BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "1+2-3";
 
-        // TODO
-        value = (AdditionOperation) parser.parse(notation);
+        value = (BinaryOperation) parser.parse(notation);
 
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 3);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -247,6 +261,7 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
         final SubtractionOperation value;
         final String notation;
         final DiceNotationParser parser;
+        final BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
@@ -254,11 +269,13 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
 
         value = (SubtractionOperation) parser.parse(notation);
 
-        // TODO
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 3);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -270,6 +287,7 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
         final SubtractionOperation value;
         final String notation;
         final DiceNotationParser parser;
+        BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
@@ -277,11 +295,17 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
 
         value = (SubtractionOperation) parser.parse(notation);
 
-        // TODO
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 12);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 1);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) operation.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 3);
+
+        operation = (BinaryOperation) operation.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 4);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 5);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
@@ -290,21 +314,24 @@ public final class ITDefaultDiceNotationParserBinaryOperation {
      */
     @Test
     public final void testParse_Number_SubAndAdd() {
-        final AdditionOperation value;
+        final BinaryOperation value;
         final String notation;
         final DiceNotationParser parser;
+        final BinaryOperation operation;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
         notation = "3-1+2";
 
-        // TODO
-        // value = (AdditionOperation) parser.parse(notation);
+        value = (BinaryOperation) parser.parse(notation);
 
-        // Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        // Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+        Assert.assertEquals(value.getLeft().getValue(), (Integer) 3);
 
-        // Assert.assertEquals(value.getExpression(), notation);
+        operation = (BinaryOperation) value.getRight();
+        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assert.assertEquals(operation.getRight().getValue(), (Integer) 2);
+
+        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
