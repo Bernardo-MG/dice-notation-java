@@ -330,6 +330,7 @@
             <!-- Site -->
             <!-- Generates the Maven Site -->
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
             <dependencies>
                <dependency>
                   <!-- Docs Maven Skin -->
