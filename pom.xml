@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>1.0.0-SNAPSHOT</version>
+   <version>1.0.1-SNAPSHOT</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -211,16 +211,15 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.5.3</antlr.version>
-      <guava.version>19.0</guava.version>
+      <antlr.version>4.6</antlr.version>
+      <guava.version>21.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
-      <log4j.version>2.6.2</log4j.version>
-      <testng.version>6.9.10</testng.version>
+      <log4j.version>2.8.1</log4j.version>
+      <testng.version>6.11</testng.version>
       <!-- Plugins versions -->
-      <plugin.antlr.version>4.5.3</plugin.antlr.version>
-      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
+      <plugin.antlr.version>4.6</plugin.antlr.version>
+      <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
-      <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <!-- Maven Site -->
       <site.skin.version>0.6.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
@@ -322,12 +321,6 @@
                   <groupId>com.wandrell.maven.skins</groupId>
                   <artifactId>docs-maven-skin</artifactId>
                   <version>${site.skin.version}</version>
-               </dependency>
-               <dependency>
-                  <!-- Velocity -->
-                  <groupId>org.apache.velocity</groupId>
-                  <artifactId>velocity</artifactId>
-                  <version>${plugin.site.velocity.version}</version>
                </dependency>
             </dependencies>
          </plugin>
