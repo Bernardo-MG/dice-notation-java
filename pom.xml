@@ -218,7 +218,7 @@
       <testng.version>6.11</testng.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.6</plugin.antlr.version>
-      <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
+      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- Maven Site -->
       <site.skin.version>0.6.0</site.skin.version>
