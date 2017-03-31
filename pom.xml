@@ -215,7 +215,7 @@
       <guava.version>20.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
       <log4j.version>2.8.1</log4j.version>
-      <testng.version>6.11</testng.version>
+      <testng.version>6.10</testng.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.6</plugin.antlr.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
