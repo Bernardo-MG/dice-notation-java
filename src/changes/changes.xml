@@ -53,5 +53,14 @@
             Reduced the grammar.
          </action>
       </release>
+      <release version="1.0.1" date="2016-03-30"
+         description="Updated project">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="update">
+            Updated project configuration.
+         </action>
+      </release>
    </body>
 </document>
