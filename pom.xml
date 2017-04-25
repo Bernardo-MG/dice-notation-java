@@ -401,7 +401,7 @@
             <artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
                <links>
-                  <link>http://www.antlr.org/api/</link>
+                  <link>http://www.antlr.org/api/Java/</link>
                </links>
                <!-- Excludes generated code -->
                <excludePackageNames>*.generated.*</excludePackageNames>
