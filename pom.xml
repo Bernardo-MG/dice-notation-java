@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.1.4</version>
+      <version>1.1.5</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -221,7 +221,7 @@
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- Maven Site -->
-      <site.skin.version>0.6.0</site.skin.version>
+      <site.skin.version>0.6.1</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
    </properties>
