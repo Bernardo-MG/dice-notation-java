@@ -218,6 +218,7 @@
       <testng.version>6.10</testng.version>
       <!-- Plugins versions -->
       <plugin.antlr.version>4.6</plugin.antlr.version>
+      <plugin.antlr.test.version>1.9</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- Maven Site -->
@@ -286,9 +287,17 @@
          <plugins>
             <plugin>
                <!-- ANTRL4 -->
+               <!-- Builds a parser from the grammar -->
                <groupId>org.antlr</groupId>
                <artifactId>antlr4-maven-plugin</artifactId>
                <version>${plugin.antlr.version}</version>
+            </plugin>
+            <plugin>
+               <!-- ANTRL4 Tests -->
+               <!-- Tests the grammar -->
+               <groupId>com.khubla.antlr</groupId>
+               <artifactId>antlr4test-maven-plugin</artifactId>
+               <version>${plugin.antlr.test.version}</version>
             </plugin>
             <plugin>
                <!-- Build helper -->
@@ -343,6 +352,7 @@
          </plugin>
          <plugin>
             <!-- ANTRL4 -->
+            <!-- Builds a parser from the grammar -->
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-maven-plugin</artifactId>
             <executions>
@@ -351,6 +361,27 @@
                   <id>antlr</id>
                   <goals>
                      <goal>antlr4</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <!-- ANTRL4 Tests -->
+            <!-- Tests the grammar -->
+            <groupId>com.khubla.antlr</groupId>
+            <artifactId>antlr4test-maven-plugin</artifactId>
+            <configuration>
+               <verbose>true</verbose>
+               <showTree>true</showTree>
+               <entryPoint>parse</entryPoint>
+               <grammarName>DiceNotationGrammar</grammarName>
+               <packageName>com.wandrell.tabletop.dice.generated</packageName>
+               <exampleFiles>src\test\resources\examples</exampleFiles>
+            </configuration>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>test</goal>
                   </goals>
                </execution>
             </executions>
