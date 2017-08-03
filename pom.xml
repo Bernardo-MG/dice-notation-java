@@ -282,6 +282,23 @@
 
    <build>
       <defaultGoal>clean package install</defaultGoal>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <!-- ANTRL4 -->
+               <groupId>org.antlr</groupId>
+               <artifactId>antlr4-maven-plugin</artifactId>
+               <version>${plugin.antlr.version}</version>
+            </plugin>
+            <plugin>
+               <!-- Build helper -->
+               <!-- Adds the generated files to the Maven classpath -->
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>build-helper-maven-plugin</artifactId>
+               <version>${plugin.buildhelp.version}</version>
+            </plugin>
+         </plugins>
+      </pluginManagement>
       <plugins>
          <plugin>
             <!-- Changes -->
@@ -328,7 +345,6 @@
             <!-- ANTRL4 -->
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-maven-plugin</artifactId>
-            <version>${plugin.antlr.version}</version>
             <executions>
                <!-- Parse grammar is bound to the generate sources phase -->
                <execution>
@@ -344,7 +360,6 @@
             <!-- Adds the generated files to the Maven classpath -->
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
-            <version>${plugin.buildhelp.version}</version>
             <executions>
                <execution>
                   <id>add-source</id>
