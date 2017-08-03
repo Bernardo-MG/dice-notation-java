@@ -211,7 +211,7 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.6</antlr.version>
+      <antlr.version>4.7</antlr.version>
       <guava.version>20.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
       <log4j.version>2.8.1</log4j.version>
