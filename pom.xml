@@ -376,7 +376,7 @@
                <entryPoint>parse</entryPoint>
                <grammarName>DiceNotationGrammar</grammarName>
                <packageName>com.wandrell.tabletop.dice.generated</packageName>
-               <exampleFiles>src\test\resources\examples</exampleFiles>
+               <exampleFiles>src/test/resources/examples</exampleFiles>
             </configuration>
             <executions>
                <execution>
