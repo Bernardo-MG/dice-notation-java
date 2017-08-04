@@ -16,12 +16,8 @@
 
 package com.wandrell.tabletop.dice.test.integration.parser;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
-import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
 import com.wandrell.tabletop.dice.parser.DiceNotationParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
@@ -81,22 +77,15 @@ public final class ITDefaultDiceNotationParserException {
     }
 
     /**
-     * Tests that dice notation with zero sides is parsed.
+     * Tests that dice notation with zero sides throws an exception.
      */
     @Test(expectedExceptions = { Exception.class })
     public final void testParse_ZeroSides() {
         final DiceNotationParser parser;     // Tested parser
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        parsed = parser.parse("1d0");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assert.assertEquals(dice.getQuantity(), new Integer(1));
-        Assert.assertEquals(dice.getSides(), new Integer(0));
+        parser.parse("1d0");
     }
 
 }
