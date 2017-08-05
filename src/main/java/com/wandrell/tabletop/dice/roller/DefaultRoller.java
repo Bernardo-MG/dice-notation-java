@@ -51,7 +51,7 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller() {
         super();
 
-        this.numGen = new RandomNumberGenerator();
+        numGen = new RandomNumberGenerator();
     }
 
     /**

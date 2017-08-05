@@ -66,14 +66,11 @@ public final class ITDefaultDiceNotationParserException {
      */
     @Test(expectedExceptions = { Exception.class })
     public final void testParse_Negative() {
-        final String notation;
-        final DiceNotationParser parser;
+        final DiceNotationParser parser; // Tested parser
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "-1";
-
-        parser.parse(notation);
+        parser.parse("-1");
     }
 
     /**
