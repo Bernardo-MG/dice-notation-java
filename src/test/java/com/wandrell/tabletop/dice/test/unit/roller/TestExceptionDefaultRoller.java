@@ -76,4 +76,23 @@ public final class TestExceptionDefaultRoller {
         roller.roll(dice);
     }
 
+    /**
+     * Tests that rolling a dice with 0 as sides throws an exception.
+     */
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public final void testRoll_NoSides() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(10);
+        Mockito.when(dice.getSides()).thenReturn(0);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        roller.roll(dice);
+    }
+
 }

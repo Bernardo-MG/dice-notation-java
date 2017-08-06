@@ -16,7 +16,6 @@
 
 package com.wandrell.tabletop.dice.test.unit.roller;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.mockito.Matchers;
@@ -24,6 +23,7 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.google.common.collect.Iterables;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
@@ -45,6 +45,25 @@ public final class TestDefaultRoller {
     }
 
     /**
+     * Tests that the roller returns no results when the dice quantity is 0.
+     */
+    @Test
+    public final void testRoll_NoDice_Empty() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(0);
+        Mockito.when(dice.getSides()).thenReturn(6);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        Assert.assertTrue(Iterables.isEmpty(roller.roll(dice)));
+    }
+
+    /**
      * Tests that the roller returns as many values as the quantity of dice.
      */
     @Test
@@ -60,8 +79,7 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assert.assertEquals(((Collection<Integer>) roller.roll(dice)).size(),
-                10);
+        Assert.assertEquals(Iterables.size(roller.roll(dice)), 10);
     }
 
     /**
