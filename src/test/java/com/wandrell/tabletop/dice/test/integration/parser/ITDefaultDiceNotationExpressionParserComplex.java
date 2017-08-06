@@ -25,18 +25,18 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
  * parses complex operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class ITDefaultDiceNotationParserComplex
-        extends AbstractITDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationExpressionParserComplex
+        extends AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationParserComplex() {
+    public ITDefaultDiceNotationExpressionParserComplex() {
         super();
     }
 

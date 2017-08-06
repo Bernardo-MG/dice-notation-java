@@ -25,7 +25,7 @@ bg=cyan
       <w>200</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>/DiceNotationGrammarListener/
+    <panel_attributes>/DiceNotationListener/
 bg=cyan
 
 </panel_attributes>

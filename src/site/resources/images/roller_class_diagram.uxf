@@ -14,7 +14,7 @@ bg=cyan
 --
 
 --
-/+roll(dice: Dice): Collection&lt;Integer&gt;/</panel_attributes>
+/+roll(dice: Dice): Iterable&lt;Integer&gt;/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -30,7 +30,7 @@ bg=yellow
 --
 
 --
-+roll(dice: Dice): Collection&lt;Integer&gt;</panel_attributes>
++roll(dice: Dice): Iterable&lt;Integer&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

@@ -25,18 +25,18 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
- * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
  * parses simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class ITDefaultDiceNotationParserBinaryOperation
-        extends AbstractITDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationExpressionParserBinaryOperation
+        extends AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationParserBinaryOperation() {
+    public ITDefaultDiceNotationExpressionParserBinaryOperation() {
         super();
     }
 

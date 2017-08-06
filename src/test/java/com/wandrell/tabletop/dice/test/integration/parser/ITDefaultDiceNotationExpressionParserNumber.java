@@ -22,18 +22,18 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 
 /**
- * Integration tests for {@code DefaultDiceNotationParser}, checking that it
- * parses numbers.
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * that it parses numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class ITDefaultDiceNotationParserNumber
-        extends AbstractITDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationExpressionParserNumber
+        extends AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationParserNumber() {
+    public ITDefaultDiceNotationExpressionParserNumber() {
         super();
     }
 

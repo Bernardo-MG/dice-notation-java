@@ -19,12 +19,12 @@
  * <p>
  * The {@link com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder
  * DiceExpressionBuilder} is used by the
- * {@link com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser
- * DefaultDiceNotationParser} as a visitor. It will create the returned dice
+ * {@link com.wandrell.tabletop.dice.parser.DefaultDiceNotationExpressionParser
+ * DefaultDiceNotationExpressionParser} as a visitor. It will create the returned dice
  * notation model tree as it goes through the parsed grammar tree.
  * <p>
  * The {@link com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener
- * DefaultErrorListener} is also used by the {@code DefaultDiceNotationParser},
+ * DefaultErrorListener} is also used by the {@code DefaultDiceNotationExpressionParser},
  * but to throw exceptions when there is a parsing error.
  */
 

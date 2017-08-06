@@ -24,18 +24,18 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 
 /**
- * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
  * parses dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class ITDefaultDiceNotationParserDice
-        extends AbstractITDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationExpressionParserDice
+        extends AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationParserDice() {
+    public ITDefaultDiceNotationExpressionParserDice() {
         super();
     }
 

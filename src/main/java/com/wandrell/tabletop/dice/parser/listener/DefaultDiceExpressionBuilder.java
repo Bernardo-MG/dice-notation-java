@@ -24,10 +24,10 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.BinaryOpContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.FunctionContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.FunctionContext;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
@@ -51,8 +51,8 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceExpressionBuilder extends
-        DiceNotationGrammarBaseListener implements DiceExpressionBuilder {
+public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
+        implements DiceExpressionBuilder {
 
     /**
      * Operator which indicates the operation is an addition.

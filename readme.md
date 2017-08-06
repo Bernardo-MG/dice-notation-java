@@ -74,10 +74,10 @@ $ mvn install
 If needed the dice model, or even the dice notation one, can be used directly. But the recommended way to handle dice notation with the library is with the help of the included parser.
 
 ```java
-final DiceNotationParser parser;
+final DiceNotationExpressionParser parser;
 final DiceNotationExpression parsed;
 
-parser = new DefaultDiceNotationParser(new DefaultRoller());
+parser = new DefaultDiceNotationExpressionParser(new DefaultRoller());
 
 parsed = parser.parse("1d6+12");
 

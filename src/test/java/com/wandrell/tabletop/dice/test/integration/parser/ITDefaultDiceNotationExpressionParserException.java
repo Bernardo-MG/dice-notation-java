@@ -19,18 +19,18 @@ package com.wandrell.tabletop.dice.test.integration.parser;
 import org.testng.annotations.Test;
 
 /**
- * Integration tests for {@code DefaultDiceNotationParser}, checking that it
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
  * throws exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class ITDefaultDiceNotationParserException
-        extends AbstractITDefaultDiceNotationParser {
+public final class ITDefaultDiceNotationExpressionParserException
+        extends AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationParserException() {
+    public ITDefaultDiceNotationExpressionParserException() {
         super();
     }
 

@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DiceNotationParser {
+public interface DiceNotationExpressionParser {
 
     /**
      * Transforms a dice notation expression into the dice notation model.

@@ -17,22 +17,22 @@
 package com.wandrell.tabletop.dice.test.integration.parser;
 
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
-import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
-import com.wandrell.tabletop.dice.parser.DiceNotationParser;
+import com.wandrell.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.wandrell.tabletop.dice.parser.DiceNotationExpressionParser;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
- * Abstract base test for the {@code DefaultDiceNotationParser}.
+ * Abstract base test for the {@code DefaultDiceNotationExpressionParser}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public abstract class AbstractITDefaultDiceNotationParser {
+public abstract class AbstractITDefaultDiceNotationExpressionParser {
 
     /**
      * Default constructor.
      */
-    public AbstractITDefaultDiceNotationParser() {
+    public AbstractITDefaultDiceNotationExpressionParser() {
         super();
     }
 
@@ -46,9 +46,9 @@ public abstract class AbstractITDefaultDiceNotationParser {
      * @return the parsed object
      */
     protected final DiceNotationExpression parse(final String expression) {
-        final DiceNotationParser parser; // Parser to test
+        final DiceNotationExpressionParser parser; // Parser to test
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
+        parser = new DefaultDiceNotationExpressionParser(new DefaultRoller());
 
         return parser.parse(expression);
     }

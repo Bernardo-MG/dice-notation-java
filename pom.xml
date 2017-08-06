@@ -374,7 +374,8 @@
                <verbose>true</verbose>
                <showTree>true</showTree>
                <entryPoint>parse</entryPoint>
-               <grammarName>DiceNotationGrammar</grammarName>
+               <grammarName>DiceNotation</grammarName>
+               <lexerName>DiceNotationLexer</lexerName>
                <packageName>com.wandrell.tabletop.dice.generated</packageName>
                <exampleFiles>src/test/resources/examples</exampleFiles>
             </configuration>
