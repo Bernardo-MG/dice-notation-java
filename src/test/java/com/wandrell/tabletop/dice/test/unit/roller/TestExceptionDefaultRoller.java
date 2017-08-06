@@ -39,7 +39,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative quantity throws an exception..
+     * Tests that rolling a dice with negative quantity throws an exception.
      */
     @Test(expectedExceptions = { IllegalArgumentException.class })
     public final void testRoll_NegativeQuantity() {
@@ -58,7 +58,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative sides throws an exception..
+     * Tests that rolling a dice with negative sides throws an exception.
      */
     @Test(expectedExceptions = { IllegalArgumentException.class })
     public final void testRoll_NegativeSides() {

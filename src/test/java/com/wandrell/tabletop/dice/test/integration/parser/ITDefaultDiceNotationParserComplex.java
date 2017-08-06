@@ -48,29 +48,30 @@ public final class ITDefaultDiceNotationParserComplex
         final SubtractionOperation operationFirst;
         final AdditionOperation operationSecond;
         final IntegerOperand integer;
-        final DiceOperand diceLeftmost;
-        final DiceOperand dice;
+        final DiceOperand leftDice;
+        final DiceOperand rightDice;
         final String notation;
 
         notation = "1d20-5+2d6";
 
         operationFirst = (SubtractionOperation) parse(notation);
 
-        diceLeftmost = (DiceOperand) operationFirst.getLeft();
+        leftDice = (DiceOperand) operationFirst.getLeft();
         operationSecond = (AdditionOperation) operationFirst.getRight();
 
         integer = (IntegerOperand) operationSecond.getLeft();
-        dice = (DiceOperand) operationSecond.getRight();
+        rightDice = (DiceOperand) operationSecond.getRight();
 
-        Assert.assertEquals(diceLeftmost.getDice().getQuantity(), (Integer) 1);
-        Assert.assertEquals(diceLeftmost.getDice().getSides(), (Integer) 20);
+        // Leftmost dice was parsed correctly
+        Assert.assertEquals(leftDice.getDice().getQuantity(), (Integer) 1);
+        Assert.assertEquals(leftDice.getDice().getSides(), (Integer) 20);
 
-        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
+        // Rightmost dice was parsed correctly
+        Assert.assertEquals(rightDice.getDice().getQuantity(), (Integer) 2);
+        Assert.assertEquals(rightDice.getDice().getSides(), (Integer) 6);
 
+        // Integer value was parsed correctly
         Assert.assertEquals(integer.getValue(), (Integer) 5);
-
-        Assert.assertEquals(operationFirst.getExpression(), notation);
     }
 
 }
