@@ -40,43 +40,33 @@ public final class ITDefaultDiceNotationParserNumber {
     }
 
     /**
-     * Tests that positive numbers can be parsed.
+     * Tests that parsing a positive number gives that number as value.
      */
     @Test
-    public final void testParse_Positive() {
+    public final void testParse_Positive_Value() {
         final IntegerOperand value;
-        final String notation;
         final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "12";
-
-        value = (IntegerOperand) parser.parse(notation);
+        value = (IntegerOperand) parser.parse("12");
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
-
-        Assert.assertEquals(value.getExpression(), notation);
     }
 
     /**
-     * Tests that the zero value can be parsed.
+     * Tests that parsing zero gives that number as value.
      */
     @Test
     public final void testParse_Zero() {
         final IntegerOperand value;
-        final String notation;
         final DiceNotationParser parser;
 
         parser = new DefaultDiceNotationParser(new DefaultRoller());
 
-        notation = "0";
-
-        value = (IntegerOperand) parser.parse(notation);
+        value = (IntegerOperand) parser.parse("0");
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
-
-        Assert.assertEquals(value.getExpression(), notation);
     }
 
 }
