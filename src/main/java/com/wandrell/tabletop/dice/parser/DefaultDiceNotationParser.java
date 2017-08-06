@@ -18,7 +18,8 @@ package com.wandrell.tabletop.dice.parser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 
@@ -124,12 +125,12 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      */
     private final DiceNotationGrammarParser
             buildDiceNotationParser(final String expression) {
-        final ANTLRInputStream input;         // Input stream for the expression
+        final CharStream stream;              // Input stream for the expression
         final DiceNotationGrammarLexer lexer; // Lexer for the expression tokens
         final TokenStream tokens;             // Expression tokens
 
-        input = new ANTLRInputStream(expression);
-        lexer = new DiceNotationGrammarLexer(input);
+        stream = CharStreams.fromString(expression);
+        lexer = new DiceNotationGrammarLexer(stream);
         tokens = new CommonTokenStream(lexer);
 
         return new DiceNotationGrammarParser(tokens);
