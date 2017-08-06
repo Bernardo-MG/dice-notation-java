@@ -26,7 +26,7 @@ package com.wandrell.tabletop.dice.roller.random;
  * The possible values which the generator may return are expected to begin at
  * 1, and end in a specified maximum value.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see com.wandrell.tabletop.dice.roller.Roller Roller
  */
 public interface NumberGenerator {

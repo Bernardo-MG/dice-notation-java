@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses numbers.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ITDefaultDiceNotationParserNumber
         extends AbstractITDefaultDiceNotationParser {

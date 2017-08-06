@@ -31,7 +31,7 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
  * <p>
  * To generate the actual random values a {@code NumberGenerator} is used.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see NumberGenerator
  * @see Dice
  */

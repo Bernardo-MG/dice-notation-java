@@ -33,7 +33,7 @@ import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
  * Units tests for {@code DefaultRoller}, checking that it returns values as
  * expected.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestDefaultRoller {
 

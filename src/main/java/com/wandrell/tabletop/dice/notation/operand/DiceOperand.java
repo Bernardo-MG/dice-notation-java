@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * The value from a dice operand is meant to be random, and it should not be
  * expected to be the same each time it is acquired.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceOperand extends DiceNotationExpression {
 

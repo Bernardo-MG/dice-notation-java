@@ -31,7 +31,7 @@ import com.wandrell.tabletop.dice.Dice;
  * {@code Collection}. This is expected to contain the values in the same order
  * they were generated.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see Dice
  */
 public interface Roller {

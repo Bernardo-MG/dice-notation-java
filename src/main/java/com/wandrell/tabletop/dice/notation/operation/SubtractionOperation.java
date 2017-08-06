@@ -30,7 +30,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * As with any other subtraction, the right operand's value will be subtracted
  * from the left one's.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SubtractionOperation implements BinaryOperation {
 

@@ -49,7 +49,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * any operation, such as an addition, can acquire the latest operands, which
  * will be the ones it will employ.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceExpressionBuilder extends
         DiceNotationGrammarBaseListener implements DiceExpressionBuilder {

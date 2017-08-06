@@ -30,7 +30,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * As with any other addition, the order of the operands does not matter for the
  * result.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class AdditionOperation implements BinaryOperation {
 

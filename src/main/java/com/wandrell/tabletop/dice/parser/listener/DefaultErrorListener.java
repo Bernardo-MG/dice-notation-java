@@ -25,7 +25,7 @@ import org.antlr.v4.runtime.Recognizer;
  * <p>
  * It just throws an exception for any error the listener intercepts.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultErrorListener extends BaseErrorListener {
 

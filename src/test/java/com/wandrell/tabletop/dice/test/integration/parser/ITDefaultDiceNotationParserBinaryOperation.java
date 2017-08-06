@@ -29,7 +29,7 @@ import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses simple binary operations.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ITDefaultDiceNotationParserBinaryOperation
         extends AbstractITDefaultDiceNotationParser {

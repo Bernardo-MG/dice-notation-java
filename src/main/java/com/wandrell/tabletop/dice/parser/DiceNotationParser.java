@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * The returned object is expected to be the root node of a tree made up by dice
  * notation model objects.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceNotationParser {
 

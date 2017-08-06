@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * throws exceptions when required.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ITDefaultDiceNotationParserException
         extends AbstractITDefaultDiceNotationParser {

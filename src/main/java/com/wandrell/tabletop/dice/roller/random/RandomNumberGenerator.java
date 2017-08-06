@@ -26,7 +26,7 @@ import java.util.Random;
  * The generated numbers will be integers in a closed interval, beginning at 1
  * and ending in a specified maximum value.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class RandomNumberGenerator implements NumberGenerator {
 

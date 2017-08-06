@@ -26,7 +26,7 @@ package com.wandrell.tabletop.dice.notation;
  * It is also possible getting the string representation of the dice notation
  * expression it represents.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceNotationExpression {
 

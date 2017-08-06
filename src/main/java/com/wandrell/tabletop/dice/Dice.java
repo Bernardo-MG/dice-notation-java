@@ -35,7 +35,7 @@ package com.wandrell.tabletop.dice;
  * {@link com.wandrell.tabletop.dice.roller.Roller Roller} will take care of
  * that concern.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see com.wandrell.tabletop.dice.roller.Roller Roller
  */
 public interface Dice {

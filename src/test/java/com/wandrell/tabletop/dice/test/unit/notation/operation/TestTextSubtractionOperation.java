@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
  * Unit tests for {@link SubtractionOperation}, checking that it works as
  * expected with its operands.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestTextSubtractionOperation {
 

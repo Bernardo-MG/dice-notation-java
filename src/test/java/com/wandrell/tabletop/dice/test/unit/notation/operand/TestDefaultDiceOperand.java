@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
 /**
  * Units tests for {@code DefaultDiceOperand}.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public class TestDefaultDiceOperand {
 

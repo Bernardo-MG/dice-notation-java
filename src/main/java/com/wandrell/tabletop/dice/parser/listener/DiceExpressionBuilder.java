@@ -26,7 +26,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * This {@code DiceNotationExpression} is the root for a tree representing the
  * expression received by the parser.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceExpressionBuilder extends DiceNotationGrammarListener {
 

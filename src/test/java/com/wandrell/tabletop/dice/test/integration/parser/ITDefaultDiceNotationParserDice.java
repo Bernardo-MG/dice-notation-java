@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * parses dice notation expressions for single dice groups.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ITDefaultDiceNotationParserDice
         extends AbstractITDefaultDiceNotationParser {

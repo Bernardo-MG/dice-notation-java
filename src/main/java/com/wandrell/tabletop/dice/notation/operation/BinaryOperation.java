@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * Depending on the operation, the order of the operands may be of importance or
  * not.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface BinaryOperation extends DiceNotationExpression {
 

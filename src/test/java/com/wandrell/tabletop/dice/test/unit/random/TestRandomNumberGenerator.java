@@ -29,7 +29,7 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
  * Units tests for {@code RandomNumberGenerator}, checking that it generates
  * values as expected.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestRandomNumberGenerator {
 

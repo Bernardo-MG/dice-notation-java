@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * Units tests for {@code DefaultRoller}, checking that it throws exceptions
  * when required.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestExceptionDefaultRoller {
 

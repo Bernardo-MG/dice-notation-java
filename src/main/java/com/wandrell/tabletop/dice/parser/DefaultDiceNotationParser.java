@@ -40,7 +40,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceNotationParser implements DiceNotationParser {
 

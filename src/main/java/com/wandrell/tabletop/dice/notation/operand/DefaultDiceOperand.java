@@ -29,7 +29,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * The value from a dice operand is random, and will be generated each time it
  * is acquired.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  * @see Dice
  */
 public final class DefaultDiceOperand implements DiceOperand {

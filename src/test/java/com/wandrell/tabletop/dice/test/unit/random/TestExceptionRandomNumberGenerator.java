@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.roller.random.RandomNumberGenerator;
  * Units tests for {@code RandomNumberGenerator}, checking that it throws
  * exceptions when required.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestExceptionRandomNumberGenerator {
 

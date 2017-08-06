@@ -25,7 +25,7 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 /**
  * Operand for using an integer value on a dice notation expression.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class IntegerOperand implements DiceNotationExpression {
 

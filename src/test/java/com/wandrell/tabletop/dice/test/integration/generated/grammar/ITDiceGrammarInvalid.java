@@ -30,7 +30,7 @@ import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
  * Integration tests for the generated grammar classes, testing that they can
  * process dice notation.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class ITDiceGrammarInvalid {
 

@@ -29,7 +29,7 @@ import com.google.common.base.Objects;
  * equal or higher than zero, and the number of sides equal or higher than one.
  * If any other value is received then an exception will be thrown.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDice implements Dice {
 
