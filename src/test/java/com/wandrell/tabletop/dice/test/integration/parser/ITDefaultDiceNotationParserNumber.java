@@ -20,9 +20,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
-import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
-import com.wandrell.tabletop.dice.parser.DiceNotationParser;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
@@ -30,7 +27,8 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITDefaultDiceNotationParserNumber {
+public final class ITDefaultDiceNotationParserNumber
+        extends AbstractITDefaultDiceNotationParser {
 
     /**
      * Default constructor.
@@ -45,11 +43,8 @@ public final class ITDefaultDiceNotationParserNumber {
     @Test
     public final void testParse_Positive_Value() {
         final IntegerOperand value;
-        final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        value = (IntegerOperand) parser.parse("12");
+        value = (IntegerOperand) parse("12");
 
         Assert.assertEquals(value.getValue(), (Integer) 12);
     }
@@ -60,11 +55,8 @@ public final class ITDefaultDiceNotationParserNumber {
     @Test
     public final void testParse_Zero() {
         final IntegerOperand value;
-        final DiceNotationParser parser;
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        value = (IntegerOperand) parser.parse("0");
+        value = (IntegerOperand) parse("0");
 
         Assert.assertEquals(value.getValue(), (Integer) 0);
     }

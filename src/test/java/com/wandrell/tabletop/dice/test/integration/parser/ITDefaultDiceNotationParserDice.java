@@ -22,9 +22,6 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
-import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
-import com.wandrell.tabletop.dice.parser.DiceNotationParser;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
@@ -32,7 +29,8 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITDefaultDiceNotationParserDice {
+public final class ITDefaultDiceNotationParserDice
+        extends AbstractITDefaultDiceNotationParser {
 
     /**
      * Default constructor.
@@ -46,13 +44,10 @@ public final class ITDefaultDiceNotationParserDice {
      */
     @Test
     public final void testParse_Max() {
-        final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parsed = parser.parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+        parsed = parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -66,13 +61,10 @@ public final class ITDefaultDiceNotationParserDice {
      */
     @Test
     public final void testParse_OnesDice_Simple() {
-        final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parsed = parser.parse("1d1");
+        parsed = parse("1d1");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -85,13 +77,10 @@ public final class ITDefaultDiceNotationParserDice {
      */
     @Test
     public final void testParse_Simple() {
-        final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parsed = parser.parse("1d6");
+        parsed = parse("1d6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -104,13 +93,10 @@ public final class ITDefaultDiceNotationParserDice {
      */
     @Test
     public final void testParse_Simple_UpperCaseSeparator() {
-        final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parsed = parser.parse("1D6");
+        parsed = parse("1D6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -123,13 +109,10 @@ public final class ITDefaultDiceNotationParserDice {
      */
     @Test
     public final void testParse_ZeroQuantity() {
-        final DiceNotationParser parser;     // Tested parser
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parsed = parser.parse("0d6");
+        parsed = parse("0d6");
 
         dice = ((DiceOperand) parsed).getDice();
 

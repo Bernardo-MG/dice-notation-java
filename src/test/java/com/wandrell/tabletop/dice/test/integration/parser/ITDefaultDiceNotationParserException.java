@@ -18,17 +18,14 @@ package com.wandrell.tabletop.dice.test.integration.parser;
 
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
-import com.wandrell.tabletop.dice.parser.DiceNotationParser;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
-
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
  * throws exceptions when required.
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITDefaultDiceNotationParserException {
+public final class ITDefaultDiceNotationParserException
+        extends AbstractITDefaultDiceNotationParser {
 
     /**
      * Default constructor.
@@ -42,11 +39,7 @@ public final class ITDefaultDiceNotationParserException {
      */
     @Test(expectedExceptions = Exception.class)
     public final void testParse_Empty() {
-        final DiceNotationParser parser; // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("");
+        parse("");
     }
 
     /**
@@ -54,11 +47,7 @@ public final class ITDefaultDiceNotationParserException {
      */
     @Test(expectedExceptions = Exception.class)
     public final void testParse_Invalid() {
-        final DiceNotationParser parser; // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("abc");
+        parse("abc");
     }
 
     /**
@@ -66,11 +55,7 @@ public final class ITDefaultDiceNotationParserException {
      */
     @Test(expectedExceptions = { Exception.class })
     public final void testParse_Negative() {
-        final DiceNotationParser parser; // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("-1");
+        parse("-1");
     }
 
     /**
@@ -78,11 +63,7 @@ public final class ITDefaultDiceNotationParserException {
      */
     @Test(expectedExceptions = { Exception.class })
     public final void testParse_ZeroSides() {
-        final DiceNotationParser parser;     // Tested parser
-
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
-        parser.parse("1d0");
+        parse("1d0");
     }
 
 }

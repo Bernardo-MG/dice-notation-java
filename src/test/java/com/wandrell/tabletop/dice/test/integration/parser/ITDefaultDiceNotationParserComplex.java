@@ -23,9 +23,6 @@ import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.IntegerOperand;
 import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
-import com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser;
-import com.wandrell.tabletop.dice.parser.DiceNotationParser;
-import com.wandrell.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Integration tests for {@code DefaultDiceNotationParser}, checking that it
@@ -33,7 +30,8 @@ import com.wandrell.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Martínez Garrido
  */
-public final class ITDefaultDiceNotationParserComplex {
+public final class ITDefaultDiceNotationParserComplex
+        extends AbstractITDefaultDiceNotationParser {
 
     /**
      * Default constructor.
@@ -47,7 +45,6 @@ public final class ITDefaultDiceNotationParserComplex {
      */
     @Test
     public final void testParse_Complex() {
-        final DiceNotationParser parser;
         final SubtractionOperation operationFirst;
         final AdditionOperation operationSecond;
         final IntegerOperand integer;
@@ -55,11 +52,9 @@ public final class ITDefaultDiceNotationParserComplex {
         final DiceOperand dice;
         final String notation;
 
-        parser = new DefaultDiceNotationParser(new DefaultRoller());
-
         notation = "1d20-5+2d6";
 
-        operationFirst = (SubtractionOperation) parser.parse(notation);
+        operationFirst = (SubtractionOperation) parse(notation);
 
         diceLeftmost = (DiceOperand) operationFirst.getLeft();
         operationSecond = (AdditionOperation) operationFirst.getRight();
