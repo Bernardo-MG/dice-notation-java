@@ -6,47 +6,6 @@
       <author email="programming@wandrell.com">Bernardo Martínez Garrido</author>
    </properties>
    <body>
-      <release version="0.1.0" date="2015-08-10" description="First release">
-         <action dev="bmg" type="update">
-            Initial test version of the
-            library,
-            supporting only basic dice notation.
-         </action>
-      </release>
-      <release version="0.2.0" date="2015-10-16" description="Maven Site Skin">
-         <action dev="bmg" type="update">
-            Changed the getPrintableText
-            methods
-            name to getStringRepresentation.
-         </action>
-         <action dev="bmg" type="update">
-            Updated Maven Site Skin.
-         </action>
-      </release>
-      <release version="0.3.0" date="2016-05-08"
-         description="Reduced scope of the project">
-         <action dev="bmg" type="update">
-            The project is now much smaller,
-            to ease the development.
-         </action>
-         <action dev="bmg" type="update">
-            The ANTLR code is now generated
-            automatically by Maven.
-         </action>
-         <action dev="bmg" type="update">
-            The project now makes use of a
-            base POM.
-         </action>
-      </release>
-      <release version="0.3.1" date="2016-09-28"
-         description="Updated project config">
-         <action dev="bmg" type="update">
-            Updated the base POM.
-         </action>
-         <action dev="bmg" type="update">
-            Maven site is now deployed through SSH.
-         </action>
-      </release>
       <release version="1.0.0" date="2016-10-26"
          description="Reduced the grammar">
          <action dev="bmg" type="update">
@@ -60,6 +19,12 @@
          </action>
          <action dev="bmg" type="update">
             Updated project configuration.
+         </action>
+      </release>
+      <release version="1.0.2" date="2017-08-06"
+         description="Updated project">
+         <action dev="bmg" type="add">
+            Included grammar tests.
          </action>
       </release>
    </body>
