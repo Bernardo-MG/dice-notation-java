@@ -23,6 +23,9 @@
       </release>
       <release version="1.0.2" date="2017-08-06"
          description="Updated project">
+         <action dev="bmg" type="update">
+            Divided grammar into lexer and parser rules.
+         </action>
          <action dev="bmg" type="add">
             Included grammar tests.
          </action>
