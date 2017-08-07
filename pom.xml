@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.1.5</version>
+      <version>1.1.6</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>1.0.2</version>
+   <version>1.0.3</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
