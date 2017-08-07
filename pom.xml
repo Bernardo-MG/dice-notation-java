@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.1.3</version>
+      <version>1.1.5</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.wandrell.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>1.0.1</version>
+   <version>1.0.2</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -142,7 +142,7 @@
       <profile>
          <!-- Release site deployment profile -->
          <!-- Sets the site repository to point to the releases repo -->
-         <id>deploy-site-release</id>
+         <id>deployment-release</id>
          <activation>
             <!-- Active by default so the repository appears in the reports -->
             <activeByDefault>true</activeByDefault>
@@ -158,7 +158,7 @@
       <profile>
          <!-- Development site deployment profile -->
          <!-- Sets the site repository to point to the development repo -->
-         <id>deploy-site-development</id>
+         <id>deployment-development</id>
          <distributionManagement>
             <site>
                <id>site-development</id>
@@ -211,17 +211,18 @@
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
-      <antlr.version>4.6</antlr.version>
+      <antlr.version>4.7</antlr.version>
       <guava.version>20.0</guava.version>
       <mockito.version>1.10.19</mockito.version>
       <log4j.version>2.8.1</log4j.version>
       <testng.version>6.10</testng.version>
       <!-- Plugins versions -->
-      <plugin.antlr.version>4.6</plugin.antlr.version>
+      <plugin.antlr.version>4.7</plugin.antlr.version>
+      <plugin.antlr.test.version>1.9</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- Maven Site -->
-      <site.skin.version>0.6.0</site.skin.version>
+      <site.skin.version>1.0.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
    </properties>
@@ -282,6 +283,31 @@
 
    <build>
       <defaultGoal>clean package install</defaultGoal>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <!-- ANTRL4 -->
+               <!-- Builds a parser from the grammar -->
+               <groupId>org.antlr</groupId>
+               <artifactId>antlr4-maven-plugin</artifactId>
+               <version>${plugin.antlr.version}</version>
+            </plugin>
+            <plugin>
+               <!-- ANTRL4 Tests -->
+               <!-- Tests the grammar -->
+               <groupId>com.khubla.antlr</groupId>
+               <artifactId>antlr4test-maven-plugin</artifactId>
+               <version>${plugin.antlr.test.version}</version>
+            </plugin>
+            <plugin>
+               <!-- Build helper -->
+               <!-- Adds the generated files to the Maven classpath -->
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>build-helper-maven-plugin</artifactId>
+               <version>${plugin.buildhelp.version}</version>
+            </plugin>
+         </plugins>
+      </pluginManagement>
       <plugins>
          <plugin>
             <!-- Changes -->
@@ -326,9 +352,9 @@
          </plugin>
          <plugin>
             <!-- ANTRL4 -->
+            <!-- Builds a parser from the grammar -->
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-maven-plugin</artifactId>
-            <version>${plugin.antlr.version}</version>
             <executions>
                <!-- Parse grammar is bound to the generate sources phase -->
                <execution>
@@ -340,11 +366,32 @@
             </executions>
          </plugin>
          <plugin>
+            <!-- ANTRL4 Tests -->
+            <!-- Tests the grammar -->
+            <groupId>com.khubla.antlr</groupId>
+            <artifactId>antlr4test-maven-plugin</artifactId>
+            <configuration>
+               <verbose>true</verbose>
+               <showTree>true</showTree>
+               <entryPoint>parse</entryPoint>
+               <grammarName>DiceNotation</grammarName>
+               <lexerName>DiceNotationLexer</lexerName>
+               <packageName>com.wandrell.tabletop.dice.generated</packageName>
+               <exampleFiles>src/test/resources/examples</exampleFiles>
+            </configuration>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>test</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
             <!-- Build helper -->
             <!-- Adds the generated files to the Maven classpath -->
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
-            <version>${plugin.buildhelp.version}</version>
             <executions>
                <execution>
                   <id>add-source</id>
@@ -400,6 +447,9 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <configuration>
+               <links>
+                  <link>http://www.antlr.org/api/Java/</link>
+               </links>
                <!-- Excludes generated code -->
                <excludePackageNames>*.generated.*</excludePackageNames>
             </configuration>

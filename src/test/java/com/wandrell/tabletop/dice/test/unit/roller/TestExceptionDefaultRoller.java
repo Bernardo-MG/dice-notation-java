@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * Units tests for {@code DefaultRoller}, checking that it throws exceptions
  * when required.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestExceptionDefaultRoller {
 
@@ -39,7 +39,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative quantity throws an exception..
+     * Tests that rolling a dice with negative quantity throws an exception.
      */
     @Test(expectedExceptions = { IllegalArgumentException.class })
     public final void testRoll_NegativeQuantity() {
@@ -58,7 +58,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative sides throws an exception..
+     * Tests that rolling a dice with negative sides throws an exception.
      */
     @Test(expectedExceptions = { IllegalArgumentException.class })
     public final void testRoll_NegativeSides() {
@@ -69,6 +69,25 @@ public final class TestExceptionDefaultRoller {
         dice = Mockito.mock(Dice.class);
         Mockito.when(dice.getQuantity()).thenReturn(10);
         Mockito.when(dice.getSides()).thenReturn(-6);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        roller.roll(dice);
+    }
+
+    /**
+     * Tests that rolling a dice with 0 as sides throws an exception.
+     */
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public final void testRoll_NoSides() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(10);
+        Mockito.when(dice.getSides()).thenReturn(0);
 
         // Initializes roller
         roller = new DefaultRoller();

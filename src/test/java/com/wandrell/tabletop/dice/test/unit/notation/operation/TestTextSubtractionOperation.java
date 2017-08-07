@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
  * Unit tests for {@link SubtractionOperation}, checking that it works as
  * expected with its operands.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestTextSubtractionOperation {
 

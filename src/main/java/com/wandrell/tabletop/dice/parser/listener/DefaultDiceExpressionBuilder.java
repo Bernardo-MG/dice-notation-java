@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,10 +24,10 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.wandrell.tabletop.dice.DefaultDice;
 import com.wandrell.tabletop.dice.Dice;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarBaseListener;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.BinaryOpContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.DiceContext;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser.FunctionContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationBaseListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.DiceContext;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser.FunctionContext;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
@@ -49,10 +49,10 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * any operation, such as an addition, can acquire the latest operands, which
  * will be the ones it will employ.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceExpressionBuilder extends
-        DiceNotationGrammarBaseListener implements DiceExpressionBuilder {
+public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
+        implements DiceExpressionBuilder {
 
     /**
      * Operator which indicates the operation is an addition.

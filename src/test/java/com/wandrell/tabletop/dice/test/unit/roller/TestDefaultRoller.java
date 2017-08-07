@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,6 @@
 
 package com.wandrell.tabletop.dice.test.unit.roller;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.mockito.Matchers;
@@ -24,6 +23,7 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.google.common.collect.Iterables;
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.DefaultRoller;
 import com.wandrell.tabletop.dice.roller.Roller;
@@ -33,7 +33,7 @@ import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
  * Units tests for {@code DefaultRoller}, checking that it returns values as
  * expected.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestDefaultRoller {
 
@@ -42,6 +42,25 @@ public final class TestDefaultRoller {
      */
     public TestDefaultRoller() {
         super();
+    }
+
+    /**
+     * Tests that the roller returns no results when the dice quantity is 0.
+     */
+    @Test
+    public final void testRoll_NoDice_Empty() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(0);
+        Mockito.when(dice.getSides()).thenReturn(6);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        Assert.assertTrue(Iterables.isEmpty(roller.roll(dice)));
     }
 
     /**
@@ -60,8 +79,7 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assert.assertEquals(((Collection<Integer>) roller.roll(dice)).size(),
-                10);
+        Assert.assertEquals(Iterables.size(roller.roll(dice)), 10);
     }
 
     /**

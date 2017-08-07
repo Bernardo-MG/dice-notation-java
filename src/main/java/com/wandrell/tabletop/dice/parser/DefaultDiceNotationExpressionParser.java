@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,12 +18,13 @@ package com.wandrell.tabletop.dice.parser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarLexer;
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarParser;
+import com.wandrell.tabletop.dice.generated.DiceNotationLexer;
+import com.wandrell.tabletop.dice.generated.DiceNotationParser;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener;
@@ -40,9 +41,10 @@ import com.wandrell.tabletop.dice.roller.Roller;
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceNotationParser implements DiceNotationParser {
+public final class DefaultDiceNotationExpressionParser
+        implements DiceNotationExpressionParser {
 
     /**
      * Visitor used to build the returned object.
@@ -58,7 +60,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
      */
-    public DefaultDiceNotationParser() {
+    public DefaultDiceNotationExpressionParser() {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
@@ -70,7 +72,8 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * @param builder
      *            builder to generate the returned tree
      */
-    public DefaultDiceNotationParser(final DiceExpressionBuilder builder) {
+    public DefaultDiceNotationExpressionParser(
+            final DiceExpressionBuilder builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -85,7 +88,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      * @param roller
      *            roller for the dice expressions
      */
-    public DefaultDiceNotationParser(final Roller roller) {
+    public DefaultDiceNotationExpressionParser(final Roller roller) {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder(roller);
@@ -93,7 +96,7 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
 
     @Override
     public final DiceNotationExpression parse(final String expression) {
-        final DiceNotationGrammarParser parser; // ANTLR parser
+        final DiceNotationParser parser; // ANTLR parser
 
         checkNotNull(expression, "Received a null pointer as string");
 
@@ -122,17 +125,17 @@ public final class DefaultDiceNotationParser implements DiceNotationParser {
      *            expression used to generate the parser
      * @return an ANTLR4 parser tailored for the expression
      */
-    private final DiceNotationGrammarParser
+    private final DiceNotationParser
             buildDiceNotationParser(final String expression) {
-        final ANTLRInputStream input;         // Input stream for the expression
-        final DiceNotationGrammarLexer lexer; // Lexer for the expression tokens
-        final TokenStream tokens;             // Expression tokens
+        final CharStream stream;       // Input stream for the expression
+        final DiceNotationLexer lexer; // Lexer for the expression tokens
+        final TokenStream tokens;      // Expression tokens
 
-        input = new ANTLRInputStream(expression);
-        lexer = new DiceNotationGrammarLexer(input);
+        stream = CharStreams.fromString(expression);
+        lexer = new DiceNotationLexer(stream);
         tokens = new CommonTokenStream(lexer);
 
-        return new DiceNotationGrammarParser(tokens);
+        return new DiceNotationParser(tokens);
     }
 
     /**

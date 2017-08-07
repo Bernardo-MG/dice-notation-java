@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,12 +19,12 @@
  * <p>
  * The {@link com.wandrell.tabletop.dice.parser.listener.DiceExpressionBuilder
  * DiceExpressionBuilder} is used by the
- * {@link com.wandrell.tabletop.dice.parser.DefaultDiceNotationParser
- * DefaultDiceNotationParser} as a visitor. It will create the returned dice
+ * {@link com.wandrell.tabletop.dice.parser.DefaultDiceNotationExpressionParser
+ * DefaultDiceNotationExpressionParser} as a visitor. It will create the returned dice
  * notation model tree as it goes through the parsed grammar tree.
  * <p>
  * The {@link com.wandrell.tabletop.dice.parser.listener.DefaultErrorListener
- * DefaultErrorListener} is also used by the {@code DefaultDiceNotationParser},
+ * DefaultErrorListener} is also used by the {@code DefaultDiceNotationExpressionParser},
  * but to throw exceptions when there is a parsing error.
  */
 

@@ -6,18 +6,18 @@ The main feature of the project is a parser capable of transforming dice notatio
 
 ![Dice notation parser class diagram][dice_notation_parser-class_diagram]
 
-The [DiceNotationParser][dice_notation_parser] interface is implemented only by the [DefaultDiceNotationParser][default_dice_notation_parser]. This makes use of the [ANTRL grammar][grammar-doc] to transform a string into the [dice notation model][dice_notation_model-doc].
+The [DiceNotationExpressionParser][dice_notation_parser] interface is implemented only by the [DefaultDiceNotationExpressionParser][default_dice_notation_parser]. This makes use of the [ANTRL grammar][grammar-doc] to transform a string into the [dice notation model][dice_notation_model-doc].
 
 ### Visitor
 
 ![Dice expression builder class diagram][dice_expression_builder-class_diagram]
 
-Most of the parsing is handled by ANTLR, and then adapted to the returned dice notation with the use of a visitor pattern. This visitor is a [DiceExpressionBuilder][dice_expression_buider] which extends over the DiceNotationGrammarListener which is automatically generated from the ANTLR grammar file.
+Most of the parsing is handled by ANTLR, and then adapted to the returned dice notation with the use of a visitor pattern. This visitor is a [DiceExpressionBuilder][dice_expression_buider] which extends over the DiceNotationListener which is automatically generated from the ANTLR grammar file.
 
 The [DefaultDiceExpressionBuilder][default_dice_expression_buider] implements the visitor, and makes use of  a stack to hold all the operands for any operation which may appear during parsing.
 
-[dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DiceNotationParser.html
-[default_dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DefaultDiceNotationParser.html
+[dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DiceNotationExpressionParser.html
+[default_dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DefaultDiceNotationExpressionParser.html
 [dice_expression_buider]: ./apidocs/com/wandrell/tabletop/dice/parser/listener/DiceExpressionBuilder.html
 [default_dice_expression_buider]: ./apidocs/com/wandrell/tabletop/dice/parser/listener/DefaultDiceExpressionBuilder.html
 

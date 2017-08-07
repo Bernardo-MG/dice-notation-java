@@ -9,7 +9,7 @@
       <w>340</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>/DiceNotationParser/
+    <panel_attributes>/DiceNotationExpressionParser/
 bg=cyan
 --
 
@@ -20,12 +20,12 @@ bg=cyan
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
+      <x>320</x>
       <y>230</y>
-      <w>180</w>
+      <w>260</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>DefaultDiceNotationParser
+    <panel_attributes>DefaultDiceNotationExpressionParser
 bg=yellow
 --
 
@@ -61,12 +61,12 @@ bg=cyan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>250</y>
-      <w>130</w>
+      <x>570</x>
+      <y>240</y>
+      <w>90</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

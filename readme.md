@@ -54,7 +54,6 @@ The application is coded in Java, using Maven to manage the project.
 ### Prerequisites
 
 The project has been tested on the following Java versions:
-* JDK 7
 * JDK 8
 * OpenJDK 7
 
@@ -75,10 +74,10 @@ $ mvn install
 If needed the dice model, or even the dice notation one, can be used directly. But the recommended way to handle dice notation with the library is with the help of the included parser.
 
 ```java
-final DiceNotationParser parser;
+final DiceNotationExpressionParser parser;
 final DiceNotationExpression parsed;
 
-parser = new DefaultDiceNotationParser(new DefaultRoller());
+parser = new DefaultDiceNotationExpressionParser(new DefaultRoller());
 
 parsed = parser.parse("1d6+12");
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,7 @@
 
 package com.wandrell.tabletop.dice.parser.listener;
 
-import com.wandrell.tabletop.dice.generated.DiceNotationGrammarListener;
+import com.wandrell.tabletop.dice.generated.DiceNotationListener;
 import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 
 /**
@@ -26,9 +26,9 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * This {@code DiceNotationExpression} is the root for a tree representing the
  * expression received by the parser.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DiceExpressionBuilder extends DiceNotationGrammarListener {
+public interface DiceExpressionBuilder extends DiceNotationListener {
 
     /**
      * Returns the root for the tree of dice notation model objects.

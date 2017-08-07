@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 the original author or authors
+ * Copyright 2014-2017 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,9 +25,9 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
  * The returned object is expected to be the root node of a tree made up by dice
  * notation model objects.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DiceNotationParser {
+public interface DiceNotationExpressionParser {
 
     /**
      * Transforms a dice notation expression into the dice notation model.
