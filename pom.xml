@@ -471,6 +471,15 @@
                </excludes>
             </configuration>
          </plugin>
+         <plugin>
+            <!-- OWASP Dependency Check -->
+            <!-- Checks for vulnerabilities in the dependencies. -->
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <configuration>
+               <skip>true</skip>
+            </configuration>
+         </plugin>
       </plugins>
    </reporting>
 

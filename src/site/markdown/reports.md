@@ -23,7 +23,6 @@
 
 |Report|Description|
 |---|---|
-|[OWASP Dependencies check][dependencies-check]|Dependencies vulnerabilities report.|
 |[Dependencies][dependencies]|Dependencies used by the project.|
 |[Dependencies Analysis][dependency-analysis]|Dependencies analysis of the project (used declared, used undeclared, unused declared).|
 |[Plugins][plugins]|Maven plugins used by the project.|
@@ -39,7 +38,6 @@
 [checkstyle]: ./checkstyle.html
 [cpd]: ./cpd.html
 [dependencies]: ./dependencies.html
-[dependencies-check]: ./dependency-check-report.html
 [dependency-analysis]: ./dependency-analysis.html
 [failsafe]: ./failsafe-report.html
 [findbugs]: ./findbugs.html
