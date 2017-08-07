@@ -30,5 +30,11 @@
             Included grammar tests.
          </action>
       </release>
+      <release version="1.0.3" date="2017-08-07"
+         description="Fixed site deployment">
+         <action dev="bmg" type="fix">
+            Fixed site deployment.
+         </action>
+      </release>
    </body>
 </document>
