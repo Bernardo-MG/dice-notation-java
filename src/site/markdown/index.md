@@ -25,11 +25,17 @@ This is very useful when creating tools related to these games, but won't make m
 - Classes for [generating random values][dice] from the dice
 - [Parser][parser] which generates model instances from the notation
 
+## ANTLR4 grammars
+
+The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
+
 ## Usage example
 
 If needed it is possible using the dice model, or even the dice notation one. But the recommended way to handle dice notation with the library is by using the included parser.
 
 For a concrete example of how to do this take a look at the [usage page][usage].
+
+[antrl-grammars]: https://github.com/antlr/grammars-v4
 
 [grammar]: ./grammar.html
 [usage]: ./usage.html
