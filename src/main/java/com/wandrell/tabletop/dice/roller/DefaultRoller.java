@@ -19,8 +19,8 @@ package com.wandrell.tabletop.dice.roller;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import com.wandrell.tabletop.dice.Dice;
 import com.wandrell.tabletop.dice.roller.random.NumberGenerator;
@@ -86,7 +86,7 @@ public final class DefaultRoller implements Roller {
         checkArgument(dice.getSides() >= 0,
                 "The number of sides can not be negative");
 
-        rolls = new LinkedList<Integer>();
+        rolls = new ArrayList<Integer>();
         for (Integer i = 0; i < dice.getQuantity(); i++) {
             rolls.add(getNumberGenerator().generate(dice.getSides()));
         }
