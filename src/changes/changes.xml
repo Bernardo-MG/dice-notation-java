@@ -36,5 +36,10 @@
             Fixed site deployment.
          </action>
       </release>
+      <release version="1.0.4" date="2017-11-13" description="Relocation">
+         <action dev="bmg" type="update">
+            Prepared for relocation.
+         </action>
+      </release>
    </body>
 </document>
