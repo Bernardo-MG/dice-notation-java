@@ -27,6 +27,10 @@ Its usefulness is very clear, it allows working with specific random values dist
 
 - Currently only the most basic operations (dice, numbers and additions or subtractions) are supported
 
+## ANTLR4 grammars
+
+The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
+
 ## Documentation
 
 Documentation is always generated for the latest release, kept in the 'master' branch:
@@ -105,6 +109,7 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 
 The project has been released under version 2.0 of the [Apache License][license].
 
+[antrl-grammars]: https://github.com/antlr/grammars-v4
 [bintray-repo]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view
 [maven-repo]: http://mvnrepository.com/artifact/com.wandrell.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues

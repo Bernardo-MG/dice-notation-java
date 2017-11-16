@@ -19,8 +19,8 @@ package com.wandrell.tabletop.dice.test.integration.parser;
 import org.testng.annotations.Test;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
- * throws exceptions when required.
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * that it throws exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dice.test.unit.random;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -59,7 +59,7 @@ public final class TestRandomNumberGenerator {
         lowerLimit = 1;
         upperLimit = max;
 
-        numbers = new LinkedList<Integer>();
+        numbers = new ArrayList<Integer>();
         for (Integer i = 0; i < times; i++) {
             numbers.add(generator.generate(max));
         }

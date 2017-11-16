@@ -24,8 +24,8 @@ import com.wandrell.tabletop.dice.notation.DiceNotationExpression;
 import com.wandrell.tabletop.dice.notation.operand.DiceOperand;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
- * parses dice notation expressions for single dice groups.
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * that it parses dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

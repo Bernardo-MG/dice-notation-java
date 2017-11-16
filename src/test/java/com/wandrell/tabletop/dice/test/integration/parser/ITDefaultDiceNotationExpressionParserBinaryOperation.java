@@ -25,8 +25,8 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
- * parses simple binary operations.
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * that it parses simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

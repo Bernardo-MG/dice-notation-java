@@ -25,8 +25,8 @@ import com.wandrell.tabletop.dice.notation.operation.AdditionOperation;
 import com.wandrell.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking that it
- * parses complex operations.
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * that it parses complex operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
