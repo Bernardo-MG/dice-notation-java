@@ -16,10 +16,10 @@ Most of the parsing is handled by ANTLR, and then adapted to the returned dice n
 
 The [DefaultDiceExpressionBuilder][default_dice_expression_buider] implements the visitor, and makes use of  a stack to hold all the operands for any operation which may appear during parsing.
 
-[dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DiceNotationExpressionParser.html
-[default_dice_notation_parser]: ./apidocs/com/wandrell/tabletop/dice/parser/DefaultDiceNotationExpressionParser.html
-[dice_expression_buider]: ./apidocs/com/wandrell/tabletop/dice/parser/listener/DiceExpressionBuilder.html
-[default_dice_expression_buider]: ./apidocs/com/wandrell/tabletop/dice/parser/listener/DefaultDiceExpressionBuilder.html
+[dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/DiceNotationExpressionParser.html
+[default_dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/DefaultDiceNotationExpressionParser.html
+[dice_expression_buider]: ./apidocs/com/bernardomg/tabletop/dice/parser/listener/DiceExpressionBuilder.html
+[default_dice_expression_buider]: ./apidocs/com/bernardomg/tabletop/dice/parser/listener/DefaultDiceExpressionBuilder.html
 
 [dice_notation_parser-class_diagram]: ./images/dice_notation_parser_class_diagram.png
 [dice_expression_builder-class_diagram]: ./images/dice_expression_builder_class_diagram.png
