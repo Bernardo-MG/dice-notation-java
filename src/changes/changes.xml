@@ -41,5 +41,10 @@
             Prepared for relocation.
          </action>
       </release>
+      <release version="1.1.0" date="2017-11-20" description="Relocation">
+         <action dev="bmg" type="update">
+            Relocation.
+         </action>
+      </release>
    </body>
 </document>
