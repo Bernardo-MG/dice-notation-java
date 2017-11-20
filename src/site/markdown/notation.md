@@ -47,12 +47,12 @@ Only the most simple binary operations, addition and subtraction, are supported.
 
 [roller-doc]: ./dice.html
 
-[dice_notation_expression]: ./apidocs/com/wandrell/tabletop/dice/notation/DiceNotationExpression.html
+[dice_notation_expression]: ./apidocs/com/bernardomg/tabletop/dice/notation/DiceNotationExpression.html
 
-[integer_operand]: ./apidocs/com/wandrell/tabletop/dice/notation/operand/IntegerOperand.html
-[dice_operand]: ./apidocs/com/wandrell/tabletop/dice/notation/operand/DiceOperand.html
-[default_dice_operand]: ./apidocs/com/wandrell/tabletop/dice/notation/operand/DefaultDiceOperand.html
+[integer_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/IntegerOperand.html
+[dice_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/DiceOperand.html
+[default_dice_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/DefaultDiceOperand.html
 
-[binary_operation]: ./apidocs/com/wandrell/tabletop/dice/notation/operation/BinaryOperation.html
-[addition_operation]: ./apidocs/com/wandrell/tabletop/dice/notation/operation/AdditionOperation.html
-[subtraction_operation]: ./apidocs/com/wandrell/tabletop/dice/notation/operation/SubtractionOperation.html
+[binary_operation]: ./apidocs/com/bernardomg/tabletop/dice/notation/operation/BinaryOperation.html
+[addition_operation]: ./apidocs/com/bernardomg/tabletop/dice/notation/operation/AdditionOperation.html
+[subtraction_operation]: ./apidocs/com/bernardomg/tabletop/dice/notation/operation/SubtractionOperation.html

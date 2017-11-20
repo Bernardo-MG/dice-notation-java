@@ -9,18 +9,18 @@
    <!-- ********************************************** -->
 
    <parent>
-      <groupId>com.wandrell.maven</groupId>
+      <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.1.6</version>
+      <version>1.2.0</version>
    </parent>
 
    <!-- ********************************************** -->
    <!-- **************** PROJECT INFO **************** -->
    <!-- ********************************************** -->
 
-   <groupId>com.wandrell.tabletop</groupId>
+   <groupId>com.bernardomg.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>1.0.4</version>
+   <version>1.1.0</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -196,7 +196,7 @@
       <developer>
          <id>bmg</id>
          <name>Bernardo Martínez Garrido</name>
-         <email>programming@wandrell.com</email>
+         <email>programming@bernardomg.com</email>
          <url>https://github.com/bernardo-mg</url>
          <organization>Bernardo Martínez Garrido</organization>
          <organizationUrl>https://github.com/bernardo-mg</organizationUrl>
@@ -214,7 +214,7 @@
 
    <properties>
       <!-- Manifest data -->
-      <manifest.name>com/wandrell/tabletop/dice</manifest.name>
+      <manifest.name>com/bernardomg/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
       <antlr.version>4.7</antlr.version>
       <guava.version>20.0</guava.version>
@@ -229,7 +229,7 @@
       <!-- Maven Site -->
       <site.skin.version>1.2.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
-      <mavenURL>http://mvnrepository.com/artifact/com.wandrell.tabletop/dice</mavenURL>
+      <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
    </properties>
 
    <!-- ********************************************** -->
@@ -381,7 +381,7 @@
                <entryPoint>parse</entryPoint>
                <grammarName>DiceNotation</grammarName>
                <lexerName>DiceNotationLexer</lexerName>
-               <packageName>com.wandrell.tabletop.dice.generated</packageName>
+               <packageName>com.bernardomg.tabletop.dice.generated</packageName>
                <exampleFiles>src/test/resources/examples</exampleFiles>
             </configuration>
             <executions>

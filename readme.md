@@ -8,7 +8,7 @@ With the pass of years it has evolved, and while it never underwent a formal sta
 
 Its usefulness is very clear, it allows working with specific random values distributions. And while this is no feat for a machine, which has better tools for it, the aim of the project is not actually handling those distributions, but giving a way for applications to work with the same tools a board game would have.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.wandrell.tabletop/dice.svg)][maven-repo]
+[![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.tabletop/dice.svg)][maven-repo]
 [![Bintray](https://api.bintray.com/packages/bernardo-mg/tabletop-toolkits/dice/images/download.svg)][bintray-repo]
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
@@ -111,11 +111,11 @@ The project has been released under version 2.0 of the [Apache License][license]
 
 [antrl-grammars]: https://github.com/antlr/grammars-v4
 [bintray-repo]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view
-[maven-repo]: http://mvnrepository.com/artifact/com.wandrell.tabletop/dice
+[maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues
-[javadoc-develop]: http://docs.wandrell.com/development/maven/dice/apidocs
-[javadoc-release]: http://docs.wandrell.com/maven/dice/apidocs
+[javadoc-develop]: http://docs.bernardomg.com/development/maven/dice/apidocs
+[javadoc-release]: http://docs.bernardomg.com/maven/dice/apidocs
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [scm]: http://github.com/Bernardo-MG/dice-notation-java
-[site-develop]: http://docs.wandrell.com/development/maven/dice
-[site-release]: http://docs.wandrell.com/maven/dice
+[site-develop]: http://docs.bernardomg.com/development/maven/dice
+[site-release]: http://docs.bernardomg.com/maven/dice

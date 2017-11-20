@@ -26,10 +26,10 @@ The number generators are meant to allow tweaking how the random values are gene
 [number_generator-class_diagram]: ./images/number_generator_class_diagram.png
 [roller-class_diagram]: ./images/roller_class_diagram.png
 
-[dice]: ./apidocs/com/wandrell/tabletop/dice/Dice.html
+[dice]: ./apidocs/com/bernardomg/tabletop/dice/Dice.html
 
-[roller]: ./apidocs/com/wandrell/tabletop/dice/roller/Roller.html
-[default_roller]: ./apidocs/com/wandrell/tabletop/dice/roller/DefaultRoller.html
+[roller]: ./apidocs/com/bernardomg/tabletop/dice/roller/Roller.html
+[default_roller]: ./apidocs/com/bernardomg/tabletop/dice/roller/DefaultRoller.html
 
-[number_generator]: ./apidocs/com/wandrell/tabletop/dice/roller/random/NumberGenerator.html
-[random_number_generator]: ./apidocs/com/wandrell/tabletop/dice/roller/random/RandomNumberGenerator.html
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
+[random_number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/RandomNumberGenerator.html
