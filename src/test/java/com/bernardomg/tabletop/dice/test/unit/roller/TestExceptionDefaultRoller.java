@@ -17,7 +17,11 @@
 package com.bernardomg.tabletop.dice.test.unit.roller;
 
 import org.mockito.Mockito;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
@@ -29,6 +33,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestExceptionDefaultRoller {
 
     /**
@@ -41,10 +46,11 @@ public final class TestExceptionDefaultRoller {
     /**
      * Tests that rolling a dice with negative quantity throws an exception.
      */
-    @Test(expectedExceptions = { IllegalArgumentException.class })
+    @Test
     public final void testRoll_NegativeQuantity() {
         final Dice dice;     // Mocked dice
         final Roller roller; // Tested roller
+        final Executable closure;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
@@ -54,16 +60,26 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        roller.roll(dice);
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                roller.roll(dice);
+            }
+
+        };
+
+        Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
     /**
      * Tests that rolling a dice with negative sides throws an exception.
      */
-    @Test(expectedExceptions = { IllegalArgumentException.class })
+    @Test
     public final void testRoll_NegativeSides() {
         final Dice dice;     // Mocked dice
         final Roller roller; // Tested roller
+        final Executable closure;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
@@ -73,16 +89,26 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        roller.roll(dice);
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                roller.roll(dice);
+            }
+
+        };
+
+        Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
     /**
      * Tests that rolling a dice with 0 as sides throws an exception.
      */
-    @Test(expectedExceptions = { IllegalArgumentException.class })
+    @Test
     public final void testRoll_NoSides() {
         final Dice dice;     // Mocked dice
         final Roller roller; // Tested roller
+        final Executable closure;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
@@ -92,7 +118,16 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        roller.roll(dice);
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                roller.roll(dice);
+            }
+
+        };
+
+        Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
 }

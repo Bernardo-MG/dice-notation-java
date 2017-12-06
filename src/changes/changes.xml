@@ -46,5 +46,13 @@
             Relocation.
          </action>
       </release>
+      <release version="1.2.0" date="2017-12-06" description="Removed JDK7 support">
+         <action dev="bmg" type="remove">
+            Removed JDK7 support.
+         </action>
+         <action dev="bmg" type="update">
+            Using JUnit Jupiter for the tests.
+         </action>
+      </release>
    </body>
 </document>

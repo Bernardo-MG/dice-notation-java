@@ -16,8 +16,10 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
@@ -30,6 +32,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserComplex
         extends AbstractITDefaultDiceNotationExpressionParser {
 
@@ -63,15 +66,15 @@ public final class ITDefaultDiceNotationExpressionParserComplex
         rightDice = (DiceOperand) operationSecond.getRight();
 
         // Leftmost dice was parsed correctly
-        Assert.assertEquals(leftDice.getDice().getQuantity(), (Integer) 1);
-        Assert.assertEquals(leftDice.getDice().getSides(), (Integer) 20);
+        Assertions.assertEquals(leftDice.getDice().getQuantity(), (Integer) 1);
+        Assertions.assertEquals(leftDice.getDice().getSides(), (Integer) 20);
 
         // Rightmost dice was parsed correctly
-        Assert.assertEquals(rightDice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(rightDice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(rightDice.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(rightDice.getDice().getSides(), (Integer) 6);
 
         // Integer value was parsed correctly
-        Assert.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals(integer.getValue(), (Integer) 5);
     }
 
 }

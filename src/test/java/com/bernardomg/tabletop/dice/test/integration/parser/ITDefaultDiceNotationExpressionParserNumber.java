@@ -16,8 +16,10 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 
@@ -27,6 +29,7 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserNumber
         extends AbstractITDefaultDiceNotationExpressionParser {
 
@@ -46,7 +49,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber
 
         value = (IntegerOperand) parse("12");
 
-        Assert.assertEquals(value.getValue(), (Integer) 12);
+        Assertions.assertEquals(value.getValue(), (Integer) 12);
     }
 
     /**
@@ -58,7 +61,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber
 
         value = (IntegerOperand) parse("0");
 
-        Assert.assertEquals(value.getValue(), (Integer) 0);
+        Assertions.assertEquals(value.getValue(), (Integer) 0);
     }
 
 }

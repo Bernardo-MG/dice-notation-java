@@ -16,8 +16,10 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
@@ -30,6 +32,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         extends AbstractITDefaultDiceNotationExpressionParser {
 
@@ -57,11 +60,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
 
-        Assert.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
-        Assert.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
+        Assertions.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
+        Assertions.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
 
-        Assert.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
     }
 
     /**
@@ -81,10 +84,10 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
 
-        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
-        Assert.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals(integer.getValue(), (Integer) 5);
     }
 
     /**
@@ -104,10 +107,10 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
-        Assert.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals(integer.getValue(), (Integer) 5);
     }
 
     /**
@@ -122,8 +125,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         operation = (AdditionOperation) parse(notation);
 
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 1);
-        Assert.assertEquals(operation.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 2);
     }
 
     /**
@@ -140,11 +143,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         value = (AdditionOperation) parse(notation);
 
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 1);
 
         operation = (BinaryOperation) value.getRight();
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 2);
-        Assert.assertEquals(operation.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 3);
     }
 
     /**
@@ -162,14 +165,14 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         operation = (AdditionOperation) parse(notation);
 
         value = (BinaryOperation) operation.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
 
         value = (BinaryOperation) value.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 3);
 
         value = (BinaryOperation) value.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 4);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 5);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 4);
+        Assertions.assertEquals(value.getRight().getValue(), (Integer) 5);
     }
 
     /**
@@ -186,13 +189,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         operation = (BinaryOperation) parse(notation);
 
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
 
         value = (BinaryOperation) operation.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 2);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getRight().getValue(), (Integer) 3);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -207,10 +210,10 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         operation = (BinaryOperation) parse(notation);
 
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 1);
-        Assert.assertEquals(operation.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 2);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -227,13 +230,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         operation = (BinaryOperation) parse(notation);
 
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
 
         value = (BinaryOperation) operation.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 2);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getRight().getValue(), (Integer) 3);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -251,16 +254,16 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         operation = (BinaryOperation) parse(notation);
 
         value = (BinaryOperation) operation.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
 
         value = (BinaryOperation) value.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 3);
 
         value = (BinaryOperation) value.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 4);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 5);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 4);
+        Assertions.assertEquals(value.getRight().getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -277,13 +280,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
 
         operation = (BinaryOperation) parse(notation);
 
-        Assert.assertEquals(operation.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 3);
 
         value = (BinaryOperation) operation.getRight();
-        Assert.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        Assert.assertEquals(value.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(value.getRight().getValue(), (Integer) 2);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -303,13 +306,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
 
-        Assert.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
-        Assert.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
+        Assertions.assertEquals(diceLeft.getDice().getQuantity(), (Integer) 1);
+        Assertions.assertEquals(diceLeft.getDice().getSides(), (Integer) 20);
 
-        Assert.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(diceRight.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(diceRight.getDice().getSides(), (Integer) 6);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -329,12 +332,12 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         integer = (IntegerOperand) operation.getLeft();
         dice = (DiceOperand) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
-        Assert.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
     /**
@@ -354,12 +357,12 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
 
-        Assert.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
-        Assert.assertEquals(dice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals(dice.getDice().getQuantity(), (Integer) 2);
+        Assertions.assertEquals(dice.getDice().getSides(), (Integer) 6);
 
-        Assert.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals(integer.getValue(), (Integer) 5);
 
-        Assert.assertEquals(operation.getExpression(), notation);
+        Assertions.assertEquals(operation.getExpression(), notation);
     }
 
 }
