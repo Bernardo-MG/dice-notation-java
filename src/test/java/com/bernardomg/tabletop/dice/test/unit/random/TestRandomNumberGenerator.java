@@ -19,8 +19,10 @@ package com.bernardomg.tabletop.dice.test.unit.random;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
@@ -31,6 +33,7 @@ import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestRandomNumberGenerator {
 
     /**
@@ -65,8 +68,8 @@ public final class TestRandomNumberGenerator {
         }
 
         for (final Integer number : numbers) {
-            Assert.assertTrue(number >= lowerLimit);
-            Assert.assertTrue(number <= upperLimit);
+            Assertions.assertTrue(number >= lowerLimit);
+            Assertions.assertTrue(number <= upperLimit);
         }
     }
 

@@ -16,8 +16,10 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -29,6 +31,7 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserDice
         extends AbstractITDefaultDiceNotationExpressionParser {
 
@@ -51,8 +54,10 @@ public final class ITDefaultDiceNotationExpressionParserDice
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), new Integer(Integer.MAX_VALUE));
-        Assert.assertEquals(dice.getSides(), new Integer(Integer.MAX_VALUE));
+        Assertions.assertEquals(dice.getQuantity(),
+                new Integer(Integer.MAX_VALUE));
+        Assertions.assertEquals(dice.getSides(),
+                new Integer(Integer.MAX_VALUE));
     }
 
     /**
@@ -68,8 +73,8 @@ public final class ITDefaultDiceNotationExpressionParserDice
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), new Integer(1));
-        Assert.assertEquals(dice.getSides(), new Integer(1));
+        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
+        Assertions.assertEquals(dice.getSides(), new Integer(1));
     }
 
     /**
@@ -84,8 +89,8 @@ public final class ITDefaultDiceNotationExpressionParserDice
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), new Integer(1));
-        Assert.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
+        Assertions.assertEquals(dice.getSides(), new Integer(6));
     }
 
     /**
@@ -100,8 +105,8 @@ public final class ITDefaultDiceNotationExpressionParserDice
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), new Integer(1));
-        Assert.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
+        Assertions.assertEquals(dice.getSides(), new Integer(6));
     }
 
     /**
@@ -116,8 +121,8 @@ public final class ITDefaultDiceNotationExpressionParserDice
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assert.assertEquals(dice.getQuantity(), new Integer(0));
-        Assert.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(dice.getQuantity(), new Integer(0));
+        Assertions.assertEquals(dice.getSides(), new Integer(6));
     }
 
 }

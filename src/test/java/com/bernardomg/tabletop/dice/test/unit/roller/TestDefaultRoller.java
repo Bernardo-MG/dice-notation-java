@@ -20,8 +20,10 @@ import java.util.Iterator;
 
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.google.common.collect.Iterables;
 import com.bernardomg.tabletop.dice.Dice;
@@ -35,6 +37,7 @@ import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestDefaultRoller {
 
     /**
@@ -60,7 +63,7 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assert.assertTrue(Iterables.isEmpty(roller.roll(dice)));
+        Assertions.assertTrue(Iterables.isEmpty(roller.roll(dice)));
     }
 
     /**
@@ -79,7 +82,7 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assert.assertEquals(Iterables.size(roller.roll(dice)), 10);
+        Assertions.assertEquals(Iterables.size(roller.roll(dice)), 10);
     }
 
     /**
@@ -110,9 +113,9 @@ public final class TestDefaultRoller {
         result = roller.roll(dice);
         itrInteger = result.iterator();
 
-        Assert.assertEquals(itrInteger.next(), (Integer) 3);
-        Assert.assertEquals(itrInteger.next(), (Integer) 5);
-        Assert.assertEquals(itrInteger.next(), (Integer) 1);
+        Assertions.assertEquals(itrInteger.next(), (Integer) 3);
+        Assertions.assertEquals(itrInteger.next(), (Integer) 5);
+        Assertions.assertEquals(itrInteger.next(), (Integer) 1);
     }
 
 }

@@ -17,8 +17,10 @@
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -30,6 +32,7 @@ import com.bernardomg.tabletop.dice.roller.DefaultRoller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public class TestDefaultDiceOperand {
 
     /**
@@ -53,7 +56,7 @@ public class TestDefaultDiceOperand {
 
         diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
 
-        Assert.assertEquals(diceOperand.getExpression(), "2d6");
+        Assertions.assertEquals(diceOperand.getExpression(), "2d6");
     }
 
 }

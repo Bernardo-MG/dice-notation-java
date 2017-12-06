@@ -16,7 +16,11 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
@@ -24,6 +28,7 @@ import org.testng.annotations.Test;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserException
         extends AbstractITDefaultDiceNotationExpressionParser {
 
@@ -37,33 +42,77 @@ public final class ITDefaultDiceNotationExpressionParserException
     /**
      * Tests that an empty text throws an exception.
      */
-    @Test(expectedExceptions = Exception.class)
+    @Test
     public final void testParse_Empty() {
-        parse("");
+        final Executable closure;
+
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                parse("");
+            }
+
+        };
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
      * Tests that an invalid text throws an exception.
      */
-    @Test(expectedExceptions = Exception.class)
+    @Test
     public final void testParse_Invalid() {
-        parse("abc");
+        final Executable closure;
+
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                parse("abc");
+            }
+
+        };
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
      * Tests that a negative value throws an exception.
      */
-    @Test(expectedExceptions = { Exception.class })
+    @Test
     public final void testParse_Negative() {
-        parse("-1");
+        final Executable closure;
+
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                parse("-1");
+            }
+
+        };
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
      * Tests that dice notation with zero sides throws an exception.
      */
-    @Test(expectedExceptions = { Exception.class })
+    @Test
     public final void testParse_ZeroSides() {
-        parse("1d0");
+        final Executable closure;
+
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                parse("1d0");
+            }
+
+        };
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
 }

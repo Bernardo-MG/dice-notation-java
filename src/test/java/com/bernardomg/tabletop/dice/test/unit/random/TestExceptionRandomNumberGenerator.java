@@ -16,7 +16,11 @@
 
 package com.bernardomg.tabletop.dice.test.unit.random;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
@@ -27,6 +31,7 @@ import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestExceptionRandomNumberGenerator {
 
     /**
@@ -39,13 +44,23 @@ public final class TestExceptionRandomNumberGenerator {
     /**
      * Tests that generating a value for a negative max throws an exception.
      */
-    @Test(expectedExceptions = { IllegalArgumentException.class })
+    @Test
     public final void testGenerate_NegativeMax() {
         final NumberGenerator generator; // Tested generator
+        final Executable closure;
 
         generator = new RandomNumberGenerator();
 
-        generator.generate(-1);
+        closure = new Executable() {
+
+            @Override
+            public void execute() throws Throwable {
+                generator.generate(-1);
+            }
+
+        };
+
+        Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
 }

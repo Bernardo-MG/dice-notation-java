@@ -17,8 +17,10 @@
 package com.bernardomg.tabletop.dice.test.unit.notation.operation;
 
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -30,6 +32,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestTextSubtractionOperation {
 
     /**
@@ -56,7 +59,7 @@ public final class TestTextSubtractionOperation {
 
         operation = new SubtractionOperation(left, right);
 
-        Assert.assertEquals(operation.getValue(), new Integer(-1));
+        Assertions.assertEquals(operation.getValue(), new Integer(-1));
     }
 
     /**
@@ -76,7 +79,7 @@ public final class TestTextSubtractionOperation {
 
         operation = new SubtractionOperation(left, right);
 
-        Assert.assertEquals(operation.getExpression(), "1-2");
+        Assertions.assertEquals(operation.getExpression(), "1-2");
     }
 
 }
