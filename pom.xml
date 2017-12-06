@@ -20,7 +20,7 @@
 
    <groupId>com.bernardomg.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>1.2.0</version>
+   <version>1.2.1</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -59,9 +59,6 @@
    </ciManagement>
 
    <distributionManagement>
-      <relocation>
-         <groupId>com.bernardomg.tabletop</groupId>
-      </relocation>
       <repository>
          <uniqueVersion>false</uniqueVersion>
          <id>releases</id>

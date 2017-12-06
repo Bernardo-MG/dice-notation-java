@@ -18,18 +18,18 @@ package com.bernardomg.tabletop.dice.test.unit.roller;
 
 import java.util.Iterator;
 
-import org.mockito.Matchers;
-import org.mockito.Mockito;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 
-import com.google.common.collect.Iterables;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
 import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
+import com.google.common.collect.Iterables;
 
 /**
  * Units tests for {@code DefaultRoller}, checking that it returns values as

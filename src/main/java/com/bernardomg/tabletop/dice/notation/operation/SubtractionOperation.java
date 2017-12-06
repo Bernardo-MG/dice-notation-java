@@ -18,9 +18,9 @@ package com.bernardomg.tabletop.dice.notation.operation;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Addition operation.

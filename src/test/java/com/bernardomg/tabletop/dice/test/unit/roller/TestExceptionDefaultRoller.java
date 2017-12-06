@@ -16,12 +16,12 @@
 
 package com.bernardomg.tabletop.dice.test.unit.roller;
 
-import org.mockito.Mockito;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;

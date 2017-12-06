@@ -17,8 +17,8 @@
 /**
  * Classes to generate random values from dice groups.
  * <p>
- * The {@link com.bernardomg.tabletop.dice.roller.Roller Roller}, with the help of
- * a {@link com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator
+ * The {@link com.bernardomg.tabletop.dice.roller.Roller Roller}, with the help
+ * of a {@link com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator
  * RandomNumberGenerator}, can generate random values from any
  * {@link com.bernardomg.tabletop.dice.Dice Dice}.
  */

@@ -16,11 +16,11 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operation;
 
-import org.mockito.Mockito;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
