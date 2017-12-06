@@ -18,10 +18,10 @@ package com.bernardomg.tabletop.dice.notation.operand;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.roller.Roller;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 
 /**
  * Operand for using dice values on a dice notation expression.

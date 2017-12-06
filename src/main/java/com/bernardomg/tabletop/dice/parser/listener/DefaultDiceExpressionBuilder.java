@@ -22,12 +22,12 @@ import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import com.bernardomg.tabletop.dice.DefaultDice;
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.generated.DiceNotationBaseListener;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.DiceContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.FunctionContext;
-import com.bernardomg.tabletop.dice.DefaultDice;
-import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;

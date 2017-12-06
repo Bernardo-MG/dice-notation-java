@@ -18,9 +18,9 @@ package com.bernardomg.tabletop.dice.notation.operand;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Operand for using an integer value on a dice notation expression.
