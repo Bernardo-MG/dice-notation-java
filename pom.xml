@@ -213,21 +213,33 @@
    <!-- ********************************************** -->
 
    <properties>
-      <!-- Manifest data -->
+      <!-- ============================================== -->
+      <!-- ================ JAVA VERSION ================ -->
+      <!-- ============================================== -->
+      <java.version>1.8</java.version>
+      <!-- ============================================== -->
+      <!-- =============== MANIFEST DATA ================ -->
+      <!-- ============================================== -->
       <manifest.name>com/bernardomg/tabletop/dice</manifest.name>
-      <!-- Dependencies versions -->
+      <!-- ============================================== -->
+      <!-- =========== DEPENDENCIES VERSIONS ============ -->
+      <!-- ============================================== -->
       <antlr.version>4.7</antlr.version>
-      <guava.version>20.0</guava.version>
+      <guava.version>23.5-jre</guava.version>
       <junit.jupiter.version>5.0.1</junit.jupiter.version>
       <junit.platform.version>1.0.1</junit.platform.version>
       <mockito.version>1.10.19</mockito.version>
       <log4j.version>2.10.0</log4j.version>
-      <!-- Plugins versions -->
+      <!-- ============================================== -->
+      <!-- ============== PLUGINS VERSIONS ============== -->
+      <!-- ============================================== -->
       <plugin.antlr.version>4.7</plugin.antlr.version>
       <plugin.antlr.test.version>1.9</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
-      <!-- Maven Site -->
+      <!-- ============================================== -->
+      <!-- ================= MAVEN SITE ================= -->
+      <!-- ============================================== -->
       <site.skin.version>1.2.0</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
