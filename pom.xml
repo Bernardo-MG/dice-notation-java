@@ -217,7 +217,7 @@
       <manifest.name>com/bernardomg/tabletop/dice</manifest.name>
       <!-- Dependencies versions -->
       <antlr.version>4.7</antlr.version>
-      <guava.version>23.5-jre</guava.version>
+      <guava.version>20.0</guava.version>
       <junit.jupiter.version>5.0.1</junit.jupiter.version>
       <junit.platform.version>1.0.1</junit.platform.version>
       <mockito.version>1.10.19</mockito.version>
