@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
@@ -104,7 +103,7 @@ public final class TestDefaultRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(Matchers.anyInt())).thenReturn(3, 5, 1);
+        Mockito.when(generator.generate(Mockito.any())).thenReturn(3, 5, 1);
 
         // Initializes roller
         roller = new DefaultRoller(generator);
