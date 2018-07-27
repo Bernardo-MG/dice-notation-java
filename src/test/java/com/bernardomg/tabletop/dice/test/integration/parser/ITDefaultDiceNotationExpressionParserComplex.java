@@ -25,6 +25,7 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
@@ -33,8 +34,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserComplex
-        extends AbstractITDefaultDiceNotationExpressionParser {
+public final class ITDefaultDiceNotationExpressionParserComplex {
 
     /**
      * Default constructor.
@@ -57,7 +57,8 @@ public final class ITDefaultDiceNotationExpressionParserComplex
 
         notation = "1d20-5+2d6";
 
-        operationFirst = (SubtractionOperation) parse(notation);
+        operationFirst = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation);
 
         leftDice = (DiceOperand) operationFirst.getLeft();
         operationSecond = (AdditionOperation) operationFirst.getRight();

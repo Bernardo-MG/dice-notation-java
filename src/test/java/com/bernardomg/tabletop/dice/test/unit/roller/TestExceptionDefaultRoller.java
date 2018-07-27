@@ -60,14 +60,7 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
@@ -89,14 +82,7 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
@@ -118,14 +104,7 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }

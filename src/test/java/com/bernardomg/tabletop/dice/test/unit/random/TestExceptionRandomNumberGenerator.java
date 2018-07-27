@@ -51,14 +51,7 @@ public final class TestExceptionRandomNumberGenerator {
 
         generator = new RandomNumberGenerator();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                generator.generate(-1);
-            }
-
-        };
+        closure = () -> generator.generate(-1);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }

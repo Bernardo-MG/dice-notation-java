@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser;
+package com.bernardomg.tabletop.dice.test.integration.parser.onlyDice;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,21 +22,21 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.SingleDiceSetNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * Integration tests for {@code SingleDiceSetNotationExpressionParser}, checking
  * that it throws exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserException {
+public final class ITSingleDiceSetNotationExpressionParserException {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserException() {
+    public ITSingleDiceSetNotationExpressionParserException() {
         super();
     }
 
@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_Empty() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("");
+        closure = () -> new SingleDiceSetNotationExpressionParser().parse("");
 
         Assertions.assertThrows(Exception.class, closure);
     }
@@ -59,7 +59,8 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_Invalid() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("abc");
+        closure = () -> new SingleDiceSetNotationExpressionParser()
+                .parse("abc");
 
         Assertions.assertThrows(Exception.class, closure);
     }
@@ -71,7 +72,32 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_Negative() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("-1");
+        closure = () -> new SingleDiceSetNotationExpressionParser().parse("-1");
+
+        Assertions.assertThrows(Exception.class, closure);
+    }
+
+    /**
+     * Tests that numbers causes an exception.
+     */
+    @Test
+    public final void testParse_Number() {
+        final Executable closure;
+
+        closure = () -> new SingleDiceSetNotationExpressionParser().parse("0");
+
+        Assertions.assertThrows(Exception.class, closure);
+    }
+
+    /**
+     * Tests that operations causes an exception.
+     */
+    @Test
+    public final void testParse_Operation() {
+        final Executable closure;
+
+        closure = () -> new SingleDiceSetNotationExpressionParser()
+                .parse("1+2");
 
         Assertions.assertThrows(Exception.class, closure);
     }
@@ -83,7 +109,8 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_ZeroSides() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("1d0");
+        closure = () -> new SingleDiceSetNotationExpressionParser()
+                .parse("1d0");
 
         Assertions.assertThrows(Exception.class, closure);
     }

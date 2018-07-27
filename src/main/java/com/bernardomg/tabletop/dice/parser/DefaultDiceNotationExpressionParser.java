@@ -32,11 +32,11 @@ import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
- * Dice notation parser making use of ANTLR4 generated classes.
+ * Dice notation parser. Can parse the full grammar.
  * <p>
- * These classes are generated from an ANTRL4 BNF grammar, including the actual
- * parser, which this one wraps and sets up, mostly by adding a
- * {@link DiceExpressionBuilder} to it.
+ * Makes use of ANTLR4 generated classes. These classes are generated from an
+ * ANTRL4 BNF grammar, including the actual parser, which this one wraps and
+ * sets up, mostly by adding a {@link DiceExpressionBuilder} to it.
  * <p>
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor
  * pattern to generate the returned tree of dice notation model objects.
@@ -53,7 +53,7 @@ public final class DefaultDiceNotationExpressionParser
      * each node on the generated grammar tree, creating from it a tree of dice
      * notation model objects.
      */
-    private final DiceExpressionBuilder<DiceNotationExpression> expressionBuilder;
+    private final DiceExpressionBuilder<? extends DiceNotationExpression> expressionBuilder;
 
     /**
      * Default constructor.
@@ -73,7 +73,7 @@ public final class DefaultDiceNotationExpressionParser
      *            builder to generate the returned tree
      */
     public DefaultDiceNotationExpressionParser(
-            final DiceExpressionBuilder<DiceNotationExpression> builder) {
+            final DiceExpressionBuilder<? extends DiceNotationExpression> builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -145,7 +145,7 @@ public final class DefaultDiceNotationExpressionParser
      * 
      * @return the ANTLR4 parser listener
      */
-    private final DiceExpressionBuilder<DiceNotationExpression>
+    private final DiceExpressionBuilder<? extends DiceNotationExpression>
             getDiceExpressionBuilder() {
         return expressionBuilder;
     }

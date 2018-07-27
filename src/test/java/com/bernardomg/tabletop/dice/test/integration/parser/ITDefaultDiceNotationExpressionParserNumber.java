@@ -22,6 +22,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
@@ -30,8 +31,7 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserNumber
-        extends AbstractITDefaultDiceNotationExpressionParser {
+public final class ITDefaultDiceNotationExpressionParserNumber {
 
     /**
      * Default constructor.
@@ -47,7 +47,8 @@ public final class ITDefaultDiceNotationExpressionParserNumber
     public final void testParse_Positive_Value() {
         final IntegerOperand value;
 
-        value = (IntegerOperand) parse("12");
+        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
+                .parse("12");
 
         Assertions.assertEquals(value.getValue(), (Integer) 12);
     }
@@ -59,7 +60,8 @@ public final class ITDefaultDiceNotationExpressionParserNumber
     public final void testParse_Zero() {
         final IntegerOperand value;
 
-        value = (IntegerOperand) parse("0");
+        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
+                .parse("0");
 
         Assertions.assertEquals(value.getValue(), (Integer) 0);
     }
