@@ -22,7 +22,6 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.SingleDiceSetNotationExpressionParser;
 
@@ -47,13 +46,13 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_Complex_ReturnsLast() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser()
                 .parse("1d20-5+2d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(2));
         Assertions.assertEquals(dice.getSides(), new Integer(6));
@@ -64,13 +63,13 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_Max() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser()
                 .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(),
                 new Integer(Integer.MAX_VALUE));
@@ -83,12 +82,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_Multiple_ReturnsLast() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d20+2d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(2));
         Assertions.assertEquals(dice.getSides(), new Integer(6));
@@ -100,12 +99,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_OnesDice_Simple() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d1");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(1));
         Assertions.assertEquals(dice.getSides(), new Integer(1));
@@ -116,12 +115,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_Simple() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(1));
         Assertions.assertEquals(dice.getSides(), new Integer(6));
@@ -132,12 +131,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_Simple_UpperCaseSeparator() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1D6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(1));
         Assertions.assertEquals(dice.getSides(), new Integer(6));
@@ -148,12 +147,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
      */
     @Test
     public final void testParse_ZeroQuantity() {
-        final DiceNotationExpression parsed; // Parsed expression
+        final DiceOperand parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("0d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = parsed.getDice();
 
         Assertions.assertEquals(dice.getQuantity(), new Integer(0));
         Assertions.assertEquals(dice.getSides(), new Integer(6));

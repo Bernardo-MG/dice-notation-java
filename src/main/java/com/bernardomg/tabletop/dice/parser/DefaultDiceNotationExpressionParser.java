@@ -44,7 +44,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceNotationExpressionParser
-        implements DiceNotationExpressionParser {
+        implements DiceNotationExpressionParser<DiceNotationExpression> {
 
     /**
      * Visitor used to build the returned object.

@@ -16,7 +16,11 @@
 
 package com.bernardomg.tabletop.dice.parser;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.listener.DiceOperandExpressionBuilder;
 
 /**
@@ -28,12 +32,12 @@ import com.bernardomg.tabletop.dice.parser.listener.DiceOperandExpressionBuilder
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SingleDiceSetNotationExpressionParser
-        implements DiceNotationExpressionParser {
+        implements DiceNotationExpressionParser<DiceOperand> {
 
     /**
      * A wrapped parser to reuse the common operations through composition.
      */
-    private final DiceNotationExpressionParser wrappedParser;
+    private final DiceNotationExpressionParser<DiceNotationExpression> wrappedParser;
 
     /**
      * Default constructor.
@@ -46,8 +50,10 @@ public final class SingleDiceSetNotationExpressionParser
     }
 
     @Override
-    public final DiceNotationExpression parse(final String expression) {
+    public final DiceOperand parse(final String expression) {
         final DiceNotationExpression parsed; // Parsed expression
+
+        checkNotNull(expression, "Received a null pointer as string");
 
         parsed = wrappedParser.parse(expression);
 
@@ -56,7 +62,10 @@ public final class SingleDiceSetNotationExpressionParser
             throw new IllegalStateException();
         }
 
-        return parsed;
+        checkArgument(parsed instanceof DiceOperand,
+                "Didn't parse a dice object");
+
+        return (DiceOperand) parsed;
     }
 
 }

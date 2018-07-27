@@ -26,8 +26,10 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * notation model objects.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
+ * @param <E>
+ *            type if the expression returned
  */
-public interface DiceNotationExpressionParser {
+public interface DiceNotationExpressionParser<E extends DiceNotationExpression> {
 
     /**
      * Transforms a dice notation expression into the dice notation model.
@@ -36,6 +38,6 @@ public interface DiceNotationExpressionParser {
      *            the expression to parse
      * @return a dice notation expression object
      */
-    public DiceNotationExpression parse(final String expression);
+    public E parse(final String expression);
 
 }
