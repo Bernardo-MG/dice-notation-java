@@ -44,7 +44,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative quantity throws an exception.
+     * Verifies that rolling a dice with negative quantity throws an exception.
      */
     @Test
     public final void testRoll_NegativeQuantity() {
@@ -66,7 +66,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative sides throws an exception.
+     * Verifies that rolling a dice with negative sides throws an exception.
      */
     @Test
     public final void testRoll_NegativeSides() {
@@ -88,7 +88,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with 0 as sides throws an exception.
+     * Verifies that rolling a dice with 0 as sides throws an exception.
      */
     @Test
     public final void testRoll_NoSides() {

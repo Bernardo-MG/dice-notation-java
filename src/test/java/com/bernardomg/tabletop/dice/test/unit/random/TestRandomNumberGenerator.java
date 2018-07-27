@@ -44,7 +44,8 @@ public final class TestRandomNumberGenerator {
     }
 
     /**
-     * Tests that the generated numbers are kept inside the expected interval.
+     * Verifies that the generated numbers are kept inside the expected
+     * interval.
      */
     @Test
     public final void testGenerate_ValuesInBounds() {

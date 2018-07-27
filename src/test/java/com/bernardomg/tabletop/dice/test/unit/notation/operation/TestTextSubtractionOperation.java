@@ -43,7 +43,7 @@ public final class TestTextSubtractionOperation {
     }
 
     /**
-     * Tests that the value is generated correctly.
+     * Verifies that the value is generated correctly.
      */
     @Test
     public final void testgetValue() {
@@ -63,7 +63,7 @@ public final class TestTextSubtractionOperation {
     }
 
     /**
-     * Tests that the text expression is generated correctly.
+     * Verifies that the text expression is generated correctly.
      */
     @Test
     public final void testTextExpression() {

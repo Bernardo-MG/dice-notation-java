@@ -42,7 +42,7 @@ public final class TestExceptionRandomNumberGenerator {
     }
 
     /**
-     * Tests that generating a value for a negative max throws an exception.
+     * Verifies that generating a value for a negative max throws an exception.
      */
     @Test
     public final void testGenerate_NegativeMax() {

@@ -44,7 +44,7 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
     }
 
     /**
-     * Tests that a complex operation is parsed correctly.
+     * Verifies that a complex operation is parsed correctly.
      */
     @Test
     public final void testParse_Complex() {

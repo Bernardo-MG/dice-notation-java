@@ -41,7 +41,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
     }
 
     /**
-     * Tests that parsing a positive number gives that number as value.
+     * Verifies that parsing a positive number gives that number as value.
      */
     @Test
     public final void testParse_Positive_Value() {
@@ -54,7 +54,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
     }
 
     /**
-     * Tests that parsing zero gives that number as value.
+     * Verifies that parsing zero gives that number as value.
      */
     @Test
     public final void testParse_Zero() {

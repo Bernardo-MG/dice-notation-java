@@ -26,8 +26,8 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.SingleDiceSetNotationExpressionParser;
 
 /**
- * Integration tests for {@code SingleDiceSetNotationExpressionParser}, checking
- * that it parses dice notation expressions for single dice groups.
+ * Integration Verifies for {@code SingleDiceSetNotationExpressionParser},
+ * checking that it parses dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -42,12 +42,13 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that complex expressions are parsed, returning the last dice set.
+     * Verifies that complex expressions are parsed, returning the last dice
+     * set.
      */
     @Test
     public final void testParse_Complex_ReturnsLast() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser()
                 .parse("1d20-5+2d6");
@@ -59,12 +60,13 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with the maximum integer values dice is parsed.
+     * Verifies that dice notation with the maximum integer values dice is
+     * parsed.
      */
     @Test
     public final void testParse_Max() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser()
                 .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
@@ -78,12 +80,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that multiple dice are parsed, returning the last one.
+     * Verifies that multiple dice are parsed, returning the last one.
      */
     @Test
     public final void testParse_Multiple_ReturnsLast() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d20+2d6");
 
@@ -94,13 +96,13 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with a single dice and a single side can be
+     * Verifies that dice notation with a single dice and a single side can be
      * parsed.
      */
     @Test
     public final void testParse_OnesDice_Simple() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d1");
 
@@ -111,12 +113,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1d6");
 
@@ -127,12 +129,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple_UpperCaseSeparator() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("1D6");
 
@@ -143,12 +145,12 @@ public final class ITSingleDiceSetNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with zero dice is parsed.
+     * Verifies that dice notation with zero dice is parsed.
      */
     @Test
     public final void testParse_ZeroQuantity() {
         final DiceOperand parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice dice;          // Resulting dice
 
         parsed = new SingleDiceSetNotationExpressionParser().parse("0d6");
 

@@ -44,7 +44,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that an addition using only dice is parsed correctly.
+     * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
     public final void testParse_Add_Dice() {
@@ -69,7 +69,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that an addition with the number to left is parsed correctly.
+     * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
     public final void testParse_Add_LeftNumber() {
@@ -93,7 +93,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that an addition with the number to right is parsed correctly.
+     * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
     public final void testParse_Add_RightNumber() {
@@ -117,7 +117,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that an addition with only numbers is parsed correctly.
+     * Verifies that an addition with only numbers is parsed correctly.
      */
     @Test
     public final void testParse_Number_Add() {
@@ -134,8 +134,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that long additions can be parsed, and the result is the expected
-     * one.
+     * Verifies that long additions can be parsed, and the result is the
+     * expected one.
      */
     @Test
     public final void testParse_Number_Add_Long() {
@@ -156,8 +156,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that longer additions can be parsed, and the result is the expected
-     * one.
+     * Verifies that longer additions can be parsed, and the result is the
+     * expected one.
      */
     @Test
     public final void testParse_Number_Add_Longer() {
@@ -182,7 +182,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that additions followed by subtractions can be parsed, and the
+     * Verifies that additions followed by subtractions can be parsed, and the
      * result is the expected one.
      */
     @Test
@@ -206,7 +206,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that a subtraction with only numbers is parsed correctly.
+     * Verifies that a subtraction with only numbers is parsed correctly.
      */
     @Test
     public final void testParse_Number_Sub() {
@@ -225,7 +225,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that long subtractions can be parsed, and the result is the
+     * Verifies that long subtractions can be parsed, and the result is the
      * expected one.
      */
     @Test
@@ -249,7 +249,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that long subtractions can be parsed, and the result is the
+     * Verifies that long subtractions can be parsed, and the result is the
      * expected one.
      */
     @Test
@@ -277,7 +277,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that subtractions followed by additions can be parsed, and the
+     * Verifies that subtractions followed by additions can be parsed, and the
      * result is the expected one.
      */
     @Test
@@ -301,7 +301,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that a subtraction using only dice is parsed correctly.
+     * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
     public final void testParse_Sub_Dice() {
@@ -328,7 +328,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that a subtraction with the number to left is parsed correctly.
+     * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
     public final void testParse_Sub_LeftNumber() {
@@ -354,7 +354,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Tests that a subtraction with the number to right is parsed correctly.
+     * Verifies that a subtraction with the number to right is parsed correctly.
      */
     @Test
     public final void testParse_Sub_RightNumber() {

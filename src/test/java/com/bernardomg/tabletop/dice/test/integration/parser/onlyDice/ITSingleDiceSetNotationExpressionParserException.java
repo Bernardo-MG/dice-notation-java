@@ -41,7 +41,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that an empty text causes an exception.
+     * Verifies that an empty text causes an exception.
      */
     @Test
     public final void testParse_Empty() {
@@ -53,7 +53,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that an invalid text causes an exception.
+     * Verifies that an invalid text causes an exception.
      */
     @Test
     public final void testParse_Invalid() {
@@ -66,7 +66,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that a negative value causes an exception.
+     * Verifies that a negative value causes an exception.
      */
     @Test
     public final void testParse_Negative() {
@@ -78,7 +78,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that numbers causes an exception.
+     * Verifies that numbers causes an exception.
      */
     @Test
     public final void testParse_Number() {
@@ -90,7 +90,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that operations causes an exception.
+     * Verifies that operations causes an exception.
      */
     @Test
     public final void testParse_Operation() {
@@ -103,7 +103,7 @@ public final class ITSingleDiceSetNotationExpressionParserException {
     }
 
     /**
-     * Tests that dice notation with zero sides causes an exception.
+     * Verifies that dice notation with zero sides causes an exception.
      */
     @Test
     public final void testParse_ZeroSides() {

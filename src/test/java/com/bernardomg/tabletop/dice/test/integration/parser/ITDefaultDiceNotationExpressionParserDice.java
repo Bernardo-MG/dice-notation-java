@@ -43,7 +43,8 @@ public final class ITDefaultDiceNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with the maximum integer values dice is parsed.
+     * Verifies that dice notation with the maximum integer values dice is
+     * parsed.
      */
     @Test
     public final void testParse_Max() {
@@ -62,7 +63,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with a single dice and a single side can be
+     * Verifies that dice notation with a single dice and a single side can be
      * parsed.
      */
     @Test
@@ -79,7 +80,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple() {
@@ -95,7 +96,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple_UpperCaseSeparator() {
@@ -111,7 +112,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
     }
 
     /**
-     * Tests that dice notation with zero dice is parsed.
+     * Verifies that dice notation with zero dice is parsed.
      */
     @Test
     public final void testParse_ZeroQuantity() {

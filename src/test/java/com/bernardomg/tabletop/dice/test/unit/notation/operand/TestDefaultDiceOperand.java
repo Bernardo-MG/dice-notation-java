@@ -43,7 +43,7 @@ public class TestDefaultDiceOperand {
     }
 
     /**
-     * Tests that the text expression is generated correctly.
+     * Verifies that the text expression is generated correctly.
      */
     @Test
     public final void testTextExpression() {
