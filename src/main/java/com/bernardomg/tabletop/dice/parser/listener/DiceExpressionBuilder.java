@@ -27,14 +27,17 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * expression received by the parser.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
+ * @param <E>
+ *            type if the expression returned
  */
-public interface DiceExpressionBuilder extends DiceNotationListener {
+public interface DiceExpressionBuilder<E extends DiceNotationExpression>
+        extends DiceNotationListener {
 
     /**
      * Returns the root for the tree of dice notation model objects.
      * 
      * @return the tree of dice notation model objects
      */
-    public DiceNotationExpression getDiceExpressionRoot();
+    public E getDiceExpressionRoot();
 
 }

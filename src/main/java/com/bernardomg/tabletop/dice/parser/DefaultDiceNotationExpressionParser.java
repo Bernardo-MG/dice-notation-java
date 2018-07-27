@@ -53,7 +53,7 @@ public final class DefaultDiceNotationExpressionParser
      * each node on the generated grammar tree, creating from it a tree of dice
      * notation model objects.
      */
-    private final DiceExpressionBuilder expressionBuilder;
+    private final DiceExpressionBuilder<DiceNotationExpression> expressionBuilder;
 
     /**
      * Default constructor.
@@ -73,7 +73,7 @@ public final class DefaultDiceNotationExpressionParser
      *            builder to generate the returned tree
      */
     public DefaultDiceNotationExpressionParser(
-            final DiceExpressionBuilder builder) {
+            final DiceExpressionBuilder<DiceNotationExpression> builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -145,7 +145,8 @@ public final class DefaultDiceNotationExpressionParser
      * 
      * @return the ANTLR4 parser listener
      */
-    private final DiceExpressionBuilder getDiceExpressionBuilder() {
+    private final DiceExpressionBuilder<DiceNotationExpression>
+            getDiceExpressionBuilder() {
         return expressionBuilder;
     }
 
