@@ -24,9 +24,9 @@ It makes use of the default parser through composition, and just uses a reduced 
 
 [dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/DiceNotationExpressionParser.html
 [default_dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/DefaultDiceNotationExpressionParser.html
+[single_dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/SingleDiceSetNotationExpressionParser.html
 [dice_expression_buider]: ./apidocs/com/bernardomg/tabletop/dice/parser/listener/DiceExpressionBuilder.html
 [default_dice_expression_buider]: ./apidocs/com/bernardomg/tabletop/dice/parser/listener/DefaultDiceExpressionBuilder.html
-[single_dice_notation_parser]: ./apidocs/com/bernardomg/tabletop/dice/parser/listener/SingleDiceSetNotationExpressionParser.html
 
 [dice_notation_parser-class_diagram]: ./images/dice_notation_parser_class_diagram.png
 [dice_expression_builder-class_diagram]: ./images/dice_expression_builder_class_diagram.png
