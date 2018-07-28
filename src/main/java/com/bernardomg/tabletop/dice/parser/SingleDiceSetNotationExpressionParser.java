@@ -59,7 +59,8 @@ public final class SingleDiceSetNotationExpressionParser
 
         if (parsed == null) {
             // TODO: Try to extend the error listener
-            throw new IllegalStateException();
+            throw new IllegalStateException(
+                    "The expression doesn't match a dice set");
         }
 
         checkArgument(parsed instanceof DiceOperand,
