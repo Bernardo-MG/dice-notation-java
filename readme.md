@@ -79,10 +79,10 @@ The project includes a model for dice and dice notation grammar. But the strong 
 To parse generic dice notation, including algebraic operations use this:
 
 ```java
-final DiceNotationExpressionParser parser;
+final DiceNotationExpressionParser<DiceNotationExpression> parser;
 final DiceNotationExpression parsed;
 
-parser = new DefaultDiceNotationExpressionParser(new DefaultRoller());
+parser = new DefaultDiceNotationExpressionParser();
 
 parsed = parser.parse("1d6+12");
 
@@ -94,10 +94,12 @@ The 'getValue' will generate a number from the expression each time it is called
 If you need to parse a single dice:
 
 ```java
+final DiceNotationExpressionParser<DiceNotationExpression> parser;
 final DiceOperand parsed;
 final Dice dice;
 
-parsed = new SingleDiceSetNotationExpressionParser().parse("1d6");
+parser = new DefaultDiceNotationExpressionParser();
+parsed = parser.parse("1d6");
 
 dice = parsed.getDice();
 
