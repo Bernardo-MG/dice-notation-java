@@ -6,10 +6,11 @@
     <coordinates>
       <x>270</x>
       <y>110</y>
-      <w>340</w>
-      <h>70</h>
+      <w>430</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>/DiceNotationExpressionParser/
+    <panel_attributes>template=E: DiceNotationExpression
+/DiceNotationExpressionParser/
 bg=cyan
 --
 
@@ -20,12 +21,13 @@ bg=cyan
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>230</y>
-      <w>260</w>
-      <h>70</h>
+      <x>290</x>
+      <y>250</y>
+      <w>370</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>DefaultDiceNotationExpressionParser
+    <panel_attributes>template=DiceNotationExpression
+DefaultDiceNotationExpressionParser
 bg=yellow
 --
 
@@ -36,12 +38,13 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>240</y>
-      <w>180</w>
-      <h>30</h>
+      <x>740</x>
+      <y>270</y>
+      <w>310</w>
+      <h>50</h>
     </coordinates>
-    <panel_attributes>/DiceExpressionBuilder/
+    <panel_attributes>template=? extends DiceNotationExpression
+/DiceExpressionBuilder/
 bg=cyan
 
 </panel_attributes>
@@ -50,23 +53,23 @@ bg=cyan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>170</y>
+      <x>430</x>
+      <y>190</y>
       <w>30</w>
-      <h>80</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>570</x>
-      <y>240</y>
-      <w>90</w>
+      <y>290</y>
+      <w>190</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
