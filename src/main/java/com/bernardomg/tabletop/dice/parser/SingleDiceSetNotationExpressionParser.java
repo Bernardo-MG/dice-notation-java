@@ -24,10 +24,14 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.listener.DiceOperandExpressionBuilder;
 
 /**
- * Dice notation parser which returns a dice expression.
+ * Dice notation parser which returns a single dice expression.
  * <p>
  * It reuses the {@link DiceNotationExpressionParser} through composition, by
- * setting it up with {@link DiceOperandExpressionBuilder}.
+ * setting it up with {@link DiceOperandExpressionBuilder}. This way the values
+ * returned are reduced to a single dice set.
+ * <p>
+ * It will ignore algebraic operations, and will return only the last dice
+ * expression found.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
