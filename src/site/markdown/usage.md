@@ -46,7 +46,9 @@ It will return only the last dice set parsed, and ignore algebraic operations.
 
 ## Changing Random Number Generation on Parsed Dice
 
-To change the default random number generator for a custom one:
+Random numbers, for rolling dice, are handled through an instance of [NumberGenerator][number_generator].
+
+To use a custom generator you need to implement this and then set the new generator into the parser:
 
 ```java
 final NumberGenerator numGen;
@@ -58,3 +60,5 @@ roller = new DefaultRoller(numGen);
 
 parser = new DefaultDiceNotationExpressionParser(roller);
 ```
+
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
