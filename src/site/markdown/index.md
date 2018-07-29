@@ -31,7 +31,7 @@ The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 
 ## Usage example
 
-If needed it is possible using the dice model, or even the dice notation one. But the recommended way to handle dice notation with the library is by using the included parser.
+The project includes a model for dice and dice notation grammar. But the strong point are the parsers, which will create the model from a text string.
 
 For a concrete example of how to do this take a look at the [usage page][usage].
 
