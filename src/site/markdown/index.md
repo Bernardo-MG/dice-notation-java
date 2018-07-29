@@ -24,6 +24,7 @@ This is very useful when creating tools related to these games, but won't make m
 - Model for both the [dice notation][notation] and [dice groups][dice]
 - Classes for [generating random values][dice] from the dice
 - [Parser][parser] which generates model instances from the notation
+- Allows custom [random number generation][number_generator]
 
 ## Usage example
 
@@ -43,3 +44,5 @@ The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 [dice]: ./dice.html
 [notation]: ./notation.html
 [parser]: ./parser.html
+
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html

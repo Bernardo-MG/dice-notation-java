@@ -22,9 +22,16 @@ The way the default roller works is simple. It generates a random value between 
 
 The number generators are meant to allow tweaking how the random values are generated. Most of the time just using the default implementation, the [RandomNumberGenerator][random_number_generator], which uses the Java Random class, is enough.
 
+## Rolling Dice
+
+![Roller sequence diagram][roller-sequence_diagram]
+
+The DefaultRoller generates a random number for each dice received, returning all these values inside an Iterable.
+
 [dice-class_diagram]: ./images/dice_class_diagram.png
 [number_generator-class_diagram]: ./images/number_generator_class_diagram.png
 [roller-class_diagram]: ./images/roller_class_diagram.png
+[roller-sequence_diagram]: ./images/roller_sequence_diagram.png
 
 [dice]: ./apidocs/com/bernardomg/tabletop/dice/Dice.html
 

@@ -29,7 +29,7 @@ final DiceNotationExpressionParser<DiceNotationExpression> parser;
 final DiceOperand parsed;
 final Dice dice;
 
-parser = new DefaultDiceNotationExpressionParser();
+parser = new SingleDiceSetNotationExpressionParser();
 parsed = parser.parse("1d6");
 
 dice = parsed.getDice();
