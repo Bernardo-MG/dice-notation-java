@@ -44,7 +44,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceNotationExpressionParser
-        implements DiceNotationExpressionParser<DiceNotationExpression> {
+        implements DiceNotationExpressionParser {
 
     /**
      * Visitor used to build the returned object.
@@ -53,7 +53,7 @@ public final class DefaultDiceNotationExpressionParser
      * each node on the generated grammar tree, creating from it a tree of dice
      * notation model objects.
      */
-    private final DiceExpressionBuilder<? extends DiceNotationExpression> expressionBuilder;
+    private final DiceExpressionBuilder expressionBuilder;
 
     /**
      * Default constructor.
@@ -73,7 +73,7 @@ public final class DefaultDiceNotationExpressionParser
      *            builder to generate the returned tree
      */
     public DefaultDiceNotationExpressionParser(
-            final DiceExpressionBuilder<? extends DiceNotationExpression> builder) {
+            final DiceExpressionBuilder builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
@@ -145,8 +145,7 @@ public final class DefaultDiceNotationExpressionParser
      * 
      * @return the ANTLR4 parser listener
      */
-    private final DiceExpressionBuilder<? extends DiceNotationExpression>
-            getDiceExpressionBuilder() {
+    private final DiceExpressionBuilder getDiceExpressionBuilder() {
         return expressionBuilder;
     }
 

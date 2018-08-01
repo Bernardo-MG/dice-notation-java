@@ -52,7 +52,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
-        implements DiceExpressionBuilder<DiceNotationExpression> {
+        implements DiceExpressionBuilder {
 
     /**
      * Operator which indicates the operation is an addition.
