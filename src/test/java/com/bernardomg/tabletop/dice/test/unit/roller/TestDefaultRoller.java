@@ -82,7 +82,7 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assertions.assertEquals(Iterables.size(roller.roll(dice)), 10);
+        Assertions.assertEquals(10, Iterables.size(roller.roll(dice)));
     }
 
     /**
@@ -114,9 +114,9 @@ public final class TestDefaultRoller {
         result = roller.roll(dice);
         itrInteger = result.iterator();
 
-        Assertions.assertEquals(itrInteger.next(), (Integer) 3);
-        Assertions.assertEquals(itrInteger.next(), (Integer) 5);
-        Assertions.assertEquals(itrInteger.next(), (Integer) 1);
+        Assertions.assertEquals((Integer) 3, itrInteger.next());
+        Assertions.assertEquals((Integer) 5, itrInteger.next());
+        Assertions.assertEquals((Integer) 1, itrInteger.next());
     }
 
 }

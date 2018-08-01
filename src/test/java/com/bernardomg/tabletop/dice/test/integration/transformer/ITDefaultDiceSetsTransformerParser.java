@@ -60,13 +60,13 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = sets.iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(20));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
 
         dice = sets.iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(2));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -83,10 +83,10 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(),
-                new Integer(Integer.MAX_VALUE));
-        Assertions.assertEquals(dice.getSides(),
-                new Integer(Integer.MAX_VALUE));
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getQuantity());
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getSides());
     }
 
     /**
@@ -106,13 +106,13 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = sets.iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(20));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
 
         dice = sets.iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(2));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -128,8 +128,8 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(1));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
     /**
@@ -144,8 +144,8 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -160,8 +160,8 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -176,8 +176,8 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(0));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(0), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
 }

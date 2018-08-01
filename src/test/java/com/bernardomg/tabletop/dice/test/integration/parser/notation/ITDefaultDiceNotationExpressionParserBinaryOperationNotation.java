@@ -14,32 +14,25 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser;
+package com.bernardomg.tabletop.dice.test.integration.parser.notation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses simple binary operations.
+ * that it parses simple binary operations and the parsed notation can be
+ * recovered.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
+public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserBinaryOperation() {
+    public ITDefaultDiceNotationExpressionParserBinaryOperationNotation() {
         super();
     }
 
@@ -50,22 +43,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Add_Dice() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final DiceOperand diceLeft;        // Left parsed dice
-        final DiceOperand diceRight;       // Right parsed dice
 
         notation = "1d20+2d6";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        diceLeft = (DiceOperand) operation.getLeft();
-        diceRight = (DiceOperand) operation.getRight();
-
-        Assertions.assertEquals((Integer) 1, diceLeft.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 20, diceLeft.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 2, diceRight.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -75,21 +59,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Add_LeftNumber() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
 
         notation = "5+2d6";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        dice = (DiceOperand) operation.getRight();
-        integer = (IntegerOperand) operation.getLeft();
-
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -99,21 +75,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Add_RightNumber() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
 
         notation = "2d6+5";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        dice = (DiceOperand) operation.getLeft();
-        integer = (IntegerOperand) operation.getRight();
-
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -129,8 +97,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals((Integer) 1, operation.getLeft().roll());
-        Assertions.assertEquals((Integer) 2, operation.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -141,18 +108,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_Add_Long() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final AdditionOperation value;
 
         notation = "1+2+3";
 
-        value = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(value.getLeft().roll(), (Integer) 1);
-
-        operation = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 2, operation.getLeft().roll());
-        Assertions.assertEquals((Integer) 3, operation.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -163,22 +125,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_Add_Longer() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        BinaryOperation value;
 
         notation = "1+2+3+4+5";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2, value.getLeft().roll());
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 3, value.getLeft().roll());
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 4, value.getLeft().roll());
-        Assertions.assertEquals((Integer) 5, value.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -189,18 +142,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_AddAndSub() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation value;     // Parsed right operation
 
         notation = "1+2-3";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals((Integer) 1, operation.getLeft().roll());
-
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2, value.getLeft().roll());
-        Assertions.assertEquals((Integer) 3, value.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -216,8 +164,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals((Integer) 1, operation.getLeft().roll());
-        Assertions.assertEquals((Integer) 2, operation.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -228,18 +175,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_Sub_Long() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation value;     // Parsed right operation
 
         notation = "1-2-3";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals((Integer) 1, operation.getLeft().roll());
-
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2, value.getLeft().roll());
-        Assertions.assertEquals((Integer) 3, value.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -250,22 +192,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_Sub_Longer() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        BinaryOperation value;           // Parsed sub operations
 
         notation = "1-2-3-4-5";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2, value.getLeft().roll());
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 3, value.getLeft().roll());
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 4, value.getLeft().roll());
-        Assertions.assertEquals((Integer) 5, value.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -276,18 +209,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_SubAndAdd() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation value;     // Parsed right operation
 
         notation = "3-1+2";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals((Integer) 3, operation.getLeft().roll());
-
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 1, value.getLeft().roll());
-        Assertions.assertEquals((Integer) 2, value.getRight().roll());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -297,22 +225,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Sub_Dice() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final DiceOperand diceLeft;      // Left parsed dice
-        final DiceOperand diceRight;     // Right parsed dice
 
         notation = "1d20-2d6";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        diceLeft = (DiceOperand) operation.getLeft();
-        diceRight = (DiceOperand) operation.getRight();
-
-        Assertions.assertEquals((Integer) 1, diceLeft.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 20, diceLeft.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 2, diceRight.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -322,21 +241,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Sub_LeftNumber() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final IntegerOperand integer;    // Integer operand
-        final DiceOperand dice;          // Dice operand
 
         notation = "5-2d6";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        integer = (IntegerOperand) operation.getLeft();
-        dice = (DiceOperand) operation.getRight();
-
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     /**
@@ -346,21 +257,13 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Sub_RightNumber() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final IntegerOperand integer;    // Integer operand
-        final DiceOperand dice;          // Dice operand
 
         notation = "2d6-5";
 
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        dice = (DiceOperand) operation.getLeft();
-        integer = (IntegerOperand) operation.getRight();
-
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
-
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertEquals(notation, operation.getExpression());
     }
 
 }

@@ -59,7 +59,7 @@ public final class TestTextAdditionOperation {
 
         operation = new AdditionOperation(left, right);
 
-        Assertions.assertEquals(operation.roll(), new Integer(3));
+        Assertions.assertEquals(new Integer(3), operation.roll());
     }
 
     /**
@@ -79,7 +79,7 @@ public final class TestTextAdditionOperation {
 
         operation = new AdditionOperation(left, right);
 
-        Assertions.assertEquals(operation.getExpression(), "1+2");
+        Assertions.assertEquals("1+2", operation.getExpression());
     }
 
 }

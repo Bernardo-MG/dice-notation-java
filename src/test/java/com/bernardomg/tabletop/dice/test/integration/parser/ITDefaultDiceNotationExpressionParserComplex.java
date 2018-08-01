@@ -67,15 +67,15 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
         rightDice = (DiceOperand) operationSecond.getRight();
 
         // Leftmost dice was parsed correctly
-        Assertions.assertEquals(leftDice.getDice().getQuantity(), (Integer) 1);
-        Assertions.assertEquals(leftDice.getDice().getSides(), (Integer) 20);
+        Assertions.assertEquals((Integer) 1, leftDice.getDice().getQuantity());
+        Assertions.assertEquals((Integer) 20, leftDice.getDice().getSides());
 
         // Rightmost dice was parsed correctly
-        Assertions.assertEquals(rightDice.getDice().getQuantity(), (Integer) 2);
-        Assertions.assertEquals(rightDice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals((Integer) 2, rightDice.getDice().getQuantity());
+        Assertions.assertEquals((Integer) 6, rightDice.getDice().getSides());
 
         // Integer value was parsed correctly
-        Assertions.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals((Integer) 5, integer.getValue());
     }
 
 }

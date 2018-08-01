@@ -56,7 +56,7 @@ public class TestDefaultDiceOperand {
 
         diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
 
-        Assertions.assertEquals(diceOperand.getExpression(), "2d6");
+        Assertions.assertEquals("2d6", diceOperand.getExpression());
     }
 
 }

@@ -59,7 +59,7 @@ public final class TestTextSubtractionOperation {
 
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(operation.roll(), new Integer(-1));
+        Assertions.assertEquals(new Integer(-1), operation.roll());
     }
 
     /**
@@ -79,7 +79,7 @@ public final class TestTextSubtractionOperation {
 
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(operation.getExpression(), "1-2");
+        Assertions.assertEquals("1-2", operation.getExpression());
     }
 
 }

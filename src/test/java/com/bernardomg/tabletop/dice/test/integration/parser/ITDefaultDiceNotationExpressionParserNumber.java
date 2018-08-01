@@ -50,7 +50,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("12");
 
-        Assertions.assertEquals(value.getValue(), (Integer) 12);
+        Assertions.assertEquals((Integer) 12, value.getValue());
     }
 
     /**
@@ -63,7 +63,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("0");
 
-        Assertions.assertEquals(value.getValue(), (Integer) 0);
+        Assertions.assertEquals((Integer) 0, value.getValue());
     }
 
 }
