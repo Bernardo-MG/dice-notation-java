@@ -27,7 +27,6 @@ import com.bernardomg.tabletop.dice.generated.DiceNotationParser.FunctionContext
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
-import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
  * Visitor for an ANTLR4 parser tree. It returns only a {@link DiceOperand}.
@@ -41,18 +40,10 @@ public final class DiceOperandExpressionBuilder extends DiceNotationBaseListener
         implements DiceExpressionBuilder<DiceOperand> {
 
     /**
-     * Roller for the dice expressions.
-     * <p>
-     * This is used as a dependency on the dice expressions, which require a
-     * roller to generate their value.
-     */
-    private final Roller diceRoller;
-
-    /**
      * Operand to return. This builder supports only a single operand, which
      * should for dice.
      */
-    private DiceOperand  operand;
+    private DiceOperand operand;
 
     /**
      * Default constructor.
@@ -60,19 +51,7 @@ public final class DiceOperandExpressionBuilder extends DiceNotationBaseListener
      * It makes use of a {@link DefaultRoller}
      */
     public DiceOperandExpressionBuilder() {
-        this(new DefaultRoller());
-    }
-
-    /**
-     * Constructs a builder with the specified roller.
-     * 
-     * @param roller
-     *            roller for the dice expressions
-     */
-    public DiceOperandExpressionBuilder(final Roller roller) {
         super();
-
-        diceRoller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
@@ -112,16 +91,7 @@ public final class DiceOperandExpressionBuilder extends DiceNotationBaseListener
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
 
-        return new DefaultDiceOperand(dice, getRoller());
-    }
-
-    /**
-     * Returns the roller for the dice expressions.
-     * 
-     * @return the roller for the dice expressions
-     */
-    private final Roller getRoller() {
-        return diceRoller;
+        return new DefaultDiceOperand(dice);
     }
 
 }

@@ -129,8 +129,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
-        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 1);
+        Assertions.assertEquals(operation.getRight().roll(), (Integer) 2);
     }
 
     /**
@@ -148,11 +148,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         value = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 1);
 
         operation = (BinaryOperation) value.getRight();
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 2);
-        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 2);
+        Assertions.assertEquals(operation.getRight().roll(), (Integer) 3);
     }
 
     /**
@@ -171,14 +171,14 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
                 .parse(notation);
 
         value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 2);
 
         value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 3);
 
         value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 4);
-        Assertions.assertEquals(value.getRight().getValue(), (Integer) 5);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 4);
+        Assertions.assertEquals(value.getRight().roll(), (Integer) 5);
     }
 
     /**
@@ -196,11 +196,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 1);
 
         value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
-        Assertions.assertEquals(value.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 2);
+        Assertions.assertEquals(value.getRight().roll(), (Integer) 3);
 
         Assertions.assertEquals(operation.getExpression(), notation);
     }
@@ -218,8 +218,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
-        Assertions.assertEquals(operation.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 1);
+        Assertions.assertEquals(operation.getRight().roll(), (Integer) 2);
 
         Assertions.assertEquals(operation.getExpression(), notation);
     }
@@ -239,11 +239,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 1);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 1);
 
         value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
-        Assertions.assertEquals(value.getRight().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 2);
+        Assertions.assertEquals(value.getRight().roll(), (Integer) 3);
 
         Assertions.assertEquals(operation.getExpression(), notation);
     }
@@ -264,14 +264,14 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
                 .parse(notation);
 
         value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 2);
 
         value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 3);
 
         value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 4);
-        Assertions.assertEquals(value.getRight().getValue(), (Integer) 5);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 4);
+        Assertions.assertEquals(value.getRight().roll(), (Integer) 5);
 
         Assertions.assertEquals(operation.getExpression(), notation);
     }
@@ -291,11 +291,11 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
         operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
-        Assertions.assertEquals(operation.getLeft().getValue(), (Integer) 3);
+        Assertions.assertEquals(operation.getLeft().roll(), (Integer) 3);
 
         value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals(value.getLeft().getValue(), (Integer) 1);
-        Assertions.assertEquals(value.getRight().getValue(), (Integer) 2);
+        Assertions.assertEquals(value.getLeft().roll(), (Integer) 1);
+        Assertions.assertEquals(value.getRight().roll(), (Integer) 2);
 
         Assertions.assertEquals(operation.getExpression(), notation);
     }

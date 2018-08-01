@@ -18,6 +18,9 @@ package com.bernardomg.tabletop.dice.notation.operation;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.function.BiFunction;
+
+import com.bernardomg.tabletop.dice.notation.AbstractDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -32,7 +35,8 @@ import com.google.common.base.Objects;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class SubtractionOperation implements BinaryOperation {
+public final class SubtractionOperation extends AbstractDiceNotationExpression
+        implements BinaryOperation {
 
     /**
      * Left sided operand.
@@ -101,18 +105,13 @@ public final class SubtractionOperation implements BinaryOperation {
     }
 
     @Override
-    public final DiceNotationExpression getRight() {
-        return operandRight;
+    public final BiFunction<Integer, Integer, Integer> getOperation() {
+        return (a, b) -> a + b;
     }
 
-    /**
-     * Returns the left value after subtracting the right value from it.
-     * 
-     * @return the left value minus the right value
-     */
     @Override
-    public final Integer getValue() {
-        return getLeft().getValue() - getRight().getValue();
+    public final DiceNotationExpression getRight() {
+        return operandRight;
     }
 
     @Override

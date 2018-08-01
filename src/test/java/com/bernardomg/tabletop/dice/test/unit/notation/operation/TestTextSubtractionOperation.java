@@ -52,14 +52,14 @@ public final class TestTextSubtractionOperation {
         final DiceNotationExpression right; // Right operand
 
         left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.getValue()).thenReturn(1);
+        Mockito.when(left.roll()).thenReturn(1);
 
         right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.getValue()).thenReturn(2);
+        Mockito.when(right.roll()).thenReturn(2);
 
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(operation.getValue(), new Integer(-1));
+        Assertions.assertEquals(operation.roll(), new Integer(-1));
     }
 
     /**

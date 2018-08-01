@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.notation;
 
+import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer;
+
 /**
  * A dice notation expression.
  * <p>
@@ -39,14 +41,17 @@ public interface DiceNotationExpression {
      */
     public String getExpression();
 
+    public Integer roll();
+
     /**
-     * Returns the integer value of the expression.
+     * Returns a value from the expression
      * <p>
-     * As the dice notation expressions are meant to generate random values, the
-     * result of this methods may be different each time it is acquired.
+     * This allows acquiring custom data from the expression tree.
      * 
-     * @return the integer value of the expression
+     * @param interpreter
+     *            contains the logic to transform the expression
+     * @return transformed result
      */
-    public Integer getValue();
+    public <V> V transform(final DiceNotationTransformer<V> interpreter);
 
 }
