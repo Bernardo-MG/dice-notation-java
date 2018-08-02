@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -47,14 +47,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_Dice() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
-        final DiceOperand diceLeft;      // Left parsed dice
-        final DiceOperand diceRight;     // Right parsed dice
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final DiceOperand diceLeft;           // Left parsed dice
+        final DiceOperand diceRight;          // Right parsed dice
 
         notation = "1d20-2d6";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
         diceLeft = (DiceOperand) operation.getLeft();
@@ -72,14 +72,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_LeftNumber() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
-        final IntegerOperand integer;    // Integer operand
-        final DiceOperand dice;          // Dice operand
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final IntegerOperand integer;         // Integer operand
+        final DiceOperand dice;               // Dice operand
 
         notation = "5-2d6";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
         integer = (IntegerOperand) operation.getLeft();
@@ -96,14 +96,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_RightNumber() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
-        final IntegerOperand integer;    // Integer operand
-        final DiceOperand dice;          // Dice operand
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final IntegerOperand integer;         // Integer operand
+        final DiceOperand dice;               // Dice operand
 
         notation = "2d6-5";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation);
 
         dice = (DiceOperand) operation.getLeft();

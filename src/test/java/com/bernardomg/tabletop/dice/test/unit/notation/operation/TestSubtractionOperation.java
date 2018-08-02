@@ -23,43 +23,23 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Unit tests for {@link AdditionOperation}, checking that it works as expected
- * with its operands.
+ * Unit tests for {@link SubtractionOperation}, checking that it works as
+ * expected with its operands.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestTextAdditionOperation {
+public final class TestSubtractionOperation {
 
     /**
      * Default constructor.
      */
-    public TestTextAdditionOperation() {
+    public TestSubtractionOperation() {
         super();
-    }
-
-    /**
-     * Verifies that the value is generated correctly.
-     */
-    @Test
-    public final void testgetValue() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.roll()).thenReturn(1);
-
-        right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.roll()).thenReturn(2);
-
-        operation = new AdditionOperation(left, right);
-
-        Assertions.assertEquals(new Integer(3), operation.roll());
     }
 
     /**
@@ -77,9 +57,29 @@ public final class TestTextAdditionOperation {
         right = Mockito.mock(DiceNotationExpression.class);
         Mockito.when(right.getExpression()).thenReturn("2");
 
-        operation = new AdditionOperation(left, right);
+        operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals("1+2", operation.getExpression());
+        Assertions.assertEquals("1-2", operation.getExpression());
+    }
+
+    /**
+     * Verifies that the value is generated correctly.
+     */
+    @Test
+    public final void testValue() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = Mockito.mock(DiceNotationExpression.class);
+        Mockito.when(left.roll()).thenReturn(1);
+
+        right = Mockito.mock(DiceNotationExpression.class);
+        Mockito.when(right.roll()).thenReturn(2);
+
+        operation = new SubtractionOperation(left, right);
+
+        Assertions.assertEquals(new Integer(-1), operation.roll());
     }
 
 }
