@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "1d20+2d6";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -63,7 +63,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "5+2d6";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -79,7 +79,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "2d6+5";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -95,7 +95,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "1+2";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -112,7 +112,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "1+2+3";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -129,7 +129,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationNotation 
         notation = "1+2+3+4+5";
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         Assertions.assertEquals(notation, operation.getExpression());
     }

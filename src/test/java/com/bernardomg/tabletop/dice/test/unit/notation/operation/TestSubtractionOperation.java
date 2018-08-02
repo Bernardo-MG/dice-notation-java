@@ -20,11 +20,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 
 /**
  * Unit tests for {@link SubtractionOperation}, checking that it works as
@@ -72,14 +74,15 @@ public final class TestSubtractionOperation {
         final DiceNotationExpression right; // Right operand
 
         left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.roll()).thenReturn(1);
+        Mockito.when(left.transform(ArgumentMatchers.any())).thenReturn(1);
 
         right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.roll()).thenReturn(2);
+        Mockito.when(right.transform(ArgumentMatchers.any())).thenReturn(2);
 
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(-1), operation.roll());
+        Assertions.assertEquals(new Integer(-1),
+                operation.transform(new RollerTransformer()));
     }
 
 }

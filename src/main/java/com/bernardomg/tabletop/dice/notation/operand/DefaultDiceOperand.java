@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.AbstractDiceNotationExpression;
-import com.bernardomg.tabletop.dice.roller.Roller;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -51,20 +50,6 @@ public final class DefaultDiceOperand extends AbstractDiceNotationExpression
      */
     public DefaultDiceOperand(final Dice dice) {
         super();
-
-        operandDice = checkNotNull(dice, "Received a null pointer as dice");
-    }
-
-    /**
-     * Constructs a dice operand with the specified dice and roller.
-     * 
-     * @param dice
-     *            dice for the operand
-     * @param roller
-     *            roller for the dice
-     */
-    public DefaultDiceOperand(final Dice dice, final Roller roller) {
-        super(roller);
 
         operandDice = checkNotNull(dice, "Received a null pointer as dice");
     }

@@ -48,7 +48,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
         final IntegerOperand value;
 
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("12");
+                .parse("12").getRoot();
 
         Assertions.assertEquals((Integer) 12, value.getValue());
     }
@@ -61,7 +61,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
         final IntegerOperand value;
 
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("0");
+                .parse("0").getRoot();
 
         Assertions.assertEquals((Integer) 0, value.getValue());
     }

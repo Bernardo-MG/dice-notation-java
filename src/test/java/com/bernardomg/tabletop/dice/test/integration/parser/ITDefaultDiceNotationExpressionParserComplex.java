@@ -58,7 +58,7 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
         notation = "1d20-5+2d6";
 
         operationFirst = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation);
+                .parse(notation).getRoot();
 
         leftDice = (DiceOperand) operationFirst.getLeft();
         operationSecond = (AdditionOperation) operationFirst.getRight();

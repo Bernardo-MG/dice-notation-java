@@ -52,7 +52,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final Dice dice;                     // Resulting dice
 
         parsed = new DefaultDiceNotationExpressionParser()
-                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE).getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -71,7 +71,8 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -87,7 +88,8 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -103,7 +105,8 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1D6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1D6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -119,7 +122,8 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("0d6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("0d6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 

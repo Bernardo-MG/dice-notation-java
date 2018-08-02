@@ -35,8 +35,6 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
-import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed
@@ -65,14 +63,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private static final String                 SUBTRACTION_OPERATOR = "-";
 
     /**
-     * Roller for the dice expressions.
-     * <p>
-     * This is used as a dependency on the dice expressions, which require a
-     * roller to generate their value.
-     */
-    private final Roller                        diceRoller;
-
-    /**
      * Stack to store operands from the outer nodes in an operation.
      * <p>
      * For example, when parsing an addition operation this stack will hold both
@@ -90,23 +80,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     /**
      * Default constructor.
-     * <p>
-     * It makes use of a {@link DefaultRoller}
      */
     public DefaultDiceExpressionBuilder() {
-        this(new DefaultRoller());
-    }
-
-    /**
-     * Constructs a builder with the specified roller.
-     * 
-     * @param roller
-     *            roller for the dice expressions
-     */
-    public DefaultDiceExpressionBuilder(final Roller roller) {
         super();
-
-        diceRoller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
@@ -194,7 +170,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
 
-        return new DefaultDiceOperand(dice, getRoller());
+        return new DefaultDiceOperand(dice);
     }
 
     /**
@@ -220,15 +196,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      */
     private final Stack<DiceNotationExpression> getOperandsStack() {
         return operandsStack;
-    }
-
-    /**
-     * Returns the roller for the dice expressions.
-     * 
-     * @return the roller for the dice expressions
-     */
-    private final Roller getRoller() {
-        return diceRoller;
     }
 
     /**

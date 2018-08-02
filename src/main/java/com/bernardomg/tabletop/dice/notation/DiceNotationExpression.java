@@ -42,13 +42,6 @@ public interface DiceNotationExpression {
     public String getExpression();
 
     /**
-     * FIXME: This should be in the root node.
-     * 
-     * @return
-     */
-    public Integer roll();
-
-    /**
      * Returns a value from the expression
      * <p>
      * This allows acquiring custom data from the expression tree.

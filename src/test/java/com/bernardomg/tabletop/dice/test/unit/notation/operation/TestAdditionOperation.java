@@ -25,6 +25,7 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 
 /**
  * Unit tests for {@link AdditionOperation}, checking that it works as expected
@@ -72,14 +73,15 @@ public final class TestAdditionOperation {
         final DiceNotationExpression right; // Right operand
 
         left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.roll()).thenReturn(1);
+        Mockito.when(left.transform(new RollerTransformer())).thenReturn(1);
 
         right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.roll()).thenReturn(2);
+        Mockito.when(right.transform(new RollerTransformer())).thenReturn(2);
 
         operation = new AdditionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(3), operation.roll());
+        Assertions.assertEquals(new Integer(3),
+                operation.transform(new RollerTransformer()));
     }
 
 }
