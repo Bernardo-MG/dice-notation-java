@@ -35,6 +35,8 @@ public class RollerTransformer implements DiceNotationTransformer<Integer> {
     public RollerTransformer() {
         super();
 
+        // TODO: Maybe this should be an accumulator?
+
         diceRoller = new DefaultRoller();
     }
 

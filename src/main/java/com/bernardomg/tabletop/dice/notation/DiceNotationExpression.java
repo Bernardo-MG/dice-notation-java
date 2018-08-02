@@ -41,6 +41,11 @@ public interface DiceNotationExpression {
      */
     public String getExpression();
 
+    /**
+     * FIXME: This should be in the root node.
+     * 
+     * @return
+     */
     public Integer roll();
 
     /**
