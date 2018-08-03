@@ -19,6 +19,7 @@ package com.bernardomg.tabletop.dice.notation.transformer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -75,7 +76,10 @@ public final class RollerTransformer
         final Integer result;
         // TODO: Avoid casting
 
-        if (expression instanceof BinaryOperation) {
+        if (expression instanceof DiceNotationExpressionRoot) {
+            result = transform(
+                    ((DiceNotationExpressionRoot) expression).getRoot());
+        } else if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression, accumulated);
         } else if (expression instanceof ConstantOperand) {
             result = transform((ConstantOperand) expression, accumulated);
