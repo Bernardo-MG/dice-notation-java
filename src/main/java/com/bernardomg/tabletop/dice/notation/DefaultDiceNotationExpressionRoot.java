@@ -7,7 +7,7 @@ import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
 import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
-public class DefaultDiceNotationExpressionRoot
+public final class DefaultDiceNotationExpressionRoot
         implements DiceNotationExpressionRoot {
 
     /**
@@ -37,7 +37,7 @@ public class DefaultDiceNotationExpressionRoot
 
     @Override
     public final String getExpression() {
-        return root.getExpression();
+        return getRoot().getExpression();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DefaultDiceNotationExpressionRoot
 
     @Override
     public final <V> V transform(final DiceNotationTransformer<V> interpreter) {
-        return root.transform(interpreter);
+        return interpreter.transform(getRoot(), interpreter.getNeutralValue());
     }
 
 }

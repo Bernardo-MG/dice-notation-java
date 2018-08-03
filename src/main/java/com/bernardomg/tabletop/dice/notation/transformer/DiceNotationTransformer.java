@@ -8,12 +8,15 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 public interface DiceNotationTransformer<V> {
 
-    public V transform(final BinaryOperation operation);
+    public V getNeutralValue();
 
-    public V transform(final ConstantOperand operand);
+    public V transform(final BinaryOperation operation, final V accumulated);
 
-    public V transform(final DiceNotationExpression expression);
+    public V transform(final ConstantOperand operand, final V accumulated);
 
-    public V transform(final DiceOperand operand);
+    public V transform(final DiceNotationExpression expression,
+            final V accumulated);
+
+    public V transform(final DiceOperand operand, final V accumulated);
 
 }

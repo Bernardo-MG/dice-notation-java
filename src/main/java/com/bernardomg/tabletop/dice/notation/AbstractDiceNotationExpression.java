@@ -12,7 +12,7 @@ public abstract class AbstractDiceNotationExpression
 
     @Override
     public final <V> V transform(final DiceNotationTransformer<V> interpreter) {
-        return interpreter.transform(this);
+        return interpreter.transform(this, interpreter.getNeutralValue());
     }
 
 }

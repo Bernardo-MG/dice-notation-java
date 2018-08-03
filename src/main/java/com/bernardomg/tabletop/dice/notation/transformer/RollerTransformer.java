@@ -25,7 +25,8 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
-public class RollerTransformer implements DiceNotationTransformer<Integer> {
+public final class RollerTransformer
+        implements DiceNotationTransformer<Integer> {
 
     /**
      * Roller to generate the random value from the dice.
@@ -47,39 +48,48 @@ public class RollerTransformer implements DiceNotationTransformer<Integer> {
     }
 
     @Override
-    public final Integer transform(final BinaryOperation operation) {
-        final Integer left;
-        final Integer right;
-
-        left = transform(operation.getLeft());
-        right = transform(operation.getRight());
-        return operation.getOperation().apply(left, right);
+    public final Integer getNeutralValue() {
+        return 0;
     }
 
     @Override
-    public final Integer transform(final ConstantOperand operand) {
+    public final Integer transform(final BinaryOperation operation,
+            final Integer accumulated) {
+        final Integer left;
+        final Integer right;
+
+        left = transform(operation.getLeft(), accumulated);
+        right = transform(operation.getRight(), accumulated);
+        return accumulated + operation.getOperation().apply(left, right);
+    }
+
+    @Override
+    public final Integer transform(final ConstantOperand operand,
+            final Integer accumulated) {
         return operand.getValue();
     }
 
     @Override
-    public final Integer transform(final DiceNotationExpression expression) {
+    public final Integer transform(final DiceNotationExpression expression,
+            final Integer accumulated) {
         final Integer result;
         // TODO: Avoid casting
 
         if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression);
+            result = transform((BinaryOperation) expression, accumulated);
         } else if (expression instanceof ConstantOperand) {
-            result = transform((ConstantOperand) expression);
+            result = transform((ConstantOperand) expression, accumulated);
         } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression);
+            result = transform((DiceOperand) expression, accumulated);
         } else {
-            result = 0;
+            result = accumulated;
         }
-        return result;
+        return accumulated + result;
     }
 
     @Override
-    public final Integer transform(final DiceOperand operand) {
+    public final Integer transform(final DiceOperand operand,
+            final Integer accumulated) {
         final Iterable<Integer> rolls;
         Integer total;
 
@@ -90,7 +100,7 @@ public class RollerTransformer implements DiceNotationTransformer<Integer> {
             total += roll;
         }
 
-        return total;
+        return accumulated + total;
     }
 
 }
