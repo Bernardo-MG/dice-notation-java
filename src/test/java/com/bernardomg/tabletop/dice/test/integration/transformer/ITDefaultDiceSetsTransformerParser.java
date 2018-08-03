@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.integration.transformer;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -50,6 +52,7 @@ public final class ITDefaultDiceSetsTransformerParser {
     public final void testParse_Complex_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d20-5+2d6");
@@ -58,12 +61,14 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         Assertions.assertEquals(2, Iterables.size(sets));
 
-        dice = sets.iterator().next();
+        itr = sets.iterator();
+
+        dice = itr.next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(20), dice.getSides());
 
-        dice = sets.iterator().next();
+        dice = itr.next();
 
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
@@ -96,6 +101,7 @@ public final class ITDefaultDiceSetsTransformerParser {
     public final void testParse_Multiple_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d20+2d6");
@@ -104,12 +110,14 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         Assertions.assertEquals(2, Iterables.size(sets));
 
-        dice = sets.iterator().next();
+        itr = sets.iterator();
+
+        dice = itr.next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(20), dice.getSides());
 
-        dice = sets.iterator().next();
+        dice = itr.next();
 
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
