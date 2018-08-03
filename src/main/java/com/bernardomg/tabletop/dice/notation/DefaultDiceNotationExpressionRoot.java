@@ -52,7 +52,7 @@ public final class DefaultDiceNotationExpressionRoot
 
     @Override
     public final <V> V transform(final DiceNotationTransformer<V> interpreter) {
-        return interpreter.transform(getRoot(), interpreter.getNeutralValue());
+        return interpreter.transform(getRoot());
     }
 
 }

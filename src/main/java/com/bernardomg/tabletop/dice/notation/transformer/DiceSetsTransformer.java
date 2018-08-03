@@ -22,9 +22,7 @@ import java.util.Collections;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
 
 public final class DiceSetsTransformer
@@ -35,52 +33,22 @@ public final class DiceSetsTransformer
     }
 
     @Override
-    public final Iterable<Dice> getNeutralValue() {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public final Iterable<Dice> transform(final BinaryOperation operation,
-            final Iterable<Dice> accumulated) {
-        final Collection<Dice> result;
-        final Iterable<Dice> left;
-        final Iterable<Dice> right;
-
-        left = transform(operation.getLeft(), accumulated);
-        right = transform(operation.getRight(), accumulated);
-
-        result = new ArrayList<>();
-        Iterables.addAll(result, left);
-        Iterables.addAll(result, right);
-        Iterables.addAll(result, accumulated);
-
-        return result;
-    }
-
-    @Override
-    public final Iterable<Dice> transform(final ConstantOperand operand,
-            final Iterable<Dice> accumulated) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public final Iterable<Dice> transform(
-            final DiceNotationExpression expression,
-            final Iterable<Dice> accumulated) {
+    public final Iterable<Dice>
+            transform(final DiceNotationExpression expression) {
         final Iterable<Dice> result;
         // TODO: Avoid casting
 
         if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression, accumulated);
+            result = transform((DiceOperand) expression,
+                    Collections.emptyList());
         } else {
-            result = accumulated;
+            result = Collections.emptyList();
         }
 
         return result;
     }
 
-    @Override
-    public final Iterable<Dice> transform(final DiceOperand operand,
+    private final Iterable<Dice> transform(final DiceOperand operand,
             final Iterable<Dice> accumulated) {
         final Collection<Dice> result;
 

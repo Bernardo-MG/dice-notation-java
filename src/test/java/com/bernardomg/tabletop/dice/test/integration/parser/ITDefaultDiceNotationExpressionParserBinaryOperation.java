@@ -21,7 +21,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
@@ -53,17 +55,17 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
 
         notation = "1+2-3";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 1,
-                operation.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation.getLeft()));
 
-        value = (BinaryOperation) operation.getRight();
+        value = (SubtractionOperation) operation.getRight();
         Assertions.assertEquals((Integer) 2,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
         Assertions.assertEquals((Integer) 3,
-                value.getRight().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getRight()));
     }
 
     /**
@@ -81,7 +83,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 0,
-                operation.transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation));
     }
 
     /**
@@ -96,17 +98,17 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
 
         notation = "3-1+2";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 3,
-                operation.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation.getLeft()));
 
-        value = (BinaryOperation) operation.getRight();
+        value = (AdditionOperation) operation.getRight();
         Assertions.assertEquals((Integer) 1,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
         Assertions.assertEquals((Integer) 2,
-                value.getRight().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getRight()));
     }
 
     /**
@@ -124,7 +126,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 4,
-                operation.transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation));
     }
 
 }

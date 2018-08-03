@@ -16,8 +16,6 @@
 
 package com.bernardomg.tabletop.dice.notation;
 
-import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer;
-
 /**
  * A dice notation expression.
  * <p>
@@ -40,16 +38,5 @@ public interface DiceNotationExpression {
      * @return the expression as a string
      */
     public String getExpression();
-
-    /**
-     * Returns a value from the expression
-     * <p>
-     * This allows acquiring custom data from the expression tree.
-     * 
-     * @param interpreter
-     *            contains the logic to transform the expression
-     * @return transformed result
-     */
-    public <V> V transform(final DiceNotationTransformer<V> interpreter);
 
 }

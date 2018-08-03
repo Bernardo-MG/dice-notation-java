@@ -20,13 +20,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 
 /**
  * Unit tests for {@link SubtractionOperation}, checking that it works as
@@ -53,36 +51,12 @@ public final class TestSubtractionOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 
-        left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.getExpression()).thenReturn("1");
-
-        right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.getExpression()).thenReturn("2");
+        left = new IntegerOperand(1);
+        right = new IntegerOperand(2);
 
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals("1-2", operation.getExpression());
-    }
-
-    /**
-     * Verifies that the value is generated correctly.
-     */
-    @Test
-    public final void testValue() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.transform(ArgumentMatchers.any())).thenReturn(1);
-
-        right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.transform(ArgumentMatchers.any())).thenReturn(2);
-
-        operation = new SubtractionOperation(left, right);
-
-        Assertions.assertEquals(new Integer(-1),
-                operation.transform(new RollerTransformer()));
     }
 
 }

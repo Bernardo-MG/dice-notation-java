@@ -57,13 +57,13 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 1,
-                operation.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation.getLeft()));
 
         value = (SubtractionOperation) operation.getRight();
         Assertions.assertEquals((Integer) 2,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
         Assertions.assertEquals((Integer) 3,
-                value.getRight().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getRight()));
     }
 
     /**
@@ -81,7 +81,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) (-4),
-                operation.transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation));
     }
 
     /**
@@ -101,17 +101,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
 
         value = (SubtractionOperation) operation.getRight();
         Assertions.assertEquals((Integer) 2,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
 
         value = (SubtractionOperation) value.getRight();
         Assertions.assertEquals((Integer) 3,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
 
         value = (SubtractionOperation) value.getRight();
         Assertions.assertEquals((Integer) 4,
-                value.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getLeft()));
         Assertions.assertEquals((Integer) 5,
-                value.getRight().transform(new RollerTransformer()));
+                new RollerTransformer().transform(value.getRight()));
     }
 
     /**
@@ -129,7 +129,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) (-11),
-                operation.transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation));
     }
 
     /**
@@ -146,9 +146,9 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) 1,
-                operation.getLeft().transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation.getLeft()));
         Assertions.assertEquals((Integer) 2,
-                operation.getRight().transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation.getRight()));
     }
 
     /**
@@ -165,7 +165,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
                 .parse(notation).getRoot();
 
         Assertions.assertEquals((Integer) (-1),
-                operation.transform(new RollerTransformer()));
+                new RollerTransformer().transform(operation));
     }
 
 }

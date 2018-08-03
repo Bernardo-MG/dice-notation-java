@@ -36,7 +36,7 @@ public final class RollerTransformer
     public RollerTransformer() {
         super();
 
-        // TODO: Maybe this should be an accumulator?
+        // TODO: Is it using the accumulator?
 
         diceRoller = new DefaultRoller();
     }
@@ -48,29 +48,29 @@ public final class RollerTransformer
     }
 
     @Override
-    public final Integer getNeutralValue() {
-        return 0;
+    public final Integer transform(final DiceNotationExpression expression) {
+        return transform(expression, 0);
     }
 
-    @Override
-    public final Integer transform(final BinaryOperation operation,
+    private final Integer transform(final BinaryOperation operation,
             final Integer accumulated) {
         final Integer left;
         final Integer right;
+        final Integer operated;
 
         left = transform(operation.getLeft(), accumulated);
         right = transform(operation.getRight(), accumulated);
-        return accumulated + operation.getOperation().apply(left, right);
+        operated = operation.getOperation().apply(left, right);
+
+        return accumulated + operated;
     }
 
-    @Override
-    public final Integer transform(final ConstantOperand operand,
+    private final Integer transform(final ConstantOperand operand,
             final Integer accumulated) {
         return operand.getValue();
     }
 
-    @Override
-    public final Integer transform(final DiceNotationExpression expression,
+    private final Integer transform(final DiceNotationExpression expression,
             final Integer accumulated) {
         final Integer result;
         // TODO: Avoid casting
@@ -87,8 +87,7 @@ public final class RollerTransformer
         return accumulated + result;
     }
 
-    @Override
-    public final Integer transform(final DiceOperand operand,
+    private final Integer transform(final DiceOperand operand,
             final Integer accumulated) {
         final Iterable<Integer> rolls;
         Integer total;

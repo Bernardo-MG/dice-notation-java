@@ -106,7 +106,7 @@ public final class SubtractionOperation extends AbstractDiceNotationExpression
 
     @Override
     public final BiFunction<Integer, Integer, Integer> getOperation() {
-        return (a, b) -> a + b;
+        return (a, b) -> a - b;
     }
 
     @Override
