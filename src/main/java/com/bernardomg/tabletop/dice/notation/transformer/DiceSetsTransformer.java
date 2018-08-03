@@ -24,6 +24,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
+import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
 
 public final class DiceSetsTransformer
@@ -36,12 +37,35 @@ public final class DiceSetsTransformer
     @Override
     public final Iterable<Dice>
             transform(final DiceNotationExpression expression) {
+        return transform(expression, Collections.emptyList());
+    }
+
+    private final Iterable<Dice> transform(final BinaryOperation operation,
+            final Iterable<Dice> accumulated) {
+        final Iterable<Dice> left;
+        final Iterable<Dice> right;
+        final Collection<Dice> result;
+
+        left = transform(operation.getLeft(), accumulated);
+        right = transform(operation.getRight(), accumulated);
+        result = new ArrayList<>();
+        Iterables.addAll(result, left);
+        Iterables.addAll(result, right);
+
+        return result;
+    }
+
+    private final Iterable<Dice> transform(
+            final DiceNotationExpression expression,
+            final Iterable<Dice> accumulated) {
         final Iterable<Dice> result;
         // TODO: Avoid casting
 
         if (expression instanceof DiceNotationExpressionRoot) {
             result = transform(
                     ((DiceNotationExpressionRoot) expression).getRoot());
+        } else if (expression instanceof BinaryOperation) {
+            result = transform((BinaryOperation) expression, accumulated);
         } else if (expression instanceof DiceOperand) {
             result = transform((DiceOperand) expression,
                     Collections.emptyList());

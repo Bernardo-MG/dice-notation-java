@@ -88,6 +88,7 @@ public final class RollerTransformer
         } else {
             result = accumulated;
         }
+
         return accumulated + result;
     }
 
