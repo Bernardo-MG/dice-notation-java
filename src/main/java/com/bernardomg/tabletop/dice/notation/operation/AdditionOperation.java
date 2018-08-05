@@ -16,14 +16,7 @@
 
 package com.bernardomg.tabletop.dice.notation.operation;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.function.BiFunction;
-
-import com.bernardomg.tabletop.dice.notation.AbstractDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 /**
  * Addition operation.
@@ -35,18 +28,8 @@ import com.google.common.base.Objects;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class AdditionOperation extends AbstractDiceNotationExpression
+public final class AdditionOperation extends AbstractBinaryOperation
         implements BinaryOperation {
-
-    /**
-     * Left sided operand.
-     */
-    private final DiceNotationExpression operandLeft;
-
-    /**
-     * Right sided operand.
-     */
-    private final DiceNotationExpression operandRight;
 
     /**
      * Constructs an addition operation with the specified operands.
@@ -58,34 +41,7 @@ public final class AdditionOperation extends AbstractDiceNotationExpression
      */
     public AdditionOperation(final DiceNotationExpression left,
             final DiceNotationExpression right) {
-        super();
-
-        operandLeft = checkNotNull(left,
-                "Received a null pointer as left operand");
-        operandRight = checkNotNull(right,
-                "Received a null pointer as right operand");
-    }
-
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final AdditionOperation other;
-
-        other = (AdditionOperation) obj;
-
-        return Objects.equal(operandLeft, other.operandLeft)
-                && Objects.equal(operandRight, other.operandRight);
+        super(left, right, (a, b) -> a + b);
     }
 
     /**
@@ -102,32 +58,6 @@ public final class AdditionOperation extends AbstractDiceNotationExpression
         right = getRight().getExpression();
 
         return String.format("%s+%s", left, right);
-    }
-
-    @Override
-    public final DiceNotationExpression getLeft() {
-        return operandLeft;
-    }
-
-    @Override
-    public final BiFunction<Integer, Integer, Integer> getOperation() {
-        return (a, b) -> a + b;
-    }
-
-    @Override
-    public final DiceNotationExpression getRight() {
-        return operandRight;
-    }
-
-    @Override
-    public final int hashCode() {
-        return Objects.hashCode(operandLeft, operandRight);
-    }
-
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("left", operandLeft)
-                .add("right", operandRight).toString();
     }
 
 }

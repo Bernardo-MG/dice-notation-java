@@ -19,7 +19,6 @@ package com.bernardomg.tabletop.dice.notation.operand;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.notation.AbstractDiceNotationExpression;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -32,8 +31,7 @@ import com.google.common.base.Objects;
  * @author Bernardo Mart&iacute;nez Garrido
  * @see Dice
  */
-public final class DefaultDiceOperand extends AbstractDiceNotationExpression
-        implements DiceOperand {
+public final class DefaultDiceOperand implements DiceOperand {
 
     /**
      * Operand dice.
