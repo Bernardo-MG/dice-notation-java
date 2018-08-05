@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -68,6 +69,23 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     }
 
     /**
+     * Verifies that an addition using only dice is parsed correctly.
+     */
+    @Test
+    public final void testParse_Add_Dice_Value() {
+        final String notation;             // Input to parse
+        final AdditionOperation operation; // Parsed operation
+
+        notation = "1d1+2d1";
+
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) 3,
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
      * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
@@ -92,6 +110,23 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     }
 
     /**
+     * Verifies that an addition with the number to left is parsed correctly.
+     */
+    @Test
+    public final void testParse_Add_LeftNumber_Value() {
+        final String notation;             // Input to parse
+        final AdditionOperation operation; // Parsed operation
+
+        notation = "5+2d1";
+
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) 7,
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
      * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
@@ -113,6 +148,23 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
         Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
+    }
+
+    /**
+     * Verifies that an addition with the number to right is parsed correctly.
+     */
+    @Test
+    public final void testParse_Add_RightNumber_Value() {
+        final String notation;             // Input to parse
+        final AdditionOperation operation; // Parsed operation
+
+        notation = "2d1+5";
+
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) 7,
+                new RollerTransformer().transform(operation));
     }
 
 }

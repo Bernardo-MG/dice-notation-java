@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -68,6 +69,23 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
     }
 
     /**
+     * Verifies that a subtraction using only dice is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_Dice_Value() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+
+        notation = "1d1-2d1";
+
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) (-1),
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
      * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
@@ -92,6 +110,23 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
     }
 
     /**
+     * Verifies that a subtraction with the number to left is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_LeftNumber_Value() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+
+        notation = "5-2d1";
+
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) 3,
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
      * Verifies that a subtraction with the number to right is parsed correctly.
      */
     @Test
@@ -113,6 +148,23 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
         Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
+    }
+
+    /**
+     * Verifies that a subtraction with the number to right is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_RightNumber_Value() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+
+        notation = "2d1-5";
+
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
+
+        Assertions.assertEquals((Integer) (-3),
+                new RollerTransformer().transform(operation));
     }
 
 }
