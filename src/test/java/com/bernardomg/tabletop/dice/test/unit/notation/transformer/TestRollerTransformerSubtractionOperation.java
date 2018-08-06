@@ -56,6 +56,7 @@ public final class TestRollerTransformerSubtractionOperation {
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
 
+        // 1 - 2
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-1),
@@ -67,22 +68,53 @@ public final class TestRollerTransformerSubtractionOperation {
      * grouped on the right side.
      */
     @Test
-    public final void testValue_Grouped() {
+    public final void testValue_SubtractGrouped() {
         final BinaryOperation grouped;      // Tested operation
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
 
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
+        value = new IntegerOperand(1);
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(3);
 
         grouped = new AdditionOperation(left, right);
 
-        value = new IntegerOperand(3);
-
-        // 3 - (1 + 2)
+        // 1 - (2 + 3)
         operation = new SubtractionOperation(value, grouped);
+
+        Assertions.assertEquals(new Integer(-4),
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
+     * Verifies that the value is generated correctly when the values are
+     * grouped negative results.
+     */
+    @Test
+    public final void testValue_GroupedNegatives() {
+        final BinaryOperation operation;     // Tested operation
+        final BinaryOperation groupeda;      // Tested operation
+        final BinaryOperation groupedb;      // Tested operation
+        final DiceNotationExpression lefta;  // Left operand
+        final DiceNotationExpression righta; // Right operand
+        final DiceNotationExpression leftb;  // Left operand
+        final DiceNotationExpression rightb; // Right operand
+
+        lefta = new IntegerOperand(1);
+        righta = new IntegerOperand(2);
+
+        groupeda = new SubtractionOperation(lefta, righta);
+
+        leftb = new IntegerOperand(3);
+        rightb = new IntegerOperand(4);
+
+        groupedb = new SubtractionOperation(leftb, rightb);
+
+        // (1 - 2) - (3 - 4)
+        operation = new SubtractionOperation(groupeda, groupedb);
 
         Assertions.assertEquals(new Integer(0),
                 new RollerTransformer().transform(operation));
@@ -100,6 +132,7 @@ public final class TestRollerTransformerSubtractionOperation {
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
 
+        // 1 - -2
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(3),
@@ -118,17 +151,17 @@ public final class TestRollerTransformerSubtractionOperation {
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
 
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
+        value = new IntegerOperand(1);
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(3);
 
         grouped = new SubtractionOperation(left, right);
 
-        value = new IntegerOperand(3);
-
-        // 3 - (1 - 2)
+        // 1 - (2 - 3)
         operation = new SubtractionOperation(value, grouped);
 
-        Assertions.assertEquals(new Integer(4),
+        Assertions.assertEquals(new Integer(2),
                 new RollerTransformer().transform(operation));
     }
 
@@ -144,6 +177,7 @@ public final class TestRollerTransformerSubtractionOperation {
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
 
+        // -1 - -2
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(1),
@@ -162,6 +196,7 @@ public final class TestRollerTransformerSubtractionOperation {
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
 
+        // -1 - 2
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-3),

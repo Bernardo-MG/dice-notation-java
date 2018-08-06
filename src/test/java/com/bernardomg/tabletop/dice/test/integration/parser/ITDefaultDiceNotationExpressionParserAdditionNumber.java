@@ -124,7 +124,6 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
     public final void testParse_Number_Add_Longer_Value() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        BinaryOperation value;
 
         notation = "1+2+3+4+5";
 
@@ -133,20 +132,6 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
 
         Assertions.assertEquals((Integer) 15,
                 new RollerTransformer().transform(operation));
-
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(value.getLeft()));
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(value.getLeft()));
-
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 4,
-                new RollerTransformer().transform(value.getLeft()));
-        Assertions.assertEquals((Integer) 5,
-                new RollerTransformer().transform(value.getRight()));
     }
 
     /**

@@ -18,6 +18,11 @@ package com.bernardomg.tabletop.dice.notation.transformer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.function.BiFunction;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
@@ -53,17 +58,72 @@ public final class RollerTransformer
         return transform(expression, 0);
     }
 
+    private final void stack(final DiceNotationExpression operation,
+            final Collection<Integer> values,
+            final Collection<BiFunction<Integer, Integer, Integer>> operations,
+            final Integer accumulated) {
+        final DiceNotationExpression left;
+        final DiceNotationExpression right;
+        BiFunction<Integer, Integer, Integer> func;
+
+        if (operation instanceof BinaryOperation) {
+            left = ((BinaryOperation) operation).getLeft();
+            right = ((BinaryOperation) operation).getRight();
+
+            // TODO: Verify if this operation makes sense at all
+            if ((right instanceof BinaryOperation)
+                    && !(left instanceof BinaryOperation)) {
+                // Gives precedence to the right operand
+                stack(right, values, operations, accumulated);
+                stack(left, values, operations, accumulated);
+                func = (a, b) -> ((BinaryOperation) operation).getOperation()
+                        .apply(b, a);
+            } else {
+                stack(left, values, operations, accumulated);
+                stack(right, values, operations, accumulated);
+                func = ((BinaryOperation) operation).getOperation();
+            }
+
+            operations.add(func);
+        } else {
+            values.add(transform(operation, accumulated));
+        }
+
+    }
+
     private final Integer transform(final BinaryOperation operation,
             final Integer accumulated) {
-        final Integer left;
-        final Integer right;
-        final Integer operated;
+        final Collection<Integer> values;
+        final Iterator<Integer> valuesItr;
+        final Collection<BiFunction<Integer, Integer, Integer>> operations;
+        Integer left;
+        Integer right;
+        Integer result;
 
-        left = transform(operation.getLeft(), accumulated);
-        right = transform(operation.getRight(), accumulated);
-        operated = operation.getOperation().apply(left, right);
+        values = new ArrayList<>();
+        operations = new ArrayList<>();
 
-        return accumulated + operated;
+        stack(operation, values, operations, accumulated);
+
+        valuesItr = values.iterator();
+        if (!values.isEmpty()) {
+            left = valuesItr.next();
+            right = valuesItr.next();
+            result = 0;
+        } else {
+            left = 0;
+            right = 0;
+            result = 0;
+        }
+        for (final BiFunction<Integer, Integer, Integer> op : operations) {
+            left = op.apply(left, right);
+            if (valuesItr.hasNext()) {
+                right = valuesItr.next();
+            }
+            result = left;
+        }
+
+        return accumulated + result;
     }
 
     private final Integer transform(final ConstantOperand operand,

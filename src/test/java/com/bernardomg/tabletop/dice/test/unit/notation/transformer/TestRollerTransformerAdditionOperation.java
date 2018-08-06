@@ -56,6 +56,7 @@ public final class TestRollerTransformerAdditionOperation {
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
 
+        // 1 + 2
         operation = new AdditionOperation(left, right);
 
         Assertions.assertEquals(new Integer(3),
@@ -74,6 +75,7 @@ public final class TestRollerTransformerAdditionOperation {
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
 
+        // 1 + -2
         operation = new AdditionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-1),
@@ -91,17 +93,17 @@ public final class TestRollerTransformerAdditionOperation {
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
 
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
+        value = new IntegerOperand(1);
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(3);
 
         grouped = new SubtractionOperation(left, right);
 
-        value = new IntegerOperand(3);
-
-        // 3 + (1 - 2)
+        // 1 + (2 - 3)
         operation = new AdditionOperation(value, grouped);
 
-        Assertions.assertEquals(new Integer(2),
+        Assertions.assertEquals(new Integer(0),
                 new RollerTransformer().transform(operation));
     }
 
@@ -117,6 +119,7 @@ public final class TestRollerTransformerAdditionOperation {
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
 
+        // -1 + -2
         operation = new AdditionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-3),
@@ -135,6 +138,7 @@ public final class TestRollerTransformerAdditionOperation {
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
 
+        // -1 + 2
         operation = new AdditionOperation(left, right);
 
         Assertions.assertEquals(new Integer(1),
