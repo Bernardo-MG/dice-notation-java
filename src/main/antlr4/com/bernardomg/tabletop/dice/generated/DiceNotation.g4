@@ -36,16 +36,21 @@ function
 :
 	dice
 	| binaryOp
-	| DIGIT
+	| number
 ;
 
 binaryOp
 :
 	dice OPERATOR function
-	| DIGIT OPERATOR function
+	| number OPERATOR function
 ;
 
 dice
 :
 	DIGIT DSEPARATOR DIGIT
+;
+
+number
+:
+   DIGIT
 ;

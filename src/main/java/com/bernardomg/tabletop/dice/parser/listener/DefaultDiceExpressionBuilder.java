@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.generated.DiceNotationBaseListener;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.DiceContext;
-import com.bernardomg.tabletop.dice.generated.DiceNotationParser.FunctionContext;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParser.NumberContext;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
@@ -100,12 +100,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     @Override
-    public final void exitFunction(final FunctionContext ctx) {
+    public final void exitNumber(final NumberContext ctx) {
         checkNotNull(ctx, "Received a null pointer as context");
 
-        if (ctx.DIGIT() != null) {
-            setLatestExpression(getIntegerOperand(ctx.DIGIT()));
-        }
+        setLatestExpression(getIntegerOperand(ctx.DIGIT()));
     }
 
     @Override
@@ -129,11 +127,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Acquired operands
         right = getOperandsStack().pop();
-        if (ctx.DIGIT() == null) {
-            left = getOperandsStack().pop();
-        } else {
-            left = getIntegerOperand(ctx.DIGIT());
-        }
+        left = getOperandsStack().pop();
 
         // Acquires operator
         operator = ctx.OPERATOR().getText();
