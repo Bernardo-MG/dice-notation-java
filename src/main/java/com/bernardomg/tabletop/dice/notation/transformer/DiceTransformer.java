@@ -34,13 +34,13 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceSetsTransformer
+public final class DiceTransformer
         implements DiceNotationTransformer<Iterable<Dice>> {
 
     /**
      * Default constructor.
      */
-    public DiceSetsTransformer() {
+    public DiceTransformer() {
         super();
     }
 

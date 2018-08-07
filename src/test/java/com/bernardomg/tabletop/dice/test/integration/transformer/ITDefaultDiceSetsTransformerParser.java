@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.transformer.DiceSetsTransformer;
+import com.bernardomg.tabletop.dice.notation.transformer.DiceTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.google.common.collect.Iterables;
 
@@ -57,7 +57,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d20-5+2d6");
 
-        sets = new DiceSetsTransformer().transform(parsed);
+        sets = new DiceTransformer().transform(parsed);
 
         Assertions.assertEquals(2, Iterables.size(sets));
 
@@ -86,7 +86,7 @@ public final class ITDefaultDiceSetsTransformerParser {
         parsed = new DefaultDiceNotationExpressionParser()
                 .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
-        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
+        dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
                 dice.getQuantity());
@@ -106,7 +106,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d20+2d6");
 
-        sets = new DiceSetsTransformer().transform(parsed);
+        sets = new DiceTransformer().transform(parsed);
 
         Assertions.assertEquals(2, Iterables.size(sets));
 
@@ -134,7 +134,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d1");
 
-        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
+        dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(1), dice.getSides());
@@ -150,7 +150,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
 
-        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
+        dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
@@ -166,7 +166,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1D6");
 
-        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
+        dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
@@ -182,7 +182,7 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         parsed = new DefaultDiceNotationExpressionParser().parse("0d6");
 
-        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
+        dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(0), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
