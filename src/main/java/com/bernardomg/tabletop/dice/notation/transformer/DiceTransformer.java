@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.notation.transformer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -47,27 +48,6 @@ public final class DiceTransformer
     @Override
     public final Iterable<Dice>
             transform(final DiceNotationExpression expression) {
-        return transform(expression, Collections.emptyList());
-    }
-
-    private final Iterable<Dice> transform(final BinaryOperation operation,
-            final Iterable<Dice> accumulated) {
-        final Iterable<Dice> left;
-        final Iterable<Dice> right;
-        final Collection<Dice> result;
-
-        left = transform(operation.getLeft(), accumulated);
-        right = transform(operation.getRight(), accumulated);
-        result = new ArrayList<>();
-        Iterables.addAll(result, left);
-        Iterables.addAll(result, right);
-
-        return result;
-    }
-
-    private final Iterable<Dice> transform(
-            final DiceNotationExpression expression,
-            final Iterable<Dice> accumulated) {
         final Iterable<Dice> result;
         // TODO: Avoid casting
 
@@ -76,10 +56,9 @@ public final class DiceTransformer
                     ((TransformableDiceNotationExpression) expression)
                             .getRoot());
         } else if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression, accumulated);
+            result = transform((BinaryOperation) expression);
         } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression,
-                    Collections.emptyList());
+            result = transform((DiceOperand) expression);
         } else {
             result = Collections.emptyList();
         }
@@ -87,15 +66,22 @@ public final class DiceTransformer
         return result;
     }
 
-    private final Iterable<Dice> transform(final DiceOperand operand,
-            final Iterable<Dice> accumulated) {
+    private final Iterable<Dice> transform(final BinaryOperation operation) {
+        final Iterable<Dice> left;
+        final Iterable<Dice> right;
         final Collection<Dice> result;
 
+        left = transform(operation.getLeft());
+        right = transform(operation.getRight());
         result = new ArrayList<>();
-        Iterables.addAll(result, accumulated);
-        result.add(operand.getDice());
+        Iterables.addAll(result, left);
+        Iterables.addAll(result, right);
 
         return result;
+    }
+
+    private final Iterable<Dice> transform(final DiceOperand operand) {
+        return Arrays.asList(operand.getDice());
     }
 
 }

@@ -98,7 +98,7 @@ public final class ITDefaultDiceSetsTransformerParser {
      * Verifies that multiple dice are parsed, returning all.
      */
     @Test
-    public final void testParse_Multiple_ReturnsAll() {
+    public final void testParse_Two_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
         final Iterator<Dice> itr;            // Parsed dice sets
@@ -121,6 +121,51 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that multiple dice are parsed, returning all.
+     */
+    @Test
+    public final void testParse_Long_ReturnsAll() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser()
+                .parse("1d20+2d6-1d12+1d6+2d8");
+
+        sets = new DiceTransformer().transform(parsed);
+
+        Assertions.assertEquals(5, Iterables.size(sets));
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(12), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(8), dice.getSides());
     }
 
     /**
