@@ -93,23 +93,35 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getBinaryOperation(ctx));
+        expression = getBinaryOperation(ctx);
+
+        getOperandsStack().push(expression);
     }
 
     @Override
     public final void exitDice(final DiceContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getDiceOperand(ctx));
+        expression = getDiceOperand(ctx);
+
+        getOperandsStack().push(expression);
     }
 
     @Override
     public final void exitNumber(final NumberContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getIntegerOperand(ctx.DIGIT()));
+        expression = getIntegerOperand(ctx.DIGIT());
+
+        getOperandsStack().push(expression);
     }
 
     @Override
@@ -202,18 +214,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      */
     private final Stack<DiceNotationExpression> getOperandsStack() {
         return operandsStack;
-    }
-
-    /**
-     * Sets the received expression as the latest parsed expression.
-     * 
-     * @param expression
-     *            expression to set as the latest parsed expression
-     */
-    private final void
-            setLatestExpression(final DiceNotationExpression expression) {
-        // Adds to the operands stack
-        getOperandsStack().push(expression);
     }
 
 }
