@@ -46,6 +46,16 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * It contains a stack which stores the operands as they are parsed, this way
  * any operation, such as an addition, can acquire the latest operands, which
  * will be the ones it will employ.
+ * <p>
+ * The way this works is simple:
+ * <p>
+ * <ul>
+ * <li>Numbers are parsed into {@code IntegerOperand} and stored in the
+ * stack</li>
+ * <li>Dice are parsed into {@code DiceOperand} and stored in the stack</li>
+ * <li>Binary operations take the last two values from the stack, get parsed
+ * into a {@code BinaryOperation} and then are stored int the stack</li>
+ * </ul>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -113,6 +123,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     /**
      * Creates a binary operation from the parsed context data.
+     * <p>
+     * This method will take the two last operands from the stack, and use them
+     * to create the binary operation.
      * 
      * @param ctx
      *            parsed context
