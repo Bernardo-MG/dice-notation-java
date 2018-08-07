@@ -73,10 +73,10 @@ public final class RollerTransformer
             processBinary(final DiceNotationExpression operation) {
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        BiFunction<Integer, Integer, Integer> func;
         final Integer leftValue;
         final Integer rightValue;
         final Integer value;
+        final BiFunction<Integer, Integer, Integer> func;
 
         // Operates in inorder
         // - Go through left nodes while they are binary
