@@ -14,26 +14,9 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.notation.operand;
-
-import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-
 /**
- * Operand for using {@link Dice} instances along dice notation model classes.
- * <p>
- * The value from a dice operand is meant to be random, and it should not be
- * expected to be the same each time it is acquired.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Dice notation expression visitors. These allow getting content from the
+ * expression trees.
  */
-public interface DiceOperand extends DiceNotationExpression {
 
-    /**
-     * Returns the operand dice.
-     * 
-     * @return the operand dice
-     */
-    public Dice getDice();
-
-}
+package com.bernardomg.tabletop.dice.notation.transformer;

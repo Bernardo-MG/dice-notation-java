@@ -25,7 +25,6 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceOperand}.
@@ -54,9 +53,9 @@ public class TestDefaultDiceOperand {
         Mockito.when(dice.getQuantity()).thenReturn(2);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
+        diceOperand = new DefaultDiceOperand(dice);
 
-        Assertions.assertEquals(diceOperand.getExpression(), "2d6");
+        Assertions.assertEquals("2d6", diceOperand.getExpression());
     }
 
 }

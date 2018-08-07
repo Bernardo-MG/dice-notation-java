@@ -14,7 +14,9 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser;
+package com.bernardomg.tabletop.dice.test.integration.transformer;
+
+import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,23 +25,53 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
+import com.bernardomg.tabletop.dice.notation.transformer.DiceSetsTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.google.common.collect.Iterables;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses dice notation expressions for single dice groups.
+ * Integration Verifies for {@code DefaultDiceNotationExpressionParser},
+ * checking that it parses dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserDice {
+public final class ITDefaultDiceSetsTransformerParser {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserDice() {
+    public ITDefaultDiceSetsTransformerParser() {
         super();
+    }
+
+    /**
+     * Verifies that complex expressions are parsed, returning all the dice set.
+     */
+    @Test
+    public final void testParse_Complex_ReturnsAll() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d20-5+2d6");
+
+        sets = new DiceSetsTransformer().transform(parsed);
+
+        Assertions.assertEquals(2, Iterables.size(sets));
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -52,14 +84,43 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final Dice dice;                     // Resulting dice
 
         parsed = new DefaultDiceNotationExpressionParser()
-                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE).getRoot();
+                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
                 dice.getQuantity());
         Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
                 dice.getSides());
+    }
+
+    /**
+     * Verifies that multiple dice are parsed, returning all.
+     */
+    @Test
+    public final void testParse_Multiple_ReturnsAll() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d20+2d6");
+
+        sets = new DiceSetsTransformer().transform(parsed);
+
+        Assertions.assertEquals(2, Iterables.size(sets));
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
@@ -71,10 +132,9 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1")
-                .getRoot();
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(1), dice.getSides());
@@ -88,10 +148,9 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d6")
-                .getRoot();
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
@@ -105,10 +164,9 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1D6")
-                .getRoot();
+        parsed = new DefaultDiceNotationExpressionParser().parse("1D6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
@@ -122,10 +180,9 @@ public final class ITDefaultDiceNotationExpressionParserDice {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("0d6")
-                .getRoot();
+        parsed = new DefaultDiceNotationExpressionParser().parse("0d6");
 
-        dice = ((DiceOperand) parsed).getDice();
+        dice = new DiceSetsTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(0), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());

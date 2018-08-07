@@ -39,14 +39,4 @@ public interface DiceNotationExpression {
      */
     public String getExpression();
 
-    /**
-     * Returns the integer value of the expression.
-     * <p>
-     * As the dice notation expressions are meant to generate random values, the
-     * result of this methods may be different each time it is acquired.
-     * 
-     * @return the integer value of the expression
-     */
-    public Integer getValue();
-
 }

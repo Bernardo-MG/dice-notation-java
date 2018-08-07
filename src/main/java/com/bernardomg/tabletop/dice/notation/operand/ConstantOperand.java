@@ -16,24 +16,15 @@
 
 package com.bernardomg.tabletop.dice.notation.operand;
 
-import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
-/**
- * Operand for using {@link Dice} instances along dice notation model classes.
- * <p>
- * The value from a dice operand is meant to be random, and it should not be
- * expected to be the same each time it is acquired.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-public interface DiceOperand extends DiceNotationExpression {
+public interface ConstantOperand extends DiceNotationExpression {
 
     /**
-     * Returns the operand dice.
+     * Returns the constant value of the operand.
      * 
-     * @return the operand dice
+     * @return the constant value
      */
-    public Dice getDice();
+    public Integer getValue();
 
 }
