@@ -9,23 +9,23 @@ To parse generic dice notation, including algebraic operations use this:
 
 ```java
 final DiceNotationExpressionParser parser;
-final DiceNotationExpression parsed;
+final TransformableDiceNotationExpression parsed;
 
 parser = new DefaultDiceNotationExpressionParser();
 
 parsed = parser.parse("1d6+12");
 
-System.out.println(parsed.getValue());
+System.out.println(parsed.roll());
 ```
 
-The 'getValue' will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
+The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
 
-## Parsing A Single Dice Set
+## Getting the Dice Set
 
-If you need to parse a single dice:
+If you need to get the dice from the expression:
 
 ```java
-final DiceNotationExpression parsed;
+final TransformableDiceNotationExpression parsed;
 final Dice dice;
 
 parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
@@ -34,13 +34,9 @@ dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 
 System.out.println(dice.getQuantity());
 System.out.println(dice.getSides());
-
-System.out.println(parsed.getValue());
 ```
 
-This will print the number of dice (1) and the number of sides (2). Just like the previous example it can be rolled by calling the 'getValue' method.
-
-It will return only the last dice set parsed, and ignore algebraic operations.
+This will print the number of dice (1) and the number of sides (6).
 
 ## Changing Random Number Generation on Parsed Dice
 
