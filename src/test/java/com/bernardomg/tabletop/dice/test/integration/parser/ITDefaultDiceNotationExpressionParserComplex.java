@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
      * Verifies that a complex operation is parsed correctly.
      */
     @Test
-    public final void testParse_Complex() {
+    public final void testParse_Complex_Structure() {
         final SubtractionOperation operationFirst;
         final AdditionOperation operationSecond;
         final IntegerOperand integer;
