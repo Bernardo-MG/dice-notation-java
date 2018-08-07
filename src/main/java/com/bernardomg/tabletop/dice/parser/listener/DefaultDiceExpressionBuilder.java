@@ -57,6 +57,9 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * <li>Binary operations take the last two values from the stack, get parsed
  * into a {@code BinaryOperation} and then are stored int the stack</li>
  * </ul>
+ * <p>
+ * The stack is also used to find the root, which will be the last value added
+ * into it.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -80,14 +83,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * operands being added together.
      */
     private final Stack<DiceNotationExpression> operandsStack        = new Stack<>();
-
-    /**
-     * Root of the tree of dice notation model objects.
-     * <p>
-     * This will be updated as the tree is generated, and will be the final
-     * value returned by the builder.
-     */
-    private DiceNotationExpression              root;
 
     /**
      * Default constructor.
@@ -119,7 +114,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     @Override
     public final DiceNotationExpression getDiceExpressionRoot() {
-        return root;
+        // The last value added to the stack will be the root
+        return getOperandsStack().peek();
     }
 
     /**
@@ -209,17 +205,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     /**
-     * Sets the root for the tree of dice notation model objects.
-     * 
-     * @param expression
-     *            the expression to set as the root
-     */
-    private final void
-            setDiceExpressionRoot(final DiceNotationExpression expression) {
-        root = expression;
-    }
-
-    /**
      * Sets the received expression as the latest parsed expression.
      * 
      * @param expression
@@ -229,9 +214,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             setLatestExpression(final DiceNotationExpression expression) {
         // Adds to the operands stack
         getOperandsStack().push(expression);
-
-        // Sets as the root
-        setDiceExpressionRoot(getOperandsStack().peek());
     }
 
 }
