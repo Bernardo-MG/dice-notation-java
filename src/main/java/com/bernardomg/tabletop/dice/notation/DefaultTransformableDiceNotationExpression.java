@@ -7,17 +7,14 @@ import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
 import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
-public final class DefaultDiceNotationExpressionRoot
-        implements DiceNotationExpressionRoot {
+public final class DefaultTransformableDiceNotationExpression
+        implements TransformableDiceNotationExpression {
 
-    /**
-     * TODO: This should exist only in the root node.
-     */
     private final DiceNotationTransformer<Integer> rollerTransformer;
 
     private final DiceNotationExpression           root;
 
-    public DefaultDiceNotationExpressionRoot(
+    public DefaultTransformableDiceNotationExpression(
             final DiceNotationExpression expression) {
         super();
 
@@ -26,7 +23,7 @@ public final class DefaultDiceNotationExpressionRoot
         rollerTransformer = new RollerTransformer();
     }
 
-    public DefaultDiceNotationExpressionRoot(
+    public DefaultTransformableDiceNotationExpression(
             final DiceNotationExpression expression, final Roller roller) {
         super();
 

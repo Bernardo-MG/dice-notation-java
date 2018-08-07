@@ -25,9 +25,9 @@ import org.antlr.v4.runtime.TokenStream;
 
 import com.bernardomg.tabletop.dice.generated.DiceNotationLexer;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser;
-import com.bernardomg.tabletop.dice.notation.DefaultDiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.DefaultTransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
@@ -120,7 +120,7 @@ public final class DefaultDiceNotationExpressionParser
     }
 
     @Override
-    public final DiceNotationExpressionRoot parse(final String expression) {
+    public final TransformableDiceNotationExpression parse(final String expression) {
         final DiceNotationParser parser;   // ANTLR parser
         final DiceNotationExpression root; // Root expression
 
@@ -139,7 +139,7 @@ public final class DefaultDiceNotationExpressionParser
         root = getDiceExpressionBuilder().getDiceExpressionRoot();
 
         // Returns the tree root node
-        return new DefaultDiceNotationExpressionRoot(root, roller);
+        return new DefaultTransformableDiceNotationExpression(root, roller);
     }
 
     /**

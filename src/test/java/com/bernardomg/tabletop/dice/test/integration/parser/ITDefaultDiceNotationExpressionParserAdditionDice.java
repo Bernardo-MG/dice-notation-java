@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
@@ -74,7 +74,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     @Test
     public final void testParse_Add_Dice_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "1d1+2d1";
 
@@ -113,7 +113,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     @Test
     public final void testParse_Add_LeftNumber_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "5+2d1";
 
@@ -152,7 +152,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     @Test
     public final void testParse_Add_RightNumber_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "2d1+5";
 

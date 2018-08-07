@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.function.BiFunction;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -53,9 +53,9 @@ public final class RollerTransformer
         final Integer result;
         // TODO: Avoid casting
 
-        if (expression instanceof DiceNotationExpressionRoot) {
+        if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
-                    ((DiceNotationExpressionRoot) expression).getRoot());
+                    ((TransformableDiceNotationExpression) expression).getRoot());
         } else if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof ConstantOperand) {

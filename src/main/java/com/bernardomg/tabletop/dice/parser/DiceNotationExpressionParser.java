@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.parser;
 
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 
 /**
  * Transforms a dice notation expression, received as a string, into the dice
@@ -36,6 +36,6 @@ public interface DiceNotationExpressionParser {
      *            the expression to parse
      * @return a dice notation expression object
      */
-    public DiceNotationExpressionRoot parse(final String expression);
+    public TransformableDiceNotationExpression parse(final String expression);
 
 }

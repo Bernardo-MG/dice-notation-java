@@ -130,7 +130,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         left = getOperandsStack().pop();
 
         // Acquires operator
-        // TODO: Handle the collection correctly
         operator = ctx.OPERATOR().getText();
 
         // Checks which kind of operation this is and creates it

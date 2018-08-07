@@ -22,7 +22,7 @@ import java.util.Collections;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
@@ -61,9 +61,9 @@ public final class DiceSetsTransformer
         final Iterable<Dice> result;
         // TODO: Avoid casting
 
-        if (expression instanceof DiceNotationExpressionRoot) {
+        if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
-                    ((DiceNotationExpressionRoot) expression).getRoot());
+                    ((TransformableDiceNotationExpression) expression).getRoot());
         } else if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression, accumulated);
         } else if (expression instanceof DiceOperand) {

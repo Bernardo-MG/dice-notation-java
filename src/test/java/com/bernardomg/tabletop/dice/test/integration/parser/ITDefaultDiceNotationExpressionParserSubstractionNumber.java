@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
@@ -78,7 +78,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
     @Test
     public final void testParse_Number_Sub_Long_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "1-2-3";
 
@@ -133,7 +133,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
     @Test
     public final void testParse_Number_Sub_Longer_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "1-2-3-4-5";
 
@@ -169,7 +169,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
     @Test
     public final void testParse_Number_Sub_Value() {
         final String notation;                 // Input to parse
-        final DiceNotationExpressionRoot root; // Parsed operation
+        final TransformableDiceNotationExpression root; // Parsed operation
 
         notation = "1-2";
 
