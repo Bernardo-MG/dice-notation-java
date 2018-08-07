@@ -222,15 +222,15 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <antlr.version>4.7.1</antlr.version>
-      <guava.version>25.1-jre</guava.version>
+      <guava.version>26.0-jre</guava.version>
       <junit.jupiter.version>5.2.0</junit.jupiter.version>
       <junit.platform.version>1.2.0</junit.platform.version>
-      <mockito.version>2.20.1</mockito.version>
-      <log4j.version>2.11.0</log4j.version>
+      <mockito.version>2.21.0</mockito.version>
+      <log4j.version>2.11.1</log4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.antlr.version>4.7</plugin.antlr.version>
+      <plugin.antlr.version>4.7.1</plugin.antlr.version>
       <plugin.antlr.test.version>1.9</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
