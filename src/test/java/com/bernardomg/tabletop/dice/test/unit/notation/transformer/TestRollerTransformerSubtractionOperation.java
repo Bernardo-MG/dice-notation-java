@@ -65,32 +65,6 @@ public final class TestRollerTransformerSubtractionOperation {
 
     /**
      * Verifies that the value is generated correctly when the values are
-     * grouped on the right side.
-     */
-    @Test
-    public final void testValue_SubtractGrouped() {
-        final BinaryOperation grouped;      // Tested operation
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
-
-        value = new IntegerOperand(1);
-
-        left = new IntegerOperand(2);
-        right = new IntegerOperand(3);
-
-        grouped = new AdditionOperation(left, right);
-
-        // 1 - (2 + 3)
-        operation = new SubtractionOperation(value, grouped);
-
-        Assertions.assertEquals(new Integer(-4),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that the value is generated correctly when the values are
      * grouped negative results.
      */
     @Test
@@ -117,6 +91,32 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(groupeda, groupedb);
 
         Assertions.assertEquals(new Integer(0),
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
+     * Verifies that the value is generated correctly when the values are
+     * grouped on the right side.
+     */
+    @Test
+    public final void testValue_SubtractGrouped() {
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final DiceNotationExpression value; // Right operand
+
+        value = new IntegerOperand(1);
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(3);
+
+        grouped = new AdditionOperation(left, right);
+
+        // 1 - (2 + 3)
+        operation = new SubtractionOperation(value, grouped);
+
+        Assertions.assertEquals(new Integer(-4),
                 new RollerTransformer().transform(operation));
     }
 

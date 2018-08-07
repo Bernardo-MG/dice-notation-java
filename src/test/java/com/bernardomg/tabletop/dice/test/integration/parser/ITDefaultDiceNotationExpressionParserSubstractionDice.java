@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_Dice() {
+    public final void testParse_Sub_Dice_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final DiceOperand diceLeft;           // Left parsed dice
@@ -89,7 +89,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_LeftNumber() {
+    public final void testParse_Sub_LeftNumber_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final IntegerOperand integer;         // Integer operand
@@ -130,7 +130,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      * Verifies that a subtraction with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_RightNumber() {
+    public final void testParse_Sub_RightNumber_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final IntegerOperand integer;         // Integer operand

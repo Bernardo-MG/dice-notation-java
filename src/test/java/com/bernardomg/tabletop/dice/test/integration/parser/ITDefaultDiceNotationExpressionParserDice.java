@@ -67,7 +67,7 @@ public final class ITDefaultDiceNotationExpressionParserDice {
      * parsed.
      */
     @Test
-    public final void testParse_OnesDice_Simple() {
+    public final void testParse_OnesDice() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 

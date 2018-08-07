@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
      * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Dice() {
+    public final void testParse_Add_Dice_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
         final DiceOperand diceLeft;        // Left parsed dice
@@ -89,7 +89,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
      * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_LeftNumber() {
+    public final void testParse_Add_LeftNumber_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
         final IntegerOperand integer;      // Parsed integer
@@ -130,7 +130,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
      * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_RightNumber() {
+    public final void testParse_Add_RightNumber_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
         final IntegerOperand integer;      // Parsed integer
