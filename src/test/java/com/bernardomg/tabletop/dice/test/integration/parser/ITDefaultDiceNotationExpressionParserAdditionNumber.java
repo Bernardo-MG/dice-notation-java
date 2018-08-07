@@ -21,9 +21,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -50,22 +51,25 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
     public final void testParse_Number_Add_Long_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation right;     // Parsed right set
+        AdditionOperation add;
+        IntegerOperand number;
 
         notation = "1+2+3";
 
+        // ((1+2)+3)
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        Assertions.assertEquals(
-                new RollerTransformer().transform(operation.getLeft()),
-                (Integer) 1);
+        number = (IntegerOperand) operation.getRight();
+        Assertions.assertEquals((Integer) 3, number.getValue());
 
-        right = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(right.getLeft()));
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(right.getRight()));
+        add = (AdditionOperation) operation.getLeft();
+
+        number = (IntegerOperand) add.getRight();
+        Assertions.assertEquals((Integer) 2, number.getValue());
+
+        number = (IntegerOperand) add.getLeft();
+        Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
     /**
@@ -74,16 +78,14 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
      */
     @Test
     public final void testParse_Number_Add_Long_Value() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "1+2+3";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 6,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 6, root.roll());
     }
 
     /**
@@ -94,26 +96,35 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
     public final void testParse_Number_Add_Longer_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        BinaryOperation value;
+        AdditionOperation add;
+        IntegerOperand number;
 
         notation = "1+2+3+4+5";
 
+        // ((((1+2)+3)+4)+5)
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        value = (BinaryOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(value.getLeft()));
+        number = (IntegerOperand) operation.getRight();
+        Assertions.assertEquals((Integer) 5, number.getValue());
 
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(value.getLeft()));
+        add = (AdditionOperation) operation.getLeft();
 
-        value = (BinaryOperation) value.getRight();
-        Assertions.assertEquals((Integer) 4,
-                new RollerTransformer().transform(value.getLeft()));
-        Assertions.assertEquals((Integer) 5,
-                new RollerTransformer().transform(value.getRight()));
+        number = (IntegerOperand) add.getRight();
+        Assertions.assertEquals((Integer) 4, number.getValue());
+
+        add = (AdditionOperation) add.getLeft();
+
+        number = (IntegerOperand) add.getRight();
+        Assertions.assertEquals((Integer) 3, number.getValue());
+
+        add = (AdditionOperation) add.getLeft();
+
+        number = (IntegerOperand) add.getRight();
+        Assertions.assertEquals((Integer) 2, number.getValue());
+
+        number = (IntegerOperand) add.getLeft();
+        Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
     /**
@@ -122,16 +133,14 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
      */
     @Test
     public final void testParse_Number_Add_Longer_Value() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "1+2+3+4+5";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 15,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 15, root.roll());
     }
 
     /**
@@ -141,16 +150,19 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
     public final void testParse_Number_Add_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
+        IntegerOperand number;
 
         notation = "1+2";
 
+        // (1+2)
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        Assertions.assertEquals((Integer) 1,
-                new RollerTransformer().transform(operation.getLeft()));
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(operation.getRight()));
+        number = (IntegerOperand) operation.getRight();
+        Assertions.assertEquals((Integer) 2, number.getValue());
+
+        number = (IntegerOperand) operation.getLeft();
+        Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
     /**
@@ -158,16 +170,14 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumber {
      */
     @Test
     public final void testParse_Number_Add_Value() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "1+2";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 3, root.roll());
     }
 
 }

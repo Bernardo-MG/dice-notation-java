@@ -63,6 +63,9 @@
          <action dev="bmg" type="add">
             Added interpreters to transform parsed expressions.
          </action>
+         <action dev="bmg" type="update">
+            Changed grammar to create a left-handed tree for binary operations.
+         </action>
          <action dev="bmg" type="fix">
             Fixed error when calculating long subtractions.
          </action>

@@ -5,6 +5,11 @@ import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
 
 public interface DiceNotationExpressionRoot extends DiceNotationExpression {
 
+    /**
+     * TODO: Change name
+     * 
+     * @return
+     */
     public DiceNotationExpression getRoot();
 
     public Integer roll();

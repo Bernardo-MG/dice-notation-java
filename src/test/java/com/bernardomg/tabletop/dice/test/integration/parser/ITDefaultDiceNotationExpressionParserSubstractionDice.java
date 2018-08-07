@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -73,16 +73,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_Dice_Value() {
-        final String notation;                // Input to parse
-        final SubtractionOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "1d1-2d1";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-1),
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) (-1), root.roll());
     }
 
     /**
@@ -114,16 +112,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_LeftNumber_Value() {
-        final String notation;                // Input to parse
-        final SubtractionOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "5-2d1";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 3, root.roll());
     }
 
     /**
@@ -155,16 +151,14 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
      */
     @Test
     public final void testParse_Sub_RightNumber_Value() {
-        final String notation;                // Input to parse
-        final SubtractionOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "2d1-5";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-3),
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) (-3), root.roll());
     }
 
 }

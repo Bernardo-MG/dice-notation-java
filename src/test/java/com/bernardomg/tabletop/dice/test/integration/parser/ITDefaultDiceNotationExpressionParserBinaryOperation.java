@@ -21,10 +21,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpressionRoot;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -51,21 +52,25 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_AddAndSub_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation value;     // Parsed right operation
+        final AdditionOperation add;
+        IntegerOperand number;
 
         notation = "1+2-3";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        // ((1+2)-3)
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        Assertions.assertEquals((Integer) 1,
-                new RollerTransformer().transform(operation.getLeft()));
+        number = (IntegerOperand) operation.getRight();
+        Assertions.assertEquals((Integer) 3, number.getValue());
 
-        value = (SubtractionOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(value.getLeft()));
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(value.getRight()));
+        add = (AdditionOperation) operation.getLeft();
+
+        number = (IntegerOperand) add.getRight();
+        Assertions.assertEquals((Integer) 2, number.getValue());
+
+        number = (IntegerOperand) add.getLeft();
+        Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
     /**
@@ -74,16 +79,14 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
      */
     @Test
     public final void testParse_Number_AddAndSub_Value() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "1+2-3";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 0,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 0, root.roll());
     }
 
     /**
@@ -94,21 +97,25 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     public final void testParse_Number_SubAndAdd_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        final BinaryOperation value;     // Parsed right operation
+        SubtractionOperation sub;
+        IntegerOperand number;
 
         notation = "3-1+2";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+        // ((3-1)+2)
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        Assertions.assertEquals((Integer) 3,
-                new RollerTransformer().transform(operation.getLeft()));
+        number = (IntegerOperand) operation.getRight();
+        Assertions.assertEquals((Integer) 2, number.getValue());
 
-        value = (AdditionOperation) operation.getRight();
-        Assertions.assertEquals((Integer) 1,
-                new RollerTransformer().transform(value.getLeft()));
-        Assertions.assertEquals((Integer) 2,
-                new RollerTransformer().transform(value.getRight()));
+        sub = (SubtractionOperation) operation.getLeft();
+
+        number = (IntegerOperand) sub.getRight();
+        Assertions.assertEquals((Integer) 1, number.getValue());
+
+        number = (IntegerOperand) sub.getLeft();
+        Assertions.assertEquals((Integer) 3, number.getValue());
     }
 
     /**
@@ -117,16 +124,14 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
      */
     @Test
     public final void testParse_Number_SubAndAdd_Value() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String notation;                 // Input to parse
+        final DiceNotationExpressionRoot root; // Parsed operation
 
         notation = "3-1+2";
 
-        operation = (BinaryOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 4,
-                new RollerTransformer().transform(operation));
+        Assertions.assertEquals((Integer) 4, root.roll());
     }
 
 }

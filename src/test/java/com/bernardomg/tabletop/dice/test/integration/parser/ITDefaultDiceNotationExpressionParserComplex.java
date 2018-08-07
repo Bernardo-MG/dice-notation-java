@@ -48,8 +48,8 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
      */
     @Test
     public final void testParse_Complex_Structure() {
-        final SubtractionOperation operationFirst;
-        final AdditionOperation operationSecond;
+        final AdditionOperation operationFirst;
+        final SubtractionOperation operationSecond;
         final IntegerOperand integer;
         final DiceOperand leftDice;
         final DiceOperand rightDice;
@@ -57,22 +57,23 @@ public final class ITDefaultDiceNotationExpressionParserComplex {
 
         notation = "1d20-5+2d6";
 
-        operationFirst = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+        // ((1d20-5)+2d6)
+        operationFirst = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        leftDice = (DiceOperand) operationFirst.getLeft();
-        operationSecond = (AdditionOperation) operationFirst.getRight();
+        operationSecond = (SubtractionOperation) operationFirst.getLeft();
+        rightDice = (DiceOperand) operationFirst.getRight();
 
-        integer = (IntegerOperand) operationSecond.getLeft();
-        rightDice = (DiceOperand) operationSecond.getRight();
+        leftDice = (DiceOperand) operationSecond.getLeft();
+        integer = (IntegerOperand) operationSecond.getRight();
 
         // Leftmost dice was parsed correctly
-        Assertions.assertEquals((Integer) 1, leftDice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 20, leftDice.getDice().getSides());
-
-        // Rightmost dice was parsed correctly
         Assertions.assertEquals((Integer) 2, rightDice.getDice().getQuantity());
         Assertions.assertEquals((Integer) 6, rightDice.getDice().getSides());
+
+        // Rightmost dice was parsed correctly
+        Assertions.assertEquals((Integer) 1, leftDice.getDice().getQuantity());
+        Assertions.assertEquals((Integer) 20, leftDice.getDice().getSides());
 
         // Integer value was parsed correctly
         Assertions.assertEquals((Integer) 5, integer.getValue());
