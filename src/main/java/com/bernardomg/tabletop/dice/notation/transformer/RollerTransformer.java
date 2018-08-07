@@ -39,8 +39,6 @@ public final class RollerTransformer
     public RollerTransformer() {
         super();
 
-        // TODO: Is it using the accumulator?
-
         diceRoller = new DefaultRoller();
     }
 
@@ -52,11 +50,27 @@ public final class RollerTransformer
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
-        return transform(expression, 0);
+        final Integer result;
+        // TODO: Avoid casting
+
+        if (expression instanceof DiceNotationExpressionRoot) {
+            result = transform(
+                    ((DiceNotationExpressionRoot) expression).getRoot());
+        } else if (expression instanceof BinaryOperation) {
+            result = transform((BinaryOperation) expression);
+        } else if (expression instanceof ConstantOperand) {
+            result = transform((ConstantOperand) expression);
+        } else if (expression instanceof DiceOperand) {
+            result = transform((DiceOperand) expression);
+        } else {
+            result = 0;
+        }
+
+        return result;
     }
 
-    private final Integer processBinary(final DiceNotationExpression operation,
-            final Integer accumulated) {
+    private final Integer
+            processBinary(final DiceNotationExpression operation) {
         final DiceNotationExpression left;
         final DiceNotationExpression right;
         BiFunction<Integer, Integer, Integer> func;
@@ -76,62 +90,38 @@ public final class RollerTransformer
             func = ((BinaryOperation) operation).getOperation();
 
             if (left instanceof BinaryOperation) {
-                leftValue = processBinary(left, accumulated);
+                leftValue = processBinary(left);
             } else {
-                leftValue = transform(left, accumulated);
+                leftValue = transform(left);
             }
 
             if (right instanceof BinaryOperation) {
-                rightValue = processBinary(right, accumulated);
+                rightValue = processBinary(right);
             } else {
-                rightValue = transform(right, accumulated);
+                rightValue = transform(right);
             }
 
             value = func.apply(leftValue, rightValue);
         } else {
-            value = transform(operation, accumulated);
+            value = transform(operation);
         }
 
         return value;
     }
 
-    private final Integer transform(final BinaryOperation operation,
-            final Integer accumulated) {
+    private final Integer transform(final BinaryOperation operation) {
         Integer result;
 
-        result = processBinary(operation, accumulated);
+        result = processBinary(operation);
 
-        return accumulated + result;
+        return result;
     }
 
-    private final Integer transform(final ConstantOperand operand,
-            final Integer accumulated) {
+    private final Integer transform(final ConstantOperand operand) {
         return operand.getValue();
     }
 
-    private final Integer transform(final DiceNotationExpression expression,
-            final Integer accumulated) {
-        final Integer result;
-        // TODO: Avoid casting
-
-        if (expression instanceof DiceNotationExpressionRoot) {
-            result = transform(
-                    ((DiceNotationExpressionRoot) expression).getRoot());
-        } else if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression, accumulated);
-        } else if (expression instanceof ConstantOperand) {
-            result = transform((ConstantOperand) expression, accumulated);
-        } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression, accumulated);
-        } else {
-            result = accumulated;
-        }
-
-        return accumulated + result;
-    }
-
-    private final Integer transform(final DiceOperand operand,
-            final Integer accumulated) {
+    private final Integer transform(final DiceOperand operand) {
         final Iterable<Integer> rolls;
         Integer total;
 
@@ -142,7 +132,7 @@ public final class RollerTransformer
             total += roll;
         }
 
-        return accumulated + total;
+        return total;
     }
 
 }
