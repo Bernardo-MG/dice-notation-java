@@ -18,6 +18,11 @@ package com.bernardomg.tabletop.dice.notation.operand;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
+/**
+ * Operand for a constant value.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public interface ConstantOperand extends DiceNotationExpression {
 
     /**

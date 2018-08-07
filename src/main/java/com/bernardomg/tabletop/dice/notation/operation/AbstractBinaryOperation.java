@@ -24,6 +24,11 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
+/**
+ * Abstract class for binary operations, containing all the common fields.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public abstract class AbstractBinaryOperation implements BinaryOperation {
 
     /**

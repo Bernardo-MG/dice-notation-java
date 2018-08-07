@@ -52,6 +52,8 @@ public interface TransformableDiceNotationExpression
      * <p>
      * This allows acquiring custom data from the expression tree.
      * 
+     * @param <V>
+     *            type to transform into
      * @param interpreter
      *            contains the logic to transform the expression
      * @return transformed result

@@ -58,6 +58,12 @@ public final class DefaultDiceNotationExpressionParser
      */
     private final DiceExpressionBuilder expressionBuilder;
 
+    /**
+     * Roller for generating random values.
+     * <p>
+     * This will be used by the generated
+     * {@code DefaultTransformableDiceNotationExpression}.
+     */
     private final Roller                roller;
 
     /**
@@ -140,7 +146,8 @@ public final class DefaultDiceNotationExpressionParser
         root = getDiceExpressionBuilder().getDiceExpressionRoot();
 
         // Returns the tree root node
-        return new DefaultTransformableDiceNotationExpression(root, roller);
+        return new DefaultTransformableDiceNotationExpression(root,
+                getRoller());
     }
 
     /**
@@ -176,6 +183,15 @@ public final class DefaultDiceNotationExpressionParser
      */
     private final DiceExpressionBuilder getDiceExpressionBuilder() {
         return expressionBuilder;
+    }
+
+    /**
+     * Roller for generating random values.
+     * 
+     * @return the roller
+     */
+    private final Roller getRoller() {
+        return roller;
     }
 
 }

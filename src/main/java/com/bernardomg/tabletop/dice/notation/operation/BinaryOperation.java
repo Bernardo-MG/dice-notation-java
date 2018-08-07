@@ -41,6 +41,11 @@ public interface BinaryOperation extends DiceNotationExpression {
      */
     public DiceNotationExpression getLeft();
 
+    /**
+     * Returns the operation to apply.
+     * 
+     * @return the operation
+     */
     public BiFunction<Integer, Integer, Integer> getOperation();
 
     /**
