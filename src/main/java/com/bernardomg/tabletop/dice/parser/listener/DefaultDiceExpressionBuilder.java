@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -166,13 +167,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * @return a dice operand
      */
     private final DiceOperand getDiceOperand(final DiceContext ctx) {
-        final Dice dice;        // Parsed dice
-        final Integer quantity; // Number of dice
-        final Integer sides;    // Number of sides
+        final Dice dice;                     // Parsed dice
+        final Integer quantity;              // Number of dice
+        final Integer sides;                 // Number of sides
+        final Iterator<TerminalNode> digits; // Parsed digits
 
         // Parses the dice data
-        quantity = Integer.parseInt(ctx.DIGIT(0).getText());
-        sides = Integer.parseInt(ctx.DIGIT(1).getText());
+        digits = ctx.DIGIT().iterator();
+        quantity = Integer.parseInt(digits.next().getText());
+        sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
