@@ -75,55 +75,6 @@ public final class ITDefaultDiceSetsTransformerParser {
     }
 
     /**
-     * Verifies that dice notation with the maximum integer values dice is
-     * parsed.
-     */
-    @Test
-    public final void testParse_Max() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
-
-        parsed = new DefaultDiceNotationExpressionParser()
-                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
-
-        dice = new DiceTransformer().transform(parsed).iterator().next();
-
-        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
-                dice.getQuantity());
-        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
-                dice.getSides());
-    }
-
-    /**
-     * Verifies that multiple dice are parsed, returning all.
-     */
-    @Test
-    public final void testParse_Two_ReturnsAll() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice> sets;           // Parsed dice sets
-        final Iterator<Dice> itr;            // Parsed dice sets
-        Dice dice;                           // Resulting dice
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d20+2d6");
-
-        sets = new DiceTransformer().transform(parsed);
-
-        Assertions.assertEquals(2, Iterables.size(sets));
-
-        itr = sets.iterator();
-
-        dice = itr.next();
-
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(20), dice.getSides());
-
-        dice = itr.next();
-
-        Assertions.assertEquals(new Integer(2), dice.getQuantity());
-        Assertions.assertEquals(new Integer(6), dice.getSides());
-    }
-
-    /**
      * Verifies that multiple dice are parsed, returning all.
      */
     @Test
@@ -166,6 +117,26 @@ public final class ITDefaultDiceSetsTransformerParser {
 
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(8), dice.getSides());
+    }
+
+    /**
+     * Verifies that dice notation with the maximum integer values dice is
+     * parsed.
+     */
+    @Test
+    public final void testParse_Max() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser()
+                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+
+        dice = new DiceTransformer().transform(parsed).iterator().next();
+
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getQuantity());
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getSides());
     }
 
     /**
@@ -214,6 +185,35 @@ public final class ITDefaultDiceSetsTransformerParser {
         dice = new DiceTransformer().transform(parsed).iterator().next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that multiple dice are parsed, returning all.
+     */
+    @Test
+    public final void testParse_Two_ReturnsAll() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d20+2d6");
+
+        sets = new DiceTransformer().transform(parsed);
+
+        Assertions.assertEquals(2, Iterables.size(sets));
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 

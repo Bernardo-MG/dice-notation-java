@@ -66,6 +66,15 @@ public final class DiceTransformer
         return result;
     }
 
+    /**
+     * Transforms a binary operating into an {@code Iterable}. This will
+     * transform both sides of the operation, and then store the results into an
+     * {@code Iterable}.
+     * 
+     * @param operation
+     *            operation to transform
+     * @return an {@code Iterable} with the dice from the operation
+     */
     private final Iterable<Dice> transform(final BinaryOperation operation) {
         final Iterable<Dice> left;
         final Iterable<Dice> right;
@@ -73,6 +82,7 @@ public final class DiceTransformer
 
         left = transform(operation.getLeft());
         right = transform(operation.getRight());
+
         result = new ArrayList<>();
         Iterables.addAll(result, left);
         Iterables.addAll(result, right);
@@ -80,6 +90,14 @@ public final class DiceTransformer
         return result;
     }
 
+    /**
+     * Transforms a dice operand into an {@code Iterable}, by storing the
+     * contained dice into one.
+     * 
+     * @param operand
+     *            operand to transform
+     * @return an {@code Iterable} with the dice from the operand
+     */
     private final Iterable<Dice> transform(final DiceOperand operand) {
         return Arrays.asList(operand.getDice());
     }
