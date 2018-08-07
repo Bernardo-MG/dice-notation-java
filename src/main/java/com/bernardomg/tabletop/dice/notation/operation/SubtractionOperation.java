@@ -28,8 +28,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class SubtractionOperation extends AbstractBinaryOperation
-        implements BinaryOperation {
+public final class SubtractionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs a subtraction operation with the specified operands.

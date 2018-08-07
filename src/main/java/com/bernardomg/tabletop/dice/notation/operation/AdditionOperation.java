@@ -28,8 +28,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class AdditionOperation extends AbstractBinaryOperation
-        implements BinaryOperation {
+public final class AdditionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs an addition operation with the specified operands.
