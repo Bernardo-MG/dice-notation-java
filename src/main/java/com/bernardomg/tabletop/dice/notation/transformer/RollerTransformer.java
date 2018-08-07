@@ -28,6 +28,15 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
+/**
+ * Dice notation expression which simulates rolling said expression.
+ * <p>
+ * As some values, such as dice, represent random numbers the transformer may
+ * not return the same value each time it is executed for the same expression.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public final class RollerTransformer
         implements DiceNotationTransformer<Integer> {
 
@@ -36,12 +45,21 @@ public final class RollerTransformer
      */
     private final Roller diceRoller;
 
+    /**
+     * Default constructor.
+     */
     public RollerTransformer() {
         super();
 
         diceRoller = new DefaultRoller();
     }
 
+    /**
+     * Constructs a transformer using the received roller for simulating rolls.
+     * 
+     * @param roller
+     *            roller for simulating rolls
+     */
     public RollerTransformer(final Roller roller) {
         super();
 
@@ -55,7 +73,8 @@ public final class RollerTransformer
 
         if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
-                    ((TransformableDiceNotationExpression) expression).getRoot());
+                    ((TransformableDiceNotationExpression) expression)
+                            .getRoot());
         } else if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof ConstantOperand) {

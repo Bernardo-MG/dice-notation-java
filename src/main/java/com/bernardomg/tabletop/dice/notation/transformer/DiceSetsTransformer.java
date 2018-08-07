@@ -27,9 +27,19 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
 
+/**
+ * Dice notation expression which returns all the dice sets contained in the
+ * expression.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public final class DiceSetsTransformer
         implements DiceNotationTransformer<Iterable<Dice>> {
 
+    /**
+     * Default constructor.
+     */
     public DiceSetsTransformer() {
         super();
     }
@@ -63,7 +73,8 @@ public final class DiceSetsTransformer
 
         if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
-                    ((TransformableDiceNotationExpression) expression).getRoot());
+                    ((TransformableDiceNotationExpression) expression)
+                            .getRoot());
         } else if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression, accumulated);
         } else if (expression instanceof DiceOperand) {

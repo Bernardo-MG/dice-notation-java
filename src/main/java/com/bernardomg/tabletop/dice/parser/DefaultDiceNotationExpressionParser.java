@@ -120,7 +120,8 @@ public final class DefaultDiceNotationExpressionParser
     }
 
     @Override
-    public final TransformableDiceNotationExpression parse(final String expression) {
+    public final TransformableDiceNotationExpression
+            parse(final String expression) {
         final DiceNotationParser parser;   // ANTLR parser
         final DiceNotationExpression root; // Root expression
 

@@ -15,8 +15,8 @@
  */
 
 /**
- * Dice notation expression visitors. These allow getting content from the
- * expression trees.
+ * Dice notation expression transformers. These allow generating values from a
+ * expression tree, for example to simulate rolling it.
  */
 
 package com.bernardomg.tabletop.dice.notation.transformer;
