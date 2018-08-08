@@ -14,19 +14,17 @@ The [Dice][dice] interface represents its namesake.
 
 The [Roller][roller] generates random values from the dice classes. The default implemention of this interface, the [DefaultRoller][default_roller] makes use of a [NumberGenerator][number_generator] to actually take care of the random number generation concern.
 
-The way the default roller works is simple. It generates a random value between one and the number of sides for the dice, and repeats as many times as the quantity of dice it has received. Afterwards it returns the result.
-
-### Number generator
-
-![Number generator class diagram][number_generator-class_diagram]
-
-The number generators are meant to allow tweaking how the random values are generated. Most of the time just using the default implementation, the [RandomNumberGenerator][random_number_generator], which uses the Java Random class, is enough.
-
-## Rolling Dice
+### Rolling Dice
 
 ![Roller sequence diagram][roller-sequence_diagram]
 
-The DefaultRoller generates a random number for each dice received, returning all these values inside an Iterable.
+The default roller generates a random value between one and the number of sides for the dice, and repeats as many times as the quantity of dice it has received, returning all these values inside an Iterable.
+
+## Number generator
+
+![Number generator class diagram][number_generator-class_diagram]
+
+This allows customizing the random number generation used when simulating rolls. Most of the times the [RandomNumberGenerator][random_number_generator], which maeks use of the Java Random class, will handle the work neatly.
 
 [dice-class_diagram]: ./images/dice_class_diagram.png
 [number_generator-class_diagram]: ./images/number_generator_class_diagram.png
