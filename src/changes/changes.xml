@@ -59,7 +59,7 @@
             Removed relocation info.
          </action>
       </release>
-      <release version="1.3.0" date="2018-07-28" description="New parsers">
+      <release version="1.3.0" date="2018-08-08" description="New parsers">
          <action dev="bmg" type="add">
             Added interpreters to transform parsed expressions.
          </action>
