@@ -4,13 +4,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>500</y>
-      <w>460</w>
-      <h>100</h>
+      <x>240</x>
+      <y>280</y>
+      <w>330</w>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>template=E: DiceNotationExpression
-/DiceExpressionBuilder/
+    <panel_attributes>/DiceExpressionBuilder/
 bg=cyan
 --
 
@@ -21,8 +20,8 @@ bg=cyan
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>430</y>
+      <x>300</x>
+      <y>210</y>
       <w>200</w>
       <h>30</h>
     </coordinates>
@@ -35,24 +34,23 @@ bg=cyan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>450</y>
+      <x>390</x>
+      <y>230</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>670</y>
-      <w>410</w>
-      <h>100</h>
+      <x>240</x>
+      <y>400</y>
+      <w>330</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>template=DiceNotationExpression
-DefaultDiceExpressionBuilder
+    <panel_attributes>DefaultDiceExpressionBuilder
 bg=yellow
 --
 -operandsStack: Stack&lt;DiceNotationExpression&gt;
@@ -64,19 +62,19 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>590</y>
+      <x>390</x>
+      <y>340</y>
       <w>30</w>
-      <h>110</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1110</x>
-      <y>720</y>
+      <x>650</x>
+      <y>420</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -87,12 +85,12 @@ bg=cyan</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>720</y>
-      <w>210</w>
+      <x>560</x>
+      <y>420</y>
+      <w>110</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
 </diagram>
