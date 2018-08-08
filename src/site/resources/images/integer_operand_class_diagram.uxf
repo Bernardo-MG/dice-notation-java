@@ -4,24 +4,24 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>140</y>
+      <x>360</x>
+      <y>380</y>
       <w>180</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>/DiceNotationExpression/
+    <panel_attributes>/ConstantOperand/
 bg=cyan
 --
 
 --
-</panel_attributes>
+/+getValue(): Integer/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>260</y>
+      <x>360</x>
+      <y>500</y>
       <w>180</w>
       <h>70</h>
     </coordinates>
@@ -36,8 +36,32 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>200</y>
+      <x>440</x>
+      <y>440</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>300</y>
+      <w>180</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>/DiceNotationExpression/
+bg=cyan
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>320</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
