@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -44,7 +44,7 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Tests that rolling a dice with negative quantity throws an exception.
+     * Verifies that rolling a dice with negative quantity throws an exception.
      */
     @Test
     public final void testRoll_NegativeQuantity() {
@@ -60,20 +60,13 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
     /**
-     * Tests that rolling a dice with negative sides throws an exception.
+     * Verifies that rolling a dice with negative sides throws an exception.
      */
     @Test
     public final void testRoll_NegativeSides() {
@@ -89,20 +82,13 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }
 
     /**
-     * Tests that rolling a dice with 0 as sides throws an exception.
+     * Verifies that rolling a dice with 0 as sides throws an exception.
      */
     @Test
     public final void testRoll_NoSides() {
@@ -118,14 +104,7 @@ public final class TestExceptionDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                roller.roll(dice);
-            }
-
-        };
+        closure = () -> roller.roll(dice);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }

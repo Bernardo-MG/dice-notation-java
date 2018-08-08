@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,11 +18,7 @@
  * Dice notation model.
  * <p>
  * The classes in this package allow creating a tree representing a dice
- * notation expression, which can be used to generate values, or to get back the
- * dice notation expression it represents.
- * <p>
- * As these expressions are used to handle the generation of random numbers, in
- * some cases the generated value may be different each time it is acquired.
+ * notation expression.
  * <p>
  * It is not recommended using the classes in this package manually. Instead a
  * parser from the {@link com.bernardomg.tabletop.dice.parser parser} package

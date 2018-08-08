@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -42,7 +42,7 @@ public final class TestExceptionRandomNumberGenerator {
     }
 
     /**
-     * Tests that generating a value for a negative max throws an exception.
+     * Verifies that generating a value for a negative max throws an exception.
      */
     @Test
     public final void testGenerate_NegativeMax() {
@@ -51,14 +51,7 @@ public final class TestExceptionRandomNumberGenerator {
 
         generator = new RandomNumberGenerator();
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                generator.generate(-1);
-            }
-
-        };
+        closure = () -> generator.generate(-1);
 
         Assertions.assertThrows(IllegalArgumentException.class, closure);
     }

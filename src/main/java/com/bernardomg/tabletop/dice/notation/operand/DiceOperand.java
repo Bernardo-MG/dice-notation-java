@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,10 +20,9 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Operand for using {@link Dice} instances along dice notation model classes.
+ * Operand for using {@link Dice} as value.
  * <p>
- * The value from a dice operand is meant to be random, and it should not be
- * expected to be the same each time it is acquired.
+ * Due to the nature of dice this will represent a random value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -35,16 +34,5 @@ public interface DiceOperand extends DiceNotationExpression {
      * @return the operand dice
      */
     public Dice getDice();
-
-    /**
-     * Returns the integer value of the operand.
-     * <p>
-     * As dice operands are meant to generate a random value, the returned value
-     * can change in consecutive calls.
-     * 
-     * @return the integer value of the expression
-     */
-    @Override
-    public Integer getValue();
 
 }

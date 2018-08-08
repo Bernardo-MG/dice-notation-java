@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -27,7 +28,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.generated.DiceNotationBaseListener;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.DiceContext;
-import com.bernardomg.tabletop.dice.generated.DiceNotationParser.FunctionContext;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParser.NumberContext;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
@@ -35,8 +36,6 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
-import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed
@@ -48,6 +47,19 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * It contains a stack which stores the operands as they are parsed, this way
  * any operation, such as an addition, can acquire the latest operands, which
  * will be the ones it will employ.
+ * <p>
+ * The way this works is simple:
+ * <p>
+ * <ul>
+ * <li>Numbers are parsed into {@code IntegerOperand} and stored in the
+ * stack</li>
+ * <li>Dice are parsed into {@code DiceOperand} and stored in the stack</li>
+ * <li>Binary operations take the last two values from the stack, get parsed
+ * into a {@code BinaryOperation} and then are stored into the stack</li>
+ * </ul>
+ * <p>
+ * The stack is also used to find the root, which will be the last value added
+ * into it.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -65,14 +77,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private static final String                 SUBTRACTION_OPERATOR = "-";
 
     /**
-     * Roller for the dice expressions.
-     * <p>
-     * This is used as a dependency on the dice expressions, which require a
-     * roller to generate their value.
-     */
-    private final Roller                        diceRoller;
-
-    /**
      * Stack to store operands from the outer nodes in an operation.
      * <p>
      * For example, when parsing an addition operation this stack will hold both
@@ -81,64 +85,56 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private final Stack<DiceNotationExpression> operandsStack        = new Stack<>();
 
     /**
-     * Root of the tree of dice notation model objects.
-     * <p>
-     * This will be updated as the tree is generated, and will be the final
-     * value returned by the builder.
-     */
-    private DiceNotationExpression              root;
-
-    /**
      * Default constructor.
-     * <p>
-     * It makes use of a {@link DefaultRoller}
      */
     public DefaultDiceExpressionBuilder() {
-        this(new DefaultRoller());
-    }
-
-    /**
-     * Constructs a builder with the specified roller.
-     * 
-     * @param roller
-     *            roller for the dice expressions
-     */
-    public DefaultDiceExpressionBuilder(final Roller roller) {
         super();
-
-        diceRoller = checkNotNull(roller, "Received a null pointer as roller");
     }
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getBinaryOperation(ctx));
+        expression = getBinaryOperation(ctx);
+
+        getOperandsStack().push(expression);
     }
 
     @Override
     public final void exitDice(final DiceContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        setLatestExpression(getDiceOperand(ctx));
+        expression = getDiceOperand(ctx);
+
+        getOperandsStack().push(expression);
     }
 
     @Override
-    public final void exitFunction(final FunctionContext ctx) {
+    public final void exitNumber(final NumberContext ctx) {
+        final DiceNotationExpression expression;
+
         checkNotNull(ctx, "Received a null pointer as context");
 
-        if (ctx.DIGIT() != null) {
-            setLatestExpression(getIntegerOperand(ctx.DIGIT()));
-        }
+        expression = getIntegerOperand(ctx.DIGIT());
+
+        getOperandsStack().push(expression);
     }
 
     @Override
     public final DiceNotationExpression getDiceExpressionRoot() {
-        return root;
+        // The last value added to the stack will be the root
+        return getOperandsStack().peek();
     }
 
     /**
      * Creates a binary operation from the parsed context data.
+     * <p>
+     * This method will take the two last operands from the stack, and use them
+     * to create the binary operation.
      * 
      * @param ctx
      *            parsed context
@@ -153,11 +149,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Acquired operands
         right = getOperandsStack().pop();
-        if (ctx.DIGIT() == null) {
-            left = getOperandsStack().pop();
-        } else {
-            left = getIntegerOperand(ctx.DIGIT());
-        }
+        left = getOperandsStack().pop();
 
         // Acquires operator
         operator = ctx.OPERATOR().getText();
@@ -183,18 +175,20 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * @return a dice operand
      */
     private final DiceOperand getDiceOperand(final DiceContext ctx) {
-        final Dice dice;        // Parsed dice
-        final Integer quantity; // Number of dice
-        final Integer sides;    // Number of sides
+        final Dice dice;                     // Parsed dice
+        final Integer quantity;              // Number of dice
+        final Integer sides;                 // Number of sides
+        final Iterator<TerminalNode> digits; // Parsed digits
 
         // Parses the dice data
-        quantity = Integer.parseInt(ctx.DIGIT(0).getText());
-        sides = Integer.parseInt(ctx.DIGIT(1).getText());
+        digits = ctx.DIGIT().iterator();
+        quantity = Integer.parseInt(digits.next().getText());
+        sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
 
-        return new DefaultDiceOperand(dice, getRoller());
+        return new DefaultDiceOperand(dice);
     }
 
     /**
@@ -220,41 +214,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      */
     private final Stack<DiceNotationExpression> getOperandsStack() {
         return operandsStack;
-    }
-
-    /**
-     * Returns the roller for the dice expressions.
-     * 
-     * @return the roller for the dice expressions
-     */
-    private final Roller getRoller() {
-        return diceRoller;
-    }
-
-    /**
-     * Sets the root for the tree of dice notation model objects.
-     * 
-     * @param expression
-     *            the expression to set as the root
-     */
-    private final void
-            setDiceExpressionRoot(final DiceNotationExpression expression) {
-        root = expression;
-    }
-
-    /**
-     * Sets the received expression as the latest parsed expression.
-     * 
-     * @param expression
-     *            expression to set as the latest parsed expression
-     */
-    private final void
-            setLatestExpression(final DiceNotationExpression expression) {
-        // Adds to the operands stack
-        getOperandsStack().push(expression);
-
-        // Sets as the root
-        setDiceExpressionRoot(getOperandsStack().peek());
     }
 
 }

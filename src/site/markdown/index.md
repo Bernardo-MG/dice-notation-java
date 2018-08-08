@@ -24,16 +24,17 @@ This is very useful when creating tools related to these games, but won't make m
 - Model for both the [dice notation][notation] and [dice groups][dice]
 - Classes for [generating random values][dice] from the dice
 - [Parser][parser] which generates model instances from the notation
+- Allows custom [random number generation][number_generator]
+
+## Usage example
+
+The project includes a model for dice and dice notation grammar. But the strong point are the parsers, which will create the model from a text string.
+
+For a concrete example of how to do this take a look at the [usage page][usage].
 
 ## ANTLR4 grammars
 
 The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
-
-## Usage example
-
-If needed it is possible using the dice model, or even the dice notation one. But the recommended way to handle dice notation with the library is by using the included parser.
-
-For a concrete example of how to do this take a look at the [usage page][usage].
 
 [antrl-grammars]: https://github.com/antlr/grammars-v4
 
@@ -43,3 +44,5 @@ For a concrete example of how to do this take a look at the [usage page][usage].
 [dice]: ./dice.html
 [notation]: ./notation.html
 [parser]: ./parser.html
+
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html

@@ -6,7 +6,9 @@ When a dice notation expression is parsed a tree is generated from it, this is c
 
 ![Dice notation expression class diagram][dice_notation_expression-class_diagram]
 
-[DiceNotationExpression][dice_notation_expression] instances compose the tree nodes. These are meant small pieces in a bigger expression, each of them will be linked to the next one, but not knowing the previous.
+The parsed tree is composed by instances of [DiceNotationExpression][dice_notation_expression]. Only the root returned by the parser changes, as it is a [TransformableDiceNotationExpression][transformable_dice_notation_expression], which allows acquiring values from the parse tree.
+
+These objects are meant to be small pieces in a bigger expression, each of them will be linked to the next one, but not knowing the previous.
 
 For example, the expression "2d6+1d20+5" would become something like this:
 
@@ -16,27 +18,27 @@ Were each node would be an implementation of the DiceNotationExpression interfac
 
 ## Operands
 
-The leaf nodes of the are composed by operands, which just store a value to be used by other components of the model.
+The leaf nodes of the are composed by operands. Each of them stores a value.
 
-They lack a common interface, and currently only two exist, the integer operand and the dice operand.
+They lack a common interface. There are two operands currently: the integer operand and the dice operand.
 
 ### Integer operand
 
 ![Integer operand class diagram][integer_operand-class_diagram]
 
-The [IntegerOperand][integer_operand] just stores an integer value for operations.
+The [IntegerOperand][integer_operand] stores an integer value.
 
 ### Dice operand
 
 ![Dice operand class diagram][dice_operand-class_diagram]
 
-The [DiceOperand][dice_operand] can generate a random value from a dice, which is needed to operate with it. The [DefaultDiceOperand][default_dice_operand] makes use of a [Roller][roller-doc] for it.
+The [DiceOperand][dice_operand] stores an dice set.
 
 ## Operations
 
 ![Binary operation class diagram][binary_operation-class_diagram]
 
-Only the most simple binary operations, addition and subtraction, are supported. The [BinaryOperation][binary_operation] interface represents them, while the [AdditionOperation][addition_operation] and [SubtractionOperation][subtraction_operation] are their implementations.
+Only the most simple binary operations, addition and subtraction, are supported. They are represented by the [BinaryOperation][binary_operation] interface, and implemented by [AdditionOperation][addition_operation] and [SubtractionOperation][subtraction_operation].
 
 [binary_operation-class_diagram]: ./images/binary_operation_class_diagram.png
 [dice_notation_expression-class_diagram]: ./images/dice_notation_class_diagram.png
@@ -45,13 +47,11 @@ Only the most simple binary operations, addition and subtraction, are supported.
 
 [dice_notation_expression-tree_example]: ./images/dice_notation_tree_example.png
 
-[roller-doc]: ./dice.html
-
 [dice_notation_expression]: ./apidocs/com/bernardomg/tabletop/dice/notation/DiceNotationExpression.html
+[transformable_dice_notation_expression]: ./apidocs/com/bernardomg/tabletop/dice/notation/TransformableDiceNotationExpression.html
 
 [integer_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/IntegerOperand.html
 [dice_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/DiceOperand.html
-[default_dice_operand]: ./apidocs/com/bernardomg/tabletop/dice/notation/operand/DefaultDiceOperand.html
 
 [binary_operation]: ./apidocs/com/bernardomg/tabletop/dice/notation/operation/BinaryOperation.html
 [addition_operation]: ./apidocs/com/bernardomg/tabletop/dice/notation/operation/AdditionOperation.html

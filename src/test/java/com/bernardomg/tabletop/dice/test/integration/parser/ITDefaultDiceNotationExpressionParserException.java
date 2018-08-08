@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,6 +22,8 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
  * that it throws exceptions when required.
@@ -29,8 +31,7 @@ import org.junit.runner.RunWith;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserException
-        extends AbstractITDefaultDiceNotationExpressionParser {
+public final class ITDefaultDiceNotationExpressionParserException {
 
     /**
      * Default constructor.
@@ -40,77 +41,49 @@ public final class ITDefaultDiceNotationExpressionParserException
     }
 
     /**
-     * Tests that an empty text throws an exception.
+     * Verifies that an empty text causes an exception.
      */
     @Test
     public final void testParse_Empty() {
         final Executable closure;
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                parse("");
-            }
-
-        };
+        closure = () -> new DefaultDiceNotationExpressionParser().parse("");
 
         Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
-     * Tests that an invalid text throws an exception.
+     * Verifies that an invalid text causes an exception.
      */
     @Test
     public final void testParse_Invalid() {
         final Executable closure;
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                parse("abc");
-            }
-
-        };
+        closure = () -> new DefaultDiceNotationExpressionParser().parse("abc");
 
         Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
-     * Tests that a negative value throws an exception.
+     * Verifies that a negative value causes an exception.
      */
     @Test
     public final void testParse_Negative() {
         final Executable closure;
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                parse("-1");
-            }
-
-        };
+        closure = () -> new DefaultDiceNotationExpressionParser().parse("-1");
 
         Assertions.assertThrows(Exception.class, closure);
     }
 
     /**
-     * Tests that dice notation with zero sides throws an exception.
+     * Verifies that dice notation with zero sides causes an exception.
      */
     @Test
     public final void testParse_ZeroSides() {
         final Executable closure;
 
-        closure = new Executable() {
-
-            @Override
-            public void execute() throws Throwable {
-                parse("1d0");
-            }
-
-        };
+        closure = () -> new DefaultDiceNotationExpressionParser().parse("1d0");
 
         Assertions.assertThrows(Exception.class, closure);
     }

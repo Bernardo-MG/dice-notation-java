@@ -35,28 +35,14 @@ bg=cyan</panel_attributes>
       <x>350</x>
       <y>310</y>
       <w>170</w>
-      <h>100</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>DefaultDiceOperand
 bg=yellow
 --
 
 --
-+getDice(): Dice
-+getExpression(): String
-+getValue(): Integer</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>590</x>
-      <y>330</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>/Roller/
-bg=cyan</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -85,7 +71,7 @@ bg=cyan</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>590</x>
-      <y>370</y>
+      <y>330</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -98,17 +84,6 @@ bg=cyan</panel_attributes>
     <coordinates>
       <x>510</x>
       <y>330</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>510</x>
-      <y>370</y>
       <w>100</w>
       <h>30</h>
     </coordinates>

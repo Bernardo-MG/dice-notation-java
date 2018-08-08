@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
@@ -32,8 +33,7 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserDice
-        extends AbstractITDefaultDiceNotationExpressionParser {
+public final class ITDefaultDiceNotationExpressionParserDice {
 
     /**
      * Default constructor.
@@ -43,86 +43,92 @@ public final class ITDefaultDiceNotationExpressionParserDice
     }
 
     /**
-     * Tests that dice notation with the maximum integer values dice is parsed.
+     * Verifies that dice notation with the maximum integer values dice is
+     * parsed.
      */
     @Test
     public final void testParse_Max() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+        parsed = new DefaultDiceNotationExpressionParser()
+                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE).getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(dice.getQuantity(),
-                new Integer(Integer.MAX_VALUE));
-        Assertions.assertEquals(dice.getSides(),
-                new Integer(Integer.MAX_VALUE));
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getQuantity());
+        Assertions.assertEquals(new Integer(Integer.MAX_VALUE),
+                dice.getSides());
     }
 
     /**
-     * Tests that dice notation with a single dice and a single side can be
+     * Verifies that dice notation with a single dice and a single side can be
      * parsed.
      */
     @Test
-    public final void testParse_OnesDice_Simple() {
+    public final void testParse_OnesDice() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = parse("1d1");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(1));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = parse("1d6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
-     * Tests that a simple dice notation can be parsed.
+     * Verifies that a simple dice notation can be parsed.
      */
     @Test
     public final void testParse_Simple_UpperCaseSeparator() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = parse("1D6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("1D6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(1));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
     /**
-     * Tests that dice notation with zero dice is parsed.
+     * Verifies that dice notation with zero dice is parsed.
      */
     @Test
     public final void testParse_ZeroQuantity() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = parse("0d6");
+        parsed = new DefaultDiceNotationExpressionParser().parse("0d6")
+                .getRoot();
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(dice.getQuantity(), new Integer(0));
-        Assertions.assertEquals(dice.getSides(), new Integer(6));
+        Assertions.assertEquals(new Integer(0), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
 }

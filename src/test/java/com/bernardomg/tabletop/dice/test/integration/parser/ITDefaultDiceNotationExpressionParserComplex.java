@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,6 +25,7 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
@@ -33,8 +34,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserComplex
-        extends AbstractITDefaultDiceNotationExpressionParser {
+public final class ITDefaultDiceNotationExpressionParserComplex {
 
     /**
      * Default constructor.
@@ -44,12 +44,12 @@ public final class ITDefaultDiceNotationExpressionParserComplex
     }
 
     /**
-     * Tests that a complex operation is parsed correctly.
+     * Verifies that a complex operation is parsed correctly.
      */
     @Test
-    public final void testParse_Complex() {
-        final SubtractionOperation operationFirst;
-        final AdditionOperation operationSecond;
+    public final void testParse_Complex_Structure() {
+        final AdditionOperation operationFirst;
+        final SubtractionOperation operationSecond;
         final IntegerOperand integer;
         final DiceOperand leftDice;
         final DiceOperand rightDice;
@@ -57,24 +57,26 @@ public final class ITDefaultDiceNotationExpressionParserComplex
 
         notation = "1d20-5+2d6";
 
-        operationFirst = (SubtractionOperation) parse(notation);
+        // ((1d20-5)+2d6)
+        operationFirst = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse(notation).getRoot();
 
-        leftDice = (DiceOperand) operationFirst.getLeft();
-        operationSecond = (AdditionOperation) operationFirst.getRight();
+        operationSecond = (SubtractionOperation) operationFirst.getLeft();
+        rightDice = (DiceOperand) operationFirst.getRight();
 
-        integer = (IntegerOperand) operationSecond.getLeft();
-        rightDice = (DiceOperand) operationSecond.getRight();
+        leftDice = (DiceOperand) operationSecond.getLeft();
+        integer = (IntegerOperand) operationSecond.getRight();
 
         // Leftmost dice was parsed correctly
-        Assertions.assertEquals(leftDice.getDice().getQuantity(), (Integer) 1);
-        Assertions.assertEquals(leftDice.getDice().getSides(), (Integer) 20);
+        Assertions.assertEquals((Integer) 2, rightDice.getDice().getQuantity());
+        Assertions.assertEquals((Integer) 6, rightDice.getDice().getSides());
 
         // Rightmost dice was parsed correctly
-        Assertions.assertEquals(rightDice.getDice().getQuantity(), (Integer) 2);
-        Assertions.assertEquals(rightDice.getDice().getSides(), (Integer) 6);
+        Assertions.assertEquals((Integer) 1, leftDice.getDice().getQuantity());
+        Assertions.assertEquals((Integer) 20, leftDice.getDice().getSides());
 
         // Integer value was parsed correctly
-        Assertions.assertEquals(integer.getValue(), (Integer) 5);
+        Assertions.assertEquals((Integer) 5, integer.getValue());
     }
 
 }

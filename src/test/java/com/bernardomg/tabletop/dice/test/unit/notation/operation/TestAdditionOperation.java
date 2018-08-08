@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
@@ -33,37 +33,17 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestTextAdditionOperation {
+public final class TestAdditionOperation {
 
     /**
      * Default constructor.
      */
-    public TestTextAdditionOperation() {
+    public TestAdditionOperation() {
         super();
     }
 
     /**
-     * Tests that the value is generated correctly.
-     */
-    @Test
-    public final void testgetValue() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.getValue()).thenReturn(1);
-
-        right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.getValue()).thenReturn(2);
-
-        operation = new AdditionOperation(left, right);
-
-        Assertions.assertEquals(operation.getValue(), new Integer(3));
-    }
-
-    /**
-     * Tests that the text expression is generated correctly.
+     * Verifies that the text expression is generated correctly.
      */
     @Test
     public final void testTextExpression() {
@@ -71,15 +51,12 @@ public final class TestTextAdditionOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 
-        left = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(left.getExpression()).thenReturn("1");
-
-        right = Mockito.mock(DiceNotationExpression.class);
-        Mockito.when(right.getExpression()).thenReturn("2");
+        left = new IntegerOperand(1);
+        right = new IntegerOperand(2);
 
         operation = new AdditionOperation(left, right);
 
-        Assertions.assertEquals(operation.getExpression(), "1+2");
+        Assertions.assertEquals("1+2", operation.getExpression());
     }
 
 }

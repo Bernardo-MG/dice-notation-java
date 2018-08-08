@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,7 +25,6 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 
 /**
  * Units tests for {@code DefaultDiceOperand}.
@@ -43,7 +42,7 @@ public class TestDefaultDiceOperand {
     }
 
     /**
-     * Tests that the text expression is generated correctly.
+     * Verifies that the text expression is generated correctly.
      */
     @Test
     public final void testTextExpression() {
@@ -54,9 +53,9 @@ public class TestDefaultDiceOperand {
         Mockito.when(dice.getQuantity()).thenReturn(2);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        diceOperand = new DefaultDiceOperand(dice, new DefaultRoller());
+        diceOperand = new DefaultDiceOperand(dice);
 
-        Assertions.assertEquals(diceOperand.getExpression(), "2d6");
+        Assertions.assertEquals("2d6", diceOperand.getExpression());
     }
 
 }

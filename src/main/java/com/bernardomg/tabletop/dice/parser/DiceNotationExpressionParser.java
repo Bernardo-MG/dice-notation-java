@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.parser;
 
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 
 /**
  * Transforms a dice notation expression, received as a string, into the dice
@@ -36,6 +36,6 @@ public interface DiceNotationExpressionParser {
      *            the expression to parse
      * @return a dice notation expression object
      */
-    public DiceNotationExpression parse(final String expression);
+    public TransformableDiceNotationExpression parse(final String expression);
 
 }

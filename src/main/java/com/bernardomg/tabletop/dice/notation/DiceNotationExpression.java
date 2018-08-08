@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,12 @@ package com.bernardomg.tabletop.dice.notation;
 /**
  * A dice notation expression.
  * <p>
- * Dice notation expressions are meant to generate a value. Note that this value
- * may be generated at random, and as such it can be different each time it is
- * acquired.
+ * This is the root interface for specifying a dice notation expression. Classes
+ * inheriting from this will represent the components for said expressions.
+ * <p>
+ * A
+ * {@link com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
+ * DiceNotationTransformer} can be used to get value from the expression.
  * <p>
  * It is also possible getting the string representation of the dice notation
  * expression it represents.
@@ -38,15 +41,5 @@ public interface DiceNotationExpression {
      * @return the expression as a string
      */
     public String getExpression();
-
-    /**
-     * Returns the integer value of the expression.
-     * <p>
-     * As the dice notation expressions are meant to generate random values, the
-     * result of this methods may be different each time it is acquired.
-     * 
-     * @return the integer value of the expression
-     */
-    public Integer getValue();
 
 }

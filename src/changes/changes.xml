@@ -59,5 +59,16 @@
             Removed relocation info.
          </action>
       </release>
+      <release version="1.3.0" date="2018-08-08" description="New parsers">
+         <action dev="bmg" type="add">
+            Added interpreters to transform parsed expressions.
+         </action>
+         <action dev="bmg" type="update">
+            Changed grammar to create a left-handed tree for binary operations.
+         </action>
+         <action dev="bmg" type="fix">
+            Fixed error when calculating long subtractions.
+         </action>
+      </release>
    </body>
 </document>
