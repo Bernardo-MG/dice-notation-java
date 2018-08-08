@@ -22,7 +22,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
- * Operand for using an integer value on a dice notation expression.
+ * Operand for an integer constant value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -31,18 +31,18 @@ public final class IntegerOperand implements ConstantOperand {
     /**
      * Operand value.
      */
-    private final Integer operandValue;
+    private final Integer value;
 
     /**
      * Constructs an operand with the specified value.
      * 
-     * @param value
+     * @param constant
      *            the operand value
      */
-    public IntegerOperand(final Integer value) {
+    public IntegerOperand(final Integer constant) {
         super();
 
-        operandValue = checkNotNull(value, "Received a null pointer as value");
+        value = checkNotNull(constant, "Received a null pointer as value");
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class IntegerOperand implements ConstantOperand {
 
         other = (IntegerOperand) obj;
 
-        return Objects.equal(operandValue, other.operandValue);
+        return Objects.equal(value, other.value);
     }
 
     @Override
@@ -71,25 +71,19 @@ public final class IntegerOperand implements ConstantOperand {
         return getValue().toString();
     }
 
-    /**
-     * Returns the integer value of the operand.
-     * 
-     * @return the integer value of the operand
-     */
     @Override
     public final Integer getValue() {
-        return operandValue;
+        return value;
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hashCode(operandValue);
+        return Objects.hashCode(value);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("value", operandValue)
-                .toString();
+        return MoreObjects.toStringHelper(this).add("value", value).toString();
     }
 
 }

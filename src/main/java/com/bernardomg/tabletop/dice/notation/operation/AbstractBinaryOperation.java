@@ -26,6 +26,9 @@ import com.google.common.base.Objects;
 
 /**
  * Abstract class for binary operations, containing all the common fields.
+ * <p>
+ * These fields are the operands and the operation, stored as a
+ * {@link BiFunction}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -34,12 +37,7 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
     /**
      * Left sided operand.
      */
-    private final DiceNotationExpression                operandLeft;
-
-    /**
-     * Right sided operand.
-     */
-    private final DiceNotationExpression                operandRight;
+    private final DiceNotationExpression                left;
 
     /**
      * Operation to apply.
@@ -47,23 +45,28 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
     private final BiFunction<Integer, Integer, Integer> operation;
 
     /**
+     * Right sided operand.
+     */
+    private final DiceNotationExpression                right;
+
+    /**
      * Constructs a subtraction operation with the specified operands.
      * 
-     * @param left
+     * @param leftOperand
      *            the left sided operand
-     * @param right
+     * @param rightOperand
      *            the right sided operand
      * @param func
      *            operation to apply
      */
-    public AbstractBinaryOperation(final DiceNotationExpression left,
-            final DiceNotationExpression right,
+    public AbstractBinaryOperation(final DiceNotationExpression leftOperand,
+            final DiceNotationExpression rightOperand,
             final BiFunction<Integer, Integer, Integer> func) {
         super();
 
-        operandLeft = checkNotNull(left,
+        left = checkNotNull(leftOperand,
                 "Received a null pointer as left operand");
-        operandRight = checkNotNull(right,
+        right = checkNotNull(rightOperand,
                 "Received a null pointer as right operand");
         operation = checkNotNull(func, "Received a null pointer as operation");
     }
@@ -86,13 +89,13 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
 
         other = (AbstractBinaryOperation) obj;
 
-        return Objects.equal(operandLeft, other.operandLeft)
-                && Objects.equal(operandRight, other.operandRight);
+        return Objects.equal(left, other.left)
+                && Objects.equal(right, other.right);
     }
 
     @Override
     public final DiceNotationExpression getLeft() {
-        return operandLeft;
+        return left;
     }
 
     @Override
@@ -102,18 +105,18 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
 
     @Override
     public final DiceNotationExpression getRight() {
-        return operandRight;
+        return right;
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hashCode(operandLeft, operandRight);
+        return Objects.hashCode(left, right);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("left", operandLeft)
-                .add("right", operandRight).toString();
+        return MoreObjects.toStringHelper(this).add("left", left)
+                .add("right", right).toString();
     }
 
 }

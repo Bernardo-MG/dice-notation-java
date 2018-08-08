@@ -29,8 +29,10 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
 
 /**
- * Dice notation expression which returns all the dice sets contained in the
+ * Dice notation expression which returns all the dice sets contained inside the
  * expression.
+ * <p>
+ * This will search for dice operands, and acquire the dice inside of them.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -67,18 +69,19 @@ public final class DiceTransformer
     }
 
     /**
-     * Transforms a binary operating into an {@code Iterable}. This will
-     * transform both sides of the operation, and then store the results into an
-     * {@code Iterable}.
+     * Transforms a binary operation into an {@code Iterable}.
+     * <p>
+     * Both sides of the operation will be transformed, and then the results are
+     * stored into the resulting {@code Iterable}.
      * 
      * @param operation
      *            operation to transform
      * @return an {@code Iterable} with the dice from the operation
      */
     private final Iterable<Dice> transform(final BinaryOperation operation) {
-        final Iterable<Dice> left;
-        final Iterable<Dice> right;
-        final Collection<Dice> result;
+        final Iterable<Dice> left;     // Left operand transformed
+        final Iterable<Dice> right;    // Right operand transformed
+        final Collection<Dice> result; // All the dice from the operation
 
         left = transform(operation.getLeft());
         right = transform(operation.getRight());
@@ -92,7 +95,7 @@ public final class DiceTransformer
 
     /**
      * Transforms a dice operand into an {@code Iterable}, by storing the
-     * contained dice into one.
+     * contained dice into a list.
      * 
      * @param operand
      *            operand to transform

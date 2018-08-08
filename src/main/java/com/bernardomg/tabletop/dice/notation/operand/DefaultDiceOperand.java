@@ -23,33 +23,27 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 /**
- * Operand for using dice values on a dice notation expression.
- * <p>
- * The value from a dice operand is random, and will be generated each time it
- * is acquired.
+ * Default implementation of the dice operand.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
- * @see Dice
  */
 public final class DefaultDiceOperand implements DiceOperand {
 
     /**
-     * Operand dice.
-     * <p>
-     * This will be used to generate the random value this operand uses.
+     * Operand dice value.
      */
-    private final Dice operandDice;
+    private final Dice dice;
 
     /**
-     * Constructs a dice operand with the specified dice and roller.
+     * Constructs a dice operand with the specified dice.
      * 
-     * @param dice
+     * @param diceSet
      *            dice for the operand
      */
-    public DefaultDiceOperand(final Dice dice) {
+    public DefaultDiceOperand(final Dice diceSet) {
         super();
 
-        operandDice = checkNotNull(dice, "Received a null pointer as dice");
+        dice = checkNotNull(diceSet, "Received a null pointer as dice");
     }
 
     @Override
@@ -70,12 +64,12 @@ public final class DefaultDiceOperand implements DiceOperand {
 
         other = (DefaultDiceOperand) obj;
 
-        return Objects.equal(operandDice, other.operandDice);
+        return Objects.equal(dice, other.dice);
     }
 
     @Override
     public final Dice getDice() {
-        return operandDice;
+        return dice;
     }
 
     @Override
@@ -86,13 +80,12 @@ public final class DefaultDiceOperand implements DiceOperand {
 
     @Override
     public final int hashCode() {
-        return Objects.hashCode(operandDice);
+        return Objects.hashCode(dice);
     }
 
     @Override
     public final String toString() {
-        return MoreObjects.toStringHelper(this).add("dice", operandDice)
-                .toString();
+        return MoreObjects.toStringHelper(this).add("dice", dice).toString();
     }
 
 }

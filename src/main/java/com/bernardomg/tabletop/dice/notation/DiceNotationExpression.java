@@ -19,9 +19,12 @@ package com.bernardomg.tabletop.dice.notation;
 /**
  * A dice notation expression.
  * <p>
- * Dice notation expressions are meant to generate a value. Note that this value
- * may be generated at random, and as such it can be different each time it is
- * acquired.
+ * This is the root interface for specifying a dice notation expression. Classes
+ * inheriting from this will represent the components for said expressions.
+ * <p>
+ * A
+ * {@link com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
+ * DiceNotationTransformer} can be used to get value from the expression.
  * <p>
  * It is also possible getting the string representation of the dice notation
  * expression it represents.

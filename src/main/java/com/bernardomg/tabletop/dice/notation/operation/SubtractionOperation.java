@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.notation.operation;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Addition operation.
+ * Subtraction operation.
  * <p>
  * This subtracts the value of an operand from the value of the other operand.
  * <p>

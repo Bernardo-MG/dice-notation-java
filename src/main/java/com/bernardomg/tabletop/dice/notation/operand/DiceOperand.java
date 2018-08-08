@@ -20,10 +20,9 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Operand for using {@link Dice} instances along dice notation model classes.
+ * Operand for using {@link Dice} as value.
  * <p>
- * The value from a dice operand is meant to be random, and it should not be
- * expected to be the same each time it is acquired.
+ * Due to the nature of dice this will represent a random value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -21,11 +21,10 @@ import java.util.function.BiFunction;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * A binary operation from the dice notation.
+ * A binary operation for the dice notation.
  * <p>
- * Binary operation operate on pairs of operands. But it is not required giving
- * these operands directly, instead they can be acquired from other expressions,
- * chaining them.
+ * Binary operation work with pairs of operands. These operands are other
+ * expressions, which allow chaining the values in the tree.
  * <p>
  * Depending on the operation, the order of the operands may be of importance or
  * not.
