@@ -55,7 +55,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * stack</li>
  * <li>Dice are parsed into {@code DiceOperand} and stored in the stack</li>
  * <li>Binary operations take the last two values from the stack, get parsed
- * into a {@code BinaryOperation} and then are stored int the stack</li>
+ * into a {@code BinaryOperation} and then are stored into the stack</li>
  * </ul>
  * <p>
  * The stack is also used to find the root, which will be the last value added
