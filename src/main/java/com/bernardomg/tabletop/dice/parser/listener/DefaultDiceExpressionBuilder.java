@@ -49,7 +49,6 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * will be the ones it will employ.
  * <p>
  * The way this works is simple:
- * <p>
  * <ul>
  * <li>Numbers are parsed into {@code IntegerOperand} and stored in the
  * stack</li>
