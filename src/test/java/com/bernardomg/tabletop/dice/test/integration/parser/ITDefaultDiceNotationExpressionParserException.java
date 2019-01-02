@@ -77,6 +77,18 @@ public final class ITDefaultDiceNotationExpressionParserException {
     }
 
     /**
+     * Verifies that a partially valid text causes an exception.
+     */
+    @Test
+    public final void testParse_PartiallyValid() {
+        final Executable closure;
+
+        closure = () -> new DefaultDiceNotationExpressionParser().parse("6d6y");
+
+        Assertions.assertThrows(Exception.class, closure);
+    }
+
+    /**
      * Verifies that dice notation with zero sides causes an exception.
      */
     @Test

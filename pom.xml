@@ -377,6 +377,9 @@
             <!-- Builds a parser from the grammar -->
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-maven-plugin</artifactId>
+            <configuration>
+               <treatWarningsAsErrors>true</treatWarningsAsErrors>
+            </configuration>
             <executions>
                <!-- Parse grammar is bound to the generate sources phase -->
                <execution>
