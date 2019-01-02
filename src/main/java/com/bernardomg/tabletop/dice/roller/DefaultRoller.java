@@ -43,7 +43,7 @@ public final class DefaultRoller implements Roller {
      * Combined with the data in the rolled this, this will generate a random
      * value in an interval.
      */
-    private final NumberGenerator numGen;
+    private final NumberGenerator numberGenerator;
 
     /**
      * Default constructor.
@@ -51,7 +51,7 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller() {
         super();
 
-        numGen = new RandomNumberGenerator();
+        numberGenerator = new RandomNumberGenerator();
     }
 
     /**
@@ -63,7 +63,7 @@ public final class DefaultRoller implements Roller {
     public DefaultRoller(final NumberGenerator generator) {
         super();
 
-        numGen = checkNotNull(generator,
+        numberGenerator = checkNotNull(generator,
                 "Received a null pointer as generator");
     }
 
@@ -88,19 +88,10 @@ public final class DefaultRoller implements Roller {
 
         rolls = new ArrayList<Integer>();
         for (Integer i = 0; i < dice.getQuantity(); i++) {
-            rolls.add(getNumberGenerator().generate(dice.getSides()));
+            rolls.add(numberGenerator.generate(dice.getSides()));
         }
 
         return rolls;
-    }
-
-    /**
-     * Returns the random number generator.
-     * 
-     * @return the random number generator
-     */
-    private final NumberGenerator getNumberGenerator() {
-        return numGen;
     }
 
 }
