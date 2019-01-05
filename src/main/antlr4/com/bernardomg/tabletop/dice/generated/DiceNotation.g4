@@ -41,12 +41,8 @@ function
 
 binaryOp
 :
-   dice OPERATOR dice
-   | dice OPERATOR number
-   | number OPERATOR dice
-   | number OPERATOR number
-   | binaryOp OPERATOR dice
-   | binaryOp OPERATOR number
+   (dice | number) OPERATOR (dice | number)
+   | binaryOp OPERATOR (dice | number)
 ;
 
 dice
