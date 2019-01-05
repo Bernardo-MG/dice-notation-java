@@ -29,7 +29,8 @@ options { tokenVocab=DiceNotationLexer; }
  
 parse
 :
-   (function)+
+   (OPERATOR function) (function)*
+   | (function)+
 ;
 
 function
