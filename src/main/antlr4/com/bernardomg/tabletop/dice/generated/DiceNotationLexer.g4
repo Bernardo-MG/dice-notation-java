@@ -25,31 +25,31 @@ lexer grammar DiceNotationLexer;
 
 OPERATOR
 :
-	( ADD | SUB )
+   ( ADD | SUB )
 ;
 
 // Operators
 
 ADD
 :
-	'+'
+   '+'
 ;
 
 SUB
 :
-	'-'
+   '-'
 ;
 
 // Dice markers
 
 DSEPARATOR
 :
-	( 'd' | 'D' )
+   ( 'd' | 'D' )
 ;
 
 DIGIT
 :
-	('0'..'9')+
+   ('0'..'9')+
 ;
 
 // Skippable tokens
