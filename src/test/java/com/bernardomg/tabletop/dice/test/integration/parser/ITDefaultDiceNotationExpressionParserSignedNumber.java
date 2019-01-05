@@ -26,31 +26,46 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses numbers.
+ * that it parses signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserNumber {
+public final class ITDefaultDiceNotationExpressionParserSignedNumber {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserNumber() {
+    public ITDefaultDiceNotationExpressionParserSignedNumber() {
         super();
     }
 
     /**
-     * Verifies that parsing a positive number gives that number as value.
+     * Verifies that parsing a signed positive number gives that number as
+     * value.
      */
     @Test
-    public final void testParse() {
+    public final void testParse_Positive() {
+        final IntegerOperand value;
+
+        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
+                .parse("+12").getRoot();
+
+        Assertions.assertEquals(new Integer(12), value.getValue());
+    }
+
+    /**
+     * Verifies that parsing a signed negative number gives that number as
+     * value.
+     */
+    @Test
+    public final void testParse_Negative() {
         final IntegerOperand value;
 
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("12").getRoot();
 
-        Assertions.assertEquals((Integer) 12, value.getValue());
+        Assertions.assertEquals(new Integer(-12), value.getValue());
     }
 
     /**
@@ -63,7 +78,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("0").getRoot();
 
-        Assertions.assertEquals((Integer) 0, value.getValue());
+        Assertions.assertEquals(new Integer(0), value.getValue());
     }
 
 }
