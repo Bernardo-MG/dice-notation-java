@@ -29,7 +29,7 @@ options { tokenVocab=DiceNotationLexer; }
  
 parse
 :
-   (function)+
+   function
 ;
 
 function
@@ -37,12 +37,12 @@ function
    dice
    | binaryOp
    | number
-   | OPERATOR function
 ;
 
 binaryOp
 :
    (dice | number) OPERATOR (dice | number)
+   | OPERATOR (dice | number)
    | binaryOp OPERATOR (dice | number)
 ;
 
@@ -53,5 +53,5 @@ dice
 
 number
 :
-   SIGNDIGIT
+   DIGIT
 ;

@@ -30,11 +30,6 @@ DSEPARATOR
    ( 'd' | 'D' )
 ;
 
-SIGNDIGIT
-:
-   OPERATOR? DIGIT
-;
-
 DIGIT
 :
    ('0'..'9')+
