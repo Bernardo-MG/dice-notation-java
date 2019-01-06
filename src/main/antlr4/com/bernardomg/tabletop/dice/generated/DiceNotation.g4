@@ -53,5 +53,5 @@ dice
 
 number
 :
-   DIGIT
+   SIGNDIGIT
 ;

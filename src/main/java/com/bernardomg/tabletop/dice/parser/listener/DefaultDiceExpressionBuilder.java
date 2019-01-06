@@ -118,7 +118,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getIntegerOperand(ctx.DIGIT());
+        expression = getIntegerOperand(ctx.SIGNDIGIT());
 
         operandsStack.push(expression);
     }

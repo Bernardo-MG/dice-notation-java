@@ -23,12 +23,29 @@ lexer grammar DiceNotationLexer;
  * Tokens.
  */
 
+// Dice markers
+
+DSEPARATOR
+:
+   ( 'd' | 'D' )
+;
+
+SIGNDIGIT
+:
+   OPERATOR? DIGIT
+;
+
+DIGIT
+:
+   ('0'..'9')+
+;
+
+// Operation tokens
+
 OPERATOR
 :
    ( ADD | SUB )
 ;
-
-// Operators
 
 ADD
 :
@@ -38,18 +55,6 @@ ADD
 SUB
 :
    '-'
-;
-
-// Dice markers
-
-DSEPARATOR
-:
-   ( 'd' | 'D' )
-;
-
-DIGIT
-:
-   ('0'..'9')+
 ;
 
 // Skippable tokens
