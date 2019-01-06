@@ -70,5 +70,15 @@
             Fixed error when calculating long subtractions.
          </action>
       </release>
+      <release version="1.3.1" date="2019-01-06" description="Extended error handling">
+         <action dev="bmg" type="add">
+            Added error handling for lexer rules.
+         </action>
+         <action dev="bmg" type="update">
+            Shortened expressions.
+         </action>
+      </release>
+      <release version="1.4.0" date="2019-01-06" description="">
+      </release>
    </body>
 </document>
