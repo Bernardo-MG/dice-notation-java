@@ -66,17 +66,7 @@ public final class RandomNumberGenerator implements NumberGenerator {
         checkArgument(max >= LOWER_LIMIT, String.format(
                 "The maximum value can't be lower than %d", LOWER_LIMIT));
 
-        return getRandom().nextInt(Math.abs(LOWER_LIMIT - max) + 1)
-                + LOWER_LIMIT;
-    }
-
-    /**
-     * Returns the random numbers generator class.
-     * 
-     * @return the random numbers generator class
-     */
-    private final Random getRandom() {
-        return random;
+        return random.nextInt(Math.abs(LOWER_LIMIT - max) + 1) + LOWER_LIMIT;
     }
 
 }

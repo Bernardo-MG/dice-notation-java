@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.parser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -48,6 +49,11 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  */
 public final class DefaultDiceNotationExpressionParser
         implements DiceNotationExpressionParser {
+
+    /**
+     * Error listener for the parser and lexer.
+     */
+    private final ANTLRErrorListener    errorListener = new DefaultErrorListener();
 
     /**
      * Visitor used to build the returned object.
@@ -137,17 +143,16 @@ public final class DefaultDiceNotationExpressionParser
         parser = buildDiceNotationParser(expression);
 
         // Listeners are added
-        parser.addErrorListener(new DefaultErrorListener());
-        parser.addParseListener(getDiceExpressionBuilder());
+        parser.addErrorListener(errorListener);
+        parser.addParseListener(expressionBuilder);
 
         // Parses the expression
         parser.parse();
 
-        root = getDiceExpressionBuilder().getDiceExpressionRoot();
+        root = expressionBuilder.getDiceExpressionRoot();
 
         // Returns the tree root node
-        return new DefaultTransformableDiceNotationExpression(root,
-                getRoller());
+        return new DefaultTransformableDiceNotationExpression(root, roller);
     }
 
     /**
@@ -168,30 +173,13 @@ public final class DefaultDiceNotationExpressionParser
         final TokenStream tokens;      // Expression tokens
 
         stream = CharStreams.fromString(expression);
+
         lexer = new DiceNotationLexer(stream);
+        lexer.addErrorListener(errorListener);
+
         tokens = new CommonTokenStream(lexer);
 
         return new DiceNotationParser(tokens);
-    }
-
-    /**
-     * Listener used for the visitor pattern in the ANTLR4 parser.
-     * <p>
-     * It takes care of creating the returned object.
-     * 
-     * @return the ANTLR4 parser listener
-     */
-    private final DiceExpressionBuilder getDiceExpressionBuilder() {
-        return expressionBuilder;
-    }
-
-    /**
-     * Roller for generating random values.
-     * 
-     * @return the roller
-     */
-    private final Roller getRoller() {
-        return roller;
     }
 
 }

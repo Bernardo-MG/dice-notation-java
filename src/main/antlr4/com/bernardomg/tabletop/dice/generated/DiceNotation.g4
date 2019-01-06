@@ -29,29 +29,25 @@ options { tokenVocab=DiceNotationLexer; }
  
 parse
 :
-	(function)+
+   (function)+
 ;
 
 function
 :
-	dice
+   dice
    | binaryOp
-	| number
+   | number
 ;
 
 binaryOp
 :
-   dice OPERATOR dice
-   | dice OPERATOR number
-   | number OPERATOR dice
-   | number OPERATOR number
-   | binaryOp OPERATOR dice
-   | binaryOp OPERATOR number
+   (dice | number) OPERATOR (dice | number)
+   | binaryOp OPERATOR (dice | number)
 ;
 
 dice
 :
-	DIGIT DSEPARATOR DIGIT
+   DIGIT DSEPARATOR DIGIT
 ;
 
 number

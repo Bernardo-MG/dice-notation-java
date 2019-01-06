@@ -93,21 +93,12 @@ public final class DefaultTransformableDiceNotationExpression
 
     @Override
     public final Integer roll() {
-        return transform(getRollerTransformer());
+        return transform(rollerTransformer);
     }
 
     @Override
     public final <V> V transform(final DiceNotationTransformer<V> interpreter) {
         return interpreter.transform(getRoot());
-    }
-
-    /**
-     * Returns the transformer used for the {@link #roll()} operation.
-     * 
-     * @return the transformer used for rolling
-     */
-    private final RollerTransformer getRollerTransformer() {
-        return rollerTransformer;
     }
 
 }

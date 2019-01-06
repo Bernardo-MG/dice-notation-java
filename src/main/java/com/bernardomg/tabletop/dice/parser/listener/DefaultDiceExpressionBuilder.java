@@ -49,7 +49,6 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * will be the ones it will employ.
  * <p>
  * The way this works is simple:
- * <p>
  * <ul>
  * <li>Numbers are parsed into {@code IntegerOperand} and stored in the
  * stack</li>
@@ -99,7 +98,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getBinaryOperation(ctx);
 
-        getOperandsStack().push(expression);
+        operandsStack.push(expression);
     }
 
     @Override
@@ -110,7 +109,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getDiceOperand(ctx);
 
-        getOperandsStack().push(expression);
+        operandsStack.push(expression);
     }
 
     @Override
@@ -121,13 +120,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getIntegerOperand(ctx.DIGIT());
 
-        getOperandsStack().push(expression);
+        operandsStack.push(expression);
     }
 
     @Override
     public final DiceNotationExpression getDiceExpressionRoot() {
         // The last value added to the stack will be the root
-        return getOperandsStack().peek();
+        return operandsStack.peek();
     }
 
     /**
@@ -148,8 +147,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final DiceNotationExpression right; // Right operand
 
         // Acquired operands
-        right = getOperandsStack().pop();
-        left = getOperandsStack().pop();
+        right = operandsStack.pop();
+        left = operandsStack.pop();
 
         // Acquires operator
         operator = ctx.OPERATOR().getText();
@@ -205,15 +204,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         value = Integer.parseInt(node.getText());
 
         return new IntegerOperand(value);
-    }
-
-    /**
-     * Returns the operands stack.
-     * 
-     * @return the operands stack
-     */
-    private final Stack<DiceNotationExpression> getOperandsStack() {
-        return operandsStack;
     }
 
 }

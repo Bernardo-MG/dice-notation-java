@@ -93,15 +93,6 @@ public final class RollerTransformer
     }
 
     /**
-     * Returns the roller for generating random values.
-     * 
-     * @return the roller
-     */
-    private final Roller getRoller() {
-        return roller;
-    }
-
-    /**
      * Generates a random value from a binary operation.
      * <p>
      * It generates a value for both sides of the operation, then applies the
@@ -157,7 +148,7 @@ public final class RollerTransformer
         final Iterable<Integer> rolls;
         Integer total;
 
-        rolls = getRoller().roll(operand.getDice());
+        rolls = roller.roll(operand.getDice());
 
         total = 0;
         for (final Integer roll : rolls) {
