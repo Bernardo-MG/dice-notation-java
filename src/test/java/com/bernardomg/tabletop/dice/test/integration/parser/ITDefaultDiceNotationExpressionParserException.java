@@ -65,18 +65,6 @@ public final class ITDefaultDiceNotationExpressionParserException {
     }
 
     /**
-     * Verifies that a negative value causes an exception.
-     */
-    @Test
-    public final void testParse_Negative() {
-        final Executable closure;
-
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("-1");
-
-        Assertions.assertThrows(Exception.class, closure);
-    }
-
-    /**
      * Verifies that a partially valid text causes an exception.
      */
     @Test

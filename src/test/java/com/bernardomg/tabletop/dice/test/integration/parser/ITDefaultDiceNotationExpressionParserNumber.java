@@ -44,7 +44,7 @@ public final class ITDefaultDiceNotationExpressionParserNumber {
      * Verifies that parsing a positive number gives that number as value.
      */
     @Test
-    public final void testParse_Positive() {
+    public final void testParse() {
         final IntegerOperand value;
 
         value = (IntegerOperand) new DefaultDiceNotationExpressionParser()

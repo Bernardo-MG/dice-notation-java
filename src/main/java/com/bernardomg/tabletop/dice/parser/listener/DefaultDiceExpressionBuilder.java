@@ -148,7 +148,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Acquired operands
         right = operandsStack.pop();
-        left = operandsStack.pop();
+        if (operandsStack.isEmpty()) {
+            // Single value binary operation
+            // Negative values may be mapped to this case
+            left = new IntegerOperand(0);
+        } else {
+            left = operandsStack.pop();
+        }
 
         // Acquires operator
         operator = ctx.OPERATOR().getText();

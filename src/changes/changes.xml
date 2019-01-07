@@ -79,6 +79,9 @@
          </action>
       </release>
       <release version="1.4.0" date="2019-01-06" description="">
+         <action dev="bmg" type="fix">
+            Added support for single negative values, such as "-1".
+         </action>
       </release>
    </body>
 </document>

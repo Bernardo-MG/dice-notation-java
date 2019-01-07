@@ -46,7 +46,7 @@ public final class TestAdditionOperation {
      * Verifies that the text expression is generated correctly.
      */
     @Test
-    public final void testTextExpression() {
+    public final void test_TextExpression() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
