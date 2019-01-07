@@ -56,7 +56,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
 
         number = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals(new Integer(-12), number.getValue());
+        Assertions.assertEquals(new Integer(12), number.getValue());
     }
 
     /**
