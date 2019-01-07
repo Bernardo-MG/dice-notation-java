@@ -1,0 +1,1 @@
+(parse (function (binaryOp (binaryOp - (number 1)) - (dice 1 d 6))))
