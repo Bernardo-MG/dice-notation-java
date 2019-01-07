@@ -49,14 +49,18 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
     @Test
     public final void testParse_Positive() {
         final AdditionOperation operation;
-        IntegerOperand number;
+        final IntegerOperand left;
+        final IntegerOperand right;
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse("+12").getRoot();
 
-        number = (IntegerOperand) operation.getRight();
+        left = (IntegerOperand) operation.getLeft();
+        right = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals(new Integer(12), number.getValue());
+        // +12 = 0+12
+        Assertions.assertEquals(new Integer(0), left.getValue());
+        Assertions.assertEquals(new Integer(12), right.getValue());
     }
 
     /**
@@ -66,14 +70,18 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
     @Test
     public final void testParse_Negative() {
         final SubtractionOperation operation;
-        IntegerOperand number;
+        final IntegerOperand left;
+        final IntegerOperand right;
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse("-12").getRoot();
 
-        number = (IntegerOperand) operation.getRight();
+        left = (IntegerOperand) operation.getLeft();
+        right = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals(new Integer(-12), number.getValue());
+        // -12 = 0-12
+        Assertions.assertEquals(new Integer(0), left.getValue());
+        Assertions.assertEquals(new Integer(12), right.getValue());
     }
 
 }
