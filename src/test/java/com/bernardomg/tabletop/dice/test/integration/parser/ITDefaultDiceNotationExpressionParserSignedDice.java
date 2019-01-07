@@ -21,9 +21,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
+import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -43,39 +44,47 @@ public final class ITDefaultDiceNotationExpressionParserSignedDice {
     }
 
     /**
-     * Verifies that dice notation with a signed single dice and a single side
-     * can be parsed.
-     */
-    @Test
-    public final void testParse_OnesDice_SignedPositive() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("+1d1")
-                .getRoot();
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(1), dice.getSides());
-    }
-
-    /**
      * Verifies that dice notation with a signed negative single dice and a
      * single side can be parsed.
      */
     @Test
     public final void testParse_OnesDice_SignedNegative() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final SubtractionOperation operation; // Parsed expression
+        final IntegerOperand left;            // Left operand
+        final DiceOperand right;              // Right operand
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("-1d1")
-                .getRoot();
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse("-1d1").getRoot();
 
-        dice = ((DiceOperand) parsed).getDice();
+        left = (IntegerOperand) operation.getLeft();
+        right = (DiceOperand) operation.getRight();
 
-        Assertions.assertEquals(new Integer(-1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(1), dice.getSides());
+        // -1d1 = 0-1d1
+        Assertions.assertEquals(new Integer(0), left.getValue());
+        Assertions.assertEquals(new Integer(1), right.getDice().getQuantity());
+        Assertions.assertEquals(new Integer(1), right.getDice().getSides());
+    }
+
+    /**
+     * Verifies that dice notation with a signed single dice and a single side
+     * can be parsed.
+     */
+    @Test
+    public final void testParse_OnesDice_SignedPositive() {
+        final AdditionOperation operation; // Parsed expression
+        final IntegerOperand left;         // Left operand
+        final DiceOperand right;           // Right operand
+
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse("+1d1").getRoot();
+
+        left = (IntegerOperand) operation.getLeft();
+        right = (DiceOperand) operation.getRight();
+
+        // +1d1 = 0+1d1
+        Assertions.assertEquals(new Integer(0), left.getValue());
+        Assertions.assertEquals(new Integer(1), right.getDice().getQuantity());
+        Assertions.assertEquals(new Integer(1), right.getDice().getSides());
     }
 
 }

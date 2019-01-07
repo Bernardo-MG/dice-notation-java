@@ -48,9 +48,9 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
      */
     @Test
     public final void testParse_Positive() {
-        final AdditionOperation operation;
-        final IntegerOperand left;
-        final IntegerOperand right;
+        final AdditionOperation operation; // Parsed expression
+        final IntegerOperand left;         // Left operand
+        final IntegerOperand right;        // Right operand
 
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse("+12").getRoot();
@@ -69,9 +69,9 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
      */
     @Test
     public final void testParse_Negative() {
-        final SubtractionOperation operation;
-        final IntegerOperand left;
-        final IntegerOperand right;
+        final SubtractionOperation operation; // Parsed expression
+        final IntegerOperand left;            // Left operand
+        final IntegerOperand right;           // Right operand
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse("-12").getRoot();
