@@ -22,6 +22,8 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
+import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -46,12 +48,15 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
      */
     @Test
     public final void testParse_Positive() {
-        final IntegerOperand value;
+        final AdditionOperation operation;
+        IntegerOperand number;
 
-        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
                 .parse("+12").getRoot();
 
-        Assertions.assertEquals(new Integer(12), value.getValue());
+        number = (IntegerOperand) operation.getRight();
+
+        Assertions.assertEquals(new Integer(-12), number.getValue());
     }
 
     /**
@@ -60,25 +65,15 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
      */
     @Test
     public final void testParse_Negative() {
-        final IntegerOperand value;
+        final SubtractionOperation operation;
+        IntegerOperand number;
 
-        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("12").getRoot();
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+                .parse("-12").getRoot();
 
-        Assertions.assertEquals(new Integer(-12), value.getValue());
-    }
+        number = (IntegerOperand) operation.getRight();
 
-    /**
-     * Verifies that parsing zero gives that number as value.
-     */
-    @Test
-    public final void testParse_Zero() {
-        final IntegerOperand value;
-
-        value = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("0").getRoot();
-
-        Assertions.assertEquals(new Integer(0), value.getValue());
+        Assertions.assertEquals(new Integer(-12), number.getValue());
     }
 
 }
