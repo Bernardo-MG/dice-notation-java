@@ -42,12 +42,12 @@ OPERATOR
    ( ADD | SUB )
 ;
 
-ADD
+fragment ADD
 :
    '+'
 ;
 
-SUB
+fragment SUB
 :
    '-'
 ;
