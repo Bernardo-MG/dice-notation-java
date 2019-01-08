@@ -140,6 +140,23 @@ public final class ITParseAndDiceTransformer {
     }
 
     /**
+     * Verifies that a negative dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Negative() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("-1d6");
+
+        dice = new DiceTransformer().transform(parsed).iterator().next();
+
+        // TODO: Maybe it should be -1?
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
      * Verifies that dice notation with a single dice and a single side can be
      * parsed.
      */
