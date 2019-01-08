@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser;
+package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,38 +24,38 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses additions with dice.
+ * that it parses substractions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionDice {
+public final class ITDefaultDiceNotationExpressionParserSubstractionDice {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserAdditionDice() {
+    public ITDefaultDiceNotationExpressionParserSubstractionDice() {
         super();
     }
 
     /**
-     * Verifies that an addition using only dice is parsed correctly.
+     * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Dice_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final DiceOperand diceLeft;        // Left parsed dice
-        final DiceOperand diceRight;       // Right parsed dice
+    public final void testParse_Sub_Dice_Structure() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final DiceOperand diceLeft;           // Left parsed dice
+        final DiceOperand diceRight;          // Right parsed dice
 
-        notation = "1d20+2d6";
+        notation = "1d20-2d6";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
         diceLeft = (DiceOperand) operation.getLeft();
@@ -69,37 +69,37 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     }
 
     /**
-     * Verifies that an addition using only dice is parsed correctly.
+     * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Dice_Value() {
+    public final void testParse_Sub_Dice_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "1d1+2d1";
+        notation = "1d1-2d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 3, root.roll());
+        Assertions.assertEquals((Integer) (-1), root.roll());
     }
 
     /**
-     * Verifies that an addition with the number to left is parsed correctly.
+     * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_LeftNumber_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+    public final void testParse_Sub_LeftNumber_Structure() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final IntegerOperand integer;         // Integer operand
+        final DiceOperand dice;               // Dice operand
 
-        notation = "5+2d6";
+        notation = "5-2d6";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
-        dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
+        dice = (DiceOperand) operation.getRight();
 
         Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
         Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
@@ -108,33 +108,33 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     }
 
     /**
-     * Verifies that an addition with the number to left is parsed correctly.
+     * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_LeftNumber_Value() {
+    public final void testParse_Sub_LeftNumber_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "5+2d1";
+        notation = "5-2d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 7, root.roll());
+        Assertions.assertEquals((Integer) 3, root.roll());
     }
 
     /**
-     * Verifies that an addition with the number to right is parsed correctly.
+     * Verifies that a subtraction with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_RightNumber_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+    public final void testParse_Sub_RightNumber_Structure() {
+        final String notation;                // Input to parse
+        final SubtractionOperation operation; // Parsed operation
+        final IntegerOperand integer;         // Integer operand
+        final DiceOperand dice;               // Dice operand
 
-        notation = "2d6+5";
+        notation = "2d6-5";
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
                 .parse(notation).getRoot();
 
         dice = (DiceOperand) operation.getLeft();
@@ -147,18 +147,18 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDice {
     }
 
     /**
-     * Verifies that an addition with the number to right is parsed correctly.
+     * Verifies that a subtraction with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_RightNumber_Value() {
+    public final void testParse_Sub_RightNumber_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "2d1+5";
+        notation = "2d1-5";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 7, root.roll());
+        Assertions.assertEquals((Integer) (-3), root.roll());
     }
 
 }
