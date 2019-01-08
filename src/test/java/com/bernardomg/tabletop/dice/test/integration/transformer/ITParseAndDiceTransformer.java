@@ -36,12 +36,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceSetsTransformerParser {
+public final class ITParseAndDiceTransformer {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceSetsTransformerParser() {
+    public ITParseAndDiceTransformer() {
         super();
     }
 
