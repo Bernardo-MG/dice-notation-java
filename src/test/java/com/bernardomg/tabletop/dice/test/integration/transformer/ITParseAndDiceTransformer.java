@@ -30,8 +30,8 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.google.common.collect.Iterables;
 
 /**
- * Integration Verifies for {@code DefaultDiceNotationExpressionParser},
- * checking that it parses dice notation expressions for single dice groups.
+ * Integration test for {@code DiceTransformer}, checking that it transforms
+ * parsed expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
