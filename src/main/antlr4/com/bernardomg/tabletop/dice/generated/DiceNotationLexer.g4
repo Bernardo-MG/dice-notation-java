@@ -39,7 +39,7 @@ DIGIT
 
 OPERATOR
 :
-   ( ADD | SUB )
+   ( '+' | '-' | '*' | '/' )
 ;
 
 fragment ADD
