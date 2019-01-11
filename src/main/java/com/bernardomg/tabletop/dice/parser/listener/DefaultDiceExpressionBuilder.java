@@ -165,6 +165,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         if (operandsStack.isEmpty()) {
             // Single value binary operation
             // Negative values may be mapped to this case
+            LOGGER.debug(
+                    "No operands in stack. The left operand will be defaulted to 0.");
             left = new IntegerOperand(0);
         } else {
             left = operandsStack.pop();
