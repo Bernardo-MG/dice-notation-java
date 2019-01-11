@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
@@ -33,12 +32,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
+public final class ITDefaultDiceNotationExpressionParserSubstractionNumberStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSubstractionNumber() {
+    public ITDefaultDiceNotationExpressionParserSubstractionNumberStructure() {
         super();
     }
 
@@ -69,22 +68,6 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
 
         number = (IntegerOperand) sub.getLeft();
         Assertions.assertEquals((Integer) 1, number.getValue());
-    }
-
-    /**
-     * Verifies that long subtractions can be parsed, and the result is the
-     * expected one.
-     */
-    @Test
-    public final void testParse_Number_Sub_Long_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1-2-3";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) (-4), root.roll());
     }
 
     /**
@@ -127,22 +110,6 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
     }
 
     /**
-     * Verifies that long subtractions can be parsed, and the result is the
-     * expected one.
-     */
-    @Test
-    public final void testParse_Number_Sub_Longer_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1-2-3-4-5";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) (-13), root.roll());
-    }
-
-    /**
      * Verifies that a subtraction with only numbers is parsed correctly.
      */
     @Test
@@ -161,21 +128,6 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumber {
 
         number = (IntegerOperand) operation.getLeft();
         Assertions.assertEquals((Integer) 1, number.getValue());
-    }
-
-    /**
-     * Verifies that a subtraction with only numbers is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_Sub_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1-2";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) (-1), root.roll());
     }
 
 }

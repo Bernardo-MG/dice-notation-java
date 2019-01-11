@@ -33,34 +33,13 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSignedNumber {
+public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSignedNumber() {
+    public ITDefaultDiceNotationExpressionParserSignedNumberStructure() {
         super();
-    }
-
-    /**
-     * Verifies that parsing a signed positive number gives that number as
-     * value.
-     */
-    @Test
-    public final void testParse_Positive() {
-        final AdditionOperation operation; // Parsed expression
-        final IntegerOperand left;         // Left operand
-        final IntegerOperand right;        // Right operand
-
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse("+12").getRoot();
-
-        left = (IntegerOperand) operation.getLeft();
-        right = (IntegerOperand) operation.getRight();
-
-        // +12 = 0+12
-        Assertions.assertEquals(new Integer(0), left.getValue());
-        Assertions.assertEquals(new Integer(12), right.getValue());
     }
 
     /**
@@ -80,6 +59,27 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumber {
         right = (IntegerOperand) operation.getRight();
 
         // -12 = 0-12
+        Assertions.assertEquals(new Integer(0), left.getValue());
+        Assertions.assertEquals(new Integer(12), right.getValue());
+    }
+
+    /**
+     * Verifies that parsing a signed positive number gives that number as
+     * value.
+     */
+    @Test
+    public final void testParse_Positive() {
+        final AdditionOperation operation; // Parsed expression
+        final IntegerOperand left;         // Left operand
+        final IntegerOperand right;        // Right operand
+
+        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+                .parse("+12").getRoot();
+
+        left = (IntegerOperand) operation.getLeft();
+        right = (IntegerOperand) operation.getRight();
+
+        // +12 = 0+12
         Assertions.assertEquals(new Integer(0), left.getValue());
         Assertions.assertEquals(new Integer(12), right.getValue());
     }

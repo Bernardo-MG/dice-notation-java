@@ -57,22 +57,6 @@ public final class ITParseAndRollerTransformer {
     }
 
     /**
-     * Verifies that dice notation with a simple dice and an addition can be
-     * parsed and transformed.
-     */
-    @Test
-    public final void testParse_OnesDice_Addition() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+2");
-
-        result = new RollerTransformer().transform(parsed);
-
-        Assertions.assertEquals(new Integer(3), result);
-    }
-
-    /**
      * Verifies that dice notation with a single dice and a single side can be
      * parsed and transformed.
      */
@@ -86,6 +70,22 @@ public final class ITParseAndRollerTransformer {
         result = new RollerTransformer().transform(parsed);
 
         Assertions.assertEquals(new Integer(1), result);
+    }
+
+    /**
+     * Verifies that dice notation with a simple dice and an addition can be
+     * parsed and transformed.
+     */
+    @Test
+    public final void testParse_OnesDice_Addition() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+2");
+
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(3), result);
     }
 
 }

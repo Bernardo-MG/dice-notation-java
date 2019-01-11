@@ -34,12 +34,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSignedDice {
+public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSignedDice() {
+    public ITDefaultDiceNotationExpressionParserSignedDiceStructure() {
         super();
     }
 
