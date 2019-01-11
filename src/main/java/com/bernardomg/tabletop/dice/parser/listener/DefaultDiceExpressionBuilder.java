@@ -35,6 +35,8 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
@@ -68,12 +70,22 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Operator which indicates the operation is an addition.
      */
-    private static final String                 ADDITION_OPERATOR    = "+";
+    private static final String                 ADDITION_OPERATOR       = "+";
+
+    /**
+     * Operator which indicates the operation is a division.
+     */
+    private static final String                 DIVISION_OPERATOR       = "-";
+
+    /**
+     * Operator which indicates the operation is a multiplication.
+     */
+    private static final String                 MULTIPLICATION_OPERATOR = "*";
 
     /**
      * Operator which indicates the operation is a subtraction.
      */
-    private static final String                 SUBTRACTION_OPERATOR = "-";
+    private static final String                 SUBTRACTION_OPERATOR    = "-";
 
     /**
      * Stack to store operands from the outer nodes in an operation.
@@ -81,7 +93,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * For example, when parsing an addition operation this stack will hold both
      * operands being added together.
      */
-    private final Stack<DiceNotationExpression> operandsStack        = new Stack<>();
+    private final Stack<DiceNotationExpression> operandsStack           = new Stack<>();
 
     /**
      * Default constructor.
@@ -164,6 +176,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             operation = new AdditionOperation(left, right);
         } else if (SUBTRACTION_OPERATOR.equals(operator)) {
             operation = new SubtractionOperation(left, right);
+        } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
+            operation = new MultiplicationOperation(left, right);
+        } else if (DIVISION_OPERATOR.equals(operator)) {
+            operation = new DivisionOperation(left, right);
         } else {
             throw new IllegalArgumentException(
                     String.format("The %s operator is invalid", operator));
