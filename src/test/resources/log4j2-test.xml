@@ -19,12 +19,12 @@
    </Appenders>
 
    <Loggers>
-      <Logger name="com.bernardomg" level="debug" additivity="false">
-         <AppenderRef ref="file" />
+      <Logger name="com.bernardomg" level="error" additivity="false">
+         <AppenderRef ref="console" />
       </Logger>
 
       <Root level="error">
-         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
       </Root>
    </Loggers>
 
