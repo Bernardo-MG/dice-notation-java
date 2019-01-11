@@ -26,82 +26,63 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses simple binary operations.
+ * that it parses additions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserBinaryOperationValue {
+public final class ITDefaultDiceNotationExpressionParserMultiplicationDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserBinaryOperationValue() {
+    public ITDefaultDiceNotationExpressionParserMultiplicationDiceValue() {
         super();
     }
 
     /**
-     * Verifies that additions followed by subtractions can be parsed, and the
-     * result is the expected one.
+     * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_AddAndSub_Value() {
+    public final void testParse_Add_Dice_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "1+2-3";
+        notation = "3d1*2d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 0, root.roll());
+        Assertions.assertEquals((Integer) 6, root.roll());
     }
 
     /**
-     * Verifies that divisions followed by additions can be parsed, and the
-     * result is the expected one.
+     * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_DivAndAdd_Value() {
+    public final void testParse_Add_LeftNumber_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "6/2+1";
+        notation = "5*2d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 4, root.roll());
+        Assertions.assertEquals((Integer) 10, root.roll());
     }
 
     /**
-     * Verifies that multiplications followed by additions can be parsed, and
-     * the result is the expected one.
+     * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_MultAndAdd_Value() {
+    public final void testParse_Add_RightNumber_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "2*3+2";
+        notation = "2d1*5";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 8, root.roll());
-    }
-
-    /**
-     * Verifies that subtractions followed by additions can be parsed, and the
-     * result is the expected one.
-     */
-    @Test
-    public final void testParse_SubAndAdd_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "3-1+2";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) 4, root.roll());
+        Assertions.assertEquals((Integer) 10, root.roll());
     }
 
 }
