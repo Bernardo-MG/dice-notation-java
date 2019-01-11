@@ -43,10 +43,29 @@ public final class TestSubtractionOperation {
     }
 
     /**
-     * Verifies that the text expression is generated correctly.
+     * Verifies that the text expression for negative values is generated
+     * correctly.
      */
     @Test
-    public final void testTextExpression() {
+    public final void testTextExpression_Negatives() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(-1);
+        right = new IntegerOperand(-2);
+
+        operation = new SubtractionOperation(left, right);
+
+        Assertions.assertEquals("-1--2", operation.getExpression());
+    }
+
+    /**
+     * Verifies that the text expression for positive values is generated
+     * correctly.
+     */
+    @Test
+    public final void testTextExpression_Positives() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
