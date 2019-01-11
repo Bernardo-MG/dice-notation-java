@@ -132,7 +132,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getIntegerOperand(ctx.DIGIT());
 
-        LOGGER.debug("Parsed number {}", expression);
+        LOGGER.debug("Parsed number: {}", expression);
 
         operandsStack.push(expression);
     }
