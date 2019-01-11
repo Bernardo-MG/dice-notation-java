@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -35,12 +34,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
+public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserBinaryOperation() {
+    public ITDefaultDiceNotationExpressionParserBinaryOperationStructure() {
         super();
     }
 
@@ -74,22 +73,6 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
     }
 
     /**
-     * Verifies that additions followed by subtractions can be parsed, and the
-     * result is the expected one.
-     */
-    @Test
-    public final void testParse_Number_AddAndSub_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1+2-3";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) 0, root.roll());
-    }
-
-    /**
      * Verifies that subtractions followed by additions can be parsed, and the
      * result is the expected one.
      */
@@ -116,22 +99,6 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperation {
 
         number = (IntegerOperand) sub.getLeft();
         Assertions.assertEquals((Integer) 3, number.getValue());
-    }
-
-    /**
-     * Verifies that subtractions followed by additions can be parsed, and the
-     * result is the expected one.
-     */
-    @Test
-    public final void testParse_Number_SubAndAdd_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "3-1+2";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) 4, root.roll());
     }
 
 }
