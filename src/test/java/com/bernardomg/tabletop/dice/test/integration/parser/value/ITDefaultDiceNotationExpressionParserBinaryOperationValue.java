@@ -73,6 +73,22 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationValue {
     }
 
     /**
+     * Verifies that divisions followed by subtractions can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_DivAndSub_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "6/3-3";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals(new Integer(-1), root.roll());
+    }
+
+    /**
      * Verifies that multiplications followed by additions can be parsed, and
      * the result is the expected one.
      */
@@ -118,6 +134,22 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationValue {
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals((Integer) 4, root.roll());
+    }
+
+    /**
+     * Verifies that subtractions followed by divisions can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_SubAndDiv_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "1-6/2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals(new Integer(-2), root.roll());
     }
 
     /**
