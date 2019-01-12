@@ -52,7 +52,7 @@ public final class ITDefaultDiceNotationExpressionParserDivisionDiceValue {
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 2, root.roll());
+        Assertions.assertEquals((Integer) 3, root.roll());
     }
 
     /**

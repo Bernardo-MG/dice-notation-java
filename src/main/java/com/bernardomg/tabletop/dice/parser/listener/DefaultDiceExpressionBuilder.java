@@ -77,7 +77,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Operator which indicates the operation is a division.
      */
-    private static final String                 DIVISION_OPERATOR       = "-";
+    private static final String                 DIVISION_OPERATOR       = "/";
 
     /**
      * Operator which indicates the operation is a multiplication.
@@ -87,7 +87,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Logger.
      */
-    private static final Logger                 LOGGER               = LoggerFactory
+    private static final Logger                 LOGGER                  = LoggerFactory
             .getLogger(DefaultDiceExpressionBuilder.class);
 
     /**
