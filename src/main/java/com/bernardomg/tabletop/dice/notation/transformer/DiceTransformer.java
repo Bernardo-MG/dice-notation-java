@@ -21,6 +21,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
@@ -41,6 +44,12 @@ public final class DiceTransformer
         implements DiceNotationTransformer<Iterable<Dice>> {
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DiceTransformer.class);
+
+    /**
      * Default constructor.
      */
     public DiceTransformer() {
@@ -53,6 +62,7 @@ public final class DiceTransformer
         final Iterable<Dice> result;
         // TODO: Avoid casting
 
+        LOGGER.debug("Transforming expression {}", expression.getClass());
         if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
                     ((TransformableDiceNotationExpression) expression)
@@ -62,6 +72,7 @@ public final class DiceTransformer
         } else if (expression instanceof DiceOperand) {
             result = transform((DiceOperand) expression);
         } else {
+            LOGGER.debug("Unsupported expression");
             result = Collections.emptyList();
         }
 
@@ -87,7 +98,9 @@ public final class DiceTransformer
         right = transform(operation.getRight());
 
         result = new ArrayList<>();
+        LOGGER.debug("Transforming left operand");
         Iterables.addAll(result, left);
+        LOGGER.debug("Transforming right operand");
         Iterables.addAll(result, right);
 
         return result;
