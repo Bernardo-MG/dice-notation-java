@@ -22,6 +22,8 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
@@ -83,6 +85,12 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private static final String                 MULTIPLICATION_OPERATOR = "*";
 
     /**
+     * Logger.
+     */
+    private static final Logger                 LOGGER               = LoggerFactory
+            .getLogger(DefaultDiceExpressionBuilder.class);
+
+    /**
      * Operator which indicates the operation is a subtraction.
      */
     private static final String                 SUBTRACTION_OPERATOR    = "-";
@@ -110,6 +118,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getBinaryOperation(ctx);
 
+        LOGGER.debug("Parsed binary operation: {}", expression);
+
         operandsStack.push(expression);
     }
 
@@ -121,6 +131,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getDiceOperand(ctx);
 
+        LOGGER.debug("Parsed dice: {}", expression);
+
         operandsStack.push(expression);
     }
 
@@ -131,6 +143,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         checkNotNull(ctx, "Received a null pointer as context");
 
         expression = getIntegerOperand(ctx.DIGIT());
+
+        LOGGER.debug("Parsed number: {}", expression);
 
         operandsStack.push(expression);
     }
@@ -163,6 +177,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         if (operandsStack.isEmpty()) {
             // Single value binary operation
             // Negative values may be mapped to this case
+            LOGGER.debug(
+                    "No operands in stack. The left operand will be defaulted to 0.");
             left = new IntegerOperand(0);
         } else {
             left = operandsStack.pop();
@@ -173,8 +189,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Checks which kind of operation this is and creates it
         if (ADDITION_OPERATOR.equals(operator)) {
+            LOGGER.trace("Addition operation");
             operation = new AdditionOperation(left, right);
         } else if (SUBTRACTION_OPERATOR.equals(operator)) {
+            LOGGER.trace("Subtraction operation");
             operation = new SubtractionOperation(left, right);
         } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
             operation = new MultiplicationOperation(left, right);
