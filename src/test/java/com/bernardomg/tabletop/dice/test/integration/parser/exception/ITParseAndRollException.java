@@ -54,8 +54,6 @@ public final class ITParseAndRollException {
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 2, root.roll());
-
         closure = () -> root.roll();
 
         Assertions.assertThrows(Exception.class, closure);
