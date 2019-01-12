@@ -145,7 +145,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationValue {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "1-6/2";
+        notation = "2-8/2";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
