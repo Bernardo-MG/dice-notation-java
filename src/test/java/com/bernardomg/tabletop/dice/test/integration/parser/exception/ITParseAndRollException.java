@@ -14,10 +14,11 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.parser.exception;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
@@ -26,48 +27,38 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses numeric additions.
+ * that it throws exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserDivisionNumberValue {
+public final class ITParseAndRollException {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserDivisionNumberValue() {
+    public ITParseAndRollException() {
         super();
     }
 
     /**
-     * Verifies that a division with a float result is parsed correctly.
+     * Verifies that dividing by zero causes an exception.
      */
     @Test
-    public final void testParse_Division_FloatValue() {
+    public final void testParse_DivideByZero() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
+        final Executable closure;
 
-        notation = "3/2";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals(new Float(1.5), root.roll());
-    }
-
-    /**
-     * Verifies that a division with only numbers is parsed correctly.
-     */
-    @Test
-    public final void testParse_Division_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "4/2";
+        notation = "1/0";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals((Integer) 2, root.roll());
+
+        closure = () -> root.roll();
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
 }
