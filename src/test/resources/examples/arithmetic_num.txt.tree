@@ -1,1 +1,1 @@
-(parse (function (binaryOp (binaryOp (operator (number 1)) + (operator (number 2))) - (operator (number 3)))))
+(parse (function (binaryOp (operator (number 1)) + (operator (number 2)) - (operator (number 3)))))
