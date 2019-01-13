@@ -173,7 +173,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         }
 
         // Acquires operator
-        operator = ctx.OPERATOR().getText();
+        operator = ctx.OPERATOR().iterator().next().getText();
 
         // Checks which kind of operation this is and creates it
         if (ADDITION_OPERATOR.equals(operator)) {

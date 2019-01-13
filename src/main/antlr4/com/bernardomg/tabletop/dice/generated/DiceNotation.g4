@@ -41,9 +41,7 @@ function
 
 binaryOp
 :
-   operator OPERATOR operator
-   | OPERATOR operator
-   | binaryOp OPERATOR operator
+   (operator)? (OPERATOR operator)+
 ;
 
 operator
