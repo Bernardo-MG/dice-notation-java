@@ -42,6 +42,16 @@ OPERATOR
    ( '+' | '-' | '*' | '/' )
 ;
 
+ADDOPERATOR
+:
+   ( '+' | '-' )
+;
+
+MULTOPERATOR
+:
+   ( '*' | '/' )
+;
+
 fragment ADD
 :
    '+'

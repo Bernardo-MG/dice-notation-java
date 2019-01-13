@@ -41,9 +41,21 @@ function
 
 binaryOp
 :
-   operator OPERATOR operator
-   | OPERATOR operator
-   | binaryOp OPERATOR operator
+   multOp
+   | addOp
+;
+
+addOp
+:
+   operator ADDOPERATOR operator
+   | ADDOPERATOR operator
+   | addOp ADDOPERATOR operator
+;
+
+multOp
+:
+   operator MULTOPERATOR operator
+   | multOp MULTOPERATOR operator
 ;
 
 operator
