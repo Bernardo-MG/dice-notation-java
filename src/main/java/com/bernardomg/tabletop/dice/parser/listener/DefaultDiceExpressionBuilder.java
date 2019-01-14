@@ -188,7 +188,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             // Acquired operands
             left = operands.removeFirst();
             if (operands.isEmpty()) {
-                right = new IntegerOperand(0);
+                right = left;
+                left = new IntegerOperand(0);
             } else {
                 right = operands.removeFirst();
             }
