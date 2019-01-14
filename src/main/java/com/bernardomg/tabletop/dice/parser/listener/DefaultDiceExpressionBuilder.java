@@ -18,6 +18,8 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -100,15 +102,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
-        final DiceNotationExpression expression;
+        final Collection<BinaryOperation> expression;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getBinaryOperation(ctx);
+        getBinaryOperation(ctx);
 
-        LOGGER.debug("Parsed binary operation: {}", expression);
+        // LOGGER.debug("Parsed binary operation: {}", expression);
 
-        operandsStack.push(expression);
+        // expression.forEach(operandsStack::push);
     }
 
     @Override
@@ -153,41 +155,47 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      *            parsed context
      * @return a binary operation
      */
-    private final BinaryOperation
-            getBinaryOperation(final BinaryOpContext ctx) {
-        final BinaryOperation operation;    // Parsed binary operation
-        final String operator;              // Operator
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+    private final void getBinaryOperation(final BinaryOpContext ctx) {
+        final Collection<BinaryOperation> result; // Parsed operations
+        BinaryOperation operation;    // Parsed binary operation
+        DiceNotationExpression left;  // Left operand
+        DiceNotationExpression right; // Right operand
+        final Stack<TerminalNode> operators;
 
-        // Acquired operands
-        right = operandsStack.pop();
-        if (operandsStack.isEmpty()) {
-            // Single value binary operation
-            // Negative values may be mapped to this case
-            LOGGER.debug(
-                    "No operands in stack. The left operand will be defaulted to 0.");
-            left = new IntegerOperand(0);
-        } else {
-            left = operandsStack.pop();
+        operators = new Stack<>();
+        for (final Iterator<TerminalNode> itr = ctx.OPERATOR().iterator(); itr
+                .hasNext();) {
+            operators.push(itr.next());
         }
 
-        // Acquires operator
-        operator = ctx.OPERATOR().iterator().next().getText();
+        result = new ArrayList<>();
+        for (final TerminalNode operator : operators) {
+            // Acquired operands
+            right = operandsStack.pop();
+            if (operandsStack.isEmpty()) {
+                // Single value binary operation
+                // Negative values may be mapped to this case
+                LOGGER.debug(
+                        "No operands in stack. The left operand will be defaulted to 0.");
+                left = new IntegerOperand(0);
+            } else {
+                left = operandsStack.pop();
+            }
 
-        // Checks which kind of operation this is and creates it
-        if (ADDITION_OPERATOR.equals(operator)) {
-            LOGGER.trace("Addition operation");
-            operation = new AdditionOperation(left, right);
-        } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-            LOGGER.trace("Subtraction operation");
-            operation = new SubtractionOperation(left, right);
-        } else {
-            throw new IllegalArgumentException(
-                    String.format("The %s operator is invalid", operator));
+            // Checks which kind of operation this is and creates it
+            if (ADDITION_OPERATOR.equals(operator.getText())) {
+                LOGGER.trace("Addition operation");
+                operation = new AdditionOperation(left, right);
+            } else if (SUBTRACTION_OPERATOR.equals(operator.getText())) {
+                LOGGER.trace("Subtraction operation");
+                operation = new SubtractionOperation(left, right);
+            } else {
+                throw new IllegalArgumentException(
+                        String.format("The %s operator is invalid", operator));
+            }
+
+            operandsStack.push(operation);
         }
-
-        return operation;
     }
 
     /**
