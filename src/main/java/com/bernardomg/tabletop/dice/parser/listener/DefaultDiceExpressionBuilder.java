@@ -156,11 +156,11 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * @return a binary operation
      */
     private final void getBinaryOperation(final BinaryOpContext ctx) {
-        final Collection<BinaryOperation> result; // Parsed operations
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
         final Stack<TerminalNode> operators;
+        TerminalNode operator;
 
         operators = new Stack<>();
         for (final Iterator<TerminalNode> itr = ctx.OPERATOR().iterator(); itr
@@ -168,8 +168,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             operators.push(itr.next());
         }
 
-        result = new ArrayList<>();
-        for (final TerminalNode operator : operators) {
+        while (!operators.isEmpty()) {
+            operator = operators.pop();
+
             // Acquired operands
             right = operandsStack.pop();
             if (operandsStack.isEmpty()) {
