@@ -20,7 +20,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -159,28 +162,35 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
-        final Stack<TerminalNode> operators;
+        final Deque<TerminalNode> operators;
+        final Deque<DiceNotationExpression> operands;
         TerminalNode operator;
 
-        operators = new Stack<>();
+        operators = new LinkedList<>();
+        operands = new LinkedList<>();
         for (final Iterator<TerminalNode> itr = ctx.OPERATOR().iterator(); itr
                 .hasNext();) {
-            operators.push(itr.next());
-        }
-
-        while (!operators.isEmpty()) {
-            operator = operators.pop();
-
-            // Acquired operands
-            right = operandsStack.pop();
+            operators.add(itr.next());
+            operands.addFirst(operandsStack.pop());
             if (operandsStack.isEmpty()) {
                 // Single value binary operation
                 // Negative values may be mapped to this case
                 LOGGER.debug(
                         "No operands in stack. The left operand will be defaulted to 0.");
-                left = new IntegerOperand(0);
             } else {
-                left = operandsStack.pop();
+                operands.addFirst(operandsStack.pop());
+            }
+        }
+
+        while (!operators.isEmpty()) {
+            operator = operators.removeFirst();
+
+            // Acquired operands
+            left = operands.removeFirst();
+            if (operands.isEmpty()) {
+                right = new IntegerOperand(0);
+            } else {
+                right = operands.removeFirst();
             }
 
             // Checks which kind of operation this is and creates it
@@ -195,8 +205,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
                         String.format("The %s operator is invalid", operator));
             }
 
-            operandsStack.push(operation);
+            operands.addFirst(operation);
         }
+
+        operandsStack.push(operands.removeFirst());
     }
 
     /**
