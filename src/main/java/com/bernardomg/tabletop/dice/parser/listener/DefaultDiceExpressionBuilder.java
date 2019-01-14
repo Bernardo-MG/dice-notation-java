@@ -105,15 +105,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     @Override
     public final void exitBinaryOp(final BinaryOpContext ctx) {
-        final Collection<BinaryOperation> expression;
+        final DiceNotationExpression expression;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        getBinaryOperation(ctx);
+        expression = getBinaryOperation(ctx);
 
-        // LOGGER.debug("Parsed binary operation: {}", expression);
+        LOGGER.debug("Parsed binary operation: {}", expression);
 
-        // expression.forEach(operandsStack::push);
+        operandsStack.push(expression);
     }
 
     @Override
@@ -158,7 +158,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      *            parsed context
      * @return a binary operation
      */
-    private final void getBinaryOperation(final BinaryOpContext ctx) {
+    private final DiceNotationExpression
+            getBinaryOperation(final BinaryOpContext ctx) {
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
@@ -205,7 +206,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             operands.addFirst(operation);
         }
 
-        operandsStack.push(operands.removeFirst());
+        return operands.removeFirst();
     }
 
     /**
