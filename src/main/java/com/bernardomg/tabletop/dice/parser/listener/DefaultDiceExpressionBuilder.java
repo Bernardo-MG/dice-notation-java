@@ -168,13 +168,17 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         operators = new LinkedList<>();
         operands = new LinkedList<>();
+        operands.addFirst(operandsStack.pop());
         for (final Iterator<TerminalNode> itr = ctx.OPERATOR().iterator(); itr
                 .hasNext();) {
             operators.add(itr.next());
-            if (!operandsStack.isEmpty()) {
-                operands.addFirst(operandsStack.pop());
-            }
-            if (!operandsStack.isEmpty()) {
+            if (operandsStack.isEmpty()) {
+                // Single value binary operation
+                // Negative values may be mapped to this case
+                LOGGER.debug(
+                        "No operands in stack. The left operand will be defaulted to 0.");
+                operands.addFirst(new IntegerOperand(0));
+            } else {
                 operands.addFirst(operandsStack.pop());
             }
         }
@@ -184,12 +188,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
             // Acquired operands
             left = operands.removeFirst();
-            if (operands.isEmpty()) {
-                right = left;
-                left = new IntegerOperand(0);
-            } else {
-                right = operands.removeFirst();
-            }
+            right = operands.removeFirst();
 
             // Checks which kind of operation this is and creates it
             if (ADDITION_OPERATOR.equals(operator.getText())) {
