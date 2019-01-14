@@ -171,13 +171,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         for (final Iterator<TerminalNode> itr = ctx.OPERATOR().iterator(); itr
                 .hasNext();) {
             operators.add(itr.next());
-            operands.addFirst(operandsStack.pop());
-            if (operandsStack.isEmpty()) {
-                // Single value binary operation
-                // Negative values may be mapped to this case
-                LOGGER.debug(
-                        "No operands in stack. The left operand will be defaulted to 0.");
-            } else {
+            if (!operandsStack.isEmpty()) {
+                operands.addFirst(operandsStack.pop());
+            }
+            if (!operandsStack.isEmpty()) {
                 operands.addFirst(operandsStack.pop());
             }
         }
