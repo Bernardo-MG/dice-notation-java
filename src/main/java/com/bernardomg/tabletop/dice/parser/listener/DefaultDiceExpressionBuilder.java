@@ -18,8 +18,10 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
@@ -153,41 +155,54 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      *            parsed context
      * @return a binary operation
      */
-    private final BinaryOperation
+    private final DiceNotationExpression
             getBinaryOperation(final BinaryOpContext ctx) {
-        final BinaryOperation operation;    // Parsed binary operation
-        final String operator;              // Operator
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final Collection<String> operators;
+        final Stack<DiceNotationExpression> operands;
+        BinaryOperation operation;
+        DiceNotationExpression left;
+        DiceNotationExpression right;
 
-        // Acquired operands
-        right = operandsStack.pop();
-        if (operandsStack.isEmpty()) {
-            // Single value binary operation
-            // Negative values may be mapped to this case
-            LOGGER.debug(
-                    "No operands in stack. The left operand will be defaulted to 0.");
-            left = new IntegerOperand(0);
-        } else {
-            left = operandsStack.pop();
+        // Operators are taken in the same order
+        operators = ctx.OPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
+
+        // There are as many operands as operators plus one
+        operands = new Stack<>();
+        for (Integer i = 0; i <= operators.size(); i++) {
+            if (operandsStack.isEmpty()) {
+                // Single value binary operation
+                // Negative values may be mapped to this case
+                LOGGER.debug(
+                        "No operands in stack. The left operand will be defaulted to 0.");
+                operands.push(new IntegerOperand(0));
+            } else {
+                operands.push(operandsStack.pop());
+            }
         }
 
-        // Acquires operator
-        operator = ctx.OPERATOR().getText();
+        // The operands and operators are combined into the model expressions
+        for (final String operator : operators) {
+            left = operands.pop();
+            right = operands.pop();
 
-        // Checks which kind of operation this is and creates it
-        if (ADDITION_OPERATOR.equals(operator)) {
-            LOGGER.trace("Addition operation");
-            operation = new AdditionOperation(left, right);
-        } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-            LOGGER.trace("Subtraction operation");
-            operation = new SubtractionOperation(left, right);
-        } else {
-            throw new IllegalArgumentException(
-                    String.format("The %s operator is invalid", operator));
+            // Checks which kind of operation this is and builds it
+            if (ADDITION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Addition operation");
+                operation = new AdditionOperation(left, right);
+            } else if (SUBTRACTION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Subtraction operation");
+                operation = new SubtractionOperation(left, right);
+            } else {
+                throw new IllegalArgumentException(
+                        String.format("The %s operator is invalid", operator));
+            }
+
+            // Each new expression is stored back for the next iteration
+            operands.push(operation);
         }
 
-        return operation;
+        return operands.pop();
     }
 
     /**
