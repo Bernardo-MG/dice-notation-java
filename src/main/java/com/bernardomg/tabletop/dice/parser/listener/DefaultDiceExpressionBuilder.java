@@ -159,9 +159,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             getBinaryOperation(final BinaryOpContext ctx) {
         final Collection<String> operators;
         final Stack<DiceNotationExpression> operands;
-        BinaryOperation operation;    // Parsed binary operation
-        DiceNotationExpression left;  // Left operand
-        DiceNotationExpression right; // Right operand
+        BinaryOperation operation;
+        DiceNotationExpression left;
+        DiceNotationExpression right;
 
         // Operators are taken in the same order
         operators = ctx.OPERATOR().stream().map(TerminalNode::getText)
@@ -183,11 +183,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // The operands and operators are combined into the model expressions
         for (final String operator : operators) {
-            // Acquired operands
             left = operands.pop();
             right = operands.pop();
 
-            // Checks which kind of operation this is and creates it
+            // Checks which kind of operation this is and builds it
             if (ADDITION_OPERATOR.equals(operator)) {
                 LOGGER.trace("Addition operation");
                 operation = new AdditionOperation(left, right);
