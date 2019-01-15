@@ -23,6 +23,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
@@ -161,16 +162,17 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
-        final Collection<TerminalNode> operators;
-        final Iterator<TerminalNode> operatorsItr;
+        final Collection<String> operators;
+        final Iterator<String> operatorsItr;
         final Stack<DiceNotationExpression> operands;
-        TerminalNode operator;
+        String operator;
 
-        operators = new Stack<>();
+        operators = ctx.OPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
+
         operands = new Stack<>();
         operands.push(operandsStack.pop());
-        for (final TerminalNode terminalNode : ctx.OPERATOR()) {
-            operators.add(terminalNode);
+        for (Integer i = 0; i < operators.size(); i++) {
             if (operandsStack.isEmpty()) {
                 // Single value binary operation
                 // Negative values may be mapped to this case
@@ -192,10 +194,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             right = operands.pop();
 
             // Checks which kind of operation this is and creates it
-            if (ADDITION_OPERATOR.equals(operator.getText())) {
+            if (ADDITION_OPERATOR.equals(operator)) {
                 LOGGER.trace("Addition operation");
                 operation = new AdditionOperation(left, right);
-            } else if (SUBTRACTION_OPERATOR.equals(operator.getText())) {
+            } else if (SUBTRACTION_OPERATOR.equals(operator)) {
                 LOGGER.trace("Subtraction operation");
                 operation = new SubtractionOperation(left, right);
             } else {
