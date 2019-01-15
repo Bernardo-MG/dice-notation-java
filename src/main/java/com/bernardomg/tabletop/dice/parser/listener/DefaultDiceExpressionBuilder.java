@@ -19,9 +19,7 @@ package com.bernardomg.tabletop.dice.parser.listener;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
-import java.util.Deque;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -159,18 +157,19 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      */
     private final DiceNotationExpression
             getBinaryOperation(final BinaryOpContext ctx) {
+        final Collection<String> operators;
+        final Stack<DiceNotationExpression> operands;
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
-        final Collection<String> operators;
-        final Stack<DiceNotationExpression> operands;
 
+        // Operators are taken in the same order
         operators = ctx.OPERATOR().stream().map(TerminalNode::getText)
                 .collect(Collectors.toList());
 
+        // There are as many operands as operators plus one
         operands = new Stack<>();
-        operands.push(operandsStack.pop());
-        for (Integer i = 0; i < operators.size(); i++) {
+        for (Integer i = 0; i <= operators.size(); i++) {
             if (operandsStack.isEmpty()) {
                 // Single value binary operation
                 // Negative values may be mapped to this case
@@ -182,6 +181,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             }
         }
 
+        // The operands and operators are combined into the model expressions
         for (final String operator : operators) {
             // Acquired operands
             left = operands.pop();
@@ -199,6 +199,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
                         String.format("The %s operator is invalid", operator));
             }
 
+            // Each new expression is stored back for the next iteration
             operands.push(operation);
         }
 
