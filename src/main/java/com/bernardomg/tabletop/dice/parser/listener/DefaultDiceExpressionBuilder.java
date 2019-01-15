@@ -163,9 +163,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
         final Collection<String> operators;
-        final Iterator<String> operatorsItr;
         final Stack<DiceNotationExpression> operands;
-        String operator;
 
         operators = ctx.OPERATOR().stream().map(TerminalNode::getText)
                 .collect(Collectors.toList());
@@ -184,11 +182,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             }
         }
 
-        operatorsItr = operators.iterator();
-        while (operatorsItr.hasNext()) {
-            // TODO: Use stacks
-            operator = operatorsItr.next();
-
+        for (final String operator : operators) {
             // Acquired operands
             left = operands.pop();
             right = operands.pop();
