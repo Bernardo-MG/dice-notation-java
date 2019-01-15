@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -160,11 +161,12 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         BinaryOperation operation;    // Parsed binary operation
         DiceNotationExpression left;  // Left operand
         DiceNotationExpression right; // Right operand
-        final Deque<TerminalNode> operators;
+        final Collection<TerminalNode> operators;
+        final Iterator<TerminalNode> operatorsItr;
         final Stack<DiceNotationExpression> operands;
         TerminalNode operator;
 
-        operators = new LinkedList<>();
+        operators = new Stack<>();
         operands = new Stack<>();
         operands.push(operandsStack.pop());
         for (final TerminalNode terminalNode : ctx.OPERATOR()) {
@@ -180,9 +182,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             }
         }
 
-        while (!operators.isEmpty()) {
+        operatorsItr = operators.iterator();
+        while (operatorsItr.hasNext()) {
             // TODO: Use stacks
-            operator = operators.removeFirst();
+            operator = operatorsItr.next();
 
             // Acquired operands
             left = operands.pop();
