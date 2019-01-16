@@ -1,1 +1,1 @@
-(parse (function (binaryOp * (number 1))))
+(parse (function (binaryOp * (operator (number 1)))))

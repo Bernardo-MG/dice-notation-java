@@ -41,8 +41,7 @@ function
 
 binaryOp
 :
-   multOp
-   | addOp
+   (operator)? (OPERATOR operator)+
 ;
 
 addOp
