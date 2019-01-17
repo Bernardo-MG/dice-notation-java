@@ -46,18 +46,16 @@ binaryOp
 
 operand
 :
-   OPERATOR dice
-   | OPERATOR number
-   | dice
+   dice
    | number
 ;
 
 dice
 :
-   DIGIT DSEPARATOR DIGIT
+   OPERATOR? DIGIT DSEPARATOR DIGIT
 ;
 
 number
 :
-   DIGIT
+   OPERATOR? DIGIT
 ;
