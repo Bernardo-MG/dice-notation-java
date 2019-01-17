@@ -35,8 +35,8 @@ parse
 function
 :
    dice
-   | binaryOp
    | number
+   | binaryOp
 ;
 
 binaryOp
