@@ -129,10 +129,17 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     @Override
     public final void exitNumber(final NumberContext ctx) {
         final DiceNotationExpression expression;
+        final String sign;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getIntegerOperand(ctx.DIGIT());
+        if (ctx.OPERATOR() != null) {
+            sign = ctx.OPERATOR().getText();
+        } else {
+            sign = "";
+        }
+
+        expression = getIntegerOperand(ctx.DIGIT(), sign);
 
         LOGGER.debug("Parsed number: {}", expression);
 
@@ -234,15 +241,25 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * 
      * @param node
      *            terminal node
+     * @param operator
+     *            digit sign
      * @return an integer operand
      */
-    private final IntegerOperand getIntegerOperand(final TerminalNode node) {
-        final Integer value; // Parsed value
+    private final IntegerOperand getIntegerOperand(final TerminalNode node,
+            final String sign) {
+        final Integer value;
+        final Integer signed;
 
         // Parses the value
         value = Integer.parseInt(node.getText());
 
-        return new IntegerOperand(value);
+        if (SUBTRACTION_OPERATOR.equals(sign)) {
+            signed = 0 - value;
+        } else {
+            signed = value;
+        }
+
+        return new IntegerOperand(signed);
     }
 
 }
