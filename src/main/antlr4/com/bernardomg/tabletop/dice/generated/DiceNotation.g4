@@ -41,12 +41,15 @@ function
 
 binaryOp
 :
-   (operand)? (OPERATOR operand)+
+   operand (OPERATOR operand)*
 ;
 
 operand
 :
-   (dice | number)
+   OPERATOR dice
+   | OPERATOR number
+   | dice
+   | number
 ;
 
 dice

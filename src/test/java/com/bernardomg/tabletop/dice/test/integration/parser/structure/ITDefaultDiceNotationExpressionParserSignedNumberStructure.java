@@ -48,19 +48,12 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
      */
     @Test
     public final void testParse_Negative() {
-        final SubtractionOperation operation; // Parsed expression
-        final IntegerOperand left;            // Left operand
-        final IntegerOperand right;           // Right operand
+        final IntegerOperand operation; // Parsed expression
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("-12").getRoot();
 
-        left = (IntegerOperand) operation.getLeft();
-        right = (IntegerOperand) operation.getRight();
-
-        // -12 = 0-12
-        Assertions.assertEquals(new Integer(0), left.getValue());
-        Assertions.assertEquals(new Integer(12), right.getValue());
+        Assertions.assertEquals(new Integer(0 - 12), operation.getValue());
     }
 
     /**
@@ -69,19 +62,12 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
      */
     @Test
     public final void testParse_Positive() {
-        final AdditionOperation operation; // Parsed expression
-        final IntegerOperand left;         // Left operand
-        final IntegerOperand right;        // Right operand
+        final IntegerOperand operation; // Parsed expression
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
                 .parse("+12").getRoot();
 
-        left = (IntegerOperand) operation.getLeft();
-        right = (IntegerOperand) operation.getRight();
-
-        // +12 = 0+12
-        Assertions.assertEquals(new Integer(0), left.getValue());
-        Assertions.assertEquals(new Integer(12), right.getValue());
+        Assertions.assertEquals(new Integer(12), operation.getValue());
     }
 
 }

@@ -1,1 +1,1 @@
-(parse (function (number 12)))
+(parse (function (binaryOp (operand (number 12)))))

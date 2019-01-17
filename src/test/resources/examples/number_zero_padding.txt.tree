@@ -1,1 +1,1 @@
-(parse (function (number 001200)))
+(parse (function (binaryOp (operand (number 001200)))))
