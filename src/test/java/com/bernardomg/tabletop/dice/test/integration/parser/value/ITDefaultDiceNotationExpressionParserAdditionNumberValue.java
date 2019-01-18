@@ -87,4 +87,34 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
         Assertions.assertEquals((Integer) 3, root.roll());
     }
 
+    /**
+     * Verifies that an addition with a negative value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_AddNegative_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "1+-2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals(new Integer((-1)), root.roll());
+    }
+
+    /**
+     * Verifies that an addition with a negative value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_AddToNegative_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "-1+2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals(new Integer(1), root.roll());
+    }
+
 }

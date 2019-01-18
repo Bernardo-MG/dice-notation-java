@@ -87,4 +87,34 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberValue 
         Assertions.assertEquals((Integer) (-1), root.roll());
     }
 
+    /**
+     * Verifies that a subtraction with a negative value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_SubNegative_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "1--2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) (3), root.roll());
+    }
+
+    /**
+     * Verifies that a subtraction with a negative value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_SubToNegative_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "-1-2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) (-3), root.roll());
+    }
+
 }
