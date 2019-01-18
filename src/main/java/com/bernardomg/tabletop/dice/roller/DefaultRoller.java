@@ -78,19 +78,26 @@ public final class DefaultRoller implements Roller {
     @Override
     public final Iterable<Integer> roll(final Dice dice) {
         final Collection<Integer> rolls; // Roll results
-        final Integer sides;
+        final Integer quantity;
+        final Boolean negative;
 
         checkNotNull(dice, "Received a null pointer as dice");
 
-        if (dice.getSides() < 0) {
-            sides = 0 - dice.getSides();
+        if (dice.getQuantity() < 0) {
+            quantity = 0 - dice.getQuantity();
+            negative = true;
         } else {
-            sides = dice.getSides();
+            quantity = dice.getQuantity();
+            negative = false;
         }
 
         rolls = new ArrayList<Integer>();
-        for (Integer i = 0; i < dice.getQuantity(); i++) {
-            rolls.add(numberGenerator.generate(sides));
+        for (Integer i = 0; i < quantity; i++) {
+            if (negative) {
+                rolls.add(0 - numberGenerator.generate(dice.getSides()));
+            } else {
+                rolls.add(numberGenerator.generate(dice.getSides()));
+            }
         }
 
         return rolls;
