@@ -44,28 +44,6 @@ public final class TestExceptionDefaultRoller {
     }
 
     /**
-     * Verifies that rolling a dice with negative sides throws an exception.
-     */
-    @Test
-    public final void testRoll_NegativeSides() {
-        final Dice dice;     // Mocked dice
-        final Roller roller; // Tested roller
-        final Executable closure;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(10);
-        Mockito.when(dice.getSides()).thenReturn(-6);
-
-        // Initializes roller
-        roller = new DefaultRoller();
-
-        closure = () -> roller.roll(dice);
-
-        Assertions.assertThrows(IllegalArgumentException.class, closure);
-    }
-
-    /**
      * Verifies that rolling a dice with 0 as sides throws an exception.
      */
     @Test

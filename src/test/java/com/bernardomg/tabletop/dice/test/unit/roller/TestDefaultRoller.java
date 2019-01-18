@@ -51,7 +51,7 @@ public final class TestDefaultRoller {
      * Verifies that the roller handles negative dice.
      */
     @Test
-    public final void testRoll_Negative() {
+    public final void testRoll_NegativeQuantity() {
         final Dice dice;     // Mocked dice
         final Roller roller; // Tested roller
 
@@ -63,7 +63,26 @@ public final class TestDefaultRoller {
         // Initializes roller
         roller = new DefaultRoller();
 
-        Assertions.assertTrue(Iterables.isEmpty(roller.roll(dice)));
+        Assertions.assertEquals((-1), Iterables.size(roller.roll(dice)));
+    }
+
+    /**
+     * Verifies that the roller handles dice with negative sides.
+     */
+    @Test
+    public final void testRoll_NegativeSides() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(-1);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        Assertions.assertEquals(1, Iterables.size(roller.roll(dice)));
     }
 
     /**
@@ -83,6 +102,25 @@ public final class TestDefaultRoller {
         roller = new DefaultRoller();
 
         Assertions.assertTrue(Iterables.isEmpty(roller.roll(dice)));
+    }
+
+    /**
+     * Verifies that the roller handles dice with no sides.
+     */
+    @Test
+    public final void testRoll_NoSides() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(0);
+
+        // Initializes roller
+        roller = new DefaultRoller();
+
+        Assertions.assertEquals(0, Iterables.size(roller.roll(dice)));
     }
 
     /**

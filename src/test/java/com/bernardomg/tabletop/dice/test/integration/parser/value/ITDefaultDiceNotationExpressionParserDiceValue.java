@@ -59,6 +59,36 @@ public final class ITDefaultDiceNotationExpressionParserDiceValue {
      * Verifies that dice are parsed correctly.
      */
     @Test
+    public final void testParse_Dice_NoQuantity_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "0d1";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) 0, root.roll());
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice_NoSides_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "1d0";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) 0, root.roll());
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
     public final void testParse_Dice_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
