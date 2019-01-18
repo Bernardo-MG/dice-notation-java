@@ -26,63 +26,48 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses numbers.
+ * that it parses dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserNumberValue {
+public final class ITDefaultDiceNotationExpressionParserDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserNumberValue() {
+    public ITDefaultDiceNotationExpressionParserDiceValue() {
         super();
     }
 
     /**
-     * Verifies that a number is parsed correctly.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Number() {
+    public final void testParse_Dice_Negative_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "12";
+        notation = "-1d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 12, root.roll());
+        Assertions.assertEquals((Integer) (-1), root.roll());
     }
 
     /**
-     * Verifies that a negative number is parsed correctly.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Number_Negative() {
+    public final void testParse_Dice_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "-12";
+        notation = "1d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-12), root.roll());
-    }
-
-    /**
-     * Verifies that a number padded with zeros is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_ZeroPadding() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "001200";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) 1200, root.roll());
+        Assertions.assertEquals((Integer) 1, root.roll());
     }
 
 }
