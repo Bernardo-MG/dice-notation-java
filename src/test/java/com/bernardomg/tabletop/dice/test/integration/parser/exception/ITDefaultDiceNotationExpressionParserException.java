@@ -76,16 +76,4 @@ public final class ITDefaultDiceNotationExpressionParserException {
         Assertions.assertThrows(Exception.class, closure);
     }
 
-    /**
-     * Verifies that dice notation with zero sides causes an exception.
-     */
-    @Test
-    public final void testParse_ZeroSides() {
-        final Executable closure;
-
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("1d0");
-
-        Assertions.assertThrows(Exception.class, closure);
-    }
-
 }

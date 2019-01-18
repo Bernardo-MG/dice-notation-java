@@ -220,7 +220,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
-        quantity = Integer.parseInt(digits.next().getText());
+
+        if ((ctx.OPERATOR() != null)
+                && (SUBTRACTION_OPERATOR.equals(ctx.OPERATOR().getText()))) {
+            quantity = 0 - Integer.parseInt(digits.next().getText());
+        } else {
+            quantity = Integer.parseInt(digits.next().getText());
+        }
         sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice

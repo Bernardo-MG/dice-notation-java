@@ -51,7 +51,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
         operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
                 .parse("-1d1").getRoot();
 
-        Assertions.assertEquals(new Integer(1),
+        Assertions.assertEquals(new Integer(-1),
                 operation.getDice().getQuantity());
         Assertions.assertEquals(new Integer(1), operation.getDice().getSides());
     }

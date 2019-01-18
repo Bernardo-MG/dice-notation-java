@@ -152,7 +152,7 @@ public final class ITParseAndDiceTransformer {
         dice = new DiceTransformer().transform(parsed).iterator().next();
 
         // TODO: Maybe it should be -1?
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
