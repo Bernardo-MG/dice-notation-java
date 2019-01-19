@@ -44,6 +44,21 @@ public final class TestRandomNumberGenerator {
     }
 
     /**
+     * Verifies that if the maximum is negative then the result is zero.
+     */
+    @Test
+    public final void testGenerate_NegativeMax_Zero() {
+        final NumberGenerator generator;
+        final Integer generated;
+
+        generator = new RandomNumberGenerator();
+
+        generated = generator.generate(-1);
+
+        Assertions.assertEquals((Integer) (0), generated);
+    }
+
+    /**
      * Verifies that the generated numbers are kept inside the expected
      * interval.
      */
@@ -72,6 +87,21 @@ public final class TestRandomNumberGenerator {
             Assertions.assertTrue(number >= lowerLimit);
             Assertions.assertTrue(number <= upperLimit);
         }
+    }
+
+    /**
+     * Verifies that if the maximum is zero then the result is zero.
+     */
+    @Test
+    public final void testGenerate_ZeroMax_Zero() {
+        final NumberGenerator generator;
+        final Integer generated;
+
+        generator = new RandomNumberGenerator();
+
+        generated = generator.generate(0);
+
+        Assertions.assertEquals((Integer) (0), generated);
     }
 
 }

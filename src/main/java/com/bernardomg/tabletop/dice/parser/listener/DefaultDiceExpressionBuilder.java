@@ -132,7 +132,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getIntegerOperand(ctx.DIGIT());
+        expression = getIntegerOperand(ctx.getText());
 
         LOGGER.debug("Parsed number: {}", expression);
 
@@ -220,7 +220,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
-        quantity = Integer.parseInt(digits.next().getText());
+
+        if ((ctx.OPERATOR() != null)
+                && (SUBTRACTION_OPERATOR.equals(ctx.OPERATOR().getText()))) {
+            quantity = 0 - Integer.parseInt(digits.next().getText());
+        } else {
+            quantity = Integer.parseInt(digits.next().getText());
+        }
         sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
@@ -232,15 +238,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Creates an integer operand from a terminal node.
      * 
-     * @param node
-     *            terminal node
+     * @param expression
+     *            parsed expression
      * @return an integer operand
      */
-    private final IntegerOperand getIntegerOperand(final TerminalNode node) {
-        final Integer value; // Parsed value
+    private final IntegerOperand getIntegerOperand(final String expression) {
+        final Integer value;
 
         // Parses the value
-        value = Integer.parseInt(node.getText());
+        value = Integer.parseInt(expression);
 
         return new IntegerOperand(value);
     }

@@ -16,7 +16,6 @@
 
 package com.bernardomg.tabletop.dice.roller;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
@@ -79,16 +78,26 @@ public final class DefaultRoller implements Roller {
     @Override
     public final Iterable<Integer> roll(final Dice dice) {
         final Collection<Integer> rolls; // Roll results
+        final Integer quantity;
+        final Boolean negative;
 
         checkNotNull(dice, "Received a null pointer as dice");
-        checkArgument(dice.getQuantity() >= 0,
-                "The quantity of dice can not be negative");
-        checkArgument(dice.getSides() >= 0,
-                "The number of sides can not be negative");
+
+        if (dice.getQuantity() < 0) {
+            quantity = 0 - dice.getQuantity();
+            negative = true;
+        } else {
+            quantity = dice.getQuantity();
+            negative = false;
+        }
 
         rolls = new ArrayList<Integer>();
-        for (Integer i = 0; i < dice.getQuantity(); i++) {
-            rolls.add(numberGenerator.generate(dice.getSides()));
+        for (Integer i = 0; i < quantity; i++) {
+            if (negative) {
+                rolls.add(0 - numberGenerator.generate(dice.getSides()));
+            } else {
+                rolls.add(numberGenerator.generate(dice.getSides()));
+            }
         }
 
         return rolls;

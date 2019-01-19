@@ -35,26 +35,27 @@ parse
 function
 :
    dice
-   | binaryOp
    | number
+   | binaryOp
 ;
 
 binaryOp
 :
-   (operand)? (OPERATOR operand)+
+   operand (OPERATOR operand)*
 ;
 
 operand
 :
-   (dice | number)
+   dice
+   | number
 ;
 
 dice
 :
-   DIGIT DSEPARATOR DIGIT
+   OPERATOR? DIGIT DSEPARATOR DIGIT
 ;
 
 number
 :
-   DIGIT
+   OPERATOR? DIGIT
 ;
