@@ -63,6 +63,23 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
     }
 
     /**
+     * Verifies that a negative dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Negative() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("-1d6")
+                .getRoot();
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer((-1)), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
      * Verifies that dice notation with a single dice and a single side can be
      * parsed.
      */
@@ -129,6 +146,23 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
 
         Assertions.assertEquals(new Integer(0), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that dice notation with zero sides can be parsed.
+     */
+    @Test
+    public final void testParse_ZeroSides() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d0")
+                .getRoot();
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(0), dice.getSides());
     }
 
 }

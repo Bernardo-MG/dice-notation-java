@@ -22,9 +22,6 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
-import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -49,20 +46,14 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
      */
     @Test
     public final void testParse_OnesDice_SignedNegative() {
-        final SubtractionOperation operation; // Parsed expression
-        final IntegerOperand left;            // Left operand
-        final DiceOperand right;              // Right operand
+        final DiceOperand operation; // Parsed expression
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
                 .parse("-1d1").getRoot();
 
-        left = (IntegerOperand) operation.getLeft();
-        right = (DiceOperand) operation.getRight();
-
-        // -1d1 = 0-1d1
-        Assertions.assertEquals(new Integer(0), left.getValue());
-        Assertions.assertEquals(new Integer(1), right.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), right.getDice().getSides());
+        Assertions.assertEquals(new Integer(-1),
+                operation.getDice().getQuantity());
+        Assertions.assertEquals(new Integer(1), operation.getDice().getSides());
     }
 
     /**
@@ -71,20 +62,14 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
      */
     @Test
     public final void testParse_OnesDice_SignedPositive() {
-        final AdditionOperation operation; // Parsed expression
-        final IntegerOperand left;         // Left operand
-        final DiceOperand right;           // Right operand
+        final DiceOperand operation; // Parsed expression
 
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
                 .parse("+1d1").getRoot();
 
-        left = (IntegerOperand) operation.getLeft();
-        right = (DiceOperand) operation.getRight();
-
-        // +1d1 = 0+1d1
-        Assertions.assertEquals(new Integer(0), left.getValue());
-        Assertions.assertEquals(new Integer(1), right.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), right.getDice().getSides());
+        Assertions.assertEquals(new Integer(1),
+                operation.getDice().getQuantity());
+        Assertions.assertEquals(new Integer(1), operation.getDice().getSides());
     }
 
 }

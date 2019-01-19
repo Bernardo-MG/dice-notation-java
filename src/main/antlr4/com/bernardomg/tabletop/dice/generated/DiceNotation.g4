@@ -35,39 +35,38 @@ parse
 function
 :
    dice
-   | binaryOp
    | number
+   | binaryOp
 ;
 
 binaryOp
 :
-   (operator)? (OPERATOR operator)+
+   addOp
+   | multOp
 ;
 
 addOp
 :
-   operator ADDOPERATOR operator
-   | ADDOPERATOR operator
-   | addOp ADDOPERATOR operator
+   operand (ADDOPERATOR operand)*
 ;
 
 multOp
 :
-   operator MULTOPERATOR operator
-   | multOp MULTOPERATOR operator
+   operand (MULTOPERATOR operand)*
 ;
 
-operator
+operand
 :
-   (dice | number)
+   dice
+   | number
 ;
 
 dice
 :
-   DIGIT DSEPARATOR DIGIT
+   ADDOPERATOR? DIGIT DSEPARATOR DIGIT
 ;
 
 number
 :
-   DIGIT
+   ADDOPERATOR? DIGIT
 ;

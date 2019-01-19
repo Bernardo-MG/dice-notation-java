@@ -52,12 +52,12 @@ MULTOPERATOR
    ( '*' | '/' )
 ;
 
-fragment ADD
+ADD
 :
    '+'
 ;
 
-fragment SUB
+SUB
 :
    '-'
 ;

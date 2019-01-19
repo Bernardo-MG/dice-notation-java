@@ -56,6 +56,21 @@ public final class ITDefaultDiceNotationExpressionParserNumberValue {
     }
 
     /**
+     * Verifies that a negative number is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_Negative() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "-12";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) (-12), root.roll());
+    }
+
+    /**
      * Verifies that a number padded with zeros is parsed correctly.
      */
     @Test

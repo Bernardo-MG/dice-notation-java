@@ -26,44 +26,29 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses substractions with dice.
+ * that it parses dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSubstractionDiceValue {
+public final class ITDefaultDiceNotationExpressionParserDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSubstractionDiceValue() {
+    public ITDefaultDiceNotationExpressionParserDiceValue() {
         super();
     }
 
     /**
-     * Verifies that a subtraction using only negative dice is parsed correctly.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Sub_Dice_Negative_Value() {
+    public final void testParse_Dice_Negative_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "-1d1-2d1";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) (-3), root.roll());
-    }
-
-    /**
-     * Verifies that a subtraction using only dice is parsed correctly.
-     */
-    @Test
-    public final void testParse_Sub_Dice_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1d1-2d1";
+        notation = "-1d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
@@ -71,33 +56,48 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceValue {
     }
 
     /**
-     * Verifies that a subtraction with the number to left is parsed correctly.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Sub_LeftNumber_Value() {
+    public final void testParse_Dice_NoQuantity_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "5-2d1";
+        notation = "0d1";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 3, root.roll());
+        Assertions.assertEquals((Integer) 0, root.roll());
     }
 
     /**
-     * Verifies that a subtraction with the number to right is parsed correctly.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Sub_RightNumber_Value() {
+    public final void testParse_Dice_NoSides_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "2d1-5";
+        notation = "1d0";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-3), root.roll());
+        Assertions.assertEquals((Integer) 0, root.roll());
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "1d1";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) 1, root.roll());
     }
 
 }

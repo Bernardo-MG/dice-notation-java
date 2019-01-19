@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.test.integration.transformer;
 
 import java.util.Iterator;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -152,8 +153,23 @@ public final class ITParseAndDiceTransformer {
         dice = new DiceTransformer().transform(parsed).iterator().next();
 
         // TODO: Maybe it should be -1?
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_NoDice() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> dice;           // Resulting dice
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1");
+
+        dice = new DiceTransformer().transform(parsed);
+
+        Assert.assertEquals(0, Iterables.size(dice));
     }
 
     /**
