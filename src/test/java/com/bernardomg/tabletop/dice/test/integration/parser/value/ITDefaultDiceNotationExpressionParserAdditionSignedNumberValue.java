@@ -26,65 +26,48 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
- * that it parses numeric additions.
+ * that it parses numeric additions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
+public final class ITDefaultDiceNotationExpressionParserAdditionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserAdditionNumberValue() {
+    public ITDefaultDiceNotationExpressionParserAdditionSignedNumberValue() {
         super();
     }
 
     /**
-     * Verifies that long additions can be parsed, and the result is the
-     * expected one.
+     * Verifies that an addition with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Add_Long_Value() {
+    public final void testParse_Number_AddNegative_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "1+2+3";
+        notation = "1+-2";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 6, root.roll());
+        Assertions.assertEquals(new Integer((-1)), root.roll());
     }
 
     /**
-     * Verifies that longer additions can be parsed, and the result is the
-     * expected one.
+     * Verifies that an addition with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Add_Longer_Value() {
+    public final void testParse_Number_AddToNegative_Value() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
 
-        notation = "1+2+3+4+5";
+        notation = "-1+2";
 
         root = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 15, root.roll());
-    }
-
-    /**
-     * Verifies that an addition with only numbers is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_Add_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-
-        notation = "1+2";
-
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
-
-        Assertions.assertEquals((Integer) 3, root.roll());
+        Assertions.assertEquals(new Integer(1), root.roll());
     }
 
 }
