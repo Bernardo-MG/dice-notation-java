@@ -41,6 +41,21 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceValue {
     }
 
     /**
+     * Verifies that a subtraction using only negative dice is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_Dice_Negative_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "-1d1-2d1";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) (-3), root.roll());
+    }
+
+    /**
      * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
