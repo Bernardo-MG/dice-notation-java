@@ -1,1 +1,1 @@
-(parse (function (binaryOp (operator (number 4)) / (operator (number 2)))))
+(parse (function (addOp (multOp (operand (number 4)) / (operand (number 2))))))

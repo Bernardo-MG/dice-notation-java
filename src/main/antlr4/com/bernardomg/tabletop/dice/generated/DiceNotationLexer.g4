@@ -37,19 +37,14 @@ DIGIT
 
 // Operation tokens
 
-OPERATOR
-:
-   ( '+' | '-' | '*' | '/' )
-;
-
 ADDOPERATOR
 :
-   ( '+' | '-' )
+   ( ADD | SUB )
 ;
 
 MULTOPERATOR
 :
-   ( '*' | '/' )
+   ( MULT | DIV )
 ;
 
 ADD
@@ -60,6 +55,16 @@ ADD
 SUB
 :
    '-'
+;
+
+MULT
+:
+   '*'
+;
+
+DIV
+:
+   '/'
 ;
 
 // Skippable tokens

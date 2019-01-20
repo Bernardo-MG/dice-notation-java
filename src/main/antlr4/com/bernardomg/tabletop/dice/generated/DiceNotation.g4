@@ -36,18 +36,12 @@ function
 :
    dice
    | number
-   | binaryOp
-;
-
-binaryOp
-:
-   addOp
-   | multOp
+   | addOp
 ;
 
 addOp
 :
-   operand (ADDOPERATOR operand)*
+   multOp (ADDOPERATOR multOp)*
 ;
 
 multOp
