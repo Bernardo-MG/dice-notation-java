@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -44,6 +45,7 @@ public final class ITDefaultDiceNotationExpressionParserDivisionNumberValue {
      * Verifies that a division with a float result is parsed correctly.
      */
     @Test
+    @Disabled
     public final void testParse_Division_FloatValue() {
         final String notation;                 // Input to parse
         final TransformableDiceNotationExpression root; // Parsed operation
