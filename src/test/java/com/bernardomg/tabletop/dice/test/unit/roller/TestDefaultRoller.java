@@ -152,7 +152,28 @@ public final class TestDefaultRoller {
      * Verifies that the roller handles the smallest possible dice.
      */
     @Test
-    public final void testRoll_Smallest() {
+    public final void testRoll_Smallest_ResultsSize() {
+        final Dice dice;                // Mocked dice
+        final Roller roller;            // Tested roller
+        final Iterable<Integer> rolled; // Generated value
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice);
+
+        Assertions.assertEquals(1, Iterables.size(rolled));
+    }
+
+    /**
+     * Verifies that the roller handles the smallest possible dice.
+     */
+    @Test
+    public final void testRoll_Smallest_Value() {
         final Dice dice;     // Mocked dice
         final Roller roller; // Tested roller
         final Integer rolled; // Generated value
