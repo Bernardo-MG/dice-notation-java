@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,6 @@
 
 package com.bernardomg.tabletop.dice;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
@@ -63,9 +62,6 @@ public final class DefaultDice implements Dice {
 
         checkNotNull(quantity, "Received a null pointer as quantity");
         checkNotNull(sides, "Received a null pointer as sides");
-
-        checkArgument(quantity >= 0, "The quantity of dice can't be negative");
-        checkArgument(sides >= 1, "The number of sides can't be lower than 1");
 
         diceSides = sides;
         diceQuantity = quantity;

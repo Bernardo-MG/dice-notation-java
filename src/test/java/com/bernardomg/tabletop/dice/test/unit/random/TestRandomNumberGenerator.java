@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
- * Units tests for {@code RandomNumberGenerator}, checking that it generates
+ * Units tests for {@link RandomNumberGenerator}, verifying that it generates
  * values as expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -41,6 +41,21 @@ public final class TestRandomNumberGenerator {
      */
     public TestRandomNumberGenerator() {
         super();
+    }
+
+    /**
+     * Verifies that if the maximum is negative then the result is zero.
+     */
+    @Test
+    public final void testGenerate_NegativeMax_Zero() {
+        final NumberGenerator generator;
+        final Integer generated;
+
+        generator = new RandomNumberGenerator();
+
+        generated = generator.generate(-1);
+
+        Assertions.assertEquals((Integer) (0), generated);
     }
 
     /**
@@ -72,6 +87,21 @@ public final class TestRandomNumberGenerator {
             Assertions.assertTrue(number >= lowerLimit);
             Assertions.assertTrue(number <= upperLimit);
         }
+    }
+
+    /**
+     * Verifies that if the maximum is zero then the result is zero.
+     */
+    @Test
+    public final void testGenerate_ZeroMax_Zero() {
+        final NumberGenerator generator;
+        final Integer generated;
+
+        generator = new RandomNumberGenerator();
+
+        generated = generator.generate(0);
+
+        Assertions.assertEquals((Integer) (0), generated);
     }
 
 }

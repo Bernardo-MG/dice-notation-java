@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Unit tests for {@link SubtractionOperation}, checking that it works as
- * expected with its operands.
+ * Unit tests for {@link SubtractionOperation}, verifying that it can generate a
+ * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -43,10 +43,29 @@ public final class TestSubtractionOperation {
     }
 
     /**
-     * Verifies that the text expression is generated correctly.
+     * Verifies that the text expression for negative values is generated
+     * correctly.
      */
     @Test
-    public final void testTextExpression() {
+    public final void testTextExpression_Negatives() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(-1);
+        right = new IntegerOperand(-2);
+
+        operation = new SubtractionOperation(left, right);
+
+        Assertions.assertEquals("-1--2", operation.getExpression());
+    }
+
+    /**
+     * Verifies that the text expression for positive values is generated
+     * correctly.
+     */
+    @Test
+    public final void testTextExpression_Positives() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand

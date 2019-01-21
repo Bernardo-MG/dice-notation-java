@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,6 +19,9 @@ package com.bernardomg.tabletop.dice.notation.transformer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.function.BiFunction;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
@@ -45,9 +48,15 @@ public final class RollerTransformer
         implements DiceNotationTransformer<Integer> {
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(RollerTransformer.class);
+
+    /**
      * Roller to generate random values from dice.
      */
-    private final Roller roller;
+    private final Roller        roller;
 
     /**
      * Default constructor.
@@ -75,6 +84,7 @@ public final class RollerTransformer
         final Integer result;
         // TODO: Avoid casting
 
+        LOGGER.debug("Transforming expression {}", expression.getClass());
         if (expression instanceof TransformableDiceNotationExpression) {
             result = transform(
                     ((TransformableDiceNotationExpression) expression)
@@ -86,6 +96,7 @@ public final class RollerTransformer
         } else if (expression instanceof DiceOperand) {
             result = transform((DiceOperand) expression);
         } else {
+            LOGGER.warn("Unsupported expression");
             result = 0;
         }
 
@@ -115,7 +126,9 @@ public final class RollerTransformer
 
         func = operation.getOperation();
 
+        LOGGER.debug("Transforming left operand");
         leftValue = transform(left);
+        LOGGER.debug("Transforming right operand");
         rightValue = transform(right);
 
         value = func.apply(leftValue, rightValue);

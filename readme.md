@@ -98,7 +98,7 @@ If you need to get the dice from the expression:
 final TransformableDiceNotationExpression parsed;
 final Dice dice;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
+parsed = new DefaultDiceNotationExpressionParser().parse("1d6+12");
 
 dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
 

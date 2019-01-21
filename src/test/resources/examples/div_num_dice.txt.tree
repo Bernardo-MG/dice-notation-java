@@ -1,0 +1,1 @@
+(parse (function (addOp (multOp (operand (number 1)) / (operand (dice 1 d 6))))))

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,9 +16,10 @@
 
 package com.bernardomg.tabletop.dice.roller.random;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.util.Random;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link Random}-based number generator.
@@ -29,6 +30,12 @@ import java.util.Random;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class RandomNumberGenerator implements NumberGenerator {
+
+    /**
+     * Logger.
+     */
+    private static final Logger  LOGGER      = LoggerFactory
+            .getLogger(RandomNumberGenerator.class);
 
     /**
      * Lower limit for the number generation procedure.
@@ -63,10 +70,19 @@ public final class RandomNumberGenerator implements NumberGenerator {
      */
     @Override
     public final Integer generate(final Integer max) {
-        checkArgument(max >= LOWER_LIMIT, String.format(
-                "The maximum value can't be lower than %d", LOWER_LIMIT));
+        final Integer result;
 
-        return random.nextInt(Math.abs(LOWER_LIMIT - max) + 1) + LOWER_LIMIT;
+        if (max < LOWER_LIMIT) {
+            LOGGER.warn(
+                    "Received {} as maximum value, but this is lower than {}",
+                    max, LOWER_LIMIT);
+            result = 0;
+        } else {
+            result = random.nextInt(Math.abs(LOWER_LIMIT - max) + 1)
+                    + LOWER_LIMIT;
+        }
+
+        return result;
     }
 
 }

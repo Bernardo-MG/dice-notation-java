@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,23 +16,19 @@
 
 package com.bernardomg.tabletop.dice.test.unit.roller;
 
-import java.util.Iterator;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
-import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 import com.google.common.collect.Iterables;
 
 /**
- * Units tests for {@code DefaultRoller}, checking that it returns values as
+ * Units tests for {@link DefaultRoller}, verifying that it returns values as
  * expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -48,22 +44,87 @@ public final class TestDefaultRoller {
     }
 
     /**
+     * Verifies that the roller handles negative dice.
+     */
+    @Test
+    public final void testRoll_NegativeQuantity() {
+        final Dice dice;      // Mocked dice
+        final Roller roller;  // Tested roller
+        final Integer rolled; // Generated value
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(-1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice).iterator().next();
+
+        Assertions.assertEquals((Integer) (-1), rolled);
+    }
+
+    /**
+     * Verifies that the roller returns 0 when the sides are negative.
+     */
+    @Test
+    public final void testRoll_NegativeSides_Zero() {
+        final Dice dice;      // Mocked dice
+        final Roller roller;  // Tested roller
+        final Integer rolled; // Generated value
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(-1);
+
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice).iterator().next();
+
+        Assertions.assertEquals((Integer) (0), rolled);
+    }
+
+    /**
      * Verifies that the roller returns no results when the dice quantity is 0.
      */
     @Test
     public final void testRoll_NoDice_Empty() {
-        final Dice dice;     // Mocked dice
-        final Roller roller; // Tested roller
+        final Dice dice;                // Mocked dice
+        final Roller roller;            // Tested roller
+        final Iterable<Integer> rolled; // Generated value
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
         Mockito.when(dice.getQuantity()).thenReturn(0);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        // Initializes roller
+        // Initializes roller and generates value
         roller = new DefaultRoller();
+        rolled = roller.roll(dice);
 
-        Assertions.assertTrue(Iterables.isEmpty(roller.roll(dice)));
+        Assertions.assertTrue(Iterables.isEmpty(rolled));
+    }
+
+    /**
+     * Verifies that the roller returns 0 when there are no sides.
+     */
+    @Test
+    public final void testRoll_NoSides_Zero() {
+        final Dice dice;      // Mocked dice
+        final Roller roller;  // Tested roller
+        final Integer rolled; // Generated value
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(0);
+
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice).iterator().next();
+
+        Assertions.assertEquals((Integer) (0), rolled);
     }
 
     /**
@@ -71,52 +132,62 @@ public final class TestDefaultRoller {
      */
     @Test
     public final void testRoll_ResultsSize() {
-        final Dice dice;     // Mocked dice
-        final Roller roller; // Tested roller
+        final Dice dice;                // Mocked dice
+        final Roller roller;            // Tested roller
+        final Iterable<Integer> rolled; // Generated value
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
         Mockito.when(dice.getQuantity()).thenReturn(10);
         Mockito.when(dice.getSides()).thenReturn(6);
 
-        // Initializes roller
+        // Initializes roller and generates value
         roller = new DefaultRoller();
+        rolled = roller.roll(dice);
 
-        Assertions.assertEquals(10, Iterables.size(roller.roll(dice)));
+        Assertions.assertEquals(10, Iterables.size(rolled));
     }
 
     /**
-     * Verifies that the roller returns the values generated by its number
-     * generator.
+     * Verifies that the roller handles the smallest possible dice.
      */
     @Test
-    public final void testRoll_ReturnsGenerated() {
-        final Roller roller;                // Roller being tested
-        final Dice dice;                    // Die to roll
-        final NumberGenerator generator;    // Number generator used
-        final Iterable<Integer> result;   // Roll results
-        final Iterator<Integer> itrInteger; // Results iterator
+    public final void testRoll_Smallest_ResultsSize() {
+        final Dice dice;                // Mocked dice
+        final Roller roller;            // Tested roller
+        final Iterable<Integer> rolled; // Generated value
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(3);
-        Mockito.when(dice.getSides()).thenReturn(6);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
 
-        // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(3,
-                5, 1);
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice);
 
-        // Initializes roller
-        roller = new DefaultRoller(generator);
+        Assertions.assertEquals(1, Iterables.size(rolled));
+    }
 
-        // Rolls dice
-        result = roller.roll(dice);
-        itrInteger = result.iterator();
+    /**
+     * Verifies that the roller handles the smallest possible dice.
+     */
+    @Test
+    public final void testRoll_Smallest_Value() {
+        final Dice dice;     // Mocked dice
+        final Roller roller; // Tested roller
+        final Integer rolled; // Generated value
 
-        Assertions.assertEquals((Integer) 3, itrInteger.next());
-        Assertions.assertEquals((Integer) 5, itrInteger.next());
-        Assertions.assertEquals((Integer) 1, itrInteger.next());
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Initializes roller and generates value
+        roller = new DefaultRoller();
+        rolled = roller.roll(dice).iterator().next();
+
+        Assertions.assertEquals((Integer) 1, rolled);
     }
 
 }

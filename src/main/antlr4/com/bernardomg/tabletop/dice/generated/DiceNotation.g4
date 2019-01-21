@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -29,28 +29,38 @@ options { tokenVocab=DiceNotationLexer; }
  
 parse
 :
-   (function)+
+   function
 ;
 
 function
 :
    dice
-   | binaryOp
    | number
+   | addOp
 ;
 
-binaryOp
+addOp
 :
-   (dice | number) OPERATOR (dice | number)
-   | binaryOp OPERATOR (dice | number)
+   multOp (ADDOPERATOR multOp)*
+;
+
+multOp
+:
+   operand (MULTOPERATOR operand)*
+;
+
+operand
+:
+   dice
+   | number
 ;
 
 dice
 :
-   DIGIT DSEPARATOR DIGIT
+   ADDOPERATOR? DIGIT DSEPARATOR DIGIT
 ;
 
 number
 :
-   DIGIT
+   ADDOPERATOR? DIGIT
 ;

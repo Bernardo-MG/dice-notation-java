@@ -78,5 +78,13 @@
             Shortened expressions.
          </action>
       </release>
+      <release version="1.4.0" date="2019-01-21" description="">
+         <action dev="bmg" type="fix">
+            Added support for signed values, such as "-1" or "-1d6".
+         </action>
+         <action dev="bmg" type="add">
+            Added support for multiplications and divisions, including operation precedence.
+         </action>
+      </release>
    </body>
 </document>

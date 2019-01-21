@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,16 +18,21 @@ package com.bernardomg.tabletop.dice.parser.listener;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.generated.DiceNotationBaseListener;
-import com.bernardomg.tabletop.dice.generated.DiceNotationParser.BinaryOpContext;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParser.AddOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.DiceContext;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParser.MultOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.NumberContext;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
@@ -35,6 +40,8 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
@@ -68,12 +75,28 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Operator which indicates the operation is an addition.
      */
-    private static final String                 ADDITION_OPERATOR    = "+";
+    private static final String                 ADDITION_OPERATOR       = "+";
+
+    /**
+     * Operator which indicates the operation is a division.
+     */
+    private static final String                 DIVISION_OPERATOR       = "/";
+
+    /**
+     * Logger.
+     */
+    private static final Logger                 LOGGER                  = LoggerFactory
+            .getLogger(DefaultDiceExpressionBuilder.class);
+
+    /**
+     * Operator which indicates the operation is a multiplication.
+     */
+    private static final String                 MULTIPLICATION_OPERATOR = "*";
 
     /**
      * Operator which indicates the operation is a subtraction.
      */
-    private static final String                 SUBTRACTION_OPERATOR = "-";
+    private static final String                 SUBTRACTION_OPERATOR    = "-";
 
     /**
      * Stack to store operands from the outer nodes in an operation.
@@ -81,7 +104,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * For example, when parsing an addition operation this stack will hold both
      * operands being added together.
      */
-    private final Stack<DiceNotationExpression> operandsStack        = new Stack<>();
+    private final Stack<DiceNotationExpression> operandsStack           = new Stack<>();
 
     /**
      * Default constructor.
@@ -91,12 +114,14 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     @Override
-    public final void exitBinaryOp(final BinaryOpContext ctx) {
+    public void exitAddOp(final AddOpContext ctx) {
         final DiceNotationExpression expression;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getBinaryOperation(ctx);
+        expression = getAdditionOperation(ctx);
+
+        LOGGER.debug("Parsed addition operation: {}", expression);
 
         operandsStack.push(expression);
     }
@@ -109,6 +134,21 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getDiceOperand(ctx);
 
+        LOGGER.debug("Parsed dice: {}", expression);
+
+        operandsStack.push(expression);
+    }
+
+    @Override
+    public void exitMultOp(final MultOpContext ctx) {
+        final DiceNotationExpression expression;
+
+        checkNotNull(ctx, "Received a null pointer as context");
+
+        expression = getMultiplicationOperation(ctx);
+
+        LOGGER.debug("Parsed multiplication operation: {}", expression);
+
         operandsStack.push(expression);
     }
 
@@ -118,7 +158,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getIntegerOperand(ctx.DIGIT());
+        expression = getIntegerOperand(ctx.getText());
+
+        LOGGER.debug("Parsed number: {}", expression);
 
         operandsStack.push(expression);
     }
@@ -139,31 +181,54 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      *            parsed context
      * @return a binary operation
      */
-    private final BinaryOperation
-            getBinaryOperation(final BinaryOpContext ctx) {
-        final BinaryOperation operation;    // Parsed binary operation
-        final String operator;              // Operator
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+    private final DiceNotationExpression
+            getAdditionOperation(final AddOpContext ctx) {
+        final Collection<String> operators;
+        final Stack<DiceNotationExpression> operands;
+        BinaryOperation operation;
+        DiceNotationExpression left;
+        DiceNotationExpression right;
 
-        // Acquired operands
-        right = operandsStack.pop();
-        left = operandsStack.pop();
+        // Operators are taken in the same order
+        operators = ctx.ADDOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
 
-        // Acquires operator
-        operator = ctx.OPERATOR().getText();
-
-        // Checks which kind of operation this is and creates it
-        if (ADDITION_OPERATOR.equals(operator)) {
-            operation = new AdditionOperation(left, right);
-        } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-            operation = new SubtractionOperation(left, right);
-        } else {
-            throw new IllegalArgumentException(
-                    String.format("The %s operator is invalid", operator));
+        // There are as many operands as operators plus one
+        operands = new Stack<>();
+        for (Integer i = 0; i <= operators.size(); i++) {
+            if (operandsStack.isEmpty()) {
+                // Single value binary operation
+                // Negative values may be mapped to this case
+                LOGGER.debug(
+                        "No operands in stack. The left operand will be defaulted to 0.");
+                operands.push(new IntegerOperand(0));
+            } else {
+                operands.push(operandsStack.pop());
+            }
         }
 
-        return operation;
+        // The operands and operators are combined into the model expressions
+        for (final String operator : operators) {
+            left = operands.pop();
+            right = operands.pop();
+
+            // Checks which kind of operation this is and builds it
+            if (ADDITION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Addition operation");
+                operation = new AdditionOperation(left, right);
+            } else if (SUBTRACTION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Subtraction operation");
+                operation = new SubtractionOperation(left, right);
+            } else {
+                throw new IllegalArgumentException(
+                        String.format("The %s operator is invalid", operator));
+            }
+
+            // Each new expression is stored back for the next iteration
+            operands.push(operation);
+        }
+
+        return operands.pop();
     }
 
     /**
@@ -181,7 +246,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
-        quantity = Integer.parseInt(digits.next().getText());
+
+        if ((ctx.ADDOPERATOR() != null)
+                && (SUBTRACTION_OPERATOR.equals(ctx.ADDOPERATOR().getText()))) {
+            quantity = 0 - Integer.parseInt(digits.next().getText());
+        } else {
+            quantity = Integer.parseInt(digits.next().getText());
+        }
         sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
@@ -193,17 +264,75 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Creates an integer operand from a terminal node.
      * 
-     * @param node
-     *            terminal node
+     * @param expression
+     *            parsed expression
      * @return an integer operand
      */
-    private final IntegerOperand getIntegerOperand(final TerminalNode node) {
-        final Integer value; // Parsed value
+    private final IntegerOperand getIntegerOperand(final String expression) {
+        final Integer value;
 
         // Parses the value
-        value = Integer.parseInt(node.getText());
+        value = Integer.parseInt(expression);
 
         return new IntegerOperand(value);
+    }
+
+    /**
+     * Creates a binary operation from the parsed context data.
+     * <p>
+     * This method will take the two last operands from the stack, and use them
+     * to create the binary operation.
+     * 
+     * @param ctx
+     *            parsed context
+     * @return a binary operation
+     */
+    private final DiceNotationExpression
+            getMultiplicationOperation(final MultOpContext ctx) {
+        final Collection<String> operators;
+        final Stack<DiceNotationExpression> operands;
+        BinaryOperation operation;
+        DiceNotationExpression left;
+        DiceNotationExpression right;
+
+        // Operators are taken in the same order
+        operators = ctx.MULTOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
+
+        // There are as many operands as operators plus one
+        operands = new Stack<>();
+        for (Integer i = 0; i <= operators.size(); i++) {
+            if (operandsStack.isEmpty()) {
+                // Single value binary operation
+                // Negative values may be mapped to this case
+                LOGGER.debug(
+                        "No operands in stack. The left operand will be defaulted to 0.");
+                operands.push(new IntegerOperand(0));
+            } else {
+                operands.push(operandsStack.pop());
+            }
+        }
+
+        // The operands and operators are combined into the model expressions
+        for (final String operator : operators) {
+            left = operands.pop();
+            right = operands.pop();
+
+            // Checks which kind of operation this is and builds it
+            if (MULTIPLICATION_OPERATOR.equals(operator)) {
+                operation = new MultiplicationOperation(left, right);
+            } else if (DIVISION_OPERATOR.equals(operator)) {
+                operation = new DivisionOperation(left, right);
+            } else {
+                throw new IllegalArgumentException(
+                        String.format("The %s operator is invalid", operator));
+            }
+
+            // Each new expression is stored back for the next iteration
+            operands.push(operation);
+        }
+
+        return operands.pop();
     }
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -27,7 +27,8 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 
 /**
- * Units tests for {@code DefaultDiceOperand}.
+ * Units tests for {@link DefaultDiceOperand}, verifying that it can generate a
+ * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
