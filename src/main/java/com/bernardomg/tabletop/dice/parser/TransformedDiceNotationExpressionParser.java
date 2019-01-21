@@ -3,15 +3,15 @@ package com.bernardomg.tabletop.dice.parser;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer;
 
 public final class TransformedDiceNotationExpressionParser<R>
         implements DiceNotationExpressionParser<R> {
 
-    private final DiceNotationExpressionParser<TransformableDiceNotationExpression> parser = new DefaultDiceNotationExpressionParser();
+    private final DiceNotationExpressionParser<DiceNotationExpression> parser = new DefaultDiceNotationExpressionParser();
 
-    private final DiceNotationTransformer<R>                                        transformer;
+    private final DiceNotationTransformer<R>                           transformer;
 
     public TransformedDiceNotationExpressionParser(
             final DiceNotationTransformer<R> transf) {
@@ -23,11 +23,11 @@ public final class TransformedDiceNotationExpressionParser<R>
 
     @Override
     public final R parse(final String expression) {
-        final TransformableDiceNotationExpression parsed;
+        final DiceNotationExpression parsed;
 
         parsed = parser.parse(expression);
 
-        return transformer.transform(parsed.getRoot());
+        return transformer.transform(parsed);
     }
 
 }

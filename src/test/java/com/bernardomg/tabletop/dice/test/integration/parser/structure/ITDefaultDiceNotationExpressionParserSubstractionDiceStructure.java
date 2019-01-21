@@ -55,7 +55,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
         notation = "1d20-2d6";
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
@@ -80,7 +80,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
         notation = "5-2d6";
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         integer = (IntegerOperand) operation.getLeft();
         dice = (DiceOperand) operation.getRight();
@@ -104,7 +104,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
         notation = "2d6-5";
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();

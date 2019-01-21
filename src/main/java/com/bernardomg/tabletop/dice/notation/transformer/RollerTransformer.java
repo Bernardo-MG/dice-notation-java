@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -85,11 +84,7 @@ public final class RollerTransformer
         // TODO: Avoid casting
 
         LOGGER.debug("Transforming expression {}", expression.getClass());
-        if (expression instanceof TransformableDiceNotationExpression) {
-            result = transform(
-                    ((TransformableDiceNotationExpression) expression)
-                            .getRoot());
-        } else if (expression instanceof BinaryOperation) {
+        if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof ConstantOperand) {
             result = transform((ConstantOperand) expression);

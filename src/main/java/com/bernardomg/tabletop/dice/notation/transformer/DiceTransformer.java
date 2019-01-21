@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.google.common.collect.Iterables;
@@ -63,11 +62,7 @@ public final class DiceTransformer
         // TODO: Avoid casting
 
         LOGGER.debug("Transforming expression {}", expression.getClass());
-        if (expression instanceof TransformableDiceNotationExpression) {
-            result = transform(
-                    ((TransformableDiceNotationExpression) expression)
-                            .getRoot());
-        } else if (expression instanceof BinaryOperation) {
+        if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof DiceOperand) {
             result = transform((DiceOperand) expression);

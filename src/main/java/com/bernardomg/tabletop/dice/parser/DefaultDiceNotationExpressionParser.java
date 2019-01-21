@@ -26,13 +26,10 @@ import org.antlr.v4.runtime.TokenStream;
 
 import com.bernardomg.tabletop.dice.generated.DiceNotationLexer;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser;
-import com.bernardomg.tabletop.dice.notation.DefaultTransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
@@ -47,8 +44,8 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceNotationExpressionParser implements
-        DiceNotationExpressionParser<TransformableDiceNotationExpression> {
+public final class DefaultDiceNotationExpressionParser
+        implements DiceNotationExpressionParser<DiceNotationExpression> {
 
     /**
      * Error listener for the parser and lexer.
@@ -65,14 +62,6 @@ public final class DefaultDiceNotationExpressionParser implements
     private final DiceExpressionBuilder expressionBuilder;
 
     /**
-     * Roller for generating random values.
-     * <p>
-     * This will be used by the generated
-     * {@code DefaultTransformableDiceNotationExpression}.
-     */
-    private final Roller                roller;
-
-    /**
      * Default constructor.
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
@@ -81,7 +70,6 @@ public final class DefaultDiceNotationExpressionParser implements
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
-        roller = new DefaultRoller();
     }
 
     /**
@@ -96,24 +84,6 @@ public final class DefaultDiceNotationExpressionParser implements
 
         expressionBuilder = checkNotNull(builder,
                 "Received a null pointer as listener");
-        roller = new DefaultRoller();
-    }
-
-    /**
-     * Constructs a parser with the specified builder and roller.
-     * 
-     * @param builder
-     *            builder to generate the returned tree
-     * @param rllr
-     *            roller for the dice expressions
-     */
-    public DefaultDiceNotationExpressionParser(
-            final DiceExpressionBuilder builder, final Roller rllr) {
-        super();
-
-        expressionBuilder = checkNotNull(builder,
-                "Received a null pointer as listener");
-        roller = checkNotNull(rllr, "Received a null pointer as roller");
     }
 
     /**
@@ -128,12 +98,10 @@ public final class DefaultDiceNotationExpressionParser implements
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
-        roller = checkNotNull(rllr, "Received a null pointer as roller");
     }
 
     @Override
-    public final TransformableDiceNotationExpression
-            parse(final String expression) {
+    public final DiceNotationExpression parse(final String expression) {
         final DiceNotationParser parser;   // ANTLR parser
         final DiceNotationExpression root; // Root expression
 
@@ -152,7 +120,7 @@ public final class DefaultDiceNotationExpressionParser implements
         root = expressionBuilder.getDiceExpressionRoot();
 
         // Returns the tree root node
-        return new DefaultTransformableDiceNotationExpression(root, roller);
+        return root;
     }
 
     /**
