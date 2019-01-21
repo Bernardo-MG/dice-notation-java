@@ -27,7 +27,7 @@ public final class TransformedDiceNotationExpressionParser<R>
 
         parsed = parser.parse(expression);
 
-        return parsed.transform(transformer);
+        return transformer.transform(parsed.getRoot());
     }
 
 }
