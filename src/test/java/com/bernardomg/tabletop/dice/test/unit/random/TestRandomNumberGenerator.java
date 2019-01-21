@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
- * Units tests for {@code RandomNumberGenerator}, checking that it generates
+ * Units tests for {@link RandomNumberGenerator}, checking that it generates
  * values as expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

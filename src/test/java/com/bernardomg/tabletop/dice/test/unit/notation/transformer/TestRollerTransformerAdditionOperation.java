@@ -29,8 +29,8 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 
 /**
- * Unit tests for {@link AdditionOperation}, checking that it works as expected
- * with its operands.
+ * Unit tests for {@link RollerTransformer}, checking that handles addition
+ * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -101,6 +101,8 @@ public final class TestRollerTransformerAdditionOperation {
         grouped = new SubtractionOperation(left, right);
 
         // 1 + (2 - 3)
+        // = 1 - 1
+        // = 0
         operation = new AdditionOperation(value, grouped);
 
         Assertions.assertEquals(new Integer(0),
@@ -164,9 +166,64 @@ public final class TestRollerTransformerAdditionOperation {
         value = new IntegerOperand(3);
 
         // (1 - 2) + 3
+        // = -1 + 3
+        // = 2
         operation = new AdditionOperation(grouped, value);
 
         Assertions.assertEquals(new Integer(2),
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
+     * Verifies that the value is generated correctly when the values are
+     * grouped negative results.
+     */
+    @Test
+    public final void testValue_GroupedNegatives() {
+        final BinaryOperation operation;     // Tested operation
+        final BinaryOperation groupeda;      // Tested operation
+        final BinaryOperation groupedb;      // Tested operation
+        final DiceNotationExpression lefta;  // Left operand
+        final DiceNotationExpression righta; // Right operand
+        final DiceNotationExpression leftb;  // Left operand
+        final DiceNotationExpression rightb; // Right operand
+
+        lefta = new IntegerOperand(1);
+        righta = new IntegerOperand(2);
+
+        groupeda = new SubtractionOperation(lefta, righta);
+
+        leftb = new IntegerOperand(3);
+        rightb = new IntegerOperand(4);
+
+        groupedb = new SubtractionOperation(leftb, rightb);
+
+        // (1 - 2) + (3 - 4)
+        // = (-1) + (-1)
+        // = -1 - 1
+        // = -2
+        operation = new AdditionOperation(groupeda, groupedb);
+
+        Assertions.assertEquals(new Integer(-2),
+                new RollerTransformer().transform(operation));
+    }
+
+    /**
+     * Verifies that the value is generated correctly.
+     */
+    @Test
+    public final void testValue_Zeroes() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(0);
+        right = new IntegerOperand(0);
+
+        // 0 + 0
+        operation = new AdditionOperation(left, right);
+
+        Assertions.assertEquals(new Integer(0),
                 new RollerTransformer().transform(operation));
     }
 
