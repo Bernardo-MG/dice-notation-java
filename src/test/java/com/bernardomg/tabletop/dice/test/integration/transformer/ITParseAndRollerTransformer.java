@@ -42,6 +42,22 @@ public final class ITParseAndRollerTransformer {
     }
 
     /**
+     * Verifies that dice notation with a long arithmetic operation can be
+     * parsed and transformed.
+     */
+    @Test
+    public final void testParse_LongArithmetic() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+3*4/2");
+
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(7), result);
+    }
+
+    /**
      * Verifies that numeric operations can be parsed and transformed.
      */
     @Test

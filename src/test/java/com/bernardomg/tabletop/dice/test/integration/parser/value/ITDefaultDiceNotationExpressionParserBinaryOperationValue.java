@@ -105,6 +105,22 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationValue {
     }
 
     /**
+     * Verifies that multiplications followed by divisions can be parsed, and
+     * the result is the expected one.
+     */
+    @Test
+    public final void testParse_MultAndDiv_Value() {
+        final String notation;                 // Input to parse
+        final TransformableDiceNotationExpression root; // Parsed operation
+
+        notation = "2*4/2";
+
+        root = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        Assertions.assertEquals((Integer) 4, root.roll());
+    }
+
+    /**
      * Verifies that multiplications followed by subtractions can be parsed, and
      * the result is the expected one.
      */
