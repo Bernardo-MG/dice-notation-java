@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
- * Unit tests for {@link AdditionOperation}, checking that it works as expected
- * with its operands.
+ * Unit tests for {@link AdditionOperation}, checking that it can generate a
+ * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

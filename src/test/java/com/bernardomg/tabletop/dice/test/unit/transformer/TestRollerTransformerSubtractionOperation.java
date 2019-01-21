@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.notation.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
