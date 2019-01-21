@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,45 +14,47 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses numeric additions.
+ * Integration test for {@link RollerTransformer}, verifying that it transforms
+ * parsed expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserMultiplicationNumberValue {
+public final class ITParseAndRollerTransformerException {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserMultiplicationNumberValue() {
+    public ITParseAndRollerTransformerException() {
         super();
     }
 
     /**
-     * Verifies that a multiplication with only numbers is parsed correctly.
+     * Verifies that dividing by zero causes an exception.
      */
     @Test
-    public final void testParse_multiplication_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+    public final void testParse_DivideByZero() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Executable closure;
 
-        notation = "1*2";
+        parsed = new DefaultDiceNotationExpressionParser().parse("1/0");
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        closure = () -> new RollerTransformer().transform(parsed);
 
-        Assertions.assertEquals((Integer) 2, root.roll());
+        Assertions.assertThrows(Exception.class, closure);
     }
 
 }

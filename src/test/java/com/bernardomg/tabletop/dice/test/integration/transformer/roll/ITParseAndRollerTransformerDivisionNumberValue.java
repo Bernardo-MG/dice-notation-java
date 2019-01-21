@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -22,7 +22,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -32,12 +33,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserDivisionNumberValue {
+public final class ITParseAndRollerTransformerDivisionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserDivisionNumberValue() {
+    public ITParseAndRollerTransformerDivisionNumberValue() {
         super();
     }
 
@@ -47,14 +48,17 @@ public final class ITDefaultDiceNotationExpressionParserDivisionNumberValue {
     @Test
     @Disabled
     public final void testParse_Division_FloatValue() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "3/2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals(new Float(1.5), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Float(1.5), result);
     }
 
     /**
@@ -62,14 +66,17 @@ public final class ITDefaultDiceNotationExpressionParserDivisionNumberValue {
      */
     @Test
     public final void testParse_Division_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "4/2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 2, root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(2), result);
     }
 
 }

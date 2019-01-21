@@ -14,14 +14,15 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -31,12 +32,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSubstractionNumberValue {
+public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSubstractionNumberValue() {
+    public ITParseAndRollerTransformerSubstractionNumberValue() {
         super();
     }
 
@@ -46,14 +47,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberValue 
      */
     @Test
     public final void testParse_Number_Sub_Long_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1-2-3";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-4), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(-4), result);
     }
 
     /**
@@ -62,14 +66,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberValue 
      */
     @Test
     public final void testParse_Number_Sub_Longer_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1-2-3-4-5";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-13), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(-13), result);
     }
 
     /**
@@ -77,14 +84,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberValue 
      */
     @Test
     public final void testParse_Number_Sub_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1-2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-1), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(-1), result);
     }
 
 }

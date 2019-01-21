@@ -14,14 +14,15 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
@@ -31,12 +32,12 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSubstractionSignedNumberValue {
+public final class ITParseAndRollerTransformerSubstractionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSubstractionSignedNumberValue() {
+    public ITParseAndRollerTransformerSubstractionSignedNumberValue() {
         super();
     }
 
@@ -45,14 +46,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionSignedNumber
      */
     @Test
     public final void testParse_Number_SubNegative_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1--2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (3), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(3), result);
     }
 
     /**
@@ -60,14 +64,17 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionSignedNumber
      */
     @Test
     public final void testParse_Number_SubToNegative_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "-1-2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) (-3), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,82 +26,91 @@ import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration test for {@link RollerTransformer}, verifying that it transforms
- * parsed expressions.
+ * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * that it parses dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformer {
+public final class ITParseAndRollerTransformerDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformer() {
+    public ITParseAndRollerTransformerDiceValue() {
         super();
     }
 
     /**
-     * Verifies that dice notation with a long arithmetic operation can be
-     * parsed and transformed.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_LongArithmetic() {
+    public final void testParse_Dice_Negative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+3*4/2");
+        notation = "-1d1";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(new Integer((-1)), result);
     }
 
     /**
-     * Verifies that numeric operations can be parsed and transformed.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_NumberOperation() {
+    public final void testParse_Dice_NoQuantity_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1-2+3");
+        notation = "0d1";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
-        Assertions.assertEquals(new Integer(2), result);
+        Assertions.assertEquals(new Integer(0), result);
     }
 
     /**
-     * Verifies that dice notation with a single dice and a single side can be
-     * parsed and transformed.
+     * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_OnesDice() {
+    public final void testParse_Dice_NoSides_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1");
+        notation = "1d0";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(0), result);
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1d1";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
         Assertions.assertEquals(new Integer(1), result);
-    }
-
-    /**
-     * Verifies that dice notation with a simple dice and an addition can be
-     * parsed and transformed.
-     */
-    @Test
-    public final void testParse_OnesDice_Addition() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+2");
-
-        result = new RollerTransformer().transform(parsed);
-
-        Assertions.assertEquals(new Integer(3), result);
     }
 
 }

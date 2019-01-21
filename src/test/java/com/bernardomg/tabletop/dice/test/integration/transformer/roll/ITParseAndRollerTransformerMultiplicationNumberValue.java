@@ -14,49 +14,49 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.exception;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
  * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it throws exceptions when required.
+ * that it parses numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollException {
+public final class ITParseAndRollerTransformerMultiplicationNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollException() {
+    public ITParseAndRollerTransformerMultiplicationNumberValue() {
         super();
     }
 
     /**
-     * Verifies that dividing by zero causes an exception.
+     * Verifies that a multiplication with only numbers is parsed correctly.
      */
     @Test
-    public final void testParse_DivideByZero() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
-        final Executable closure;
+    public final void testParse_multiplication_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        notation = "1/0";
+        notation = "1*2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        closure = () -> root.roll();
+        result = new RollerTransformer().transform(parsed);
 
-        Assertions.assertThrows(Exception.class, closure);
+        Assertions.assertEquals(new Integer(2), result);
     }
 
 }

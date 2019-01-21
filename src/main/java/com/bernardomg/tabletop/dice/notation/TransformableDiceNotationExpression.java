@@ -16,8 +16,6 @@
 
 package com.bernardomg.tabletop.dice.notation;
 
-import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer;
-
 /**
  * A dice notation expression which allows transformations. This way any value
  * can be generated from an expression tree.
@@ -38,26 +36,5 @@ public interface TransformableDiceNotationExpression
      * @return the root node
      */
     public DiceNotationExpression getRoot();
-
-    /**
-     * Returns a value generated from the expression, simulating rolls as
-     * needed.
-     * 
-     * @return a value generated from the expression
-     */
-    public Integer roll();
-
-    /**
-     * Returns a value from the expression
-     * <p>
-     * This allows acquiring custom data from the expression tree.
-     * 
-     * @param <V>
-     *            type to transform into
-     * @param interpreter
-     *            contains the logic to transform the expression
-     * @return transformed result
-     */
-    public <V> V transform(final DiceNotationTransformer<V> interpreter);
 
 }
