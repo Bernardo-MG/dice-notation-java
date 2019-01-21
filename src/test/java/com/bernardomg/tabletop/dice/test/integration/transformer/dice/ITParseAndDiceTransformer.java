@@ -56,11 +56,12 @@ public final class ITParseAndDiceTransformer {
         final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d20-5+2d6");
+        parsed = new DefaultDiceNotationExpressionParser()
+                .parse("1d20-5*1d8+2d6/3d12");
 
         sets = new DiceTransformer().transform(parsed);
 
-        Assertions.assertEquals(2, Iterables.size(sets));
+        Assertions.assertEquals(4, Iterables.size(sets));
 
         itr = sets.iterator();
 
@@ -71,8 +72,18 @@ public final class ITParseAndDiceTransformer {
 
         dice = itr.next();
 
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(8), dice.getSides());
+
+        dice = itr.next();
+
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(3), dice.getQuantity());
+        Assertions.assertEquals(new Integer(12), dice.getSides());
     }
 
     /**
@@ -198,22 +209,6 @@ public final class ITParseAndDiceTransformer {
         final Dice dice;                     // Resulting dice
 
         parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
-
-        dice = new DiceTransformer().transform(parsed).iterator().next();
-
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(6), dice.getSides());
-    }
-
-    /**
-     * Verifies that a simple dice notation can be parsed.
-     */
-    @Test
-    public final void testParse_Simple_UpperCaseSeparator() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("1D6");
 
         dice = new DiceTransformer().transform(parsed).iterator().next();
 
