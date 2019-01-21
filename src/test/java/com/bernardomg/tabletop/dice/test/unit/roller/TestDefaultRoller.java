@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
 import com.google.common.collect.Iterables;
 
 /**
- * Units tests for {@link DefaultRoller}, checking that it returns values as
+ * Units tests for {@link DefaultRoller}, verifying that it returns values as
  * expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

@@ -31,7 +31,7 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.google.common.collect.Iterables;
 
 /**
- * Integration test for {@code DiceTransformer}, checking that it transforms
+ * Integration test for {@code DiceTransformer}, verifying that it transforms
  * parsed expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

@@ -30,7 +30,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 
 /**
- * Unit tests for {@link RollerTransformer}, checking that handles division
+ * Unit tests for {@link RollerTransformer}, verifying that handles division
  * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

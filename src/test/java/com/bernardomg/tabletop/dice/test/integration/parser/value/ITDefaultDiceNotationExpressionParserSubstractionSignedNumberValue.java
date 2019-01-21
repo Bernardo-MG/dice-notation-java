@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, verifying
  * that it parses numeric substractions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

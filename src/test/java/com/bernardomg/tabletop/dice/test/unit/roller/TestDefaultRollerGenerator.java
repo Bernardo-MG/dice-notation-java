@@ -31,7 +31,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
 import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
 
 /**
- * Units tests for {@link DefaultRoller}, checking that it handles the number
+ * Units tests for {@link DefaultRoller}, verifying that it handles the number
  * generator as expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

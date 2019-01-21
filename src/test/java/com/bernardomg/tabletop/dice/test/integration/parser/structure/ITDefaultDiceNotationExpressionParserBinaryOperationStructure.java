@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, verifying
  * that it parses simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, checking
+ * Integration tests for {@code DefaultDiceNotationExpressionParser}, verifying
  * that it parses numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
