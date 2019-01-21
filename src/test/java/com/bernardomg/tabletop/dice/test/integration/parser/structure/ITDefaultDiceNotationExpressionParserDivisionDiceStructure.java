@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
  * that it parses multiplications with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

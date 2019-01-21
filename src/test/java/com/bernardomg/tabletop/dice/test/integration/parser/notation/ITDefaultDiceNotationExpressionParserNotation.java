@@ -23,7 +23,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration tests for {@code DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
  * that it parses simple binary operations and the parsed notation can be
  * recovered.
  * 

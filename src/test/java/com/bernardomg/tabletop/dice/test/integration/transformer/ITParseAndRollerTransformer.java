@@ -26,7 +26,7 @@ import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 
 /**
- * Integration test for {@code RollerTransformer}, verifying that it transforms
+ * Integration test for {@link RollerTransformer}, verifying that it transforms
  * parsed expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
