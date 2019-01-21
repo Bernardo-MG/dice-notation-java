@@ -47,8 +47,8 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceNotationExpressionParser
-        implements DiceNotationExpressionParser {
+public final class DefaultDiceNotationExpressionParser implements
+        DiceNotationExpressionParser<TransformableDiceNotationExpression> {
 
     /**
      * Error listener for the parser and lexer.
