@@ -81,8 +81,8 @@ public final class RollerTransformer
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
         final Integer result;
-        // TODO: Avoid casting
 
+        // TODO: Try iterating instead of recursions
         LOGGER.debug("Transforming expression {}", expression.getClass());
         if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);

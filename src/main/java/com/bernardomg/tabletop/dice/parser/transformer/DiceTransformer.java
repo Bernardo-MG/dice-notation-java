@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.parser.transformer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Stack;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,6 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.google.common.collect.Iterables;
 
 /**
  * Dice notation expression which returns all the dice sets contained inside the
@@ -58,61 +56,31 @@ public final class DiceTransformer
     @Override
     public final Iterable<Dice>
             transform(final DiceNotationExpression expression) {
-        final Iterable<Dice> result;
-        // TODO: Avoid casting
+        final Stack<DiceNotationExpression> nodes;
+        final Collection<Dice> result;
+        DiceNotationExpression current;
 
-        LOGGER.debug("Transforming expression {}", expression.getClass());
-        if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression);
-        } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression);
-        } else {
-            LOGGER.debug("Unsupported expression");
-            result = Collections.emptyList();
+        nodes = new Stack<>();
+        nodes.push(expression);
+
+        LOGGER.debug("Root expression {}", expression);
+
+        result = new ArrayList<>();
+        while (!nodes.isEmpty()) {
+            current = nodes.pop();
+            LOGGER.debug("Transforming expression {}", current);
+            if (current instanceof BinaryOperation) {
+                // TODO: If it is a subtraction then the right value sign should
+                // be
+                // reversed
+                nodes.push(((BinaryOperation) current).getRight());
+                nodes.push(((BinaryOperation) current).getLeft());
+            } else if (current instanceof DiceOperand) {
+                result.add(((DiceOperand) current).getDice());
+            }
         }
 
         return result;
-    }
-
-    /**
-     * Transforms a binary operation into an {@code Iterable}.
-     * <p>
-     * Both sides of the operation will be transformed, and then the results are
-     * stored into the resulting {@code Iterable}.
-     * 
-     * @param operation
-     *            operation to transform
-     * @return an {@code Iterable} with the dice from the operation
-     */
-    private final Iterable<Dice> transform(final BinaryOperation operation) {
-        final Iterable<Dice> left;     // Left operand transformed
-        final Iterable<Dice> right;    // Right operand transformed
-        final Collection<Dice> result; // All the dice from the operation
-
-        left = transform(operation.getLeft());
-        // TODO: If it is a subtraction then the right value sign should be
-        // reversed
-        right = transform(operation.getRight());
-
-        result = new ArrayList<>();
-        LOGGER.debug("Transforming left operand");
-        Iterables.addAll(result, left);
-        LOGGER.debug("Transforming right operand");
-        Iterables.addAll(result, right);
-
-        return result;
-    }
-
-    /**
-     * Transforms a dice operand into an {@code Iterable}, by storing the
-     * contained dice into a list.
-     * 
-     * @param operand
-     *            operand to transform
-     * @return an {@code Iterable} with the dice from the operand
-     */
-    private final Iterable<Dice> transform(final DiceOperand operand) {
-        return Arrays.asList(operand.getDice());
     }
 
 }
