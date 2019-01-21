@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 
 /**
- * Unit tests for {@link DivisionOperation}, checking that it can generate a
+ * Unit tests for {@link DivisionOperation}, verifying that it can generate a
  * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

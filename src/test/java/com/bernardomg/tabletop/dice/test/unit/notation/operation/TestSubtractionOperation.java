@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Unit tests for {@link SubtractionOperation}, checking that it can generate a
+ * Unit tests for {@link SubtractionOperation}, verifying that it can generate a
  * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido

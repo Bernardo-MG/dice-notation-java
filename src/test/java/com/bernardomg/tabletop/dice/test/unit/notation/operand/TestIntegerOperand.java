@@ -20,25 +20,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 
 /**
- * Units tests for {@link DefaultDiceOperand}, verifying that it can generate a
+ * Units tests for {@link IntegerOperand}, verifying that it can generate a
  * valid notation expression.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public class TestDefaultDiceOperand {
+public class TestIntegerOperand {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDiceOperand() {
+    public TestIntegerOperand() {
         super();
     }
 
@@ -47,16 +45,11 @@ public class TestDefaultDiceOperand {
      */
     @Test
     public final void testTextExpression() {
-        final DiceNotationExpression diceOperand; // Tested operand
-        final Dice dice;                          // Dice for the operand
+        final DiceNotationExpression operand; // Tested operand
 
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(2);
-        Mockito.when(dice.getSides()).thenReturn(6);
+        operand = new IntegerOperand(1);
 
-        diceOperand = new DefaultDiceOperand(dice);
-
-        Assertions.assertEquals("2d6", diceOperand.getExpression());
+        Assertions.assertEquals("1", operand.getExpression());
     }
 
 }
