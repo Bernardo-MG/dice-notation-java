@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.notation.transformer;
+package com.bernardomg.tabletop.dice.parser.transformer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

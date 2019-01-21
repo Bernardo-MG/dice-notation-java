@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.notation.transformer;
+package com.bernardomg.tabletop.dice.parser.transformer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

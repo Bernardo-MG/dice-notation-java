@@ -19,4 +19,4 @@
  * expression tree, for example to simulate rolling it.
  */
 
-package com.bernardomg.tabletop.dice.notation.transformer;
+package com.bernardomg.tabletop.dice.parser.transformer;

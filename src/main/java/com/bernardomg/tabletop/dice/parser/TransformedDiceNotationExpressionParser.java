@@ -4,7 +4,7 @@ package com.bernardomg.tabletop.dice.parser;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer;
+import com.bernardomg.tabletop.dice.parser.transformer.DiceNotationTransformer;
 
 public final class TransformedDiceNotationExpressionParser<R>
         implements DiceNotationExpressionParser<R> {
