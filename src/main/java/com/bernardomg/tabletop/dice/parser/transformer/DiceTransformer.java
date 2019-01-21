@@ -90,6 +90,8 @@ public final class DiceTransformer
         final Collection<Dice> result; // All the dice from the operation
 
         left = transform(operation.getLeft());
+        // TODO: If it is a subtraction then the right value sign should be
+        // reversed
         right = transform(operation.getRight());
 
         result = new ArrayList<>();
