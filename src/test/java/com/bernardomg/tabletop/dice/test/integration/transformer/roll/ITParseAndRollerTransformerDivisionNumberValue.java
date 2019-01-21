@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.bernardomg.tabletop.dice.parser.transformer.RollerTransformer;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses numeric additions.
+ * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

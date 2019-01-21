@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.exception;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

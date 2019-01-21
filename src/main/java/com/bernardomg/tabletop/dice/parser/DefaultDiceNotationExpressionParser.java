@@ -110,10 +110,6 @@ public final class DefaultDiceNotationExpressionParser
         // Creates the ANTLR parser
         parser = buildDiceNotationParser(expression);
 
-        // Listeners are added
-        parser.addErrorListener(errorListener);
-        parser.addParseListener(expressionBuilder);
-
         // Parses the expression
         parser.parse();
 
@@ -136,9 +132,10 @@ public final class DefaultDiceNotationExpressionParser
      */
     private final DiceNotationParser
             buildDiceNotationParser(final String expression) {
-        final CharStream stream;       // Input stream for the expression
-        final DiceNotationLexer lexer; // Lexer for the expression tokens
-        final TokenStream tokens;      // Expression tokens
+        final CharStream stream;
+        final DiceNotationLexer lexer;
+        final TokenStream tokens;
+        final DiceNotationParser parser;
 
         stream = CharStreams.fromString(expression);
 
@@ -147,7 +144,11 @@ public final class DefaultDiceNotationExpressionParser
 
         tokens = new CommonTokenStream(lexer);
 
-        return new DiceNotationParser(tokens);
+        parser = new DiceNotationParser(tokens);
+        parser.addErrorListener(errorListener);
+        parser.addParseListener(expressionBuilder);
+
+        return parser;
     }
 
 }

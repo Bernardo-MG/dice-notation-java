@@ -26,8 +26,8 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
 import com.bernardomg.tabletop.dice.parser.transformer.RollerTransformer;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses simple binary operations.
+ * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -96,6 +96,22 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
         result = new RollerTransformer().transform(parsed);
 
         Assertions.assertEquals(new Integer(-1), result);
+    }
+
+    /**
+     * Verifies that dice notation with a long arithmetic operation can be
+     * parsed and transformed.
+     */
+    @Test
+    public final void testParse_LongArithmetic() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+
+        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+3*4/2");
+
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(7), result);
     }
 
     /**
