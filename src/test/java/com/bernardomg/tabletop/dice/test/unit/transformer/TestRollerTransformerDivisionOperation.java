@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
  * Unit tests for {@link RollerTransformer}, verifying that handles division

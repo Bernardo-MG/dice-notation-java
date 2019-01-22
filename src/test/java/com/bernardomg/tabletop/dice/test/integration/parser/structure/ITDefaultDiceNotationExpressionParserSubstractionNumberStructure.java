@@ -56,7 +56,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberStruct
 
         // ((1-2)-3)
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 3, number.getValue());
@@ -85,7 +85,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberStruct
 
         // ((((1-2)-3)-4)-5)
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 5, number.getValue());
@@ -121,7 +121,7 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionNumberStruct
         notation = "1-2";
 
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 2, number.getValue());

@@ -59,7 +59,7 @@ public final class ITDefaultDiceNotationExpressionParserComplexStructure {
 
         // ((1d20-5)+2d6)
         operationFirst = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         operationSecond = (SubtractionOperation) operationFirst.getLeft();
         rightDice = (DiceOperand) operationFirst.getRight();

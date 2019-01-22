@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,86 +22,95 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.transformer.RollerTransformer;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
- * Integration test for {@link RollerTransformer}, verifying that it transforms
- * parsed expressions.
+ * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * substractions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformer {
+public final class ITParseAndRollerTransformerSubstractionDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformer() {
+    public ITParseAndRollerTransformerSubstractionDiceValue() {
         super();
     }
 
     /**
-     * Verifies that dice notation with a long arithmetic operation can be
-     * parsed and transformed.
+     * Verifies that a subtraction using only negative dice is parsed correctly.
      */
     @Test
-    public final void testParse_LongArithmetic() {
+    public final void testParse_Sub_Dice_Negative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+3*4/2");
+        notation = "-1d1-2d1";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
     /**
-     * Verifies that numeric operations can be parsed and transformed.
+     * Verifies that a subtraction using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_NumberOperation() {
+    public final void testParse_Sub_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1-2+3");
+        notation = "1d1-2d1";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
-        Assertions.assertEquals(new Integer(2), result);
+        Assertions.assertEquals(new Integer(-1), result);
     }
 
     /**
-     * Verifies that dice notation with a single dice and a single side can be
-     * parsed and transformed.
+     * Verifies that a subtraction with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_OnesDice() {
+    public final void testParse_Sub_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1");
+        notation = "5-2d1";
 
-        result = new RollerTransformer().transform(parsed);
-
-        Assertions.assertEquals(new Integer(1), result);
-    }
-
-    /**
-     * Verifies that dice notation with a simple dice and an addition can be
-     * parsed and transformed.
-     */
-    @Test
-    public final void testParse_OnesDice_Addition() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+2");
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
         result = new RollerTransformer().transform(parsed);
 
         Assertions.assertEquals(new Integer(3), result);
+    }
+
+    /**
+     * Verifies that a subtraction with the number to right is parsed correctly.
+     */
+    @Test
+    public final void testParse_Sub_RightNumber_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "2d1-5";
+
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

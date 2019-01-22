@@ -45,8 +45,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1d20+2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -61,8 +60,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "5+2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -77,8 +75,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "2d6+5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -93,8 +90,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -110,8 +106,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2+3";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -127,8 +122,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2+3+4+5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation)
-                .getRoot();
+        operation = new DefaultDiceNotationExpressionParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }

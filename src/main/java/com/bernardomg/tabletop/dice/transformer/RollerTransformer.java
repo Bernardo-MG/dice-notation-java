@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.notation.transformer;
+package com.bernardomg.tabletop.dice.transformer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
@@ -82,14 +81,10 @@ public final class RollerTransformer
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
         final Integer result;
-        // TODO: Avoid casting
 
+        // TODO: Try iterating instead of recursions
         LOGGER.debug("Transforming expression {}", expression.getClass());
-        if (expression instanceof TransformableDiceNotationExpression) {
-            result = transform(
-                    ((TransformableDiceNotationExpression) expression)
-                            .getRoot());
-        } else if (expression instanceof BinaryOperation) {
+        if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof ConstantOperand) {
             result = transform((ConstantOperand) expression);

@@ -49,7 +49,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
         final IntegerOperand operation; // Parsed expression
 
         operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("-12").getRoot();
+                .parse("-12");
 
         Assertions.assertEquals(new Integer(0 - 12), operation.getValue());
     }
@@ -63,7 +63,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
         final IntegerOperand operation; // Parsed expression
 
         operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("+12").getRoot();
+                .parse("+12");
 
         Assertions.assertEquals(new Integer(12), operation.getValue());
     }

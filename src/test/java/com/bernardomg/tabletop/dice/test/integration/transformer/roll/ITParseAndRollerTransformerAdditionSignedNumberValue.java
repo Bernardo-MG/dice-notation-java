@@ -14,29 +14,30 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses numeric additions with signed numbers.
+ * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * numeric additions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionSignedNumberValue {
+public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserAdditionSignedNumberValue() {
+    public ITParseAndRollerTransformerAdditionSignedNumberValue() {
         super();
     }
 
@@ -45,14 +46,17 @@ public final class ITDefaultDiceNotationExpressionParserAdditionSignedNumberValu
      */
     @Test
     public final void testParse_Number_AddNegative_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1+-2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals(new Integer((-1)), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer((-1)), result);
     }
 
     /**
@@ -60,14 +64,17 @@ public final class ITDefaultDiceNotationExpressionParserAdditionSignedNumberValu
      */
     @Test
     public final void testParse_Number_AddToNegative_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "-1+2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals(new Integer(1), root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(1), result);
     }
 
 }

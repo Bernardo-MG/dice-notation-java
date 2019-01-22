@@ -14,29 +14,30 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.parser.value;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses numeric additions.
+ * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
+public final class ITParseAndRollerTransformerAdditionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserAdditionNumberValue() {
+    public ITParseAndRollerTransformerAdditionNumberValue() {
         super();
     }
 
@@ -46,14 +47,17 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
      */
     @Test
     public final void testParse_Number_Add_Long_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1+2+3";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 6, root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(6), result);
     }
 
     /**
@@ -62,14 +66,17 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
      */
     @Test
     public final void testParse_Number_Add_Longer_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1+2+3+4+5";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 15, root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(15), result);
     }
 
     /**
@@ -77,14 +84,17 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberValue {
      */
     @Test
     public final void testParse_Number_Add_Value() {
-        final String notation;                 // Input to parse
-        final TransformableDiceNotationExpression root; // Parsed operation
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
 
         notation = "1+2";
 
-        root = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
 
-        Assertions.assertEquals((Integer) 3, root.roll());
+        result = new RollerTransformer().transform(parsed);
+
+        Assertions.assertEquals(new Integer(3), result);
     }
 
 }

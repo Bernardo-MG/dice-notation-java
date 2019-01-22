@@ -26,13 +26,10 @@ import org.antlr.v4.runtime.TokenStream;
 
 import com.bernardomg.tabletop.dice.generated.DiceNotationLexer;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser;
-import com.bernardomg.tabletop.dice.notation.DefaultTransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.TransformableDiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
 import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
@@ -65,14 +62,6 @@ public final class DefaultDiceNotationExpressionParser
     private final DiceExpressionBuilder expressionBuilder;
 
     /**
-     * Roller for generating random values.
-     * <p>
-     * This will be used by the generated
-     * {@code DefaultTransformableDiceNotationExpression}.
-     */
-    private final Roller                roller;
-
-    /**
      * Default constructor.
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
@@ -81,7 +70,6 @@ public final class DefaultDiceNotationExpressionParser
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
-        roller = new DefaultRoller();
     }
 
     /**
@@ -96,24 +84,6 @@ public final class DefaultDiceNotationExpressionParser
 
         expressionBuilder = checkNotNull(builder,
                 "Received a null pointer as listener");
-        roller = new DefaultRoller();
-    }
-
-    /**
-     * Constructs a parser with the specified builder and roller.
-     * 
-     * @param builder
-     *            builder to generate the returned tree
-     * @param rllr
-     *            roller for the dice expressions
-     */
-    public DefaultDiceNotationExpressionParser(
-            final DiceExpressionBuilder builder, final Roller rllr) {
-        super();
-
-        expressionBuilder = checkNotNull(builder,
-                "Received a null pointer as listener");
-        roller = checkNotNull(rllr, "Received a null pointer as roller");
     }
 
     /**
@@ -128,12 +98,10 @@ public final class DefaultDiceNotationExpressionParser
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
-        roller = checkNotNull(rllr, "Received a null pointer as roller");
     }
 
     @Override
-    public final TransformableDiceNotationExpression
-            parse(final String expression) {
+    public final DiceNotationExpression parse(final String expression) {
         final DiceNotationParser parser;   // ANTLR parser
         final DiceNotationExpression root; // Root expression
 
@@ -142,17 +110,13 @@ public final class DefaultDiceNotationExpressionParser
         // Creates the ANTLR parser
         parser = buildDiceNotationParser(expression);
 
-        // Listeners are added
-        parser.addErrorListener(errorListener);
-        parser.addParseListener(expressionBuilder);
-
         // Parses the expression
         parser.parse();
 
         root = expressionBuilder.getDiceExpressionRoot();
 
         // Returns the tree root node
-        return new DefaultTransformableDiceNotationExpression(root, roller);
+        return root;
     }
 
     /**
@@ -168,9 +132,10 @@ public final class DefaultDiceNotationExpressionParser
      */
     private final DiceNotationParser
             buildDiceNotationParser(final String expression) {
-        final CharStream stream;       // Input stream for the expression
-        final DiceNotationLexer lexer; // Lexer for the expression tokens
-        final TokenStream tokens;      // Expression tokens
+        final CharStream stream;
+        final DiceNotationLexer lexer;
+        final TokenStream tokens;
+        final DiceNotationParser parser;
 
         stream = CharStreams.fromString(expression);
 
@@ -179,7 +144,11 @@ public final class DefaultDiceNotationExpressionParser
 
         tokens = new CommonTokenStream(lexer);
 
-        return new DiceNotationParser(tokens);
+        parser = new DiceNotationParser(tokens);
+        parser.addErrorListener(errorListener);
+        parser.addParseListener(expressionBuilder);
+
+        return parser;
     }
 
 }

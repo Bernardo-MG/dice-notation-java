@@ -49,7 +49,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
         final DiceOperand operation; // Parsed expression
 
         operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
-                .parse("-1d1").getRoot();
+                .parse("-1d1");
 
         Assertions.assertEquals(new Integer(-1),
                 operation.getDice().getQuantity());
@@ -65,7 +65,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
         final DiceOperand operation; // Parsed expression
 
         operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
-                .parse("+1d1").getRoot();
+                .parse("+1d1");
 
         Assertions.assertEquals(new Integer(1),
                 operation.getDice().getQuantity());

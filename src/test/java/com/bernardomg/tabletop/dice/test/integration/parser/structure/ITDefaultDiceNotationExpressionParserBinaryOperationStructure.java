@@ -58,7 +58,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
 
         // ((1+2)-3)
         operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 3, number.getValue());
@@ -87,7 +87,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
 
         // ((3-1)+2)
         operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+                .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 2, number.getValue());
