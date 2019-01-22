@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.parser.transformer.DiceTransformer;
+import com.bernardomg.tabletop.dice.transformer.DiceTransformer;
 import com.google.common.collect.Iterables;
 
 /**

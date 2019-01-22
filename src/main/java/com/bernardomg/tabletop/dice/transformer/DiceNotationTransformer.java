@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.parser.transformer;
+package com.bernardomg.tabletop.dice.transformer;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.parser.transformer;
+package com.bernardomg.tabletop.dice.transformer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

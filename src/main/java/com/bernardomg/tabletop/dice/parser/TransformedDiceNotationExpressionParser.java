@@ -4,7 +4,7 @@ package com.bernardomg.tabletop.dice.parser;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.transformer.DiceNotationTransformer;
+import com.bernardomg.tabletop.dice.transformer.DiceNotationTransformer;
 
 /**
  * Transformed dice notation parsed. Allows returning custom objects through the

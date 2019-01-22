@@ -7,7 +7,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.parser.TransformedDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.parser.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
  * Integration tests for {@link TransformedDiceNotationExpressionParser},

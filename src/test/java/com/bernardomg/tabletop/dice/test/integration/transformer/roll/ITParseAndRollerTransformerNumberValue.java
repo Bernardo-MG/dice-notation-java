@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.parser.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
 
 /**
  * Integration tests for {@link RollerTransformer}, verifying that it transforms

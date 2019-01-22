@@ -20,4 +20,4 @@
  * the dice from an expression.
  */
 
-package com.bernardomg.tabletop.dice.parser.transformer;
+package com.bernardomg.tabletop.dice.transformer;
