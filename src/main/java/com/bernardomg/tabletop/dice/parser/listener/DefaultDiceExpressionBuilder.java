@@ -116,10 +116,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     @Override
     public final void exitAddOp(final AddOpContext ctx) {
         final DiceNotationExpression expression;
+        final Collection<String> operators;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getAdditionOperation(ctx);
+        // Operators are mapped into strings
+        operators = ctx.ADDOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
+
+        expression = getBinaryOperation(operators);
 
         LOGGER.debug("Parsed addition operation: {}", expression);
 
@@ -142,10 +147,15 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     @Override
     public final void exitMultOp(final MultOpContext ctx) {
         final DiceNotationExpression expression;
+        final Collection<String> operators;
 
         checkNotNull(ctx, "Received a null pointer as context");
 
-        expression = getMultiplicationOperation(ctx);
+        // Operators are mapped into strings
+        operators = ctx.MULTOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
+
+        expression = getBinaryOperation(operators);
 
         LOGGER.debug("Parsed multiplication operation: {}", expression);
 
@@ -174,24 +184,22 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Creates a binary operation from the parsed context data.
      * <p>
-     * This method will take the two last operands from the stack, and use them
-     * to create the binary operation.
+     * By making use of the operands stack and the received operators it can
+     * build any binary operation.
+     * <p>
+     * The returned expression will be the root which aggregates all the
+     * operations parsed, which will take the shape of a tree.
      * 
-     * @param ctx
-     *            parsed context
+     * @param operators
+     *            parsed operators
      * @return a binary operation
      */
     private final DiceNotationExpression
-            getAdditionOperation(final AddOpContext ctx) {
-        final Collection<String> operators;
+            getBinaryOperation(final Collection<String> operators) {
         final Stack<DiceNotationExpression> operands;
         BinaryOperation operation;
         DiceNotationExpression left;
         DiceNotationExpression right;
-
-        // Operators are taken in the same order
-        operators = ctx.ADDOPERATOR().stream().map(TerminalNode::getText)
-                .collect(Collectors.toList());
 
         // There are as many operands as operators plus one
         operands = new Stack<>();
@@ -211,6 +219,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             } else if (SUBTRACTION_OPERATOR.equals(operator)) {
                 LOGGER.trace("Subtraction operation");
                 operation = new SubtractionOperation(left, right);
+            } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
+                operation = new MultiplicationOperation(left, right);
+            } else if (DIVISION_OPERATOR.equals(operator)) {
+                operation = new DivisionOperation(left, right);
             } else {
                 throw new IllegalArgumentException(
                         String.format("The %s operator is invalid", operator));
@@ -267,56 +279,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         value = Integer.parseInt(expression);
 
         return new IntegerOperand(value);
-    }
-
-    /**
-     * Creates a binary operation from the parsed context data.
-     * <p>
-     * This method will take the two last operands from the stack, and use them
-     * to create the binary operation.
-     * 
-     * @param ctx
-     *            parsed context
-     * @return a binary operation
-     */
-    private final DiceNotationExpression
-            getMultiplicationOperation(final MultOpContext ctx) {
-        final Collection<String> operators;
-        final Stack<DiceNotationExpression> operands;
-        BinaryOperation operation;
-        DiceNotationExpression left;
-        DiceNotationExpression right;
-
-        // Operators are taken in the same order
-        operators = ctx.MULTOPERATOR().stream().map(TerminalNode::getText)
-                .collect(Collectors.toList());
-
-        // There are as many operands as operators plus one
-        operands = new Stack<>();
-        for (Integer i = 0; i <= operators.size(); i++) {
-            operands.push(operandsStack.pop());
-        }
-
-        // The operands and operators are combined into the model expressions
-        for (final String operator : operators) {
-            left = operands.pop();
-            right = operands.pop();
-
-            // Checks which kind of operation this is and builds it
-            if (MULTIPLICATION_OPERATOR.equals(operator)) {
-                operation = new MultiplicationOperation(left, right);
-            } else if (DIVISION_OPERATOR.equals(operator)) {
-                operation = new DivisionOperation(left, right);
-            } else {
-                throw new IllegalArgumentException(
-                        String.format("The %s operator is invalid", operator));
-            }
-
-            // Each new expression is stored back for the next iteration
-            operands.push(operation);
-        }
-
-        return operands.pop();
     }
 
 }
