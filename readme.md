@@ -80,14 +80,15 @@ The project includes a model for dice and dice notation grammar. But the strong 
 To parse generic dice notation, including algebraic operations use this:
 
 ```java
-final DiceNotationExpressionParser parser;
+final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
+final DiceInterpreter interpreter;
 
-parser = new DefaultDiceNotationExpressionParser();
-
+parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
+interpreter = new DiceRoller();
 
-System.out.println(parsed.roll());
+System.out.println(interpreter.transform(parsed));
 ```
 
 The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
@@ -95,12 +96,16 @@ The 'roll' method will generate a number from the expression each time it is cal
 If you need to get the dice from the expression:
 
 ```java
+final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
+final DiceInterpreter interpreter;
 final Dice dice;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("1d6+12");
+parser = new DefaultDiceParser();
+parsed = parser.parse("1d6+12");
+interpreter = new DiceSetsTransformer();
 
-dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
+dice = interpreter.transform(parsed).iterator().next();
 
 System.out.println(dice.getQuantity());
 System.out.println(dice.getSides());

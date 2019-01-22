@@ -26,10 +26,10 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Unit tests for {@link RollerTransformer}, verifying that handles subtraction
+ * Unit tests for {@link DiceRoller}, verifying that handles subtraction
  * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -60,7 +60,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-1),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -94,7 +94,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(groupeda, groupedb);
 
         Assertions.assertEquals(new Integer(0),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -122,7 +122,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(value, grouped);
 
         Assertions.assertEquals(new Integer(-4),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -143,7 +143,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(3),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -172,7 +172,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(value, grouped);
 
         Assertions.assertEquals(new Integer(2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -193,7 +193,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(1),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -213,7 +213,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-3),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -241,7 +241,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(grouped, value);
 
         Assertions.assertEquals(new Integer(-4),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -260,7 +260,7 @@ public final class TestRollerTransformerSubtractionOperation {
         operation = new SubtractionOperation(left, right);
 
         Assertions.assertEquals(new Integer(0),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
 }

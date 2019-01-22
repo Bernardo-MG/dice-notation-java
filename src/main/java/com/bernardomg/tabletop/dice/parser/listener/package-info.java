@@ -19,7 +19,7 @@
  * <p>
  * The {@link com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder
  * DiceExpressionBuilder} is used by the
- * {@link com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser
+ * {@link com.bernardomg.tabletop.dice.parser.DefaultDiceParser
  * DefaultDiceNotationExpressionParser} as a visitor. It will create the
  * returned dice notation model tree as it goes through the parsed grammar tree.
  * <p>

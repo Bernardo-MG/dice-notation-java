@@ -25,10 +25,10 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceParser}, verifying
  * that it parses complex operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -58,7 +58,7 @@ public final class ITDefaultDiceNotationExpressionParserComplexStructure {
         notation = "1d20-5+2d6";
 
         // ((1d20-5)+2d6)
-        operationFirst = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operationFirst = (AdditionOperation) new DefaultDiceParser()
                 .parse(notation);
 
         operationSecond = (SubtractionOperation) operationFirst.getLeft();

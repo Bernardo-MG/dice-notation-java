@@ -37,19 +37,19 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceTransformer
-        implements DiceNotationTransformer<Iterable<Dice>> {
+public final class DiceGatherer
+        implements DiceInterpreter<Iterable<Dice>> {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(DiceTransformer.class);
+            .getLogger(DiceGatherer.class);
 
     /**
      * Default constructor.
      */
-    public DiceTransformer() {
+    public DiceGatherer() {
         super();
     }
 

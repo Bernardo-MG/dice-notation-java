@@ -43,14 +43,14 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class RollerTransformer
-        implements DiceNotationTransformer<Integer> {
+public final class DiceRoller
+        implements DiceInterpreter<Integer> {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(RollerTransformer.class);
+            .getLogger(DiceRoller.class);
 
     /**
      * Roller to generate random values from dice.
@@ -60,7 +60,7 @@ public final class RollerTransformer
     /**
      * Default constructor.
      */
-    public RollerTransformer() {
+    public DiceRoller() {
         super();
 
         roller = new DefaultRoller();
@@ -72,7 +72,7 @@ public final class RollerTransformer
      * @param roll
      *            roller for simulating rolls
      */
-    public RollerTransformer(final Roller roll) {
+    public DiceRoller(final Roller roll) {
         super();
 
         roller = checkNotNull(roll, "Received a null pointer as roller");

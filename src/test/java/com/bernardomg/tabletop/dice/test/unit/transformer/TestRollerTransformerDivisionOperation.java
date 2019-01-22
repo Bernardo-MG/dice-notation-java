@@ -27,10 +27,10 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Unit tests for {@link RollerTransformer}, verifying that handles division
+ * Unit tests for {@link DiceRoller}, verifying that handles division
  * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -61,7 +61,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(left, right);
 
         Assertions.assertEquals(new Integer(2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -80,7 +80,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -107,7 +107,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(grouped, value);
 
         Assertions.assertEquals(new Integer(-2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -126,7 +126,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(left, right);
 
         Assertions.assertEquals(new Integer(2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -145,7 +145,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(left, right);
 
         Assertions.assertEquals(new Integer(-2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -172,7 +172,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(value, grouped);
 
         Assertions.assertEquals(new Integer(-1),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -206,7 +206,7 @@ public final class TestRollerTransformerDivisionOperation {
         operation = new DivisionOperation(groupeda, groupedb);
 
         Assertions.assertEquals(new Integer(1),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -225,7 +225,7 @@ public final class TestRollerTransformerDivisionOperation {
         // 0 / 0
         operation = new DivisionOperation(left, right);
 
-        closure = () -> new RollerTransformer().transform(operation);
+        closure = () -> new DiceRoller().transform(operation);
 
         Assertions.assertThrows(Exception.class, closure);
     }

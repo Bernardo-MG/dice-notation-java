@@ -23,11 +23,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration test for {@link RollerTransformer}, verifying that it transforms
+ * Integration test for {@link DiceRoller}, verifying that it transforms
  * parsed expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -50,9 +50,9 @@ public final class ITParseAndRollerTransformerException {
         final DiceNotationExpression parsed; // Parsed expression
         final Executable closure;
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1/0");
+        parsed = new DefaultDiceParser().parse("1/0");
 
-        closure = () -> new RollerTransformer().transform(parsed);
+        closure = () -> new DiceRoller().transform(parsed);
 
         Assertions.assertThrows(Exception.class, closure);
     }

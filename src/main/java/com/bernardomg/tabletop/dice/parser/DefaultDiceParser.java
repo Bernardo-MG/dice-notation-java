@@ -44,8 +44,8 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceNotationExpressionParser
-        implements DiceNotationExpressionParser {
+public final class DefaultDiceParser
+        implements DiceParser {
 
     /**
      * Error listener for the parser and lexer.
@@ -66,7 +66,7 @@ public final class DefaultDiceNotationExpressionParser
      * <p>
      * It makes use of a {@link DefaultDiceExpressionBuilder}.
      */
-    public DefaultDiceNotationExpressionParser() {
+    public DefaultDiceParser() {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
@@ -78,7 +78,7 @@ public final class DefaultDiceNotationExpressionParser
      * @param builder
      *            builder to generate the returned tree
      */
-    public DefaultDiceNotationExpressionParser(
+    public DefaultDiceParser(
             final DiceExpressionBuilder builder) {
         super();
 
@@ -94,7 +94,7 @@ public final class DefaultDiceNotationExpressionParser
      * @param rllr
      *            roller for the dice expressions
      */
-    public DefaultDiceNotationExpressionParser(final Roller rllr) {
+    public DefaultDiceParser(final Roller rllr) {
         super();
 
         expressionBuilder = new DefaultDiceExpressionBuilder();
