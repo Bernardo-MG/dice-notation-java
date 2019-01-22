@@ -196,15 +196,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // There are as many operands as operators plus one
         operands = new Stack<>();
         for (Integer i = 0; i <= operators.size(); i++) {
-            if (operandsStack.isEmpty()) {
-                // Single value binary operation
-                // Negative values may be mapped to this case
-                LOGGER.debug(
-                        "No operands in stack. The left operand will be defaulted to 0.");
-                operands.push(new IntegerOperand(0));
-            } else {
-                operands.push(operandsStack.pop());
-            }
+            operands.push(operandsStack.pop());
         }
 
         // The operands and operators are combined into the model expressions
