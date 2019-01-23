@@ -102,14 +102,15 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
         while (!nodes.isEmpty()) {
             current = nodes.pop();
             LOGGER.debug("Transforming expression {}", current);
-            if (expression instanceof BinaryOperation) {
-                result += transform((BinaryOperation) expression);
-            } else if (expression instanceof ConstantOperand) {
-                result += transform((ConstantOperand) expression);
-            } else if (expression instanceof DiceOperand) {
-                result += transform((DiceOperand) expression);
+            if (current instanceof BinaryOperation) {
+                result += transform((BinaryOperation) current);
+            } else if (current instanceof ConstantOperand) {
+                result += transform((ConstantOperand) current);
+            } else if (current instanceof DiceOperand) {
+                result += transform((DiceOperand) current);
             } else {
-                LOGGER.warn("Unsupported expression");
+                LOGGER.warn("Unsupported expression of type {}",
+                        current.getClass());
             }
         }
 
