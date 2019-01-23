@@ -22,10 +22,10 @@ import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceParser}, verifying
  * that it throws exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -47,7 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_Empty() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("");
+        closure = () -> new DefaultDiceParser().parse("");
 
         Assertions.assertThrows(Exception.class, closure);
     }
@@ -59,7 +59,7 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_Invalid() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("abc");
+        closure = () -> new DefaultDiceParser().parse("abc");
 
         Assertions.assertThrows(Exception.class, closure);
     }
@@ -71,7 +71,7 @@ public final class ITDefaultDiceNotationExpressionParserException {
     public final void testParse_PartiallyValid() {
         final Executable closure;
 
-        closure = () -> new DefaultDiceNotationExpressionParser().parse("6d6y");
+        closure = () -> new DefaultDiceParser().parse("6d6y");
 
         Assertions.assertThrows(Exception.class, closure);
     }

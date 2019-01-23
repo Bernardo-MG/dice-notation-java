@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.roller.random;
+package com.bernardomg.tabletop.dice.random;
 
 import java.util.Random;
 

@@ -25,10 +25,10 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceParser}, verifying
  * that it parses simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -57,7 +57,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
         notation = "1+2-3";
 
         // ((1+2)-3)
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (SubtractionOperation) new DefaultDiceParser()
                 .parse(notation);
 
         number = (IntegerOperand) operation.getRight();
@@ -86,7 +86,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
         notation = "3-1+2";
 
         // ((3-1)+2)
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
+        operation = (AdditionOperation) new DefaultDiceParser()
                 .parse(notation);
 
         number = (IntegerOperand) operation.getRight();

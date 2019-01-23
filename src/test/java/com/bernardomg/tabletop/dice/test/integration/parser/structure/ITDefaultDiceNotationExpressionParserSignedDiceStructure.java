@@ -22,10 +22,10 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceParser}, verifying
  * that it parses dice notation expressions for signed dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -48,7 +48,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
     public final void testParse_OnesDice_SignedNegative() {
         final DiceOperand operation; // Parsed expression
 
-        operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
+        operation = (DiceOperand) new DefaultDiceParser()
                 .parse("-1d1");
 
         Assertions.assertEquals(new Integer(-1),
@@ -64,7 +64,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
     public final void testParse_OnesDice_SignedPositive() {
         final DiceOperand operation; // Parsed expression
 
-        operation = (DiceOperand) new DefaultDiceNotationExpressionParser()
+        operation = (DiceOperand) new DefaultDiceParser()
                 .parse("+1d1");
 
         Assertions.assertEquals(new Integer(1),

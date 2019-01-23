@@ -8,14 +8,15 @@ The project includes a model for dice and dice notation grammar. But the strong 
 To parse generic dice notation, including algebraic operations use this:
 
 ```java
-final DiceNotationExpressionParser parser;
+final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
+final DiceInterpreter interpreter;
 
-parser = new DefaultDiceNotationExpressionParser();
-
+parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
+interpreter = new DiceRoller();
 
-System.out.println(parsed.roll());
+System.out.println(interpreter.transform(parsed));
 ```
 
 The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
@@ -25,12 +26,16 @@ The 'roll' method will generate a number from the expression each time it is cal
 If you need to get the dice from the expression:
 
 ```java
+final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
+final DiceInterpreter interpreter;
 final Dice dice;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
+parser = new DefaultDiceParser();
+parsed = parser.parse("1d6+12");
+interpreter = new DiceSetsTransformer();
 
-dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
+dice = interpreter.transform(parsed).iterator().next();
 
 System.out.println(dice.getQuantity());
 System.out.println(dice.getSides());
@@ -42,17 +47,20 @@ This will print the number of dice (1) and the number of sides (6).
 
 Random numbers, for rolling dice, are handled through an instance of [NumberGenerator][number_generator].
 
-To use a custom generator you need to implement this and then set the new generator into the parser:
+To use a custom generator you need to implement this and then set the new generator into the interpreter:
 
 ```java
+final DiceParser parser;
+final TransformableDiceNotationExpression parsed;
 final NumberGenerator numGen;
-final Roller roller;
-final DiceNotationExpressionParser parser;
+final DiceInterpreter interpreter;
 
+parser = new DefaultDiceParser();
+parsed = parser.parse("1d6+12");
 numGen = new CustomNumberGenerator();
-roller = new DefaultRoller(numGen);
+interpreter = new DiceRoller(numGen);
 
-parser = new DefaultDiceNotationExpressionParser(roller);
+System.out.println(interpreter.transform(parsed));
 ```
 
 [number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html

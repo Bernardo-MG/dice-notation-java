@@ -18,29 +18,30 @@ package com.bernardomg.tabletop.dice.test.unit.transformer;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Unit tests for {@link RollerTransformer}, verifying that handles
- * multiplication operations.
+ * Unit tests for {@link DiceRoller}, verifying that handles division
+ * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestRollerTransformerMultiplicationOperation {
+public final class TestDiceRollerDivisionOperation {
 
     /**
      * Default constructor.
      */
-    public TestRollerTransformerMultiplicationOperation() {
+    public TestDiceRollerDivisionOperation() {
         super();
     }
 
@@ -53,14 +54,125 @@ public final class TestRollerTransformerMultiplicationOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(1);
 
-        // 1 * 2
-        operation = new MultiplicationOperation(left, right);
+        // 2 / 1
+        operation = new DivisionOperation(left, right);
 
         Assertions.assertEquals(new Integer(2),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
+    }
+
+    /**
+     * Verifies that multiplications of negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_DivideNegative() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(-2);
+        right = new IntegerOperand(1);
+
+        // -2 / 1
+        operation = new DivisionOperation(left, right);
+
+        Assertions.assertEquals(new Integer(-2),
+                new DiceRoller().transform(operation));
+    }
+
+    /**
+     * Verifies that multiplications to negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_DivideNegative_Grouped() {
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final DiceNotationExpression value; // Right operand
+
+        left = new IntegerOperand(1);
+        right = new IntegerOperand(5);
+
+        grouped = new SubtractionOperation(left, right);
+
+        value = new IntegerOperand(2);
+
+        // (1 - 5) / 2
+        // = -4 / 2
+        // = -2
+        operation = new DivisionOperation(grouped, value);
+
+        Assertions.assertEquals(new Integer(-2),
+                new DiceRoller().transform(operation));
+    }
+
+    /**
+     * Verifies that additions of negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_DivideNegatives() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(-2);
+        right = new IntegerOperand(-1);
+
+        // -2 / -1
+        operation = new DivisionOperation(left, right);
+
+        Assertions.assertEquals(new Integer(2),
+                new DiceRoller().transform(operation));
+    }
+
+    /**
+     * Verifies that multiplications of negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_DivideToNegative() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(-1);
+
+        // 2 / -1
+        operation = new DivisionOperation(left, right);
+
+        Assertions.assertEquals(new Integer(-2),
+                new DiceRoller().transform(operation));
+    }
+
+    /**
+     * Verifies that additions of negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_DivideToNegative_Grouped() {
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final DiceNotationExpression value; // Right operand
+
+        value = new IntegerOperand(1);
+
+        left = new IntegerOperand(2);
+        right = new IntegerOperand(3);
+
+        grouped = new SubtractionOperation(left, right);
+
+        // 1 / (2 - 3)
+        // = 1 / -1
+        // = -1
+        operation = new DivisionOperation(value, grouped);
+
+        Assertions.assertEquals(new Integer(-1),
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -87,125 +199,14 @@ public final class TestRollerTransformerMultiplicationOperation {
 
         groupedb = new SubtractionOperation(leftb, rightb);
 
-        // (1 - 2) * (3 - 4)
-        // = (-1) * (-1)
-        // = -1 * -1
+        // (1 - 2) / (3 - 4)
+        // = (-1) / (-1)
+        // = -1 / -1
         // = 1
-        operation = new MultiplicationOperation(groupeda, groupedb);
+        operation = new DivisionOperation(groupeda, groupedb);
 
         Assertions.assertEquals(new Integer(1),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that multiplications of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_MultiplyNegative() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = new IntegerOperand(-1);
-        right = new IntegerOperand(2);
-
-        // -1 * 2
-        operation = new MultiplicationOperation(left, right);
-
-        Assertions.assertEquals(new Integer(-2),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that multiplications to negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_MultiplyNegative_Grouped() {
-        final BinaryOperation grouped;      // Tested operation
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
-
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
-
-        grouped = new SubtractionOperation(left, right);
-
-        value = new IntegerOperand(3);
-
-        // (1 - 2) * 3
-        // = -1 * 3
-        // = -3
-        operation = new MultiplicationOperation(grouped, value);
-
-        Assertions.assertEquals(new Integer(-3),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that additions of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_MultiplyNegatives() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = new IntegerOperand(-1);
-        right = new IntegerOperand(-2);
-
-        // -1 * -2
-        operation = new MultiplicationOperation(left, right);
-
-        Assertions.assertEquals(new Integer(2),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that multiplications of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_MultiplyToNegative() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(-2);
-
-        // 1 * -2
-        operation = new MultiplicationOperation(left, right);
-
-        Assertions.assertEquals(new Integer(-2),
-                new RollerTransformer().transform(operation));
-    }
-
-    /**
-     * Verifies that additions of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_MultiplyToNegative_Grouped() {
-        final BinaryOperation grouped;      // Tested operation
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
-
-        value = new IntegerOperand(1);
-
-        left = new IntegerOperand(2);
-        right = new IntegerOperand(3);
-
-        grouped = new SubtractionOperation(left, right);
-
-        // 1 * (2 - 3)
-        // = 1 * -1
-        // = -1
-        operation = new MultiplicationOperation(value, grouped);
-
-        Assertions.assertEquals(new Integer(-1),
-                new RollerTransformer().transform(operation));
+                new DiceRoller().transform(operation));
     }
 
     /**
@@ -216,15 +217,17 @@ public final class TestRollerTransformerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Executable closure;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
 
-        // 0 * 0
-        operation = new MultiplicationOperation(left, right);
+        // 0 / 0
+        operation = new DivisionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(0),
-                new RollerTransformer().transform(operation));
+        closure = () -> new DiceRoller().transform(operation);
+
+        Assertions.assertThrows(Exception.class, closure);
     }
 
 }

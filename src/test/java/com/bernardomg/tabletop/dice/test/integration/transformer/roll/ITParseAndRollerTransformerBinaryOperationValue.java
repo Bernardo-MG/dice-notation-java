@@ -22,11 +22,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * Integration tests for {@link DiceRoller}, verifying that it transforms
  * simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -53,9 +53,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "1+2-3";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(0), result);
     }
@@ -72,9 +72,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "6/2+1";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -91,9 +91,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "6/3-3";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(-1), result);
     }
@@ -107,9 +107,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1+3*4/2");
+        parsed = new DefaultDiceParser().parse("1d1+3*4/2");
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(7), result);
     }
@@ -126,9 +126,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "2*3+2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(8), result);
     }
@@ -145,9 +145,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "2*4/2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -164,9 +164,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "2*3-3";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(3), result);
     }
@@ -183,9 +183,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "3-1+2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -202,9 +202,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "2-8/2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(-2), result);
     }
@@ -221,9 +221,9 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         notation = "1-2*3";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(-5), result);
     }

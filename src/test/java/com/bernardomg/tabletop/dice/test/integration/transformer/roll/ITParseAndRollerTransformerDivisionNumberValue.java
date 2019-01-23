@@ -23,11 +23,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * Integration tests for {@link DiceRoller}, verifying that it transforms
  * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -54,9 +54,9 @@ public final class ITParseAndRollerTransformerDivisionNumberValue {
 
         notation = "3/2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Float(1.5), result);
     }
@@ -72,9 +72,9 @@ public final class ITParseAndRollerTransformerDivisionNumberValue {
 
         notation = "4/2";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(2), result);
     }
