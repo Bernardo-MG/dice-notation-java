@@ -24,14 +24,18 @@
  * <p>
  * The packages inside this one extend over the basic dice in various ways.
  * <p>
- * With the {@link com.bernardomg.tabletop.dice.roller roller} package it is
- * possible generating random values from the dice classes.
+ * With the {@link com.bernardomg.tabletop.dice.random random} package it is
+ * possible generating random values. Meant to customise the transformers.
  * <p>
- * For actual dice notation, including operations, the model inside the
- * {@link com.bernardomg.tabletop.dice.notation notation} package can be used.
+ * These transformers are stored inside the
+ * {@link com.bernardomg.tabletop.dice.trasnformer trasnformer} package and can
+ * be used to create an object from any parsed dice notation.
  * <p>
- * The {@link com.bernardomg.tabletop.dice.parser parser} package hosts parsers
- * which can transform an expression into an equivalent object.
+ * The actual dice notation, including operations, is inside the
+ * {@link com.bernardomg.tabletop.dice.notation notation} package.
+ * <p>
+ * While the {@link com.bernardomg.tabletop.dice.parser parser} package hosts
+ * parsers which can transform an expression into an object tree.
  */
 
 package com.bernardomg.tabletop.dice;
