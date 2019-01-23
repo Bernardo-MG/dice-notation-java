@@ -53,6 +53,7 @@ operand
 :
    dice
    | number
+   | LPAREN function RPAREN
 ;
 
 dice
