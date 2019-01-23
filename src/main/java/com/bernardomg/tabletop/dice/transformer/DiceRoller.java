@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Stack;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
@@ -87,31 +86,19 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
-        final Stack<DiceNotationExpression> nodes;
-        DiceNotationExpression current;
-        Integer result;
+        final Integer result;
 
-        checkNotNull(expression, "Received a null pointer as expression");
-
-        nodes = new Stack<>();
-        nodes.push(expression);
-
-        LOGGER.debug("Root expression {}", expression);
-
-        result = 0;
-        while (!nodes.isEmpty()) {
-            current = nodes.pop();
-            LOGGER.debug("Transforming expression {}", current);
-            if (current instanceof BinaryOperation) {
-                result += transform((BinaryOperation) current);
-            } else if (current instanceof ConstantOperand) {
-                result += transform((ConstantOperand) current);
-            } else if (current instanceof DiceOperand) {
-                result += transform((DiceOperand) current);
-            } else {
-                LOGGER.warn("Unsupported expression of type {}",
-                        current.getClass());
-            }
+        // TODO: Try iterating instead of recursions
+        LOGGER.debug("Transforming expression {}", expression.getClass());
+        if (expression instanceof BinaryOperation) {
+            result = transform((BinaryOperation) expression);
+        } else if (expression instanceof ConstantOperand) {
+            result = transform((ConstantOperand) expression);
+        } else if (expression instanceof DiceOperand) {
+            result = transform((DiceOperand) expression);
+        } else {
+            LOGGER.warn("Unsupported expression");
+            result = 0;
         }
 
         return result;
