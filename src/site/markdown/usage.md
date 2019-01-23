@@ -47,17 +47,20 @@ This will print the number of dice (1) and the number of sides (6).
 
 Random numbers, for rolling dice, are handled through an instance of [NumberGenerator][number_generator].
 
-To use a custom generator you need to implement this and then set the new generator into the parser:
+To use a custom generator you need to implement this and then set the new generator into the interpreter:
 
 ```java
-final NumberGenerator numGen;
-final Roller roller;
 final DiceParser parser;
+final TransformableDiceNotationExpression parsed;
+final NumberGenerator numGen;
+final DiceInterpreter interpreter;
 
+parser = new DefaultDiceParser();
+parsed = parser.parse("1d6+12");
 numGen = new CustomNumberGenerator();
-roller = new DefaultRoller(numGen);
+interpreter = new DiceRoller(numGen);
 
-parser = new DefaultDiceParser(roller);
+System.out.println(interpreter.transform(parsed));
 ```
 
 [number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html

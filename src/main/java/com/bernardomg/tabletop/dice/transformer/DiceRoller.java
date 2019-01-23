@@ -18,17 +18,20 @@ package com.bernardomg.tabletop.dice.transformer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.roller.DefaultRoller;
-import com.bernardomg.tabletop.dice.roller.Roller;
+import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
+import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -43,19 +46,21 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceRoller
-        implements DiceInterpreter<Integer> {
+public final class DiceRoller implements DiceInterpreter<Integer> {
 
     /**
      * Logger.
      */
-    private static final Logger LOGGER = LoggerFactory
+    private static final Logger   LOGGER = LoggerFactory
             .getLogger(DiceRoller.class);
 
     /**
-     * Roller to generate random values from dice.
+     * The random numbers generator.
+     * <p>
+     * Combined with the data in the rolled this, this will generate a random
+     * value in an interval.
      */
-    private final Roller        roller;
+    private final NumberGenerator numberGenerator;
 
     /**
      * Default constructor.
@@ -63,19 +68,20 @@ public final class DiceRoller
     public DiceRoller() {
         super();
 
-        roller = new DefaultRoller();
+        numberGenerator = new RandomNumberGenerator();
     }
 
     /**
      * Constructs a transformer using the received roller for simulating rolls.
      * 
-     * @param roll
-     *            roller for simulating rolls
+     * @param generator
+     *            the random number generator to use
      */
-    public DiceRoller(final Roller roll) {
+    public DiceRoller(final NumberGenerator generator) {
         super();
 
-        roller = checkNotNull(roll, "Received a null pointer as roller");
+        numberGenerator = checkNotNull(generator,
+                "Received a null pointer as generator");
     }
 
     @Override
@@ -96,6 +102,42 @@ public final class DiceRoller
         }
 
         return result;
+    }
+
+    /**
+     * Generates a collection of random values from the received {@code Dice}.
+     * <p>
+     * These are returned in the same order they were generated.
+     * 
+     * @param dice
+     *            the dice to roll
+     * @return a collection of random values generated from the dice
+     */
+    private final Iterable<Integer> roll(final Dice dice) {
+        final Collection<Integer> rolls; // Roll results
+        final Integer quantity;
+        final Boolean negative;
+
+        checkNotNull(dice, "Received a null pointer as dice");
+
+        if (dice.getQuantity() < 0) {
+            quantity = 0 - dice.getQuantity();
+            negative = true;
+        } else {
+            quantity = dice.getQuantity();
+            negative = false;
+        }
+
+        rolls = new ArrayList<Integer>();
+        for (Integer i = 0; i < quantity; i++) {
+            if (negative) {
+                rolls.add(0 - numberGenerator.generate(dice.getSides()));
+            } else {
+                rolls.add(numberGenerator.generate(dice.getSides()));
+            }
+        }
+
+        return rolls;
     }
 
     /**
@@ -156,7 +198,7 @@ public final class DiceRoller
         final Iterable<Integer> rolls;
         Integer total;
 
-        rolls = roller.roll(operand.getDice());
+        rolls = roll(operand.getDice());
 
         total = 0;
         for (final Integer roll : rolls) {

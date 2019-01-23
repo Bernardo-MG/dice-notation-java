@@ -30,7 +30,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultErrorListener;
 import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
-import com.bernardomg.tabletop.dice.roller.Roller;
 
 /**
  * Dice notation parser. Can parse the full grammar.
@@ -44,8 +43,7 @@ import com.bernardomg.tabletop.dice.roller.Roller;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceParser
-        implements DiceParser {
+public final class DefaultDiceParser implements DiceParser {
 
     /**
      * Error listener for the parser and lexer.
@@ -78,26 +76,11 @@ public final class DefaultDiceParser
      * @param builder
      *            builder to generate the returned tree
      */
-    public DefaultDiceParser(
-            final DiceExpressionBuilder builder) {
+    public DefaultDiceParser(final DiceExpressionBuilder builder) {
         super();
 
         expressionBuilder = checkNotNull(builder,
                 "Received a null pointer as listener");
-    }
-
-    /**
-     * Constructs a parser with the specified roller.
-     * <p>
-     * It makes use of a {@link DefaultDiceExpressionBuilder}.
-     * 
-     * @param rllr
-     *            roller for the dice expressions
-     */
-    public DefaultDiceParser(final Roller rllr) {
-        super();
-
-        expressionBuilder = new DefaultDiceExpressionBuilder();
     }
 
     @Override
