@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.transformer;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Stack;
@@ -37,8 +39,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceGatherer
-        implements DiceInterpreter<Iterable<Dice>> {
+public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
 
     /**
      * Logger.
@@ -59,6 +60,8 @@ public final class DiceGatherer
         final Stack<DiceNotationExpression> nodes;
         final Collection<Dice> result;
         DiceNotationExpression current;
+
+        checkNotNull(expression, "Received a null pointer as expression");
 
         nodes = new Stack<>();
         nodes.push(expression);

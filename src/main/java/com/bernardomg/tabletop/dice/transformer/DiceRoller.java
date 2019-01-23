@@ -88,6 +88,8 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
     public final Integer transform(final DiceNotationExpression expression) {
         final Integer result;
 
+        checkNotNull(expression, "Received a null pointer as expression");
+
         // TODO: Try iterating instead of recursions
         LOGGER.debug("Transforming expression {}", expression.getClass());
         if (expression instanceof BinaryOperation) {
