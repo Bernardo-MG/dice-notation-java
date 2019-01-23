@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Stack;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
@@ -86,21 +87,30 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
-        final Integer result;
+        final Stack<DiceNotationExpression> nodes;
+        DiceNotationExpression current;
+        Integer result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
-        // TODO: Try iterating instead of recursions
-        LOGGER.debug("Transforming expression {}", expression.getClass());
-        if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression);
-        } else if (expression instanceof ConstantOperand) {
-            result = transform((ConstantOperand) expression);
-        } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression);
-        } else {
-            LOGGER.warn("Unsupported expression");
-            result = 0;
+        nodes = new Stack<>();
+        nodes.push(expression);
+
+        LOGGER.debug("Root expression {}", expression);
+
+        result = 0;
+        while (!nodes.isEmpty()) {
+            current = nodes.pop();
+            LOGGER.debug("Transforming expression {}", current);
+            if (expression instanceof BinaryOperation) {
+                result += transform((BinaryOperation) expression);
+            } else if (expression instanceof ConstantOperand) {
+                result += transform((ConstantOperand) expression);
+            } else if (expression instanceof DiceOperand) {
+                result += transform((DiceOperand) expression);
+            } else {
+                LOGGER.warn("Unsupported expression");
+            }
         }
 
         return result;
