@@ -14,20 +14,16 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.roller.random;
+package com.bernardomg.tabletop.dice.random;
 
 /**
- * Generates a random integer value.
- * <p>
- * This is meant to be used by the implementations of
- * {@link com.bernardomg.tabletop.dice.roller.Roller Roller}, to tune the actual
- * probabilities distributions.
+ * Generates a random integer value. This allows tuning the actual probabilities
+ * distributions.
  * <p>
  * The possible values which the generator may return are expected to begin at
  * 1, and end in a specified maximum value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
- * @see com.bernardomg.tabletop.dice.roller.Roller Roller
  */
 public interface NumberGenerator {
 

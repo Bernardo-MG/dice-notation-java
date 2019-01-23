@@ -21,4 +21,4 @@
  * package, and are not meant to be used by themselves.
  */
 
-package com.bernardomg.tabletop.dice.roller.random;
+package com.bernardomg.tabletop.dice.random;

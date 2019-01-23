@@ -30,8 +30,8 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
-import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
+import com.bernardomg.tabletop.dice.random.NumberGenerator;
+import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
 /**
  * Dice notation expression which simulates rolling the expression.

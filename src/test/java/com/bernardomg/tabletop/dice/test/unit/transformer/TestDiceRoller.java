@@ -26,7 +26,7 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
-import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
+import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
