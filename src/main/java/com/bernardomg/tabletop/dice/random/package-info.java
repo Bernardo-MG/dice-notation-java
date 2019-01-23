@@ -15,10 +15,8 @@
  */
 
 /**
- * Random generation of numbers.
- * <p>
- * These are used by the {@link com.bernardomg.tabletop.dice.roller roller}
- * package, and are not meant to be used by themselves.
+ * Random generation of numbers. To be used when rolling the expressions, or to
+ * customise the random chances.
  */
 
-package com.bernardomg.tabletop.dice.roller.random;
+package com.bernardomg.tabletop.dice.random;

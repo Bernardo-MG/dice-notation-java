@@ -22,11 +22,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
-import com.bernardomg.tabletop.dice.transformer.RollerTransformer;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link RollerTransformer}, verifying that it transforms
+ * Integration tests for {@link DiceRoller}, verifying that it transforms
  * additions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -52,9 +52,9 @@ public final class ITParseAndRollerTransformerAdditionDice {
 
         notation = "1d1+2d1";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(3), result);
     }
@@ -70,9 +70,9 @@ public final class ITParseAndRollerTransformerAdditionDice {
 
         notation = "5+2d1";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(7), result);
     }
@@ -88,9 +88,9 @@ public final class ITParseAndRollerTransformerAdditionDice {
 
         notation = "2d1+5";
 
-        parsed = new DefaultDiceNotationExpressionParser().parse(notation);
+        parsed = new DefaultDiceParser().parse(notation);
 
-        result = new RollerTransformer().transform(parsed);
+        result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(7), result);
     }

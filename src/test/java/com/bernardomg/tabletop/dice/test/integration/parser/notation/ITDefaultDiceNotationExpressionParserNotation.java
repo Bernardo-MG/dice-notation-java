@@ -20,10 +20,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
+ * Integration tests for {@link DefaultDiceParser}, verifying
  * that it parses simple binary operations and the parsed notation can be
  * recovered.
  * 
@@ -45,7 +45,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1d20+2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -60,7 +60,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "5+2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -75,7 +75,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "2d6+5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -90,7 +90,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -106,7 +106,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2+3";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -122,7 +122,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2+3+4+5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -138,7 +138,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1+2-3";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -153,7 +153,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1-2";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -169,7 +169,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1-2-3";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -185,7 +185,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1-2-3-4-5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -201,7 +201,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "3-1+2";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -216,7 +216,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "1d20-2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -231,7 +231,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "5-2d6";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }
@@ -246,7 +246,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         notation = "2d6-5";
 
-        operation = new DefaultDiceNotationExpressionParser().parse(notation);
+        operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertEquals(notation, operation.getExpression());
     }

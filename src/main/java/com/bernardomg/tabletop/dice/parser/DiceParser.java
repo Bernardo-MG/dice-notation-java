@@ -14,31 +14,28 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.transformer;
+package com.bernardomg.tabletop.dice.parser;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Transforms a dice notation expression into another object. This is a parser,
- * but to avoid mistakes with the actual grammar parser another name was chosen.
+ * Transforms a dice notation expression, received as a string, into the dice
+ * notation model.
  * <p>
- * This can be used to parse the dice notation tree into any value as needed,
- * for example to generate the value represented by said notation.
+ * The returned object is expected to be the root node of a tree made up by dice
+ * notation model objects.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
- *
- * @param <V>
- *            type of the generated object
  */
-public interface DiceNotationTransformer<V> {
+public interface DiceParser {
 
     /**
-     * Transforms an expression into another object.
+     * Transforms a dice notation expression into the dice notation model.
      * 
      * @param expression
-     *            expression to transform
-     * @return an object generated from the expression
+     *            the expression to parse
+     * @return a dice notation expression object
      */
-    public V transform(final DiceNotationExpression expression);
+    public DiceNotationExpression parse(final String expression);
 
 }
