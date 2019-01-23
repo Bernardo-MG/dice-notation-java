@@ -88,8 +88,11 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
     public final Integer transform(final DiceNotationExpression expression) {
         final Integer result;
 
+        checkNotNull(expression, "Received a null pointer as expression");
+
+        LOGGER.debug("Root expression {}", expression);
+
         // TODO: Try iterating instead of recursions
-        LOGGER.debug("Transforming expression {}", expression.getClass());
         if (expression instanceof BinaryOperation) {
             result = transform((BinaryOperation) expression);
         } else if (expression instanceof ConstantOperand) {
@@ -97,7 +100,8 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
         } else if (expression instanceof DiceOperand) {
             result = transform((DiceOperand) expression);
         } else {
-            LOGGER.warn("Unsupported expression");
+            LOGGER.warn("Unsupported expression of type {}",
+                    expression.getClass());
             result = 0;
         }
 
