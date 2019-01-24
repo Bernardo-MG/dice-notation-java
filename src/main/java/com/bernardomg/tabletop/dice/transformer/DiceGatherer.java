@@ -68,6 +68,9 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
 
         LOGGER.debug("Root expression {}", expression);
 
+        // FIXME: This is taking only the leaf nodes. That's why it can't
+        // handle dice subtractions
+
         result = new ArrayList<>();
         while (!nodes.isEmpty()) {
             current = nodes.pop();
