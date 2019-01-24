@@ -23,6 +23,8 @@ Its usefulness is very clear, it allows working with specific random values dist
 - Model for dice and dice notation, along classes to generate values from them
 - Parser to create model instances from the notation
 - Allows custom random number generation
+- Arithmetic operations (addition, subtraction, multiplication, integer division)
+- Parenthesis support
 
 ## Limitations
 

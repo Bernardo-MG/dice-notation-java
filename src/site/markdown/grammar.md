@@ -6,14 +6,16 @@ Note that the grammar itself serves just to validate and recognize dice notation
 
 ## Operands
 
-The following values can appear in the grammar as operands:
-
 - Dice, in the style of 2d6.
 - Numbers, but only integer values.
 
 ## Operations
 
-Only basic arithmetic operations are supported, and these can be applied any valid operand:
-
 - Addition
 - Subtraction
+- Multiplication
+- Integer division
+
+## Other features
+
+- Parenthesis
