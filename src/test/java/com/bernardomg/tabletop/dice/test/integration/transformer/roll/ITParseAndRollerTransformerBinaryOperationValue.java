@@ -26,8 +26,8 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * simple binary operations.
+ * Integration tests for {@link DiceRoller}, verifying that it transforms simple
+ * binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -39,6 +39,25 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
      */
     public ITParseAndRollerTransformerBinaryOperationValue() {
         super();
+    }
+
+    /**
+     * Verifies that additions followed by multiplications can be parsed, and
+     * the result is the expected one.
+     */
+    @Test
+    public final void testParse_AddAndMult_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1+2*3";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(7), result);
     }
 
     /**

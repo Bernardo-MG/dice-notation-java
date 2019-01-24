@@ -67,6 +67,16 @@ DIV
    '/'
 ;
 
+LPAREN
+:
+   '('
+;
+
+RPAREN
+:
+   ')'
+;
+
 // Skippable tokens
 
 WS:

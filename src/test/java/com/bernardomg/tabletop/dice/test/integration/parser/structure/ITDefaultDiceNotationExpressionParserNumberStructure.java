@@ -25,8 +25,8 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses numbers.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -47,8 +47,7 @@ public final class ITDefaultDiceNotationExpressionParserNumberStructure {
     public final void testParse() {
         final IntegerOperand value;
 
-        value = (IntegerOperand) new DefaultDiceParser()
-                .parse("12");
+        value = (IntegerOperand) new DefaultDiceParser().parse("12");
 
         Assertions.assertEquals((Integer) 12, value.getValue());
     }
@@ -60,8 +59,7 @@ public final class ITDefaultDiceNotationExpressionParserNumberStructure {
     public final void testParse_Zero() {
         final IntegerOperand value;
 
-        value = (IntegerOperand) new DefaultDiceParser()
-                .parse("0");
+        value = (IntegerOperand) new DefaultDiceParser().parse("0");
 
         Assertions.assertEquals((Integer) 0, value.getValue());
     }

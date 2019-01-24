@@ -56,8 +56,7 @@ public final class ITParseAndDiceTransformer {
         final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
-        parsed = new DefaultDiceParser()
-                .parse("1d20-5*1d8+2d6/3d12");
+        parsed = new DefaultDiceParser().parse("1d20-5*1d8+2d6/3d12");
 
         sets = new DiceGatherer().transform(parsed);
 
@@ -96,8 +95,7 @@ public final class ITParseAndDiceTransformer {
         final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
-        parsed = new DefaultDiceParser()
-                .parse("1d20+2d6-1d12+1d6+2d8");
+        parsed = new DefaultDiceParser().parse("1d20+2d6-1d12+1d6+2d8");
 
         sets = new DiceGatherer().transform(parsed);
 

@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses multiplications with dice.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * multiplications with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

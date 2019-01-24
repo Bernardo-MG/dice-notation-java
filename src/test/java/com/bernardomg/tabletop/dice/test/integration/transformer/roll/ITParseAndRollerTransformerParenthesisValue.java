@@ -26,84 +26,51 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link DiceRoller}, verifying that it transforms dice.
+ * Integration tests for {@link DiceRoller}, verifying that it transforms simple
+ * binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDiceValue {
+public final class ITParseAndRollerTransformerParenthesisValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerDiceValue() {
+    public ITParseAndRollerTransformerParenthesisValue() {
         super();
     }
 
     /**
-     * Verifies that dice are parsed correctly.
+     * Verifies that parenthesis are applied, and the result is the expected
+     * one.
      */
     @Test
-    public final void testParse_Dice_Negative_Value() {
+    public final void testParse_AddAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-1d1";
+        notation = "(1+2)*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed);
 
-        Assertions.assertEquals(new Integer((-1)), result);
+        Assertions.assertEquals(new Integer(9), result);
     }
 
     /**
-     * Verifies that dice are parsed correctly.
+     * Verifies that parenthesis are applied, and the result is the expected
+     * one.
      */
     @Test
-    public final void testParse_Dice_NoQuantity_Value() {
+    public final void testParse_Number_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "0d1";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed);
-
-        Assertions.assertEquals(new Integer(0), result);
-    }
-
-    /**
-     * Verifies that dice are parsed correctly.
-     */
-    @Test
-    public final void testParse_Dice_NoSides_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "1d0";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed);
-
-        Assertions.assertEquals(new Integer(0), result);
-    }
-
-    /**
-     * Verifies that dice are parsed correctly.
-     */
-    @Test
-    public final void testParse_Dice_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "1d1";
+        notation = "(1)";
 
         parsed = new DefaultDiceParser().parse(notation);
 

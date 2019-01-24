@@ -28,8 +28,8 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses complex operations.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * complex operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

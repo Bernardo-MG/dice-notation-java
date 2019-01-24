@@ -29,8 +29,8 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Unit tests for {@link DiceRoller}, verifying that handles
- * multiplication operations.
+ * Unit tests for {@link DiceRoller}, verifying that handles multiplication
+ * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

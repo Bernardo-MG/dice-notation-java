@@ -90,6 +90,9 @@
          <action dev="bmg" type="update">
             Simplified the classes names and structures.
          </action>
+         <action dev="bmg" type="add">
+            Added support for parenthesis.
+         </action>
       </release>
    </body>
 </document>

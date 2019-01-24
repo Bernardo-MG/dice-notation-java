@@ -25,8 +25,8 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it throws exceptions when required.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it throws
+ * exceptions when required.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
