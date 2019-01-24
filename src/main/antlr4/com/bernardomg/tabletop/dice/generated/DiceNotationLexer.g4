@@ -47,22 +47,22 @@ MULTOPERATOR
    ( MULT | DIV )
 ;
 
-ADD
+fragment ADD
 :
    '+'
 ;
 
-SUB
+fragment SUB
 :
    '-'
 ;
 
-MULT
+fragment MULT
 :
    '*'
 ;
 
-DIV
+fragment DIV
 :
    '/'
 ;
