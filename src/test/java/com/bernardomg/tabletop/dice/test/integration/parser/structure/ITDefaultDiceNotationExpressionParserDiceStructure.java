@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses dice notation expressions for single dice groups.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

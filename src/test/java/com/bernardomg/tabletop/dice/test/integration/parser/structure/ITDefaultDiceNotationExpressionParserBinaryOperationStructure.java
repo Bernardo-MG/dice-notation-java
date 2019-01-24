@@ -24,12 +24,13 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses simple binary operations.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * simple binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -41,6 +42,34 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
      */
     public ITDefaultDiceNotationExpressionParserBinaryOperationStructure() {
         super();
+    }
+
+    /**
+     * Verifies that additions followed by multiplications can be parsed, and
+     * the result is the expected one.
+     */
+    @Test
+    public final void testParse_Number_AddAndMult_Structure() {
+        final String notation;           // Input to parse
+        final BinaryOperation operation; // Parsed operation
+        final MultiplicationOperation mult;
+        IntegerOperand number;
+
+        notation = "1+2*3";
+
+        // (1+(2*3))
+        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
+
+        mult = (MultiplicationOperation) operation.getRight();
+
+        number = (IntegerOperand) mult.getLeft();
+        Assertions.assertEquals((Integer) 2, number.getValue());
+
+        number = (IntegerOperand) mult.getRight();
+        Assertions.assertEquals((Integer) 3, number.getValue());
+
+        number = (IntegerOperand) operation.getLeft();
+        Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
     /**
@@ -86,8 +115,7 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
         notation = "3-1+2";
 
         // ((3-1)+2)
-        operation = (AdditionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 2, number.getValue());

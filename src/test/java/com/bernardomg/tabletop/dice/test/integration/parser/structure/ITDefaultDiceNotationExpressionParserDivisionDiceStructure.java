@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceParser}, verifying
- * that it parses multiplications with dice.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * multiplications with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -54,8 +54,7 @@ public final class ITDefaultDiceNotationExpressionParserDivisionDiceStructure {
 
         notation = "1d20/2d6";
 
-        operation = (DivisionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (DivisionOperation) new DefaultDiceParser().parse(notation);
 
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
@@ -79,8 +78,7 @@ public final class ITDefaultDiceNotationExpressionParserDivisionDiceStructure {
 
         notation = "5/2d6";
 
-        operation = (DivisionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (DivisionOperation) new DefaultDiceParser().parse(notation);
 
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
@@ -103,8 +101,7 @@ public final class ITDefaultDiceNotationExpressionParserDivisionDiceStructure {
 
         notation = "2d6/5";
 
-        operation = (DivisionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (DivisionOperation) new DefaultDiceParser().parse(notation);
 
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();

@@ -27,8 +27,8 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration test for {@link DiceRoller}, verifying that it transforms
- * parsed expressions.
+ * Integration test for {@link DiceRoller}, verifying that it transforms parsed
+ * expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
