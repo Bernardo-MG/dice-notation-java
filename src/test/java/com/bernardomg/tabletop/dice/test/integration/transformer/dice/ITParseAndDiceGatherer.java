@@ -37,12 +37,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndDiceTransformer {
+public final class ITParseAndDiceGatherer {
 
     /**
      * Default constructor.
      */
-    public ITParseAndDiceTransformer() {
+    public ITParseAndDiceGatherer() {
         super();
     }
 
