@@ -214,6 +214,33 @@ public final class ITParseAndDiceGatherer {
     }
 
     /**
+     * Verifies that a dice subtraction can be parsed.
+     */
+    @Test
+    public final void testParse_Subtraction_Dice() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("1d6-2d12");
+
+        sets = new DiceGatherer().transform(parsed);
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(12), dice.getSides());
+    }
+
+    /**
      * Verifies that multiple dice are parsed, returning all.
      */
     @Test
