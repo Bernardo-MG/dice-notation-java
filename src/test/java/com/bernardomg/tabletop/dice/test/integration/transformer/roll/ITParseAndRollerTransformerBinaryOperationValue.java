@@ -285,4 +285,23 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
         Assertions.assertEquals(new Integer(6), result);
     }
 
+    /**
+     * Verifies that subtractions followed by additions can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_SubNegAndAddNeg_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "3--1+-2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(2), result);
+    }
+
 }
