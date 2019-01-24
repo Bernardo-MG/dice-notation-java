@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -38,6 +39,24 @@ public final class ITParseAndRollerTransformerDiceValue {
      */
     public ITParseAndRollerTransformerDiceValue() {
         super();
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    @Disabled
+    public final void testParse_Dice_Biggest() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final String notation;               // Input to parse
+
+        // TODO: Test performance
+
+        notation = Integer.MAX_VALUE + "d" + Integer.MAX_VALUE;
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        new DiceRoller().transform(parsed);
     }
 
     /**
@@ -98,7 +117,7 @@ public final class ITParseAndRollerTransformerDiceValue {
      * Verifies that dice are parsed correctly.
      */
     @Test
-    public final void testParse_Dice_Value() {
+    public final void testParse_Dice_Smallest_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
