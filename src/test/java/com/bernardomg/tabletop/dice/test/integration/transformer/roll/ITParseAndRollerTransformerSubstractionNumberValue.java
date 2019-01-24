@@ -97,4 +97,22 @@ public final class ITParseAndRollerTransformerSubstractionNumberValue {
         Assertions.assertEquals(new Integer(-1), result);
     }
 
+    /**
+     * Verifies that a subtraction of a negative number is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_SubNeg_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1--2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(3), result);
+    }
+
 }

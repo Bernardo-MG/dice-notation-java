@@ -45,8 +45,8 @@ public final class SubtractionOperation extends AbstractBinaryOperation {
 
     @Override
     public final String getExpression() {
-        final String left;  // Left side operand as a string
-        final String right; // Right side operand as a string
+        final String left;
+        final String right;
 
         left = getLeft().getExpression();
         right = getRight().getExpression();

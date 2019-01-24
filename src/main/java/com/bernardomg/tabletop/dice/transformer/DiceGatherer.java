@@ -74,8 +74,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
             LOGGER.debug("Transforming expression {}", current);
             if (current instanceof BinaryOperation) {
                 // TODO: If it is a subtraction then the right value sign should
-                // be
-                // reversed
+                // be reversed
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
             } else if (current instanceof DiceOperand) {
