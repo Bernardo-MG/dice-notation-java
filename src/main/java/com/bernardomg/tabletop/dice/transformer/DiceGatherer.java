@@ -65,9 +65,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         checkNotNull(expression, "Received a null pointer as expression");
 
         nodes = new Stack<>();
-        nodes.push(expression);
         stack = new ArrayList<>();
-        stack.add(expression);
 
         LOGGER.debug("Root expression {}", expression);
 
@@ -75,16 +73,25 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         // handle dice subtractions
 
         result = new ArrayList<>();
-        while (!nodes.isEmpty()) {
-            current = nodes.pop();
+        current = expression;
+        while ((!nodes.isEmpty()) || (current != null)) {
             LOGGER.debug("Transforming expression {}", current);
-            if (current instanceof BinaryOperation) {
-                // TODO: If it is a subtraction then the right value sign should
-                // be reversed
-                nodes.push(((BinaryOperation) current).getRight());
-                nodes.push(((BinaryOperation) current).getLeft());
+            if (current == null) {
+                current = nodes.pop();
+                stack.add(current);
+                if (current instanceof BinaryOperation) {
+                    current = ((BinaryOperation) current).getRight();
+                } else {
+                    current = null;
+                }
+            } else {
+                nodes.push(current);
+                if (current instanceof BinaryOperation) {
+                    current = ((BinaryOperation) current).getLeft();
+                } else {
+                    current = null;
+                }
             }
-            stack.add(current);
         }
 
         for (final DiceNotationExpression exp : stack) {
