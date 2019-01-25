@@ -87,6 +87,9 @@
          </action>
       </release>
       <release version="2.0.0" date="2019-01-21" description="">
+         <action dev="bmg" type="fix">
+            Signs are set correctly when taking the dice from subtractions with the dice gatherer.
+         </action>
          <action dev="bmg" type="update">
             Simplified the classes names and structures.
          </action>
