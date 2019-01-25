@@ -80,6 +80,21 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
     }
 
     /**
+     * Verifies that a mixed operation is parsed correctly.
+     */
+    @Test
+    public final void testParse_Mixed() {
+        final String notation;                  // Input to parse
+        final DiceNotationExpression operation; // Parsed operation
+
+        notation = "1d20-5*1d8+2d6/3d12";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        Assertions.assertEquals(notation, operation.getExpression());
+    }
+
+    /**
      * Verifies that an addition with only numbers is parsed correctly.
      */
     @Test
