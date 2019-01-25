@@ -43,6 +43,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.google.common.collect.Iterables;
 
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed
@@ -251,11 +252,17 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
 
-        if ((ctx.ADDOPERATOR() != null)
-                && (SUBTRACTION_OPERATOR.equals(ctx.ADDOPERATOR().getText()))) {
-            quantity = 0 - Integer.parseInt(digits.next().getText());
+        if (Iterables.size(ctx.DIGIT()) > 1) {
+            if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
+                    .equals(ctx.ADDOPERATOR().getText()))) {
+                quantity = 0 - Integer.parseInt(digits.next().getText());
+            } else {
+                quantity = Integer.parseInt(digits.next().getText());
+            }
         } else {
-            quantity = Integer.parseInt(digits.next().getText());
+            // No quantity of dice defined
+            // Defaults to 1
+            quantity = 1;
         }
         sides = Integer.parseInt(digits.next().getText());
 
