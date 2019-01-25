@@ -59,21 +59,65 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     @Override
     public final Iterable<Dice>
             transform(final DiceNotationExpression expression) {
-        final Stack<DiceNotationExpression> nodes;
-        final Collection<Dice> result;
-        DiceNotationExpression current;
-        DiceNotationExpression previous;
-        final Collection<DiceNotationExpression> stack;
+        final Iterable<DiceNotationExpression> exps;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
-        nodes = new Stack<>();
-        stack = new ArrayList<>();
-
         LOGGER.debug("Root expression {}", expression);
 
+        // The expression is broken down
+        exps = getExpressions(expression);
+
+        // The expressions are filtered, taking all the dice
+        return filterDice(exps);
+    }
+
+    /**
+     * Filters the received expressions, returning only the dice contained in
+     * them, in the same order they are in the received list.
+     * 
+     * @param exps
+     *            expressions to filter
+     * @return all the dice in the expressions
+     */
+    private final Iterable<Dice>
+            filterDice(final Iterable<DiceNotationExpression> exps) {
+        final Collection<Dice> result;
+        DiceNotationExpression previous;
+
+        previous = null;
         result = new ArrayList<>();
-        current = expression;
+        for (final DiceNotationExpression exp : exps) {
+            if (exp instanceof DiceOperand) {
+                if (previous instanceof SubtractionOperation) {
+                    result.add(reverse(((DiceOperand) exp).getDice()));
+                } else {
+                    result.add(((DiceOperand) exp).getDice());
+                }
+            }
+            previous = exp;
+        }
+
+        return result;
+    }
+
+    /**
+     * Breaks down the root expression into an inorder list.
+     * 
+     * @param root
+     *            root expression
+     * @return inorder list with all the expressions from the tree
+     */
+    private final Iterable<DiceNotationExpression>
+            getExpressions(final DiceNotationExpression root) {
+        final Stack<DiceNotationExpression> nodes;
+        final Collection<DiceNotationExpression> stack;
+        DiceNotationExpression current;
+
+        current = root;
+
+        nodes = new Stack<>();
+        stack = new ArrayList<>();
         while ((!nodes.isEmpty()) || (current != null)) {
             LOGGER.debug("Transforming expression {}", current);
             if (current == null) {
@@ -94,19 +138,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
             }
         }
 
-        previous = null;
-        for (final DiceNotationExpression exp : stack) {
-            if (exp instanceof DiceOperand) {
-                if (previous instanceof SubtractionOperation) {
-                    result.add(reverse(((DiceOperand) exp).getDice()));
-                } else {
-                    result.add(((DiceOperand) exp).getDice());
-                }
-            }
-            previous = exp;
-        }
-
-        return result;
+        return stack;
     }
 
     /**
