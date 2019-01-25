@@ -115,7 +115,7 @@ public final class ITParseAndDiceGatherer {
 
         dice = itr.next();
 
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-1), dice.getQuantity());
         Assertions.assertEquals(new Integer(12), dice.getSides());
 
         dice = itr.next();
@@ -238,7 +238,7 @@ public final class ITParseAndDiceGatherer {
 
         dice = itr.next();
 
-        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-2), dice.getQuantity());
         Assertions.assertEquals(new Integer(12), dice.getSides());
     }
 
@@ -267,7 +267,7 @@ public final class ITParseAndDiceGatherer {
 
         dice = itr.next();
 
-        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-2), dice.getQuantity());
         Assertions.assertEquals(new Integer(8), dice.getSides());
 
         dice = itr.next();
@@ -301,7 +301,7 @@ public final class ITParseAndDiceGatherer {
 
         dice = itr.next();
 
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-1), dice.getQuantity());
         Assertions.assertEquals(new Integer(6), dice.getSides());
 
         dice = itr.next();

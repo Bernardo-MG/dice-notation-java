@@ -25,10 +25,12 @@ import java.util.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
  * Dice notation expression which returns all the dice sets contained inside the
@@ -60,6 +62,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         final Stack<DiceNotationExpression> nodes;
         final Collection<Dice> result;
         DiceNotationExpression current;
+        DiceNotationExpression previous;
         final Collection<DiceNotationExpression> stack;
 
         checkNotNull(expression, "Received a null pointer as expression");
@@ -68,9 +71,6 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         stack = new ArrayList<>();
 
         LOGGER.debug("Root expression {}", expression);
-
-        // FIXME: This is taking only the leaf nodes. That's why it can't
-        // handle dice subtractions
 
         result = new ArrayList<>();
         current = expression;
@@ -94,13 +94,31 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
             }
         }
 
+        previous = null;
         for (final DiceNotationExpression exp : stack) {
             if (exp instanceof DiceOperand) {
-                result.add(((DiceOperand) exp).getDice());
+                if (previous instanceof SubtractionOperation) {
+                    result.add(reverse(((DiceOperand) exp).getDice()));
+                } else {
+                    result.add(((DiceOperand) exp).getDice());
+                }
             }
+            previous = exp;
         }
 
         return result;
+    }
+
+    /**
+     * Reverses the sign of a dice, changing positive values to negatives, and
+     * viceversa.
+     * 
+     * @param dice
+     *            dice to reverse
+     * @return dice with the sign reversed
+     */
+    private final Dice reverse(final Dice dice) {
+        return new DefaultDice(0 - dice.getQuantity(), dice.getSides());
     }
 
 }
