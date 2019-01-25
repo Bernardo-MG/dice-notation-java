@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import org.slf4j.Logger;
@@ -60,11 +62,16 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         final Stack<DiceNotationExpression> nodes;
         final Collection<Dice> result;
         DiceNotationExpression current;
+        final LinkedList<DiceNotationExpression> stack;
+        final Iterator<DiceNotationExpression> exps;
+        DiceNotationExpression exp;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
         nodes = new Stack<>();
+        stack = new LinkedList<>();
         nodes.push(expression);
+        stack.add(expression);
 
         LOGGER.debug("Root expression {}", expression);
 
@@ -80,8 +87,16 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
                 // be reversed
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
-            } else if (current instanceof DiceOperand) {
-                result.add(((DiceOperand) current).getDice());
+                stack.add(((BinaryOperation) current).getRight());
+                stack.add(((BinaryOperation) current).getLeft());
+            }
+        }
+
+        exps = stack.descendingIterator();
+        while (exps.hasNext()) {
+            exp = exps.next();
+            if (exp instanceof DiceOperand) {
+                result.add(((DiceOperand) exp).getDice());
             }
         }
 
