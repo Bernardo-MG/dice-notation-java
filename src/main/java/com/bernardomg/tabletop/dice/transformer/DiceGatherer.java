@@ -90,6 +90,8 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         for (final DiceNotationExpression exp : exps) {
             if (exp instanceof DiceOperand) {
                 if (previous instanceof SubtractionOperation) {
+                    // Right side on a subtraction
+                    // Change sign
                     result.add(reverse(((DiceOperand) exp).getDice()));
                 } else {
                     result.add(((DiceOperand) exp).getDice());
@@ -121,18 +123,30 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         while ((!nodes.isEmpty()) || (current != null)) {
             LOGGER.debug("Transforming expression {}", current);
             if (current == null) {
+                // Left nodes exhausted
+                // Moves to the previous right node
                 current = nodes.pop();
+
+                // This is the next node for inorder traverse
                 stack.add(current);
+
                 if (current instanceof BinaryOperation) {
+                    // Moves to a right node
                     current = ((BinaryOperation) current).getRight();
                 } else {
+                    // Not binary node
+                    // There is no right node
                     current = null;
                 }
             } else {
+                // Store and keep moving
                 nodes.push(current);
                 if (current instanceof BinaryOperation) {
+                    // Next left node
                     current = ((BinaryOperation) current).getLeft();
                 } else {
+                    // Not binary node
+                    // There is no left node
                     current = null;
                 }
             }
