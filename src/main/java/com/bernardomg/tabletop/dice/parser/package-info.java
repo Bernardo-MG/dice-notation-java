@@ -22,8 +22,7 @@
  * <p>
  * The {@link com.bernardomg.tabletop.dice.parser.DiceParser
  * DiceNotationExpressionParser} allows creating custom parsers. The default one
- * is
- * {@link com.bernardomg.tabletop.dice.parser.DefaultDiceParser
+ * is {@link com.bernardomg.tabletop.dice.parser.DefaultDiceParser
  * DefaultDiceNotationExpressionParser}, which makes use of the classes
  * generated from an ANTLR4 grammar to parse dice expressions.
  */
