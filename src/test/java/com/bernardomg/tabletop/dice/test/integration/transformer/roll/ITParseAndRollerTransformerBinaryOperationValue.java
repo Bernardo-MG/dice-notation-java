@@ -137,6 +137,22 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
     }
 
     /**
+     * Verifies that dice notation with a long addition operation can be parsed
+     * and transformed.
+     */
+    @Test
+    public final void testParse_LongAddition_NoQuantity() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+
+        parsed = new DefaultDiceParser().parse("1d1+3+d1+12d1+d1");
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(18), result);
+    }
+
+    /**
      * Verifies that dice notation with a long arithmetic operation can be
      * parsed and transformed.
      */

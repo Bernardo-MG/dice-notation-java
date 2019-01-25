@@ -80,6 +80,36 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
     }
 
     /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice() {
+        final String notation;                  // Input to parse
+        final DiceNotationExpression operation; // Parsed operation
+
+        notation = "1d6";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        Assertions.assertEquals(notation, operation.getExpression());
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice_BigD() {
+        final String notation;                  // Input to parse
+        final DiceNotationExpression operation; // Parsed operation
+
+        notation = "1D6";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        Assertions.assertEquals(notation, operation.getExpression());
+    }
+
+    /**
      * Verifies that a mixed operation is parsed correctly.
      */
     @Test
@@ -88,6 +118,21 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1d20-5*1d8+2d6/3d12";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        Assertions.assertEquals(notation, operation.getExpression());
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_NoQuantity() {
+        final String notation;                  // Input to parse
+        final DiceNotationExpression operation; // Parsed operation
+
+        notation = "d6";
 
         operation = new DefaultDiceParser().parse(notation);
 
