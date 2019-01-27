@@ -20,8 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Stack;
-import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +32,7 @@ import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
+import com.bernardomg.tabletop.dice.notation.operation.Operation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
@@ -88,11 +89,19 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
-        final Integer result;
         final Stack<DiceNotationExpression> exps;
         final Collection<DiceNotationExpression> ordered;
+        final Iterator<DiceNotationExpression> ord;
+        final Stack<Integer> values;
+        Integer value;
+        DiceNotationExpression current;
+        Integer result;
+        Integer v1;
+        Integer v2;
 
         checkNotNull(expression, "Received a null pointer as expression");
+
+        LOGGER.debug("Root expression {}", expression);
 
         ordered = new ArrayList<>();
 
@@ -111,21 +120,29 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
             }
         }
 
-        LOGGER.debug("Root expression {}", expression);
+        values = new Stack<>();
+        ord = ordered.iterator();
+        result = 0;
+        while (ord.hasNext()) {
+            current = ord.next();
+            if (current instanceof Operation) {
+                v2 = values.pop();
+                v1 = values.pop();
+                value = ((Operation) current).getOperation().apply(v1, v2);
+                values.push(value);
+            } else if (current instanceof ConstantOperand) {
+                values.push(((ConstantOperand) current).getValue());
+            } else if (current instanceof DiceOperand) {
+                values.push(transform(((DiceOperand) current)));
+            } else {
+                // TODO: ERROR
+            }
+        }
 
-        // TODO: Store in postorder
-
-        // TODO: Try iterating instead of recursions
-        if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression);
-        } else if (expression instanceof ConstantOperand) {
-            result = transform((ConstantOperand) expression);
-        } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression);
-        } else {
-            LOGGER.warn("Unsupported expression of type {}",
-                    expression.getClass());
+        if (values.isEmpty()) {
             result = 0;
+        } else {
+            result = values.pop();
         }
 
         return result;
@@ -165,50 +182,6 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
         }
 
         return rolls;
-    }
-
-    /**
-     * Generates a random value from a binary operation.
-     * <p>
-     * It generates a value for both sides of the operation, then applies the
-     * operation to these values.
-     * 
-     * @param operation
-     *            operation to transform
-     * @return a random value generated from the operation
-     */
-    private final Integer transform(final BinaryOperation operation) {
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
-        final Integer leftValue;
-        final Integer rightValue;
-        final Integer value;
-        final BiFunction<Integer, Integer, Integer> func;
-
-        left = operation.getLeft();
-        right = operation.getRight();
-
-        func = operation.getOperation();
-
-        LOGGER.debug("Transforming left operand");
-        leftValue = transform(left);
-        LOGGER.debug("Transforming right operand");
-        rightValue = transform(right);
-
-        value = func.apply(leftValue, rightValue);
-
-        return value;
-    }
-
-    /**
-     * Returns the value from a constant operand.
-     * 
-     * @param operand
-     *            operand to transform
-     * @return the constant from the operand
-     */
-    private final Integer transform(final ConstantOperand operand) {
-        return operand.getValue();
     }
 
     /**

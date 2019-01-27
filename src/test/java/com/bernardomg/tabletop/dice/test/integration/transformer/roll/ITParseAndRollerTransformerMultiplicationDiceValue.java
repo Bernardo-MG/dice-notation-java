@@ -45,7 +45,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceValue {
      * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Dice_Value() {
+    public final void testParse_Multiply_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
@@ -63,7 +63,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceValue {
      * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_LeftNumber_Value() {
+    public final void testParse_Multiply_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
@@ -81,7 +81,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceValue {
      * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_RightNumber_Value() {
+    public final void testParse_Multiply_RightNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
