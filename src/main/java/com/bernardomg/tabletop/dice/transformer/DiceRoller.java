@@ -63,7 +63,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Transformer to generate a list from the received expression.
      */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> expander = new PostorderTransformer();
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTransformer();
 
     /**
      * The random numbers generator.
@@ -105,7 +105,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
         LOGGER.debug("Root expression {}", expression);
 
-        ordered = expander.transform(expression);
+        ordered = traverser.transform(expression);
 
         result = getValue(ordered);
 

@@ -50,7 +50,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     /**
      * Transformer to generate a list from the received expression.
      */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> expander = new InorderTransformer();
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new InorderTransformer();
 
     /**
      * Default constructor.
@@ -69,7 +69,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         LOGGER.debug("Root expression {}", expression);
 
         // The expression is broken down
-        exps = expander.transform(expression);
+        exps = traverser.transform(expression);
 
         // The expressions are filtered, taking all the dice
         return filterDice(exps);
