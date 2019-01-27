@@ -66,7 +66,7 @@ public final class TestDiceRoller {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller(generator).transform(expression);
+        rolled = new DiceRoller(generator).transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), rolled);
     }
@@ -94,7 +94,7 @@ public final class TestDiceRoller {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller(generator).transform(expression);
+        rolled = new DiceRoller(generator).transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(1), rolled);
     }

@@ -55,7 +55,7 @@ public final class ITParseAndRollerTransformerParenthesisValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(9), result);
     }
@@ -74,7 +74,7 @@ public final class ITParseAndRollerTransformerParenthesisValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(1), result);
     }

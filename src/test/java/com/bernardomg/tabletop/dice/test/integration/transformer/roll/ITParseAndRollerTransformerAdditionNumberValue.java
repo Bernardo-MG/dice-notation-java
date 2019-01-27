@@ -55,7 +55,7 @@ public final class ITParseAndRollerTransformerAdditionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(6), result);
     }
@@ -74,7 +74,7 @@ public final class ITParseAndRollerTransformerAdditionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(15), result);
     }
@@ -92,7 +92,7 @@ public final class ITParseAndRollerTransformerAdditionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), result);
     }

@@ -55,7 +55,7 @@ public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-4), result);
     }
@@ -74,7 +74,7 @@ public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-13), result);
     }
@@ -92,7 +92,7 @@ public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-1), result);
     }
@@ -110,7 +110,7 @@ public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), result);
     }

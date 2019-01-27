@@ -28,6 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
+import com.bernardomg.tabletop.dice.history.DefaultRollResult;
+import com.bernardomg.tabletop.dice.history.RollHistory;
+import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
@@ -50,7 +54,7 @@ import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceRoller implements DiceInterpreter<Integer> {
+public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
     /**
      * Logger.
@@ -89,9 +93,10 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
     }
 
     @Override
-    public final Integer transform(final DiceNotationExpression expression) {
+    public final RollHistory
+            transform(final DiceNotationExpression expression) {
         final Iterable<DiceNotationExpression> ordered;
-        final Integer result;
+        final RollHistory result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
@@ -146,17 +151,22 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
      *            expressions to get the values from
      * @return the value from the expressions
      */
-    private final Integer
+    private final RollHistory
             getValue(final Iterable<DiceNotationExpression> expressions) {
         final Iterator<DiceNotationExpression> expItr;
         final Stack<Integer> values;
+        final Collection<Integer> rolls;
+        final Collection<RollResult> results;
+        RollResult rollResult;
         DiceNotationExpression current;
+        Integer value;
         Integer result;
         Integer operandA;
         Integer operandB;
-        Integer operated;
         BiFunction<Integer, Integer, Integer> operation;
 
+        rolls = new ArrayList<>();
+        results = new ArrayList<>();
         values = new Stack<>();
         expItr = expressions.iterator();
         result = 0;
@@ -168,16 +178,20 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
                 operandB = values.pop();
                 operandA = values.pop();
                 operation = ((Operation) current).getOperation();
-                operated = operation.apply(operandA, operandB);
-                values.push(operated);
+                value = operation.apply(operandA, operandB);
+                values.push(value);
+                rolls.add(value);
             } else if (current instanceof ConstantOperand) {
                 // Constant
                 // Stores the value
-                values.push(((ConstantOperand) current).getValue());
+                value = ((ConstantOperand) current).getValue();
+                values.push(value);
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
-                values.push(transform(((DiceOperand) current)));
+                rollResult = transform(((DiceOperand) current));
+                values.push(rollResult.getFinalRoll());
+                results.add(rollResult);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());
@@ -192,7 +206,7 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
             result = values.pop();
         }
 
-        return result;
+        return new DefaultRollHistory(result, rolls, results);
     }
 
     /**
@@ -239,9 +253,9 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
      * 
      * @param operand
      *            operand to transform
-     * @return a random value generated from the dice
+     * @return result from rolling the dice
      */
-    private final Integer transform(final DiceOperand operand) {
+    private final RollResult transform(final DiceOperand operand) {
         final Iterable<Integer> rolls;
         Integer total;
 
@@ -252,7 +266,7 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
             total += roll;
         }
 
-        return total;
+        return new DefaultRollResult(operand.getDice(), rolls, total);
     }
 
 }
