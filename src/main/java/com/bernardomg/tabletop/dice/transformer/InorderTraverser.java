@@ -14,15 +14,15 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
- * Breaks down the received expression into a preorder list.
+ * Breaks down the received expression into an inorder list.
  * <p>
- * The tree {@code ((1 + 2) - 3)} becomes {@code - + 1 2 3} with this
+ * The tree {@code ((1 + 2) - 3)} becomes {@code 1 + 2 - 3} with this
  * transformer.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PreorderTransformer
+public final class InorderTraverser
         implements DiceInterpreter<Iterable<DiceNotationExpression>> {
 
     /**
@@ -34,7 +34,7 @@ public final class PreorderTransformer
     /**
      * Default constructor.
      */
-    public PreorderTransformer() {
+    public InorderTraverser() {
         super();
     }
 
@@ -50,18 +50,36 @@ public final class PreorderTransformer
         current = expression;
 
         nodes = new Stack<>();
-        nodes.push(expression);
-
         exps = new ArrayList<>();
-        while (!nodes.empty()) {
-            current = nodes.pop();
+        while ((!nodes.isEmpty()) || (current != null)) {
             LOGGER.debug("Transforming expression {}", current);
+            if (current == null) {
+                // Left nodes exhausted
+                // Moves to the previous right node
+                current = nodes.pop();
 
-            exps.add(current);
+                // This is the next node for inorder traverse
+                exps.add(current);
 
-            if (current instanceof BinaryOperation) {
-                nodes.push(((BinaryOperation) current).getRight());
-                nodes.push(((BinaryOperation) current).getLeft());
+                if (current instanceof BinaryOperation) {
+                    // Moves to a right node
+                    current = ((BinaryOperation) current).getRight();
+                } else {
+                    // Not binary node
+                    // There is no right node
+                    current = null;
+                }
+            } else {
+                // Store and keep moving
+                nodes.push(current);
+                if (current instanceof BinaryOperation) {
+                    // Next left node
+                    current = ((BinaryOperation) current).getLeft();
+                } else {
+                    // Not binary node
+                    // There is no left node
+                    current = null;
+                }
             }
         }
 

@@ -23,19 +23,19 @@ import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PostorderTransformer
+public final class PostorderTraverser
         implements DiceInterpreter<Iterable<DiceNotationExpression>> {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(PostorderTransformer.class);
+            .getLogger(PostorderTraverser.class);
 
     /**
      * Default constructor.
      */
-    public PostorderTransformer() {
+    public PostorderTraverser() {
         super();
     }
 

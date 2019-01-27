@@ -50,7 +50,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     /**
      * Transformer to generate a list from the received expression.
      */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new InorderTransformer();
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new InorderTraverser();
 
     /**
      * Default constructor.

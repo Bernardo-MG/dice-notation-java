@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer.inorder;
+package com.bernardomg.tabletop.dice.test.unit.transformer.traverser;
 
 import java.util.Iterator;
 
@@ -28,22 +28,22 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.Operation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.transformer.PostorderTransformer;
+import com.bernardomg.tabletop.dice.transformer.PostorderTraverser;
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link PostorderTransformer}, verifying that it transforms a
+ * Unit tests for {@link PostorderTraverser}, verifying that it transforms a
  * tree correctly.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestPostorderTransformer {
+public final class TestPostorderTraverser {
 
     /**
      * Default constructor.
      */
-    public TestPostorderTransformer() {
+    public TestPostorderTraverser() {
         super();
     }
 
@@ -73,7 +73,7 @@ public final class TestPostorderTransformer {
         subtraction = new SubtractionOperation(addition, rightSecond);
 
         // 1 2 + 3 -
-        result = new PostorderTransformer().transform(subtraction);
+        result = new PostorderTraverser().transform(subtraction);
 
         Assertions.assertEquals(5, Iterables.size(result));
 

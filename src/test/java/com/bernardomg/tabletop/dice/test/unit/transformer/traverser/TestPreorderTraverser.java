@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer.inorder;
+package com.bernardomg.tabletop.dice.test.unit.transformer.traverser;
 
 import java.util.Iterator;
 
@@ -27,22 +27,22 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.transformer.InorderTransformer;
+import com.bernardomg.tabletop.dice.transformer.PreorderTraverser;
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link InorderTransformer}, verifying that it transforms a
+ * Unit tests for {@link PreorderTraverser}, verifying that it transforms a
  * tree correctly.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestInorderTransformer {
+public final class TestPreorderTraverser {
 
     /**
      * Default constructor.
      */
-    public TestInorderTransformer() {
+    public TestPreorderTraverser() {
         super();
     }
 
@@ -71,12 +71,18 @@ public final class TestInorderTransformer {
         // (1 + 2) - 3
         subtraction = new SubtractionOperation(addition, rightSecond);
 
-        // 1 + 2 - 3
-        result = new InorderTransformer().transform(subtraction);
+        // - + 1 2 3
+        result = new PreorderTraverser().transform(subtraction);
 
         Assertions.assertEquals(5, Iterables.size(result));
 
         exps = result.iterator();
+
+        exp = exps.next();
+        Assertions.assertTrue(exp instanceof SubtractionOperation);
+
+        exp = exps.next();
+        Assertions.assertTrue(exp instanceof AdditionOperation);
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
@@ -84,15 +90,9 @@ public final class TestInorderTransformer {
                 ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof AdditionOperation);
-
-        exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
         Assertions.assertEquals(new Integer(2),
                 ((IntegerOperand) exp).getValue());
-
-        exp = exps.next();
-        Assertions.assertTrue(exp instanceof SubtractionOperation);
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
