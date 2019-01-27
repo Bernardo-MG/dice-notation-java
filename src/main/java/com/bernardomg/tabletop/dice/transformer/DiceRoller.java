@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Stack;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
@@ -30,6 +32,8 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
+import com.bernardomg.tabletop.dice.notation.operation.Operation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
@@ -86,23 +90,106 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
+        final Iterable<DiceNotationExpression> ordered;
         final Integer result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
         LOGGER.debug("Root expression {}", expression);
 
-        // TODO: Try iterating instead of recursions
-        if (expression instanceof BinaryOperation) {
-            result = transform((BinaryOperation) expression);
-        } else if (expression instanceof ConstantOperand) {
-            result = transform((ConstantOperand) expression);
-        } else if (expression instanceof DiceOperand) {
-            result = transform((DiceOperand) expression);
-        } else {
-            LOGGER.warn("Unsupported expression of type {}",
-                    expression.getClass());
+        ordered = getExpressions(expression);
+
+        result = getValue(ordered);
+
+        return result;
+    }
+
+    /**
+     * Breaks down the root expression into an postorder list.
+     * 
+     * @param root
+     *            root expression
+     * @return inorder list with all the expressions from the tree
+     */
+    private final Iterable<DiceNotationExpression>
+            getExpressions(final DiceNotationExpression root) {
+        final Stack<DiceNotationExpression> exps;
+        final Collection<DiceNotationExpression> result;
+
+        exps = new Stack<>();
+        exps.push(root);
+
+        result = new ArrayList<>();
+        while (!exps.isEmpty()) {
+            final DiceNotationExpression temp = exps.pop();
+            if (temp instanceof BinaryOperation) {
+                // Binary operation
+                // Prunes node and stores left and right nodes
+                exps.push(new DefaultOperation(
+                        ((BinaryOperation) temp).getOperation()));
+                exps.push(((BinaryOperation) temp).getRight());
+                exps.push(((BinaryOperation) temp).getLeft());
+            } else {
+                // Leaf node
+                result.add(temp);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Returns the final value from the parsed expression. This expression is
+     * received as a postorder tree list.
+     * 
+     * @param expressions
+     *            expressions to get the values from
+     * @return the value from the expressions
+     */
+    private final Integer
+            getValue(final Iterable<DiceNotationExpression> expressions) {
+        final Iterator<DiceNotationExpression> expItr;
+        final Stack<Integer> values;
+        DiceNotationExpression current;
+        Integer result;
+        Integer operandA;
+        Integer operandB;
+        Integer operated;
+        BiFunction<Integer, Integer, Integer> operation;
+
+        values = new Stack<>();
+        expItr = expressions.iterator();
+        result = 0;
+        while (expItr.hasNext()) {
+            current = expItr.next();
+            if (current instanceof Operation) {
+                // Operation
+                // Takes back the two latest values and applies
+                operandB = values.pop();
+                operandA = values.pop();
+                operation = ((Operation) current).getOperation();
+                operated = operation.apply(operandA, operandB);
+                values.push(operated);
+            } else if (current instanceof ConstantOperand) {
+                // Constant
+                // Stores the value
+                values.push(((ConstantOperand) current).getValue());
+            } else if (current instanceof DiceOperand) {
+                // Dice
+                // Generates a random value
+                values.push(transform(((DiceOperand) current)));
+            } else {
+                LOGGER.warn("Unsupported expression of type {}",
+                        current.getClass());
+            }
+        }
+
+        if (values.isEmpty()) {
+            // By default the returned value is 0
             result = 0;
+        } else {
+            // The value which is left is returned
+            result = values.pop();
         }
 
         return result;
@@ -142,50 +229,6 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
         }
 
         return rolls;
-    }
-
-    /**
-     * Generates a random value from a binary operation.
-     * <p>
-     * It generates a value for both sides of the operation, then applies the
-     * operation to these values.
-     * 
-     * @param operation
-     *            operation to transform
-     * @return a random value generated from the operation
-     */
-    private final Integer transform(final BinaryOperation operation) {
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
-        final Integer leftValue;
-        final Integer rightValue;
-        final Integer value;
-        final BiFunction<Integer, Integer, Integer> func;
-
-        left = operation.getLeft();
-        right = operation.getRight();
-
-        func = operation.getOperation();
-
-        LOGGER.debug("Transforming left operand");
-        leftValue = transform(left);
-        LOGGER.debug("Transforming right operand");
-        rightValue = transform(right);
-
-        value = func.apply(leftValue, rightValue);
-
-        return value;
-    }
-
-    /**
-     * Returns the value from a constant operand.
-     * 
-     * @param operand
-     *            operand to transform
-     * @return the constant from the operand
-     */
-    private final Integer transform(final ConstantOperand operand) {
-        return operand.getValue();
     }
 
     /**
