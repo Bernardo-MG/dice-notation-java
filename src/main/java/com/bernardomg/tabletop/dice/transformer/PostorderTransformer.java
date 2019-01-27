@@ -16,6 +16,9 @@ import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
 
 /**
  * Breaks down the received expression into a postorder list.
+ * <p>
+ * The tree {@code ((1 + 2) + 3)} becomes {@code 1 2 + 3 -} with this
+ * transformer.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
