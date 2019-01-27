@@ -39,7 +39,7 @@ public final class InorderTransformer
     public final Iterable<DiceNotationExpression>
             transform(final DiceNotationExpression expression) {
         final Stack<DiceNotationExpression> nodes;
-        final Collection<DiceNotationExpression> stack;
+        final Collection<DiceNotationExpression> exps;
         DiceNotationExpression current;
 
         checkNotNull(expression, "Received a null pointer as expression");
@@ -47,7 +47,7 @@ public final class InorderTransformer
         current = expression;
 
         nodes = new Stack<>();
-        stack = new ArrayList<>();
+        exps = new ArrayList<>();
         while ((!nodes.isEmpty()) || (current != null)) {
             LOGGER.debug("Transforming expression {}", current);
             if (current == null) {
@@ -56,7 +56,7 @@ public final class InorderTransformer
                 current = nodes.pop();
 
                 // This is the next node for inorder traverse
-                stack.add(current);
+                exps.add(current);
 
                 if (current instanceof BinaryOperation) {
                     // Moves to a right node
@@ -80,7 +80,7 @@ public final class InorderTransformer
             }
         }
 
-        return stack;
+        return exps;
     }
 
 }

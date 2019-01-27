@@ -12,27 +12,26 @@ import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
 
 /**
- * Breaks down the received expression into a postorder list.
+ * Breaks down the received expression into a preorder list.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PostorderTransformer
+public final class PreorderTransformer
         implements DiceInterpreter<Iterable<DiceNotationExpression>> {
 
     /**
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(PostorderTransformer.class);
+            .getLogger(DiceGatherer.class);
 
     /**
      * Default constructor.
      */
-    public PostorderTransformer() {
+    public PreorderTransformer() {
         super();
     }
 
@@ -45,23 +44,21 @@ public final class PostorderTransformer
 
         checkNotNull(expression, "Received a null pointer as expression");
 
+        current = expression;
+
         nodes = new Stack<>();
         nodes.push(expression);
 
         exps = new ArrayList<>();
-        while (!nodes.isEmpty()) {
+        while (!nodes.empty()) {
             current = nodes.pop();
             LOGGER.debug("Transforming expression {}", current);
+
+            exps.add(current);
+
             if (current instanceof BinaryOperation) {
-                // Binary operation
-                // Prunes node and stores left and right nodes
-                nodes.push(new DefaultOperation(
-                        ((BinaryOperation) current).getOperation()));
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
-            } else {
-                // Leaf node
-                exps.add(current);
             }
         }
 
