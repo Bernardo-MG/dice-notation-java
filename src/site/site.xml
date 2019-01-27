@@ -43,6 +43,7 @@
          <item name="Grammar" href="./grammar.html" />
          <item name="Notation model" href="./notation.html" />
          <item name="Parser" href="./parser.html" />
+         <item name="Interpreter" href="./interpreter.html" />
       </menu>
       <menu name="Info and reports" inherit="bottom">
          <item name="Info" href="./info.html" />

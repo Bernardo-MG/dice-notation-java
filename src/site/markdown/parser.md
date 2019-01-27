@@ -1,4 +1,4 @@
-# Dice notation parser
+# Dice Notation Parser
 
 The main feature of the project is a parser capable of transforming dice notation expressions into the dice notation model.
 
