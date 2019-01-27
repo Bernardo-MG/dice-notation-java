@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,48 +27,68 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * substractions with dice.
+ * numeric substractions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerSubstractionDiceValue {
+public final class ITParseAndRollerTransformerSubstractionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerSubstractionDiceValue() {
+    public ITParseAndRollerTransformerSubstractionNumberValue() {
         super();
     }
 
     /**
-     * Verifies that a subtraction using only negative dice is parsed correctly.
+     * Verifies that long subtractions can be parsed, and the result is the
+     * expected one.
      */
     @Test
-    public final void testParse_Sub_Dice_Negative_Value() {
+    public final void testParse_Number_Sub_Long_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-1d1-2d1";
+        notation = "1-2-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(-3), result);
+        Assertions.assertEquals(new Integer(-4), result);
     }
 
     /**
-     * Verifies that a subtraction using only dice is parsed correctly.
+     * Verifies that long subtractions can be parsed, and the result is the
+     * expected one.
      */
     @Test
-    public final void testParse_Sub_Dice_Value() {
+    public final void testParse_Number_Sub_Longer_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1d1-2d1";
+        notation = "1-2-3-4-5";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-13), result);
+    }
+
+    /**
+     * Verifies that a subtraction with only numbers is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_Sub_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
@@ -78,39 +98,21 @@ public final class ITParseAndRollerTransformerSubstractionDiceValue {
     }
 
     /**
-     * Verifies that a subtraction with the number to left is parsed correctly.
+     * Verifies that a subtraction of a negative number is parsed correctly.
      */
     @Test
-    public final void testParse_Sub_LeftNumber_Value() {
+    public final void testParse_Number_SubNeg_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "5-2d1";
+        notation = "1--2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), result);
-    }
-
-    /**
-     * Verifies that a subtraction with the number to right is parsed correctly.
-     */
-    @Test
-    public final void testParse_Sub_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "2d1-5";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

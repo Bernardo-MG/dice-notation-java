@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,72 +27,74 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * additions with dice.
+ * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDivisionDiceValue {
+public final class ITParseAndRollerTransformerAdditionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerDivisionDiceValue() {
+    public ITParseAndRollerTransformerAdditionNumberValue() {
         super();
     }
 
     /**
-     * Verifies that an addition using only dice is parsed correctly.
+     * Verifies that long additions can be parsed, and the result is the
+     * expected one.
      */
     @Test
-    public final void testParse_Division_Dice_Value() {
+    public final void testParse_Number_Add_Long_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "6d1/2d1";
+        notation = "1+2+3";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(6), result);
+    }
+
+    /**
+     * Verifies that longer additions can be parsed, and the result is the
+     * expected one.
+     */
+    @Test
+    public final void testParse_Number_Add_Longer_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1+2+3+4+5";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(15), result);
+    }
+
+    /**
+     * Verifies that an addition with only numbers is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_Add_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
-    @Test
-    public final void testParse_Division_LeftNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "10/2d1";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(5), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to right is parsed correctly.
-     */
-    @Test
-    public final void testParse_Division_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "20d1/2";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(10), result);
     }
 
 }

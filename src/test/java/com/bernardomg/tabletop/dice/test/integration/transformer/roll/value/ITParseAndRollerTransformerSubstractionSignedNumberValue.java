@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,36 +27,54 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions.
+ * numeric substractions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerMultiplicationNumberValue {
+public final class ITParseAndRollerTransformerSubstractionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerMultiplicationNumberValue() {
+    public ITParseAndRollerTransformerSubstractionSignedNumberValue() {
         super();
     }
 
     /**
-     * Verifies that a multiplication with only numbers is parsed correctly.
+     * Verifies that a subtraction with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_multiplication_Value() {
+    public final void testParse_Number_SubNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1*2";
+        notation = "1--2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(2), result);
+        Assertions.assertEquals(new Integer(3), result);
+    }
+
+    /**
+     * Verifies that a subtraction with a negative value is parsed correctly.
+     */
+    @Test
+    public final void testParse_Number_SubToNegative_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "-1-2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -26,57 +27,56 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link DiceRoller}, verifying that it transforms simple
- * binary operations.
+ * Integration tests for {@link DiceRoller}, verifying that it transforms
+ * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerParenthesisValue {
+public final class ITParseAndRollerTransformerDivisionNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerParenthesisValue() {
+    public ITParseAndRollerTransformerDivisionNumberValue() {
         super();
     }
 
     /**
-     * Verifies that parenthesis are applied, and the result is the expected
-     * one.
+     * Verifies that a division with a float result is parsed correctly.
      */
     @Test
-    public final void testParse_AddAndMult_Value() {
+    @Disabled
+    public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "(1+2)*3";
+        notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(9), result);
+        Assertions.assertEquals(new Float(1.5), result);
     }
 
     /**
-     * Verifies that parenthesis are applied, and the result is the expected
-     * one.
+     * Verifies that a division with only numbers is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Value() {
+    public final void testParse_Division_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "(1)";
+        notation = "4/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(1), result);
+        Assertions.assertEquals(new Integer(2), result);
     }
 
 }

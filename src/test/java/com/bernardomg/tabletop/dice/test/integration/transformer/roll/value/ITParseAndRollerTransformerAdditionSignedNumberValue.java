@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,74 +27,54 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions.
+ * numeric additions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionNumberValue {
+public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionNumberValue() {
+    public ITParseAndRollerTransformerAdditionSignedNumberValue() {
         super();
     }
 
     /**
-     * Verifies that long additions can be parsed, and the result is the
-     * expected one.
+     * Verifies that an addition with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Add_Long_Value() {
+    public final void testParse_Number_AddNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1+2+3";
+        notation = "1+-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(6), result);
+        Assertions.assertEquals(new Integer((-1)), result);
     }
 
     /**
-     * Verifies that longer additions can be parsed, and the result is the
-     * expected one.
+     * Verifies that an addition with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Add_Longer_Value() {
+    public final void testParse_Number_AddToNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1+2+3+4+5";
+        notation = "-1+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(15), result);
-    }
-
-    /**
-     * Verifies that an addition with only numbers is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_Add_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "1+2";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(3), result);
+        Assertions.assertEquals(new Integer(1), result);
     }
 
 }

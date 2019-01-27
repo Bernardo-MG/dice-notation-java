@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2019 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,73 +26,57 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * additions with dice.
+ * Integration tests for {@link DiceRoller}, verifying that it transforms simple
+ * binary operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerMultiplicationDiceValue {
+public final class ITParseAndRollerTransformerParenthesisValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerMultiplicationDiceValue() {
+    public ITParseAndRollerTransformerParenthesisValue() {
         super();
     }
 
     /**
-     * Verifies that an addition using only dice is parsed correctly.
+     * Verifies that parenthesis are applied, and the result is the expected
+     * one.
      */
     @Test
-    public final void testParse_Multiply_Dice_Value() {
+    public final void testParse_AddAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "3d1*2d1";
+        notation = "(1+2)*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(6), result);
+        Assertions.assertEquals(new Integer(9), result);
     }
 
     /**
-     * Verifies that an addition with the number to left is parsed correctly.
+     * Verifies that parenthesis are applied, and the result is the expected
+     * one.
      */
     @Test
-    public final void testParse_Multiply_LeftNumber_Value() {
+    public final void testParse_Number_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "5*2d1";
+        notation = "(1)";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(10), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to right is parsed correctly.
-     */
-    @Test
-    public final void testParse_Multiply_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "2d1*5";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(10), result);
+        Assertions.assertEquals(new Integer(1), result);
     }
 
 }
