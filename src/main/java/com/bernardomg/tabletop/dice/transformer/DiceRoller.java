@@ -203,7 +203,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             result = values.pop();
         }
 
-        return new DefaultRollHistory(result, results);
+        return new DefaultRollHistory(results, result);
     }
 
     /**
