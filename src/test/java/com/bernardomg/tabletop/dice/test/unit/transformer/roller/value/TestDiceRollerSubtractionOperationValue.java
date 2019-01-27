@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer.value;
+package com.bernardomg.tabletop.dice.test.unit.transformer.roller.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

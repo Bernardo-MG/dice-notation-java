@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.roller;
 
 import java.util.Iterator;
 
