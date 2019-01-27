@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Stack;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,6 @@ import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
@@ -46,8 +44,13 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     /**
      * Logger.
      */
-    private static final Logger LOGGER = LoggerFactory
+    private static final Logger                                     LOGGER   = LoggerFactory
             .getLogger(DiceGatherer.class);
+
+    /**
+     * Transformer to generate a list from the received expression.
+     */
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> expander = new InorderTransformer();
 
     /**
      * Default constructor.
@@ -66,7 +69,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         LOGGER.debug("Root expression {}", expression);
 
         // The expression is broken down
-        exps = getExpressions(expression);
+        exps = expander.transform(expression);
 
         // The expressions are filtered, taking all the dice
         return filterDice(exps);
@@ -101,58 +104,6 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         }
 
         return result;
-    }
-
-    /**
-     * Breaks down the root expression into an inorder list.
-     * 
-     * @param root
-     *            root expression
-     * @return inorder list with all the expressions from the tree
-     */
-    private final Iterable<DiceNotationExpression>
-            getExpressions(final DiceNotationExpression root) {
-        final Stack<DiceNotationExpression> nodes;
-        final Collection<DiceNotationExpression> stack;
-        DiceNotationExpression current;
-
-        current = root;
-
-        nodes = new Stack<>();
-        stack = new ArrayList<>();
-        while ((!nodes.isEmpty()) || (current != null)) {
-            LOGGER.debug("Transforming expression {}", current);
-            if (current == null) {
-                // Left nodes exhausted
-                // Moves to the previous right node
-                current = nodes.pop();
-
-                // This is the next node for inorder traverse
-                stack.add(current);
-
-                if (current instanceof BinaryOperation) {
-                    // Moves to a right node
-                    current = ((BinaryOperation) current).getRight();
-                } else {
-                    // Not binary node
-                    // There is no right node
-                    current = null;
-                }
-            } else {
-                // Store and keep moving
-                nodes.push(current);
-                if (current instanceof BinaryOperation) {
-                    // Next left node
-                    current = ((BinaryOperation) current).getLeft();
-                } else {
-                    // Not binary node
-                    // There is no left node
-                    current = null;
-                }
-            }
-        }
-
-        return stack;
     }
 
     /**

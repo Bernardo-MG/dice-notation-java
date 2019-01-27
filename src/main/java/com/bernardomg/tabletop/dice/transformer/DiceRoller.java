@@ -35,8 +35,6 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
 import com.bernardomg.tabletop.dice.notation.operation.Operation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
@@ -59,8 +57,13 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Logger.
      */
-    private static final Logger   LOGGER = LoggerFactory
+    private static final Logger                                     LOGGER   = LoggerFactory
             .getLogger(DiceRoller.class);
+
+    /**
+     * Transformer to generate a list from the received expression.
+     */
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> expander = new PostorderTransformer();
 
     /**
      * The random numbers generator.
@@ -68,7 +71,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * Combined with the data in the rolled this, this will generate a random
      * value in an interval.
      */
-    private final NumberGenerator numberGenerator;
+    private final NumberGenerator                                   numberGenerator;
 
     /**
      * Default constructor.
@@ -102,43 +105,9 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
         LOGGER.debug("Root expression {}", expression);
 
-        ordered = getExpressions(expression);
+        ordered = expander.transform(expression);
 
         result = getValue(ordered);
-
-        return result;
-    }
-
-    /**
-     * Breaks down the root expression into an postorder list.
-     * 
-     * @param root
-     *            root expression
-     * @return inorder list with all the expressions from the tree
-     */
-    private final Iterable<DiceNotationExpression>
-            getExpressions(final DiceNotationExpression root) {
-        final Stack<DiceNotationExpression> exps;
-        final Collection<DiceNotationExpression> result;
-
-        exps = new Stack<>();
-        exps.push(root);
-
-        result = new ArrayList<>();
-        while (!exps.isEmpty()) {
-            final DiceNotationExpression temp = exps.pop();
-            if (temp instanceof BinaryOperation) {
-                // Binary operation
-                // Prunes node and stores left and right nodes
-                exps.push(new DefaultOperation(
-                        ((BinaryOperation) temp).getOperation()));
-                exps.push(((BinaryOperation) temp).getRight());
-                exps.push(((BinaryOperation) temp).getLeft());
-            } else {
-                // Leaf node
-                result.add(temp);
-            }
-        }
 
         return result;
     }
