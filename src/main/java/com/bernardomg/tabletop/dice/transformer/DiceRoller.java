@@ -155,7 +155,6 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             getValue(final Iterable<DiceNotationExpression> expressions) {
         final Iterator<DiceNotationExpression> expItr;
         final Stack<Integer> values;
-        final Collection<Integer> rolls;
         final Collection<RollResult> results;
         final Integer result;
         RollResult rollResult;
@@ -165,7 +164,6 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         Integer operandB;
         BiFunction<Integer, Integer, Integer> operation;
 
-        rolls = new ArrayList<>();
         results = new ArrayList<>();
         values = new Stack<>();
         expItr = expressions.iterator();
@@ -179,20 +177,17 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 operation = ((Operation) current).getOperation();
                 value = operation.apply(operandA, operandB);
                 values.push(value);
-                rolls.add(value);
             } else if (current instanceof ConstantOperand) {
                 // Constant
                 // Stores the value
                 value = ((ConstantOperand) current).getValue();
                 values.push(value);
-                rolls.add(value);
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
                 rollResult = transform(((DiceOperand) current));
                 value = rollResult.getFinalRoll();
                 values.push(value);
-                rolls.add(value);
                 results.add(rollResult);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
@@ -208,7 +203,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             result = values.pop();
         }
 
-        return new DefaultRollHistory(result, rolls, results);
+        return new DefaultRollHistory(result, results);
     }
 
     /**
