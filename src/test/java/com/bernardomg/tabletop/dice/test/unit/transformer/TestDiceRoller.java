@@ -162,14 +162,13 @@ public final class TestDiceRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(1,
-                2, 3);
+        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(5);
 
         expression = new DefaultDiceOperand(dice);
 
         rolled = new DiceRoller(generator).transform(expression).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(1), rolled);
+        Assertions.assertEquals(new Integer(5), rolled);
     }
 
 }
