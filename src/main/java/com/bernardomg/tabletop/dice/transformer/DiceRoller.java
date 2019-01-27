@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Stack;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DefaultOperation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
@@ -87,10 +89,31 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
         final Integer result;
+        final Stack<DiceNotationExpression> exps;
+        final Collection<DiceNotationExpression> ordered;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
+        ordered = new ArrayList<>();
+
+        exps = new Stack<>();
+        exps.push(expression);
+
+        while (!exps.isEmpty()) {
+            final DiceNotationExpression temp = exps.pop();
+            if (temp instanceof BinaryOperation) {
+                exps.push(new DefaultOperation(
+                        ((BinaryOperation) temp).getOperation()));
+                exps.push(((BinaryOperation) temp).getRight());
+                exps.push(((BinaryOperation) temp).getLeft());
+            } else {
+                ordered.add(temp);
+            }
+        }
+
         LOGGER.debug("Root expression {}", expression);
+
+        // TODO: Store in postorder
 
         // TODO: Try iterating instead of recursions
         if (expression instanceof BinaryOperation) {
