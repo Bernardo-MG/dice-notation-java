@@ -157,10 +157,10 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         final Stack<Integer> values;
         final Collection<Integer> rolls;
         final Collection<RollResult> results;
+        final Integer result;
         RollResult rollResult;
         DiceNotationExpression current;
         Integer value;
-        Integer result;
         Integer operandA;
         Integer operandB;
         BiFunction<Integer, Integer, Integer> operation;
@@ -169,7 +169,6 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         results = new ArrayList<>();
         values = new Stack<>();
         expItr = expressions.iterator();
-        result = 0;
         while (expItr.hasNext()) {
             current = expItr.next();
             if (current instanceof Operation) {
