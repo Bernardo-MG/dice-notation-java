@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.roller.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -35,12 +35,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRollerSubtractionOperation {
+public final class TestDiceRollerSubtractionOperationValue {
 
     /**
      * Default constructor.
      */
-    public TestDiceRollerSubtractionOperation() {
+    public TestDiceRollerSubtractionOperationValue() {
         super();
     }
 
@@ -52,6 +52,7 @@ public final class TestDiceRollerSubtractionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -59,8 +60,9 @@ public final class TestDiceRollerSubtractionOperation {
         // 1 - 2
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(-1),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-1), rolled);
     }
 
     /**
@@ -76,6 +78,7 @@ public final class TestDiceRollerSubtractionOperation {
         final DiceNotationExpression righta; // Right operand
         final DiceNotationExpression leftb;  // Left operand
         final DiceNotationExpression rightb; // Right operand
+        final Integer rolled;
 
         lefta = new IntegerOperand(1);
         righta = new IntegerOperand(2);
@@ -93,8 +96,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = 0
         operation = new SubtractionOperation(groupeda, groupedb);
 
-        Assertions.assertEquals(new Integer(0),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(0), rolled);
     }
 
     /**
@@ -108,6 +112,7 @@ public final class TestDiceRollerSubtractionOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
+        final Integer rolled;
 
         value = new IntegerOperand(1);
 
@@ -121,8 +126,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = -4
         operation = new SubtractionOperation(value, grouped);
 
-        Assertions.assertEquals(new Integer(-4),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-4), rolled);
     }
 
     /**
@@ -133,6 +139,7 @@ public final class TestDiceRollerSubtractionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
@@ -142,8 +149,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = 3
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(3),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(3), rolled);
     }
 
     /**
@@ -157,6 +165,7 @@ public final class TestDiceRollerSubtractionOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
+        final Integer rolled;
 
         value = new IntegerOperand(1);
 
@@ -171,8 +180,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = 2
         operation = new SubtractionOperation(value, grouped);
 
-        Assertions.assertEquals(new Integer(2),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(2), rolled);
     }
 
     /**
@@ -183,6 +193,7 @@ public final class TestDiceRollerSubtractionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
@@ -191,9 +202,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = -1 + 2
         // = 1
         operation = new SubtractionOperation(left, right);
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(1),
-                new DiceRoller().transform(operation));
+        Assertions.assertEquals(new Integer(1), rolled);
     }
 
     /**
@@ -204,6 +215,7 @@ public final class TestDiceRollerSubtractionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -212,8 +224,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = -3
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(-3),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-3), rolled);
     }
 
     /**
@@ -227,6 +240,7 @@ public final class TestDiceRollerSubtractionOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -240,8 +254,9 @@ public final class TestDiceRollerSubtractionOperation {
         // = -4
         operation = new SubtractionOperation(grouped, value);
 
-        Assertions.assertEquals(new Integer(-4),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-4), rolled);
     }
 
     /**
@@ -252,6 +267,7 @@ public final class TestDiceRollerSubtractionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
@@ -259,8 +275,9 @@ public final class TestDiceRollerSubtractionOperation {
         // 0 - 0
         operation = new SubtractionOperation(left, right);
 
-        Assertions.assertEquals(new Integer(0),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(0), rolled);
     }
 
 }

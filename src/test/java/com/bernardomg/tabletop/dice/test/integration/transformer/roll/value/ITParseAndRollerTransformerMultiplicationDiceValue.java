@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,12 +32,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionDice {
+public final class ITParseAndRollerTransformerMultiplicationDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionDice() {
+    public ITParseAndRollerTransformerMultiplicationDiceValue() {
         super();
     }
 
@@ -45,34 +45,16 @@ public final class ITParseAndRollerTransformerAdditionDice {
      * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Add_Dice_Value() {
+    public final void testParse_Multiply_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1d1+2d1";
+        notation = "3d1*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
-
-        Assertions.assertEquals(new Integer(3), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
-    @Test
-    public final void testParse_Add_LeftNumber_NoQuantity_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "5+d1";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(6), result);
     }
@@ -81,36 +63,36 @@ public final class ITParseAndRollerTransformerAdditionDice {
      * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Add_LeftNumber_Value() {
+    public final void testParse_Multiply_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "5+2d1";
+        notation = "5*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(new Integer(10), result);
     }
 
     /**
      * Verifies that an addition with the number to right is parsed correctly.
      */
     @Test
-    public final void testParse_Add_RightNumber_Value() {
+    public final void testParse_Multiply_RightNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "2d1+5";
+        notation = "2d1*5";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(new Integer(10), result);
     }
 
 }

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.roller.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -35,12 +35,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRollerMultiplicationOperation {
+public final class TestDiceRollerMultiplicationOperationValue {
 
     /**
      * Default constructor.
      */
-    public TestDiceRollerMultiplicationOperation() {
+    public TestDiceRollerMultiplicationOperationValue() {
         super();
     }
 
@@ -52,6 +52,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -59,8 +60,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // 1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals(new Integer(2),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(2), rolled);
     }
 
     /**
@@ -76,6 +78,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final DiceNotationExpression righta; // Right operand
         final DiceNotationExpression leftb;  // Left operand
         final DiceNotationExpression rightb; // Right operand
+        final Integer rolled;
 
         lefta = new IntegerOperand(1);
         righta = new IntegerOperand(2);
@@ -93,8 +96,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // = 1
         operation = new MultiplicationOperation(groupeda, groupedb);
 
-        Assertions.assertEquals(new Integer(1),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(1), rolled);
     }
 
     /**
@@ -105,6 +109,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -112,8 +117,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // -1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals(new Integer(-2),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-2), rolled);
     }
 
     /**
@@ -126,6 +132,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -139,8 +146,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // = -3
         operation = new MultiplicationOperation(grouped, value);
 
-        Assertions.assertEquals(new Integer(-3),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-3), rolled);
     }
 
     /**
@@ -151,6 +159,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
@@ -158,8 +167,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // -1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals(new Integer(2),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(2), rolled);
     }
 
     /**
@@ -170,6 +180,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
@@ -177,8 +188,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // 1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals(new Integer(-2),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-2), rolled);
     }
 
     /**
@@ -191,6 +203,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
+        final Integer rolled;
 
         value = new IntegerOperand(1);
 
@@ -204,8 +217,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // = -1
         operation = new MultiplicationOperation(value, grouped);
 
-        Assertions.assertEquals(new Integer(-1),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-1), rolled);
     }
 
     /**
@@ -216,6 +230,7 @@ public final class TestDiceRollerMultiplicationOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
+        final Integer rolled;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
@@ -223,8 +238,9 @@ public final class TestDiceRollerMultiplicationOperation {
         // 0 * 0
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals(new Integer(0),
-                new DiceRoller().transform(operation));
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(0), rolled);
     }
 
 }

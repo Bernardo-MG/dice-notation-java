@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.roller.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,12 +33,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRollerDice {
+public final class TestDiceRollerDiceValue {
 
     /**
      * Default constructor.
      */
-    public TestDiceRollerDice() {
+    public TestDiceRollerDiceValue() {
         super();
     }
 
@@ -58,7 +58,7 @@ public final class TestDiceRollerDice {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller().transform(expression);
+        rolled = new DiceRoller().transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-1), rolled);
     }
@@ -79,7 +79,7 @@ public final class TestDiceRollerDice {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller().transform(expression);
+        rolled = new DiceRoller().transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(0), rolled);
     }
@@ -100,7 +100,7 @@ public final class TestDiceRollerDice {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller().transform(expression);
+        rolled = new DiceRoller().transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(0), rolled);
     }
@@ -121,7 +121,7 @@ public final class TestDiceRollerDice {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller().transform(expression);
+        rolled = new DiceRoller().transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(0), rolled);
     }
@@ -142,7 +142,7 @@ public final class TestDiceRollerDice {
 
         expression = new DefaultDiceOperand(dice);
 
-        rolled = new DiceRoller().transform(expression);
+        rolled = new DiceRoller().transform(expression).getFinalRoll();
 
         Assertions.assertEquals(new Integer(1), rolled);
     }

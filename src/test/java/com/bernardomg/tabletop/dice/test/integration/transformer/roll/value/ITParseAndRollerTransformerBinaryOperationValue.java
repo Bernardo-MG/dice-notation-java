@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -55,7 +55,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(7), result);
     }
@@ -74,7 +74,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(0), result);
     }
@@ -93,7 +93,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-4), result);
     }
@@ -112,7 +112,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -131,7 +131,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-1), result);
     }
@@ -147,7 +147,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse("1d1+3+d1+12d1+d1");
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(18), result);
     }
@@ -163,7 +163,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse("1d1+3*4/2");
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(7), result);
     }
@@ -182,7 +182,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(8), result);
     }
@@ -201,7 +201,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -220,7 +220,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(3), result);
     }
@@ -239,7 +239,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(4), result);
     }
@@ -258,7 +258,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-2), result);
     }
@@ -277,7 +277,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(-5), result);
     }
@@ -296,7 +296,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(6), result);
     }
@@ -315,7 +315,7 @@ public final class ITParseAndRollerTransformerBinaryOperationValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(2), result);
     }

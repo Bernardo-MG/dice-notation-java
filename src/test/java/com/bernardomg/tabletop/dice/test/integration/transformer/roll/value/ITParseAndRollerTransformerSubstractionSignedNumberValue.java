@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,72 +27,54 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numbers.
+ * numeric substractions with signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerNumberValue {
+public final class ITParseAndRollerTransformerSubstractionSignedNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerNumberValue() {
+    public ITParseAndRollerTransformerSubstractionSignedNumberValue() {
         super();
     }
 
     /**
-     * Verifies that a number is parsed correctly.
+     * Verifies that a subtraction with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number() {
+    public final void testParse_Number_SubNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "12";
+        notation = "1--2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(12), result);
+        Assertions.assertEquals(new Integer(3), result);
     }
 
     /**
-     * Verifies that a negative number is parsed correctly.
+     * Verifies that a subtraction with a negative value is parsed correctly.
      */
     @Test
-    public final void testParse_Number_Negative() {
+    public final void testParse_Number_SubToNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-12";
+        notation = "-1-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(-12), result);
-    }
-
-    /**
-     * Verifies that a number padded with zeros is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_ZeroPadding() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "001200";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed);
-
-        Assertions.assertEquals(new Integer(1200), result);
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

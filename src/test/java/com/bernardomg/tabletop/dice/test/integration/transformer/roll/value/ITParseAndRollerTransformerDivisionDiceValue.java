@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2018 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,54 +27,72 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions with signed numbers.
+ * additions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
+public final class ITParseAndRollerTransformerDivisionDiceValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionSignedNumberValue() {
+    public ITParseAndRollerTransformerDivisionDiceValue() {
         super();
     }
 
     /**
-     * Verifies that an addition with a negative value is parsed correctly.
+     * Verifies that an addition using only dice is parsed correctly.
      */
     @Test
-    public final void testParse_Number_AddNegative_Value() {
+    public final void testParse_Division_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1+-2";
+        notation = "6d1/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer((-1)), result);
+        Assertions.assertEquals(new Integer(3), result);
     }
 
     /**
-     * Verifies that an addition with a negative value is parsed correctly.
+     * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
-    public final void testParse_Number_AddToNegative_Value() {
+    public final void testParse_Division_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-1+2";
+        notation = "10/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(1), result);
+        Assertions.assertEquals(new Integer(5), result);
+    }
+
+    /**
+     * Verifies that an addition with the number to right is parsed correctly.
+     */
+    @Test
+    public final void testParse_Division_RightNumber_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "20d1/2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(10), result);
     }
 
 }

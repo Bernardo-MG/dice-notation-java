@@ -14,10 +14,9 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.integration.transformer.roll;
+package com.bernardomg.tabletop.dice.test.integration.transformer.roll.value;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -33,48 +32,29 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDivisionNumberValue {
+public final class ITParseAndRollerTransformerMultiplicationNumberValue {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerDivisionNumberValue() {
+    public ITParseAndRollerTransformerMultiplicationNumberValue() {
         super();
     }
 
     /**
-     * Verifies that a division with a float result is parsed correctly.
+     * Verifies that a multiplication with only numbers is parsed correctly.
      */
     @Test
-    @Disabled
-    public final void testParse_Division_FloatValue() {
+    public final void testParse_multiplication_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "3/2";
+        notation = "1*2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed);
-
-        Assertions.assertEquals(new Float(1.5), result);
-    }
-
-    /**
-     * Verifies that a division with only numbers is parsed correctly.
-     */
-    @Test
-    public final void testParse_Division_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "4/2";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed);
+        result = new DiceRoller().transform(parsed).getFinalRoll();
 
         Assertions.assertEquals(new Integer(2), result);
     }
