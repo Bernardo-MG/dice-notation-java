@@ -14,25 +14,53 @@ final DiceInterpreter interpreter;
 
 parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
-interpreter = new DiceRoller();
-
-System.out.println(interpreter.transform(parsed));
 ```
 
-The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
+Afterward you can use any dice interpreter to get any info you may wish from the parsed notation.
+
+## Rolling the Values
+
+To roll the expression:
+
+```java
+final RollHistory history;
+
+history = new DiceRoller().transform(parsed);
+```
+
+It includes the final value:
+
+```java
+// Prints the final result
+System.out.println(history.getFinalRoll());
+```
+
+And the values generated from each dice set:
+
+```java
+final Iterable<RollResult> results;
+final RollResult result;
+
+// Results from each dice set
+results = history.getRollResults();
+
+// Results from the first dice set
+result = results .iterator().next();
+
+// Prints each roll
+System.out.println(result.getAllRolls());
+```
+
+Each time it is called a new set of data will be generated, rolling again all the dice. So the final values may change.
 
 ## Getting the Dice Set
 
 If you need to get the dice from the expression:
 
 ```java
-final DiceParser parser;
-final TransformableDiceNotationExpression parsed;
 final DiceInterpreter interpreter;
 final Dice dice;
 
-parser = new DefaultDiceParser();
-parsed = parser.parse("1d6+12");
 interpreter = new DiceSetsTransformer();
 
 dice = interpreter.transform(parsed).iterator().next();

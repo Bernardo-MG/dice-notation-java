@@ -77,9 +77,9 @@ $ mvn install
 
 ### Usage example
 
-The project includes a model for dice and dice notation grammar. But the strong point are the parsers.
+The project includes a model for dice and dice notation grammar. But the strong point are the parser and interpreters.
 
-To parse generic dice notation, including algebraic operations use this:
+The parser generates a tree from the expression:
 
 ```java
 final DiceParser parser;
@@ -88,32 +88,38 @@ final DiceInterpreter interpreter;
 
 parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
-interpreter = new DiceRoller();
-
-System.out.println(interpreter.transform(parsed));
 ```
 
-The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
+And the interpreters transform this tree into other values.
 
-If you need to get the dice from the expression:
+For example, to roll the notation:
 
 ```java
-final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
-final DiceInterpreter interpreter;
-final Dice dice;
+final RollHistory history;
 
-parser = new DefaultDiceParser();
-parsed = parser.parse("1d6+12");
-interpreter = new DiceSetsTransformer();
+parsed = new DefaultDiceNotationExpressionParser().parse("2d6+12");
 
-dice = interpreter.transform(parsed).iterator().next();
-
-System.out.println(dice.getQuantity());
-System.out.println(dice.getSides());
+history = new DiceRoller().transform(parsed);
 ```
 
-This will print the number of dice (1) and the number of sides (6).
+This history is composed from all the values generated when rolling:
+
+```java
+final Iterable<RollResult> results;
+final RollResult result;
+
+// Prints the final result
+System.out.println(history.getFinalRoll());
+
+results = history.getRollResults();
+result = results .iterator().next();
+
+// Prints each roll
+System.out.println(result.getAllRolls());
+```
+
+More interpreters are explained in the [![docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release].
 
 ## Collaborate
 
