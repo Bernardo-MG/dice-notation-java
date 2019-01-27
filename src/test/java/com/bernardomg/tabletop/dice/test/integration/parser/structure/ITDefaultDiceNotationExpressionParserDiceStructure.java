@@ -115,6 +115,38 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
      * Verifies that a simple dice notation can be parsed.
      */
     @Test
+    public final void testParse_Simple_BigD() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("1D6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Simple_NoQuantity() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("d6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that a simple dice notation can be parsed.
+     */
+    @Test
     public final void testParse_Simple_UpperCaseSeparator() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice

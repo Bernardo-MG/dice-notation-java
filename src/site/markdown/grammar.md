@@ -19,3 +19,4 @@ Note that the grammar itself serves just to validate and recognize dice notation
 ## Other features
 
 - Parenthesis
+- Quantity of dice is optional, and defaults to 1, so "d6" is the same as "1d6".

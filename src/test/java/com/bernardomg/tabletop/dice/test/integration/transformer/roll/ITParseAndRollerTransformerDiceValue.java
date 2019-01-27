@@ -86,13 +86,13 @@ public final class ITParseAndRollerTransformerDiceValue {
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "0d1";
+        notation = "d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed);
 
-        Assertions.assertEquals(new Integer(0), result);
+        Assertions.assertEquals(new Integer(1), result);
     }
 
     /**
@@ -129,6 +129,24 @@ public final class ITParseAndRollerTransformerDiceValue {
         result = new DiceRoller().transform(parsed);
 
         Assertions.assertEquals(new Integer(1), result);
+    }
+
+    /**
+     * Verifies that dice are parsed correctly.
+     */
+    @Test
+    public final void testParse_Dice_ZeroQuantity_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "0d1";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(0), result);
     }
 
 }

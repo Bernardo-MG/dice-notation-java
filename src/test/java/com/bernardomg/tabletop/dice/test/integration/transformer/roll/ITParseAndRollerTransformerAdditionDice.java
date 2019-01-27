@@ -63,6 +63,24 @@ public final class ITParseAndRollerTransformerAdditionDice {
      * Verifies that an addition with the number to left is parsed correctly.
      */
     @Test
+    public final void testParse_Add_LeftNumber_NoQuantity_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "5+d1";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed);
+
+        Assertions.assertEquals(new Integer(6), result);
+    }
+
+    /**
+     * Verifies that an addition with the number to left is parsed correctly.
+     */
+    @Test
     public final void testParse_Add_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
