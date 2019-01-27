@@ -33,12 +33,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDiceValue {
+public final class ITParseAndRollerTransformerDiceRollResults {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerDiceValue() {
+    public ITParseAndRollerTransformerDiceRollResults() {
         super();
     }
 

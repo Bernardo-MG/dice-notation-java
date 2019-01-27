@@ -34,12 +34,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionNumberValue {
+public final class ITParseAndRollerTransformerAdditionNumberRollResults {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionNumberValue() {
+    public ITParseAndRollerTransformerAdditionNumberRollResults() {
         super();
     }
 
