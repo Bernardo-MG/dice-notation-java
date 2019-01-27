@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,59 +90,105 @@ public final class DiceRoller implements DiceInterpreter<Integer> {
 
     @Override
     public final Integer transform(final DiceNotationExpression expression) {
-        final Stack<DiceNotationExpression> exps;
-        final Collection<DiceNotationExpression> ordered;
-        final Iterator<DiceNotationExpression> ord;
-        final Stack<Integer> values;
-        Integer value;
-        DiceNotationExpression current;
-        Integer result;
-        Integer v1;
-        Integer v2;
+        final Iterable<DiceNotationExpression> ordered;
+        final Integer result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
         LOGGER.debug("Root expression {}", expression);
 
-        ordered = new ArrayList<>();
+        ordered = getExpressions(expression);
+
+        result = getValue(ordered);
+
+        return result;
+    }
+
+    /**
+     * Breaks down the root expression into an postorder list.
+     * 
+     * @param root
+     *            root expression
+     * @return inorder list with all the expressions from the tree
+     */
+    private final Iterable<DiceNotationExpression>
+            getExpressions(final DiceNotationExpression root) {
+        final Stack<DiceNotationExpression> exps;
+        final Collection<DiceNotationExpression> result;
 
         exps = new Stack<>();
-        exps.push(expression);
+        exps.push(root);
 
+        result = new ArrayList<>();
         while (!exps.isEmpty()) {
             final DiceNotationExpression temp = exps.pop();
             if (temp instanceof BinaryOperation) {
+                // Binary operation
+                // Prunes node and stores left and right nodes
                 exps.push(new DefaultOperation(
                         ((BinaryOperation) temp).getOperation()));
                 exps.push(((BinaryOperation) temp).getRight());
                 exps.push(((BinaryOperation) temp).getLeft());
             } else {
-                ordered.add(temp);
+                // Leaf node
+                result.add(temp);
             }
         }
 
+        return result;
+    }
+
+    /**
+     * Returns the final value from the parsed expression. This expression is
+     * received as a postorder tree list.
+     * 
+     * @param expressions
+     *            expressions to get the values from
+     * @return the value from the expressions
+     */
+    private final Integer
+            getValue(final Iterable<DiceNotationExpression> expressions) {
+        final Iterator<DiceNotationExpression> expItr;
+        final Stack<Integer> values;
+        DiceNotationExpression current;
+        Integer result;
+        Integer operandA;
+        Integer operandB;
+        Integer operated;
+        BiFunction<Integer, Integer, Integer> operation;
+
         values = new Stack<>();
-        ord = ordered.iterator();
+        expItr = expressions.iterator();
         result = 0;
-        while (ord.hasNext()) {
-            current = ord.next();
+        while (expItr.hasNext()) {
+            current = expItr.next();
             if (current instanceof Operation) {
-                v2 = values.pop();
-                v1 = values.pop();
-                value = ((Operation) current).getOperation().apply(v1, v2);
-                values.push(value);
+                // Operation
+                // Takes back the two latest values and applies
+                operandB = values.pop();
+                operandA = values.pop();
+                operation = ((Operation) current).getOperation();
+                operated = operation.apply(operandA, operandB);
+                values.push(operated);
             } else if (current instanceof ConstantOperand) {
+                // Constant
+                // Stores the value
                 values.push(((ConstantOperand) current).getValue());
             } else if (current instanceof DiceOperand) {
+                // Dice
+                // Generates a random value
                 values.push(transform(((DiceOperand) current)));
             } else {
-                // TODO: ERROR
+                LOGGER.warn("Unsupported expression of type {}",
+                        current.getClass());
             }
         }
 
         if (values.isEmpty()) {
+            // By default the returned value is 0
             result = 0;
         } else {
+            // The value which is left is returned
             result = values.pop();
         }
 
