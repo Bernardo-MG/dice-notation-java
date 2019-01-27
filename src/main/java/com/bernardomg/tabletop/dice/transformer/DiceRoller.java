@@ -186,11 +186,14 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 // Stores the value
                 value = ((ConstantOperand) current).getValue();
                 values.push(value);
+                rolls.add(value);
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
                 rollResult = transform(((DiceOperand) current));
-                values.push(rollResult.getFinalRoll());
+                value = rollResult.getFinalRoll();
+                values.push(value);
+                rolls.add(value);
                 results.add(rollResult);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",

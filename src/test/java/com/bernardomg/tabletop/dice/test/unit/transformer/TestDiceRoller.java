@@ -139,10 +139,9 @@ public final class TestDiceRoller {
         rolled = new DiceRoller(generator).transform(expression).getAllRolls();
         rolledValues = rolled.iterator();
 
-        Assertions.assertEquals(2, Iterables.size(rolled));
+        Assertions.assertEquals(1, Iterables.size(rolled));
 
-        Assertions.assertEquals(new Integer(1), rolledValues.next());
-        Assertions.assertEquals(new Integer(2), rolledValues.next());
+        Assertions.assertEquals(new Integer(3), rolledValues.next());
     }
 
     /**
