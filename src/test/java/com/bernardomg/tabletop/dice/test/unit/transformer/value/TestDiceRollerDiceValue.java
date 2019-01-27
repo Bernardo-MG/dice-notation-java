@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,12 +33,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRollerDice {
+public final class TestDiceRollerDiceValue {
 
     /**
      * Default constructor.
      */
-    public TestDiceRollerDice() {
+    public TestDiceRollerDiceValue() {
         super();
     }
 

@@ -14,34 +14,33 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.transformer;
+package com.bernardomg.tabletop.dice.test.unit.transformer.value;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
+import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
- * Unit tests for {@link DiceRoller}, verifying that handles division
+ * Unit tests for {@link DiceRoller}, verifying that handles addition
  * operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRollerDivisionOperation {
+public final class TestDiceRollerAdditionOperationValue {
 
     /**
      * Default constructor.
      */
-    public TestDiceRollerDivisionOperation() {
+    public TestDiceRollerAdditionOperationValue() {
         super();
     }
 
@@ -55,114 +54,43 @@ public final class TestDiceRollerDivisionOperation {
         final DiceNotationExpression right; // Right operand
         final Integer rolled;
 
-        left = new IntegerOperand(2);
-        right = new IntegerOperand(1);
+        left = new IntegerOperand(1);
+        right = new IntegerOperand(2);
 
-        // 2 / 1
-        operation = new DivisionOperation(left, right);
-
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(2), rolled);
-    }
-
-    /**
-     * Verifies that multiplications of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_DivideNegative() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final Integer rolled;
-
-        left = new IntegerOperand(-2);
-        right = new IntegerOperand(1);
-
-        // -2 / 1
-        operation = new DivisionOperation(left, right);
+        // 1 + 2
+        operation = new AdditionOperation(left, right);
 
         rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(new Integer(3), rolled);
     }
 
     /**
-     * Verifies that multiplications to negative values are handled correctly.
+     * Verifies that additions of negative values are handled correctly.
      */
     @Test
-    public final void testValue_DivideNegative_Grouped() {
-        final BinaryOperation grouped;      // Tested operation
+    public final void testValue_AddNegative() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
         final Integer rolled;
 
         left = new IntegerOperand(1);
-        right = new IntegerOperand(5);
+        right = new IntegerOperand(-2);
 
-        grouped = new SubtractionOperation(left, right);
-
-        value = new IntegerOperand(2);
-
-        // (1 - 5) / 2
-        // = -4 / 2
-        // = -2
-        operation = new DivisionOperation(grouped, value);
+        // 1 + -2
+        operation = new AdditionOperation(left, right);
 
         rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(new Integer(-1), rolled);
     }
 
     /**
      * Verifies that additions of negative values are handled correctly.
      */
     @Test
-    public final void testValue_DivideNegatives() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final Integer rolled;
-
-        left = new IntegerOperand(-2);
-        right = new IntegerOperand(-1);
-
-        // -2 / -1
-        operation = new DivisionOperation(left, right);
-
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(2), rolled);
-    }
-
-    /**
-     * Verifies that multiplications of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_DivideToNegative() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final Integer rolled;
-
-        left = new IntegerOperand(2);
-        right = new IntegerOperand(-1);
-
-        // 2 / -1
-        operation = new DivisionOperation(left, right);
-
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
-
-        Assertions.assertEquals(new Integer(-2), rolled);
-    }
-
-    /**
-     * Verifies that additions of negative values are handled correctly.
-     */
-    @Test
-    public final void testValue_DivideToNegative_Grouped() {
+    public final void testValue_AddNegative_Grouped() {
         final BinaryOperation grouped;      // Tested operation
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
@@ -177,14 +105,85 @@ public final class TestDiceRollerDivisionOperation {
 
         grouped = new SubtractionOperation(left, right);
 
-        // 1 / (2 - 3)
-        // = 1 / -1
-        // = -1
-        operation = new DivisionOperation(value, grouped);
+        // 1 + (2 - 3)
+        // = 1 - 1
+        // = 0
+        operation = new AdditionOperation(value, grouped);
 
         rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(-1), rolled);
+        Assertions.assertEquals(new Integer(0), rolled);
+    }
+
+    /**
+     * Verifies that additions of negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_AddNegatives() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final Integer rolled;
+
+        left = new IntegerOperand(-1);
+        right = new IntegerOperand(-2);
+
+        // -1 + -2
+        operation = new AdditionOperation(left, right);
+
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(-3), rolled);
+    }
+
+    /**
+     * Verifies that additions to negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_AddToNegative() {
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final Integer rolled;
+
+        left = new IntegerOperand(-1);
+        right = new IntegerOperand(2);
+
+        // -1 + 2
+        operation = new AdditionOperation(left, right);
+
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(1), rolled);
+    }
+
+    /**
+     * Verifies that additions to negative values are handled correctly.
+     */
+    @Test
+    public final void testValue_AddToNegative_Grouped() {
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
+        final DiceNotationExpression left;  // Left operand
+        final DiceNotationExpression right; // Right operand
+        final DiceNotationExpression value; // Right operand
+        final Integer rolled;
+
+        left = new IntegerOperand(1);
+        right = new IntegerOperand(2);
+
+        grouped = new SubtractionOperation(left, right);
+
+        value = new IntegerOperand(3);
+
+        // (1 - 2) + 3
+        // = -1 + 3
+        // = 2
+        operation = new AdditionOperation(grouped, value);
+
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
+
+        Assertions.assertEquals(new Integer(2), rolled);
     }
 
     /**
@@ -212,15 +211,15 @@ public final class TestDiceRollerDivisionOperation {
 
         groupedb = new SubtractionOperation(leftb, rightb);
 
-        // (1 - 2) / (3 - 4)
-        // = (-1) / (-1)
-        // = -1 / -1
-        // = 1
-        operation = new DivisionOperation(groupeda, groupedb);
+        // (1 - 2) + (3 - 4)
+        // = (-1) + (-1)
+        // = -1 - 1
+        // = -2
+        operation = new AdditionOperation(groupeda, groupedb);
 
         rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertEquals(new Integer(1), rolled);
+        Assertions.assertEquals(new Integer(-2), rolled);
     }
 
     /**
@@ -231,17 +230,17 @@ public final class TestDiceRollerDivisionOperation {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Executable closure;
+        final Integer rolled;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
 
-        // 0 / 0
-        operation = new DivisionOperation(left, right);
+        // 0 + 0
+        operation = new AdditionOperation(left, right);
 
-        closure = () -> new DiceRoller().transform(operation);
+        rolled = new DiceRoller().transform(operation).getFinalRoll();
 
-        Assertions.assertThrows(Exception.class, closure);
+        Assertions.assertEquals(new Integer(0), rolled);
     }
 
 }
