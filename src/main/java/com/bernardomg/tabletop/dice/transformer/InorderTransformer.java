@@ -16,7 +16,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 /**
  * Breaks down the received expression into an inorder list.
  * <p>
- * The tree {@code ((1 + 2) + 3)} becomes {@code 1 + 2 - 3} with this
+ * The tree {@code ((1 + 2) - 3)} becomes {@code 1 + 2 - 3} with this
  * transformer.
  *
  * @author Bernardo Mart&iacute;nez Garrido
