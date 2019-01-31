@@ -29,11 +29,6 @@ options { tokenVocab=DiceNotationLexer; }
  
 notation
 :
-   expression
-;
-
-expression
-:
    dice
    | number
    | addOp
@@ -53,7 +48,7 @@ operand
 :
    dice
    | number
-   | LPAREN expression RPAREN
+   | LPAREN notation RPAREN
 ;
 
 dice

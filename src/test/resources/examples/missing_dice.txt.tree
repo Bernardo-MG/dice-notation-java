@@ -1,1 +1,1 @@
-(notation (expression (dice d 6)))
+(notation (dice d 6))
