@@ -1,1 +1,1 @@
-(parse (function (number 12)))
+(parse (expression (number 12)))

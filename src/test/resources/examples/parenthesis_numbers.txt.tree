@@ -1,1 +1,1 @@
-(parse (function (addOp (multOp (operand ( (function (addOp (multOp (operand (number 1))) + (multOp (operand (number 2))))) )) * (operand (number 3))))))
+(parse (expression (addOp (multOp (operand ( (expression (addOp (multOp (operand (number 1))) + (multOp (operand (number 2))))) )) * (operand (number 3))))))

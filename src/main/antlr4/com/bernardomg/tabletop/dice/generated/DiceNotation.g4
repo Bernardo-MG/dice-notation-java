@@ -29,10 +29,10 @@ options { tokenVocab=DiceNotationLexer; }
  
 parse
 :
-   function
+   expression
 ;
 
-function
+expression
 :
    dice
    | number
@@ -53,7 +53,7 @@ operand
 :
    dice
    | number
-   | LPAREN function RPAREN
+   | LPAREN expression RPAREN
 ;
 
 dice

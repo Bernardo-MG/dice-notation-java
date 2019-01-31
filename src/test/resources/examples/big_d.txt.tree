@@ -1,1 +1,1 @@
-(parse (function (dice 1 D 6)))
+(parse (expression (dice 1 D 6)))
