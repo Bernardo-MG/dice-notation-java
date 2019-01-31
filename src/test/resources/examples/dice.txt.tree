@@ -1,1 +1,1 @@
-(parse (expression (dice 30 d 100)))
+(notation (expression (dice 30 d 100)))

@@ -1,1 +1,1 @@
-(parse (expression (addOp (multOp (operand (number 4)) / (operand (number 2))))))
+(notation (expression (addOp (multOp (operand (number 4)) / (operand (number 2))))))

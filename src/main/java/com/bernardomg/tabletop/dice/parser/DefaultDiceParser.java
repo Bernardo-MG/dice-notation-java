@@ -93,8 +93,8 @@ public final class DefaultDiceParser implements DiceParser {
         // Creates the ANTLR parser
         parser = buildDiceNotationParser(expression);
 
-        // Parses the expression
-        parser.parse();
+        // Parses the root rule
+        parser.notation();
 
         root = expressionBuilder.getDiceExpressionRoot();
 

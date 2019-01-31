@@ -1,1 +1,1 @@
-(parse (expression (number 001200)))
+(notation (expression (number 001200)))

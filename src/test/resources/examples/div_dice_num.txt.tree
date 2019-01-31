@@ -1,1 +1,1 @@
-(parse (expression (addOp (multOp (operand (dice 1 d 6)) / (operand (number 1))))))
+(notation (expression (addOp (multOp (operand (dice 1 d 6)) / (operand (number 1))))))

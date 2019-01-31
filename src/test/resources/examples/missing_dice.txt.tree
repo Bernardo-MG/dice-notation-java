@@ -1,1 +1,1 @@
-(parse (expression (dice d 6)))
+(notation (expression (dice d 6)))

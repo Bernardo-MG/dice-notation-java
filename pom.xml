@@ -399,7 +399,7 @@
             <configuration>
                <verbose>true</verbose>
                <showTree>true</showTree>
-               <entryPoint>parse</entryPoint>
+               <entryPoint>notation</entryPoint>
                <grammarName>DiceNotation</grammarName>
                <lexerName>DiceNotationLexer</lexerName>
                <packageName>com.bernardomg.tabletop.dice.generated</packageName>

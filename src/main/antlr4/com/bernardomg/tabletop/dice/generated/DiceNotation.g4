@@ -27,7 +27,7 @@ options { tokenVocab=DiceNotationLexer; }
  * Rules.
  */
  
-parse
+notation
 :
    expression
 ;
