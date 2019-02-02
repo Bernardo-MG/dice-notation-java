@@ -97,11 +97,11 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(1), result.getFinalRoll());
+        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(2), result.getFinalRoll());
+        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
     }
 
     /**

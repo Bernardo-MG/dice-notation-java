@@ -54,7 +54,7 @@ public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getFinalRoll();
+        result = new DiceRoller().transform(parsed).getTotalRoll();
 
         Assertions.assertEquals(new Integer((-1)), result);
     }
@@ -72,7 +72,7 @@ public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getFinalRoll();
+        result = new DiceRoller().transform(parsed).getTotalRoll();
 
         Assertions.assertEquals(new Integer(1), result);
     }

@@ -60,7 +60,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), rolled);
     }
@@ -96,7 +96,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = 1
         operation = new MultiplicationOperation(groupeda, groupedb);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(1), rolled);
     }
@@ -117,7 +117,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // -1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-2), rolled);
     }
@@ -146,7 +146,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = -3
         operation = new MultiplicationOperation(grouped, value);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-3), rolled);
     }
@@ -167,7 +167,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // -1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), rolled);
     }
@@ -188,7 +188,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-2), rolled);
     }
@@ -217,7 +217,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = -1
         operation = new MultiplicationOperation(value, grouped);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-1), rolled);
     }
@@ -238,7 +238,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 0 * 0
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(0), rolled);
     }

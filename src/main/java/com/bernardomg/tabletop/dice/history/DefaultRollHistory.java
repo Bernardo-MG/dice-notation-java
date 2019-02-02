@@ -27,41 +27,41 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public final class DefaultRollHistory implements RollHistory {
 
     /**
-     * Sum of all the generated values.
-     */
-    private final Integer              finalRoll;
-
-    /**
      * The results of each dice set.
      */
     private final Iterable<RollResult> rollResults;
+
+    /**
+     * Sum of all the generated values.
+     */
+    private final Integer              totalRoll;
 
     /**
      * Constructs a roll history with the specified data.
      * 
      * @param results
      *            each roll result
-     * @param result
+     * @param total
      *            sum of all the values
      */
     public DefaultRollHistory(final Iterable<RollResult> results,
-            final Integer result) {
+            final Integer total) {
         super();
 
         rollResults = checkNotNull(results,
                 "Received a null pointer as roll results");
-        finalRoll = checkNotNull(result,
-                "Received a null pointer as final roll");
-    }
-
-    @Override
-    public final Integer getFinalRoll() {
-        return finalRoll;
+        totalRoll = checkNotNull(total,
+                "Received a null pointer as total roll");
     }
 
     @Override
     public final Iterable<RollResult> getRollResults() {
         return rollResults;
+    }
+
+    @Override
+    public final Integer getTotalRoll() {
+        return totalRoll;
     }
 
 }

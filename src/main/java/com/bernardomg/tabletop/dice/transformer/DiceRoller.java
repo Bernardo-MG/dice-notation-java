@@ -155,7 +155,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 // Dice
                 // Generates a random value
                 rollResult = transform(((DiceOperand) current));
-                value = rollResult.getFinalRoll();
+                value = rollResult.getTotalRoll();
                 values.push(value);
                 results.add(rollResult);
             } else {

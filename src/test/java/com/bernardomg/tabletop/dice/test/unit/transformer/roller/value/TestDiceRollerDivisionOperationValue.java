@@ -61,7 +61,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // 2 / 1
         operation = new DivisionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), rolled);
     }
@@ -82,7 +82,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // -2 / 1
         operation = new DivisionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-2), rolled);
     }
@@ -111,7 +111,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // = -2
         operation = new DivisionOperation(grouped, value);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-2), rolled);
     }
@@ -132,7 +132,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // -2 / -1
         operation = new DivisionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), rolled);
     }
@@ -153,7 +153,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // 2 / -1
         operation = new DivisionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-2), rolled);
     }
@@ -182,7 +182,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // = -1
         operation = new DivisionOperation(value, grouped);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(-1), rolled);
     }
@@ -218,7 +218,7 @@ public final class TestDiceRollerDivisionOperationValue {
         // = 1
         operation = new DivisionOperation(groupeda, groupedb);
 
-        rolled = new DiceRoller().transform(operation).getFinalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(new Integer(1), rolled);
     }

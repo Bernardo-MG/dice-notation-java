@@ -46,6 +46,6 @@ public interface RollResult {
      * 
      * @return the sum of all the rolled values
      */
-    public Integer getFinalRoll();
+    public Integer getTotalRoll();
 
 }

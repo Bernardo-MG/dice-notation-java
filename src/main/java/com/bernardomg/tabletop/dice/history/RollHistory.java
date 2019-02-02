@@ -27,17 +27,17 @@ package com.bernardomg.tabletop.dice.history;
 public interface RollHistory {
 
     /**
-     * The sum of all the rolled values.
-     * 
-     * @return the sum of all the rolled values
-     */
-    public Integer getFinalRoll();
-
-    /**
      * The results from rolling each dice set.
      * 
      * @return the results from rolling each dice set
      */
     public Iterable<RollResult> getRollResults();
+
+    /**
+     * The sum of all the rolled values.
+     * 
+     * @return the sum of all the rolled values
+     */
+    public Integer getTotalRoll();
 
 }

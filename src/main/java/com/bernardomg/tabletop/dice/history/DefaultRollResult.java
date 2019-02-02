@@ -41,7 +41,7 @@ public final class DefaultRollResult implements RollResult {
     /**
      * Sum of all the generated values.
      */
-    private final Integer           finalRoll;
+    private final Integer           totalRoll;
 
     /**
      * Constructs a roll result with the specified data.
@@ -50,17 +50,17 @@ public final class DefaultRollResult implements RollResult {
      *            rolled dice
      * @param rolls
      *            generated values
-     * @param result
+     * @param total
      *            sum of all the values
      */
     public DefaultRollResult(final Dice rolled, final Iterable<Integer> rolls,
-            final Integer result) {
+            final Integer total) {
         super();
 
         dice = checkNotNull(rolled, "Received a null pointer as dice");
         allRolls = checkNotNull(rolls, "Received a null pointer as rolls");
-        finalRoll = checkNotNull(result,
-                "Received a null pointer as final roll");
+        totalRoll = checkNotNull(total,
+                "Received a null pointer as total roll");
     }
 
     @Override
@@ -74,8 +74,8 @@ public final class DefaultRollResult implements RollResult {
     }
 
     @Override
-    public final Integer getFinalRoll() {
-        return finalRoll;
+    public final Integer getTotalRoll() {
+        return totalRoll;
     }
 
 }

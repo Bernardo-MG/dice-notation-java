@@ -54,7 +54,7 @@ public final class ITParseAndRollerTransformerMultiplicationNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getFinalRoll();
+        result = new DiceRoller().transform(parsed).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), result);
     }

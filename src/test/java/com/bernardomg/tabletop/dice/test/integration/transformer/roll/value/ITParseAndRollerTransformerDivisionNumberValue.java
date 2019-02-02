@@ -56,7 +56,7 @@ public final class ITParseAndRollerTransformerDivisionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getFinalRoll();
+        result = new DiceRoller().transform(parsed).getTotalRoll();
 
         Assertions.assertEquals(new Float(1.5), result);
     }
@@ -74,7 +74,7 @@ public final class ITParseAndRollerTransformerDivisionNumberValue {
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getFinalRoll();
+        result = new DiceRoller().transform(parsed).getTotalRoll();
 
         Assertions.assertEquals(new Integer(2), result);
     }
