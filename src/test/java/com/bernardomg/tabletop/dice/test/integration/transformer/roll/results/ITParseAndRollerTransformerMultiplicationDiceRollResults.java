@@ -24,6 +24,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
@@ -51,7 +52,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceMultiplication_Dice() {
+    public final void testParse_DiceMultiplication_Dice() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
@@ -82,33 +83,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceMultiplication_FinalRoll() {
-        final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
-
-        notation = "1d1*2d1";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
-    }
-
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
-    @Test
-    public final void testRoll_DiceMultiplication_Quantity() {
+    public final void testParse_DiceMultiplication_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> rolled;
         final String notation;
@@ -126,7 +101,7 @@ public final class ITParseAndRollerTransformerMultiplicationDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceMultiplication_Rolls() {
+    public final void testParse_DiceMultiplication_Rolls() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
@@ -152,6 +127,50 @@ public final class ITParseAndRollerTransformerMultiplicationDiceRollResults {
         Assertions.assertEquals(2, Iterables.size(result.getAllRolls()));
         Assertions.assertEquals(new Integer(1), rolls.next());
         Assertions.assertEquals(new Integer(1), rolls.next());
+    }
+
+    /**
+     * Verifies that the smallest possible dice generates the expected results.
+     */
+    @Test
+    public final void testParse_DiceMultiplication_TotalRoll() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory history;
+
+        notation = "1d1*2d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        history = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals(new Integer(2), history.getTotalRoll());
+    }
+
+    /**
+     * Verifies that the smallest possible dice generates the expected results.
+     */
+    @Test
+    public final void testParse_DiceMultiplication_TotalRolls() {
+        final DiceNotationExpression expression;
+        final Iterator<RollResult> rolled;
+        final String notation;
+        RollResult result;
+
+        notation = "1d1*2d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        rolled = new DiceRoller().transform(expression).getRollResults()
+                .iterator();
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
     }
 
 }
