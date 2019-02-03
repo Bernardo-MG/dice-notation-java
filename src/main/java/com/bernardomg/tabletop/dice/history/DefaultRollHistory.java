@@ -64,4 +64,9 @@ public final class DefaultRollHistory implements RollHistory {
         return totalRoll;
     }
 
+    @Override
+    public final String getHistoryText() {
+        return null;
+    }
+
 }

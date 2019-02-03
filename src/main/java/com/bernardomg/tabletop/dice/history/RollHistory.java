@@ -40,4 +40,11 @@ public interface RollHistory {
      */
     public Integer getTotalRoll();
 
+    /**
+     * Returns a text representation of the roll history.
+     * 
+     * @return a text representation of the history
+     */
+    public String getHistoryText();
+
 }
