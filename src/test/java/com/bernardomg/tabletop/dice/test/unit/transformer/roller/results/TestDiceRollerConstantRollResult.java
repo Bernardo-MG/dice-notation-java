@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.unit.transformer.roller.results;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -44,18 +46,27 @@ public final class TestDiceRollerConstantRollResult {
     }
 
     /**
-     * Verifies that the constants don't generate roll results.
+     * Verifies that a constant generates the expected results.
      */
     @Test
-    public final void testRollResults() {
-        final DiceNotationExpression operation;
-        final Iterable<RollResult> rolled;
+    public final void testRolls() {
+        final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
+        final RollResult result;
+        final Iterable<Integer> rolls;
+        final Iterator<Integer> rollValues;
 
-        operation = new IntegerOperand(1);
+        expression = new IntegerOperand(1);
 
-        rolled = new DiceRoller().transform(operation).getRollResults();
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
+        rolls = result.getAllRolls();
 
-        Assertions.assertEquals(0, Iterables.size(rolled));
+        Assertions.assertEquals(1, Iterables.size(results));
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(1), rollValues.next());
     }
 
 }

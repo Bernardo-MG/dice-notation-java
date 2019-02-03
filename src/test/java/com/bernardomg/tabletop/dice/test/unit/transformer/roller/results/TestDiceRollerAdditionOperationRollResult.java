@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.unit.transformer.roller.results;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -46,24 +48,43 @@ public final class TestDiceRollerAdditionOperationRollResult {
     }
 
     /**
-     * Verifies that the additions don't generate roll results.
+     * Verifies that an addition generates the expected results.
      */
     @Test
-    public final void testRollResults() {
-        final BinaryOperation operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final Iterable<RollResult> rolled;
+    public final void testRolls() {
+        final BinaryOperation expression;
+        final DiceNotationExpression left;
+        final DiceNotationExpression right;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
 
         // 1 + 2
-        operation = new AdditionOperation(left, right);
+        expression = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getRollResults();
+        results = new DiceRoller().transform(expression).getRollResults();
+        resultsItr = results.iterator();
 
-        Assertions.assertEquals(0, Iterables.size(rolled));
+        Assertions.assertEquals(2, Iterables.size(results));
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(1), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(2), rollValues.next());
     }
 
 }

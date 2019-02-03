@@ -123,6 +123,7 @@ public final class TestDiceRollerDiceRollResult {
     public final void testRoll_SingleSide_Rolls() {
         final Dice dice;
         final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
         final RollResult result;
         final Iterable<Integer> rolls;
         final Iterator<Integer> rollValues;
@@ -134,10 +135,11 @@ public final class TestDiceRollerDiceRollResult {
 
         expression = new DefaultDiceOperand(dice);
 
-        result = new DiceRoller().transform(expression).getRollResults()
-                .iterator().next();
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
         rolls = result.getAllRolls();
 
+        Assertions.assertEquals(1, Iterables.size(results));
         Assertions.assertEquals(3, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
@@ -221,6 +223,7 @@ public final class TestDiceRollerDiceRollResult {
     public final void testRoll_SmallestDice_Rolls() {
         final Dice dice;
         final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
         final RollResult result;
         final Iterable<Integer> rolls;
 
@@ -231,10 +234,11 @@ public final class TestDiceRollerDiceRollResult {
 
         expression = new DefaultDiceOperand(dice);
 
-        result = new DiceRoller().transform(expression).getRollResults()
-                .iterator().next();
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
         rolls = result.getAllRolls();
 
+        Assertions.assertEquals(1, Iterables.size(results));
         Assertions.assertEquals(1, Iterables.size(rolls));
         Assertions.assertEquals(new Integer(1), rolls.iterator().next());
     }
