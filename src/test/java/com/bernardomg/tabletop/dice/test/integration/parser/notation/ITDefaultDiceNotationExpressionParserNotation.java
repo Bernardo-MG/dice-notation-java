@@ -18,6 +18,8 @@ package com.bernardomg.tabletop.dice.test.integration.parser.notation;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
@@ -28,6 +30,7 @@ import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class ITDefaultDiceNotationExpressionParserNotation {
 
     public ITDefaultDiceNotationExpressionParserNotation() {
