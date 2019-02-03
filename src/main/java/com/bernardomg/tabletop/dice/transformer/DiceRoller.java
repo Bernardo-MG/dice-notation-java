@@ -124,7 +124,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     private final RollHistory
             getValue(final Iterable<DiceNotationExpression> expressions) {
         final Stack<Integer> values;
-        final Collection<RollResult> results;
+        final Stack<RollResult> results;
         final Integer result;
         RollResult rollResult;
         Integer value;
@@ -133,7 +133,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         BiFunction<Integer, Integer, Integer> operation;
         DiceNotationExpression previous;
 
-        results = new ArrayList<>();
+        results = new Stack<>();
         values = new Stack<>();
         previous = null;
         for (final DiceNotationExpression current : expressions) {
@@ -147,9 +147,11 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 values.push(value);
                 if ((current instanceof SubtractionOperation)
                         && (previous instanceof ConstantOperand)) {
-                    value = values.pop();
-                    value = 0 - value;
-                    values.push(value);
+                    rollResult = results.pop();
+                    value = 0 - rollResult.getTotalRoll();
+                    rollResult = new DefaultRollResult(current,
+                            Arrays.asList(value), value);
+                    results.push(rollResult);
                 }
             } else if (current instanceof ConstantOperand) {
                 // Constant
