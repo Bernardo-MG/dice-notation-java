@@ -86,8 +86,8 @@ public final class DefaultRollResult implements RollResult {
             text.append(String.valueOf(totalRoll));
         } else if (!Iterables.isEmpty(allRolls)) {
             text.append("[");
-            StreamSupport.stream(allRolls.spliterator(), false)
-                    .map(Object::toString).collect(Collectors.joining(", "));
+            text.append(StreamSupport.stream(allRolls.spliterator(), false)
+                    .map(Object::toString).collect(Collectors.joining(", ")));
             text.append("]");
         }
 
