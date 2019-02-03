@@ -109,7 +109,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         operation = new DefaultDiceParser().parse(notation);
 
-        Assertions.assertEquals(notation, operation.getExpression());
+        Assertions.assertEquals("1d6", operation.getExpression());
     }
 
     /**
@@ -139,7 +139,7 @@ public final class ITDefaultDiceNotationExpressionParserNotation {
 
         operation = new DefaultDiceParser().parse(notation);
 
-        Assertions.assertEquals(notation, operation.getExpression());
+        Assertions.assertEquals("1d6", operation.getExpression());
     }
 
     /**
