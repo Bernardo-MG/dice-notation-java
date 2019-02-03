@@ -42,10 +42,16 @@ public interface RollResult {
     public DiceNotationExpression getExpression();
 
     /**
+     * Returns a text representation of the roll result.
+     * 
+     * @return a text representation of the result
+     */
+    public String getText();
+
+    /**
      * The sum of all the rolled values.
      * 
      * @return the sum of all the rolled values
      */
     public Integer getTotalRoll();
-
 }

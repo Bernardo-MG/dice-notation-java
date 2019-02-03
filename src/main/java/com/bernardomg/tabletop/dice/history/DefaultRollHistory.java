@@ -18,6 +18,9 @@ package com.bernardomg.tabletop.dice.history;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 /**
  * Immutable roll history.
  * 
@@ -52,6 +55,12 @@ public final class DefaultRollHistory implements RollHistory {
                 "Received a null pointer as roll results");
         totalRoll = checkNotNull(total,
                 "Received a null pointer as total roll");
+    }
+
+    @Override
+    public final String getHistoryText() {
+        return StreamSupport.stream(rollResults.spliterator(), false)
+                .map(RollResult::getText).collect(Collectors.joining(" + "));
     }
 
     @Override

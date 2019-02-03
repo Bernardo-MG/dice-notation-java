@@ -27,6 +27,13 @@ package com.bernardomg.tabletop.dice.history;
 public interface RollHistory {
 
     /**
+     * Returns a text representation of the roll history.
+     * 
+     * @return a text representation of the history
+     */
+    public String getHistoryText();
+
+    /**
      * The results from rolling each dice set.
      * 
      * @return the results from rolling each dice set

@@ -27,7 +27,6 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 import com.google.common.collect.Iterables;
@@ -53,7 +52,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
      */
     @Test
     public final void testRolls_Addition() {
-        final BinaryOperation expression;
+        final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
         final Iterable<RollResult> results;
@@ -93,7 +92,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
      */
     @Test
     public final void testRolls_Addition_AddToNeg() {
-        final BinaryOperation expression;
+        final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
         final Iterable<RollResult> results;
@@ -133,7 +132,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
      */
     @Test
     public final void testRolls_Subtraction() {
-        final BinaryOperation expression;
+        final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
         final Iterable<RollResult> results;
