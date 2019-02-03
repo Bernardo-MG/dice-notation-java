@@ -59,7 +59,7 @@ public final class ITParseAndRollerTransformerAdditionNumberRollResults {
 
         rolled = new DiceRoller().transform(operation).getRollResults();
 
-        Assertions.assertEquals(0, Iterables.size(rolled));
+        Assertions.assertEquals(3, Iterables.size(rolled));
     }
 
 }
