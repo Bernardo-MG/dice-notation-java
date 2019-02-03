@@ -26,7 +26,7 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
-import com.bernardomg.tabletop.dice.notation.operation.Operation;
+import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.transformer.PostorderTraverser;
 import com.google.common.collect.Iterables;
@@ -90,7 +90,7 @@ public final class TestPostorderTraverser {
                 ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof Operation);
+        Assertions.assertTrue(exp instanceof BinaryOperation);
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
@@ -98,7 +98,7 @@ public final class TestPostorderTraverser {
                 ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof Operation);
+        Assertions.assertTrue(exp instanceof BinaryOperation);
     }
 
 }

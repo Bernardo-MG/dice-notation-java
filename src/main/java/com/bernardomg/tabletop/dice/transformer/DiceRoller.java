@@ -35,7 +35,7 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.Operation;
+import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
@@ -137,12 +137,12 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         values = new Stack<>();
         previous = null;
         for (final DiceNotationExpression current : expressions) {
-            if (current instanceof Operation) {
+            if (current instanceof BinaryOperation) {
                 // Operation
                 // Takes back the two latest values and applies
                 operandB = values.pop();
                 operandA = values.pop();
-                operation = ((Operation) current).getOperation();
+                operation = ((BinaryOperation) current).getOperation();
                 value = operation.apply(operandA, operandB);
                 values.push(value);
                 if ((current instanceof SubtractionOperation)
