@@ -31,8 +31,8 @@ import com.bernardomg.tabletop.dice.transformer.InorderTraverser;
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link InorderTraverser}, verifying that it transforms a
- * tree correctly.
+ * Unit tests for {@link InorderTraverser}, verifying that it transforms a tree
+ * correctly.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
