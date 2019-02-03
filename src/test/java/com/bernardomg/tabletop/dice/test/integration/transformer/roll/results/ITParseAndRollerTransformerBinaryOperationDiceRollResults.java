@@ -23,8 +23,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 import com.google.common.collect.Iterables;
@@ -54,6 +56,7 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollResults {
         final Iterator<RollResult> rolled;
         final String notation;
         RollResult result;
+        Dice dice;
 
         notation = "1d1+2d1*3d1";
 
@@ -64,18 +67,21 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(1), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(2), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(3), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(3), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
     /**

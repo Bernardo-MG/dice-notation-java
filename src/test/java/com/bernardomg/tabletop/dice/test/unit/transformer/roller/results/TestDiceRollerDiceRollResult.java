@@ -28,6 +28,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 import com.google.common.collect.Iterables;
 
@@ -55,6 +56,7 @@ public final class TestDiceRollerDiceRollResult {
         final Dice dice;
         final DiceNotationExpression expression;
         final RollResult result;
+        final Dice diceResult;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
@@ -66,8 +68,9 @@ public final class TestDiceRollerDiceRollResult {
         result = new DiceRoller().transform(expression).getRollResults()
                 .iterator().next();
 
-        Assertions.assertEquals(new Integer(3), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        diceResult = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(3), diceResult.getQuantity());
+        Assertions.assertEquals(new Integer(1), diceResult.getSides());
     }
 
     /**
@@ -151,6 +154,7 @@ public final class TestDiceRollerDiceRollResult {
         final Dice dice;
         final DiceNotationExpression expression;
         final RollResult result;
+        final Dice diceResult;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
@@ -162,8 +166,9 @@ public final class TestDiceRollerDiceRollResult {
         result = new DiceRoller().transform(expression).getRollResults()
                 .iterator().next();
 
-        Assertions.assertEquals(new Integer(1), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        diceResult = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(1), diceResult.getQuantity());
+        Assertions.assertEquals(new Integer(1), diceResult.getSides());
     }
 
     /**

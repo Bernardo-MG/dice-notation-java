@@ -44,7 +44,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     /**
      * Logger.
      */
-    private static final Logger                                     LOGGER   = LoggerFactory
+    private static final Logger                                     LOGGER    = LoggerFactory
             .getLogger(DiceGatherer.class);
 
     /**

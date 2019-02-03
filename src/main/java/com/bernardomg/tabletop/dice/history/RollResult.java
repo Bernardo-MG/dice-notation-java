@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.history;
 
-import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Result from rolling a dice set.
@@ -35,11 +35,11 @@ public interface RollResult {
     public Iterable<Integer> getAllRolls();
 
     /**
-     * The rolled dice.
+     * The expression which generated the value.
      * 
-     * @return the rolled dice
+     * @return the expression
      */
-    public Dice getDice();
+    public DiceNotationExpression getExpression();
 
     /**
      * The sum of all the rolled values.

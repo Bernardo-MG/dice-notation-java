@@ -19,6 +19,7 @@ package com.bernardomg.tabletop.dice.transformer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
@@ -57,13 +58,8 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Logger.
      */
-    private static final Logger                                     LOGGER   = LoggerFactory
+    private static final Logger                                     LOGGER    = LoggerFactory
             .getLogger(DiceRoller.class);
-
-    /**
-     * Transformer to generate a list from the received expression.
-     */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTraverser();
 
     /**
      * The random numbers generator.
@@ -72,6 +68,11 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * value in an interval.
      */
     private final NumberGenerator                                   numberGenerator;
+
+    /**
+     * Transformer to generate a list from the received expression.
+     */
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTraverser();
 
     /**
      * Default constructor.
@@ -150,7 +151,10 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 // Constant
                 // Stores the value
                 value = ((ConstantOperand) current).getValue();
+                rollResult = new DefaultRollResult(current,
+                        Arrays.asList(value), value);
                 values.push(value);
+                results.add(rollResult);
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
@@ -232,7 +236,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             total += roll;
         }
 
-        return new DefaultRollResult(operand.getDice(), rolls, total);
+        return new DefaultRollResult(operand, rolls, total);
     }
 
 }
