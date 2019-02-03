@@ -83,7 +83,7 @@ public final class DefaultRollResult implements RollResult {
 
         text = new StringBuilder();
         if (Iterables.size(allRolls) == 1) {
-            text.append(String.valueOf(totalRoll));
+            text.append(String.valueOf(allRolls.iterator().next()));
         } else if (!Iterables.isEmpty(allRolls)) {
             text.append("[");
             text.append(StreamSupport.stream(allRolls.spliterator(), false)
