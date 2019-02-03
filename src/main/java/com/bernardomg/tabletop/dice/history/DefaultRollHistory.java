@@ -60,7 +60,7 @@ public final class DefaultRollHistory implements RollHistory {
     @Override
     public final String getHistoryText() {
         return StreamSupport.stream(rollResults.spliterator(), false)
-                .map(RollResult::getText).collect(Collectors.joining("+"));
+                .map(RollResult::getText).collect(Collectors.joining(" + "));
     }
 
     @Override
