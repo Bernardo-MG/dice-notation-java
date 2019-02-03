@@ -28,9 +28,9 @@ import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
+import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 
 /**
  * Unit tests for {@link DiceRoller}, verifying that handles dice correctly.

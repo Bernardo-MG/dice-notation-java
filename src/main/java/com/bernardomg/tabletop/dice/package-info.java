@@ -28,7 +28,7 @@
  * possible generating random values. Meant to customise the transformers.
  * <p>
  * These transformers are stored inside the
- * {@link com.bernardomg.tabletop.dice.transformer transformer} package and can
+ * {@link com.bernardomg.tabletop.dice.interpreter transformer} package and can
  * be used to create an object from any parsed dice notation.
  * <p>
  * The actual dice notation, including operations, is inside the
