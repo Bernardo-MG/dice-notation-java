@@ -61,7 +61,7 @@ public final class TestDiceRoller {
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(2);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
         Mockito.when(dice.getSides()).thenReturn(1);
 
         // Mocks generator
@@ -73,7 +73,7 @@ public final class TestDiceRoller {
 
         rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(3), rolled);
+        Assertions.assertEquals(new Integer(6), rolled);
     }
 
     /**
@@ -154,7 +154,7 @@ public final class TestDiceRoller {
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
         Mockito.when(dice.getSides()).thenReturn(1);
 
         // Mocks generator
@@ -164,7 +164,7 @@ public final class TestDiceRoller {
 
         expression = new DefaultDiceOperand(dice);
 
-        result = new DiceRoller().transform(expression);
+        result = new DiceRoller(generator).transform(expression);
 
         Assertions.assertEquals("[5, 7, 2]", result.getHistoryText());
     }
