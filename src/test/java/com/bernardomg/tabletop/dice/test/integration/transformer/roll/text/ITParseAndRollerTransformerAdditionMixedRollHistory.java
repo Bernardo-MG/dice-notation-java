@@ -33,12 +33,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionMixedRollResults {
+public final class ITParseAndRollerTransformerAdditionMixedRollHistory {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionMixedRollResults() {
+    public ITParseAndRollerTransformerAdditionMixedRollHistory() {
         super();
     }
 

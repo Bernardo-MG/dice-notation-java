@@ -33,12 +33,12 @@ import com.bernardomg.tabletop.dice.transformer.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerBinaryOperationDiceRollResults {
+public final class ITParseAndRollerTransformerAdditionDiceRollHistory {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerBinaryOperationDiceRollResults() {
+    public ITParseAndRollerTransformerAdditionDiceRollHistory() {
         super();
     }
 
@@ -46,19 +46,18 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollResults {
      * Verifies that an addition generates the expected results.
      */
     @Test
-    public final void testRolls_DiceAddAndMult_Text() {
+    public final void testRolls_DiceAddition_Text() {
         final DiceNotationExpression expression;
         final String notation;
         final RollHistory result;
 
-        notation = "1d1+2d1*3d1";
+        notation = "1d1+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1] + [1, 1, 1]",
-                result.getHistoryText());
+        Assertions.assertEquals("1 + [1, 1]", result.getHistoryText());
     }
 
 }
