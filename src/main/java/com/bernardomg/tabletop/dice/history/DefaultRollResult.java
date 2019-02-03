@@ -18,7 +18,11 @@ package com.bernardomg.tabletop.dice.history;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.google.common.collect.Iterables;
 
 /**
  * Immutable roll result.
@@ -71,6 +75,23 @@ public final class DefaultRollResult implements RollResult {
     @Override
     public final DiceNotationExpression getExpression() {
         return expression;
+    }
+
+    @Override
+    public final String getText() {
+        final StringBuilder text;
+
+        text = new StringBuilder();
+        if (Iterables.size(allRolls) == 1) {
+            text.append(String.valueOf(totalRoll));
+        } else {
+            text.append("[");
+            StreamSupport.stream(allRolls.spliterator(), false)
+                    .map(Object::toString).collect(Collectors.joining(", "));
+            text.append("]");
+        }
+
+        return text.toString();
     }
 
     @Override
