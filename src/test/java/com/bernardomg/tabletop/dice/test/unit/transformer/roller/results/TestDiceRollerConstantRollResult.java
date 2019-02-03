@@ -49,7 +49,31 @@ public final class TestDiceRollerConstantRollResult {
      * Verifies that a constant generates the expected results.
      */
     @Test
-    public final void testRolls() {
+    public final void testRolls_Negative() {
+        final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
+        final RollResult result;
+        final Iterable<Integer> rolls;
+        final Iterator<Integer> rollValues;
+
+        expression = new IntegerOperand(-1);
+
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
+        rolls = result.getAllRolls();
+
+        Assertions.assertEquals(1, Iterables.size(results));
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(-1), rollValues.next());
+    }
+
+    /**
+     * Verifies that a constant generates the expected results.
+     */
+    @Test
+    public final void testRolls_Positive() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> results;
         final RollResult result;
