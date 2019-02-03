@@ -147,6 +147,9 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 values.push(value);
                 if ((current instanceof SubtractionOperation)
                         && (previous instanceof ConstantOperand)) {
+                    // This is a subtraction
+                    // The previous value was a constant
+                    // The sign is changed
                     rollResult = results.pop();
                     value = 0 - rollResult.getTotalRoll();
                     rollResult = new DefaultRollResult(current,
