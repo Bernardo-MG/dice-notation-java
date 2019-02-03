@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Stack;
 import java.util.function.BiFunction;
 
@@ -57,13 +56,8 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Logger.
      */
-    private static final Logger                                     LOGGER   = LoggerFactory
+    private static final Logger                                     LOGGER    = LoggerFactory
             .getLogger(DiceRoller.class);
-
-    /**
-     * Transformer to generate a list from the received expression.
-     */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTraverser();
 
     /**
      * The random numbers generator.
@@ -72,6 +66,11 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * value in an interval.
      */
     private final NumberGenerator                                   numberGenerator;
+
+    /**
+     * Transformer to generate a list from the received expression.
+     */
+    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTraverser();
 
     /**
      * Default constructor.
@@ -122,12 +121,10 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      */
     private final RollHistory
             getValue(final Iterable<DiceNotationExpression> expressions) {
-        final Iterator<DiceNotationExpression> expItr;
         final Stack<Integer> values;
         final Collection<RollResult> results;
         final Integer result;
         RollResult rollResult;
-        DiceNotationExpression current;
         Integer value;
         Integer operandA;
         Integer operandB;
@@ -135,9 +132,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
         results = new ArrayList<>();
         values = new Stack<>();
-        expItr = expressions.iterator();
-        while (expItr.hasNext()) {
-            current = expItr.next();
+        for (final DiceNotationExpression current : expressions) {
             if (current instanceof Operation) {
                 // Operation
                 // Takes back the two latest values and applies
