@@ -19,6 +19,7 @@ package com.bernardomg.tabletop.dice.transformer;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Stack;
 import java.util.function.BiFunction;
@@ -35,6 +36,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
@@ -122,16 +124,18 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     private final RollHistory
             getValue(final Iterable<DiceNotationExpression> expressions) {
         final Stack<Integer> values;
-        final Collection<RollResult> results;
+        final Stack<RollResult> results;
         final Integer result;
         RollResult rollResult;
         Integer value;
         Integer operandA;
         Integer operandB;
         BiFunction<Integer, Integer, Integer> operation;
+        DiceNotationExpression previous;
 
-        results = new ArrayList<>();
+        results = new Stack<>();
         values = new Stack<>();
+        previous = null;
         for (final DiceNotationExpression current : expressions) {
             if (current instanceof BinaryOperation) {
                 // Operation
@@ -141,11 +145,25 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 operation = ((BinaryOperation) current).getOperation();
                 value = operation.apply(operandA, operandB);
                 values.push(value);
+                if ((current instanceof SubtractionOperation)
+                        && (previous instanceof ConstantOperand)) {
+                    // This is a subtraction
+                    // The previous value was a constant
+                    // The sign is changed
+                    rollResult = results.pop();
+                    value = 0 - rollResult.getTotalRoll();
+                    rollResult = new DefaultRollResult(current,
+                            Arrays.asList(value), value);
+                    results.push(rollResult);
+                }
             } else if (current instanceof ConstantOperand) {
                 // Constant
                 // Stores the value
                 value = ((ConstantOperand) current).getValue();
+                rollResult = new DefaultRollResult(current,
+                        Arrays.asList(value), value);
                 values.push(value);
+                results.add(rollResult);
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
@@ -157,6 +175,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());
             }
+            previous = current;
         }
 
         if (values.isEmpty()) {
@@ -227,7 +246,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             total += roll;
         }
 
-        return new DefaultRollResult(operand.getDice(), rolls, total);
+        return new DefaultRollResult(operand, rolls, total);
     }
 
 }

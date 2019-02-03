@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dice.history;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Immutable roll result.
@@ -31,33 +31,33 @@ public final class DefaultRollResult implements RollResult {
     /**
      * All the generated values.
      */
-    private final Iterable<Integer> allRolls;
+    private final Iterable<Integer>      allRolls;
 
     /**
      * Rolled dice.
      */
-    private final Dice              dice;
+    private final DiceNotationExpression expression;
 
     /**
      * Sum of all the generated values.
      */
-    private final Integer           totalRoll;
+    private final Integer                totalRoll;
 
     /**
      * Constructs a roll result with the specified data.
      * 
-     * @param rolled
-     *            rolled dice
+     * @param exp
+     *            expression which generated the result
      * @param rolls
      *            generated values
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(final Dice rolled, final Iterable<Integer> rolls,
-            final Integer total) {
+    public DefaultRollResult(final DiceNotationExpression exp,
+            final Iterable<Integer> rolls, final Integer total) {
         super();
 
-        dice = checkNotNull(rolled, "Received a null pointer as dice");
+        expression = checkNotNull(exp, "Received a null pointer as expression");
         allRolls = checkNotNull(rolls, "Received a null pointer as rolls");
         totalRoll = checkNotNull(total,
                 "Received a null pointer as total roll");
@@ -69,8 +69,8 @@ public final class DefaultRollResult implements RollResult {
     }
 
     @Override
-    public final Dice getDice() {
-        return dice;
+    public final DiceNotationExpression getExpression() {
+        return expression;
     }
 
     @Override

@@ -39,12 +39,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionDiceRollResults {
+public final class ITParseAndRollerTransformerAdditionMixedRollResults {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionDiceRollResults() {
+    public ITParseAndRollerTransformerAdditionMixedRollResults() {
         super();
     }
 
@@ -52,14 +52,14 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testParse_DiceAddition_Dice() {
+    public final void testParse_DiceAndNumAddition_Dice() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
         RollResult result;
         Dice dice;
 
-        notation = "1d1+2d1";
+        notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
@@ -74,6 +74,8 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
 
         result = rolled.next();
 
+        result = rolled.next();
+
         dice = ((DiceOperand) result.getExpression()).getDice();
         Assertions.assertEquals(new Integer(2), dice.getQuantity());
         Assertions.assertEquals(new Integer(1), dice.getSides());
@@ -83,32 +85,32 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testParse_DiceAddition_Quantity() {
+    public final void testParse_DiceAndNumAddition_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> rolled;
         final String notation;
 
-        notation = "1d1+2d1";
+        notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
         rolled = new DiceRoller().transform(expression).getRollResults();
 
-        Assertions.assertEquals(2, Iterables.size(rolled));
+        Assertions.assertEquals(3, Iterables.size(rolled));
     }
 
     /**
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testParse_DiceAddition_Rolls() {
+    public final void testParse_DiceAndNumAddition_Rolls() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
         RollResult result;
         Iterator<Integer> rolls;
 
-        notation = "1d1+2d1";
+        notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
@@ -124,6 +126,12 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
         result = rolled.next();
         rolls = result.getAllRolls().iterator();
 
+        Assertions.assertEquals(1, Iterables.size(result.getAllRolls()));
+        Assertions.assertEquals(new Integer(3), rolls.next());
+
+        result = rolled.next();
+        rolls = result.getAllRolls().iterator();
+
         Assertions.assertEquals(2, Iterables.size(result.getAllRolls()));
         Assertions.assertEquals(new Integer(1), rolls.next());
         Assertions.assertEquals(new Integer(1), rolls.next());
@@ -133,31 +141,31 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testParse_DiceAddition_TotalRoll() {
+    public final void testParse_DiceAndNumAddition_TotalRoll() {
         final DiceNotationExpression expression;
         final String notation;
         final RollHistory history;
 
-        notation = "1d1+2d1";
+        notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
         history = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals(new Integer(3), history.getTotalRoll());
+        Assertions.assertEquals(new Integer(6), history.getTotalRoll());
     }
 
     /**
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testParse_DiceAddition_TotalRolls() {
+    public final void testParse_DiceAndNumAddition_TotalRolls() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
         RollResult result;
 
-        notation = "1d1+2d1";
+        notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
@@ -167,6 +175,10 @@ public final class ITParseAndRollerTransformerAdditionDiceRollResults {
         result = rolled.next();
 
         Assertions.assertEquals(new Integer(1), result.getTotalRoll());
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(3), result.getTotalRoll());
 
         result = rolled.next();
 

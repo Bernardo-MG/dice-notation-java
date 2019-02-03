@@ -23,8 +23,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.bernardomg.tabletop.dice.transformer.DiceRoller;
 import com.google.common.collect.Iterables;
@@ -49,11 +52,12 @@ public final class ITParseAndRollerTransformerParenthesisDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceAddAndMult_Dice() {
+    public final void testParse_DiceAddAndMult_Dice() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
         RollResult result;
+        Dice dice;
 
         notation = "(1d1+2d1)*3d1";
 
@@ -64,51 +68,28 @@ public final class ITParseAndRollerTransformerParenthesisDiceRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(1), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(2), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(3), result.getDice().getQuantity());
-        Assertions.assertEquals(new Integer(1), result.getDice().getSides());
+        dice = ((DiceOperand) result.getExpression()).getDice();
+        Assertions.assertEquals(new Integer(3), dice.getQuantity());
+        Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
     /**
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceAddAndMult_FinalRoll() {
-        final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
-
-        notation = "(1d1+2d1)*3d1";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
-    }
-
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
-    @Test
-    public final void testRoll_DiceAddAndMult_Quantity() {
+    public final void testParse_DiceAddAndMult_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> rolled;
         final String notation;
@@ -126,7 +107,7 @@ public final class ITParseAndRollerTransformerParenthesisDiceRollResults {
      * Verifies that the smallest possible dice generates the expected results.
      */
     @Test
-    public final void testRoll_DiceAddAndMult_Rolls() {
+    public final void testParse_DiceAddAndMult_Rolls() {
         final DiceNotationExpression expression;
         final Iterator<RollResult> rolled;
         final String notation;
@@ -152,6 +133,50 @@ public final class ITParseAndRollerTransformerParenthesisDiceRollResults {
         Assertions.assertEquals(2, Iterables.size(result.getAllRolls()));
         Assertions.assertEquals(new Integer(1), rolls.next());
         Assertions.assertEquals(new Integer(1), rolls.next());
+    }
+
+    /**
+     * Verifies that the smallest possible dice generates the expected results.
+     */
+    @Test
+    public final void testParse_DiceAddAndMult_TotalRoll() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory history;
+
+        notation = "(1d1+2d1)*3d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        history = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals(new Integer(9), history.getTotalRoll());
+    }
+
+    /**
+     * Verifies that the smallest possible dice generates the expected results.
+     */
+    @Test
+    public final void testParse_DiceAddAndMult_TotalRolls() {
+        final DiceNotationExpression expression;
+        final Iterator<RollResult> rolled;
+        final String notation;
+        RollResult result;
+
+        notation = "(1d1+2d1)*3d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        rolled = new DiceRoller().transform(expression).getRollResults()
+                .iterator();
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
     }
 
 }
