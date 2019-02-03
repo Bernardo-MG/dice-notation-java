@@ -89,6 +89,46 @@ public final class TestDiceRollerAdditionOperationRollResult {
     }
 
     /**
+     * Verifies that an addition generates the expected results.
+     */
+    @Test
+    public final void testRolls_Addition_AddToNeg() {
+        final BinaryOperation expression;
+        final DiceNotationExpression left;
+        final DiceNotationExpression right;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
+
+        left = new IntegerOperand(-1);
+        right = new IntegerOperand(2);
+
+        // 1 + 2
+        expression = new AdditionOperation(left, right);
+
+        results = new DiceRoller().transform(expression).getRollResults();
+        resultsItr = results.iterator();
+
+        Assertions.assertEquals(2, Iterables.size(results));
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(-1), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(2), rollValues.next());
+    }
+
+    /**
      * Verifies that a subtraction generates the expected results.
      */
     @Test

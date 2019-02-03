@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.integration.transformer.roll.results;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -51,15 +53,86 @@ public final class ITParseAndRollerTransformerAdditionNumberRollResults {
     public final void testParse_Number_Add_Long_Value() {
         final DiceNotationExpression operation;
         final String notation;
-        final Iterable<RollResult> rolled;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
 
         notation = "1+2+3";
 
         operation = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(operation).getRollResults();
+        results = new DiceRoller().transform(operation).getRollResults();
+        resultsItr = results.iterator();
 
-        Assertions.assertEquals(3, Iterables.size(rolled));
+        Assertions.assertEquals(3, Iterables.size(results));
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(1), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(2), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(3), rollValues.next());
+    }
+
+    /**
+     * Verifies that a mix of subtraction and addition can be parsed, and the
+     * result is the expected one.
+     */
+    @Test
+    public final void testParse_Number_SubAndAdd() {
+        final DiceNotationExpression operation;
+        final String notation;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
+
+        notation = "1-2+3";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        results = new DiceRoller().transform(operation).getRollResults();
+        resultsItr = results.iterator();
+
+        Assertions.assertEquals(3, Iterables.size(results));
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(1), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(-2), rollValues.next());
+
+        result = resultsItr.next();
+        rolls = result.getAllRolls();
+        Assertions.assertEquals(1, Iterables.size(rolls));
+
+        rollValues = rolls.iterator();
+        Assertions.assertEquals(new Integer(3), rollValues.next());
     }
 
 }
