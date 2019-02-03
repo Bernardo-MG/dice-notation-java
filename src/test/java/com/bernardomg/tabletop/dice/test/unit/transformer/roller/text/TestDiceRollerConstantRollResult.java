@@ -46,6 +46,21 @@ public final class TestDiceRollerConstantRollResult {
      * Verifies that an addition generates the expected results.
      */
     @Test
+    public final void testRolls_Negative_Text() {
+        final DiceNotationExpression expression;
+        final RollHistory result;
+
+        expression = new IntegerOperand(-1);
+
+        result = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals("-1", result.getHistoryText());
+    }
+
+    /**
+     * Verifies that an addition generates the expected results.
+     */
+    @Test
     public final void testRolls_Text() {
         final DiceNotationExpression expression;
         final RollHistory result;
