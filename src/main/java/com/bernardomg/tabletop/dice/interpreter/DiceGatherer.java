@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,21 +87,21 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     private final Iterable<Dice>
             filterDice(final Iterable<DiceNotationExpression> exps) {
         final Collection<Dice> result;
-        DiceNotationExpression previous;
+        final Iterator<DiceNotationExpression> expsItr;
+        DiceNotationExpression exp;
 
-        previous = null;
         result = new ArrayList<>();
-        for (final DiceNotationExpression exp : exps) {
-            if (exp instanceof DiceOperand) {
-                if (previous instanceof SubtractionOperation) {
-                    // Right side on a subtraction
-                    // Change sign
+        expsItr = exps.iterator();
+        while (expsItr.hasNext()) {
+            exp = expsItr.next();
+            if (exp instanceof SubtractionOperation) {
+                exp = expsItr.next();
+                if (exp instanceof DiceOperand) {
                     result.add(reverse(((DiceOperand) exp).getDice()));
-                } else {
-                    result.add(((DiceOperand) exp).getDice());
                 }
+            } else if (exp instanceof DiceOperand) {
+                result.add(((DiceOperand) exp).getDice());
             }
-            previous = exp;
         }
 
         return result;
