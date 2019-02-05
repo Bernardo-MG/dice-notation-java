@@ -80,18 +80,18 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
      * Filters the received expressions, returning only the dice contained in
      * them, in the same order they are in the received list.
      * 
-     * @param exps
+     * @param expressions
      *            expressions to filter
      * @return all the dice in the expressions
      */
     private final Iterable<Dice>
-            filterDice(final Iterable<DiceNotationExpression> exps) {
+            filterDice(final Iterable<DiceNotationExpression> expressions) {
         final Collection<Dice> result;
         final Iterator<DiceNotationExpression> expsItr;
         DiceNotationExpression exp;
 
         result = new ArrayList<>();
-        expsItr = exps.iterator();
+        expsItr = expressions.iterator();
         while (expsItr.hasNext()) {
             exp = expsItr.next();
             if (exp instanceof SubtractionOperation) {
