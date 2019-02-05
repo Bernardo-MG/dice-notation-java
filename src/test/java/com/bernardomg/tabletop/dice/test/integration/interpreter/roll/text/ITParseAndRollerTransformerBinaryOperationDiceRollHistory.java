@@ -57,7 +57,26 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollHistory {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1] + [1, 1, 1]",
+        Assertions.assertEquals("1 + [1, 1] * [1, 1, 1]",
+                result.getHistoryText());
+    }
+
+    /**
+     * Verifies that an addition generates the expected results.
+     */
+    @Test
+    public final void testRolls_DiceAddAndDiv_Text() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory result;
+
+        notation = "1d1+4d1/2d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals("1 + [1, 1, 1, 1] / [1, 1]",
                 result.getHistoryText());
     }
 
