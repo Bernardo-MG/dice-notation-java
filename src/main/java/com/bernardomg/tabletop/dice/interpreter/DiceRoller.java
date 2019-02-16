@@ -209,6 +209,13 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         return new DefaultRollHistory(results, text, result);
     }
 
+    /**
+     * Returns the text value of the received operation.
+     * 
+     * @param exp
+     *            expression containing the operation
+     * @return text value of the operation
+     */
     private final String getOperationText(final DiceNotationExpression exp) {
         final String text;
 
