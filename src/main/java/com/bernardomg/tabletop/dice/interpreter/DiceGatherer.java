@@ -16,20 +16,8 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
  * Dice notation expression which returns all the dice sets contained inside the
@@ -42,81 +30,22 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  */
 public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
 
-    /**
-     * Logger.
-     */
-    private static final Logger                                     LOGGER    = LoggerFactory
-            .getLogger(DiceGatherer.class);
-
-    /**
-     * Transformer to generate a list from the received expression.
-     */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new InorderTraverser();
+    private final DiceInterpreter<Iterable<Dice>> wrapped;
 
     /**
      * Default constructor.
      */
     public DiceGatherer() {
         super();
+
+        wrapped = new ConfigurableInterpreter<>(new InorderTraverser(),
+                DiceGathererVisitor::new);
     }
 
     @Override
     public final Iterable<Dice>
             transform(final DiceNotationExpression expression) {
-        final Iterable<DiceNotationExpression> exps;
-
-        checkNotNull(expression, "Received a null pointer as expression");
-
-        LOGGER.debug("Root expression {}", expression);
-
-        // The expression is broken down
-        exps = traverser.transform(expression);
-
-        // The expressions are filtered, taking all the dice
-        return filterDice(exps);
-    }
-
-    /**
-     * Filters the received expressions, returning only the dice contained in
-     * them, in the same order they are in the received list.
-     * 
-     * @param expressions
-     *            expressions to filter
-     * @return all the dice in the expressions
-     */
-    private final Iterable<Dice>
-            filterDice(final Iterable<DiceNotationExpression> expressions) {
-        final Collection<Dice> result;
-        final Iterator<DiceNotationExpression> expsItr;
-        DiceNotationExpression exp;
-
-        result = new ArrayList<>();
-        expsItr = expressions.iterator();
-        while (expsItr.hasNext()) {
-            exp = expsItr.next();
-            if (exp instanceof SubtractionOperation) {
-                exp = expsItr.next();
-                if (exp instanceof DiceOperand) {
-                    result.add(reverse(((DiceOperand) exp).getDice()));
-                }
-            } else if (exp instanceof DiceOperand) {
-                result.add(((DiceOperand) exp).getDice());
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Reverses the sign of a dice, changing positive values to negatives, and
-     * viceversa.
-     * 
-     * @param dice
-     *            dice to reverse
-     * @return dice with the sign reversed
-     */
-    private final Dice reverse(final Dice dice) {
-        return new DefaultDice(0 - dice.getQuantity(), dice.getSides());
+        return wrapped.transform(expression);
     }
 
 }

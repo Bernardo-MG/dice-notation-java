@@ -16,6 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
@@ -66,8 +67,8 @@ public final class TestDiceRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(1,
-                2, 3);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(1, 2, 3));
 
         expression = new DefaultDiceOperand(dice);
 
@@ -95,8 +96,8 @@ public final class TestDiceRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(1,
-                2, 3);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(1, 2));
 
         expression = new DefaultDiceOperand(dice);
 
@@ -132,7 +133,8 @@ public final class TestDiceRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(5);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5));
 
         expression = new DefaultDiceOperand(dice);
 
@@ -159,8 +161,8 @@ public final class TestDiceRoller {
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate(ArgumentMatchers.any())).thenReturn(5,
-                7, 2);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5, 7, 2));
 
         expression = new DefaultDiceOperand(dice);
 

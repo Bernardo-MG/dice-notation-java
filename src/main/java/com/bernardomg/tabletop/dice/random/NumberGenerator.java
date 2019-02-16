@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.random;
 
+import com.bernardomg.tabletop.dice.Dice;
+
 /**
  * Generates a random integer value. This allows tuning the actual probabilities
  * distributions.
@@ -26,6 +28,17 @@ package com.bernardomg.tabletop.dice.random;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface NumberGenerator {
+
+    /**
+     * Generates a collection of random values from the received {@code Dice}.
+     * <p>
+     * These are returned in the same order they were generated.
+     * 
+     * @param dice
+     *            the dice to roll
+     * @return a collection of random values generated from the dice
+     */
+    public Iterable<Integer> generate(final Dice dice);
 
     /**
      * Generates a random value.

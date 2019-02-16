@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.history;
+package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.history;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,12 +35,12 @@ import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDiceRoller {
+public final class TestDiceRollerHistory {
 
     /**
      * Default constructor.
      */
-    public TestDiceRoller() {
+    public TestDiceRollerHistory() {
         super();
     }
 

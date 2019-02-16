@@ -16,32 +16,10 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Stack;
-import java.util.function.BiFunction;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
-import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollHistory;
-import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
-import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
-import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
-import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
-import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.google.common.collect.Iterables;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -58,24 +36,7 @@ import com.google.common.collect.Iterables;
  */
 public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
-    /**
-     * Logger.
-     */
-    private static final Logger                                     LOGGER    = LoggerFactory
-            .getLogger(DiceRoller.class);
-
-    /**
-     * The random numbers generator.
-     * <p>
-     * Combined with the data in the rolled this, this will generate a random
-     * value in an interval.
-     */
-    private final NumberGenerator                                   numberGenerator;
-
-    /**
-     * Transformer to generate a list from the received expression.
-     */
-    private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser = new PostorderTraverser();
+    private final DiceInterpreter<RollHistory> wrapped;
 
     /**
      * Default constructor.
@@ -83,7 +44,8 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     public DiceRoller() {
         super();
 
-        numberGenerator = new RandomNumberGenerator();
+        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+                DiceRollerVisitor::new);
     }
 
     /**
@@ -95,204 +57,14 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     public DiceRoller(final NumberGenerator generator) {
         super();
 
-        numberGenerator = checkNotNull(generator,
-                "Received a null pointer as generator");
+        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+                () -> new DiceRollerVisitor(generator));
     }
 
     @Override
     public final RollHistory
             transform(final DiceNotationExpression expression) {
-        final Iterable<DiceNotationExpression> ordered;
-
-        checkNotNull(expression, "Received a null pointer as expression");
-
-        LOGGER.debug("Root expression {}", expression);
-
-        ordered = traverser.transform(expression);
-
-        return getHistory(ordered);
-    }
-
-    /**
-     * Returns the final value from the parsed expression. This expression is
-     * received as a postorder tree list.
-     * 
-     * @param expressions
-     *            expressions to get the values from
-     * @return the value from the expressions
-     */
-    private final RollHistory
-            getHistory(final Iterable<DiceNotationExpression> expressions) {
-        final Stack<Integer> values;
-        final Stack<RollResult> results;
-        final Integer result;
-        final Stack<String> texts;
-        String op;
-        String text;
-        String textA;
-        String textB;
-        RollResult rollResult;
-        Integer value;
-        Integer operandA;
-        Integer operandB;
-        BiFunction<Integer, Integer, Integer> operation;
-        DiceNotationExpression previous;
-
-        texts = new Stack<>();
-        results = new Stack<>();
-        values = new Stack<>();
-        previous = null;
-        for (final DiceNotationExpression current : expressions) {
-            if (current instanceof BinaryOperation) {
-                // Operation
-                // Takes back the two latest values and applies
-                operandB = values.pop();
-                operandA = values.pop();
-                operation = ((BinaryOperation) current).getOperation();
-                value = operation.apply(operandA, operandB);
-                values.push(value);
-
-                op = getOperationText(current);
-                textA = texts.pop();
-                textB = texts.pop();
-                texts.push(textB + op + textA);
-                if ((current instanceof SubtractionOperation)
-                        && (previous instanceof ConstantOperand)) {
-                    // This is a subtraction
-                    // The previous value was a constant
-                    // The sign is changed
-                    rollResult = results.pop();
-                    value = 0 - rollResult.getTotalRoll();
-                    rollResult = new DefaultRollResult(current, value);
-                    results.push(rollResult);
-                }
-            } else if (current instanceof ConstantOperand) {
-                // Constant
-                // Stores the value
-                value = ((ConstantOperand) current).getValue();
-                rollResult = new DefaultRollResult(current, value);
-                results.add(rollResult);
-
-                values.push(rollResult.getTotalRoll());
-
-                texts.push(rollResult.getTotalRoll().toString());
-            } else if (current instanceof DiceOperand) {
-                // Dice
-                // Generates a random value
-                rollResult = transform(((DiceOperand) current));
-                results.add(rollResult);
-
-                values.push(rollResult.getTotalRoll());
-
-                if (Iterables.size(rollResult.getAllRolls()) > 1) {
-                    texts.push(rollResult.getAllRolls().toString());
-                } else {
-                    texts.push(rollResult.getTotalRoll().toString());
-                }
-            } else {
-                LOGGER.warn("Unsupported expression of type {}",
-                        current.getClass());
-            }
-            previous = current;
-        }
-
-        if (values.isEmpty()) {
-            // By default the returned value is 0
-            result = 0;
-        } else {
-            // The value which is left is returned
-            result = values.pop();
-        }
-
-        text = texts.pop();
-
-        return new DefaultRollHistory(results, text, result);
-    }
-
-    /**
-     * Returns the text value of the received operation.
-     * 
-     * @param exp
-     *            expression containing the operation
-     * @return text value of the operation
-     */
-    private final String getOperationText(final DiceNotationExpression exp) {
-        final String text;
-
-        if (exp instanceof AdditionOperation) {
-            text = " + ";
-        } else if (exp instanceof SubtractionOperation) {
-            text = " - ";
-        } else if (exp instanceof MultiplicationOperation) {
-            text = " * ";
-        } else if (exp instanceof DivisionOperation) {
-            text = " / ";
-        } else {
-            LOGGER.warn("Unsupported expression of type {}", exp.getClass());
-            text = "";
-        }
-
-        return text;
-    }
-
-    /**
-     * Generates a collection of random values from the received {@code Dice}.
-     * <p>
-     * These are returned in the same order they were generated.
-     * 
-     * @param dice
-     *            the dice to roll
-     * @return a collection of random values generated from the dice
-     */
-    private final Iterable<Integer> roll(final Dice dice) {
-        final Collection<Integer> rolls; // Roll results
-        final Integer quantity;
-        final Boolean negative;
-
-        checkNotNull(dice, "Received a null pointer as dice");
-
-        if (dice.getQuantity() < 0) {
-            quantity = 0 - dice.getQuantity();
-            negative = true;
-        } else {
-            quantity = dice.getQuantity();
-            negative = false;
-        }
-
-        rolls = new ArrayList<Integer>();
-        for (Integer i = 0; i < quantity; i++) {
-            if (negative) {
-                rolls.add(0 - numberGenerator.generate(dice.getSides()));
-            } else {
-                rolls.add(numberGenerator.generate(dice.getSides()));
-            }
-        }
-
-        return rolls;
-    }
-
-    /**
-     * Returns the value from a dice operand.
-     * <p>
-     * This will generate a random value for each die in the dice set. The
-     * actual random value will be generated by the dice roller.
-     * 
-     * @param operand
-     *            operand to transform
-     * @return result from rolling the dice
-     */
-    private final RollResult transform(final DiceOperand operand) {
-        final Iterable<Integer> rolls;
-        Integer total;
-
-        rolls = roll(operand.getDice());
-
-        total = 0;
-        for (final Integer roll : rolls) {
-            total += roll;
-        }
-
-        return new DefaultRollResult(operand, rolls, total);
+        return wrapped.transform(expression);
     }
 
 }
