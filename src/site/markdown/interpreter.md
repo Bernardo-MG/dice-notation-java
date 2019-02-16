@@ -37,6 +37,15 @@ result = results .iterator().next();
 System.out.println(result.getAllRolls());
 ```
 
+The default roll history also prints a clean text output:
+
+```java
+// Prints the full history
+System.out.println(history.toString());
+```
+
+Which for the expression "4d6+5" may look similar to "[4 5 6 4] + 5";
+
 Each time it is called a new set of data will be generated, rolling again all the dice. So the final values may change.
 
 ### Changing Random Number Generation on Parsed Dice
