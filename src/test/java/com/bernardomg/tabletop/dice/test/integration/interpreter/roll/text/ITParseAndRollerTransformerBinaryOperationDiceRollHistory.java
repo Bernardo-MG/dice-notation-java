@@ -46,19 +46,36 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollHistory {
      * Verifies that an addition generates the expected results.
      */
     @Test
-    public final void testRolls_DiceAddAndMult_Text() {
+    public final void testRolls_AddSub() {
         final DiceNotationExpression expression;
         final String notation;
         final RollHistory result;
 
-        notation = "1d1+2d1*3d1";
+        notation = "1+2-3";
 
         expression = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1] * [1, 1, 1]",
-                result.getHistoryText());
+        Assertions.assertEquals("1 + 2 - 3", result.getHistoryText());
+    }
+
+    /**
+     * Verifies that an addition generates the expected results.
+     */
+    @Test
+    public final void testRolls_AddSub_Parenthesis() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory result;
+
+        notation = "1+(2-3)";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals("1 + 2 - 3", result.getHistoryText());
     }
 
     /**
@@ -77,6 +94,25 @@ public final class ITParseAndRollerTransformerBinaryOperationDiceRollHistory {
         result = new DiceRoller().transform(expression);
 
         Assertions.assertEquals("1 + [1, 1, 1, 1] / [1, 1]",
+                result.getHistoryText());
+    }
+
+    /**
+     * Verifies that an addition generates the expected results.
+     */
+    @Test
+    public final void testRolls_DiceAddAndMult_Text() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory result;
+
+        notation = "1d1+2d1*3d1";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals("1 + [1, 1] * [1, 1, 1]",
                 result.getHistoryText());
     }
 
