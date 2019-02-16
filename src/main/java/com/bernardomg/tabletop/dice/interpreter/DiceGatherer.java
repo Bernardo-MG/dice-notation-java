@@ -88,19 +88,24 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
             filterDice(final Iterable<DiceNotationExpression> expressions) {
         final Collection<Dice> result;
         final Iterator<DiceNotationExpression> expsItr;
+        Boolean negative;
         DiceNotationExpression exp;
 
         result = new ArrayList<>();
         expsItr = expressions.iterator();
+        negative = false;
         while (expsItr.hasNext()) {
             exp = expsItr.next();
             if (exp instanceof SubtractionOperation) {
-                exp = expsItr.next();
-                if (exp instanceof DiceOperand) {
-                    result.add(reverse(((DiceOperand) exp).getDice()));
-                }
+                negative = true;
             } else if (exp instanceof DiceOperand) {
-                result.add(((DiceOperand) exp).getDice());
+                if (negative) {
+                    result.add(reverse(((DiceOperand) exp).getDice()));
+                } else {
+                    result.add(((DiceOperand) exp).getDice());
+                }
+            } else {
+                negative = false;
             }
         }
 
