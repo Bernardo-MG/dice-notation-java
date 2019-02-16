@@ -221,6 +221,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         } else if (exp instanceof DivisionOperation) {
             text = " / ";
         } else {
+            LOGGER.warn("Unsupported expression of type {}", exp.getClass());
             text = "";
         }
 
