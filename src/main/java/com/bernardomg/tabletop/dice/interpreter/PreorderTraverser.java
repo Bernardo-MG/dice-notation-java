@@ -62,8 +62,6 @@ public final class PreorderTraverser
 
         checkNotNull(expression, "Received a null pointer as expression");
 
-        current = expression;
-
         nodes = new Stack<>();
         nodes.push(expression);
 
