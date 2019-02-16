@@ -57,7 +57,7 @@ public final class TestDiceRoller {
 
         history = new DefaultRollHistory(results, "", 0);
 
-        Assertions.assertEquals("", history.getHistoryText());
+        Assertions.assertEquals("", history.toString());
     }
 
     /**
@@ -73,7 +73,7 @@ public final class TestDiceRoller {
 
         history = new DefaultRollHistory(results, "1+2", 0);
 
-        Assertions.assertEquals("1+2", history.getHistoryText());
+        Assertions.assertEquals("1+2", history.toString());
     }
 
 }

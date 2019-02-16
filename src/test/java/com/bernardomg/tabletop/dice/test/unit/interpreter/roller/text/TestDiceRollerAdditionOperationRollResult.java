@@ -61,7 +61,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + 2", result.getHistoryText());
+        Assertions.assertEquals("1 + 2", result.toString());
     }
 
 }

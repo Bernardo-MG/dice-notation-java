@@ -64,11 +64,6 @@ public final class DefaultRollHistory implements RollHistory {
     }
 
     @Override
-    public final String getHistoryText() {
-        return historyText;
-    }
-
-    @Override
     public final Iterable<RollResult> getRollResults() {
         return rollResults;
     }
@@ -76,6 +71,11 @@ public final class DefaultRollHistory implements RollHistory {
     @Override
     public final Integer getTotalRoll() {
         return totalRoll;
+    }
+
+    @Override
+    public final String toString() {
+        return historyText;
     }
 
 }
