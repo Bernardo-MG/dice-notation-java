@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class RandomNumberGenerator implements NumberGenerator {
+public final class RandomNumberGenerator extends AbstractNumberGenerator {
 
     /**
      * Logger.

@@ -3,15 +3,12 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Stack;
 import java.util.function.BiFunction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -108,6 +105,7 @@ public final class DiceRollerVisitor implements NotationVisitor {
         textA = texts.pop();
         textB = texts.pop();
         texts.push(textB + op + textA);
+
         if ((exp instanceof SubtractionOperation)
                 && (previous instanceof ConstantOperand)) {
             // This is a subtraction
@@ -187,42 +185,6 @@ public final class DiceRollerVisitor implements NotationVisitor {
     }
 
     /**
-     * Generates a collection of random values from the received {@code Dice}.
-     * <p>
-     * These are returned in the same order they were generated.
-     * 
-     * @param dice
-     *            the dice to roll
-     * @return a collection of random values generated from the dice
-     */
-    private final Iterable<Integer> roll(final Dice dice) {
-        final Collection<Integer> rolls; // Roll results
-        final Integer quantity;
-        final Boolean negative;
-
-        checkNotNull(dice, "Received a null pointer as dice");
-
-        if (dice.getQuantity() < 0) {
-            quantity = 0 - dice.getQuantity();
-            negative = true;
-        } else {
-            quantity = dice.getQuantity();
-            negative = false;
-        }
-
-        rolls = new ArrayList<Integer>();
-        for (Integer i = 0; i < quantity; i++) {
-            if (negative) {
-                rolls.add(0 - numberGenerator.generate(dice.getSides()));
-            } else {
-                rolls.add(numberGenerator.generate(dice.getSides()));
-            }
-        }
-
-        return rolls;
-    }
-
-    /**
      * Returns the value from a dice operand.
      * <p>
      * This will generate a random value for each die in the dice set. The
@@ -236,7 +198,7 @@ public final class DiceRollerVisitor implements NotationVisitor {
         final Iterable<Integer> rolls;
         Integer total;
 
-        rolls = roll(operand.getDice());
+        rolls = numberGenerator.generate(operand.getDice());
 
         total = 0;
         for (final Integer roll : rolls) {
