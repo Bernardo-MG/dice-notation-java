@@ -18,6 +18,8 @@ package com.bernardomg.tabletop.dice.history;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Arrays;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
@@ -42,6 +44,25 @@ public final class DefaultRollResult implements RollResult {
      * Sum of all the generated values.
      */
     private final Integer                totalRoll;
+
+    /**
+     * Constructs a roll result with a single value.
+     * 
+     * @param exp
+     *            expression which generated the result
+     * @param total
+     *            sum of all the values
+     */
+    public DefaultRollResult(final DiceNotationExpression exp,
+            final Integer total) {
+        super();
+
+        expression = checkNotNull(exp, "Received a null pointer as expression");
+        totalRoll = checkNotNull(total,
+                "Received a null pointer as total roll");
+
+        allRolls = Arrays.asList(total);
+    }
 
     /**
      * Constructs a roll result with the specified data.

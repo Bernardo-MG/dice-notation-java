@@ -19,7 +19,6 @@ package com.bernardomg.tabletop.dice.interpreter;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Stack;
 import java.util.function.BiFunction;
@@ -152,6 +151,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 operation = ((BinaryOperation) current).getOperation();
                 value = operation.apply(operandA, operandB);
                 values.push(value);
+
                 op = getOperationText(current);
                 textA = texts.pop();
                 textB = texts.pop();
@@ -163,26 +163,26 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                     // The sign is changed
                     rollResult = results.pop();
                     value = 0 - rollResult.getTotalRoll();
-                    rollResult = new DefaultRollResult(current,
-                            Arrays.asList(value), value);
+                    rollResult = new DefaultRollResult(current, value);
                     results.push(rollResult);
                 }
             } else if (current instanceof ConstantOperand) {
                 // Constant
                 // Stores the value
                 value = ((ConstantOperand) current).getValue();
-                rollResult = new DefaultRollResult(current,
-                        Arrays.asList(value), value);
-                values.push(value);
-                texts.push(value.toString());
+                rollResult = new DefaultRollResult(current, value);
                 results.add(rollResult);
+
+                values.push(rollResult.getTotalRoll());
+
+                texts.push(rollResult.getTotalRoll().toString());
             } else if (current instanceof DiceOperand) {
                 // Dice
                 // Generates a random value
                 rollResult = transform(((DiceOperand) current));
-                value = rollResult.getTotalRoll();
-                values.push(value);
                 results.add(rollResult);
+
+                values.push(rollResult.getTotalRoll());
 
                 if (Iterables.size(rollResult.getAllRolls()) > 1) {
                     texts.push(rollResult.getAllRolls().toString());
