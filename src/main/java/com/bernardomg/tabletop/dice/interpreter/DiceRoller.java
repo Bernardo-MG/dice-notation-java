@@ -21,7 +21,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
@@ -126,8 +125,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             }
         }
 
-        return new DefaultRollHistory(visitor.getResults(), visitor.getText(),
-                visitor.getResult());
+        return visitor.getRollHistory();
     }
 
 }

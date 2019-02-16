@@ -9,7 +9,9 @@ import java.util.function.BiFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
+import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
@@ -60,26 +62,8 @@ public final class DiceRollerVisitor implements NotationVisitor {
                 "Received a null pointer as generator");
     }
 
-    public final Integer getResult() {
-        final Integer result;
-
-        if (values.isEmpty()) {
-            // By default the returned value is 0
-            result = 0;
-        } else {
-            // The value which is left is returned
-            result = values.pop();
-        }
-
-        return result;
-    }
-
-    public final Iterable<RollResult> getResults() {
-        return results;
-    }
-
-    public final String getText() {
-        return texts.pop();
+    public final RollHistory getRollHistory() {
+        return new DefaultRollHistory(results, texts.pop(), getResult());
     }
 
     @Override
@@ -182,6 +166,20 @@ public final class DiceRollerVisitor implements NotationVisitor {
         }
 
         return text;
+    }
+
+    private final Integer getResult() {
+        final Integer result;
+
+        if (values.isEmpty()) {
+            // By default the returned value is 0
+            result = 0;
+        } else {
+            // The value which is left is returned
+            result = values.pop();
+        }
+
+        return result;
     }
 
     /**
