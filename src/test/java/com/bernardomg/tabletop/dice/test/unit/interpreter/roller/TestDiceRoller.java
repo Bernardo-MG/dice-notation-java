@@ -166,7 +166,7 @@ public final class TestDiceRoller {
 
         result = new DiceRoller(generator).transform(expression);
 
-        Assertions.assertEquals("[5, 7, 2]", result.getHistoryText());
+        Assertions.assertEquals("[5, 7, 2]", result.toString());
     }
 
 }

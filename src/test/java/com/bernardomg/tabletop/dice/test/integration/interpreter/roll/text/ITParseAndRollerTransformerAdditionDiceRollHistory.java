@@ -57,7 +57,7 @@ public final class ITParseAndRollerTransformerAdditionDiceRollHistory {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1]", result.getHistoryText());
+        Assertions.assertEquals("1 + [1, 1]", result.toString());
     }
 
 }

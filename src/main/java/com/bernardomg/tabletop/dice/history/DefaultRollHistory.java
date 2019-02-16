@@ -18,9 +18,6 @@ package com.bernardomg.tabletop.dice.history;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 /**
  * Immutable roll history.
  * 
@@ -30,7 +27,12 @@ import java.util.stream.StreamSupport;
 public final class DefaultRollHistory implements RollHistory {
 
     /**
-     * The results of each dice set.
+     * The text representation of the roll history.
+     */
+    private final String               historyText;
+
+    /**
+     * The results of each expression.
      */
     private final Iterable<RollResult> rollResults;
 
@@ -44,23 +46,21 @@ public final class DefaultRollHistory implements RollHistory {
      * 
      * @param results
      *            each roll result
+     * @param text
+     *            history text
      * @param total
      *            sum of all the values
      */
     public DefaultRollHistory(final Iterable<RollResult> results,
-            final Integer total) {
+            final String text, final Integer total) {
         super();
 
         rollResults = checkNotNull(results,
                 "Received a null pointer as roll results");
+        historyText = checkNotNull(text,
+                "Received a null pointer as history text");
         totalRoll = checkNotNull(total,
                 "Received a null pointer as total roll");
-    }
-
-    @Override
-    public final String getHistoryText() {
-        return StreamSupport.stream(rollResults.spliterator(), false)
-                .map(RollResult::getText).collect(Collectors.joining(" + "));
     }
 
     @Override
@@ -71,6 +71,11 @@ public final class DefaultRollHistory implements RollHistory {
     @Override
     public final Integer getTotalRoll() {
         return totalRoll;
+    }
+
+    @Override
+    public final String toString() {
+        return historyText;
     }
 
 }

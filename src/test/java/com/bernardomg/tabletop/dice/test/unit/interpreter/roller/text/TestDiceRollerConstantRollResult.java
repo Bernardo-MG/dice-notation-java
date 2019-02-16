@@ -54,7 +54,7 @@ public final class TestDiceRollerConstantRollResult {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("-1", result.getHistoryText());
+        Assertions.assertEquals("-1", result.toString());
     }
 
     /**
@@ -69,7 +69,7 @@ public final class TestDiceRollerConstantRollResult {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1", result.getHistoryText());
+        Assertions.assertEquals("1", result.toString());
     }
 
 }

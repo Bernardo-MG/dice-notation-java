@@ -35,10 +35,14 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
+import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
+import com.google.common.collect.Iterables;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -100,7 +104,6 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     public final RollHistory
             transform(final DiceNotationExpression expression) {
         final Iterable<DiceNotationExpression> ordered;
-        final RollHistory result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
@@ -108,9 +111,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
         ordered = traverser.transform(expression);
 
-        result = getValue(ordered);
-
-        return result;
+        return getHistory(ordered);
     }
 
     /**
@@ -122,10 +123,15 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * @return the value from the expressions
      */
     private final RollHistory
-            getValue(final Iterable<DiceNotationExpression> expressions) {
+            getHistory(final Iterable<DiceNotationExpression> expressions) {
         final Stack<Integer> values;
         final Stack<RollResult> results;
         final Integer result;
+        final Stack<String> texts;
+        String op;
+        String text;
+        String textA;
+        String textB;
         RollResult rollResult;
         Integer value;
         Integer operandA;
@@ -133,6 +139,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         BiFunction<Integer, Integer, Integer> operation;
         DiceNotationExpression previous;
 
+        texts = new Stack<>();
         results = new Stack<>();
         values = new Stack<>();
         previous = null;
@@ -145,6 +152,10 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 operation = ((BinaryOperation) current).getOperation();
                 value = operation.apply(operandA, operandB);
                 values.push(value);
+                op = getOperationText(current);
+                textA = texts.pop();
+                textB = texts.pop();
+                texts.push(textB + op + textA);
                 if ((current instanceof SubtractionOperation)
                         && (previous instanceof ConstantOperand)) {
                     // This is a subtraction
@@ -163,6 +174,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 rollResult = new DefaultRollResult(current,
                         Arrays.asList(value), value);
                 values.push(value);
+                texts.push(value.toString());
                 results.add(rollResult);
             } else if (current instanceof DiceOperand) {
                 // Dice
@@ -171,6 +183,12 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
                 value = rollResult.getTotalRoll();
                 values.push(value);
                 results.add(rollResult);
+
+                if (Iterables.size(rollResult.getAllRolls()) > 1) {
+                    texts.push(rollResult.getAllRolls().toString());
+                } else {
+                    texts.push(rollResult.getTotalRoll().toString());
+                }
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());
@@ -186,7 +204,28 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             result = values.pop();
         }
 
-        return new DefaultRollHistory(results, result);
+        text = texts.pop();
+
+        return new DefaultRollHistory(results, text, result);
+    }
+
+    private final String getOperationText(final DiceNotationExpression exp) {
+        final String text;
+
+        if (exp instanceof AdditionOperation) {
+            text = " + ";
+        } else if (exp instanceof SubtractionOperation) {
+            text = " - ";
+        } else if (exp instanceof MultiplicationOperation) {
+            text = " * ";
+        } else if (exp instanceof DivisionOperation) {
+            text = " / ";
+        } else {
+            LOGGER.warn("Unsupported expression of type {}", exp.getClass());
+            text = "";
+        }
+
+        return text;
     }
 
     /**
