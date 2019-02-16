@@ -98,7 +98,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
             }
         }
 
-        return visitor.getDice();
+        return visitor.getValue();
     }
 
 }

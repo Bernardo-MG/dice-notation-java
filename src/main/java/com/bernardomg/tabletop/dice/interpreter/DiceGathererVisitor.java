@@ -11,7 +11,8 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-public final class DiceGathererVisitor implements NotationVisitor {
+public final class DiceGathererVisitor
+        implements NotationVisitor<Iterable<Dice>> {
 
     private final Collection<Dice> dice     = new ArrayList<>();
 
@@ -21,7 +22,8 @@ public final class DiceGathererVisitor implements NotationVisitor {
         super();
     }
 
-    public final Iterable<Dice> getDice() {
+    @Override
+    public final Iterable<Dice> getValue() {
         return dice;
     }
 

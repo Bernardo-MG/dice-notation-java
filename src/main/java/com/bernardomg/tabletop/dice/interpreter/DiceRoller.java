@@ -125,7 +125,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
             }
         }
 
-        return visitor.getRollHistory();
+        return visitor.getValue();
     }
 
 }

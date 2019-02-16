@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.google.common.collect.Iterables;
 
-public final class DiceRollerVisitor implements NotationVisitor {
+public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
 
     /**
      * Logger.
@@ -62,7 +62,8 @@ public final class DiceRollerVisitor implements NotationVisitor {
                 "Received a null pointer as generator");
     }
 
-    public final RollHistory getRollHistory() {
+    @Override
+    public final RollHistory getValue() {
         return new DefaultRollHistory(results, texts.pop(), getResult());
     }
 
