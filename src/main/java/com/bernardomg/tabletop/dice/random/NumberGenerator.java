@@ -30,17 +30,6 @@ import com.bernardomg.tabletop.dice.Dice;
 public interface NumberGenerator {
 
     /**
-     * Generates a random value.
-     * <p>
-     * This is expected to be in the interval [1,max].
-     * 
-     * @param max
-     *            the maximum value which can be generated
-     * @return a random value
-     */
-    public Integer generate(final Integer max);
-
-    /**
      * Generates a collection of random values from the received {@code Dice}.
      * <p>
      * These are returned in the same order they were generated.
@@ -50,5 +39,16 @@ public interface NumberGenerator {
      * @return a collection of random values generated from the dice
      */
     public Iterable<Integer> generate(final Dice dice);
+
+    /**
+     * Generates a random value.
+     * <p>
+     * This is expected to be in the interval [1,max].
+     * 
+     * @param max
+     *            the maximum value which can be generated
+     * @return a random value
+     */
+    public Integer generate(final Integer max);
 
 }

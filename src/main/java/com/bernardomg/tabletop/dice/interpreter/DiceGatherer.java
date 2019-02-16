@@ -18,18 +18,14 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
  * Dice notation expression which returns all the dice sets contained inside the
@@ -86,42 +82,23 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
      */
     private final Iterable<Dice>
             filterDice(final Iterable<DiceNotationExpression> expressions) {
-        final Collection<Dice> result;
-        final Iterator<DiceNotationExpression> expsItr;
-        Boolean negative;
-        DiceNotationExpression exp;
+        final DiceGathererVisitor visitor;
 
-        result = new ArrayList<>();
-        expsItr = expressions.iterator();
-        negative = false;
-        while (expsItr.hasNext()) {
-            exp = expsItr.next();
-            if (exp instanceof SubtractionOperation) {
-                negative = true;
-            } else if (exp instanceof DiceOperand) {
-                if (negative) {
-                    result.add(reverse(((DiceOperand) exp).getDice()));
-                } else {
-                    result.add(((DiceOperand) exp).getDice());
-                }
+        visitor = new DiceGathererVisitor();
+        for (final DiceNotationExpression current : expressions) {
+            if (current instanceof BinaryOperation) {
+                visitor.onBinaryOperation((BinaryOperation) current);
+            } else if (current instanceof ConstantOperand) {
+                visitor.onConstantOperand((ConstantOperand) current);
+            } else if (current instanceof DiceOperand) {
+                visitor.onDiceOperand((DiceOperand) current);
             } else {
-                negative = false;
+                LOGGER.warn("Unsupported expression of type {}",
+                        current.getClass());
             }
         }
 
-        return result;
-    }
-
-    /**
-     * Reverses the sign of a dice, changing positive values to negatives, and
-     * viceversa.
-     * 
-     * @param dice
-     *            dice to reverse
-     * @return dice with the sign reversed
-     */
-    private final Dice reverse(final Dice dice) {
-        return new DefaultDice(0 - dice.getQuantity(), dice.getSides());
+        return visitor.getDice();
     }
 
 }
