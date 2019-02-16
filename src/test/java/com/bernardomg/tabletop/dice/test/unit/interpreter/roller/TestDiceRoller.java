@@ -97,7 +97,7 @@ public final class TestDiceRoller {
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(1, 2, 3));
+                .thenReturn(Arrays.asList(1, 2));
 
         expression = new DefaultDiceOperand(dice);
 
