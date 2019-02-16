@@ -20,6 +20,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Immutable roll history.
+ * <p>
+ * To allow returning a clean text output of the full history it receives a text
+ * history in the constructor. This will be returned by the {@code toString}
+ * method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -28,6 +32,8 @@ public final class DefaultRollHistory implements RollHistory {
 
     /**
      * The text representation of the roll history.
+     * <p>
+     * Used as the string representation of the history.
      */
     private final String               historyText;
 
@@ -43,6 +49,8 @@ public final class DefaultRollHistory implements RollHistory {
 
     /**
      * Constructs a roll history with the specified data.
+     * <p>
+     * The text history will be used for the {@code toString} method.
      * 
      * @param results
      *            each roll result
