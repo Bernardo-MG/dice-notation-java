@@ -84,7 +84,6 @@ The parser generates a tree from the expression:
 ```java
 final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
-final DiceInterpreter interpreter;
 
 parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
@@ -95,12 +94,12 @@ And the interpreters transform this tree into other values.
 For example, to roll the notation:
 
 ```java
-final TransformableDiceNotationExpression parsed;
+final DiceInterpreter<RollHistory> interpreter;
 final RollHistory history;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("2d6+12");
+interpreter = new DiceRoller();
 
-history = new DiceRoller().transform(parsed);
+history = new DefaultDiceNotationExpressionParser().parse("2d6+12", interpreter);
 ```
 
 This history is composed from all the values generated when rolling:
