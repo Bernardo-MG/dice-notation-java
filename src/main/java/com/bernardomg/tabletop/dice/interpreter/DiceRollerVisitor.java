@@ -115,7 +115,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             // The sign is changed
             rollResult = results.pop();
             value = 0 - rollResult.getTotalRoll();
-            rollResult = new DefaultRollResult(exp, value);
+            rollResult = new DefaultRollResult(value);
             results.push(rollResult);
         }
 
@@ -130,7 +130,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
         // Constant
         // Stores the value
         value = exp.getValue();
-        rollResult = new DefaultRollResult(exp, value);
+        rollResult = new DefaultRollResult(value);
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
@@ -207,7 +207,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             total += roll;
         }
 
-        return new DefaultRollResult(operand, rolls, total);
+        return new DefaultRollResult(operand.getDice(), rolls, total);
     }
 
 }
