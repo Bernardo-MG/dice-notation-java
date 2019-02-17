@@ -20,7 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Arrays;
 
-import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.DefaultDice;
+import com.bernardomg.tabletop.dice.Dice;
 
 /**
  * Immutable roll result.
@@ -33,55 +34,52 @@ public final class DefaultRollResult implements RollResult {
     /**
      * All the generated values.
      */
-    private final Iterable<Integer>      allRolls;
+    private final Iterable<Integer> allRolls;
 
     /**
      * Rolled dice.
      */
-    private final DiceNotationExpression expression;
+    private final Dice              dice;
 
     /**
      * Sum of all the generated values.
      */
-    private final Integer                totalRoll;
-
-    /**
-     * Constructs a roll result with a single value.
-     * 
-     * @param exp
-     *            expression which generated the result
-     * @param total
-     *            sum of all the values
-     */
-    public DefaultRollResult(final DiceNotationExpression exp,
-            final Integer total) {
-        super();
-
-        expression = checkNotNull(exp, "Received a null pointer as expression");
-        totalRoll = checkNotNull(total,
-                "Received a null pointer as total roll");
-
-        allRolls = Arrays.asList(total);
-    }
+    private final Integer           totalRoll;
 
     /**
      * Constructs a roll result with the specified data.
      * 
-     * @param exp
-     *            expression which generated the result
+     * @param d
+     *            dice which generated the result
      * @param rolls
      *            generated values
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(final DiceNotationExpression exp,
-            final Iterable<Integer> rolls, final Integer total) {
+    public DefaultRollResult(final Dice d, final Iterable<Integer> rolls,
+            final Integer total) {
         super();
 
-        expression = checkNotNull(exp, "Received a null pointer as expression");
+        dice = checkNotNull(d, "Received a null pointer as dice");
         allRolls = checkNotNull(rolls, "Received a null pointer as rolls");
         totalRoll = checkNotNull(total,
                 "Received a null pointer as total roll");
+    }
+
+    /**
+     * Constructs a roll result with a single value.
+     * 
+     * @param total
+     *            sum of all the values
+     */
+    public DefaultRollResult(final Integer total) {
+        super();
+
+        dice = new DefaultDice(1, total);
+        totalRoll = checkNotNull(total,
+                "Received a null pointer as total roll");
+
+        allRolls = Arrays.asList(total);
     }
 
     @Override
@@ -90,8 +88,8 @@ public final class DefaultRollResult implements RollResult {
     }
 
     @Override
-    public final DiceNotationExpression getExpression() {
-        return expression;
+    public final Dice getDice() {
+        return dice;
     }
 
     @Override

@@ -26,7 +26,6 @@ import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.google.common.collect.Iterables;
 
@@ -62,7 +61,7 @@ public final class ITParseAndRollerTransformerDiceRollResults {
         result = new DiceRoller().transform(expression).getRollResults()
                 .iterator().next();
 
-        dice = ((DiceOperand) result.getExpression()).getDice();
+        dice = result.getDice();
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
         Assertions.assertEquals(new Integer(1), dice.getSides());
     }

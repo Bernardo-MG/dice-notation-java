@@ -65,6 +65,15 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
     @Override
     public final RollHistory getValue() {
         final String text;
+        final Integer result;
+
+        if (values.isEmpty()) {
+            // By default the returned value is 0
+            result = 0;
+        } else {
+            // The value which is left is returned
+            result = values.pop();
+        }
 
         if (texts.isEmpty()) {
             text = "";
@@ -72,7 +81,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             text = texts.pop();
         }
 
-        return new DefaultRollHistory(results, text, getResult());
+        return new DefaultRollHistory(results, text, result);
     }
 
     @Override
@@ -106,7 +115,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             // The sign is changed
             rollResult = results.pop();
             value = 0 - rollResult.getTotalRoll();
-            rollResult = new DefaultRollResult(exp, value);
+            rollResult = new DefaultRollResult(value);
             results.push(rollResult);
         }
 
@@ -121,7 +130,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
         // Constant
         // Stores the value
         value = exp.getValue();
-        rollResult = new DefaultRollResult(exp, value);
+        rollResult = new DefaultRollResult(value);
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
@@ -137,7 +146,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
 
         // Dice
         // Generates a random value
-        rollResult = transform(exp);
+        rollResult = roll(exp);
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
@@ -177,20 +186,6 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
         return text;
     }
 
-    private final Integer getResult() {
-        final Integer result;
-
-        if (values.isEmpty()) {
-            // By default the returned value is 0
-            result = 0;
-        } else {
-            // The value which is left is returned
-            result = values.pop();
-        }
-
-        return result;
-    }
-
     /**
      * Returns the value from a dice operand.
      * <p>
@@ -201,7 +196,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
      *            operand to transform
      * @return result from rolling the dice
      */
-    private final RollResult transform(final DiceOperand operand) {
+    private final RollResult roll(final DiceOperand operand) {
         final Iterable<Integer> rolls;
         Integer total;
 
@@ -212,7 +207,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             total += roll;
         }
 
-        return new DefaultRollResult(operand, rolls, total);
+        return new DefaultRollResult(operand.getDice(), rolls, total);
     }
 
 }
