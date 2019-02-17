@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -56,7 +57,7 @@ public final class TestDiceRollerConstantRollResult {
         final Iterable<Integer> rolls;
         final Iterator<Integer> rollValues;
 
-        expression = new IntegerOperand(-1);
+        expression = new IntegerOperand(-4);
 
         results = new DiceRoller().transform(expression).getRollResults();
         result = results.iterator().next();
@@ -66,7 +67,28 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(-1), rollValues.next());
+        Assertions.assertEquals(new Integer(-4), rollValues.next());
+    }
+
+    /**
+     * Verifies that a constant generates the expected results.
+     */
+    @Test
+    public final void testRolls_Negative_Dice() {
+        final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
+        final RollResult result;
+        final Dice dice;
+
+        expression = new IntegerOperand(-4);
+
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
+
+        dice = result.getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(-4), dice.getSides());
     }
 
     /**
@@ -80,7 +102,7 @@ public final class TestDiceRollerConstantRollResult {
         final Iterable<Integer> rolls;
         final Iterator<Integer> rollValues;
 
-        expression = new IntegerOperand(1);
+        expression = new IntegerOperand(4);
 
         results = new DiceRoller().transform(expression).getRollResults();
         result = results.iterator().next();
@@ -90,7 +112,28 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(1), rollValues.next());
+        Assertions.assertEquals(new Integer(4), rollValues.next());
+    }
+
+    /**
+     * Verifies that a constant generates the expected results.
+     */
+    @Test
+    public final void testRolls_Positive_Dice() {
+        final DiceNotationExpression expression;
+        final Iterable<RollResult> results;
+        final RollResult result;
+        final Dice dice;
+
+        expression = new IntegerOperand(4);
+
+        results = new DiceRoller().transform(expression).getRollResults();
+        result = results.iterator().next();
+
+        dice = result.getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(4), dice.getSides());
     }
 
 }
