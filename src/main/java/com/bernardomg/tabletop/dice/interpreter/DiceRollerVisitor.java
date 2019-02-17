@@ -64,7 +64,15 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
 
     @Override
     public final RollHistory getValue() {
-        return new DefaultRollHistory(results, texts.pop(), getResult());
+        final String text;
+
+        if (texts.isEmpty()) {
+            text = "";
+        } else {
+            text = texts.pop();
+        }
+
+        return new DefaultRollHistory(results, text, getResult());
     }
 
     @Override
