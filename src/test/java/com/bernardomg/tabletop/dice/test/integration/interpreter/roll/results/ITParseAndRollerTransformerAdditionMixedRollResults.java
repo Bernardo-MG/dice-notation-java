@@ -73,6 +73,10 @@ public final class ITParseAndRollerTransformerAdditionMixedRollResults {
 
         result = rolled.next();
 
+        dice = result.getDice();
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(3), dice.getSides());
+
         result = rolled.next();
 
         dice = result.getDice();
