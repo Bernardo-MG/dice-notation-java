@@ -146,7 +146,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
 
         // Dice
         // Generates a random value
-        rollResult = transform(exp);
+        rollResult = roll(exp);
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
@@ -196,7 +196,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
      *            operand to transform
      * @return result from rolling the dice
      */
-    private final RollResult transform(final DiceOperand operand) {
+    private final RollResult roll(final DiceOperand operand) {
         final Iterable<Integer> rolls;
         Integer total;
 
