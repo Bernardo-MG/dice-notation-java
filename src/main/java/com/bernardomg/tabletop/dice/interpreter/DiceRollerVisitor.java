@@ -65,6 +65,15 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
     @Override
     public final RollHistory getValue() {
         final String text;
+        final Integer result;
+
+        if (values.isEmpty()) {
+            // By default the returned value is 0
+            result = 0;
+        } else {
+            // The value which is left is returned
+            result = values.pop();
+        }
 
         if (texts.isEmpty()) {
             text = "";
@@ -72,7 +81,7 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
             text = texts.pop();
         }
 
-        return new DefaultRollHistory(results, text, getResult());
+        return new DefaultRollHistory(results, text, result);
     }
 
     @Override
@@ -175,20 +184,6 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
         }
 
         return text;
-    }
-
-    private final Integer getResult() {
-        final Integer result;
-
-        if (values.isEmpty()) {
-            // By default the returned value is 0
-            result = 0;
-        } else {
-            // The value which is left is returned
-            result = values.pop();
-        }
-
-        return result;
     }
 
     /**
