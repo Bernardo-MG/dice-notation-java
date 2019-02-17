@@ -16,6 +16,7 @@
 
 package com.bernardomg.tabletop.dice.parser;
 
+import com.bernardomg.tabletop.dice.interpreter.DiceInterpreter;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
@@ -37,5 +38,8 @@ public interface DiceParser {
      * @return a dice notation expression object
      */
     public DiceNotationExpression parse(final String expression);
+
+    public <V> V parse(final String expression,
+            final DiceInterpreter<V> interpreter);
 
 }

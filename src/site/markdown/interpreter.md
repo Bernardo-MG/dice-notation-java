@@ -4,6 +4,21 @@ Once the notation has been parsed it can be transformed into other object with a
 
 The two main implementations are the DiceRoller, to generate a random values from the parsed expression, and the DiceGatherer, to get all the dice sets in the expression.
 
+## Applying Interpreters
+
+The parser allows the use of interpreters to change the result from parsing:
+
+```java
+final DiceInterpreter<RollHistory> interpreter;
+final RollHistory history;
+
+interpreter = new DiceRoller();
+
+history = new DefaultDiceNotationExpressionParser().parse("2d6+12", interpreter);
+```
+
+But they may be applied manually to the parsed notation, and that's how they will be used on the examples.
+
 ## Dice Roller
 
 To roll the expression:
@@ -94,5 +109,7 @@ Complex operations will require traversing the parsed tree. For these cases ther
 ## Custom Interpreters
 
 The easiest way to create a new interpreter is by composing it with one of the traversers, which will return a list with all the objects in the expression.
+
+The ConfigurableInterpreter can help with this.
 
 [number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
