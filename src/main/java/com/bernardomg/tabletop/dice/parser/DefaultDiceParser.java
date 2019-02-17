@@ -26,6 +26,7 @@ import org.antlr.v4.runtime.TokenStream;
 
 import com.bernardomg.tabletop.dice.generated.DiceNotationLexer;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser;
+import com.bernardomg.tabletop.dice.interpreter.DiceInterpreter;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultDiceExpressionBuilder;
 import com.bernardomg.tabletop.dice.parser.listener.DefaultErrorListener;
@@ -100,6 +101,16 @@ public final class DefaultDiceParser implements DiceParser {
 
         // Returns the tree root node
         return root;
+    }
+
+    @Override
+    public final <V> V parse(final String expression,
+            final DiceInterpreter<V> interpreter) {
+        final DiceNotationExpression parsed;
+
+        parsed = parse(expression);
+
+        return interpreter.transform(parsed);
     }
 
     /**
