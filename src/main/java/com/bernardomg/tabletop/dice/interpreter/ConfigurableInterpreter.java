@@ -76,11 +76,11 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         visitor = visitorSupplier.get();
         for (final DiceNotationExpression current : expressions) {
             if (current instanceof BinaryOperation) {
-                visitor.onBinaryOperation((BinaryOperation) current);
+                visitor.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {
-                visitor.onConstantOperand((ConstantOperand) current);
+                visitor.constantOperand((ConstantOperand) current);
             } else if (current instanceof DiceOperand) {
-                visitor.onDiceOperand((DiceOperand) current);
+                visitor.diceOperand((DiceOperand) current);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());

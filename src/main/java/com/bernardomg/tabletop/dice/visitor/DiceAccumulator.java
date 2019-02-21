@@ -28,7 +28,7 @@ public final class DiceAccumulator
     }
 
     @Override
-    public final void onBinaryOperation(final BinaryOperation exp) {
+    public final void binaryOperation(final BinaryOperation exp) {
         if (exp instanceof SubtractionOperation) {
             negative = true;
         } else {
@@ -37,12 +37,12 @@ public final class DiceAccumulator
     }
 
     @Override
-    public final void onConstantOperand(final ConstantOperand exp) {
+    public final void constantOperand(final ConstantOperand exp) {
         negative = false;
     }
 
     @Override
-    public final void onDiceOperand(final DiceOperand exp) {
+    public final void diceOperand(final DiceOperand exp) {
         if (negative) {
             dice.add(reverse(exp.getDice()));
         } else {

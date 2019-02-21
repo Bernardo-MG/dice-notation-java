@@ -7,10 +7,10 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 public interface NotationVisitor<V> {
 
-    public void onBinaryOperation(final BinaryOperation exp);
+    public void binaryOperation(final BinaryOperation exp);
 
-    public void onConstantOperand(final ConstantOperand exp);
+    public void constantOperand(final ConstantOperand exp);
 
-    public void onDiceOperand(final DiceOperand exp);
+    public void diceOperand(final DiceOperand exp);
 
 }

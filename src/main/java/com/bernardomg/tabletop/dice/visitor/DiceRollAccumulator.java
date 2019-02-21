@@ -86,7 +86,7 @@ public final class DiceRollAccumulator
     }
 
     @Override
-    public final void onBinaryOperation(final BinaryOperation exp) {
+    public final void binaryOperation(final BinaryOperation exp) {
         final Integer operandA;
         final Integer operandB;
         final BiFunction<Integer, Integer, Integer> operation;
@@ -124,7 +124,7 @@ public final class DiceRollAccumulator
     }
 
     @Override
-    public final void onConstantOperand(final ConstantOperand exp) {
+    public final void constantOperand(final ConstantOperand exp) {
         final Integer value;
         final RollResult rollResult;
 
@@ -142,7 +142,7 @@ public final class DiceRollAccumulator
     }
 
     @Override
-    public final void onDiceOperand(final DiceOperand exp) {
+    public final void diceOperand(final DiceOperand exp) {
         final RollResult rollResult;
 
         // Dice
