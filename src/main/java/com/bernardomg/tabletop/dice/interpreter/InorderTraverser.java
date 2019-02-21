@@ -44,7 +44,7 @@ public final class InorderTraverser
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(DiceGatherer.class);
+            .getLogger(InorderTraverser.class);
 
     /**
      * Default constructor.

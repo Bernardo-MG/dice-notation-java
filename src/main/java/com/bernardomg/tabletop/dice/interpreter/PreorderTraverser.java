@@ -44,7 +44,7 @@ public final class PreorderTraverser
      * Logger.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(DiceGatherer.class);
+            .getLogger(PreorderTraverser.class);
 
     /**
      * Default constructor.
