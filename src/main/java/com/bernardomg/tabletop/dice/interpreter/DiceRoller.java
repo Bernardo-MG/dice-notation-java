@@ -45,14 +45,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * Default constructor.
      */
     public DiceRoller() {
-        super();
-
-        final Roller roller;
-
-        roller = new DefaultRoller();
-
-        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                () -> new DiceRollAccumulator(roller));
+        this(new DefaultRoller());
     }
 
     /**
@@ -62,11 +55,17 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      *            the random number generator to use
      */
     public DiceRoller(final NumberGenerator generator) {
+        this(new DefaultRoller(generator));
+    }
+
+    /**
+     * Constructs a transformer using the received roller for simulating rolls.
+     * 
+     * @param roller
+     *            the roller to use
+     */
+    public DiceRoller(final Roller roller) {
         super();
-
-        final Roller roller;
-
-        roller = new DefaultRoller(generator);
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
                 () -> new DiceRollAccumulator(roller));
