@@ -31,7 +31,7 @@ public final class DiceRollAccumulator
     /**
      * Logger.
      */
-    private static final Logger     LOGGER  = LoggerFactory
+    private static final Logger     LOGGER    = LoggerFactory
             .getLogger(DiceRollAccumulator.class);
 
     /**
@@ -44,16 +44,22 @@ public final class DiceRollAccumulator
 
     private DiceNotationExpression  previous;
 
-    private final Stack<RollResult> results = new Stack<>();
+    private final Stack<RollResult> results   = new Stack<>();
 
-    private final Stack<String>     texts   = new Stack<>();
+    private Integer                 rollIndex = 0;
 
-    private final Stack<Integer>    values  = new Stack<>();
+    private final Stack<String>     texts     = new Stack<>();
+
+    private final RollTransformer   transformer;
+
+    private final Stack<Integer>    values    = new Stack<>();
 
     public DiceRollAccumulator() {
         super();
 
         numberGenerator = new RandomNumberGenerator();
+
+        transformer = new EmptyRollTransformer();
     }
 
     public DiceRollAccumulator(final NumberGenerator generator) {
@@ -61,28 +67,8 @@ public final class DiceRollAccumulator
 
         numberGenerator = checkNotNull(generator,
                 "Received a null pointer as generator");
-    }
 
-    @Override
-    public final RollHistory getValue() {
-        final String text;
-        final Integer result;
-
-        if (values.isEmpty()) {
-            // By default the returned value is 0
-            result = 0;
-        } else {
-            // The value which is left is returned
-            result = values.pop();
-        }
-
-        if (texts.isEmpty()) {
-            text = "";
-        } else {
-            text = texts.pop();
-        }
-
-        return new DefaultRollHistory(results, text, result);
+        transformer = new EmptyRollTransformer();
     }
 
     @Override
@@ -161,6 +147,28 @@ public final class DiceRollAccumulator
         previous = exp;
     }
 
+    @Override
+    public final RollHistory getValue() {
+        final String text;
+        final Integer result;
+
+        if (values.isEmpty()) {
+            // By default the returned value is 0
+            result = 0;
+        } else {
+            // The value which is left is returned
+            result = values.pop();
+        }
+
+        if (texts.isEmpty()) {
+            text = "";
+        } else {
+            text = texts.pop();
+        }
+
+        return new DefaultRollHistory(results, text, result);
+    }
+
     /**
      * Returns the text value of the received operation.
      * 
@@ -199,7 +207,11 @@ public final class DiceRollAccumulator
      */
     private final RollResult roll(final DiceOperand operand) {
         final Iterable<Integer> rolls;
+        final RollResult result;
+        final RollResult finalResult;
         Integer total;
+
+        // TODO: Move this method into a roller component
 
         rolls = numberGenerator.generate(operand.getDice());
 
@@ -208,7 +220,13 @@ public final class DiceRollAccumulator
             total += roll;
         }
 
-        return new DefaultRollResult(operand.getDice(), rolls, total);
+        result = new DefaultRollResult(operand.getDice(), rolls, total);
+        // TODO: The transformer can't be set
+        finalResult = transformer.transform(result, rollIndex);
+
+        rollIndex++;
+
+        return finalResult;
     }
 
 }

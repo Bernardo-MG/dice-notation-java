@@ -23,11 +23,6 @@ public final class DiceAccumulator
     }
 
     @Override
-    public final Iterable<Dice> getValue() {
-        return dice;
-    }
-
-    @Override
     public final void binaryOperation(final BinaryOperation exp) {
         if (exp instanceof SubtractionOperation) {
             negative = true;
@@ -48,6 +43,11 @@ public final class DiceAccumulator
         } else {
             dice.add(exp.getDice());
         }
+    }
+
+    @Override
+    public final Iterable<Dice> getValue() {
+        return dice;
     }
 
     /**
