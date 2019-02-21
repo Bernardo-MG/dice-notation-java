@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dice.interpreter;
+package com.bernardomg.tabletop.dice.visitor;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -25,13 +25,14 @@ import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.google.common.collect.Iterables;
 
-public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
+public final class DiceRollAccumulator
+        implements NotationAccumulator<RollHistory> {
 
     /**
      * Logger.
      */
     private static final Logger     LOGGER  = LoggerFactory
-            .getLogger(DiceRollerVisitor.class);
+            .getLogger(DiceRollAccumulator.class);
 
     /**
      * The random numbers generator.
@@ -49,13 +50,13 @@ public final class DiceRollerVisitor implements NotationVisitor<RollHistory> {
 
     private final Stack<Integer>    values  = new Stack<>();
 
-    public DiceRollerVisitor() {
+    public DiceRollAccumulator() {
         super();
 
         numberGenerator = new RandomNumberGenerator();
     }
 
-    public DiceRollerVisitor(final NumberGenerator generator) {
+    public DiceRollAccumulator(final NumberGenerator generator) {
         super();
 
         numberGenerator = checkNotNull(generator,

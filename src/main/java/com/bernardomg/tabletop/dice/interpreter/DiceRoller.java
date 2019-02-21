@@ -20,6 +20,7 @@ import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
+import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -45,7 +46,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                DiceRollerVisitor::new);
+                DiceRollAccumulator::new);
     }
 
     /**
@@ -58,7 +59,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                () -> new DiceRollerVisitor(generator));
+                () -> new DiceRollAccumulator(generator));
     }
 
     @Override

@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dice.interpreter;
+package com.bernardomg.tabletop.dice.visitor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,14 +11,14 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-public final class DiceGathererVisitor
-        implements NotationVisitor<Iterable<Dice>> {
+public final class DiceAccumulator
+        implements NotationAccumulator<Iterable<Dice>> {
 
     private final Collection<Dice> dice     = new ArrayList<>();
 
     private Boolean                negative = false;
 
-    public DiceGathererVisitor() {
+    public DiceAccumulator() {
         super();
     }
 
