@@ -60,11 +60,9 @@ public final class DefaultDice implements Dice {
     public DefaultDice(final Integer quantity, final Integer sides) {
         super();
 
-        checkNotNull(quantity, "Received a null pointer as quantity");
-        checkNotNull(sides, "Received a null pointer as sides");
-
-        diceSides = sides;
-        diceQuantity = quantity;
+        diceQuantity = checkNotNull(quantity,
+                "Received a null pointer as quantity");
+        diceSides = checkNotNull(sides, "Received a null pointer as sides");
     }
 
     @Override
