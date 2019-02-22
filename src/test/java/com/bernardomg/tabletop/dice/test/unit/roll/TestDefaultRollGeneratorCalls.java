@@ -17,9 +17,7 @@
 package com.bernardomg.tabletop.dice.test.unit.roll;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -30,6 +28,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
+import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates
@@ -38,48 +37,37 @@ import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDefaultRollGenerator {
+public final class TestDefaultRollGeneratorCalls {
 
     /**
      * Default constructor.
      */
-    public TestDefaultRollGenerator() {
+    public TestDefaultRollGeneratorCalls() {
         super();
     }
 
-    /**
-     * Verifies that the roller returns a value for each dice set.
-     */
     @Test
-    public final void testRoll_ReturnsGenerated_AllRolls() {
+    public final void testRoll_AppliesTransformer() {
         final Dice dice;
-        final Iterator<Integer> rolled;
-        final NumberGenerator generator;
+        final RollTransformer trans;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(2);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
         Mockito.when(dice.getSides()).thenReturn(1);
 
         // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(1, 2));
+        trans = Mockito.mock(RollTransformer.class);
 
-        rolled = new DefaultRollGenerator(generator).roll(dice).getAllRolls()
-                .iterator();
+        new DefaultRollGenerator(trans).roll(dice);
 
-        Assertions.assertEquals(new Integer(1), rolled.next());
-        Assertions.assertEquals(new Integer(2), rolled.next());
+        Mockito.verify(trans, Mockito.times(1))
+                .transform(ArgumentMatchers.any(), ArgumentMatchers.any());
     }
 
-    /**
-     * Verifies that the roller returns a value for each dice set.
-     */
     @Test
-    public final void testRoll_ReturnsGenerated_TotalRoll_MultipleValues() {
+    public final void testRoll_GeneratesOnce() {
         final Dice dice;
-        final Integer rolled;
         final NumberGenerator generator;
 
         // Mocks dice
@@ -92,30 +80,10 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        rolled = new DefaultRollGenerator(generator).roll(dice).getTotalRoll();
+        new DefaultRollGenerator(generator).roll(dice);
 
-        Assertions.assertEquals(new Integer(6), rolled);
-    }
-
-    @Test
-    public final void testRoll_ReturnsGenerated_TotalRoll_SingleValue() {
-        final Dice dice;
-        final Integer rolled;
-        final NumberGenerator generator;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
-        Mockito.when(dice.getSides()).thenReturn(1);
-
-        // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(5));
-
-        rolled = new DefaultRollGenerator(generator).roll(dice).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(5), rolled);
+        Mockito.verify(generator, Mockito.times(1))
+                .generate((Dice) ArgumentMatchers.any());
     }
 
 }
