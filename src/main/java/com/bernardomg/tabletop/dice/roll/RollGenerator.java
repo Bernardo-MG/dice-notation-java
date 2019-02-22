@@ -1,10 +1,10 @@
 
-package com.bernardomg.tabletop.dice.roller;
+package com.bernardomg.tabletop.dice.roll;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
-public interface Roller {
+public interface RollGenerator {
 
     /**
      * Returns the value from a dice.

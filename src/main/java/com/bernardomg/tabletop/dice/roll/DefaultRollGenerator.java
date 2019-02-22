@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dice.roller;
+package com.bernardomg.tabletop.dice.roll;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -11,7 +11,7 @@ import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.visitor.EmptyRollTransformer;
 import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
-public final class DefaultRoller implements Roller {
+public final class DefaultRollGenerator implements RollGenerator {
 
     /**
      * The random numbers generator.
@@ -25,7 +25,7 @@ public final class DefaultRoller implements Roller {
 
     private final RollTransformer transformer;
 
-    public DefaultRoller() {
+    public DefaultRollGenerator() {
         super();
 
         numberGenerator = new RandomNumberGenerator();
@@ -33,7 +33,7 @@ public final class DefaultRoller implements Roller {
         transformer = new EmptyRollTransformer();
     }
 
-    public DefaultRoller(final NumberGenerator generator) {
+    public DefaultRollGenerator(final NumberGenerator generator) {
         super();
 
         numberGenerator = checkNotNull(generator,
@@ -42,7 +42,7 @@ public final class DefaultRoller implements Roller {
         transformer = new EmptyRollTransformer();
     }
 
-    public DefaultRoller(final NumberGenerator generator,
+    public DefaultRollGenerator(final NumberGenerator generator,
             final RollTransformer trans) {
         super();
 
@@ -52,7 +52,7 @@ public final class DefaultRoller implements Roller {
                 "Received a null pointer as transformer");
     }
 
-    public DefaultRoller(final RollTransformer trans) {
+    public DefaultRollGenerator(final RollTransformer trans) {
         super();
 
         transformer = checkNotNull(trans,

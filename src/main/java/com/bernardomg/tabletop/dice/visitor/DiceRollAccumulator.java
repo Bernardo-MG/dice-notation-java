@@ -21,7 +21,7 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.roller.Roller;
+import com.bernardomg.tabletop.dice.roll.RollGenerator;
 import com.google.common.collect.Iterables;
 
 public final class DiceRollAccumulator
@@ -37,13 +37,13 @@ public final class DiceRollAccumulator
 
     private final Stack<RollResult> results = new Stack<>();
 
-    private final Roller            roller;
+    private final RollGenerator            roller;
 
     private final Stack<String>     texts   = new Stack<>();
 
     private final Stack<Integer>    values  = new Stack<>();
 
-    public DiceRollAccumulator(final Roller rllr) {
+    public DiceRollAccumulator(final RollGenerator rllr) {
         super();
 
         roller = checkNotNull(rllr, "Received a null pointer as roller");
