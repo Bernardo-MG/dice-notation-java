@@ -27,6 +27,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
 
 public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
@@ -41,11 +42,11 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
-    private final Supplier<NotationVisitor<V>>                      visitorSupplier;
+    private final Supplier<NotationAccumulator<V>>                  visitorSupplier;
 
     public ConfigurableInterpreter(
             final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
-            final Supplier<NotationVisitor<V>> supplier) {
+            final Supplier<NotationAccumulator<V>> supplier) {
         super();
 
         traverser = checkNotNull(trav, "Received a null pointer as visitor");
@@ -70,16 +71,16 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     private final V
             process(final Iterable<DiceNotationExpression> expressions) {
-        final NotationVisitor<V> visitor;
+        final NotationAccumulator<V> visitor;
 
         visitor = visitorSupplier.get();
         for (final DiceNotationExpression current : expressions) {
             if (current instanceof BinaryOperation) {
-                visitor.onBinaryOperation((BinaryOperation) current);
+                visitor.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {
-                visitor.onConstantOperand((ConstantOperand) current);
+                visitor.constantOperand((ConstantOperand) current);
             } else if (current instanceof DiceOperand) {
-                visitor.onDiceOperand((DiceOperand) current);
+                visitor.diceOperand((DiceOperand) current);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());

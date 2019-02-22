@@ -20,6 +20,9 @@ import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
+import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
+import com.bernardomg.tabletop.dice.roll.RollGenerator;
+import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -42,10 +45,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * Default constructor.
      */
     public DiceRoller() {
-        super();
-
-        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                DiceRollerVisitor::new);
+        this(new DefaultRollGenerator());
     }
 
     /**
@@ -55,10 +55,20 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      *            the random number generator to use
      */
     public DiceRoller(final NumberGenerator generator) {
+        this(new DefaultRollGenerator(generator));
+    }
+
+    /**
+     * Constructs a transformer using the received roller for simulating rolls.
+     * 
+     * @param roller
+     *            the roller to use
+     */
+    public DiceRoller(final RollGenerator roller) {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                () -> new DiceRollerVisitor(generator));
+                () -> new DiceRollAccumulator(roller));
     }
 
     @Override

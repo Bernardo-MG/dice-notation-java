@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dice.interpreter;
+package com.bernardomg.tabletop.dice.visitor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,24 +11,19 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-public final class DiceGathererVisitor
-        implements NotationVisitor<Iterable<Dice>> {
+public final class DiceAccumulator
+        implements NotationAccumulator<Iterable<Dice>> {
 
     private final Collection<Dice> dice     = new ArrayList<>();
 
     private Boolean                negative = false;
 
-    public DiceGathererVisitor() {
+    public DiceAccumulator() {
         super();
     }
 
     @Override
-    public final Iterable<Dice> getValue() {
-        return dice;
-    }
-
-    @Override
-    public final void onBinaryOperation(final BinaryOperation exp) {
+    public final void binaryOperation(final BinaryOperation exp) {
         if (exp instanceof SubtractionOperation) {
             negative = true;
         } else {
@@ -37,17 +32,22 @@ public final class DiceGathererVisitor
     }
 
     @Override
-    public final void onConstantOperand(final ConstantOperand exp) {
+    public final void constantOperand(final ConstantOperand exp) {
         negative = false;
     }
 
     @Override
-    public final void onDiceOperand(final DiceOperand exp) {
+    public final void diceOperand(final DiceOperand exp) {
         if (negative) {
             dice.add(reverse(exp.getDice()));
         } else {
             dice.add(exp.getDice());
         }
+    }
+
+    @Override
+    public final Iterable<Dice> getValue() {
+        return dice;
     }
 
     /**

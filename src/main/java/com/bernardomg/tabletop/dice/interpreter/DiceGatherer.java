@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.visitor.DiceAccumulator;
 
 /**
  * Dice notation expression which returns all the dice sets contained inside the
@@ -39,7 +40,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new InorderTraverser(),
-                DiceGathererVisitor::new);
+                DiceAccumulator::new);
     }
 
     @Override
