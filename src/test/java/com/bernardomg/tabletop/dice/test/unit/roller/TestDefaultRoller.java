@@ -30,6 +30,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roller.DefaultRoller;
+import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates
@@ -45,6 +46,46 @@ public final class TestDefaultRoller {
      */
     public TestDefaultRoller() {
         super();
+    }
+
+    @Test
+    public final void testRoll_AppliesTransformer() {
+        final Dice dice;
+        final RollTransformer trans;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        trans = Mockito.mock(RollTransformer.class);
+
+        new DefaultRoller(trans).roll(dice);
+
+        Mockito.verify(trans, Mockito.times(1))
+                .transform(ArgumentMatchers.any(), ArgumentMatchers.any());
+    }
+
+    @Test
+    public final void testRoll_GeneratesOnce() {
+        final Dice dice;
+        final NumberGenerator generator;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(1, 2, 3));
+
+        new DefaultRoller(generator).roll(dice);
+
+        Mockito.verify(generator, Mockito.times(1))
+                .generate((Dice) ArgumentMatchers.any());
     }
 
     /**

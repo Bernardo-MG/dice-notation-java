@@ -42,6 +42,25 @@ public final class DefaultRoller implements Roller {
         transformer = new EmptyRollTransformer();
     }
 
+    public DefaultRoller(final NumberGenerator generator,
+            final RollTransformer trans) {
+        super();
+
+        numberGenerator = checkNotNull(generator,
+                "Received a null pointer as generator");
+        transformer = checkNotNull(trans,
+                "Received a null pointer as transformer");
+    }
+
+    public DefaultRoller(final RollTransformer trans) {
+        super();
+
+        transformer = checkNotNull(trans,
+                "Received a null pointer as transformer");
+
+        numberGenerator = new RandomNumberGenerator();
+    }
+
     @Override
     public final RollResult roll(final Dice dice) {
         final Iterable<Integer> rolls;
@@ -57,7 +76,6 @@ public final class DefaultRoller implements Roller {
         }
 
         result = new DefaultRollResult(dice, rolls, total);
-        // TODO: The transformer can't be set
         finalResult = transformer.transform(result, rollIndex);
 
         rollIndex++;
