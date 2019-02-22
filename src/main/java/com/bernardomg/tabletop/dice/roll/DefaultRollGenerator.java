@@ -63,9 +63,19 @@ public final class DefaultRollGenerator implements RollGenerator {
 
     @Override
     public final RollResult roll(final Dice dice) {
-        final Iterable<Integer> rolls;
         final RollResult result;
         final RollResult finalResult;
+
+        result = getRollResult(dice);
+        finalResult = transformer.transform(result, rollIndex);
+
+        rollIndex++;
+
+        return finalResult;
+    }
+
+    private final RollResult getRollResult(final Dice dice) {
+        final Iterable<Integer> rolls;
         Integer total;
 
         rolls = numberGenerator.generate(dice);
@@ -75,12 +85,7 @@ public final class DefaultRollGenerator implements RollGenerator {
             total += roll;
         }
 
-        result = new DefaultRollResult(dice, rolls, total);
-        finalResult = transformer.transform(result, rollIndex);
-
-        rollIndex++;
-
-        return finalResult;
+        return new DefaultRollResult(dice, rolls, total);
     }
 
 }
