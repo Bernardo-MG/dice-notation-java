@@ -27,6 +27,18 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
 
+/**
+ * An interpreter which can be configured.
+ * <p>
+ * It chains a traverser, another interpreter which returns an
+ * {@code Iterable<DiceNotationExpression>}, with a {@link NotationAccumulator}.
+ * This way the notation tree is flattened and iterated easily.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ * @param <V>
+ *            type of the generated object
+ */
 public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     /**
@@ -45,6 +57,14 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
+    /**
+     * Constructs an interpreter.
+     * 
+     * @param trav
+     *            traverse to flatten the tree
+     * @param accum
+     *            accumulator to generate the result
+     */
     public ConfigurableInterpreter(
             final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
             final NotationAccumulator<V> accum) {
@@ -70,12 +90,18 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         return process(exps);
     }
 
-    private final V
-            process(final Iterable<DiceNotationExpression> expressions) {
+    /**
+     * Returns the result from applying the accumulator in all the nodes.
+     * 
+     * @param nodes
+     *            flattened tree
+     * @return the result from applying the accumulator
+     */
+    private final V process(final Iterable<DiceNotationExpression> nodes) {
 
         accumulator.reset();
 
-        for (final DiceNotationExpression current : expressions) {
+        for (final DiceNotationExpression current : nodes) {
             if (current instanceof BinaryOperation) {
                 accumulator.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {

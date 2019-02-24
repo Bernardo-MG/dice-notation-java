@@ -31,6 +31,9 @@ import com.bernardomg.tabletop.dice.visitor.DiceAccumulator;
  */
 public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
 
+    /**
+     * Wrapped interpreter. Configured for the required operations.
+     */
     private final DiceInterpreter<Iterable<Dice>> wrapped;
 
     /**

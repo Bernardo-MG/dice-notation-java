@@ -40,6 +40,9 @@ import com.bernardomg.tabletop.dice.visitor.RollTransformer;
  */
 public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
+    /**
+     * Wrapped interpreter. Configured for the required operations.
+     */
     private final DiceInterpreter<RollHistory> wrapped;
 
     /**
