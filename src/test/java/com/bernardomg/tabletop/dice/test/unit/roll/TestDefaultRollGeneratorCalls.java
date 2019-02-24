@@ -31,6 +31,7 @@ import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
+import com.bernardomg.tabletop.dice.visitor.EmptyRollTransformer;
 import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 /**
@@ -62,7 +63,7 @@ public final class TestDefaultRollGeneratorCalls {
         // Mocks generator
         trans = Mockito.mock(RollTransformer.class);
 
-        new DefaultRollGenerator(trans).roll(dice);
+        new DefaultRollGenerator(trans).roll(dice, new EmptyRollTransformer());
 
         Mockito.verify(trans, Mockito.times(1))
                 .transform(ArgumentMatchers.any(), ArgumentMatchers.any());
@@ -83,7 +84,8 @@ public final class TestDefaultRollGeneratorCalls {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        new DefaultRollGenerator(generator).roll(dice);
+        new DefaultRollGenerator(generator).roll(dice,
+                new EmptyRollTransformer());
 
         Mockito.verify(generator, Mockito.times(1))
                 .generate((Dice) ArgumentMatchers.any());
@@ -106,11 +108,11 @@ public final class TestDefaultRollGeneratorCalls {
         trans = Mockito.mock(RollTransformer.class);
 
         rollGenerator = new DefaultRollGenerator(trans);
-        rollGenerator.roll(dice);
-        rollGenerator.roll(dice);
-        rollGenerator.roll(dice);
-        rollGenerator.roll(dice);
-        rollGenerator.roll(dice);
+        rollGenerator.roll(dice, new EmptyRollTransformer());
+        rollGenerator.roll(dice, new EmptyRollTransformer());
+        rollGenerator.roll(dice, new EmptyRollTransformer());
+        rollGenerator.roll(dice, new EmptyRollTransformer());
+        rollGenerator.roll(dice, new EmptyRollTransformer());
 
         captor = ArgumentCaptor.forClass(Integer.class);
         Mockito.verify(trans, Mockito.atLeastOnce())
@@ -138,7 +140,7 @@ public final class TestDefaultRollGeneratorCalls {
         trans = Mockito.mock(RollTransformer.class);
 
         rollGenerator = new DefaultRollGenerator(trans);
-        rollGenerator.roll(dice);
+        rollGenerator.roll(dice, new EmptyRollTransformer());
 
         captor = ArgumentCaptor.forClass(Integer.class);
         Mockito.verify(trans).transform(ArgumentMatchers.any(),

@@ -3,6 +3,7 @@ package com.bernardomg.tabletop.dice.roll;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
+import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 public interface RollGenerator {
 
@@ -14,8 +15,10 @@ public interface RollGenerator {
      * 
      * @param dice
      *            dice to roll
+     * @param transformer
+     *            transformer to modify the roll
      * @return result from rolling the dice
      */
-    public RollResult roll(final Dice dice);
+    public RollResult roll(final Dice dice, final RollTransformer transformer);
 
 }

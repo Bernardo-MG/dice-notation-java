@@ -62,11 +62,13 @@ public final class DefaultRollGenerator implements RollGenerator {
     }
 
     @Override
-    public final RollResult roll(final Dice dice) {
+    public final RollResult roll(final Dice dice, final RollTransformer trans) {
         final RollResult result;
         final RollResult finalResult;
 
         result = getRollResult(dice);
+        // TODO: Should chain with the one received
+        // TODO: If it can be chained then it can be chained outside this class
         finalResult = transformer.transform(result, rollIndex);
 
         rollIndex++;

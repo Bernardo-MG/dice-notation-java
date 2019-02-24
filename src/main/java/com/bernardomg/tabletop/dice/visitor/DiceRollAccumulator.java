@@ -37,7 +37,7 @@ public final class DiceRollAccumulator
 
     private final Stack<RollResult> results = new Stack<>();
 
-    private final RollGenerator            roller;
+    private final RollGenerator     roller;
 
     private final Stack<String>     texts   = new Stack<>();
 
@@ -111,7 +111,7 @@ public final class DiceRollAccumulator
 
         // Dice
         // Generates a random value
-        rollResult = roller.roll(exp.getDice());
+        rollResult = roller.roll(exp.getDice(), new EmptyRollTransformer());
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
