@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Stack;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +38,6 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
-import com.bernardomg.tabletop.dice.transformer.EmptyRollTransformer;
-import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 import com.google.common.collect.Iterables;
 
 /**
@@ -55,23 +54,23 @@ public final class DiceRollAccumulator
     /**
      * Logger.
      */
-    private static final Logger     LOGGER  = LoggerFactory
+    private static final Logger                    LOGGER  = LoggerFactory
             .getLogger(DiceRollAccumulator.class);
 
     /**
      * The last expression received.
      */
-    private DiceNotationExpression  previous;
+    private DiceNotationExpression                 previous;
 
     /**
      * All the results generated so far.
      */
-    private final Stack<RollResult> results = new Stack<>();
+    private final Stack<RollResult>                results = new Stack<>();
 
     /**
      * Generator for the rolls.
      */
-    private final RollGenerator     rollGenerator;
+    private final RollGenerator                    rollGenerator;
 
     /**
      * The text values generated so far.
@@ -79,12 +78,12 @@ public final class DiceRollAccumulator
      * It always contain the text representation of all the nodes parsed so far,
      * along temporal texts to keep building the final result.
      */
-    private final Stack<String>     texts   = new Stack<>();
+    private final Stack<String>                    texts   = new Stack<>();
 
     /**
      * Transformer to allow customizing roll results.
      */
-    private final RollTransformer   transformer;
+    private final Function<RollResult, RollResult> transformer;
 
     /**
      * The expression values generated so far.
@@ -92,7 +91,7 @@ public final class DiceRollAccumulator
      * It always contain the sum of all the nodes parsed so far, along temporal
      * values to keep building the final result.
      */
-    private final Stack<Integer>    values  = new Stack<>();
+    private final Stack<Integer>                   values  = new Stack<>();
 
     /**
      * Constructs an accumulator with the specified arguments.
@@ -106,7 +105,7 @@ public final class DiceRollAccumulator
         rollGenerator = checkNotNull(generator,
                 "Received a null pointer as roll generator");
 
-        transformer = new EmptyRollTransformer();
+        transformer = (r) -> r;
     }
 
     /**
@@ -118,7 +117,7 @@ public final class DiceRollAccumulator
      *            roll transformer to use
      */
     public DiceRollAccumulator(final RollGenerator generator,
-            final RollTransformer trans) {
+            final Function<RollResult, RollResult> trans) {
         super();
 
         rollGenerator = checkNotNull(generator,
@@ -190,9 +189,7 @@ public final class DiceRollAccumulator
         // Dice
         // Generates a random value
 
-        // This would chain with grammar functions
-        // t = (r, i) -> transformer.transform(trans.transform(r, i), i);
-
+        // This would be chained with the grammar functions
         rollResult = rollGenerator.roll(exp.getDice(), transformer);
         results.add(rollResult);
 
