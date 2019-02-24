@@ -8,7 +8,7 @@ import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 
 public final class DefaultRollGenerator implements RollGenerator {
 

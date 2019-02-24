@@ -31,8 +31,8 @@ import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
-import com.bernardomg.tabletop.dice.visitor.EmptyRollTransformer;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
+import com.bernardomg.tabletop.dice.transformer.EmptyRollTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates

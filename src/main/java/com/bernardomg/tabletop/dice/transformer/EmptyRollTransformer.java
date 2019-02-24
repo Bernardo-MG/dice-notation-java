@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.visitor;
+package com.bernardomg.tabletop.dice.transformer;
 
 import com.bernardomg.tabletop.dice.history.RollResult;
 

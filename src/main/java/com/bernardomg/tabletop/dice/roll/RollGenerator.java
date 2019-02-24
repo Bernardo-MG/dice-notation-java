@@ -3,7 +3,7 @@ package com.bernardomg.tabletop.dice.roll;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 
 public interface RollGenerator {
 

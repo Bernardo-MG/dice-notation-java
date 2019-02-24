@@ -22,8 +22,8 @@ import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
+import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 /**
  * Dice notation expression which simulates rolling the expression.

@@ -37,6 +37,8 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
+import com.bernardomg.tabletop.dice.transformer.EmptyRollTransformer;
+import com.bernardomg.tabletop.dice.transformer.RollTransformer;
 import com.google.common.collect.Iterables;
 
 /**
