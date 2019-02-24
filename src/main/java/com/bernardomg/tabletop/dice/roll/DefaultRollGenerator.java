@@ -3,12 +3,13 @@ package com.bernardomg.tabletop.dice.roll;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.function.Function;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 public final class DefaultRollGenerator implements RollGenerator {
 
@@ -37,13 +38,13 @@ public final class DefaultRollGenerator implements RollGenerator {
 
     @Override
     public final RollResult roll(final Dice dice,
-            final RollTransformer transformer) {
+            final Function<RollResult, RollResult> transformer) {
         final RollResult result;
         final RollResult finalResult;
 
         result = getRollResult(dice);
 
-        finalResult = transformer.transform(result, rollIndex);
+        finalResult = transformer.apply(result);
 
         rollIndex++;
 

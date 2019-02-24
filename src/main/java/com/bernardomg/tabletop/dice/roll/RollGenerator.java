@@ -1,9 +1,10 @@
 
 package com.bernardomg.tabletop.dice.roll;
 
+import java.util.function.Function;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
-import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 public interface RollGenerator {
 
@@ -19,6 +20,7 @@ public interface RollGenerator {
      *            transformer to modify the roll
      * @return result from rolling the dice
      */
-    public RollResult roll(final Dice dice, final RollTransformer transformer);
+    public RollResult roll(final Dice dice,
+            final Function<RollResult, RollResult> transformer);
 
 }

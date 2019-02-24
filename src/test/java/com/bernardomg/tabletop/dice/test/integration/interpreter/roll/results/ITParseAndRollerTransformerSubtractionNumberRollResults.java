@@ -36,12 +36,12 @@ import com.google.common.collect.Iterables;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionNumberRollResults {
+public final class ITParseAndRollerTransformerSubtractionNumberRollResults {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerAdditionNumberRollResults() {
+    public ITParseAndRollerTransformerSubtractionNumberRollResults() {
         super();
     }
 
@@ -50,7 +50,7 @@ public final class ITParseAndRollerTransformerAdditionNumberRollResults {
      * expected one.
      */
     @Test
-    public final void testParse_Number_Add_Long_Value() {
+    public final void testParse_Number_Sub_Long_Value() {
         final DiceNotationExpression operation;
         final String notation;
         final Iterable<RollResult> results;
@@ -59,7 +59,7 @@ public final class ITParseAndRollerTransformerAdditionNumberRollResults {
         Iterable<Integer> rolls;
         Iterator<Integer> rollValues;
 
-        notation = "1+2+3";
+        notation = "-1-2-3";
 
         operation = new DefaultDiceParser().parse(notation);
 
@@ -73,21 +73,21 @@ public final class ITParseAndRollerTransformerAdditionNumberRollResults {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(1), rollValues.next());
+        Assertions.assertEquals(new Integer(-1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(2), rollValues.next());
+        Assertions.assertEquals(new Integer(-2), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(3), rollValues.next());
+        Assertions.assertEquals(new Integer(-3), rollValues.next());
     }
 
 }

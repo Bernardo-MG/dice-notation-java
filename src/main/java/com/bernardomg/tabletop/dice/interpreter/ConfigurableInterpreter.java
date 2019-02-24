@@ -18,8 +18,6 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.function.Supplier;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +27,18 @@ import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
 
+/**
+ * An interpreter which can be configured.
+ * <p>
+ * It chains a traverser, another interpreter which returns an
+ * {@code Iterable<DiceNotationExpression>}, with a {@link NotationAccumulator}.
+ * This way the notation tree is flattened and iterated easily.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ * @param <V>
+ *            type of the generated object
+ */
 public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     /**
@@ -38,24 +48,31 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             .getLogger(ConfigurableInterpreter.class);
 
     /**
+     * Accumulator for generating the final result.
+     */
+    private final NotationAccumulator<V>                            accumulator;
+
+    /**
      * Transformer to generate a list from the received expression.
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
     /**
-     * Accumulators are expected to have state. For this reason they need to be
-     * created for each use.
+     * Constructs an interpreter.
+     * 
+     * @param trav
+     *            traverse to flatten the tree
+     * @param accum
+     *            accumulator to generate the result
      */
-    private final Supplier<NotationAccumulator<V>>                  visitorSupplier;
-
     public ConfigurableInterpreter(
             final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
-            final Supplier<NotationAccumulator<V>> supplier) {
+            final NotationAccumulator<V> accum) {
         super();
 
         traverser = checkNotNull(trav, "Received a null pointer as traverser");
-        visitorSupplier = checkNotNull(supplier,
-                "Received a null pointer as visitor");
+        accumulator = checkNotNull(accum,
+                "Received a null pointer as accumulator");
     }
 
     @Override
@@ -73,25 +90,31 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         return process(exps);
     }
 
-    private final V
-            process(final Iterable<DiceNotationExpression> expressions) {
-        final NotationAccumulator<V> visitor;
+    /**
+     * Returns the result from applying the accumulator in all the nodes.
+     * 
+     * @param nodes
+     *            flattened tree
+     * @return the result from applying the accumulator
+     */
+    private final V process(final Iterable<DiceNotationExpression> nodes) {
 
-        visitor = visitorSupplier.get();
-        for (final DiceNotationExpression current : expressions) {
+        accumulator.reset();
+
+        for (final DiceNotationExpression current : nodes) {
             if (current instanceof BinaryOperation) {
-                visitor.binaryOperation((BinaryOperation) current);
+                accumulator.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {
-                visitor.constantOperand((ConstantOperand) current);
+                accumulator.constantOperand((ConstantOperand) current);
             } else if (current instanceof DiceOperand) {
-                visitor.diceOperand((DiceOperand) current);
+                accumulator.diceOperand((DiceOperand) current);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());
             }
         }
 
-        return visitor.getValue();
+        return accumulator.getValue();
     }
 
 }

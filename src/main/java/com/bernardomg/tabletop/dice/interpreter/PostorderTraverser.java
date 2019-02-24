@@ -72,7 +72,7 @@ public final class PostorderTraverser
             LOGGER.debug("Transforming expression {}", current);
             if (current instanceof BinaryOperation) {
                 // Binary operation
-                // Prunes node and stores left and right nodes
+                // Temporally prunes node and stores left and right nodes
                 nodes.push(new ExpressionWrapper(current));
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
@@ -82,9 +82,17 @@ public final class PostorderTraverser
             }
         }
 
+        // Recovers pruned nodes
         return exps.stream().map(this::unwrap).collect(Collectors.toList());
     }
 
+    /**
+     * Removes the expression wrappers used to temporally prune the nodes.
+     * 
+     * @param expression
+     *            node to unwrap
+     * @return unwrapped node
+     */
     private final DiceNotationExpression
             unwrap(final DiceNotationExpression expression) {
         final DiceNotationExpression result;

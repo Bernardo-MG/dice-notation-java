@@ -30,7 +30,6 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
-import com.bernardomg.tabletop.dice.visitor.EmptyRollTransformer;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates
@@ -67,9 +66,8 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2));
 
-        rolled = new DefaultRollGenerator(generator)
-                .roll(dice, new EmptyRollTransformer()).getAllRolls()
-                .iterator();
+        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
+                .getAllRolls().iterator();
 
         Assertions.assertEquals(new Integer(1), rolled.next());
         Assertions.assertEquals(new Integer(2), rolled.next());
@@ -94,8 +92,8 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        rolled = new DefaultRollGenerator(generator)
-                .roll(dice, new EmptyRollTransformer()).getTotalRoll();
+        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
+                .getTotalRoll();
 
         Assertions.assertEquals(new Integer(6), rolled);
     }
@@ -116,8 +114,8 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(5));
 
-        rolled = new DefaultRollGenerator(generator)
-                .roll(dice, new EmptyRollTransformer()).getTotalRoll();
+        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
+                .getTotalRoll();
 
         Assertions.assertEquals(new Integer(5), rolled);
     }
