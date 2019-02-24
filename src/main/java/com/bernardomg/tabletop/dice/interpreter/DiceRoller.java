@@ -23,6 +23,7 @@ import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.roll.RollGenerator;
 import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
+import com.bernardomg.tabletop.dice.visitor.RollTransformer;
 
 /**
  * Dice notation expression which simulates rolling the expression.
@@ -59,7 +60,22 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     }
 
     /**
-     * Constructs a transformer using the received roller for simulating rolls.
+     * Constructs a transformer using the received roller for simulating rolls
+     * and the received transformer on the rolls.
+     * 
+     * @param generator
+     *            the random number generator to use
+     * @param trans
+     *            transformer to apply
+     */
+    public DiceRoller(final NumberGenerator generator,
+            final RollTransformer trans) {
+        this(new DefaultRollGenerator(generator), trans);
+    }
+
+    /**
+     * Constructs a transformer using the received roll generator for simulating
+     * rolls.
      * 
      * @param roller
      *            the roller to use
@@ -69,6 +85,32 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
                 () -> new DiceRollAccumulator(roller));
+    }
+
+    /**
+     * Constructs a transformer using the received roll generator for simulating
+     * rolls and the received transformer on the rolls.
+     * 
+     * @param roller
+     *            the roller to use
+     * @param trans
+     *            transformer to apply
+     */
+    public DiceRoller(final RollGenerator roller, final RollTransformer trans) {
+        super();
+
+        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+                () -> new DiceRollAccumulator(roller, trans));
+    }
+
+    /**
+     * Constructs a transformer using the transformer on the rolls.
+     * 
+     * @param trans
+     *            transformer to apply
+     */
+    public DiceRoller(final RollTransformer trans) {
+        this(new DefaultRollGenerator(), trans);
     }
 
     @Override
