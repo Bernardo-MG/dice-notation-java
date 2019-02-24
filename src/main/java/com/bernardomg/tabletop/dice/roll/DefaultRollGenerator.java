@@ -65,11 +65,14 @@ public final class DefaultRollGenerator implements RollGenerator {
     public final RollResult roll(final Dice dice, final RollTransformer trans) {
         final RollResult result;
         final RollResult finalResult;
+        final RollTransformer t;
 
         result = getRollResult(dice);
-        // TODO: Should chain with the one received
+
+        t = (r, i) -> transformer.transform(trans.transform(r, i), i);
+
         // TODO: If it can be chained then it can be chained outside this class
-        finalResult = transformer.transform(result, rollIndex);
+        finalResult = t.transform(result, rollIndex);
 
         rollIndex++;
 
