@@ -41,7 +41,7 @@ public final class DiceRollAccumulator
 
     private final Stack<String>     texts   = new Stack<>();
 
-    private final RollTransformer transformer;
+    private final RollTransformer   transformer;
 
     private final Stack<Integer>    values  = new Stack<>();
 
@@ -162,6 +162,14 @@ public final class DiceRollAccumulator
         }
 
         return new DefaultRollHistory(results, text, result);
+    }
+
+    @Override
+    public final void reset() {
+        previous = null;
+        results.clear();
+        texts.clear();
+        values.clear();
     }
 
     /**

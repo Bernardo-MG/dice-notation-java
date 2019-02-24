@@ -84,7 +84,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                () -> new DiceRollAccumulator(roller));
+                new DiceRollAccumulator(roller));
     }
 
     /**
@@ -100,7 +100,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                () -> new DiceRollAccumulator(roller, trans));
+                new DiceRollAccumulator(roller, trans));
     }
 
     /**

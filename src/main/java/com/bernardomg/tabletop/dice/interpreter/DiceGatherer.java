@@ -40,7 +40,7 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
         super();
 
         wrapped = new ConfigurableInterpreter<>(new InorderTraverser(),
-                DiceAccumulator::new);
+                new DiceAccumulator());
     }
 
     @Override

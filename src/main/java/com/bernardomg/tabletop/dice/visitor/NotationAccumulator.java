@@ -5,4 +5,6 @@ public interface NotationAccumulator<V> extends NotationVisitor<V> {
 
     public V getValue();
 
+    public void reset();
+
 }

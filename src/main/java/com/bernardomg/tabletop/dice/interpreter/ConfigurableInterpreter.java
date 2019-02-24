@@ -18,8 +18,6 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.function.Supplier;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,24 +36,23 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             .getLogger(ConfigurableInterpreter.class);
 
     /**
+     * Accumulator for generating the final result.
+     */
+    private final NotationAccumulator<V>                            accumulator;
+
+    /**
      * Transformer to generate a list from the received expression.
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
-    /**
-     * Accumulators are expected to have state. For this reason they need to be
-     * created for each use.
-     */
-    private final Supplier<NotationAccumulator<V>>                  visitorSupplier;
-
     public ConfigurableInterpreter(
             final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
-            final Supplier<NotationAccumulator<V>> supplier) {
+            final NotationAccumulator<V> accum) {
         super();
 
         traverser = checkNotNull(trav, "Received a null pointer as traverser");
-        visitorSupplier = checkNotNull(supplier,
-                "Received a null pointer as visitor");
+        accumulator = checkNotNull(accum,
+                "Received a null pointer as accumulator");
     }
 
     @Override
@@ -75,23 +72,23 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     private final V
             process(final Iterable<DiceNotationExpression> expressions) {
-        final NotationAccumulator<V> visitor;
 
-        visitor = visitorSupplier.get();
+        accumulator.reset();
+
         for (final DiceNotationExpression current : expressions) {
             if (current instanceof BinaryOperation) {
-                visitor.binaryOperation((BinaryOperation) current);
+                accumulator.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {
-                visitor.constantOperand((ConstantOperand) current);
+                accumulator.constantOperand((ConstantOperand) current);
             } else if (current instanceof DiceOperand) {
-                visitor.diceOperand((DiceOperand) current);
+                accumulator.diceOperand((DiceOperand) current);
             } else {
                 LOGGER.warn("Unsupported expression of type {}",
                         current.getClass());
             }
         }
 
-        return visitor.getValue();
+        return accumulator.getValue();
     }
 
 }

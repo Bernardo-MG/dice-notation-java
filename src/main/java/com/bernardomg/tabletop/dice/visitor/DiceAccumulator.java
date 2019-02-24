@@ -50,6 +50,12 @@ public final class DiceAccumulator
         return dice;
     }
 
+    @Override
+    public final void reset() {
+        negative = false;
+        dice.clear();
+    }
+
     /**
      * Reverses the sign of a dice, changing positive values to negatives, and
      * viceversa.
