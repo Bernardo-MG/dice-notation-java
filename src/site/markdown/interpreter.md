@@ -110,6 +110,13 @@ Complex operations will require traversing the parsed tree. For these cases ther
 
 The easiest way to create a new interpreter is by composing it with one of the traversers, which will return a list with all the objects in the expression.
 
-The ConfigurableInterpreter can help with this.
+The ConfigurableInterpreter can help with this. For example this is the actual dice roller interpreter:
+
+```java
+wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+        () -> new DiceRollAccumulator(roller));
+```
+
+It just needs another interpreter, which returns a list of nodes, and an accumulator.
 
 [number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
