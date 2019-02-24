@@ -37,9 +37,11 @@ public final class DiceRollAccumulator
 
     private final Stack<RollResult> results = new Stack<>();
 
-    private final RollGenerator            roller;
+    private final RollGenerator     roller;
 
     private final Stack<String>     texts   = new Stack<>();
+
+    private final RollTransformer transformer;
 
     private final Stack<Integer>    values  = new Stack<>();
 
@@ -47,6 +49,17 @@ public final class DiceRollAccumulator
         super();
 
         roller = checkNotNull(rllr, "Received a null pointer as roller");
+
+        transformer = new EmptyRollTransformer();
+    }
+
+    public DiceRollAccumulator(final RollGenerator rllr,
+            final RollTransformer trans) {
+        super();
+
+        roller = checkNotNull(rllr, "Received a null pointer as roller");
+        transformer = checkNotNull(trans,
+                "Received a null pointer as transformer");
     }
 
     @Override
@@ -111,7 +124,11 @@ public final class DiceRollAccumulator
 
         // Dice
         // Generates a random value
-        rollResult = roller.roll(exp.getDice());
+
+        // This would chain with grammar functions
+        // t = (r, i) -> transformer.transform(trans.transform(r, i), i);
+
+        rollResult = roller.roll(exp.getDice(), transformer);
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());
