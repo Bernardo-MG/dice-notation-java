@@ -42,6 +42,10 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
+    /**
+     * Accumulators are expected to have state. For this reason they need to be
+     * created for each use.
+     */
     private final Supplier<NotationAccumulator<V>>                  visitorSupplier;
 
     public ConfigurableInterpreter(
@@ -49,7 +53,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             final Supplier<NotationAccumulator<V>> supplier) {
         super();
 
-        traverser = checkNotNull(trav, "Received a null pointer as visitor");
+        traverser = checkNotNull(trav, "Received a null pointer as traverser");
         visitorSupplier = checkNotNull(supplier,
                 "Received a null pointer as visitor");
     }
