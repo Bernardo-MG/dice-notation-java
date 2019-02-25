@@ -69,6 +69,27 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     }
 
     /**
+     * Constructs a transformer using the received roll generator for simulating
+     * rolls, chaining it to the received transformer.
+     * 
+     * @param roller
+     *            the roller to use
+     * @param transformer
+     *            transformer to apply
+     */
+    public DiceRoller(final Function<Dice, RollResult> roller,
+            final Function<RollResult, RollResult> transformer) {
+        super();
+
+        final Function<Dice, RollResult> finalRoller;
+
+        finalRoller = roller.andThen(transformer);
+
+        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+                new DiceRollAccumulator(finalRoller));
+    }
+
+    /**
      * Constructs a transformer using the received roller for simulating rolls.
      * 
      * @param generator
