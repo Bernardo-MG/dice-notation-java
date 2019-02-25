@@ -17,7 +17,6 @@
 package com.bernardomg.tabletop.dice.test.unit.roll;
 
 import java.util.Arrays;
-import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -26,10 +25,9 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.history.RollResult;
+import com.bernardomg.tabletop.dice.random.DiceToRollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates
@@ -47,25 +45,6 @@ public final class TestDefaultRollGeneratorCalls {
         super();
     }
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public final void testRoll_AppliesTransformer() {
-        final Dice dice;
-        final Function<RollResult, RollResult> trans;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(3);
-        Mockito.when(dice.getSides()).thenReturn(1);
-
-        // Mocks generator
-        trans = Mockito.mock(Function.class);
-
-        new DefaultRollGenerator().roll(dice, trans);
-
-        Mockito.verify(trans, Mockito.times(1)).apply(ArgumentMatchers.any());
-    }
-
     @Test
     public final void testRoll_GeneratesOnce() {
         final Dice dice;
@@ -81,7 +60,7 @@ public final class TestDefaultRollGeneratorCalls {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        new DefaultRollGenerator(generator).roll(dice, (r) -> r);
+        new DiceToRollResult(generator).apply(dice);
 
         Mockito.verify(generator, Mockito.times(1))
                 .generate((Dice) ArgumentMatchers.any());

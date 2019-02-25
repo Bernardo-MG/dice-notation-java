@@ -25,6 +25,7 @@ import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollHistory;
@@ -37,7 +38,6 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.roll.RollGenerator;
 import com.google.common.collect.Iterables;
 
 /**
@@ -54,23 +54,23 @@ public final class DiceRollAccumulator
     /**
      * Logger.
      */
-    private static final Logger                    LOGGER  = LoggerFactory
+    private static final Logger              LOGGER  = LoggerFactory
             .getLogger(DiceRollAccumulator.class);
 
     /**
      * The last expression received.
      */
-    private DiceNotationExpression                 previous;
+    private DiceNotationExpression           previous;
 
     /**
      * All the results generated so far.
      */
-    private final Stack<RollResult>                results = new Stack<>();
+    private final Stack<RollResult>          results = new Stack<>();
 
     /**
      * Generator for the rolls.
      */
-    private final RollGenerator                    rollGenerator;
+    private final Function<Dice, RollResult> rollGenerator;
 
     /**
      * The text values generated so far.
@@ -78,12 +78,7 @@ public final class DiceRollAccumulator
      * It always contain the text representation of all the nodes parsed so far,
      * along temporal texts to keep building the final result.
      */
-    private final Stack<String>                    texts   = new Stack<>();
-
-    /**
-     * Transformer to allow customizing roll results.
-     */
-    private final Function<RollResult, RollResult> transformer;
+    private final Stack<String>              texts   = new Stack<>();
 
     /**
      * The expression values generated so far.
@@ -91,7 +86,7 @@ public final class DiceRollAccumulator
      * It always contain the sum of all the nodes parsed so far, along temporal
      * values to keep building the final result.
      */
-    private final Stack<Integer>                   values  = new Stack<>();
+    private final Stack<Integer>             values  = new Stack<>();
 
     /**
      * Constructs an accumulator with the specified arguments.
@@ -99,31 +94,11 @@ public final class DiceRollAccumulator
      * @param generator
      *            roll generator to use
      */
-    public DiceRollAccumulator(final RollGenerator generator) {
+    public DiceRollAccumulator(final Function<Dice, RollResult> generator) {
         super();
 
         rollGenerator = checkNotNull(generator,
                 "Received a null pointer as roll generator");
-
-        transformer = (r) -> r;
-    }
-
-    /**
-     * Constructs an accumulator with the specified arguments.
-     * 
-     * @param generator
-     *            roll generator to use
-     * @param trans
-     *            roll transformer to use
-     */
-    public DiceRollAccumulator(final RollGenerator generator,
-            final Function<RollResult, RollResult> trans) {
-        super();
-
-        rollGenerator = checkNotNull(generator,
-                "Received a null pointer as roll generator");
-        transformer = checkNotNull(trans,
-                "Received a null pointer as transformer");
     }
 
     @Override
@@ -190,7 +165,8 @@ public final class DiceRollAccumulator
         // Generates a random value
 
         // This would be chained with the grammar functions
-        rollResult = rollGenerator.roll(exp.getDice(), transformer);
+        // roller = rollGenerator.andThen(transformer);
+        rollResult = rollGenerator.apply(exp.getDice());
         results.add(rollResult);
 
         values.push(rollResult.getTotalRoll());

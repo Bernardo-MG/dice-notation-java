@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.history;
+package com.bernardomg.tabletop.dice.test.unit.history;
 
 import java.util.ArrayList;
 import java.util.Collection;
