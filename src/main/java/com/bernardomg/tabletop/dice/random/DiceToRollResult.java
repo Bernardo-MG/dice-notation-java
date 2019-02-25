@@ -24,7 +24,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
-public final class DefaultRollGenerator implements Function<Dice, RollResult> {
+public final class DiceToRollResult implements Function<Dice, RollResult> {
 
     /**
      * The random numbers generator.
@@ -34,13 +34,13 @@ public final class DefaultRollGenerator implements Function<Dice, RollResult> {
      */
     private final NumberGenerator numberGenerator;
 
-    public DefaultRollGenerator() {
+    public DiceToRollResult() {
         super();
 
         numberGenerator = new RandomNumberGenerator();
     }
 
-    public DefaultRollGenerator(final NumberGenerator generator) {
+    public DiceToRollResult(final NumberGenerator generator) {
         super();
 
         numberGenerator = checkNotNull(generator,

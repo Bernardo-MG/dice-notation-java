@@ -25,7 +25,7 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.random.DefaultRollGenerator;
+import com.bernardomg.tabletop.dice.random.DiceToRollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
@@ -60,7 +60,7 @@ public final class TestDefaultRollGeneratorCalls {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        new DefaultRollGenerator(generator).apply(dice);
+        new DiceToRollResult(generator).apply(dice);
 
         Mockito.verify(generator, Mockito.times(1))
                 .generate((Dice) ArgumentMatchers.any());
