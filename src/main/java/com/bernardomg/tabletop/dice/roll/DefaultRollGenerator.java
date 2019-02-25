@@ -18,13 +18,15 @@ package com.bernardomg.tabletop.dice.roll;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.function.Function;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
-public final class DefaultRollGenerator implements RollGenerator {
+public final class DefaultRollGenerator implements Function<Dice, RollResult> {
 
     /**
      * The random numbers generator.
@@ -48,7 +50,7 @@ public final class DefaultRollGenerator implements RollGenerator {
     }
 
     @Override
-    public final RollResult roll(final Dice dice) {
+    public final RollResult apply(final Dice dice) {
         final Iterable<Integer> rolls;
         Integer total;
 

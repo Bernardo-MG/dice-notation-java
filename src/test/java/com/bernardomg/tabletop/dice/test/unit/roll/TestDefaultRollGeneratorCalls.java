@@ -60,7 +60,7 @@ public final class TestDefaultRollGeneratorCalls {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        new DefaultRollGenerator(generator).roll(dice);
+        new DefaultRollGenerator(generator).apply(dice);
 
         Mockito.verify(generator, Mockito.times(1))
                 .generate((Dice) ArgumentMatchers.any());

@@ -18,13 +18,13 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import java.util.function.Function;
 
+import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
-import com.bernardomg.tabletop.dice.roll.RollGenerator;
 import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
 
 /**
@@ -55,13 +55,17 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     }
 
     /**
-     * Constructs a transformer using the transformer on the rolls.
+     * Constructs a transformer using the received roll generator for simulating
+     * rolls.
      * 
-     * @param transformer
-     *            transformer to apply
+     * @param roller
+     *            the roller to use
      */
-    public DiceRoller(final Function<RollResult, RollResult> transformer) {
-        this(new DefaultRollGenerator(), transformer);
+    public DiceRoller(final Function<Dice, RollResult> roller) {
+        super();
+
+        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
+                new DiceRollAccumulator(roller));
     }
 
     /**
@@ -85,38 +89,14 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      */
     public DiceRoller(final NumberGenerator generator,
             final Function<RollResult, RollResult> transformer) {
-        this(new DefaultRollGenerator(generator), transformer);
-    }
-
-    /**
-     * Constructs a transformer using the received roll generator for simulating
-     * rolls.
-     * 
-     * @param roller
-     *            the roller to use
-     */
-    public DiceRoller(final RollGenerator roller) {
         super();
 
-        wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                new DiceRollAccumulator(roller));
-    }
+        final Function<Dice, RollResult> finalRoller;
 
-    /**
-     * Constructs a transformer using the received roll generator for simulating
-     * rolls and the received transformer on the rolls.
-     * 
-     * @param roller
-     *            the roller to use
-     * @param transformer
-     *            transformer to apply
-     */
-    public DiceRoller(final RollGenerator roller,
-            final Function<RollResult, RollResult> transformer) {
-        super();
+        finalRoller = new DefaultRollGenerator(generator).andThen(transformer);
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
-                new DiceRollAccumulator(roller, transformer));
+                new DiceRollAccumulator(finalRoller));
     }
 
     @Override

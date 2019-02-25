@@ -52,14 +52,14 @@ public final class TestDiceRollerCalls {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public final void testTransforms_Dice() {
+    public final void testCallsFunction_Dice() {
         final Dice dice;
         final DiceNotationExpression expression;
-        final Function<RollResult, RollResult> trans;
+        final Function<Dice, RollResult> roller;
 
         // Mocks generator
-        trans = Mockito.mock(Function.class);
-        Mockito.when(trans.apply(ArgumentMatchers.any()))
+        roller = Mockito.mock(Function.class);
+        Mockito.when(roller.apply(ArgumentMatchers.any()))
                 .thenReturn(Mockito.mock(RollResult.class));
 
         // Mocks dice
@@ -69,9 +69,9 @@ public final class TestDiceRollerCalls {
 
         expression = new DefaultDiceOperand(dice);
 
-        new DiceRoller(trans).transform(expression);
+        new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(trans, Mockito.times(1)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(1)).apply(ArgumentMatchers.any());
     }
 
     /**
@@ -79,14 +79,14 @@ public final class TestDiceRollerCalls {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public final void testTransforms_Subtraction() {
+    public final void testCallsFunction_Subtraction() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Function<RollResult, RollResult> trans;
+        final Function<Dice, RollResult> roller;
 
         // Mocks generator
-        trans = Mockito.mock(Function.class);
+        roller = Mockito.mock(Function.class);
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -94,9 +94,9 @@ public final class TestDiceRollerCalls {
         // 1 - 2
         expression = new SubtractionOperation(left, right);
 
-        new DiceRoller(trans).transform(expression);
+        new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(trans, Mockito.times(0)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(0)).apply(ArgumentMatchers.any());
     }
 
 }
