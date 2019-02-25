@@ -93,12 +93,12 @@ public final class DiceAccumulator
      * Reverses the sign of a dice, changing positive values to negatives, and
      * viceversa.
      * 
-     * @param dice
+     * @param d
      *            dice to reverse
      * @return dice with the sign reversed
      */
-    private final Dice reverse(final Dice dice) {
-        return new DefaultDice(0 - dice.getQuantity(), dice.getSides());
+    private final Dice reverse(final Dice d) {
+        return new DefaultDice(0 - d.getQuantity(), d.getSides());
     }
 
 }
