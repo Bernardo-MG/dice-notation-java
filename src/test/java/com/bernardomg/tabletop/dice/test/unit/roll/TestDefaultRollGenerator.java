@@ -66,8 +66,8 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2));
 
-        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
-                .getAllRolls().iterator();
+        rolled = new DefaultRollGenerator(generator).roll(dice).getAllRolls()
+                .iterator();
 
         Assertions.assertEquals(new Integer(1), rolled.next());
         Assertions.assertEquals(new Integer(2), rolled.next());
@@ -92,8 +92,7 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(1, 2, 3));
 
-        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
-                .getTotalRoll();
+        rolled = new DefaultRollGenerator(generator).roll(dice).getTotalRoll();
 
         Assertions.assertEquals(new Integer(6), rolled);
     }
@@ -114,8 +113,7 @@ public final class TestDefaultRollGenerator {
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
                 .thenReturn(Arrays.asList(5));
 
-        rolled = new DefaultRollGenerator(generator).roll(dice, (r) -> r)
-                .getTotalRoll();
+        rolled = new DefaultRollGenerator(generator).roll(dice).getTotalRoll();
 
         Assertions.assertEquals(new Integer(5), rolled);
     }

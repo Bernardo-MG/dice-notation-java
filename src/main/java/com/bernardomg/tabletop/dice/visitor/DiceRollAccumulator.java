@@ -185,20 +185,22 @@ public final class DiceRollAccumulator
     @Override
     public final void diceOperand(final DiceOperand exp) {
         final RollResult rollResult;
+        final RollResult finalResult;
 
         // Dice
         // Generates a random value
 
         // This would be chained with the grammar functions
-        rollResult = rollGenerator.roll(exp.getDice(), transformer);
-        results.add(rollResult);
+        rollResult = rollGenerator.roll(exp.getDice());
+        finalResult = transformer.apply(rollResult);
+        results.add(finalResult);
 
-        values.push(rollResult.getTotalRoll());
+        values.push(finalResult.getTotalRoll());
 
-        if (Iterables.size(rollResult.getAllRolls()) > 1) {
-            texts.push(rollResult.getAllRolls().toString());
+        if (Iterables.size(finalResult.getAllRolls()) > 1) {
+            texts.push(finalResult.getAllRolls().toString());
         } else {
-            texts.push(rollResult.getTotalRoll().toString());
+            texts.push(finalResult.getTotalRoll().toString());
         }
 
         previous = exp;
