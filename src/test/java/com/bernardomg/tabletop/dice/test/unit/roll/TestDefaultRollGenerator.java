@@ -27,9 +27,9 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
+import com.bernardomg.tabletop.dice.random.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates

@@ -22,9 +22,9 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
+import com.bernardomg.tabletop.dice.random.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
-import com.bernardomg.tabletop.dice.roll.DefaultRollGenerator;
 import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
 
 /**
