@@ -24,6 +24,13 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
+/**
+ * Function for transforming a {@code Dice} to a {@code RollResult}, simulating
+ * rolls.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public final class DiceToRollResult implements Function<Dice, RollResult> {
 
     /**
@@ -34,12 +41,21 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
      */
     private final NumberGenerator numberGenerator;
 
+    /**
+     * Default constructor.
+     */
     public DiceToRollResult() {
         super();
 
         numberGenerator = new RandomNumberGenerator();
     }
 
+    /**
+     * Constructs a function with the specified generator.
+     * 
+     * @param generator
+     *            generator to use
+     */
     public DiceToRollResult(final NumberGenerator generator) {
         super();
 
