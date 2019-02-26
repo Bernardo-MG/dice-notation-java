@@ -39,6 +39,16 @@ public interface DiceParser {
      */
     public DiceNotationExpression parse(final String expression);
 
+    /**
+     * Transforms a dice notation expression into the dice notation model and
+     * applies the received interpreter.
+     * 
+     * @param expression
+     *            the expression to parse
+     * @param interpreter
+     *            interpreter to apply
+     * @return the expression transformed by the interpreter
+     */
     public <V> V parse(final String expression,
             final DiceInterpreter<V> interpreter);
 
