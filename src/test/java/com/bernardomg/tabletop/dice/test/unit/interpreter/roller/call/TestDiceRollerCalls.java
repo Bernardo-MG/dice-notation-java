@@ -33,7 +33,8 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Unit tests for {@link DiceRoller}, verifying that handles dice correctly.
+ * Unit tests for {@link DiceRoller}, verifying that it calls its dependencies
+ * as expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -48,7 +49,7 @@ public final class TestDiceRollerCalls {
     }
 
     /**
-     * Verifies that a subtraction generates the expected results.
+     * Verifies that the roller function is called for dice.
      */
     @SuppressWarnings("unchecked")
     @Test
@@ -75,11 +76,11 @@ public final class TestDiceRollerCalls {
     }
 
     /**
-     * Verifies that a subtraction generates the expected results.
+     * Verifies that the roller function is not called for dice.
      */
     @SuppressWarnings("unchecked")
     @Test
-    public final void testCallsFunction_Subtraction() {
+    public final void testCallsFunction_Subtraction_NotCalled() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
