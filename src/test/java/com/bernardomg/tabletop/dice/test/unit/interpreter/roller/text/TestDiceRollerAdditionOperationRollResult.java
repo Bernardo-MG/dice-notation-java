@@ -29,7 +29,7 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 
 /**
  * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for addition operations.
+ * text results for addition operations.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -44,7 +44,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
     }
 
     /**
-     * Verifies that an addition generates the expected results.
+     * Verifies that an addition generates the expected text result.
      */
     @Test
     public final void testRolls_Text() {

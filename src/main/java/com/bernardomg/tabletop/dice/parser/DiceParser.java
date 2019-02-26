@@ -43,6 +43,8 @@ public interface DiceParser {
      * Transforms a dice notation expression into the dice notation model and
      * applies the received interpreter.
      * 
+     * @param <V>
+     *            type returned by the transformer
      * @param expression
      *            the expression to parse
      * @param interpreter

@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 
 /**
  * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for constants.
+ * text results for constants.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -43,7 +43,7 @@ public final class TestDiceRollerConstantRollResult {
     }
 
     /**
-     * Verifies that an addition generates the expected results.
+     * Verifies that an addition generates the expected text result.
      */
     @Test
     public final void testRolls_Negative_Text() {
@@ -58,7 +58,7 @@ public final class TestDiceRollerConstantRollResult {
     }
 
     /**
-     * Verifies that an addition generates the expected results.
+     * Verifies that an addition generates the expected text result.
      */
     @Test
     public final void testRolls_Text() {

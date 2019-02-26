@@ -30,7 +30,7 @@ import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 
 /**
  * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for dice.
+ * text results for dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -45,7 +45,7 @@ public final class TestDiceRollerDiceRollResult {
     }
 
     /**
-     * Verifies that an addition generates the expected results.
+     * Verifies that an addition generates the expected text result.
      */
     @Test
     public final void testRolls_SingleSide_Text() {
@@ -66,7 +66,7 @@ public final class TestDiceRollerDiceRollResult {
     }
 
     /**
-     * Verifies that an addition generates the expected results.
+     * Verifies that an addition generates the expected text result.
      */
     @Test
     public final void testRolls_SmallestDice_Text() {
