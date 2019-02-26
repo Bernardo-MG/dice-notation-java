@@ -27,26 +27,28 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.DiceToRollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
-import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
 /**
- * Units tests for {@link RandomNumberGenerator}, verifying that it generates
- * values as expected.
+ * Units tests for {@link DiceToRollResult}, verifying that it calls its
+ * dependencies as expected.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RunWith(JUnitPlatform.class)
-public final class TestDefaultRollGeneratorCalls {
+public final class TestDiceToRollResultCalls {
 
     /**
      * Default constructor.
      */
-    public TestDefaultRollGeneratorCalls() {
+    public TestDiceToRollResultCalls() {
         super();
     }
 
+    /**
+     * Verifies that the generator is called when generating rolls.
+     */
     @Test
-    public final void testRoll_GeneratesOnce() {
+    public final void testApply_GeneratesOnce() {
         final Dice dice;
         final NumberGenerator generator;
 

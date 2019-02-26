@@ -63,6 +63,8 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
      * Generates a random value.
      * <p>
      * This value is in the interval [1,max].
+     * <p>
+     * TODO: Should be a protected method
      * 
      * @param max
      *            the maximum value which can be generated
