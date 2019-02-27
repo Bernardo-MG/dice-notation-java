@@ -48,13 +48,12 @@ bg=cyan
       <x>240</x>
       <y>400</y>
       <w>330</w>
-      <h>90</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>DefaultDiceExpressionBuilder
 bg=yellow
 --
 -operandsStack: Stack&lt;DiceNotationExpression&gt;
--root: DiceNotationExpression
 --
 </panel_attributes>
     <additional_attributes/>
@@ -69,28 +68,5 @@ bg=yellow
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>650</x>
-      <y>420</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>/Roller/
-bg=cyan</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>560</x>
-      <y>420</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
 </diagram>
