@@ -29,6 +29,9 @@ parser = new DefaultDiceParser();
 roller = new DiceRoller();
 
 rolls = parser.parse("1d6+12", roller);
+
+// Prints the final result
+System.out.println(rolls.getTotalRoll());
 ```
 
 The second example also will roll the expression, generating a random result.

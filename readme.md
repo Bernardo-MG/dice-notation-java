@@ -91,6 +91,9 @@ parser = new DefaultDiceParser();
 roller = new DiceRoller();
 
 rolls = parser.parse("1d6+12", roller);
+
+// Prints the final result
+System.out.println(rolls.getTotalRoll());
 ```
 
 For more examples and details check the [docs][site-release].
