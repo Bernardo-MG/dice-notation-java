@@ -77,48 +77,23 @@ $ mvn install
 
 ### Usage example
 
-The project includes a model for dice and dice notation grammar. But the strong point are the parser and interpreters.
+The project includes model, BNF grammar and parsers, which allow working with the most common dice notation expressions.
 
-The parser generates a tree from the expression:
+You may parse an expression, and generate a random value, like this:
 
 ```java
 final DiceParser parser;
-final TransformableDiceNotationExpression parsed;
+final RollHistory rolls;
+final DiceInterpreter interpreter;
+final DiceInterpreter<RollHistory> roller;
 
 parser = new DefaultDiceParser();
-parsed = parser.parse("1d6+12");
+roller = new DiceRoller();
+
+rolls = parser.parse("1d6+12", roller);
 ```
 
-And the interpreters transform this tree into other values.
-
-For example, to roll the notation:
-
-```java
-final DiceInterpreter<RollHistory> interpreter;
-final RollHistory history;
-
-interpreter = new DiceRoller();
-
-history = new DefaultDiceNotationExpressionParser().parse("2d6+12", interpreter);
-```
-
-This history is composed from all the values generated when rolling:
-
-```java
-final Iterable<RollResult> results;
-final RollResult result;
-
-// Prints the final result
-System.out.println(history.getFinalRoll());
-
-results = history.getRollResults();
-result = results .iterator().next();
-
-// Prints each roll
-System.out.println(result.getAllRolls());
-```
-
-More interpreters are explained in the [![docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release].
+For more examples and details check the [docs][site-release].
 
 ## Collaborate
 
