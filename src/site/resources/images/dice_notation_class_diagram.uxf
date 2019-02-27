@@ -17,33 +17,4 @@ bg=cyan
 /+getExpression(): String/</panel_attributes>
     <additional_attributes/>
   </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>210</x>
-      <y>260</y>
-      <w>360</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>/TransformableDiceNotationExpression/
-bg=cyan
---
-
---
-/+getRoot(): DiceNotationExpression/
-/+roll(): Integer/
-/+transform(interpreter: DiceNotationTransformer&lt;V&gt;): V/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>370</x>
-      <y>180</y>
-      <w>30</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
-  </element>
 </diagram>
