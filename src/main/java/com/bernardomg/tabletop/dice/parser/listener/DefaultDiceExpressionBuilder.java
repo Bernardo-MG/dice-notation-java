@@ -218,6 +218,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             } else if (DIVISION_OPERATOR.equals(operator)) {
                 operation = new DivisionOperation(left, right);
             } else {
+                LOGGER.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(
                         String.format("The %s operator is invalid", operator));
             }
