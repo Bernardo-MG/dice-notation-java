@@ -16,6 +16,9 @@
 
 /**
  * Visitors, used to process the parsed grammar.
+ * <p>
+ * These are meant to be used for a second step at parsing, after getting the
+ * expression tree.
  */
 
 package com.bernardomg.tabletop.dice.visitor;

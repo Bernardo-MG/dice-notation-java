@@ -176,13 +176,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     /**
-     * Creates a binary operation from the parsed context data.
+     * Creates a binary operation from the operators received.
      * <p>
-     * By making use of the operands stack and the received operators it can
-     * build any binary operation.
+     * By making use of the nodes stack and the received operators it can build
+     * any binary operation.
      * <p>
      * The returned expression will be the root which aggregates all the
-     * operations parsed, which will take the shape of a tree.
+     * operations parsed into a tree.
      * 
      * @param operators
      *            parsed operators
@@ -232,6 +232,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     /**
      * Creates a dice operand from the parsed context data.
+     * <p>
+     * If the dice is being subtracted then the sign of the dice set is
+     * reversed.
      * 
      * @param ctx
      *            parsed context
@@ -249,6 +252,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         if (Iterables.size(ctx.DIGIT()) > 1) {
             if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
                     .equals(ctx.ADDOPERATOR().getText()))) {
+                LOGGER.debug("This is part of a subtraction. Reversing sign.");
                 quantity = 0 - Integer.parseInt(digits.next().getText());
             } else {
                 quantity = Integer.parseInt(digits.next().getText());
@@ -267,7 +271,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     /**
-     * Creates an integer operand from a terminal node.
+     * Creates an integer operand from the parsed expression.
      * 
      * @param expression
      *            parsed expression
