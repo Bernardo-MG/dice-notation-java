@@ -17,8 +17,7 @@
 /**
  * Dice rolls history.
  * <p>
- * A set of model classes to store detailed results from rolling a dice
- * notation.
+ * A set of model classes to store detailed results from rolling a dice.
  */
 
 package com.bernardomg.tabletop.dice.history;

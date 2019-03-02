@@ -19,11 +19,8 @@ package com.bernardomg.tabletop.dice.interpreter;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Transforms a dice notation expression into another object. This is a parser,
- * but to avoid mistakes with the actual grammar parser another name was chosen.
- * <p>
- * This can be used to parse the dice notation tree into any value as needed,
- * for example to generate the value represented by said notation.
+ * Transforms a dice notation expression into another object. The expression
+ * received is expected to be the root of a notation tree.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *

@@ -24,7 +24,7 @@ import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 
 /**
- * Immutable roll result.
+ * Immutable roll result. Contains all the values generated and the sum of them.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *

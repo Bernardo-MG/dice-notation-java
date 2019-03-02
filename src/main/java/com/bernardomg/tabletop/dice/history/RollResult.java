@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.history;
 import com.bernardomg.tabletop.dice.Dice;
 
 /**
- * Result from rolling a dice set.
+ * Result from rolling a single dice set.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
