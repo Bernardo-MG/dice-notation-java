@@ -17,46 +17,31 @@ parser = new DefaultDiceParser();
 parsed = parser.parse("1d6+12");
 ```
 
-Or if you want to change the returned object make use of an interpreter:
+### Rolling the Expression
+
+By using the DiceRoller you may simulate rolling the expression:
 
 ```java
-final DiceParser parser;
-final RollHistory rolls;
-final DiceInterpreter interpreter;
 final DiceInterpreter<RollHistory> roller;
+final RollHistory rolls;
 
-parser = new DefaultDiceParser();
 roller = new DiceRoller();
 
-rolls = parser.parse("1d6+12", roller);
+rolls = roller.transform(parsed);
 
 // Prints the final result
 System.out.println(rolls.getTotalRoll());
 ```
 
-The second example also will roll the expression, generating a random result.
+This will roll the expression each time transform is called, but if you are not planning on reuse the expression this can be done along the parsing:
+
+```java
+rolls = parser.parse("1d6+12", roller);
+```
 
 Of course you may want to reuse the expression, avoiding reparsing it, in which case you would do something like this:
 
-```java
-final DiceParser parser;
-final DiceInterpreter<RollHistory> roller;
-final TransformableDiceNotationExpression expression;
-RollHistory rolls;
-
-parser = new DefaultDiceParser();
-
-expression = parser.parse("1d6+12");
-
-roller = new DiceRoller();
-
-// Rolls once
-rolls = roller.transform(expression);
-// Rolls again
-rolls = roller.transform(expression);
-// And again, generating even more new random value
-rolls = roller.transform(expression);
-```
+### Other Transformations
 
 For more information about transforming the parsed tree check the [interpreters][interpreters].
 

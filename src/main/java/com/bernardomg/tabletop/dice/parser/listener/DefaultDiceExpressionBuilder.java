@@ -52,21 +52,7 @@ import com.google.common.collect.Iterables;
  * This {@code DiceNotationExpression} is the root for a tree representing the
  * expression received by the parser.
  * <p>
- * It contains a stack which stores the operands as they are parsed, this way
- * any operation, such as an addition, can acquire the latest operands, which
- * will be the ones it will employ.
- * <p>
- * The way this works is simple:
- * <ul>
- * <li>Numbers are parsed into {@code IntegerOperand} and stored in the
- * stack</li>
- * <li>Dice are parsed into {@code DiceOperand} and stored in the stack</li>
- * <li>Binary operations take the last two values from the stack, get parsed
- * into a {@code BinaryOperation} and then are stored into the stack</li>
- * </ul>
- * <p>
- * The stack is also used to find the root, which will be the last value added
- * into it.
+ * The builder makes use of a stack for storing the objects as they are parsed.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -100,12 +86,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private static final String                 SUBTRACTION_OPERATOR    = "-";
 
     /**
-     * Stack to store operands from the outer nodes in an operation.
-     * <p>
-     * For example, when parsing an addition operation this stack will hold both
-     * operands being added together.
+     * Stack to store objects as they are parsed. The last object left inside it
+     * will be the root of the parsed tree.
      */
-    private final Stack<DiceNotationExpression> operandsStack           = new Stack<>();
+    private final Stack<DiceNotationExpression> nodes                   = new Stack<>();
 
     /**
      * Default constructor.
@@ -129,7 +113,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         LOGGER.debug("Parsed addition operation: {}", expression);
 
-        operandsStack.push(expression);
+        nodes.push(expression);
     }
 
     @Override
@@ -142,7 +126,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         LOGGER.debug("Parsed dice: {}", expression);
 
-        operandsStack.push(expression);
+        nodes.push(expression);
     }
 
     @Override
@@ -160,7 +144,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         LOGGER.debug("Parsed multiplication operation: {}", expression);
 
-        operandsStack.push(expression);
+        nodes.push(expression);
     }
 
     @Override
@@ -173,23 +157,32 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         LOGGER.debug("Parsed number: {}", expression);
 
-        operandsStack.push(expression);
+        nodes.push(expression);
     }
 
     @Override
     public final DiceNotationExpression getDiceExpressionRoot() {
+        final DiceNotationExpression root;
+
         // The last value added to the stack will be the root
-        return operandsStack.peek();
+
+        if (nodes.isEmpty()) {
+            root = null;
+        } else {
+            root = nodes.peek();
+        }
+
+        return root;
     }
 
     /**
-     * Creates a binary operation from the parsed context data.
+     * Creates a binary operation from the operators received.
      * <p>
-     * By making use of the operands stack and the received operators it can
-     * build any binary operation.
+     * By making use of the nodes stack and the received operators it can build
+     * any binary operation.
      * <p>
      * The returned expression will be the root which aggregates all the
-     * operations parsed, which will take the shape of a tree.
+     * operations parsed into a tree.
      * 
      * @param operators
      *            parsed operators
@@ -205,7 +198,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // There are as many operands as operators plus one
         operands = new Stack<>();
         for (Integer i = 0; i <= operators.size(); i++) {
-            operands.push(operandsStack.pop());
+            operands.push(nodes.pop());
         }
 
         // The operands and operators are combined into the model expressions
@@ -225,6 +218,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             } else if (DIVISION_OPERATOR.equals(operator)) {
                 operation = new DivisionOperation(left, right);
             } else {
+                LOGGER.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(
                         String.format("The %s operator is invalid", operator));
             }
@@ -238,6 +232,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     /**
      * Creates a dice operand from the parsed context data.
+     * <p>
+     * If the dice is being subtracted then the sign of the dice set is
+     * reversed.
      * 
      * @param ctx
      *            parsed context
@@ -255,6 +252,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         if (Iterables.size(ctx.DIGIT()) > 1) {
             if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
                     .equals(ctx.ADDOPERATOR().getText()))) {
+                LOGGER.debug("This is part of a subtraction. Reversing sign.");
                 quantity = 0 - Integer.parseInt(digits.next().getText());
             } else {
                 quantity = Integer.parseInt(digits.next().getText());
@@ -273,7 +271,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     }
 
     /**
-     * Creates an integer operand from a terminal node.
+     * Creates an integer operand from the parsed expression.
      * 
      * @param expression
      *            parsed expression

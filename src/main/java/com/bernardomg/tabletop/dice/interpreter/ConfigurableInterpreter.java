@@ -28,11 +28,12 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
 
 /**
- * An interpreter which can be configured.
+ * An interpreter which can be customized.
  * <p>
- * It chains a traverser, another interpreter which returns an
+ * It chains a traverser, which is another interpreter returning an
  * {@code Iterable<DiceNotationExpression>}, with a {@link NotationAccumulator}.
- * This way the notation tree is flattened and iterated easily.
+ * The traverser will flatten the notation tree, and then the accumulator will
+ * go through it.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -53,7 +54,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
     private final NotationAccumulator<V>                            accumulator;
 
     /**
-     * Transformer to generate a list from the received expression.
+     * Intrepreter to flatten the received tree.
      */
     private final DiceInterpreter<Iterable<DiceNotationExpression>> traverser;
 
@@ -61,7 +62,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      * Constructs an interpreter.
      * 
      * @param trav
-     *            traverse to flatten the tree
+     *            traverser to flatten the tree
      * @param accum
      *            accumulator to generate the result
      */

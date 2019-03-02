@@ -1,12 +1,12 @@
 # Dice Notation Interpreter
 
-Once the notation has been parsed it can be transformed into other object with a DiceInterpreter.
+Once the notation has been parsed the resulting [DiceNotationExpression][dice_notation_expression] can be transformed into other object with a [DiceInterpreter][dice_interpreter].
 
-The two main implementations are the DiceRoller, to generate a random values from the parsed expression, and the DiceGatherer, to get all the dice sets in the expression.
+The two main implementations are the [DiceRoller][dice_roller], to generate a random values from the parsed expression, and the [DiceGatherer][dice_gatherer], to get all the dice sets in the expression.
 
 ## Applying Interpreters
 
-The parser allows the use of interpreters to change the result from parsing:
+They can be applied when parsing:
 
 ```java
 final DiceInterpreter<RollHistory> interpreter;
@@ -17,7 +17,7 @@ interpreter = new DiceRoller();
 history = new DefaultDiceNotationExpressionParser().parse("2d6+12", interpreter);
 ```
 
-But they may be applied manually to the parsed notation, and that's how they will be used on the examples.
+But in some cases they may be applied manually to the parsed result, mostly when it will be transformed multiple times, as it may happen when rolling.
 
 ## Dice Roller
 
@@ -29,7 +29,7 @@ final RollHistory history;
 history = new DiceRoller().transform(parsed);
 ```
 
-It includes the final value:
+The result includes the final value:
 
 ```java
 // Prints the final result
@@ -79,6 +79,14 @@ interpreter = new DiceRoller(numGen);
 System.out.println(interpreter.transform(parsed));
 ```
 
+### Customizing Roll History
+
+The dice roller can receive a function which will be applied after generating each roll result:
+
+```java
+interpreter = new DiceRoller(new DiceToRollResult(), (r) -> function(r));
+```
+
 ## Dice Gatherer
 
 If you need to get the dice from the expression:
@@ -119,4 +127,8 @@ wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(),
 
 It just needs another interpreter, which returns a list of nodes, and an accumulator.
 
-[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
+[dice_gatherer]: ./apidocs/com/bernardomg/tabletop/dice/interpreter/DiceGatherer.html
+[dice_interpreter]: ./apidocs/com/bernardomg/tabletop/dice/interpreter/DiceInterpreter.html
+[dice_notation_expression]: ./apidocs/com/bernardomg/tabletop/dice/notation/DiceNotationExpression.html
+[dice_roller]: ./apidocs/com/bernardomg/tabletop/dice/interpreter/DiceRoller.html
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/random/NumberGenerator.html

@@ -17,12 +17,11 @@
 /**
  * Dice notation model.
  * <p>
- * The classes in this package allow creating a tree representing a dice
- * notation expression.
+ * These classes allow creating a tree representing a dice notation expression.
  * <p>
- * It is not recommended using the classes in this package manually. Instead a
- * parser from the {@link com.bernardomg.tabletop.dice.parser parser} package
- * should be used.
+ * It is not recommended instancing the notation classes manually. Instead a
+ * {@link com.bernardomg.tabletop.dice.parser.DiceParser DiceParser} should be
+ * used.
  */
 
 package com.bernardomg.tabletop.dice.notation;
