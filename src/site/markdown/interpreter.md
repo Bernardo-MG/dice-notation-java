@@ -79,6 +79,14 @@ interpreter = new DiceRoller(numGen);
 System.out.println(interpreter.transform(parsed));
 ```
 
+### Customizing Roll History
+
+The dice roller can receive a function which will be applied after generating each roll result:
+
+```java
+interpreter = new DiceRoller(new DiceToRollResult(), (r) -> function(r));
+```
+
 ## Dice Gatherer
 
 If you need to get the dice from the expression:
