@@ -14,24 +14,8 @@
  * the License.
  */
 /**
- * Dice classes, including the model for dice.
- * <h3>Model</h3>
- * <p>
- * The {@link com.bernardomg.tabletop.dice.Dice Dice} interface, and the default
- * implementation of this, the {@link com.bernardomg.tabletop.dice.DefaultDice
- * DefaultDice}, offer a simple model for dice groups.
- * <h3>Sub-packages</h3>
- * <p>
- * The packages inside this one extend over the basic dice in various ways.
- * <p>
- * With the {@link com.bernardomg.tabletop.dice.roller roller} package it is
- * possible generating random values from the dice classes.
- * <p>
- * For actual dice notation, including operations, the model inside the
- * {@link com.bernardomg.tabletop.dice.notation notation} package can be used.
- * <p>
- * The {@link com.bernardomg.tabletop.dice.parser parser} package hosts parsers
- * which can transform an expression into an equivalent object.
+ * Dice classes, which includes the model, but also a parser and transformers to
+ * handle dice notation expressions.
  */
 
 package com.bernardomg.tabletop.dice;

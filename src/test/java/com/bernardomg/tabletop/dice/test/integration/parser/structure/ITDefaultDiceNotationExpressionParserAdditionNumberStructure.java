@@ -24,11 +24,11 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses numeric additions.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * numeric additions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -56,8 +56,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure 
         notation = "1+2+3";
 
         // ((1+2)+3)
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 3, number.getValue());
@@ -85,8 +84,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure 
         notation = "1+2+3+4+5";
 
         // ((((1+2)+3)+4)+5)
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 5, number.getValue());
@@ -122,8 +120,7 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure 
         notation = "1+2";
 
         // (1+2)
-        operation = (AdditionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 2, number.getValue());

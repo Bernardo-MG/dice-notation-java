@@ -39,10 +39,11 @@
       <menu name="Documentation" inherit="bottom">
          <item name="Acquire" href="./acquire.html" />
          <item name="Usage" href="./usage.html" />
-         <item name="Dice model" href="./dice.html" />
+         <item name="Dice Model" href="./dice.html" />
          <item name="Grammar" href="./grammar.html" />
-         <item name="Notation model" href="./notation.html" />
+         <item name="Notation Model" href="./notation.html" />
          <item name="Parser" href="./parser.html" />
+         <item name="Interpreter" href="./interpreter.html" />
       </menu>
       <menu name="Info and reports" inherit="bottom">
          <item name="Info" href="./info.html" />

@@ -20,8 +20,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Multiplication operation.
- * <p>
- * This multiplies the value of an operand with the value of the other operand.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

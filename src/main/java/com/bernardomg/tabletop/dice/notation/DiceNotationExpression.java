@@ -19,12 +19,8 @@ package com.bernardomg.tabletop.dice.notation;
 /**
  * A dice notation expression.
  * <p>
- * This is the root interface for specifying a dice notation expression. Classes
- * inheriting from this will represent the components for said expressions.
- * <p>
- * A
- * {@link com.bernardomg.tabletop.dice.notation.transformer.DiceNotationTransformer
- * DiceNotationTransformer} can be used to get value from the expression.
+ * This is the root interface for specifying a dice notation expression,
+ * implementations will add methods as they need.
  * <p>
  * It is also possible getting the string representation of the dice notation
  * expression it represents.

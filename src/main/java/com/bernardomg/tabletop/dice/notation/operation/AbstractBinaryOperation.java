@@ -90,7 +90,8 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
         other = (AbstractBinaryOperation) obj;
 
         return Objects.equal(left, other.left)
-                && Objects.equal(right, other.right);
+                && Objects.equal(right, other.right)
+                && Objects.equal(operation, other.operation);
     }
 
     @Override
@@ -110,13 +111,13 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
 
     @Override
     public final int hashCode() {
-        return Objects.hashCode(left, right);
+        return Objects.hashCode(left, right, operation);
     }
 
     @Override
     public final String toString() {
         return MoreObjects.toStringHelper(this).add("left", left)
-                .add("right", right).toString();
+                .add("right", right).add("operation", operation).toString();
     }
 
 }

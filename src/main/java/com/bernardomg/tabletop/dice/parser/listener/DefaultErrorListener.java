@@ -19,6 +19,8 @@ package com.bernardomg.tabletop.dice.parser.listener;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Basic error listener for an ANTLR4 parser.
@@ -28,6 +30,12 @@ import org.antlr.v4.runtime.Recognizer;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultErrorListener extends BaseErrorListener {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DefaultErrorListener.class);
 
     /**
      * Default constructor.
@@ -46,6 +54,8 @@ public final class DefaultErrorListener extends BaseErrorListener {
         message = String.format(
                 "Failed to parse at line %1$d on char %2$d due to %3$s", line,
                 charPositionInLine + 1, msg);
+
+        LOGGER.error(message);
 
         throw new IllegalStateException(message, e);
     }

@@ -24,11 +24,11 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses substractions with dice.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * substractions with dice.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -54,8 +54,8 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
 
         notation = "1d20-2d6";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (SubtractionOperation) new DefaultDiceParser()
+                .parse(notation);
 
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
@@ -79,8 +79,8 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
 
         notation = "5-2d6";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (SubtractionOperation) new DefaultDiceParser()
+                .parse(notation);
 
         integer = (IntegerOperand) operation.getLeft();
         dice = (DiceOperand) operation.getRight();
@@ -103,8 +103,8 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
 
         notation = "2d6-5";
 
-        operation = (SubtractionOperation) new DefaultDiceNotationExpressionParser()
-                .parse(notation).getRoot();
+        operation = (SubtractionOperation) new DefaultDiceParser()
+                .parse(notation);
 
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();

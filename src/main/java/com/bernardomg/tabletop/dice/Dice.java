@@ -29,14 +29,8 @@ package com.bernardomg.tabletop.dice;
  * No other limitation is expected. In the real world the number of sides which
  * a die may physically have are limited by the rules of geometry, but there is
  * no reason to take care of that.
- * <p>
- * The main use of a dice is generating a random number. While this is not
- * supported by the interface, any implementation of
- * {@link com.bernardomg.tabletop.dice.roller.Roller Roller} will take care of
- * that concern.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
- * @see com.bernardomg.tabletop.dice.roller.Roller Roller
  */
 public interface Dice {
 

@@ -5,54 +5,44 @@ The project includes a model for dice and dice notation grammar. But the strong 
 
 ## Parsing Common Dice Notation
 
-To parse generic dice notation, including algebraic operations use this:
+Generic dice notation, including algebraic operations, can be parsed like this:
 
 ```java
-final DiceNotationExpressionParser parser;
+final DiceParser parser;
 final TransformableDiceNotationExpression parsed;
+final DiceInterpreter interpreter;
 
-parser = new DefaultDiceNotationExpressionParser();
+parser = new DefaultDiceParser();
 
 parsed = parser.parse("1d6+12");
-
-System.out.println(parsed.roll());
 ```
 
-The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
+### Rolling the Expression
 
-## Getting the Dice Set
-
-If you need to get the dice from the expression:
+By using the DiceRoller you may simulate rolling the expression:
 
 ```java
-final TransformableDiceNotationExpression parsed;
-final Dice dice;
+final DiceInterpreter<RollHistory> roller;
+final RollHistory rolls;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("1d6");
+roller = new DiceRoller();
 
-dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
+rolls = roller.transform(parsed);
 
-System.out.println(dice.getQuantity());
-System.out.println(dice.getSides());
+// Prints the final result
+System.out.println(rolls.getTotalRoll());
 ```
 
-This will print the number of dice (1) and the number of sides (6).
-
-## Changing Random Number Generation on Parsed Dice
-
-Random numbers, for rolling dice, are handled through an instance of [NumberGenerator][number_generator].
-
-To use a custom generator you need to implement this and then set the new generator into the parser:
+This will roll the expression each time transform is called, but if you are not planning on reuse the expression this can be done along the parsing:
 
 ```java
-final NumberGenerator numGen;
-final Roller roller;
-final DiceNotationExpressionParser parser;
-
-numGen = new CustomNumberGenerator();
-roller = new DefaultRoller(numGen);
-
-parser = new DefaultDiceNotationExpressionParser(roller);
+rolls = parser.parse("1d6+12", roller);
 ```
 
-[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
+Of course you may want to reuse the expression, avoiding reparsing it, in which case you would do something like this:
+
+### Other Transformations
+
+For more information about transforming the parsed tree check the [interpreters][interpreters].
+
+[interpreters]: ./interpreter.html

@@ -24,8 +24,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import com.bernardomg.tabletop.dice.roller.random.NumberGenerator;
-import com.bernardomg.tabletop.dice.roller.random.RandomNumberGenerator;
+import com.bernardomg.tabletop.dice.random.NumberGenerator;
+import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
 /**
  * Units tests for {@link RandomNumberGenerator}, verifying that it generates

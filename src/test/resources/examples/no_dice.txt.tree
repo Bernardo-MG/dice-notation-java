@@ -1,1 +1,1 @@
-(parse (function (dice 0 d 6)))
+(notation (dice 0 d 6))

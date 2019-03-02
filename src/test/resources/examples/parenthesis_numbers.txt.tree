@@ -1,0 +1,1 @@
+(notation (addOp (multOp (operand ( (notation (addOp (multOp (operand (number 1))) + (multOp (operand (number 2))))) )) * (operand (number 3)))))

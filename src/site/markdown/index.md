@@ -28,9 +28,9 @@ This is very useful when creating tools related to these games, but won't make m
 
 ## Usage example
 
-The project includes a model for dice and dice notation grammar. But the strong point are the parsers, which will create the model from a text string.
+The project includes model, BNF grammar and parsers, which allow working with the most common dice notation expressions.
 
-For a concrete example of how to do this take a look at the [usage page][usage].
+For more details take a look at the [usage page][usage].
 
 ## ANTLR4 grammars
 

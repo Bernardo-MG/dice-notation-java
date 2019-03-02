@@ -23,6 +23,8 @@ Its usefulness is very clear, it allows working with specific random values dist
 - Model for dice and dice notation, along classes to generate values from them
 - Parser to create model instances from the notation
 - Allows custom random number generation
+- Arithmetic operations (addition, subtraction, multiplication, integer division)
+- Parenthesis support
 
 ## Limitations
 
@@ -75,38 +77,26 @@ $ mvn install
 
 ### Usage example
 
-The project includes a model for dice and dice notation grammar. But the strong point are the parsers.
+The project includes model, BNF grammar and parsers, which allow working with the most common dice notation expressions.
 
-To parse generic dice notation, including algebraic operations use this:
-
-```java
-final DiceNotationExpressionParser parser;
-final TransformableDiceNotationExpression parsed;
-
-parser = new DefaultDiceNotationExpressionParser();
-
-parsed = parser.parse("1d6+12");
-
-System.out.println(parsed.roll());
-```
-
-The 'roll' method will generate a number from the expression each time it is called, simulating the dice being rolled, and applying any algebraic operation.
-
-If you need to get the dice from the expression:
+You may parse an expression, and generate a random value, like this:
 
 ```java
-final TransformableDiceNotationExpression parsed;
-final Dice dice;
+final DiceParser parser;
+final RollHistory rolls;
+final DiceInterpreter interpreter;
+final DiceInterpreter<RollHistory> roller;
 
-parsed = new DefaultDiceNotationExpressionParser().parse("1d6+12");
+parser = new DefaultDiceParser();
+roller = new DiceRoller();
 
-dice = parsed.transform(new DiceSetsTransformer()).iterator().next();
+rolls = parser.parse("1d6+12", roller);
 
-System.out.println(dice.getQuantity());
-System.out.println(dice.getSides());
+// Prints the final result
+System.out.println(rolls.getTotalRoll());
 ```
 
-This will print the number of dice (1) and the number of sides (6).
+For more examples and details check the [docs][site-release].
 
 ## Collaborate
 

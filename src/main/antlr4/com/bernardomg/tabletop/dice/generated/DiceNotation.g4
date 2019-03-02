@@ -27,12 +27,7 @@ options { tokenVocab=DiceNotationLexer; }
  * Rules.
  */
  
-parse
-:
-   function
-;
-
-function
+notation
 :
    dice
    | number
@@ -53,11 +48,12 @@ operand
 :
    dice
    | number
+   | LPAREN notation RPAREN
 ;
 
 dice
 :
-   ADDOPERATOR? DIGIT DSEPARATOR DIGIT
+   ADDOPERATOR? DIGIT? DSEPARATOR DIGIT
 ;
 
 number

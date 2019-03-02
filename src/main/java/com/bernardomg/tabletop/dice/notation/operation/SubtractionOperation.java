@@ -20,11 +20,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Subtraction operation.
- * <p>
- * This subtracts the value of an operand from the value of the other operand.
- * <p>
- * As with any other subtraction, the right operand's value will be subtracted
- * from the left one's.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -45,8 +40,8 @@ public final class SubtractionOperation extends AbstractBinaryOperation {
 
     @Override
     public final String getExpression() {
-        final String left;  // Left side operand as a string
-        final String right; // Right side operand as a string
+        final String left;
+        final String right;
 
         left = getLeft().getExpression();
         right = getRight().getExpression();

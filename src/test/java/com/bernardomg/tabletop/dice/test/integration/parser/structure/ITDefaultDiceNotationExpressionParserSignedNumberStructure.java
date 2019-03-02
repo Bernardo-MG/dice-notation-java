@@ -22,11 +22,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses signed numbers.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * signed numbers.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -48,8 +48,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
     public final void testParse_Negative() {
         final IntegerOperand operation; // Parsed expression
 
-        operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("-12").getRoot();
+        operation = (IntegerOperand) new DefaultDiceParser().parse("-12");
 
         Assertions.assertEquals(new Integer(0 - 12), operation.getValue());
     }
@@ -62,8 +61,7 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
     public final void testParse_Positive() {
         final IntegerOperand operation; // Parsed expression
 
-        operation = (IntegerOperand) new DefaultDiceNotationExpressionParser()
-                .parse("+12").getRoot();
+        operation = (IntegerOperand) new DefaultDiceParser().parse("+12");
 
         Assertions.assertEquals(new Integer(12), operation.getValue());
     }

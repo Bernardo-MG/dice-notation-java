@@ -1,1 +1,1 @@
-(parse (function (addOp (multOp (operand (dice 1 d 6)) / (operand (dice 2 d 12))))))
+(notation (addOp (multOp (operand (dice 1 d 6)) / (operand (dice 2 d 12)))))

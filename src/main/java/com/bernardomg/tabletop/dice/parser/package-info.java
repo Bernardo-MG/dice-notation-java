@@ -19,13 +19,6 @@
  * <p>
  * These will take a string with a dice notation expression and return a tree of
  * dice notation model objects.
- * <p>
- * The {@link com.bernardomg.tabletop.dice.parser.DiceNotationExpressionParser
- * DiceNotationExpressionParser} allows creating custom parsers. The default one
- * is
- * {@link com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser
- * DefaultDiceNotationExpressionParser}, which makes use of the classes
- * generated from an ANTLR4 grammar to parse dice expressions.
  */
 
 package com.bernardomg.tabletop.dice.parser;

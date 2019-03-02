@@ -24,11 +24,11 @@ import org.junit.runner.RunWith;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
-import com.bernardomg.tabletop.dice.parser.DefaultDiceNotationExpressionParser;
+import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
 /**
- * Integration tests for {@link DefaultDiceNotationExpressionParser}, verifying
- * that it parses dice notation expressions for single dice groups.
+ * Integration tests for {@link DefaultDiceParser}, verifying that it parses
+ * dice notation expressions for single dice groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -51,8 +51,8 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser()
-                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE).getRoot();
+        parsed = new DefaultDiceParser()
+                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -70,8 +70,7 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("-1d6")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("-1d6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -88,8 +87,7 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d1")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("1d1");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -105,8 +103,39 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d6")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("1d6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Simple_BigD() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("1D6");
+
+        dice = ((DiceOperand) parsed).getDice();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    /**
+     * Verifies that a simple dice notation can be parsed.
+     */
+    @Test
+    public final void testParse_Simple_NoQuantity() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Dice dice;                     // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("d6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -122,8 +151,7 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1D6")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("1D6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -139,8 +167,7 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("0d6")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("0d6");
 
         dice = ((DiceOperand) parsed).getDice();
 
@@ -156,8 +183,7 @@ public final class ITDefaultDiceNotationExpressionParserDiceStructure {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
-        parsed = new DefaultDiceNotationExpressionParser().parse("1d0")
-                .getRoot();
+        parsed = new DefaultDiceParser().parse("1d0");
 
         dice = ((DiceOperand) parsed).getDice();
 
