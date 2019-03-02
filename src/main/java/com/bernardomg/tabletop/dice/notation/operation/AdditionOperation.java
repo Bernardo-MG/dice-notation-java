@@ -20,11 +20,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Addition operation.
- * <p>
- * This adds together the values from two dice notation expressions.
- * <p>
- * As with any other addition, the order of the operands does not matter for the
- * result.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

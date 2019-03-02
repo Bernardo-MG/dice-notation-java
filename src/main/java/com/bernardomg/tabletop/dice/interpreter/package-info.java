@@ -15,9 +15,10 @@
  */
 
 /**
- * Dice notation expression transformers. These allow generating values from a
- * expression tree, for things such as simulating rolling it or acquiring all
- * the dice from an expression.
+ * Dice notation expression transformers.
+ * <p>
+ * These allow generating values from a expression tree, for things such as
+ * simulating rolling it or acquiring all the dice from an expression.
  */
 
 package com.bernardomg.tabletop.dice.interpreter;
