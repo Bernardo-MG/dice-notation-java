@@ -222,22 +222,21 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <antlr.version>4.7.2</antlr.version>
-      <guava.version>27.0.1-jre</guava.version>
+      <guava.version>28.1-jre</guava.version>
       <junit.jupiter.version>5.4.0</junit.jupiter.version>
-      <junit.platform.version>1.4.0</junit.platform.version>
-      <mockito.version>2.24.0</mockito.version>
-      <log4j.version>2.11.2</log4j.version>
+      <mockito.version>3.1.0</mockito.version>
+      <log4j.version>2.12.1</log4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.antlr.version>4.7.1</plugin.antlr.version>
-      <plugin.antlr.test.version>1.9</plugin.antlr.test.version>
+      <plugin.antlr.version>4.7.2</plugin.antlr.version>
+      <plugin.antlr.test.version>1.11</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>1.4.2</site.skin.version>
+      <site.skin.version>1.4.3</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
    </properties>
@@ -245,6 +244,19 @@
    <!-- ********************************************** -->
    <!-- *************** DEPENDENCIES ***************** -->
    <!-- ********************************************** -->
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <!-- JUnit BOM -->
+            <groupId>org.junit</groupId>
+            <artifactId>junit-bom</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
    <dependencies>
       <dependency>
@@ -282,14 +294,12 @@
          <!-- JUnit Jupiter Engine -->
          <groupId>org.junit.jupiter</groupId>
          <artifactId>junit-jupiter-engine</artifactId>
-         <version>${junit.jupiter.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
          <!-- JUnit Jupiter Platform -->
          <groupId>org.junit.platform</groupId>
          <artifactId>junit-platform-runner</artifactId>
-         <version>${junit.platform.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
