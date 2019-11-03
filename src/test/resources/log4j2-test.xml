@@ -8,13 +8,11 @@
 
    <Appenders>
       <Console name="console" target="SYSTEM_OUT">
-         <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+         <PatternLayout pattern="%-5p | %d{ISO8601} | %c{1.} %M %L | %m%n" />
       </Console>
 
       <File name="file" fileName="${filename}">
-         <PatternLayout>
-            <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
-         </PatternLayout>
+         <PatternLayout pattern="%-5p | %d{ISO8601} | %c{1.} %M %L | %m%n" />
       </File>
    </Appenders>
 
