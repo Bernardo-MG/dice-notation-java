@@ -245,16 +245,21 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final Integer quantity;              // Number of dice
         final Integer sides;                 // Number of sides
         final Iterator<TerminalNode> digits; // Parsed digits
+        final Integer size;                  // Size of the digit list
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
+        size = Iterables.size(ctx.DIGIT());
 
-        if (Iterables.size(ctx.DIGIT()) > 1) {
+        if (size > 1) {
+            // Contains the quantity of dice
             if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
                     .equals(ctx.ADDOPERATOR().getText()))) {
+                // Subtraction
                 LOGGER.debug("This is part of a subtraction. Reversing sign.");
                 quantity = 0 - Integer.parseInt(digits.next().getText());
             } else {
+                // Addition
                 quantity = Integer.parseInt(digits.next().getText());
             }
         } else {
@@ -262,6 +267,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             // Defaults to 1
             quantity = 1;
         }
+
         sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
