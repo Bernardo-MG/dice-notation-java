@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Supplier;
 
 import com.bernardomg.tabletop.dice.Dice;
 
@@ -46,24 +47,29 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
         final Collection<Integer> rolls; // Roll results
         final Integer quantity;
         final Boolean negative;
+        final Supplier<Integer> rollSupplier;
 
         checkNotNull(dice, "Received a null pointer as dice");
 
         if (dice.getQuantity() < 0) {
+            // Negative dice set (-1d6)
             quantity = 0 - dice.getQuantity();
             negative = true;
         } else {
+            // Positive dice set (1d6)
             quantity = dice.getQuantity();
             negative = false;
         }
 
-        rolls = new ArrayList<Integer>();
+        if (negative) {
+            rollSupplier = () -> (0 - generate(dice.getSides()));
+        } else {
+            rollSupplier = () -> (generate(dice.getSides()));
+        }
+
+        rolls = new ArrayList<>();
         for (Integer i = 0; i < quantity; i++) {
-            if (negative) {
-                rolls.add(0 - generate(dice.getSides()));
-            } else {
-                rolls.add(generate(dice.getSides()));
-            }
+            rolls.add(rollSupplier.get());
         }
 
         return rolls;
