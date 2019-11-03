@@ -79,6 +79,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
     @Override
     public final V transform(final DiceNotationExpression expression) {
         final Iterable<DiceNotationExpression> exps;
+        final V result;
 
         checkNotNull(expression, "Received a null pointer as expression");
 
@@ -87,8 +88,14 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         // The expression is broken down
         exps = traverser.transform(expression);
 
+        LOGGER.trace("Traversed root into {}", exps);
+
         // The expressions are filtered, taking all the dice
-        return process(exps);
+        result = process(exps);
+
+        LOGGER.trace("Processed expressions into {}", result);
+
+        return result;
     }
 
     /**
@@ -103,6 +110,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         accumulator.reset();
 
         for (final DiceNotationExpression current : nodes) {
+            LOGGER.debug("Current expression: {}", current);
             if (current instanceof BinaryOperation) {
                 accumulator.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {

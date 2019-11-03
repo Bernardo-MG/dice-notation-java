@@ -68,11 +68,14 @@ public final class PreorderTraverser
         exps = new ArrayList<>();
         while (!nodes.empty()) {
             current = nodes.pop();
-            LOGGER.debug("Transforming expression {}", current);
+            LOGGER.debug("Transforming current node {}", current);
 
+            LOGGER.debug("Stored current node {} into return", current);
             exps.add(current);
 
             if (current instanceof BinaryOperation) {
+                LOGGER.trace("The current node is a binary node");
+                LOGGER.trace("Pushing branches into stack");
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
             }

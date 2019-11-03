@@ -167,6 +167,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // The last value added to the stack will be the root
 
         if (nodes.isEmpty()) {
+            LOGGER.trace("No nodes. Returning null");
             root = null;
         } else {
             root = nodes.peek();
@@ -214,14 +215,18 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
                 LOGGER.trace("Subtraction operation");
                 operation = new SubtractionOperation(left, right);
             } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Multiplication operation");
                 operation = new MultiplicationOperation(left, right);
             } else if (DIVISION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Division operation");
                 operation = new DivisionOperation(left, right);
             } else {
                 LOGGER.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(
                         String.format("The %s operator is invalid", operator));
             }
+
+            LOGGER.debug("Parsed operation {}", operation);
 
             // Each new expression is stored back for the next iteration
             operands.push(operation);
@@ -265,6 +270,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         } else {
             // No quantity of dice defined
             // Defaults to 1
+            LOGGER.trace("No dice quantity defined. Defaulting to 1");
             quantity = 1;
         }
 
