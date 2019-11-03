@@ -103,5 +103,15 @@
             Quantity of dice is now optional, and defaults to 1.
          </action>
       </release>
+      <release version="2.0.1" date="2019-11-03" description="Updates">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="add">
+            Added more logging messages.
+         </action>
+      </release>
+      <release version="2.1.0" date="2019-11-03" description="Updates">
+      </release>
    </body>
 </document>
