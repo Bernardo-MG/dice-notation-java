@@ -51,6 +51,34 @@ public final class TestDiceRoller {
     }
 
     /**
+     * Verifies that the roller returns the total roll when there is a single
+     * value.
+     */
+    @Test
+    public final void testTransform_AddSingleValue() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final Integer rolled;
+        final NumberGenerator generator;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5));
+
+        expression = new DefaultDiceOperand(dice);
+
+        rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(5), rolled);
+    }
+
+    /**
      * Verifies that the roller returns the total roll as a sum of all the
      * generated values.
      */
@@ -76,6 +104,60 @@ public final class TestDiceRoller {
         rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
 
         Assertions.assertEquals(new Integer(6), rolled);
+    }
+
+    /**
+     * Verifies that the roller generates the text with a single value.
+     */
+    @Test
+    public final void testTransform_AggregatesSingleText() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final NumberGenerator generator;
+        final RollHistory result;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5));
+
+        expression = new DefaultDiceOperand(dice);
+
+        result = new DiceRoller(generator).transform(expression);
+
+        Assertions.assertEquals("5", result.toString());
+    }
+
+    /**
+     * Verifies that the roller generates the text by aggregating the values.
+     */
+    @Test
+    public final void testTransform_AggregatesText() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final NumberGenerator generator;
+        final RollHistory result;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5, 7, 2));
+
+        expression = new DefaultDiceOperand(dice);
+
+        result = new DiceRoller(generator).transform(expression);
+
+        Assertions.assertEquals("[5, 7, 2]", result.toString());
     }
 
     /**
@@ -116,88 +198,6 @@ public final class TestDiceRoller {
 
         Assertions.assertEquals(new Integer(1), rolls.next());
         Assertions.assertEquals(new Integer(2), rolls.next());
-    }
-
-    /**
-     * Verifies that the roller returns the total roll when there is a single
-     * value.
-     */
-    @Test
-    public final void testTransform_AddSingleValue() {
-        final Dice dice;
-        final DiceNotationExpression expression;
-        final Integer rolled;
-        final NumberGenerator generator;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
-        Mockito.when(dice.getSides()).thenReturn(1);
-
-        // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(5));
-
-        expression = new DefaultDiceOperand(dice);
-
-        rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(5), rolled);
-    }
-
-    /**
-     * Verifies that the roller generates the text by aggregating the values.
-     */
-    @Test
-    public final void testTransform_AggregatesText() {
-        final Dice dice;
-        final DiceNotationExpression expression;
-        final NumberGenerator generator;
-        final RollHistory result;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(3);
-        Mockito.when(dice.getSides()).thenReturn(1);
-
-        // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(5, 7, 2));
-
-        expression = new DefaultDiceOperand(dice);
-
-        result = new DiceRoller(generator).transform(expression);
-
-        Assertions.assertEquals("[5, 7, 2]", result.toString());
-    }
-
-    /**
-     * Verifies that the roller generates the text with a single value.
-     */
-    @Test
-    public final void testTransform_AggregatesSingleText() {
-        final Dice dice;
-        final DiceNotationExpression expression;
-        final NumberGenerator generator;
-        final RollHistory result;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
-        Mockito.when(dice.getSides()).thenReturn(1);
-
-        // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(5));
-
-        expression = new DefaultDiceOperand(dice);
-
-        result = new DiceRoller(generator).transform(expression);
-
-        Assertions.assertEquals("5", result.toString());
     }
 
 }

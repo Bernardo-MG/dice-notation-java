@@ -69,15 +69,19 @@ public final class PostorderTraverser
         exps = new ArrayList<>();
         while (!nodes.isEmpty()) {
             current = nodes.pop();
-            LOGGER.debug("Transforming expression {}", current);
+            LOGGER.debug("Transforming current node {}", current);
             if (current instanceof BinaryOperation) {
                 // Binary operation
                 // Temporally prunes node and stores left and right nodes
+                LOGGER.trace("The current node is a binary node");
+                LOGGER.trace("Pushing node and branches into stack");
                 nodes.push(new ExpressionWrapper(current));
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
             } else {
                 // Leaf node
+                LOGGER.trace("The current node is a leaf node");
+                LOGGER.debug("Stored current node {} into return", current);
                 exps.add(current);
             }
         }

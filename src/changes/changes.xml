@@ -86,18 +86,29 @@
             Added support for multiplications and divisions, including operation precedence.
          </action>
       </release>
-      <release version="2.0.0" date="2019-01-21" description="">
+      <release version="2.0.0" date="2019-02-02" description="Reworked grammar and classes">
          <action dev="bmg" type="fix">
             Signs are set correctly when taking the dice from subtractions with the dice gatherer.
          </action>
          <action dev="bmg" type="update">
             Simplified the classes names and structures.
          </action>
+         <action dev="bmg" type="update">
+            Prepared classes for extensions and functions.
+         </action>
          <action dev="bmg" type="add">
             Added support for parenthesis.
          </action>
          <action dev="bmg" type="add">
             Quantity of dice is now optional, and defaults to 1.
+         </action>
+      </release>
+      <release version="2.0.1" date="2019-11-03" description="Updates">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="add">
+            Added more logging messages.
          </action>
       </release>
    </body>

@@ -67,18 +67,22 @@ public final class InorderTraverser
         nodes = new Stack<>();
         exps = new ArrayList<>();
         while ((!nodes.isEmpty()) || (current != null)) {
-            LOGGER.debug("Transforming expression {}", current);
+            LOGGER.debug("Transforming current node {}", current);
             if (current == null) {
                 // Left nodes exhausted
                 // Moves to the previous right node
                 current = nodes.pop();
+                LOGGER.debug("No current node. Recovered {} from stack",
+                        current);
 
                 // This is the next node for inorder traverse
+                LOGGER.debug("Stored current node {} into return", current);
                 exps.add(current);
 
                 if (current instanceof BinaryOperation) {
                     // Moves to a right node
                     current = ((BinaryOperation) current).getRight();
+                    LOGGER.trace("Moved to right node {}", current);
                 } else {
                     // Not binary node
                     // There is no right node
@@ -87,9 +91,11 @@ public final class InorderTraverser
             } else {
                 // Store and keep moving
                 nodes.push(current);
+                LOGGER.trace("Pushed node into stack");
                 if (current instanceof BinaryOperation) {
                     // Next left node
                     current = ((BinaryOperation) current).getLeft();
+                    LOGGER.trace("Moved to left node {}", current);
                 } else {
                     // Not binary node
                     // There is no left node

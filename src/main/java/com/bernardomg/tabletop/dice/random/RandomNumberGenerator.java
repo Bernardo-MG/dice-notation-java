@@ -82,6 +82,8 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
         } else {
             result = random.nextInt(Math.abs(LOWER_LIMIT - max) + 1)
                     + LOWER_LIMIT;
+            LOGGER.debug("Using interval [{},{}] generated {}", LOWER_LIMIT,
+                    max, result);
         }
 
         return result;

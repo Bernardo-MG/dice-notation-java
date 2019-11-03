@@ -20,6 +20,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Supplier;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.Dice;
 
@@ -35,6 +39,12 @@ import com.bernardomg.tabletop.dice.Dice;
 public abstract class AbstractNumberGenerator implements NumberGenerator {
 
     /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(AbstractNumberGenerator.class);
+
+    /**
      * Default constructor.
      */
     public AbstractNumberGenerator() {
@@ -45,25 +55,25 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
     public final Iterable<Integer> generate(final Dice dice) {
         final Collection<Integer> rolls; // Roll results
         final Integer quantity;
-        final Boolean negative;
+        final Supplier<Integer> rollSupplier;
 
         checkNotNull(dice, "Received a null pointer as dice");
 
         if (dice.getQuantity() < 0) {
+            // Negative dice set (-1d6)
+            LOGGER.trace("Negative dice set");
             quantity = 0 - dice.getQuantity();
-            negative = true;
+            rollSupplier = () -> (0 - generate(dice.getSides()));
         } else {
+            // Positive dice set (1d6)
+            LOGGER.trace("Positive dice set");
             quantity = dice.getQuantity();
-            negative = false;
+            rollSupplier = () -> (generate(dice.getSides()));
         }
 
-        rolls = new ArrayList<Integer>();
+        rolls = new ArrayList<>();
         for (Integer i = 0; i < quantity; i++) {
-            if (negative) {
-                rolls.add(0 - generate(dice.getSides()));
-            } else {
-                rolls.add(generate(dice.getSides()));
-            }
+            rolls.add(rollSupplier.get());
         }
 
         return rolls;
