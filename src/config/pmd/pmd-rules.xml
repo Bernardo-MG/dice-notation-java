@@ -12,6 +12,7 @@
       <exclude name="AvoidFinalLocalVariable" />
       <exclude name="UnnecessaryConstructor" />
       <exclude name="UnnecessaryModifier" />
+      <exclude name="UselessParentheses" />
    </rule>
    <rule ref="category/java/design.xml">
       <exclude name="DataClass" />
