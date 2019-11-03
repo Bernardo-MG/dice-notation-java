@@ -167,6 +167,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // The last value added to the stack will be the root
 
         if (nodes.isEmpty()) {
+            LOGGER.trace("No nodes. Returning null");
             root = null;
         } else {
             root = nodes.peek();
@@ -214,14 +215,18 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
                 LOGGER.trace("Subtraction operation");
                 operation = new SubtractionOperation(left, right);
             } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Multiplication operation");
                 operation = new MultiplicationOperation(left, right);
             } else if (DIVISION_OPERATOR.equals(operator)) {
+                LOGGER.trace("Division operation");
                 operation = new DivisionOperation(left, right);
             } else {
                 LOGGER.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(
                         String.format("The %s operator is invalid", operator));
             }
+
+            LOGGER.debug("Parsed operation {}", operation);
 
             // Each new expression is stored back for the next iteration
             operands.push(operation);
@@ -245,23 +250,30 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final Integer quantity;              // Number of dice
         final Integer sides;                 // Number of sides
         final Iterator<TerminalNode> digits; // Parsed digits
+        final Integer size;                  // Size of the digit list
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
+        size = Iterables.size(ctx.DIGIT());
 
-        if (Iterables.size(ctx.DIGIT()) > 1) {
+        if (size > 1) {
+            // Contains the quantity of dice
             if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
                     .equals(ctx.ADDOPERATOR().getText()))) {
+                // Subtraction
                 LOGGER.debug("This is part of a subtraction. Reversing sign.");
                 quantity = 0 - Integer.parseInt(digits.next().getText());
             } else {
+                // Addition
                 quantity = Integer.parseInt(digits.next().getText());
             }
         } else {
             // No quantity of dice defined
             // Defaults to 1
+            LOGGER.trace("No dice quantity defined. Defaulting to 1");
             quantity = 1;
         }
+
         sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice

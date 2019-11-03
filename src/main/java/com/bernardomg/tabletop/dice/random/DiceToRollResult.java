@@ -20,6 +20,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.function.Function;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
@@ -32,6 +35,12 @@ import com.bernardomg.tabletop.dice.history.RollResult;
  *
  */
 public final class DiceToRollResult implements Function<Dice, RollResult> {
+
+    /**
+     * Logger.
+     */
+    private static final Logger   LOGGER = LoggerFactory
+            .getLogger(DiceToRollResult.class);
 
     /**
      * The random numbers generator.
@@ -74,6 +83,10 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
         for (final Integer roll : rolls) {
             total += roll;
         }
+
+        LOGGER.debug("Rolled {}", dice);
+        LOGGER.debug("Generated rolls: {}", rolls);
+        LOGGER.debug("Total roll: {}", total);
 
         return new DefaultRollResult(dice, rolls, total);
     }
