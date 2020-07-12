@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.2.4</version>
+      <version>1.3.3</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -207,10 +207,6 @@
 
    <properties>
       <!-- ============================================== -->
-      <!-- ================ JAVA VERSION ================ -->
-      <!-- ============================================== -->
-      <java.version>1.8</java.version>
-      <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
       <manifest.name>com/bernardomg/tabletop/dice</manifest.name>
@@ -218,22 +214,22 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <antlr.version>4.7.2</antlr.version>
-      <guava.version>28.1-jre</guava.version>
-      <junit.jupiter.version>5.4.0</junit.jupiter.version>
-      <mockito.version>3.1.0</mockito.version>
-      <log4j.version>2.12.1</log4j.version>
+      <guava.version>29.0-jre</guava.version>
+      <junit.jupiter.version>5.6.2</junit.jupiter.version>
+      <mockito.version>3.4.0</mockito.version>
+      <log4j.version>2.13.3</log4j.version>
       <slf4j.version>1.7.28</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.antlr.version>4.7.2</plugin.antlr.version>
       <plugin.antlr.test.version>1.11</plugin.antlr.test.version>
-      <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
+      <plugin.buildhelp.version>3.2.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.0.6</site.skin.version>
+      <site.skin.version>2.0.7</site.skin.version>
       <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
    </properties>
