@@ -121,9 +121,9 @@ The project has been released under version 2.0 of the [Apache License][license]
 [bintray-repo]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view
 [maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues
-[javadoc-develop]: http://docs.bernardomg.com/development/maven/dice/apidocs
-[javadoc-release]: http://docs.bernardomg.com/maven/dice/apidocs
+[javadoc-develop]: http://docs.bernardomg.com/development/maven/dice-notation-java/apidocs
+[javadoc-release]: http://docs.bernardomg.com/maven/dice-notation-java/apidocs
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [scm]: http://github.com/Bernardo-MG/dice-notation-java
-[site-develop]: http://docs.bernardomg.com/development/maven/dice
-[site-release]: http://docs.bernardomg.com/maven/dice
+[site-develop]: http://docs.bernardomg.com/development/maven/dice-notation-java
+[site-release]: http://docs.bernardomg.com/maven/dice-notation-java
