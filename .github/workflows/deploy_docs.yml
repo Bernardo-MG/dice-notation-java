@@ -3,8 +3,8 @@ name: Doc deployment
 on:
   push:
     branches:
-      - 'develop'
-      - 'master'
+      - develop
+      - master
 
 jobs:
   deploy_docs:
