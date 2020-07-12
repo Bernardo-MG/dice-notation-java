@@ -18,9 +18,8 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.call;
 
 import java.util.function.Function;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
@@ -32,27 +31,16 @@ import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that it calls its dependencies
- * as expected.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller calls its dependencies")
 public final class TestDiceRollerCalls {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceRollerCalls() {
         super();
     }
 
-    /**
-     * Verifies that the roller function is called for dice.
-     */
     @SuppressWarnings("unchecked")
     @Test
+    @DisplayName("The roller function is called when parsing dice")
     public final void testCallsFunction_Dice() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -75,11 +63,9 @@ public final class TestDiceRollerCalls {
         Mockito.verify(roller, Mockito.times(1)).apply(ArgumentMatchers.any());
     }
 
-    /**
-     * Verifies that the roller function is not called for dice.
-     */
     @SuppressWarnings("unchecked")
     @Test
+    @DisplayName("The roller function is not called when parsing a subtraction")
     public final void testCallsFunction_Subtraction_NotCalled() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;

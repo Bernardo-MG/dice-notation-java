@@ -19,9 +19,8 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.traverser;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.PreorderTraverser;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -30,26 +29,15 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.google.common.collect.Iterables;
 
-/**
- * Unit tests for {@link PreorderTraverser}, verifying that it transforms a tree
- * correctly.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("PreorderTraverser parses the expression tree as expected")
 public final class TestPreorderTraverser {
 
-    /**
-     * Default constructor.
-     */
     public TestPreorderTraverser() {
         super();
     }
 
-    /**
-     * Verifies that the value is generated correctly.
-     */
     @Test
+    @DisplayName("Parses the tree correctly")
     public final void testList() {
         final AdditionOperation addition;
         final SubtractionOperation subtraction;

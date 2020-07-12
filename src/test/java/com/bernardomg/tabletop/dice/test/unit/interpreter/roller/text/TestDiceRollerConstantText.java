@@ -17,51 +17,45 @@
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.text;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * text results for addition operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class TestDiceRollerAdditionOperationRollResult {
+@DisplayName("DiceRoller returns the expected text for constants")
+public final class TestDiceRollerConstantText {
 
-    /**
-     * Default constructor.
-     */
-    public TestDiceRollerAdditionOperationRollResult() {
+    public TestDiceRollerConstantText() {
         super();
     }
 
-    /**
-     * Verifies that an addition generates the expected text result.
-     */
     @Test
-    public final void testRolls_Text() {
+    @DisplayName("A negative value returns the expected text")
+    public final void testText_Negative_Text() {
         final DiceNotationExpression expression;
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
         final RollHistory result;
 
-        left = new IntegerOperand(1);
-        right = new IntegerOperand(2);
-
-        // 1 + 2
-        expression = new AdditionOperation(left, right);
+        expression = new IntegerOperand(-1);
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + 2", result.toString());
+        Assertions.assertEquals("-1", result.toString());
+    }
+
+    @Test
+    @DisplayName("A positive value returns the expected text")
+    public final void testText_Positive_Text() {
+        final DiceNotationExpression expression;
+        final RollHistory result;
+
+        expression = new IntegerOperand(1);
+
+        result = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals("1", result.toString());
     }
 
 }

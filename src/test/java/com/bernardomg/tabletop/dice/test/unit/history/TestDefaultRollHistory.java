@@ -20,33 +20,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
-/**
- * Unit tests for {@link DefaultRollHistory}.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class TestDiceRollerHistory {
+@DisplayName("Tests for DefaultRollHistory")
+public final class TestDefaultRollHistory {
 
-    /**
-     * Default constructor.
-     */
-    public TestDiceRollerHistory() {
+    public TestDefaultRollHistory() {
         super();
     }
 
-    /**
-     * Verifies that the text is returned as received by the toString method.
-     */
     @Test
+    @DisplayName("The text representation matches the received one")
     public final void testToString() {
         final RollHistory history;
         final Collection<RollResult> results;
