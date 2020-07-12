@@ -3,7 +3,6 @@ name: Deployment
 on:
   push:
     branches:
-      - 'develop'
       - 'master'
 
 jobs:
@@ -28,7 +27,5 @@ jobs:
       env:
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
-        DEPLOY_DEVELOP_USER: ${{ secrets.DEPLOY_DEVELOP_USER }}
-        DEPLOY_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DEVELOP_PASSWORD }}
     - name: Deploy
       run: mvn deploy -B -P deployment --settings settings.xml
