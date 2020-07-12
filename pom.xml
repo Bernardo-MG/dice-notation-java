@@ -226,6 +226,8 @@
       <plugin.antlr.test.version>1.11</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.2.0</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
+      <plugin.failsafe.version>2.22.2</plugin.failsafe.version>
+      <plugin.surefire.version>2.22.2</plugin.surefire.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
