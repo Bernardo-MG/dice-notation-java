@@ -17,35 +17,23 @@
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 
-/**
- * Units tests for {@link DefaultDiceOperand}, verifying that it can generate a
- * valid notation expression.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("Tests for DefaultDiceOperand")
 public class TestDefaultDiceOperand {
 
-    /**
-     * Default constructor.
-     */
     public TestDefaultDiceOperand() {
         super();
     }
 
-    /**
-     * Verifies that the text expression is generated correctly.
-     */
     @Test
+    @DisplayName("The text expression is generated correctly")
     public final void testTextExpression() {
         final DiceNotationExpression diceOperand; // Tested operand
         final Dice dice;                          // Dice for the operand

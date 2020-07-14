@@ -17,36 +17,23 @@
 package com.bernardomg.tabletop.dice.test.unit.notation.operation;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 
-/**
- * Unit tests for {@link DivisionOperation}, verifying that it can generate a
- * valid notation expression.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("Tests for DivisionOperation")
 public final class TestDivisionOperation {
 
-    /**
-     * Default constructor.
-     */
     public TestDivisionOperation() {
         super();
     }
 
-    /**
-     * Verifies that the text expression for negative values is generated
-     * correctly.
-     */
     @Test
+    @DisplayName("The text expression is generated correctly for negatives")
     public final void test_TextExpression_Negatives() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
@@ -60,11 +47,8 @@ public final class TestDivisionOperation {
         Assertions.assertEquals("-1/-2", operation.getExpression());
     }
 
-    /**
-     * Verifies that the text expression for positive values is generated
-     * correctly.
-     */
     @Test
+    @DisplayName("The text expression is generated correctly")
     public final void test_TextExpression_Positives() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand

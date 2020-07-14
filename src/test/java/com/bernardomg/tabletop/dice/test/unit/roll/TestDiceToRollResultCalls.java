@@ -18,9 +18,8 @@ package com.bernardomg.tabletop.dice.test.unit.roll;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
@@ -28,26 +27,15 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.DiceToRollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 
-/**
- * Units tests for {@link DiceToRollResult}, verifying that it calls its
- * dependencies as expected.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceToRollResult calls its dependencies")
 public final class TestDiceToRollResultCalls {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceToRollResultCalls() {
         super();
     }
 
-    /**
-     * Verifies that the generator is called when generating rolls.
-     */
     @Test
+    @DisplayName("The generator is called a single time for several dice")
     public final void testApply_GeneratesOnce() {
         final Dice dice;
         final NumberGenerator generator;

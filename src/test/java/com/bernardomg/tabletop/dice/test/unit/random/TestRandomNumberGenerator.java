@@ -20,33 +20,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.bernardomg.tabletop.dice.random.RandomNumberGenerator;
 
-/**
- * Units tests for {@link RandomNumberGenerator}, verifying that it generates
- * values as expected.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("Tests for RandomNumberGenerator")
 public final class TestRandomNumberGenerator {
 
-    /**
-     * Default constructor.
-     */
     public TestRandomNumberGenerator() {
         super();
     }
 
-    /**
-     * Verifies that if the maximum is negative then the result is zero.
-     */
     @Test
+    @DisplayName("If the maximum is negative then the result is zero")
     public final void testGenerate_NegativeMax_Zero() {
         final NumberGenerator generator;
         final Integer generated;
@@ -58,11 +46,8 @@ public final class TestRandomNumberGenerator {
         Assertions.assertEquals((Integer) (0), generated);
     }
 
-    /**
-     * Verifies that the generated numbers are kept inside the expected
-     * interval.
-     */
     @Test
+    @DisplayName("The generated numbers are kept inside the expected interval")
     public final void testGenerate_ValuesInBounds() {
         final NumberGenerator generator;   // Tested generator
         final Integer lowerLimit;          // Lowest allowed number
@@ -89,10 +74,8 @@ public final class TestRandomNumberGenerator {
         }
     }
 
-    /**
-     * Verifies that if the maximum is zero then the result is zero.
-     */
     @Test
+    @DisplayName("If the maximum is zero then the result is zero")
     public final void testGenerate_ZeroMax_Zero() {
         final NumberGenerator generator;
         final Integer generated;
