@@ -20,9 +20,8 @@ import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceGatherer;
@@ -30,26 +29,42 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.google.common.collect.Iterables;
 
-/**
- * Integration test for {@link DiceGatherer}, verifying that it transforms
- * parsed expressions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceGatherer with a parsed expression")
 public final class ITParseAndDiceGatherer {
 
-    /**
-     * Default constructor.
-     */
     public ITParseAndDiceGatherer() {
         super();
     }
 
-    /**
-     * Verifies that complex expressions are parsed, returning all the dice set.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using dice addition")
+    public final void testParse_Addition() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Iterable<Dice> sets;           // Parsed dice sets
+        final Iterator<Dice> itr;            // Parsed dice sets
+        Dice dice;                           // Resulting dice
+
+        parsed = new DefaultDiceParser().parse("1d20+2d6");
+
+        sets = new DiceGatherer().transform(parsed);
+
+        Assertions.assertEquals(2, Iterables.size(sets));
+
+        itr = sets.iterator();
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(1), dice.getQuantity());
+        Assertions.assertEquals(new Integer(20), dice.getSides());
+
+        dice = itr.next();
+
+        Assertions.assertEquals(new Integer(2), dice.getQuantity());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
+    }
+
+    @Test
+    @DisplayName("Dice can be acquired from a complex expression")
     public final void testParse_Complex_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
@@ -85,10 +100,8 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(12), dice.getSides());
     }
 
-    /**
-     * Verifies that multiple dice are parsed, returning all.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a long expression")
     public final void testParse_Long_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
@@ -129,11 +142,8 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(8), dice.getSides());
     }
 
-    /**
-     * Verifies that dice notation with the maximum integer values dice is
-     * parsed.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using the max integers")
     public final void testParse_Max() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
@@ -149,10 +159,8 @@ public final class ITParseAndDiceGatherer {
                 dice.getSides());
     }
 
-    /**
-     * Verifies that a negative dice notation can be parsed.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using a negative dice")
     public final void testParse_Negative() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
@@ -165,10 +173,8 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
-    /**
-     * Verifies that a simple dice notation can be parsed.
-     */
     @Test
+    @DisplayName("No dice are aquired from a constant")
     public final void testParse_NoDice() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> dice;           // Resulting dice
@@ -180,12 +186,9 @@ public final class ITParseAndDiceGatherer {
         Assert.assertEquals(0, Iterables.size(dice));
     }
 
-    /**
-     * Verifies that dice notation with a single dice and a single side can be
-     * parsed.
-     */
     @Test
-    public final void testParse_OnesDice_Simple() {
+    @DisplayName("Dice can be acquired from a expression using the minimal dice")
+    public final void testParse_OnesDice_Minimal() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
 
@@ -197,10 +200,8 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
-    /**
-     * Verifies that a simple dice notation can be parsed.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using a simple dice")
     public final void testParse_Simple() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice
@@ -213,11 +214,9 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
-    /**
-     * Verifies that a dice subtraction can be parsed.
-     */
     @Test
-    public final void testParse_Subtraction_Dice() {
+    @DisplayName("Dice can be acquired from a expression using dice subtraction")
+    public final void testParse_Subtraction() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
         final Iterator<Dice> itr;            // Parsed dice sets
@@ -242,11 +241,9 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(12), dice.getSides());
     }
 
-    /**
-     * Verifies that a dice subtraction can be parsed.
-     */
     @Test
-    public final void testParse_SubtractionAddition_Dice() {
+    @DisplayName("Dice can be acquired from a expression using subtraction and addition")
+    public final void testParse_SubtractionAddition() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
         final Iterator<Dice> itr;            // Parsed dice sets
@@ -276,10 +273,8 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(10), dice.getSides());
     }
 
-    /**
-     * Verifies that a dice subtraction can be parsed.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using subtraction and addition when all the dice are equal")
     public final void testParse_SubtractionAddition_Dice_AllEqual() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
@@ -310,17 +305,15 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertEquals(new Integer(6), dice.getSides());
     }
 
-    /**
-     * Verifies that multiple dice are parsed, returning all.
-     */
     @Test
-    public final void testParse_Two_ReturnsAll() {
+    @DisplayName("Dice can be acquired from a expression using dice and constants")
+    public final void testParse_WithConstants() {
         final DiceNotationExpression parsed; // Parsed expression
         final Iterable<Dice> sets;           // Parsed dice sets
         final Iterator<Dice> itr;            // Parsed dice sets
         Dice dice;                           // Resulting dice
 
-        parsed = new DefaultDiceParser().parse("1d20+2d6");
+        parsed = new DefaultDiceParser().parse("1d6-2+3d10");
 
         sets = new DiceGatherer().transform(parsed);
 
@@ -331,18 +324,16 @@ public final class ITParseAndDiceGatherer {
         dice = itr.next();
 
         Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(20), dice.getSides());
+        Assertions.assertEquals(new Integer(6), dice.getSides());
 
         dice = itr.next();
 
-        Assertions.assertEquals(new Integer(2), dice.getQuantity());
-        Assertions.assertEquals(new Integer(6), dice.getSides());
+        Assertions.assertEquals(new Integer(3), dice.getQuantity());
+        Assertions.assertEquals(new Integer(10), dice.getSides());
     }
 
-    /**
-     * Verifies that dice notation with zero dice is parsed.
-     */
     @Test
+    @DisplayName("Dice can be acquired from a expression using zero for quantity")
     public final void testParse_ZeroQuantity() {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice dice;                     // Resulting dice

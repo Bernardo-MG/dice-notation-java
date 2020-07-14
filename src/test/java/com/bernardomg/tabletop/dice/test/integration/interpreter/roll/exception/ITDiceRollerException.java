@@ -17,35 +17,23 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.exception;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration test for {@link DiceRoller}, verifying that it transforms parsed
- * expressions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerException {
+@DisplayName("DiceRoller handles exceptions")
+public final class ITDiceRollerException {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerException() {
+    public ITDiceRollerException() {
         super();
     }
 
-    /**
-     * Verifies that dividing by zero causes an exception.
-     */
     @Test
+    @DisplayName("Divide by zero throws an exception")
     public final void testParse_DivideByZero() {
         final DiceNotationExpression parsed; // Parsed expression
         final Executable closure;

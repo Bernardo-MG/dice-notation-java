@@ -17,40 +17,76 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * additions with dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionDiceValue {
+@DisplayName("DiceRoller returns the expected total roll for subtractions using only numbers")
+public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerAdditionDiceValue() {
+    public ITParseAndDiceRollerSubstractionNumberTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that an addition using only dice is parsed correctly.
-     */
     @Test
-    public final void testParse_Add_Dice_Value() {
+    @DisplayName("A long subtraction returns the expected value")
+    public final void testParse_Number_Sub_Long_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1d1+2d1";
+        notation = "1-2-3";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(-4), result);
+    }
+
+    @Test
+    @DisplayName("A longer subtraction returns the expected value")
+    public final void testParse_Number_Sub_Longer_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1-2-3-4-5";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(-13), result);
+    }
+
+    @Test
+    @DisplayName("A subtraction returns the expected value")
+    public final void testParse_Number_Sub_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1-2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(-1), result);
+    }
+
+    @Test
+    @DisplayName("A subtraction of a negative returns the expected value")
+    public final void testParse_Number_SubNeg_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "1--2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
@@ -59,58 +95,20 @@ public final class ITParseAndRollerTransformerAdditionDiceValue {
         Assertions.assertEquals(new Integer(3), result);
     }
 
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
     @Test
-    public final void testParse_Add_LeftNumber_NoQuantity_Value() {
+    @DisplayName("A subtraction to a negative returns the expected value")
+    public final void testParse_Number_SubToNegative_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "5+d1";
+        notation = "-1-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(6), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
-    @Test
-    public final void testParse_Add_LeftNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "5+2d1";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(7), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to right is parsed correctly.
-     */
-    @Test
-    public final void testParse_Add_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "2d1+5";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(new Integer(-3), result);
     }
 
 }

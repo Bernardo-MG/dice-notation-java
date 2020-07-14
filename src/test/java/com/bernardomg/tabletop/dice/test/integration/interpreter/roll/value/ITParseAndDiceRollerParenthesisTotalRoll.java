@@ -17,82 +17,50 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numbers.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for constants using parenthesis")
+public final class ITParseAndDiceRollerParenthesisTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerNumberValue() {
+    public ITParseAndDiceRollerParenthesisTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that a number is parsed correctly.
-     */
     @Test
-    public final void testParse_Number() {
+    @DisplayName("A mixed operation with parenthesis returns the expected value")
+    public final void testParse_AddAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "12";
+        notation = "(1+2)*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(12), result);
+        Assertions.assertEquals(new Integer(9), result);
     }
 
-    /**
-     * Verifies that a negative number is parsed correctly.
-     */
     @Test
-    public final void testParse_Number_Negative() {
+    @DisplayName("A constant with parenthesis returns the expected value")
+    public final void testParse_Number_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-12";
+        notation = "(1)";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-12), result);
-    }
-
-    /**
-     * Verifies that a number padded with zeros is parsed correctly.
-     */
-    @Test
-    public final void testParse_Number_ZeroPadding() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "001200";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(1200), result);
+        Assertions.assertEquals(new Integer(1), result);
     }
 
 }

@@ -17,64 +17,66 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric substractions with signed numbers.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerSubstractionSignedNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for multiplications")
+public final class ITParseAndDiceRollerMultiplicationDiceTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerSubstractionSignedNumberValue() {
+    public ITParseAndDiceRollerMultiplicationDiceTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that a subtraction with a negative value is parsed correctly.
-     */
     @Test
-    public final void testParse_Number_SubNegative_Value() {
+    @DisplayName("A multiplication returns the expected value")
+    public final void testParse_Multiply_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1--2";
+        notation = "3d1*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(3), result);
+        Assertions.assertEquals(new Integer(6), result);
     }
 
-    /**
-     * Verifies that a subtraction with a negative value is parsed correctly.
-     */
     @Test
-    public final void testParse_Number_SubToNegative_Value() {
+    @DisplayName("Multiplying a number by a dice returns the expected value")
+    public final void testParse_Multiply_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-1-2";
+        notation = "5*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-3), result);
+        Assertions.assertEquals(new Integer(10), result);
+    }
+
+    @Test
+    @DisplayName("Multiplying a dice by a number returns the expected value")
+    public final void testParse_Multiply_RightNumber_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "2d1*5";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(10), result);
     }
 
 }

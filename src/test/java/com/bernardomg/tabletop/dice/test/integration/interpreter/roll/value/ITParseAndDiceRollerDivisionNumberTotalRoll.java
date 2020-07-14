@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,82 +17,52 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * additions with dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerMultiplicationDiceValue {
+@DisplayName("DiceRoller returns the expected total roll for divisions using only numbers")
+public final class ITParseAndDiceRollerDivisionNumberTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerMultiplicationDiceValue() {
+    public ITParseAndDiceRollerDivisionNumberTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that an addition using only dice is parsed correctly.
-     */
     @Test
-    public final void testParse_Multiply_Dice_Value() {
+    @Disabled
+    @DisplayName("An inexact division returns a float value")
+    public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "3d1*2d1";
+        notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(6), result);
+        Assertions.assertEquals(new Float(1.5), result);
     }
 
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
     @Test
-    public final void testParse_Multiply_LeftNumber_Value() {
+    @DisplayName("A exact division returns the expected value")
+    public final void testParse_Division_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "5*2d1";
+        notation = "4/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(10), result);
-    }
-
-    /**
-     * Verifies that an addition with the number to right is parsed correctly.
-     */
-    @Test
-    public final void testParse_Multiply_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
-
-        notation = "2d1*5";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed).getTotalRoll();
-
-        Assertions.assertEquals(new Integer(10), result);
+        Assertions.assertEquals(new Integer(2), result);
     }
 
 }

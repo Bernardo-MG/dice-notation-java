@@ -17,64 +17,66 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions with signed numbers.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionSignedNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for constants")
+public final class ITParseAndDiceRollerNumberTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerAdditionSignedNumberValue() {
+    public ITParseAndDiceRollerNumberTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that an addition with a negative value is parsed correctly.
-     */
     @Test
-    public final void testParse_Number_AddNegative_Value() {
+    @DisplayName("A constant returns the expected value")
+    public final void testParse_Number() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "1+-2";
+        notation = "12";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer((-1)), result);
+        Assertions.assertEquals(new Integer(12), result);
     }
 
-    /**
-     * Verifies that an addition with a negative value is parsed correctly.
-     */
     @Test
-    public final void testParse_Number_AddToNegative_Value() {
+    @DisplayName("A negative returns the expected value")
+    public final void testParse_Number_Negative() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "-1+2";
+        notation = "-12";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), result);
+        Assertions.assertEquals(new Integer(-12), result);
+    }
+
+    @Test
+    @DisplayName("A constant padded by zeros returns the expected value")
+    public final void testParse_Number_ZeroPadding() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "001200";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(1200), result);
     }
 
 }

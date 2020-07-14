@@ -17,47 +17,35 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.text;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it returns the
- * expected roll results for addition operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionMixedRollHistory {
+@DisplayName("DiceRoller returns the expected text representation for addition operations")
+public final class ITParseAndDiceRollerAdditionDiceText {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerAdditionMixedRollHistory() {
+    public ITParseAndDiceRollerAdditionDiceText() {
         super();
     }
 
-    /**
-     * Verifies that an addition generates the expected results.
-     */
     @Test
-    public final void testRolls_DiceAndNumAddition_Text() {
+    @DisplayName("Returns the expected text")
+    public final void testRolls_Text() {
         final DiceNotationExpression expression;
         final String notation;
         final RollHistory result;
 
-        notation = "1d1+3+2d1";
+        notation = "1d1+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + 3 + [1, 1]", result.toString());
+        Assertions.assertEquals("1 + [1, 1]", result.toString());
     }
 
 }

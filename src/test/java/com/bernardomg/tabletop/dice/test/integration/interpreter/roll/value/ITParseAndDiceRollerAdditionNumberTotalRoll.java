@@ -17,35 +17,22 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerAdditionNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for addition operations using only numbers")
+public final class ITParseAndDiceRollerAdditionNumberTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerAdditionNumberValue() {
+    public ITParseAndDiceRollerAdditionNumberTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that long additions can be parsed, and the result is the
-     * expected one.
-     */
     @Test
+    @DisplayName("A long addition returns the expected value")
     public final void testParse_Number_Add_Long_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
@@ -60,11 +47,8 @@ public final class ITParseAndRollerTransformerAdditionNumberValue {
         Assertions.assertEquals(new Integer(6), result);
     }
 
-    /**
-     * Verifies that longer additions can be parsed, and the result is the
-     * expected one.
-     */
     @Test
+    @DisplayName("A longer addition returns the expected value")
     public final void testParse_Number_Add_Longer_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
@@ -79,10 +63,8 @@ public final class ITParseAndRollerTransformerAdditionNumberValue {
         Assertions.assertEquals(new Integer(15), result);
     }
 
-    /**
-     * Verifies that an addition with only numbers is parsed correctly.
-     */
     @Test
+    @DisplayName("An addition returns the expected value")
     public final void testParse_Number_Add_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value

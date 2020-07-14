@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
@@ -29,25 +28,15 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.google.common.collect.Iterables;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDiceRollResults {
+@DisplayName("DiceRoller returns the expected roll results for dice")
+public final class ITParseAndDiceRollerDiceRollResults {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerDiceRollResults() {
+    public ITParseAndDiceRollerDiceRollResults() {
         super();
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Returns the expected result for the smallest dice")
     public final void testParse_SmallestDice_Dice() {
         final DiceNotationExpression expression;
         final RollResult result;
@@ -66,10 +55,8 @@ public final class ITParseAndRollerTransformerDiceRollResults {
         Assertions.assertEquals(new Integer(1), dice.getSides());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Returns the expected number of results for the smallest dice")
     public final void testParse_SmallestDice_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> rolled;
@@ -84,10 +71,8 @@ public final class ITParseAndRollerTransformerDiceRollResults {
         Assertions.assertEquals(1, Iterables.size(rolled));
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Returns the expected rolls for the smallest dice")
     public final void testParse_SmallestDice_Rolls() {
         final DiceNotationExpression expression;
         final RollResult result;
@@ -106,10 +91,8 @@ public final class ITParseAndRollerTransformerDiceRollResults {
         Assertions.assertEquals(new Integer(1), rolls.iterator().next());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Returns the expected total roll for the smallest dice")
     public final void testParse_SmallestDice_TotalRoll() {
         final DiceNotationExpression expression;
         final String notation;
@@ -124,10 +107,8 @@ public final class ITParseAndRollerTransformerDiceRollResults {
         Assertions.assertEquals(new Integer(1), history.getTotalRoll());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Returns the expected total rolls for the smallest dice")
     public final void testParse_SmallestDice_TotalRolls() {
         final DiceNotationExpression expression;
         final RollResult result;

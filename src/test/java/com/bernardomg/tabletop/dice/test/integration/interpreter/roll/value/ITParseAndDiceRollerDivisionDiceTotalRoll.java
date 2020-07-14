@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,66 +17,69 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerDivisionNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for divisions")
+public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerDivisionNumberValue() {
+    public ITParseAndDiceRollerDivisionDiceTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that a division with a float result is parsed correctly.
-     */
     @Test
-    @Disabled
-    public final void testParse_Division_FloatValue() {
+    @DisplayName("A division returns the expected value")
+    public final void testParse_Division_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "3/2";
+        notation = "6d1/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Float(1.5), result);
+        Assertions.assertEquals(new Integer(3), result);
     }
 
-    /**
-     * Verifies that a division with only numbers is parsed correctly.
-     */
     @Test
-    public final void testParse_Division_Value() {
+    @DisplayName("Dividing a constant by a dice returns the expected value")
+    public final void testParse_Division_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value
         final String notation;               // Input to parse
 
-        notation = "4/2";
+        notation = "10/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(2), result);
+        Assertions.assertEquals(new Integer(5), result);
+    }
+
+    @Test
+    @DisplayName("Dividing a dice by a constant returns the expected value")
+    public final void testParse_Division_RightNumber_Value() {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer result;                // Resulting value
+        final String notation;               // Input to parse
+
+        notation = "20d1/2";
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        result = new DiceRoller().transform(parsed).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(10), result);
     }
 
 }

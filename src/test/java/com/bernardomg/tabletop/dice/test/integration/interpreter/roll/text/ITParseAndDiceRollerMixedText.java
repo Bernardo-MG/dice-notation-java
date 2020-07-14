@@ -17,28 +17,21 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.text;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it returns the
- * expected roll results for addition operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerBinaryOperationDiceRollHistory {
+@DisplayName("DiceRoller returns the expected text representation for mixed binary operations")
+public final class ITParseAndDiceRollerMixedText {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerBinaryOperationDiceRollHistory() {
+    public ITParseAndDiceRollerMixedText() {
         super();
     }
 

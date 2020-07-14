@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2018 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,34 +17,22 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it transforms
- * numeric additions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerMultiplicationNumberValue {
+@DisplayName("DiceRoller returns the expected total roll for multiplications using only numbers")
+public final class ITParseAndDiceRollerMultiplicationNumberTotalRoll {
 
-    /**
-     * Default constructor.
-     */
-    public ITParseAndRollerTransformerMultiplicationNumberValue() {
+    public ITParseAndDiceRollerMultiplicationNumberTotalRoll() {
         super();
     }
 
-    /**
-     * Verifies that a multiplication with only numbers is parsed correctly.
-     */
     @Test
+    @DisplayName("A multiplication returns the expected value")
     public final void testParse_multiplication_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value

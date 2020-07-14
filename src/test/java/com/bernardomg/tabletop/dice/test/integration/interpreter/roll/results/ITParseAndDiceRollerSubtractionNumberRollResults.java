@@ -19,9 +19,8 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
@@ -30,28 +29,79 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 import com.google.common.collect.Iterables;
 
-/**
- * Integration tests for {@link DiceRoller}, verifying that it returns the
- * expected roll results for addition operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITParseAndRollerTransformerBinaryOperationNumberRollResults {
+@DisplayName("DiceRoller returns the expected roll results for subtraction operations using only numbers")
+public final class ITParseAndDiceRollerSubtractionNumberRollResults {
 
     /**
      * Default constructor.
      */
-    public ITParseAndRollerTransformerBinaryOperationNumberRollResults() {
+    public ITParseAndDiceRollerSubtractionNumberRollResults() {
         super();
     }
 
-    /**
-     * Verifies that a mix of subtraction and addition can be parsed, and the
-     * result is the expected one.
-     */
     @Test
-    public final void testParse_Number_SubAndAdd() {
+    @DisplayName("Returns the expected number of values")
+    public final void testParse_Quantity() {
+        final DiceNotationExpression operation;
+        final String notation;
+        final Iterable<RollResult> results;
+
+        notation = "-1-2-3";
+
+        operation = new DefaultDiceParser().parse(notation);
+
+        results = new DiceRoller().transform(operation).getRollResults();
+
+        Assertions.assertEquals(3, Iterables.size(results));
+    }
+
+    @Test
+    @DisplayName("Returns the expected total roll")
+    public final void testParse_TotalRoll() {
+        final DiceNotationExpression expression;
+        final String notation;
+        final RollHistory history;
+
+        notation = "-1-2-3";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        history = new DiceRoller().transform(expression);
+
+        Assertions.assertEquals(new Integer(-6), history.getTotalRoll());
+    }
+
+    @Test
+    @DisplayName("Returns the expected total rolls")
+    public final void testParse_TotalRolls() {
+        final DiceNotationExpression expression;
+        final Iterator<RollResult> rolled;
+        final String notation;
+        RollResult result;
+
+        notation = "-1-2-3";
+
+        expression = new DefaultDiceParser().parse(notation);
+
+        rolled = new DiceRoller().transform(expression).getRollResults()
+                .iterator();
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(-1), result.getTotalRoll());
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(-2), result.getTotalRoll());
+
+        result = rolled.next();
+
+        Assertions.assertEquals(new Integer(-3), result.getTotalRoll());
+    }
+
+    @Test
+    @DisplayName("Returns the expected values for each number")
+    public final void testParse_Value() {
         final DiceNotationExpression operation;
         final String notation;
         final Iterable<RollResult> results;
@@ -60,7 +110,7 @@ public final class ITParseAndRollerTransformerBinaryOperationNumberRollResults {
         Iterable<Integer> rolls;
         Iterator<Integer> rollValues;
 
-        notation = "1-2+3";
+        notation = "-1-2-3";
 
         operation = new DefaultDiceParser().parse(notation);
 
@@ -74,7 +124,7 @@ public final class ITParseAndRollerTransformerBinaryOperationNumberRollResults {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(1), rollValues.next());
+        Assertions.assertEquals(new Integer(-1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
@@ -88,55 +138,7 @@ public final class ITParseAndRollerTransformerBinaryOperationNumberRollResults {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(3), rollValues.next());
-    }
-
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
-    @Test
-    public final void testParse_Number_SubAndAdd_TotalRoll() {
-        final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory history;
-
-        notation = "1-2+3";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        history = new DiceRoller().transform(expression);
-
-        Assertions.assertEquals(new Integer(2), history.getTotalRoll());
-    }
-
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
-    @Test
-    public final void testParse_Number_SubAndAdd_TotalRolls() {
-        final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
-
-        notation = "1-2+3";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(-2), result.getTotalRoll());
-
-        result = rolled.next();
-
-        Assertions.assertEquals(new Integer(3), result.getTotalRoll());
+        Assertions.assertEquals(new Integer(-3), rollValues.next());
     }
 
 }
