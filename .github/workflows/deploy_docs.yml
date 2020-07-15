@@ -27,7 +27,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Set up Maven settings
-      uses: Bernardo-MG/deployment-maven-settings-action@master
+      uses: bernardo-mg/deployment-maven-settings-action@master
       with:
         version-type: ${{ steps.extract_branch.outputs.branch }}
       env:
