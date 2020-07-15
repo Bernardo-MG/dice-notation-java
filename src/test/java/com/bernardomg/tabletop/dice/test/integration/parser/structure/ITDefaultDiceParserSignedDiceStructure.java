@@ -17,34 +17,24 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * dice notation expressions for signed dice groups.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for signed dice")
+public final class ITDefaultDiceParserSignedDiceStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSignedDiceStructure() {
+    public ITDefaultDiceParserSignedDiceStructure() {
         super();
     }
 
-    /**
-     * Verifies that dice notation with a signed negative single dice and a
-     * single side can be parsed.
-     */
     @Test
+    @DisplayName("A negative dice returns the expected structure")
     public final void testParse_OnesDice_SignedNegative() {
         final DiceOperand operation; // Parsed expression
 
@@ -55,11 +45,8 @@ public final class ITDefaultDiceNotationExpressionParserSignedDiceStructure {
         Assertions.assertEquals(new Integer(1), operation.getDice().getSides());
     }
 
-    /**
-     * Verifies that dice notation with a signed single dice and a single side
-     * can be parsed.
-     */
     @Test
+    @DisplayName("A positive dice returns the expected structure")
     public final void testParse_OnesDice_SignedPositive() {
         final DiceOperand operation; // Parsed expression
 

@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
@@ -27,26 +26,15 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * complex operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserComplexStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for complex operations")
+public final class ITDefaultDiceParserComplexStructure {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserComplexStructure() {
+    public ITDefaultDiceParserComplexStructure() {
         super();
     }
 
-    /**
-     * Verifies that a complex operation is parsed correctly.
-     */
     @Test
+    @DisplayName("A complex operation returns the expected structure")
     public final void testParse_Complex_Structure() {
         final AdditionOperation operationFirst;
         final SubtractionOperation operationSecond;

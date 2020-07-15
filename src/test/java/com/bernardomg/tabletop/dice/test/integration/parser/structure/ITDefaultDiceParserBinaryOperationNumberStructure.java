@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
@@ -28,27 +27,18 @@ import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * simple binary operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for binary operations using only numbers")
+public final class ITDefaultDiceParserBinaryOperationNumberStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserBinaryOperationStructure() {
+    public ITDefaultDiceParserBinaryOperationNumberStructure() {
         super();
     }
 
-    /**
-     * Verifies that additions followed by multiplications can be parsed, and
-     * the result is the expected one.
-     */
     @Test
+    @DisplayName("An addition and multiplication returns the expected structure")
     public final void testParse_Number_AddAndMult_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
@@ -72,11 +62,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
         Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
-    /**
-     * Verifies that additions followed by subtractions can be parsed, and the
-     * result is the expected one.
-     */
     @Test
+    @DisplayName("An addition and subtraction returns the expected structure")
     public final void testParse_Number_AddAndSub_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
@@ -101,11 +88,8 @@ public final class ITDefaultDiceNotationExpressionParserBinaryOperationStructure
         Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
-    /**
-     * Verifies that subtractions followed by additions can be parsed, and the
-     * result is the expected one.
-     */
     @Test
+    @DisplayName("A subtraction and addition returns the expected structure")
     public final void testParse_Number_SubAndAdd_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation

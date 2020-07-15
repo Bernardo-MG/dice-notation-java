@@ -32,7 +32,7 @@ public final class ITParseAndDiceRollerAdditionNumberTotalRoll {
     }
 
     @Test
-    @DisplayName("A long addition returns the expected value")
+    @DisplayName("An addition using only dice returns the expected structure")
     public final void testParse_Number_Add_Long_Value() {
         final DiceNotationExpression parsed; // Parsed expression
         final Integer result;                // Resulting value

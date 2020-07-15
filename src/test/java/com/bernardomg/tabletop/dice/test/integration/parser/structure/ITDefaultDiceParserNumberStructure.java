@@ -17,33 +17,21 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * numbers.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserNumberStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for numbers")
+public final class ITDefaultDiceParserNumberStructure {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserNumberStructure() {
+    public ITDefaultDiceParserNumberStructure() {
         super();
     }
 
-    /**
-     * Verifies that parsing a positive number gives that number as value.
-     */
     @Test
+    @DisplayName("A number returns the expected structure")
     public final void testParse() {
         final IntegerOperand value;
 
@@ -52,10 +40,8 @@ public final class ITDefaultDiceNotationExpressionParserNumberStructure {
         Assertions.assertEquals((Integer) 12, value.getValue());
     }
 
-    /**
-     * Verifies that parsing zero gives that number as value.
-     */
     @Test
+    @DisplayName("Zero returns the expected structure")
     public final void testParse_Zero() {
         final IntegerOperand value;
 

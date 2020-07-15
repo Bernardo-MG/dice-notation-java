@@ -17,34 +17,24 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * signed numbers.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for signed numbers")
+public final class ITDefaultDiceParserSignedNumberStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSignedNumberStructure() {
+    public ITDefaultDiceParserSignedNumberStructure() {
         super();
     }
 
-    /**
-     * Verifies that parsing a signed negative number gives that number as
-     * value.
-     */
     @Test
+    @DisplayName("A negative number returns the expected structure")
     public final void testParse_Negative() {
         final IntegerOperand operation; // Parsed expression
 
@@ -53,11 +43,8 @@ public final class ITDefaultDiceNotationExpressionParserSignedNumberStructure {
         Assertions.assertEquals(new Integer(0 - 12), operation.getValue());
     }
 
-    /**
-     * Verifies that parsing a signed positive number gives that number as
-     * value.
-     */
     @Test
+    @DisplayName("A positive number returns the expected structure")
     public final void testParse_Positive() {
         final IntegerOperand operation; // Parsed expression
 

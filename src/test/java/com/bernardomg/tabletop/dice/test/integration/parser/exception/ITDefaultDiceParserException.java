@@ -17,33 +17,21 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.exception;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it throws
- * exceptions when required.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserException {
+@DisplayName("DefaultDiceParser handles exceptions")
+public final class ITDefaultDiceParserException {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserException() {
+    public ITDefaultDiceParserException() {
         super();
     }
 
-    /**
-     * Verifies that an empty text causes an exception.
-     */
     @Test
+    @DisplayName("An empty expression throws an exception")
     public final void testParse_Empty() {
         final Executable closure;
 
@@ -52,10 +40,8 @@ public final class ITDefaultDiceNotationExpressionParserException {
         Assertions.assertThrows(Exception.class, closure);
     }
 
-    /**
-     * Verifies that an invalid text causes an exception.
-     */
     @Test
+    @DisplayName("An invalid expression throws an exception")
     public final void testParse_Invalid() {
         final Executable closure;
 
@@ -64,10 +50,8 @@ public final class ITDefaultDiceNotationExpressionParserException {
         Assertions.assertThrows(Exception.class, closure);
     }
 
-    /**
-     * Verifies that a partially valid text causes an exception.
-     */
     @Test
+    @DisplayName("A partially valid expression throws an exception")
     public final void testParse_PartiallyValid() {
         final Executable closure;
 

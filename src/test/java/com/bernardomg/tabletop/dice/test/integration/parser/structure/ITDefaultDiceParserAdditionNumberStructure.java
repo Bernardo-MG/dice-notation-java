@@ -17,36 +17,23 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * numeric additions.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for additions using only numbers")
+public final class ITDefaultDiceParserAdditionNumberStructure {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserAdditionNumberStructure() {
+    public ITDefaultDiceParserAdditionNumberStructure() {
         super();
     }
 
-    /**
-     * Verifies that long additions can be parsed, and the result is the
-     * expected one.
-     */
     @Test
+    @DisplayName("A long addition returns the expected structure")
     public final void testParse_Number_Add_Long_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
@@ -70,11 +57,8 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure 
         Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
-    /**
-     * Verifies that longer additions can be parsed, and the result is the
-     * expected one.
-     */
     @Test
+    @DisplayName("A longer addition returns the expected structure")
     public final void testParse_Number_Add_Longer_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
@@ -108,10 +92,8 @@ public final class ITDefaultDiceNotationExpressionParserAdditionNumberStructure 
         Assertions.assertEquals((Integer) 1, number.getValue());
     }
 
-    /**
-     * Verifies that an addition with only numbers is parsed correctly.
-     */
     @Test
+    @DisplayName("An addition returns the expected structure")
     public final void testParse_Number_Add_Structure() {
         final String notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation

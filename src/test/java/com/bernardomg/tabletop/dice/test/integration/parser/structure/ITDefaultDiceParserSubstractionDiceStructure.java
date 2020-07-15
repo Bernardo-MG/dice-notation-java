@@ -17,36 +17,27 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * substractions with dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for subtractions")
+public final class ITDefaultDiceParserSubstractionDiceStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserSubstractionDiceStructure() {
+    public ITDefaultDiceParserSubstractionDiceStructure() {
         super();
     }
 
-    /**
-     * Verifies that a subtraction using only dice is parsed correctly.
-     */
     @Test
-    public final void testParse_Sub_Dice_Structure() {
+    @DisplayName("An subtraction returns the expected structure")
+    public final void testParse_Dice_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final DiceOperand diceLeft;           // Left parsed dice
@@ -67,11 +58,9 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
         Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
     }
 
-    /**
-     * Verifies that a subtraction with the number to left is parsed correctly.
-     */
     @Test
-    public final void testParse_Sub_LeftNumber_Structure() {
+    @DisplayName("An subtraction with a number on the left returns the expected structure")
+    public final void testParse_LeftNumber_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final IntegerOperand integer;         // Integer operand
@@ -91,11 +80,9 @@ public final class ITDefaultDiceNotationExpressionParserSubstractionDiceStructur
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }
 
-    /**
-     * Verifies that a subtraction with the number to right is parsed correctly.
-     */
     @Test
-    public final void testParse_Sub_RightNumber_Structure() {
+    @DisplayName("An subtraction with a number on the right returns the expected structure")
+    public final void testParse_RightNumber_Structure() {
         final String notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
         final IntegerOperand integer;         // Integer operand

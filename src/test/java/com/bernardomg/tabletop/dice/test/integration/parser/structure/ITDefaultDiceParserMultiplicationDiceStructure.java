@@ -17,44 +17,33 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
+import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * additions with dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserAdditionDiceStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for multiplications")
+public final class ITDefaultDiceParserMultiplicationDiceStructure {
 
-    /**
-     * Default constructor.
-     */
-    public ITDefaultDiceNotationExpressionParserAdditionDiceStructure() {
+    public ITDefaultDiceParserMultiplicationDiceStructure() {
         super();
     }
 
-    /**
-     * Verifies that an addition using only dice is parsed correctly.
-     */
     @Test
-    public final void testParse_Add_Dice_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final DiceOperand diceLeft;        // Left parsed dice
-        final DiceOperand diceRight;       // Right parsed dice
+    @DisplayName("A multiplication returns the expected structure")
+    public final void testParse_Dice_Structure() {
+        final String notation;                   // Input to parse
+        final MultiplicationOperation operation; // Parsed operation
+        final DiceOperand diceLeft;              // Left parsed dice
+        final DiceOperand diceRight;             // Right parsed dice
 
-        notation = "1d20+2d6";
+        notation = "1d20*2d6";
 
-        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
+        operation = (MultiplicationOperation) new DefaultDiceParser()
+                .parse(notation);
 
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
@@ -66,19 +55,18 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDiceStructure {
         Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
     }
 
-    /**
-     * Verifies that an addition with the number to left is parsed correctly.
-     */
     @Test
-    public final void testParse_Add_LeftNumber_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+    @DisplayName("A multiplication with a number on the left returns the expected structure")
+    public final void testParse_LeftNumber_Structure() {
+        final String notation;                   // Input to parse
+        final MultiplicationOperation operation; // Parsed operation
+        final IntegerOperand integer;            // Parsed integer
+        final DiceOperand dice;                  // Parsed dice
 
-        notation = "5+2d6";
+        notation = "5*2d6";
 
-        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
+        operation = (MultiplicationOperation) new DefaultDiceParser()
+                .parse(notation);
 
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
@@ -89,19 +77,18 @@ public final class ITDefaultDiceNotationExpressionParserAdditionDiceStructure {
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }
 
-    /**
-     * Verifies that an addition with the number to right is parsed correctly.
-     */
     @Test
-    public final void testParse_Add_RightNumber_Structure() {
-        final String notation;             // Input to parse
-        final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+    @DisplayName("A multiplication with a number on the right returns the expected structure")
+    public final void testParse_RightNumber_Structure() {
+        final String notation;                   // Input to parse
+        final MultiplicationOperation operation; // Parsed operation
+        final IntegerOperand integer;            // Parsed integer
+        final DiceOperand dice;                  // Parsed dice
 
-        notation = "2d6+5";
+        notation = "2d6*5";
 
-        operation = (AdditionOperation) new DefaultDiceParser().parse(notation);
+        operation = (MultiplicationOperation) new DefaultDiceParser()
+                .parse(notation);
 
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();

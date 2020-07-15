@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
@@ -27,27 +26,18 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
 
-/**
- * Integration tests for {@link DefaultDiceParser}, verifying that it parses
- * simple binary operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
-public final class ITDefaultDiceNotationExpressionParserParenthesisStructure {
+@DisplayName("DefaultDiceParser parses the expected structure for operations with parenthesis")
+public final class ITDefaultDiceParserParenthesisStructure {
 
     /**
      * Default constructor.
      */
-    public ITDefaultDiceNotationExpressionParserParenthesisStructure() {
+    public ITDefaultDiceParserParenthesisStructure() {
         super();
     }
 
-    /**
-     * Verifies that parenthesis are applied, and the result is the expected
-     * one.
-     */
     @Test
+    @DisplayName("An operation with parenthesis returns the expected structure")
     public final void testParse_Number_AddAndMult_Structure() {
         final String notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
