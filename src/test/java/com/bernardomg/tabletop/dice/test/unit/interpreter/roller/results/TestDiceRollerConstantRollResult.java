@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,8 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollResult;
@@ -30,26 +29,15 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.google.common.collect.Iterables;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for constants.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller returns the expected roll results for constants")
 public final class TestDiceRollerConstantRollResult {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceRollerConstantRollResult() {
         super();
     }
 
-    /**
-     * Verifies that a constant generates the expected results.
-     */
     @Test
+    @DisplayName("A negative value generates the expected rolls")
     public final void testRolls_Negative() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> results;
@@ -70,10 +58,8 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(new Integer(-4), rollValues.next());
     }
 
-    /**
-     * Verifies that a constant generates the expected results.
-     */
     @Test
+    @DisplayName("The default dice is generated for negative values")
     public final void testRolls_Negative_Dice() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> results;
@@ -91,10 +77,8 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(new Integer(-4), dice.getSides());
     }
 
-    /**
-     * Verifies that a constant generates the expected results.
-     */
     @Test
+    @DisplayName("A positive value generates the expected rolls")
     public final void testRolls_Positive() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> results;
@@ -115,10 +99,8 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(new Integer(4), rollValues.next());
     }
 
-    /**
-     * Verifies that a constant generates the expected results.
-     */
     @Test
+    @DisplayName("The default dice is generated for positive values")
     public final void testRolls_Positive_Dice() {
         final DiceNotationExpression expression;
         final Iterable<RollResult> results;

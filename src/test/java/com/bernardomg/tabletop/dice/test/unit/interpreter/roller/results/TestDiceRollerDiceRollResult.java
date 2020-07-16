@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,12 +16,13 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
@@ -29,28 +30,56 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.bernardomg.tabletop.dice.random.NumberGenerator;
 import com.google.common.collect.Iterables;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for dice.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller returns the expected roll results for dice")
 public final class TestDiceRollerDiceRollResult {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceRollerDiceRollResult() {
         super();
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("The expected rolls are returned when using a generator")
+    public final void testRoll_generator() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final Iterable<RollResult> rolled;
+        final RollResult rolledValues;
+        final NumberGenerator generator;
+        final Iterator<Integer> rolls;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(2);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(1, 2));
+
+        expression = new DefaultDiceOperand(dice);
+
+        rolled = new DiceRoller(generator).transform(expression)
+                .getRollResults();
+        rolledValues = rolled.iterator().next();
+
+        // Single dice
+        Assertions.assertEquals(1, Iterables.size(rolled));
+
+        // Two values
+        Assertions.assertEquals(2, Iterables.size(rolledValues.getAllRolls()));
+
+        rolls = rolledValues.getAllRolls().iterator();
+
+        Assertions.assertEquals(new Integer(1), rolls.next());
+        Assertions.assertEquals(new Integer(2), rolls.next());
+    }
+
+    @Test
+    @DisplayName("Single side dice generate the expected dice")
     public final void testRoll_SingleSide_Dice() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -72,10 +101,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(new Integer(1), diceResult.getSides());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Single side dice generate the expected total roll")
     public final void testRoll_SingleSide_FinalRoll() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -94,10 +121,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(new Integer(3), result.getTotalRoll());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Single side dice generate the expected total number of rolls")
     public final void testRoll_SingleSide_Quantity() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -115,10 +140,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(1, Iterables.size(rolled));
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("Single side dice generate the expected rolls")
     public final void testRoll_SingleSide_Rolls() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -147,10 +170,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(new Integer(1), rollValues.next());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("The smallest possible die generate the expected dice")
     public final void testRoll_SmallestDice_Dice() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -172,10 +193,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(new Integer(1), diceResult.getSides());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("The smallest possible die generate the expected total roll")
     public final void testRoll_SmallestDice_FinalRoll() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -194,10 +213,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(new Integer(1), result.getTotalRoll());
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("The smallest possible die generate the expected total number of rolls")
     public final void testRoll_SmallestDice_Quantity() {
         final Dice dice;
         final DiceNotationExpression expression;
@@ -215,10 +232,8 @@ public final class TestDiceRollerDiceRollResult {
         Assertions.assertEquals(1, Iterables.size(rolled));
     }
 
-    /**
-     * Verifies that the smallest possible dice generates the expected results.
-     */
     @Test
+    @DisplayName("The smallest possible die generate the expected rolls")
     public final void testRoll_SmallestDice_Rolls() {
         final Dice dice;
         final DiceNotationExpression expression;

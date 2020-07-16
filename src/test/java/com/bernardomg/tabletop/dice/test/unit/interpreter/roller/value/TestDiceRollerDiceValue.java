@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,23 +16,21 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.bernardomg.tabletop.dice.random.NumberGenerator;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that handles dice correctly.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller handles dice operations")
 public final class TestDiceRollerDiceValue {
 
     /**
@@ -42,11 +40,59 @@ public final class TestDiceRollerDiceValue {
         super();
     }
 
-    /**
-     * Verifies that a negative quantity is handled correctly.
-     */
     @Test
-    public final void testTransform_NegativeQuantity() {
+    @DisplayName("The expected value is returned when using a generator and multiple values")
+    public final void testTotalRoll_CustomGenerator_MultipleValues() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final Integer rolled;
+        final NumberGenerator generator;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(3);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(1, 2, 3));
+
+        expression = new DefaultDiceOperand(dice);
+
+        rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(6), rolled);
+    }
+
+    @Test
+    @DisplayName("The expected value is returned when using a generator")
+    public final void testTotalRoll_Generator() {
+        final Dice dice;
+        final DiceNotationExpression expression;
+        final Integer rolled;
+        final NumberGenerator generator;
+
+        // Mocks dice
+        dice = Mockito.mock(Dice.class);
+        Mockito.when(dice.getQuantity()).thenReturn(1);
+        Mockito.when(dice.getSides()).thenReturn(1);
+
+        // Mocks generator
+        generator = Mockito.mock(NumberGenerator.class);
+        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+                .thenReturn(Arrays.asList(5));
+
+        expression = new DefaultDiceOperand(dice);
+
+        rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
+
+        Assertions.assertEquals(new Integer(5), rolled);
+    }
+
+    @Test
+    @DisplayName("A dice with negative quantity returns the expected result")
+    public final void testTotalRoll_NegativeQuantity() {
         final Dice dice;
         final DiceNotationExpression expression;
         final Integer rolled;
@@ -63,11 +109,9 @@ public final class TestDiceRollerDiceValue {
         Assertions.assertEquals(new Integer(-1), rolled);
     }
 
-    /**
-     * Verifies that negative sides are handled correctly.
-     */
     @Test
-    public final void testTransform_NegativeSides() {
+    @DisplayName("A dice with negative sides returns the expected result")
+    public final void testTotalRoll_NegativeSides() {
         final Dice dice;
         final DiceNotationExpression expression;
         final Integer rolled;
@@ -84,11 +128,9 @@ public final class TestDiceRollerDiceValue {
         Assertions.assertEquals(new Integer(0), rolled);
     }
 
-    /**
-     * Verifies that a zero quantity is handled correctly.
-     */
     @Test
-    public final void testTransform_NoQuantity() {
+    @DisplayName("A dice with no quantity returns the expected result")
+    public final void testTotalRoll_NoQuantity() {
         final Dice dice;
         final DiceNotationExpression expression;
         final Integer rolled;
@@ -105,11 +147,9 @@ public final class TestDiceRollerDiceValue {
         Assertions.assertEquals(new Integer(0), rolled);
     }
 
-    /**
-     * Verifies that zero sides are handled correctly.
-     */
     @Test
-    public final void testTransform_NoSides() {
+    @DisplayName("A dice with no sides returns the expected result")
+    public final void testTotalRoll_NoSides() {
         final Dice dice;
         final DiceNotationExpression expression;
         final Integer rolled;
@@ -126,11 +166,9 @@ public final class TestDiceRollerDiceValue {
         Assertions.assertEquals(new Integer(0), rolled);
     }
 
-    /**
-     * Verifies that the smallest dice is handled correctly.
-     */
     @Test
-    public final void testTransform_Smallest() {
+    @DisplayName("The smallest possible dice returns the expected result")
+    public final void testTotalRoll_Smallest() {
         final Dice dice;
         final DiceNotationExpression expression;
         final Integer rolled;

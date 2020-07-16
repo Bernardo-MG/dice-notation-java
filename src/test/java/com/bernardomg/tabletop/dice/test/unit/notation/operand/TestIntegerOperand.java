@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,39 +17,37 @@
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 
-/**
- * Units tests for {@link IntegerOperand}, verifying that it can generate a
- * valid notation expression.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("Tests for IntegerOperand")
 public class TestIntegerOperand {
 
-    /**
-     * Default constructor.
-     */
     public TestIntegerOperand() {
         super();
     }
 
-    /**
-     * Verifies that the text expression is generated correctly.
-     */
     @Test
+    @DisplayName("The text expression is generated correctly")
     public final void testTextExpression() {
         final DiceNotationExpression operand; // Tested operand
 
         operand = new IntegerOperand(1);
 
         Assertions.assertEquals("1", operand.getExpression());
+    }
+
+    @Test
+    @DisplayName("The text expression is generated correctly for negatives")
+    public final void testTextExpression_negative() {
+        final DiceNotationExpression operand; // Tested operand
+
+        operand = new IntegerOperand(-1);
+
+        Assertions.assertEquals("-1", operand.getExpression());
     }
 
 }

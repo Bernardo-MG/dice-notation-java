@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -28,27 +27,16 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that handles subtraction
- * operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller handles subtraction operations")
 public final class TestDiceRollerSubtractionOperationValue {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceRollerSubtractionOperationValue() {
         super();
     }
 
-    /**
-     * Verifies that the value is generated correctly.
-     */
     @Test
-    public final void testValue() {
+    @DisplayName("A subtraction returns the expected result")
+    public final void testTotalRoll() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
@@ -65,12 +53,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(-1), rolled);
     }
 
-    /**
-     * Verifies that the value is generated correctly when the values are
-     * grouped negative results.
-     */
     @Test
-    public final void testValue_GroupedNegatives() {
+    @DisplayName("A subtraction (grouped negatives) returns the expected result")
+    public final void testTotalRoll_GroupedNegatives() {
         final BinaryOperation operation;     // Tested operation
         final BinaryOperation groupeda;      // Tested operation
         final BinaryOperation groupedb;      // Tested operation
@@ -101,12 +86,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(0), rolled);
     }
 
-    /**
-     * Verifies that the value is generated correctly when the values are
-     * grouped on the right side.
-     */
     @Test
-    public final void testValue_SubtractGrouped() {
+    @DisplayName("A subtraction (grouped on the right) returns the expected result")
+    public final void testTotalRoll_SubtractGrouped() {
         final BinaryOperation grouped;      // Tested operation
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
@@ -131,11 +113,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(-4), rolled);
     }
 
-    /**
-     * Verifies that subtractions of negative values are handled correctly.
-     */
     @Test
-    public final void testValue_SubtractNegative() {
+    @DisplayName("A subtraction (negative on the right) returns the expected result")
+    public final void testTotalRoll_SubtractNegative() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
@@ -154,12 +134,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(3), rolled);
     }
 
-    /**
-     * Verifies that the value is generated correctly when the values are
-     * grouped on the right side.
-     */
     @Test
-    public final void testValue_SubtractNegative_Grouped() {
+    @DisplayName("A subtraction (grouped values with a negative on the right) returns the expected result")
+    public final void testTotalRoll_SubtractNegative_Grouped() {
         final BinaryOperation grouped;      // Tested operation
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
@@ -185,11 +162,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(2), rolled);
     }
 
-    /**
-     * Verifies that subtractions of negative values are handled correctly.
-     */
     @Test
-    public final void testValue_SubtractNegatives() {
+    @DisplayName("A subtraction (negatives) returns the expected result")
+    public final void testTotalRoll_SubtractNegatives() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
@@ -207,11 +182,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(1), rolled);
     }
 
-    /**
-     * Verifies that subtractions to negative values are handled correctly.
-     */
     @Test
-    public final void testValue_SubtractToNegative() {
+    @DisplayName("A subtraction (left value negative) returns the expected result")
+    public final void testTotalRoll_SubtractToNegative() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
@@ -229,12 +202,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(-3), rolled);
     }
 
-    /**
-     * Verifies that the value is generated correctly when the values are
-     * grouped on the left side.
-     */
     @Test
-    public final void testValue_SubtractToNegative_Grouped() {
+    @DisplayName("A subtraction (grouped values with a negative on the left) returns the expected result")
+    public final void testTotalRoll_SubtractToNegative_Grouped() {
         final BinaryOperation grouped;      // Tested operation
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
@@ -259,11 +229,9 @@ public final class TestDiceRollerSubtractionOperationValue {
         Assertions.assertEquals(new Integer(-4), rolled);
     }
 
-    /**
-     * Verifies that the value is generated correctly.
-     */
     @Test
-    public final void testValue_Zeroes() {
+    @DisplayName("A subtraction (zeroes) returns the expected result")
+    public final void testTotalRoll_Zeroes() {
         final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand

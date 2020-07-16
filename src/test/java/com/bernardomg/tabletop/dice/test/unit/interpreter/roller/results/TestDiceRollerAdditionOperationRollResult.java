@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2019 the original author or authors
+ * Copyright 2014-2020 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,8 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
@@ -31,26 +30,15 @@ import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 import com.google.common.collect.Iterables;
 
-/**
- * Unit tests for {@link DiceRoller}, verifying that it returns the expected
- * roll results for addition operations.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
- */
-@RunWith(JUnitPlatform.class)
+@DisplayName("DiceRoller returns the expected roll results for additions/subtractions")
 public final class TestDiceRollerAdditionOperationRollResult {
 
-    /**
-     * Default constructor.
-     */
     public TestDiceRollerAdditionOperationRollResult() {
         super();
     }
 
-    /**
-     * Verifies that an addition generates the expected results.
-     */
     @Test
+    @DisplayName("An addition generates the expected results")
     public final void testRolls_Addition() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
@@ -87,10 +75,8 @@ public final class TestDiceRollerAdditionOperationRollResult {
         Assertions.assertEquals(new Integer(2), rollValues.next());
     }
 
-    /**
-     * Verifies that an addition generates the expected results.
-     */
     @Test
+    @DisplayName("An addition (left value negative) generates the expected results")
     public final void testRolls_Addition_AddToNeg() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
@@ -104,7 +90,7 @@ public final class TestDiceRollerAdditionOperationRollResult {
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
 
-        // 1 + 2
+        // -1 + 2
         expression = new AdditionOperation(left, right);
 
         results = new DiceRoller().transform(expression).getRollResults();
@@ -127,10 +113,8 @@ public final class TestDiceRollerAdditionOperationRollResult {
         Assertions.assertEquals(new Integer(2), rollValues.next());
     }
 
-    /**
-     * Verifies that a subtraction generates the expected results.
-     */
     @Test
+    @DisplayName("A subtraction generates the expected results")
     public final void testRolls_Subtraction() {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
