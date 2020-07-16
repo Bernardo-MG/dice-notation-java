@@ -111,7 +111,13 @@
             Added more logging messages.
          </action>
       </release>
-      <release version="2.1.0" date="2019-11-03" description="Updates">
+      <release version="2.0.2" date="2020-07-16" description="Updates">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="update">
+            Moved to Github workflow for CI.
+         </action>
       </release>
    </body>
 </document>
