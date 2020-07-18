@@ -111,7 +111,21 @@
             Added more logging messages.
          </action>
       </release>
-      <release version="2.1.0" date="2019-11-03" description="Updates">
+      <release version="2.0.2" date="2020-07-16" description="Updates">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="update">
+            Moved to Github workflow for CI.
+         </action>
+      </release>
+      <release version="2.0.3" date="2020-07-18" description="Docs fixes">
+         <action dev="bmg" type="update">
+            Fixed docs.
+         </action>
+         <action dev="bmg" type="update">
+            Added link to dice notation CLI.
+         </action>
       </release>
    </body>
 </document>
