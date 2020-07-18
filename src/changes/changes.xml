@@ -119,5 +119,13 @@
             Moved to Github workflow for CI.
          </action>
       </release>
+      <release version="2.0.3" date="2020-07-18" description="Docs fixes">
+         <action dev="bmg" type="update">
+            Fixed docs.
+         </action>
+         <action dev="bmg" type="update">
+            Added link to dice notation CLI.
+         </action>
+      </release>
    </body>
 </document>

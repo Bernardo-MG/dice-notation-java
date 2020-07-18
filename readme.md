@@ -34,6 +34,10 @@ Its usefulness is very clear, it allows working with specific random values dist
 
 The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 
+## Related projects
+
+- [Dice Notation Tools CLI][dice-notation-java-cli], a CLI to roll expressions through line command
+
 ## Documentation
 
 Documentation is always generated for the latest release, kept in the 'master' branch:
@@ -60,10 +64,7 @@ The application is coded in Java, using Maven to manage the project.
 
 ### Prerequisites
 
-The project has been tested on the following Java versions:
-* JDK 8
-
-All other dependencies are handled through Maven, and noted in the included POM file.
+JDK 8 or higher is required. All other dependencies are handled through Maven, and noted in the included POM file.
 
 ### Installing
 
@@ -84,7 +85,6 @@ You may parse an expression, and generate a random value, like this:
 ```java
 final DiceParser parser;
 final RollHistory rolls;
-final DiceInterpreter interpreter;
 final DiceInterpreter<RollHistory> roller;
 
 parser = new DefaultDiceParser();
@@ -127,3 +127,5 @@ The project has been released under version 2.0 of the [Apache License][license]
 [scm]: http://github.com/Bernardo-MG/dice-notation-java
 [site-develop]: http://docs.bernardomg.com/development/maven/dice-notation-java
 [site-release]: http://docs.bernardomg.com/maven/dice-notation-java
+
+[dice-notation-java-cli]: https://github.com/Bernardo-MG/dice-notation-java-cli

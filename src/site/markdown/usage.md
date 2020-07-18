@@ -9,8 +9,7 @@ Generic dice notation, including algebraic operations, can be parsed like this:
 
 ```java
 final DiceParser parser;
-final TransformableDiceNotationExpression parsed;
-final DiceInterpreter interpreter;
+final DiceNotationExpression parsed;
 
 parser = new DefaultDiceParser();
 
@@ -24,6 +23,8 @@ By using the DiceRoller you may simulate rolling the expression:
 ```java
 final DiceInterpreter<RollHistory> roller;
 final RollHistory rolls;
+
+// Parse expression like in the previous example
 
 roller = new DiceRoller();
 
