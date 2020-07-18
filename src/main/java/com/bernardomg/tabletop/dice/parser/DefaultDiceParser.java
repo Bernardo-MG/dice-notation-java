@@ -49,7 +49,7 @@ public final class DefaultDiceParser implements DiceParser {
     /**
      * Error listener for the parser and lexer.
      */
-    private final ANTLRErrorListener    errorListener = new DefaultErrorListener();
+    private final ANTLRErrorListener    errorListener;
 
     /**
      * Visitor used to build the returned object.
@@ -68,6 +68,21 @@ public final class DefaultDiceParser implements DiceParser {
     public DefaultDiceParser() {
         super();
 
+        errorListener = new DefaultErrorListener();
+        expressionBuilder = new DefaultDiceExpressionBuilder();
+    }
+
+    /**
+     * Constructs a parser with the error listener
+     * 
+     * @param listener
+     *            error listener
+     */
+    public DefaultDiceParser(final ANTLRErrorListener listener) {
+        super();
+
+        errorListener = checkNotNull(listener,
+                "Received a null pointer as listener");
         expressionBuilder = new DefaultDiceExpressionBuilder();
     }
 
@@ -80,8 +95,27 @@ public final class DefaultDiceParser implements DiceParser {
     public DefaultDiceParser(final DiceExpressionBuilder builder) {
         super();
 
+        errorListener = new DefaultErrorListener();
         expressionBuilder = checkNotNull(builder,
+                "Received a null pointer as expression builder");
+    }
+
+    /**
+     * Constructs a parser with the specified builder and error listener.
+     * 
+     * @param builder
+     *            builder to generate the returned tree
+     * @param listener
+     *            error listener
+     */
+    public DefaultDiceParser(final DiceExpressionBuilder builder,
+            final ANTLRErrorListener listener) {
+        super();
+
+        errorListener = checkNotNull(listener,
                 "Received a null pointer as listener");
+        expressionBuilder = checkNotNull(builder,
+                "Received a null pointer as expression builder");
     }
 
     @Override
