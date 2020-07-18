@@ -49,6 +49,6 @@ The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 [notation]: ./notation.html
 [parser]: ./parser.html
 
-[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
+[number_generator]: ./apidocs/com/bernardomg/tabletop/dice/random/RandomNumberGenerator.html
 
 [dice-notation-java-cli]: https://github.com/Bernardo-MG/dice-notation-java-cli
