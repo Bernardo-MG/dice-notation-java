@@ -71,9 +71,9 @@ To use a custom generator you need to implement this and then set the new genera
 
 ```java
 final NumberGenerator numGen;
-final DiceInterpreter interpreter;
+final DiceInterpreter<RollHistory> interpreter;
 
-numGen = new CustomNumberGenerator();
+numGen = new RandomNumberGenerator();
 interpreter = new DiceRoller(numGen);
 
 System.out.println(interpreter.transform(parsed));
@@ -92,10 +92,10 @@ interpreter = new DiceRoller(new DiceToRollResult(), (r) -> function(r));
 If you need to get the dice from the expression:
 
 ```java
-final DiceInterpreter interpreter;
+final DiceInterpreter<Iterable<Dice>> interpreter;
 final Dice dice;
 
-interpreter = new DiceSetsTransformer();
+interpreter = new DiceGatherer();
 
 dice = interpreter.transform(parsed).iterator().next();
 
