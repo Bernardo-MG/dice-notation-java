@@ -14,7 +14,7 @@ final RollHistory history;
 
 interpreter = new DiceRoller();
 
-history = new DefaultDiceNotationExpressionParser().parse("2d6+12", interpreter);
+history = new DefaultDiceParser().parse("2d6+12", interpreter);
 ```
 
 But in some cases they may be applied manually to the parsed result, mostly when it will be transformed multiple times, as it may happen when rolling.
