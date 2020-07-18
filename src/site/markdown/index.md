@@ -10,13 +10,17 @@ An example of the second case are the Fudge dice, which not only represent numbe
 
 For now such specific situations are not supported by the library, which allows only parsing the most [basic grammar][grammar].
 
-# The aim of the project
+## The aim of the project
 
 The dice notation allows working with random values distributions. And while it is great for a tabletop game a machine will have better tools for handling this need.
 
 But the project is not trying to generate random values, it is more of a side effect. The actual objective is giving a way for Java applications to work with the same tools a board game would have.
 
 This is very useful when creating tools related to these games, but won't make much sense in other context.
+
+## Related projects
+
+- [Dice Notation Tools CLI][dice-notation-java-cli], a CLI to roll expressions through line command
 
 ## Features
 
@@ -46,3 +50,5 @@ The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 [parser]: ./parser.html
 
 [number_generator]: ./apidocs/com/bernardomg/tabletop/dice/roller/random/NumberGenerator.html
+
+[dice-notation-java-cli]: https://github.com/Bernardo-MG/dice-notation-java-cli
