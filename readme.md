@@ -84,7 +84,6 @@ You may parse an expression, and generate a random value, like this:
 ```java
 final DiceParser parser;
 final RollHistory rolls;
-final DiceInterpreter interpreter;
 final DiceInterpreter<RollHistory> roller;
 
 parser = new DefaultDiceParser();
