@@ -127,5 +127,10 @@
             Added link to dice notation CLI.
          </action>
       </release>
+      <release version="2.1.0" date="2020-07-18" description="">
+         <action dev="bmg" type="add">
+            The parser's error listener is configurable.
+         </action>
+      </release>
    </body>
 </document>
