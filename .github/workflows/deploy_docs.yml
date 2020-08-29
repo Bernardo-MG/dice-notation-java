@@ -21,13 +21,14 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up JDK
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
     - name: Set up Maven settings
-      uses: bernardo-mg/deployment-maven-settings-action@master
+      uses: bernardo-mg/deployment-maven-settings-action@v1.1.0
       with:
         version-type: ${{ steps.extract_branch.outputs.branch }}
       env:
@@ -37,5 +38,9 @@ jobs:
         DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
         DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
         DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-    - name: Deploy docs
-      run: mvn site site:deploy -B -P deployment --settings settings.xml
+    - name: Deploy development docs
+      if: steps.extract_branch.outputs.branch == 'develop'
+      run: mvn site site:deploy -B -P deployment,deployment-development --settings settings.xml
+    - name: Deploy release docs
+      if: steps.extract_branch.outputs.branch == 'master'
+      run: mvn site site:deploy -B -P deployment,deployment-release --settings settings.xml

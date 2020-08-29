@@ -15,17 +15,18 @@ jobs:
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up JDK
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
     - name: Set up Maven settings
-      uses: bernardo-mg/deployment-maven-settings-action@master
+      uses: bernardo-mg/deployment-maven-settings-action@v1.1.0
       with:
         version-type: ${{ steps.extract_branch.outputs.branch }}
       env:
         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
         DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
     - name: Deploy
-      run: mvn deploy -B -P deployment --settings settings.xml
+      run: mvn deploy -B -P deployment,deployment-release --settings settings.xml
