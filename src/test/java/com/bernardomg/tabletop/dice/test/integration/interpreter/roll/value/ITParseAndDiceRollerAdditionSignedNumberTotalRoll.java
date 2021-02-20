@@ -47,7 +47,7 @@ public final class ITParseAndDiceRollerAdditionSignedNumberTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer((-1)), result);
+        Assertions.assertEquals(Integer.valueOf((-1)), result);
     }
 
     @Test
@@ -63,7 +63,7 @@ public final class ITParseAndDiceRollerAdditionSignedNumberTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), result);
+        Assertions.assertEquals(Integer.valueOf(1), result);
     }
 
 }

@@ -71,7 +71,7 @@ public final class TestInorderTraverser {
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(new Integer(1),
+        Assertions.assertEquals(Integer.valueOf(1),
                 ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
@@ -79,7 +79,7 @@ public final class TestInorderTraverser {
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(new Integer(2),
+        Assertions.assertEquals(Integer.valueOf(2),
                 ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
@@ -87,7 +87,7 @@ public final class TestInorderTraverser {
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(new Integer(3),
+        Assertions.assertEquals(Integer.valueOf(3),
                 ((IntegerOperand) exp).getValue());
     }
 

@@ -44,7 +44,7 @@ public final class ITParseAndDiceRollerBinaryOperationTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(18), result);
+        Assertions.assertEquals(Integer.valueOf(18), result);
     }
 
     @Test
@@ -57,7 +57,7 @@ public final class ITParseAndDiceRollerBinaryOperationTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(Integer.valueOf(7), result);
     }
 
 }

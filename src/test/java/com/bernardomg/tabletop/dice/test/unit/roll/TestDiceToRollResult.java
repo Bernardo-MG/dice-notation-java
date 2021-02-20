@@ -55,7 +55,7 @@ public final class TestDiceToRollResult {
 
         rolled = new DiceToRollResult(generator).apply(dice).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(5), rolled);
+        Assertions.assertEquals(Integer.valueOf(5), rolled);
     }
 
     @Test
@@ -77,7 +77,7 @@ public final class TestDiceToRollResult {
 
         rolled = new DiceToRollResult(generator).apply(dice).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(6), rolled);
+        Assertions.assertEquals(Integer.valueOf(6), rolled);
     }
 
     @Test
@@ -100,8 +100,8 @@ public final class TestDiceToRollResult {
         rolled = new DiceToRollResult(generator).apply(dice).getAllRolls()
                 .iterator();
 
-        Assertions.assertEquals(new Integer(1), rolled.next());
-        Assertions.assertEquals(new Integer(2), rolled.next());
+        Assertions.assertEquals(Integer.valueOf(1), rolled.next());
+        Assertions.assertEquals(Integer.valueOf(2), rolled.next());
     }
 
     @Test
@@ -123,8 +123,8 @@ public final class TestDiceToRollResult {
 
         returned = new DiceToRollResult(generator).apply(dice).getDice();
 
-        Assertions.assertEquals(new Integer(1), returned.getQuantity());
-        Assertions.assertEquals(new Integer(2), returned.getSides());
+        Assertions.assertEquals(Integer.valueOf(1), returned.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(2), returned.getSides());
     }
 
 }

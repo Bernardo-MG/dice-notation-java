@@ -62,7 +62,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(6), rolled);
+        Assertions.assertEquals(Integer.valueOf(6), rolled);
     }
 
     @Test
@@ -87,7 +87,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller(generator).transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(5), rolled);
+        Assertions.assertEquals(Integer.valueOf(5), rolled);
     }
 
     @Test
@@ -106,7 +106,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller().transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-1), rolled);
+        Assertions.assertEquals(Integer.valueOf(-1), rolled);
     }
 
     @Test
@@ -125,7 +125,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller().transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(0), rolled);
+        Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
 
     @Test
@@ -144,7 +144,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller().transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(0), rolled);
+        Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
 
     @Test
@@ -163,7 +163,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller().transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(0), rolled);
+        Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
 
     @Test
@@ -182,7 +182,7 @@ public final class TestDiceRollerDiceValue {
 
         rolled = new DiceRoller().transform(expression).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), rolled);
+        Assertions.assertEquals(Integer.valueOf(1), rolled);
     }
 
 }

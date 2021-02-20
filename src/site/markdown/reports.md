@@ -13,7 +13,7 @@
 |Report|Description|
 |---|---|
 |[Checkstyle][checkstyle]|Report on coding style conventions.|
-|[FindBugs][findbugs]|Generates a source code report with the FindBugs Library.|
+|[SpotBugs][spotbugs]|Generates a source code report with the SpotBugs Library.|
 |[PMD][pmd]|Verification of coding rules.|
 |[CPD][cpd]|Duplicate code detection.|
 |[JDepend][jdepend]|Quality metrics for the project.|
@@ -40,11 +40,11 @@
 [dependencies]: ./dependencies.html
 [dependency-analysis]: ./dependency-analysis.html
 [failsafe]: ./failsafe-report.html
-[findbugs]: ./findbugs.html
 [jacoco]: ./jacoco/index.html
 [jdepend]: ./jdepend-report.html
 [pmd]: ./pmd.html
 [plugins]: ./plugins.html
 [plugins-manage]: ./plugin-management.html
+[spotbugs]: ./spotbugs.html
 [surefire]: ./surefire-report.html
 [taglist]: ./taglist.html

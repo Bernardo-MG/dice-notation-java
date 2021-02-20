@@ -54,7 +54,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(2), rolled);
+        Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
 
     @Test
@@ -73,7 +73,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
 
     @Test
@@ -100,7 +100,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-1), rolled);
+        Assertions.assertEquals(Integer.valueOf(-1), rolled);
     }
 
     /**
@@ -122,7 +122,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
 
     @Test
@@ -149,7 +149,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
 
     @Test
@@ -168,7 +168,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(2), rolled);
+        Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
 
     @Test
@@ -201,7 +201,7 @@ public final class TestDiceRollerDivisionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), rolled);
+        Assertions.assertEquals(Integer.valueOf(1), rolled);
     }
 
     @Test

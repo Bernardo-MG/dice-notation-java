@@ -132,5 +132,10 @@
             The parser's error listener is configurable.
          </action>
       </release>
+      <release version="2.1.0" date="2021-02-20" description="Dropped JDK 8">
+         <action dev="bmg" type="update">
+            Removed support for JDK 8.
+         </action>
+      </release>
    </body>
 </document>
