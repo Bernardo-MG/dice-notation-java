@@ -213,7 +213,7 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.7.2</antlr.version>
+      <antlr.version>4.9.1</antlr.version>
       <guava.version>30.1-jre</guava.version>
       <junit.jupiter.version>5.7.1</junit.jupiter.version>
       <mockito.version>3.7.7</mockito.version>
@@ -222,8 +222,8 @@
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
-      <plugin.antlr.version>4.7.2</plugin.antlr.version>
-      <plugin.antlr.test.version>1.11</plugin.antlr.test.version>
+      <plugin.antlr.version>4.9.1</plugin.antlr.version>
+      <plugin.antlr.test.version>1.17</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.2.0</plugin.buildhelp.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
