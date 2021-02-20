@@ -501,6 +501,8 @@
             </configuration>
          </plugin>
          <plugin>
+             <!-- SpotBugs -->
+             <!-- Checks for patterns which are prone to errors -->
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-maven-plugin</artifactId>
             <configuration>
