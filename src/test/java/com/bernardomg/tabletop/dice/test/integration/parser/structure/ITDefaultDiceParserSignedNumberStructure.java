@@ -40,7 +40,7 @@ public final class ITDefaultDiceParserSignedNumberStructure {
 
         operation = (IntegerOperand) new DefaultDiceParser().parse("-12");
 
-        Assertions.assertEquals(new Integer(0 - 12), operation.getValue());
+        Assertions.assertEquals(Integer.valueOf(0 - 12), operation.getValue());
     }
 
     @Test
@@ -50,7 +50,7 @@ public final class ITDefaultDiceParserSignedNumberStructure {
 
         operation = (IntegerOperand) new DefaultDiceParser().parse("+12");
 
-        Assertions.assertEquals(new Integer(12), operation.getValue());
+        Assertions.assertEquals(Integer.valueOf(12), operation.getValue());
     }
 
 }

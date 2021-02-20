@@ -65,14 +65,14 @@ public final class TestDiceRollerAdditionOperationRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(1), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(2), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
     }
 
     @Test
@@ -103,14 +103,14 @@ public final class TestDiceRollerAdditionOperationRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(-1), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(-1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(2), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
     }
 
     @Test
@@ -141,14 +141,14 @@ public final class TestDiceRollerAdditionOperationRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(1), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(-2), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(-2), rollValues.next());
     }
 
 }

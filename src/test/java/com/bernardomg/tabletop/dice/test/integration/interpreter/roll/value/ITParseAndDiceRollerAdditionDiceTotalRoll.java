@@ -47,7 +47,7 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(3), result);
+        Assertions.assertEquals(Integer.valueOf(3), result);
     }
 
     @Test
@@ -63,7 +63,7 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(6), result);
+        Assertions.assertEquals(Integer.valueOf(6), result);
     }
 
     @Test
@@ -79,7 +79,7 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(Integer.valueOf(7), result);
     }
 
     @Test
@@ -95,7 +95,7 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(7), result);
+        Assertions.assertEquals(Integer.valueOf(7), result);
     }
 
 }

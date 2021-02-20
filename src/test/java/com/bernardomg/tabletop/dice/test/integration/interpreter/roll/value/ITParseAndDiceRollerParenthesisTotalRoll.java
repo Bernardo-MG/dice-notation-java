@@ -44,7 +44,7 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(9), result);
+        Assertions.assertEquals(Integer.valueOf(9), result);
     }
 
     @Test
@@ -60,7 +60,7 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), result);
+        Assertions.assertEquals(Integer.valueOf(1), result);
     }
 
 }

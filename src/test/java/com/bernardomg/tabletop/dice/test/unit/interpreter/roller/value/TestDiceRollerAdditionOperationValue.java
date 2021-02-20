@@ -53,7 +53,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(3), rolled);
+        Assertions.assertEquals(Integer.valueOf(3), rolled);
     }
 
     @Test
@@ -72,7 +72,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-1), rolled);
+        Assertions.assertEquals(Integer.valueOf(-1), rolled);
     }
 
     @Test
@@ -99,7 +99,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(0), rolled);
+        Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
 
     @Test
@@ -118,7 +118,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-3), rolled);
+        Assertions.assertEquals(Integer.valueOf(-3), rolled);
     }
 
     @Test
@@ -137,7 +137,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(1), rolled);
+        Assertions.assertEquals(Integer.valueOf(1), rolled);
     }
 
     @Test
@@ -164,7 +164,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(2), rolled);
+        Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
 
     @Test
@@ -197,7 +197,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(-2), rolled);
+        Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
 
     @Test
@@ -216,7 +216,7 @@ public final class TestDiceRollerAdditionOperationValue {
 
         rolled = new DiceRoller().transform(operation).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(0), rolled);
+        Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
 
 }

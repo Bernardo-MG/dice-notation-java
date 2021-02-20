@@ -55,7 +55,7 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(-4), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(-4), rollValues.next());
     }
 
     @Test
@@ -73,8 +73,8 @@ public final class TestDiceRollerConstantRollResult {
 
         dice = result.getDice();
 
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(-4), dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(-4), dice.getSides());
     }
 
     @Test
@@ -96,7 +96,7 @@ public final class TestDiceRollerConstantRollResult {
         Assertions.assertEquals(1, Iterables.size(rolls));
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(new Integer(4), rollValues.next());
+        Assertions.assertEquals(Integer.valueOf(4), rollValues.next());
     }
 
     @Test
@@ -114,8 +114,8 @@ public final class TestDiceRollerConstantRollResult {
 
         dice = result.getDice();
 
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(4), dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(4), dice.getSides());
     }
 
 }

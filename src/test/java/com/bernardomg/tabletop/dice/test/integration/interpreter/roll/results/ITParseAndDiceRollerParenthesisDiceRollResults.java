@@ -56,20 +56,20 @@ public final class ITParseAndDiceRollerParenthesisDiceRollResults {
         result = rolled.next();
 
         dice = result.getDice();
-        Assertions.assertEquals(new Integer(1), dice.getQuantity());
-        Assertions.assertEquals(new Integer(1), dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
 
         result = rolled.next();
 
         dice = result.getDice();
-        Assertions.assertEquals(new Integer(2), dice.getQuantity());
-        Assertions.assertEquals(new Integer(1), dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
 
         result = rolled.next();
 
         dice = result.getDice();
-        Assertions.assertEquals(new Integer(3), dice.getQuantity());
-        Assertions.assertEquals(new Integer(1), dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(3), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
     }
 
     @Test
@@ -108,14 +108,14 @@ public final class ITParseAndDiceRollerParenthesisDiceRollResults {
         rolls = result.getAllRolls().iterator();
 
         Assertions.assertEquals(1, Iterables.size(result.getAllRolls()));
-        Assertions.assertEquals(new Integer(1), rolls.next());
+        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
 
         result = rolled.next();
         rolls = result.getAllRolls().iterator();
 
         Assertions.assertEquals(2, Iterables.size(result.getAllRolls()));
-        Assertions.assertEquals(new Integer(1), rolls.next());
-        Assertions.assertEquals(new Integer(1), rolls.next());
+        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
+        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
     }
 
     @Test
@@ -131,7 +131,7 @@ public final class ITParseAndDiceRollerParenthesisDiceRollResults {
 
         history = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals(new Integer(9), history.getTotalRoll());
+        Assertions.assertEquals(Integer.valueOf(9), history.getTotalRoll());
     }
 
     @Test
@@ -151,11 +151,11 @@ public final class ITParseAndDiceRollerParenthesisDiceRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(1), result.getTotalRoll());
+        Assertions.assertEquals(Integer.valueOf(1), result.getTotalRoll());
 
         result = rolled.next();
 
-        Assertions.assertEquals(new Integer(2), result.getTotalRoll());
+        Assertions.assertEquals(Integer.valueOf(2), result.getTotalRoll());
     }
 
 }

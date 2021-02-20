@@ -47,7 +47,7 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(3), result);
+        Assertions.assertEquals(Integer.valueOf(3), result);
     }
 
     @Test
@@ -63,7 +63,7 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(5), result);
+        Assertions.assertEquals(Integer.valueOf(5), result);
     }
 
     @Test
@@ -79,7 +79,7 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(10), result);
+        Assertions.assertEquals(Integer.valueOf(10), result);
     }
 
 }

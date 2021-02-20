@@ -44,7 +44,7 @@ public final class ITParseAndDiceRollerMultiplicationNumberTotalRoll {
 
         result = new DiceRoller().transform(parsed).getTotalRoll();
 
-        Assertions.assertEquals(new Integer(2), result);
+        Assertions.assertEquals(Integer.valueOf(2), result);
     }
 
 }
