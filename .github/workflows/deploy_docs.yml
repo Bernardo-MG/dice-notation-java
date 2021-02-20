@@ -26,7 +26,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: 11
     - name: Set up Maven settings
       uses: bernardo-mg/deployment-maven-settings-action@v1.1.2
       with:

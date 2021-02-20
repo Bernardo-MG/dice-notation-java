@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: [ 8, 11, 14 ]
+        jdk: [ 11, 14 ]
 
     steps:
     - name: Check-out
