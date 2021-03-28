@@ -137,7 +137,10 @@
             Removed support for JDK 8.
          </action>
       </release>
-      <release version="2.2.0" date="2021-02-20" description="">
+      <release version="2.1.1" date="2021-03-28" description="CI updates">
+         <action dev="bmg" type="update">
+            Updated CI configuration.
+         </action>
       </release>
    </body>
 </document>
