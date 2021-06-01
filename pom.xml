@@ -58,21 +58,6 @@
       <notifiers />
    </ciManagement>
 
-   <distributionManagement>
-      <repository>
-         <uniqueVersion>false</uniqueVersion>
-         <id>releases</id>
-         <name>Releases Repository</name>
-         <url>https://api.bintray.com/maven/bernardo-mg/tabletop-toolkits/dice</url>
-      </repository>
-      <snapshotRepository>
-         <uniqueVersion>false</uniqueVersion>
-         <id>snapshots</id>
-         <name>Snapshots Repository</name>
-         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      </snapshotRepository>
-   </distributionManagement>
-
    <!-- ********************************************** -->
    <!-- ****************** PROFILES ****************** -->
    <!-- ********************************************** -->
@@ -173,6 +158,61 @@
             <!-- Tests are skipped -->
             <maven.test.skip>true</maven.test.skip>
          </properties>
+      </profile>
+      <profile>
+         <!-- Github deployment profile. -->
+         <id>deployment-github</id>
+         <distributionManagement>
+            <repository>
+               <!-- Github repository -->
+               <id>github</id>
+               <name>GitHub Packages</name>
+               <url>https://maven.pkg.github.com/Bernardo-MG/dice-notation-java</url>
+            </repository>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- OSSRH deployment profile. -->
+         <id>deployment-ossrh</id>
+         <distributionManagement>
+            <repository>
+               <!-- OSSRH repository -->
+               <id>ossrh</id>
+               <name>Central Repository OSSRH</name>
+               <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+            <snapshotRepository>
+               <!-- OSSRH snapshots repository -->
+               <id>ossrh</id>
+               <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </snapshotRepository>
+         </distributionManagement>
+         <build>
+            <plugins>
+               <plugin>
+                  <!-- GPG -->
+                  <!-- Signs the artifacts -->
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <!-- Prevent gpg from using pinentry programs -->
+                     <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                     </gpgArguments>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
       </profile>
    </profiles>
 
