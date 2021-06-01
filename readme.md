@@ -9,7 +9,6 @@ With the pass of years it has evolved, and while it never underwent a formal sta
 Its usefulness is very clear, it allows working with specific random values distributions. And while this is no feat for a machine, which has better tools for it, the aim of the project is not actually handling those distributions, but giving a way for applications to work with the same tools a board game would have.
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.tabletop/dice.svg)][maven-repo]
-[![Bintray](https://api.bintray.com/packages/bernardo-mg/tabletop-toolkits/dice/images/download.svg)][bintray-repo]
 
 [![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
 [![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
@@ -68,9 +67,9 @@ JDK 8 or higher is required. All other dependencies are handled through Maven, a
 
 ### Installing
 
-The recommended way to install the project is by setting up your preferred dependencies manager. To get the configuration information for this check the [Bintray repository][bintray-repo], or the [Maven Central Repository][maven-repo].
+The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check  the [Maven Central Repository][maven-repo].
 
-If for some reason manual installation is necessary, just use the following Maven command:
+It is always possible installing it by using the usual Maven command:
 
 ```
 mvn install
@@ -118,7 +117,6 @@ If you wish to fork or modify the code, visit the [GitHub project page][scm], wh
 The project has been released under version 2.0 of the [Apache License][license].
 
 [antrl-grammars]: https://github.com/antlr/grammars-v4
-[bintray-repo]: https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view
 [maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues
 [javadoc-develop]: https://docs.bernardomg.com/development/maven/dice-notation-java/apidocs
