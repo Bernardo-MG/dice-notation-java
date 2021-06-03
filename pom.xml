@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.4.0</version>
+      <version>1.4.2</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.bernardomg.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>2.1.1</version>
+   <version>2.1.2</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -57,21 +57,6 @@
       <url>https://github.com/bernardo-mg/dice-notation-java/actions</url>
       <notifiers />
    </ciManagement>
-
-   <distributionManagement>
-      <repository>
-         <uniqueVersion>false</uniqueVersion>
-         <id>releases</id>
-         <name>Releases Repository</name>
-         <url>https://api.bintray.com/maven/bernardo-mg/tabletop-toolkits/dice</url>
-      </repository>
-      <snapshotRepository>
-         <uniqueVersion>false</uniqueVersion>
-         <id>snapshots</id>
-         <name>Snapshots Repository</name>
-         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      </snapshotRepository>
-   </distributionManagement>
 
    <!-- ********************************************** -->
    <!-- ****************** PROFILES ****************** -->
@@ -174,6 +159,61 @@
             <maven.test.skip>true</maven.test.skip>
          </properties>
       </profile>
+      <profile>
+         <!-- Github deployment profile. -->
+         <id>deployment-github</id>
+         <distributionManagement>
+            <repository>
+               <!-- Github repository -->
+               <id>github</id>
+               <name>GitHub Packages</name>
+               <url>https://maven.pkg.github.com/Bernardo-MG/dice-notation-java</url>
+            </repository>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- OSSRH deployment profile. -->
+         <id>deployment-ossrh</id>
+         <distributionManagement>
+            <repository>
+               <!-- OSSRH repository -->
+               <id>ossrh</id>
+               <name>Central Repository OSSRH</name>
+               <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+            <snapshotRepository>
+               <!-- OSSRH snapshots repository -->
+               <id>ossrh</id>
+               <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </snapshotRepository>
+         </distributionManagement>
+         <build>
+            <plugins>
+               <plugin>
+                  <!-- GPG -->
+                  <!-- Signs the artifacts -->
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <!-- Prevent gpg from using pinentry programs -->
+                     <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                     </gpgArguments>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
    </profiles>
 
    <!-- ********************************************** -->
@@ -217,11 +257,11 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.9.1</antlr.version>
-      <guava.version>30.1-jre</guava.version>
-      <junit.jupiter.version>5.7.1</junit.jupiter.version>
-      <mockito.version>3.7.7</mockito.version>
-      <log4j.version>2.14.0</log4j.version>
+      <antlr.version>4.9.2</antlr.version>
+      <guava.version>30.1.1-jre</guava.version>
+      <junit.jupiter.version>5.7.2</junit.jupiter.version>
+      <mockito.version>3.11.0</mockito.version>
+      <log4j.version>2.14.1</log4j.version>
       <slf4j.version>1.7.30</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
@@ -232,9 +272,9 @@
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.0.11</site.skin.version>
-      <bintrayURL>https://bintray.com/bernardo-mg/tabletop-toolkits/dice/view</bintrayURL>
+      <site.skin.version>2.2.0</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
+      <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=dice-notation-java]]></githubArtifactURL>
    </properties>
 
    <!-- ********************************************** -->
