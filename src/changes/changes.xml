@@ -142,7 +142,10 @@
             Updated CI configuration.
          </action>
       </release>
-      <release version="2.2.0" date="2021-03-28" description="">
+      <release version="2.1.2" date="2021-06-03" description="Deployment updates">
+         <action dev="bmg" type="update">
+            Updated CI deployment configuration.
+         </action>
       </release>
    </body>
 </document>
