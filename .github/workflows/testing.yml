@@ -18,7 +18,8 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
         distribution: 'adopt'
-    - uses: actions/cache@v2.1.6
+    - name: Dependency cache
+      uses: actions/cache@v2.1.6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

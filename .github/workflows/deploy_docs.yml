@@ -37,7 +37,8 @@ jobs:
         DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
         DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
         DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-    - uses: actions/cache@v2.1.6
+    - name: Dependency cache
+      uses: actions/cache@v2.1.6
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
