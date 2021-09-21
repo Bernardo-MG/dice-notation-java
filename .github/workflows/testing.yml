@@ -18,5 +18,7 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
         distribution: 'adopt'
+    - name: Get dependencies
+      run: mvn dependency:resolve
     - name: Run all tests
       run: mvn clean verify

@@ -21,6 +21,8 @@ jobs:
         java-version: 11
         distribution: 'adopt'
         server-id: github
+    - name: Get dependencies
+      run: mvn dependency:resolve
     - name: Deploy
       run: mvn deploy -B -P deployment,deployment-release,deployment-github
       env:

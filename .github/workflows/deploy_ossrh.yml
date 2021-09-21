@@ -23,6 +23,8 @@ jobs:
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: GPG_PASSPHRASE
+    - name: Get dependencies
+      run: mvn dependency:resolve
     - name: Deploy
       run: mvn deploy -B -P deployment,deployment-release,deployment-ossrh
       env:

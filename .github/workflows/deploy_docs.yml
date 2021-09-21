@@ -37,6 +37,8 @@ jobs:
         DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
         DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
         DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+    - name: Get dependencies
+      run: mvn dependency:resolve
     - name: Deploy development docs
       if: steps.extract_branch.outputs.branch == 'develop'
       run: mvn verify site site:deploy -B -P deployment,deployment-development --settings settings.xml
