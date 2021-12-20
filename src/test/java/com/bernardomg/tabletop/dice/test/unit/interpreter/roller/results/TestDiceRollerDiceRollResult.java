@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +32,6 @@ import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
-import com.google.common.collect.Iterables;
 
 @DisplayName("DiceRoller returns the expected roll results for dice")
 public final class TestDiceRollerDiceRollResult {
@@ -67,10 +67,14 @@ public final class TestDiceRollerDiceRollResult {
         rolledValues = rolled.iterator().next();
 
         // Single dice
-        Assertions.assertEquals(1, Iterables.size(rolled));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolled.spliterator(), false).count());
 
         // Two values
-        Assertions.assertEquals(2, Iterables.size(rolledValues.getAllRolls()));
+        Assertions.assertEquals(2,
+                StreamSupport
+                        .stream(rolledValues.getAllRolls().spliterator(), false)
+                        .count());
 
         rolls = rolledValues.getAllRolls().iterator();
 
@@ -137,7 +141,8 @@ public final class TestDiceRollerDiceRollResult {
 
         rolled = new DiceRoller().transform(expression).getRollResults();
 
-        Assertions.assertEquals(1, Iterables.size(rolled));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolled.spliterator(), false).count());
     }
 
     @Test
@@ -161,8 +166,10 @@ public final class TestDiceRollerDiceRollResult {
         result = results.iterator().next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, Iterables.size(results));
-        Assertions.assertEquals(3, Iterables.size(rolls));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(3,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
@@ -229,7 +236,8 @@ public final class TestDiceRollerDiceRollResult {
 
         rolled = new DiceRoller().transform(expression).getRollResults();
 
-        Assertions.assertEquals(1, Iterables.size(rolled));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolled.spliterator(), false).count());
     }
 
     @Test
@@ -252,8 +260,10 @@ public final class TestDiceRollerDiceRollResult {
         result = results.iterator().next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, Iterables.size(results));
-        Assertions.assertEquals(1, Iterables.size(rolls));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
         Assertions.assertEquals(Integer.valueOf(1), rolls.iterator().next());
     }
 

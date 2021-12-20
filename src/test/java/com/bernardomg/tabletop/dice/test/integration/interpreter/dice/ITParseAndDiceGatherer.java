@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.integration.interpreter.dice;
 
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +28,6 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceGatherer;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.google.common.collect.Iterables;
 
 @DisplayName("DiceGatherer with a parsed expression")
 public final class ITParseAndDiceGatherer {
@@ -48,7 +48,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, Iterables.size(sets));
+        Assertions.assertEquals(2,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -75,7 +76,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(4, Iterables.size(sets));
+        Assertions.assertEquals(4,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -112,7 +114,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(5, Iterables.size(sets));
+        Assertions.assertEquals(5,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -183,7 +186,8 @@ public final class ITParseAndDiceGatherer {
 
         dice = new DiceGatherer().transform(parsed);
 
-        Assert.assertEquals(0, Iterables.size(dice));
+        Assert.assertEquals(0,
+                StreamSupport.stream(dice.spliterator(), false).count());
     }
 
     @Test
@@ -226,7 +230,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, Iterables.size(sets));
+        Assertions.assertEquals(2,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -253,7 +258,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(3, Iterables.size(sets));
+        Assertions.assertEquals(3,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -285,7 +291,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(3, Iterables.size(sets));
+        Assertions.assertEquals(3,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 
@@ -317,7 +324,8 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, Iterables.size(sets));
+        Assertions.assertEquals(2,
+                StreamSupport.stream(sets.spliterator(), false).count());
 
         itr = sets.iterator();
 

@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.unit.interpreter.traverser;
 
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +28,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.google.common.collect.Iterables;
 
 @DisplayName("PreorderTraverser parses the expression tree as expected")
 public final class TestPreorderTraverser {
@@ -62,7 +62,8 @@ public final class TestPreorderTraverser {
         // - + 1 2 3
         result = new PreorderTraverser().transform(subtraction);
 
-        Assertions.assertEquals(5, Iterables.size(result));
+        Assertions.assertEquals(5,
+                StreamSupport.stream(result.spliterator(), false).count());
 
         exps = result.iterator();
 

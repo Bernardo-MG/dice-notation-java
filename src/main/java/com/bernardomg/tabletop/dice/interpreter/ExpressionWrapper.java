@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
@@ -43,7 +43,7 @@ public final class ExpressionWrapper implements DiceNotationExpression {
     public ExpressionWrapper(final DiceNotationExpression exp) {
         super();
 
-        wrappedExpression = checkNotNull(exp,
+        wrappedExpression = Objects.requireNonNull(exp,
                 "Received a null pointer as expression");
     }
 

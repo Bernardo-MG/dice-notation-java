@@ -16,13 +16,12 @@
 
 package com.bernardomg.tabletop.dice.notation.operation;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.function.BiFunction;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+
+import lombok.Data;
+import lombok.NonNull;
 
 /**
  * Abstract class for binary operations, containing all the common fields.
@@ -32,21 +31,25 @@ import com.google.common.base.Objects;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Data
 public abstract class AbstractBinaryOperation implements BinaryOperation {
 
     /**
      * Left sided operand.
      */
+    @NonNull
     private final DiceNotationExpression                left;
 
     /**
      * Operation to apply.
      */
+    @NonNull
     private final BiFunction<Integer, Integer, Integer> operation;
 
     /**
      * Right sided operand.
      */
+    @NonNull
     private final DiceNotationExpression                right;
 
     /**
@@ -59,65 +62,15 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
      * @param func
      *            operation to apply
      */
-    public AbstractBinaryOperation(final DiceNotationExpression leftOperand,
-            final DiceNotationExpression rightOperand,
-            final BiFunction<Integer, Integer, Integer> func) {
+    public AbstractBinaryOperation(
+            @NonNull final DiceNotationExpression leftOperand,
+            @NonNull final DiceNotationExpression rightOperand,
+            @NonNull final BiFunction<Integer, Integer, Integer> func) {
         super();
 
-        left = checkNotNull(leftOperand,
-                "Received a null pointer as left operand");
-        right = checkNotNull(rightOperand,
-                "Received a null pointer as right operand");
-        operation = checkNotNull(func, "Received a null pointer as operation");
-    }
-
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final AbstractBinaryOperation other;
-
-        other = (AbstractBinaryOperation) obj;
-
-        return Objects.equal(left, other.left)
-                && Objects.equal(right, other.right)
-                && Objects.equal(operation, other.operation);
-    }
-
-    @Override
-    public final DiceNotationExpression getLeft() {
-        return left;
-    }
-
-    @Override
-    public final BiFunction<Integer, Integer, Integer> getOperation() {
-        return operation;
-    }
-
-    @Override
-    public final DiceNotationExpression getRight() {
-        return right;
-    }
-
-    @Override
-    public final int hashCode() {
-        return Objects.hashCode(left, right, operation);
-    }
-
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("left", left)
-                .add("right", right).add("operation", operation).toString();
+        left = leftOperand;
+        right = rightOperand;
+        operation = func;
     }
 
 }

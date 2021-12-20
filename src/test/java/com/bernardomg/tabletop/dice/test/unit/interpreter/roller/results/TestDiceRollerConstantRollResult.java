@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +28,6 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
-import com.google.common.collect.Iterables;
 
 @DisplayName("DiceRoller returns the expected roll results for constants")
 public final class TestDiceRollerConstantRollResult {
@@ -51,8 +51,10 @@ public final class TestDiceRollerConstantRollResult {
         result = results.iterator().next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, Iterables.size(results));
-        Assertions.assertEquals(1, Iterables.size(rolls));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-4), rollValues.next());
@@ -92,8 +94,10 @@ public final class TestDiceRollerConstantRollResult {
         result = results.iterator().next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, Iterables.size(results));
-        Assertions.assertEquals(1, Iterables.size(rolls));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(4), rollValues.next());

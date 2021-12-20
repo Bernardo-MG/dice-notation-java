@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,8 +71,9 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             final NotationAccumulator<V> accum) {
         super();
 
-        traverser = checkNotNull(trav, "Received a null pointer as traverser");
-        accumulator = checkNotNull(accum,
+        traverser = Objects.requireNonNull(trav,
+                "Received a null pointer as traverser");
+        accumulator = Objects.requireNonNull(accum,
                 "Received a null pointer as accumulator");
     }
 
@@ -81,7 +82,8 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         final Iterable<DiceNotationExpression> exps;
         final V result;
 
-        checkNotNull(expression, "Received a null pointer as expression");
+        Objects.requireNonNull(expression,
+                "Received a null pointer as expression");
 
         LOGGER.debug("Root expression {}", expression);
 

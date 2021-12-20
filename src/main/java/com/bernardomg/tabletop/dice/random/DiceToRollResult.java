@@ -16,8 +16,7 @@
 
 package com.bernardomg.tabletop.dice.random;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import java.util.Objects;
 import java.util.function.Function;
 
 import org.slf4j.Logger;
@@ -68,7 +67,7 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
     public DiceToRollResult(final NumberGenerator generator) {
         super();
 
-        numberGenerator = checkNotNull(generator,
+        numberGenerator = Objects.requireNonNull(generator,
                 "Received a null pointer as generator");
     }
 

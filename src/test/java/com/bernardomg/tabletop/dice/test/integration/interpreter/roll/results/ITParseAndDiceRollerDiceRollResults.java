@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 
+import java.util.stream.StreamSupport;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +28,6 @@ import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.google.common.collect.Iterables;
 
 @DisplayName("DiceRoller returns the expected roll results for dice")
 public final class ITParseAndDiceRollerDiceRollResults {
@@ -68,7 +69,8 @@ public final class ITParseAndDiceRollerDiceRollResults {
 
         rolled = new DiceRoller().transform(expression).getRollResults();
 
-        Assertions.assertEquals(1, Iterables.size(rolled));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolled.spliterator(), false).count());
     }
 
     @Test
@@ -87,7 +89,8 @@ public final class ITParseAndDiceRollerDiceRollResults {
                 .iterator().next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, Iterables.size(rolls));
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
         Assertions.assertEquals(Integer.valueOf(1), rolls.iterator().next());
     }
 

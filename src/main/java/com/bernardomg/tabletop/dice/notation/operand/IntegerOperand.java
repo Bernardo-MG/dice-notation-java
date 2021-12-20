@@ -16,74 +16,26 @@
 
 package com.bernardomg.tabletop.dice.notation.operand;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import lombok.Data;
+import lombok.NonNull;
 
 /**
  * Operand for an integer constant value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Data
 public final class IntegerOperand implements ConstantOperand {
 
     /**
      * Operand value.
      */
+    @NonNull
     private final Integer value;
-
-    /**
-     * Constructs an operand with the specified value.
-     * 
-     * @param constant
-     *            the operand value
-     */
-    public IntegerOperand(final Integer constant) {
-        super();
-
-        value = checkNotNull(constant, "Received a null pointer as value");
-    }
-
-    @Override
-    public final boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final IntegerOperand other;
-
-        other = (IntegerOperand) obj;
-
-        return Objects.equal(value, other.value);
-    }
 
     @Override
     public final String getExpression() {
         return getValue().toString();
-    }
-
-    @Override
-    public final Integer getValue() {
-        return value;
-    }
-
-    @Override
-    public final int hashCode() {
-        return Objects.hashCode(value);
-    }
-
-    @Override
-    public final String toString() {
-        return MoreObjects.toStringHelper(this).add("value", value).toString();
     }
 
 }

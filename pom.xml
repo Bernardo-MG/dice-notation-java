@@ -258,8 +258,8 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <antlr.version>4.9.2</antlr.version>
-      <guava.version>30.1.1-jre</guava.version>
       <junit.jupiter.version>5.7.2</junit.jupiter.version>
+      <lombok.version>1.18.22</lombok.version>
       <mockito.version>4.2.0</mockito.version>
       <log4j.version>2.17.0</log4j.version>
       <slf4j.version>1.7.30</slf4j.version>
@@ -301,11 +301,15 @@
          <artifactId>antlr4</artifactId>
          <version>${antlr.version}</version>
       </dependency>
+      <!-- ============================================== -->
+      <!-- ================== LOMBOK ==================== -->
+      <!-- ============================================== -->
       <dependency>
-         <!-- Guava -->
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
+         <!-- Lombok -->
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+         <version>${lombok.version}</version>
+         <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
       <!-- ================== LOGGERS =================== -->

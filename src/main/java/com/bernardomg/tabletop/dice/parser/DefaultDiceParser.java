@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.parser;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStream;
@@ -81,7 +81,7 @@ public final class DefaultDiceParser implements DiceParser {
     public DefaultDiceParser(final ANTLRErrorListener listener) {
         super();
 
-        errorListener = checkNotNull(listener,
+        errorListener = Objects.requireNonNull(listener,
                 "Received a null pointer as listener");
         expressionBuilder = new DefaultDiceExpressionBuilder();
     }
@@ -96,7 +96,7 @@ public final class DefaultDiceParser implements DiceParser {
         super();
 
         errorListener = new DefaultErrorListener();
-        expressionBuilder = checkNotNull(builder,
+        expressionBuilder = Objects.requireNonNull(builder,
                 "Received a null pointer as expression builder");
     }
 
@@ -112,9 +112,9 @@ public final class DefaultDiceParser implements DiceParser {
             final ANTLRErrorListener listener) {
         super();
 
-        errorListener = checkNotNull(listener,
+        errorListener = Objects.requireNonNull(listener,
                 "Received a null pointer as listener");
-        expressionBuilder = checkNotNull(builder,
+        expressionBuilder = Objects.requireNonNull(builder,
                 "Received a null pointer as expression builder");
     }
 
@@ -123,7 +123,7 @@ public final class DefaultDiceParser implements DiceParser {
         final DiceNotationParser parser;   // ANTLR parser
         final DiceNotationExpression root; // Root expression
 
-        checkNotNull(expression, "Received a null pointer as string");
+        Objects.requireNonNull(expression, "Received a null pointer as string");
 
         // Creates the ANTLR parser
         parser = buildDiceNotationParser(expression);

@@ -16,10 +16,9 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Stack;
 
 import org.slf4j.Logger;
@@ -60,7 +59,8 @@ public final class PreorderTraverser
         final Collection<DiceNotationExpression> exps;
         DiceNotationExpression current;
 
-        checkNotNull(expression, "Received a null pointer as expression");
+        Objects.requireNonNull(expression,
+                "Received a null pointer as expression");
 
         nodes = new Stack<>();
         nodes.push(expression);

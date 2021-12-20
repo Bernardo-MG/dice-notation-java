@@ -16,11 +16,11 @@
 
 package com.bernardomg.tabletop.dice.visitor;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import java.util.Objects;
 import java.util.Stack;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.StreamSupport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +38,6 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.google.common.collect.Iterables;
 
 /**
  * Stores all the rolls generated from the expressions.
@@ -97,7 +96,7 @@ public final class DiceRollAccumulator
     public DiceRollAccumulator(final Function<Dice, RollResult> generator) {
         super();
 
-        rollGenerator = checkNotNull(generator,
+        rollGenerator = Objects.requireNonNull(generator,
                 "Received a null pointer as roll generator");
     }
 
@@ -160,6 +159,7 @@ public final class DiceRollAccumulator
     @Override
     public final void diceOperand(final DiceOperand exp) {
         final RollResult rollResult;
+        final Long totalRolls;
 
         // Dice
         // Generates a random value
@@ -171,7 +171,9 @@ public final class DiceRollAccumulator
 
         values.push(rollResult.getTotalRoll());
 
-        if (Iterables.size(rollResult.getAllRolls()) > 1) {
+        totalRolls = StreamSupport
+                .stream(rollResult.getAllRolls().spliterator(), false).count();
+        if (totalRolls > 1) {
             texts.push(rollResult.getAllRolls().toString());
         } else {
             texts.push(rollResult.getTotalRoll().toString());

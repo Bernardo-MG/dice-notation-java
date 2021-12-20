@@ -16,10 +16,9 @@
 
 package com.bernardomg.tabletop.dice.random;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.slf4j.Logger;
@@ -57,7 +56,7 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
         final Integer quantity;
         final Supplier<Integer> rollSupplier;
 
-        checkNotNull(dice, "Received a null pointer as dice");
+        Objects.requireNonNull(dice, "Received a null pointer as dice");
 
         if (dice.getQuantity() < 0) {
             // Negative dice set (-1d6)

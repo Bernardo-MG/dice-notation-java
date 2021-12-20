@@ -16,7 +16,10 @@
 
 package com.bernardomg.tabletop.dice.history;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
+
+import lombok.Data;
+import lombok.NonNull;
 
 /**
  * Immutable roll history.
@@ -28,6 +31,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Data
 public final class DefaultRollHistory implements RollHistory {
 
     /**
@@ -35,16 +39,19 @@ public final class DefaultRollHistory implements RollHistory {
      * <p>
      * Used as the string representation of the history.
      */
+    @NonNull
     private final String               historyText;
 
     /**
      * The results of each expression.
      */
+    @NonNull
     private final Iterable<RollResult> rollResults;
 
     /**
      * Sum of all the generated values.
      */
+    @NonNull
     private final Integer              totalRoll;
 
     /**
@@ -59,26 +66,16 @@ public final class DefaultRollHistory implements RollHistory {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollHistory(final Iterable<RollResult> results,
-            final String text, final Integer total) {
+    public DefaultRollHistory(@NonNull final Iterable<RollResult> results,
+            @NonNull final String text, @NonNull final Integer total) {
         super();
 
-        rollResults = checkNotNull(results,
+        rollResults = Objects.requireNonNull(results,
                 "Received a null pointer as roll results");
-        historyText = checkNotNull(text,
+        historyText = Objects.requireNonNull(text,
                 "Received a null pointer as history text");
-        totalRoll = checkNotNull(total,
+        totalRoll = Objects.requireNonNull(total,
                 "Received a null pointer as total roll");
-    }
-
-    @Override
-    public final Iterable<RollResult> getRollResults() {
-        return rollResults;
-    }
-
-    @Override
-    public final Integer getTotalRoll() {
-        return totalRoll;
     }
 
     @Override
