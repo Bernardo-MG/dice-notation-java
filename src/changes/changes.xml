@@ -148,6 +148,15 @@
          </action>
       </release>
       <release version="2.2.0" date="2021-06-03" description="">
+         <action dev="bmg" type="remove">
+            Removed Guava.
+         </action>
+         <action dev="bmg" type="add">
+            Applied Lombok for data objects.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
       </release>
    </body>
 </document>
