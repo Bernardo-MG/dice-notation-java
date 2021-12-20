@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.test.unit.interpreter.traverser;
 
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +28,6 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.IntegerOperand;
 import com.bernardomg.tabletop.dice.notation.operation.AdditionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.google.common.collect.Iterables;
 
 @DisplayName("InorderTraverser parses the expression tree as expected")
 public final class TestInorderTraverser {
@@ -65,7 +65,8 @@ public final class TestInorderTraverser {
         // 1 + 2 - 3
         result = new InorderTraverser().transform(subtraction);
 
-        Assertions.assertEquals(5, Iterables.size(result));
+        Assertions.assertEquals(5,
+                StreamSupport.stream(result.spliterator(), false).count());
 
         exps = result.iterator();
 

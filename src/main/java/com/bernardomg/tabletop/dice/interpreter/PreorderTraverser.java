@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,10 +16,9 @@
 
 package com.bernardomg.tabletop.dice.interpreter;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Stack;
 
 import org.slf4j.Logger;
@@ -60,7 +59,8 @@ public final class PreorderTraverser
         final Collection<DiceNotationExpression> exps;
         DiceNotationExpression current;
 
-        checkNotNull(expression, "Received a null pointer as expression");
+        Objects.requireNonNull(expression,
+                "Received a null pointer as expression");
 
         nodes = new Stack<>();
         nodes.push(expression);

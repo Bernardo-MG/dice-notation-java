@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -42,7 +42,8 @@ public final class ITDefaultDiceParserSignedDiceStructure {
 
         Assertions.assertEquals(Integer.valueOf(-1),
                 operation.getDice().getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), operation.getDice().getSides());
+        Assertions.assertEquals(Integer.valueOf(1),
+                operation.getDice().getSides());
     }
 
     @Test
@@ -54,7 +55,8 @@ public final class ITDefaultDiceParserSignedDiceStructure {
 
         Assertions.assertEquals(Integer.valueOf(1),
                 operation.getDice().getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), operation.getDice().getSides());
+        Assertions.assertEquals(Integer.valueOf(1),
+                operation.getDice().getSides());
     }
 
 }

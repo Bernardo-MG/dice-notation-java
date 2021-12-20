@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,12 +16,12 @@
 
 package com.bernardomg.tabletop.dice.parser.listener;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Stack;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
@@ -43,7 +43,6 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
-import com.google.common.collect.Iterables;
 
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed
@@ -103,7 +102,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final DiceNotationExpression expression;
         final Collection<String> operators;
 
-        checkNotNull(ctx, "Received a null pointer as context");
+        Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         // Operators are mapped into strings
         operators = ctx.ADDOPERATOR().stream().map(TerminalNode::getText)
@@ -120,7 +119,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     public final void exitDice(final DiceContext ctx) {
         final DiceNotationExpression expression;
 
-        checkNotNull(ctx, "Received a null pointer as context");
+        Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         expression = getDiceOperand(ctx);
 
@@ -134,7 +133,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final DiceNotationExpression expression;
         final Collection<String> operators;
 
-        checkNotNull(ctx, "Received a null pointer as context");
+        Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         // Operators are mapped into strings
         operators = ctx.MULTOPERATOR().stream().map(TerminalNode::getText)
@@ -151,7 +150,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     public final void exitNumber(final NumberContext ctx) {
         final DiceNotationExpression expression;
 
-        checkNotNull(ctx, "Received a null pointer as context");
+        Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         expression = getIntegerOperand(ctx.getText());
 
@@ -250,11 +249,11 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         final Integer quantity;              // Number of dice
         final Integer sides;                 // Number of sides
         final Iterator<TerminalNode> digits; // Parsed digits
-        final Integer size;                  // Size of the digit list
+        final long size;                     // Size of the digit list
 
         // Parses the dice data
         digits = ctx.DIGIT().iterator();
-        size = Iterables.size(ctx.DIGIT());
+        size = StreamSupport.stream(ctx.DIGIT().spliterator(), false).count();
 
         if (size > 1) {
             // Contains the quantity of dice

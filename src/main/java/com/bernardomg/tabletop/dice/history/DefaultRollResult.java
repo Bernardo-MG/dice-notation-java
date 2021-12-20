@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,12 +16,14 @@
 
 package com.bernardomg.tabletop.dice.history;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Arrays;
+import java.util.Objects;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
+
+import lombok.Data;
+import lombok.NonNull;
 
 /**
  * Immutable roll result. Contains all the values generated and the sum of them.
@@ -29,21 +31,25 @@ import com.bernardomg.tabletop.dice.Dice;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Data
 public final class DefaultRollResult implements RollResult {
 
     /**
      * All the generated values.
      */
+    @NonNull
     private final Iterable<Integer> allRolls;
 
     /**
      * Rolled dice.
      */
+    @NonNull
     private final Dice              dice;
 
     /**
      * Sum of all the generated values.
      */
+    @NonNull
     private final Integer           totalRoll;
 
     /**
@@ -56,13 +62,15 @@ public final class DefaultRollResult implements RollResult {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(final Dice d, final Iterable<Integer> rolls,
-            final Integer total) {
+    public DefaultRollResult(@NonNull final Dice d,
+            @NonNull final Iterable<Integer> rolls,
+            @NonNull final Integer total) {
         super();
 
-        dice = checkNotNull(d, "Received a null pointer as dice");
-        allRolls = checkNotNull(rolls, "Received a null pointer as rolls");
-        totalRoll = checkNotNull(total,
+        dice = Objects.requireNonNull(d, "Received a null pointer as dice");
+        allRolls = Objects.requireNonNull(rolls,
+                "Received a null pointer as rolls");
+        totalRoll = Objects.requireNonNull(total,
                 "Received a null pointer as total roll");
     }
 
@@ -72,29 +80,14 @@ public final class DefaultRollResult implements RollResult {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(final Integer total) {
+    public DefaultRollResult(@NonNull final Integer total) {
         super();
 
         dice = new DefaultDice(1, total);
-        totalRoll = checkNotNull(total,
+        totalRoll = Objects.requireNonNull(total,
                 "Received a null pointer as total roll");
 
         allRolls = Arrays.asList(total);
-    }
-
-    @Override
-    public final Iterable<Integer> getAllRolls() {
-        return allRolls;
-    }
-
-    @Override
-    public final Dice getDice() {
-        return dice;
-    }
-
-    @Override
-    public final Integer getTotalRoll() {
-        return totalRoll;
     }
 
 }

@@ -67,7 +67,7 @@ JDK 8 or higher is required. All other dependencies are handled through Maven, a
 
 ### Installing
 
-The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check  the [Maven Central Repository][maven-repo].
+The recommended way to install the project is by setting it up as a dependency. To get the configuration information for this check the [Maven Central Repository][maven-repo].
 
 It is always possible installing it by using the usual Maven command:
 

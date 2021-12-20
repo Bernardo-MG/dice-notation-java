@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: [ 11, 15 ]
+        jdk: [ 11, 16 ]
 
     steps:
     - name: Check-out
@@ -18,5 +18,10 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
         distribution: 'adopt'
+    - name: Dependency cache
+      uses: actions/cache@v2.1.6
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Run all tests
       run: mvn clean verify

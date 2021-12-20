@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2020 the original author or authors
+ * Copyright 2014-2021 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,10 +16,9 @@
 
 package com.bernardomg.tabletop.dice.random;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.slf4j.Logger;
@@ -57,7 +56,7 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
         final Integer quantity;
         final Supplier<Integer> rollSupplier;
 
-        checkNotNull(dice, "Received a null pointer as dice");
+        Objects.requireNonNull(dice, "Received a null pointer as dice");
 
         if (dice.getQuantity() < 0) {
             // Negative dice set (-1d6)
