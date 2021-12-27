@@ -44,7 +44,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
   deploy_docs_development:
-    if: ${{ steps.extract_branch.outputs.branch == 'develop' }}
+    if: ${{ setup.steps.extract_branch.outputs.branch == 'develop' }}
     needs: setup
 
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       run: mvn verify site site:deploy -B -P deployment,deployment-development --settings settings.xml
 
   deploy_docs_release:
-    if: ${{ steps.extract_branch.outputs.branch == 'master' }}
+    if: ${{ setup.steps.extract_branch.outputs.branch == 'master' }}
     needs: setup
 
     runs-on: ubuntu-latest
