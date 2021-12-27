@@ -43,15 +43,22 @@ jobs:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
-  deploy_docs:
+  deploy_docs_development:
+    if: steps.extract_branch.outputs.branch == 'develop'
     needs: setup
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Deploy development docs
-      if: steps.extract_branch.outputs.branch == 'develop'
       run: mvn verify site site:deploy -B -P deployment,deployment-development --settings settings.xml
+
+  deploy_docs_release:
+    if: steps.extract_branch.outputs.branch == 'master'
+    needs: setup
+
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Deploy release docs
-      if: steps.extract_branch.outputs.branch == 'master'
       run: mvn verify site site:deploy -B -P deployment,deployment-release --settings settings.xml
