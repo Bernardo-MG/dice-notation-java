@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  deploy_docs:
+  setup:
 
     runs-on: ubuntu-latest
 
@@ -42,6 +42,13 @@ jobs:
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+  deploy_docs:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Deploy development docs
       if: steps.extract_branch.outputs.branch == 'develop'
       run: mvn verify site site:deploy -B -P deployment,deployment-development --settings settings.xml
