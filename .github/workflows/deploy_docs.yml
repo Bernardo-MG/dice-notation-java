@@ -2,9 +2,7 @@ name: Doc deployment
 
 on:
   push:
-    branches:
-      - develop
-      - master
+    branches: [ $default-branch, $protected-branches ]
 
 jobs:
   setup:
