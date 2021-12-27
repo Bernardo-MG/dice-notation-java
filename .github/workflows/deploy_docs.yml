@@ -37,7 +37,7 @@ jobs:
     - name: Check-out
       uses: actions/checkout@v2
     - name: Set up Maven settings for site deployment
-      uses: bernardo-mg/maven-site-deployment-settings-action@develop
+      uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
       env:
         SITE_ID: site
         USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -61,7 +61,7 @@ jobs:
     - name: Check-out
       uses: actions/checkout@v2
     - name: Set up Maven settings for site deployment
-      uses: bernardo-mg/maven-site-deployment-settings-action@develop
+      uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
       env:
         SITE_ID: site
         USER: ${{ secrets.DEPLOY_DOCS_USER }}
