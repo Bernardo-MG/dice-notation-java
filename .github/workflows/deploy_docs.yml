@@ -21,7 +21,7 @@ jobs:
     - name: Extract branch name
       shell: bash
       run: |
-        echo "$(echo ${GITHUB_REF#refs/heads/})"
+        echo ${GITHUB_REF#refs/heads/}
         echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
     - name: Check-out
