@@ -3,8 +3,8 @@ name: Testing and validation
 on: [push, pull_request]
 
 jobs:
-  test:
-
+  unit_test:
+    name: Unit tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,5 +23,29 @@ jobs:
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-    - name: Run all tests
+    - name: Run unit tests
+      run: mvn clean test
+
+  integration_test:
+    name: Integration tests
+    needs: unit_test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: [ 11, 16 ]
+
+    steps:
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up JDK ${{ matrix.jdk }}
+      uses: actions/setup-java@v2.1.0
+      with:
+        java-version: ${{ matrix.jdk }}
+        distribution: 'adopt'
+    - name: Dependency cache
+      uses: actions/cache@v2.1.6
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+    - name: Run up to integration tests
       run: mvn clean verify

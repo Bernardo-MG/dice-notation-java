@@ -33,7 +33,6 @@ jobs:
     name: Development docs deployment
     needs: setup
     if: ${{ needs.setup.outputs.branch-name == 'develop' }}
-
     runs-on: ubuntu-latest
 
     steps:
@@ -58,7 +57,6 @@ jobs:
     name: Release docs deployment
     needs: setup
     if: ${{ needs.setup.outputs.branch-name == 'master' }}
-
     runs-on: ubuntu-latest
 
     steps:

@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-
+    name: Deploy artifacts to OSSRH
     environment: deployment_ossrh
     runs-on: ubuntu-latest
 
