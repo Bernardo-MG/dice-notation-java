@@ -133,7 +133,7 @@
                <id>site</id>
                <name>Project Documentation Site</name>
                <!-- The URL should be set externally -->
-               <url>${site.release.url}</url>
+               <url>${site.url}</url>
             </site>
          </distributionManagement>
       </profile>
@@ -143,10 +143,10 @@
          <id>deployment-development</id>
          <distributionManagement>
             <site>
-               <id>site-development</id>
+               <id>site</id>
                <name>Project Development Documentation Site</name>
                <!-- The URL should be set externally -->
-               <url>${site.develop.url}</url>
+               <url>${site.url}</url>
             </site>
          </distributionManagement>
       </profile>
