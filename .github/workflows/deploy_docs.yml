@@ -44,7 +44,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
   deploy_docs:
-    needs: build
+    needs: setup
 
     runs-on: ubuntu-latest
 
