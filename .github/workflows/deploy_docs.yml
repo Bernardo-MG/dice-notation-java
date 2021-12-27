@@ -8,6 +8,7 @@ on:
 
 jobs:
   setup:
+    name: Deployment preparation
 
     runs-on: ubuntu-latest
 
@@ -44,6 +45,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
 
   deploy_docs_development:
+    name: Development docs deployment
     needs: setup
     if: ${{ needs.setup.steps.extract_branch.outputs.branch == 'develop' }}
 
@@ -54,6 +56,7 @@ jobs:
       run: mvn verify site site:deploy -B -P deployment,deployment-development --settings settings.xml
 
   deploy_docs_release:
+    name: Release docs deployment
     needs: setup
     if: ${{ needs.setup.steps.extract_branch.outputs.branch == 'master' }}
 
