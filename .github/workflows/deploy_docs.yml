@@ -21,6 +21,8 @@ jobs:
     - name: Extract branch name
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
+    - name: Check-out
+      uses: actions/checkout@v2.4.0
     - name: Set up JDK
       uses: actions/setup-java@v2.5.0
       with:
@@ -35,8 +37,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check-out
-      uses: actions/checkout@v2.4.0
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@develop
       with:
@@ -54,8 +54,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check-out
-      uses: actions/checkout@v2
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
       with:
