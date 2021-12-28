@@ -15,10 +15,9 @@ jobs:
 
     steps:
     - name: Create SSH key
-      run: |
-        mkdir -p ~/.ssh/
-        ssh-keyscan -H docs.bernardomg.com >> ~/.ssh/known_hosts
-      shell: bash
+      uses: bernardo-mg/ssh-host-register-action@develop
+      env:
+        host: docs.bernardomg.com
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
