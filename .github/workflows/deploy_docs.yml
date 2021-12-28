@@ -21,17 +21,9 @@ jobs:
     - name: Extract branch name
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
-    - name: Check-out
-      uses: actions/checkout@v2.4.0
-    - name: Set up JDK
-      uses: actions/setup-java@v2.5.0
-      with:
-        java-version: 11
-        distribution: 'adopt'
-        cache: 'maven'
 
-  deploy_docs_development:
-    name: Development docs deployment
+  development_settings:
+    name: Development docs settings
     needs: setup
     if: ${{ needs.setup.outputs.branchName == 'develop' }}
     runs-on: ubuntu-latest
@@ -44,11 +36,14 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
         password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-    - name: Deploy development docs
-      run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
+    - name: Archive settings file
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: settings_file
+        path: site_settings.xml
 
-  deploy_docs_release:
-    name: Release docs deployment
+  release_settings:
+    name: Release docs settings
     needs: setup
     if: ${{ needs.setup.outputs.branchName == 'master' }}
     runs-on: ubuntu-latest
@@ -61,5 +56,30 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
         password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-    - name: Deploy release docs
+    - name: Archive settings file
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: settings_file
+        path: site_settings.xml
+
+  deploy_docs:
+    name: Development docs deployment
+    needs: [development_settings, release_settings]
+    if: ${{ needs.setup.outputs.branchName == 'develop' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check-out
+      uses: actions/checkout@v2.4.0
+    - name: Set up JDK
+      uses: actions/setup-java@v2.5.0
+      with:
+        java-version: 11
+        distribution: 'adopt'
+        cache: 'maven'
+    - name: Recover settings file
+      uses: actions/download-artifact@v2
+      with:
+        name: settings_file
+    - name: Deploy development docs
       run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
