@@ -27,6 +27,6 @@ jobs:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Deploy
-      run: mvn deploy -B -P deployment,deployment-release,deployment-github
+      run: mvn deploy -B -P deployment-github -DskipTests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
