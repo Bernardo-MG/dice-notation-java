@@ -22,10 +22,11 @@ jobs:
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
     - name: Set up JDK
-      uses: actions/setup-java@v2.1.0
+      uses: actions/setup-java@v2.5.0
       with:
         java-version: 11
         distribution: 'adopt'
+        cache: 'maven'
 
   deploy_docs_development:
     name: Development docs deployment
@@ -43,11 +44,6 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
         password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-    - name: Dependency cache
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Deploy development docs
       run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
 
@@ -67,10 +63,5 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
         password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-    - name: Dependency cache
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Deploy release docs
       run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml

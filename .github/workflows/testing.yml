@@ -18,11 +18,7 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
         distribution: 'adopt'
-    - name: Dependency cache
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        cache: 'maven'
     - name: Run unit tests
       run: mvn clean test
 
@@ -42,10 +38,6 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
         distribution: 'adopt'
-    - name: Dependency cache
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        cache: 'maven'
     - name: Run up to integration tests
       run: mvn clean verify
