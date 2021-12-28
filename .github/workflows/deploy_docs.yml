@@ -37,12 +37,12 @@ jobs:
     - name: Check-out
       uses: actions/checkout@v2
     - name: Set up Maven settings for site deployment
-      uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
+      uses: bernardo-mg/maven-site-deployment-settings-action@develop
       env:
-        SITE_ID: site
-        USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-        PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-        SITE_URL: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+        siteId: site
+        siteUrl: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+        user: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
+        password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
     - name: Dependency cache
       uses: actions/cache@v2.1.6
       with:
@@ -63,10 +63,10 @@ jobs:
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
       env:
-        SITE_ID: site
-        USER: ${{ secrets.DEPLOY_DOCS_USER }}
-        PASSWORD: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-        SITE_URL: ${{ secrets.DEPLOY_DOCS_SITE }}
+        siteId: site
+        siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
+        user: ${{ secrets.DEPLOY_DOCS_USER }}
+        password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
     - name: Dependency cache
       uses: actions/cache@v2.1.6
       with:
