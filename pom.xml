@@ -121,6 +121,23 @@
          </build>
       </profile>
       <profile>
+         <!-- Site deployment profile -->
+         <!-- Sets the site repository to point to the releases repo -->
+         <id>deployment-site</id>
+         <activation>
+            <!-- Active by default so the repository appears in the reports -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <distributionManagement>
+            <site>
+               <id>site</id>
+               <name>Project Documentation Site</name>
+               <!-- The URL should be set externally -->
+               <url>${site.url}</url>
+            </site>
+         </distributionManagement>
+      </profile>
+      <profile>
          <!-- Github deployment profile. -->
          <id>deployment-github</id>
          <distributionManagement>
