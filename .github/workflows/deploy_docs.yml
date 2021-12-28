@@ -65,7 +65,7 @@ jobs:
   deploy_docs:
     name: Development docs deployment
     needs: [development_settings, release_settings]
-    if: ${{ needs.setup.outputs.branchName == 'develop' }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
