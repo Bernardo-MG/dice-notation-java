@@ -10,7 +10,7 @@ jobs:
   setup:
     name: Deployment preparation
     outputs:
-      branch-name: ${{ steps.extract_branch.outputs.branch }}
+      branchName: ${{ steps.extract_branch.outputs.branchName }}
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +19,7 @@ jobs:
       env:
         host: docs.bernardomg.com
     - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
     - name: Set up JDK
       uses: actions/setup-java@v2.1.0
@@ -31,7 +30,7 @@ jobs:
   deploy_docs_development:
     name: Development docs deployment
     needs: setup
-    if: ${{ needs.setup.outputs.branch-name == 'develop' }}
+    if: ${{ needs.setup.outputs.branchName == 'develop' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -55,7 +54,7 @@ jobs:
   deploy_docs_release:
     name: Release docs deployment
     needs: setup
-    if: ${{ needs.setup.outputs.branch-name == 'master' }}
+    if: ${{ needs.setup.outputs.branchName == 'master' }}
     runs-on: ubuntu-latest
 
     steps:
