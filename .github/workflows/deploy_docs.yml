@@ -63,7 +63,7 @@ jobs:
         path: site_settings.xml
 
   deploy_docs:
-    name: Development docs deployment
+    name: Docs deployment
     needs: [development_settings, release_settings]
     if: ${{ always() }}
     runs-on: ubuntu-latest
