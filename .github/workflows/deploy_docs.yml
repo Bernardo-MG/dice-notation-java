@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Create SSH key
       uses: bernardo-mg/ssh-host-register-action@develop
-      env:
+      with:
         host: docs.bernardomg.com
     - name: Extract branch name
       uses: bernardo-mg/extract-branch-name-action@develop
@@ -39,7 +39,7 @@ jobs:
       uses: actions/checkout@v2.4.0
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@develop
-      env:
+      with:
         siteId: site
         siteUrl: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -58,7 +58,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
-      env:
+      with:
         siteId: site
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
