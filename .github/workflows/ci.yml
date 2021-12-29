@@ -5,14 +5,9 @@ on: [push, pull_request]
 jobs:
   tests:
     name: Run tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        jdk: [ 11, 16 ]
     uses: Bernardo-MG/dice-notation-java/.github/workflows/testing.yml@reuse_workflow
 
   deploy_docs:
     name: Deploy docs
-    runs-on: ubuntu-latest
     needs: tests
     uses: Bernardo-MG/dice-notation-java/.github/workflows/deploy_docs.yml@reuse_workflow
