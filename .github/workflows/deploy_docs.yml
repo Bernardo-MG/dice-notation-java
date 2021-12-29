@@ -64,5 +64,9 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: integration_test_reports
+    - name: Recover coverage test reports
+      uses: actions/download-artifact@v2
+      with:
+        name: coverage_test_reports
     - name: Deploy development docs
       run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
