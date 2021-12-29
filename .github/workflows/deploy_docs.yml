@@ -76,5 +76,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: coverage_test_info
-    - name: Deploy development docs
-      run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
+    - name: Generate docs
+      run: mvn site -B -DskipTests
+    - name: Deploy docs
+      run: mvn site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
