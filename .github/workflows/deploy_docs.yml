@@ -1,10 +1,26 @@
 name: Doc deployment
 
 on:
-  push:
-    branches:
-      - develop
-      - master
+  workflow_call:
+    secrets:
+      DEPLOY_DOCS_DEVELOP_SITE:
+        description: 'URL to deploy the development site'
+        required: true
+      DEPLOY_DOCS_DEVELOP_USER:
+        description: 'User for the development site server'
+        required: true
+      DEPLOY_DOCS_DEVELOP_PASSWORD:
+        description: 'Password for the development site server'
+        required: true
+      DEPLOY_DOCS_SITE:
+        description: 'URL to deploy the site'
+        required: true
+      DEPLOY_DOCS_USER:
+        description: 'User for the site server'
+        required: true
+      DEPLOY_DOCS_PASSWORD:
+        description: 'Password for the site server'
+        required: true
 
 jobs:
   setup:

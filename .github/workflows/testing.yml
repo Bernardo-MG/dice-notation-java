@@ -1,22 +1,25 @@
 name: Testing and validation
 
-on: [push, pull_request]
+on:
+  workflow_call:
+    inputs:
+      jdk:
+        description: 'JDK version to use on the tests'
+        required: true
+        type: string
 
 jobs:
   unit_test:
     name: Unit tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        jdk: [ 11, 16 ]
 
     steps:
     - name: Check-out
       uses: actions/checkout@v2.4.0
-    - name: Set up JDK ${{ matrix.jdk }}
+    - name: Set up JDK ${{ inputs.jdk }}
       uses: actions/setup-java@v2.5.0
       with:
-        java-version: ${{ matrix.jdk }}
+        java-version: ${{ inputs.jdk }}
         distribution: 'adopt'
         cache: 'maven'
     - name: Run unit tests
@@ -26,17 +29,14 @@ jobs:
     name: Integration tests
     needs: unit_test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        jdk: [ 11, 16 ]
 
     steps:
     - name: Check-out
       uses: actions/checkout@v2.4.0
-    - name: Set up JDK ${{ matrix.jdk }}
+    - name: Set up JDK ${{ inputs.jdk }}
       uses: actions/setup-java@v2.5.0
       with:
-        java-version: ${{ matrix.jdk }}
+        java-version: ${{ inputs.jdk }}
         distribution: 'adopt'
         cache: 'maven'
     - name: Run up to integration tests
