@@ -25,7 +25,7 @@ jobs:
   deploy_development:
     name: Deploy development docs
     needs: setup
-    if: ${{ needs.setup.outputs.branchName == 'develop' }}
+    if: ${{ needs.setup.outputs.branchName == 'develop' && secrets.DEPLOY_DOCS_DEVELOP_SITE != null }}
     runs-on: ubuntu-latest
 
     steps:
@@ -59,7 +59,7 @@ jobs:
   deploy_release:
     name: Deploy release docs
     needs: setup
-    if: ${{ needs.setup.outputs.branchName == 'master' }}
+    if: ${{ needs.setup.outputs.branchName == 'master' && secrets.DEPLOY_DOCS_SITE != null }}
     runs-on: ubuntu-latest
 
     steps:
