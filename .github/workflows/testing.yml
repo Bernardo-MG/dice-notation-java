@@ -1,6 +1,7 @@
 name: Testing and validation
 
-on: [push, pull_request]
+on:
+  workflow_call
 
 jobs:
   unit_test:
@@ -21,6 +22,11 @@ jobs:
         cache: 'maven'
     - name: Run unit tests
       run: mvn clean test
+    - name: Save unit test reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: unit_test_reports
+        path: target/surefire-reports
 
   integration_test:
     name: Integration tests
@@ -41,3 +47,8 @@ jobs:
         cache: 'maven'
     - name: Run up to integration tests
       run: mvn clean verify
+    - name: Save integration test reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: integration_test_reports
+        path: target/failsafe-reports
