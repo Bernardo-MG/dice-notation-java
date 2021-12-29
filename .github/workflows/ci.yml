@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   tests:
-    name: Run tests
+    name: Tests
     uses: Bernardo-MG/dice-notation-java/.github/workflows/testing.yml@reuse_workflow
 
   deploy_docs:
