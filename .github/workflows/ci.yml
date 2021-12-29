@@ -8,9 +8,9 @@ jobs:
     strategy:
       matrix:
         jdk: [ 11, 16 ]
-    uses: ./testing.yml
+    uses: ./testing.yml@reuse_workflow
 
   deploy_docs:
     name: Deploy docs
     needs: tests
-    uses: ./deploy_docs.yml
+    uses: ./deploy_docs.yml@reuse_workflow
