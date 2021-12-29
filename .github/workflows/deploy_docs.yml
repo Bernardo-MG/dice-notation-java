@@ -33,7 +33,7 @@ jobs:
     - name: Register SSH host
       uses: bernardo-mg/ssh-host-register-action@develop
       with:
-        host: inputs.host
+        host: ${{ inputs.host }}
     - name: Extract branch name
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
