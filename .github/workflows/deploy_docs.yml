@@ -7,6 +7,10 @@ on:
         description: 'Branch on which the site will be deployed'
         required: true
         type: string
+      host:
+        description: 'Host where the site will be deployed'
+        required: true
+        type: string
     secrets:
       DEPLOY_DOCS_SITE:
         description: 'URL to deploy the site'
@@ -29,7 +33,7 @@ jobs:
     - name: Register SSH host
       uses: bernardo-mg/ssh-host-register-action@develop
       with:
-        host: docs.bernardomg.com
+        host: inputs.host
     - name: Extract branch name
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch

@@ -13,6 +13,7 @@ jobs:
     uses: Bernardo-MG/dice-notation-java/.github/workflows/deploy_docs.yml@develop
     with:
       branch: develop
+      host: docs.bernardomg.com
     secrets:
       DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
       DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -24,6 +25,7 @@ jobs:
     uses: Bernardo-MG/dice-notation-java/.github/workflows/deploy_docs.yml@develop
     with:
       branch: master
+      host: docs.bernardomg.com
     secrets:
       DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
       DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_USER }}
