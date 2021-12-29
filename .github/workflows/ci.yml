@@ -7,14 +7,24 @@ jobs:
     name: Tests
     uses: Bernardo-MG/dice-notation-java/.github/workflows/testing.yml@reuse_workflow
 
+  deploy_develop_docs:
+    name: Deploy development docs
+    needs: tests
+    uses: Bernardo-MG/dice-notation-java/.github/workflows/deploy_docs.yml@reuse_workflow
+    with:
+      branch: develop
+    secrets:
+      DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+      DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
+      DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
+
   deploy_docs:
     name: Deploy docs
     needs: tests
     uses: Bernardo-MG/dice-notation-java/.github/workflows/deploy_docs.yml@reuse_workflow
+    with:
+      branch: master
     secrets:
-      DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-      DEPLOY_DOCS_DEVELOP_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-      DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
       DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
       DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_USER }}
       DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_PASSWORD }}

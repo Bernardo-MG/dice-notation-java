@@ -2,16 +2,12 @@ name: Doc deployment
 
 on:
   workflow_call:
+    inputs:
+      branch:
+        description: 'Branch on which the site will be deployed'
+        required: true
+        type: string
     secrets:
-      DEPLOY_DOCS_DEVELOP_SITE:
-        description: 'URL to deploy the development site'
-        required: true
-      DEPLOY_DOCS_DEVELOP_USER:
-        description: 'User for the development site server'
-        required: true
-      DEPLOY_DOCS_DEVELOP_PASSWORD:
-        description: 'Password for the development site server'
-        required: true
       DEPLOY_DOCS_SITE:
         description: 'URL to deploy the site'
         required: true
@@ -38,49 +34,15 @@ jobs:
       uses: bernardo-mg/extract-branch-name-action@develop
       id: extract_branch
 
-  deploy_development:
-    name: Deploy development docs
+  deploy:
+    name: Deployment
     needs: setup
-    if: ${{ needs.setup.outputs.branchName == 'develop' }}
+    if: ${{ needs.setup.outputs.branchName == inputs.branch }}
     runs-on: ubuntu-latest
 
     steps:
     - name: Set up Maven settings for site deployment
       uses: bernardo-mg/maven-site-deployment-settings-action@develop
-      with:
-        siteId: site
-        siteUrl: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-        user: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-        password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-    - name: Archive settings file
-      uses: actions/upload-artifact@v2.3.1
-      with:
-        name: settings_file
-        path: site_settings.xml
-    - name: Check-out
-      uses: actions/checkout@v2.4.0
-    - name: Set up JDK
-      uses: actions/setup-java@v2.5.0
-      with:
-        java-version: 11
-        distribution: 'adopt'
-        cache: 'maven'
-    - name: Recover settings file
-      uses: actions/download-artifact@v2
-      with:
-        name: settings_file
-    - name: Deploy development docs
-      run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
-
-  deploy_release:
-    name: Deploy release docs
-    needs: setup
-    if: ${{ needs.setup.outputs.branchName == 'master' }}
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Set up Maven settings for site deployment
-      uses: bernardo-mg/maven-site-deployment-settings-action@v1.0.0
       with:
         siteId: site
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
