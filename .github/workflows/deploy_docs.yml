@@ -48,11 +48,6 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
         password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-    - name: Archive settings file
-      uses: actions/upload-artifact@v2.3.1
-      with:
-        name: settings_file
-        path: site_settings.xml
     - name: Check-out
       uses: actions/checkout@v2.4.0
     - name: Set up JDK
@@ -61,9 +56,13 @@ jobs:
         java-version: 11
         distribution: 'adopt'
         cache: 'maven'
-    - name: Recover settings file
+    - name: Recover unit test reports
       uses: actions/download-artifact@v2
       with:
-        name: settings_file
+        name: unit_test_reports
+    - name: Recover integration test reports
+      uses: actions/download-artifact@v2
+      with:
+        name: integration_test_reports
     - name: Deploy development docs
       run: mvn verify site site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
