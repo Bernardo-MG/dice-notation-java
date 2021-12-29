@@ -41,13 +41,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Maven settings for site deployment
-      uses: bernardo-mg/maven-site-deployment-settings-action@develop
-      with:
-        siteId: site
-        siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
-        user: ${{ secrets.DEPLOY_DOCS_USER }}
-        password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
     - name: Check-out
       uses: actions/checkout@v2.4.0
     - name: Set up JDK
@@ -56,6 +49,13 @@ jobs:
         java-version: 11
         distribution: 'adopt'
         cache: 'maven'
+    - name: Set up Maven settings for site deployment
+      uses: bernardo-mg/maven-site-deployment-settings-action@develop
+      with:
+        siteId: site
+        siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
+        user: ${{ secrets.DEPLOY_DOCS_USER }}
+        password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
     - name: Recover unit test reports
       uses: actions/download-artifact@v2
       with:
