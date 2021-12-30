@@ -42,8 +42,3 @@ jobs:
         cache: 'maven'
     - name: Run up to integration tests
       run: mvn verify
-    - name: Save test artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test_artifacts
-        path: target
