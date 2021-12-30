@@ -21,12 +21,7 @@ jobs:
         distribution: 'adopt'
         cache: 'maven'
     - name: Run unit tests
-      run: mvn clean test
-    - name: Save unit test reports
-      uses: actions/upload-artifact@v2
-      with:
-        name: unit_test_reports
-        path: target/surefire-reports
+      run: mvn test
 
   integration_test:
     name: Integration tests
@@ -46,19 +41,4 @@ jobs:
         distribution: 'adopt'
         cache: 'maven'
     - name: Run up to integration tests
-      run: mvn clean verify
-    - name: Save integration test reports
-      uses: actions/upload-artifact@v2
-      with:
-        name: integration_test_reports
-        path: target/failsafe-reports
-    - name: Save coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage_test_reports
-        path: target/jacoco
-    - name: Save coverage info
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage_test_info
-        path: target/javadoc-bundle-options
+      run: mvn verify

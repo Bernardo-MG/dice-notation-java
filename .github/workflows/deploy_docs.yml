@@ -60,23 +60,7 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
         password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-    - name: Recover unit test reports
-      uses: actions/download-artifact@v2
-      with:
-        name: unit_test_reports
-    - name: Recover integration test reports
-      uses: actions/download-artifact@v2
-      with:
-        name: integration_test_reports
-    - name: Recover coverage test reports
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage_test_reports
-    - name: Recover coverage test info
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage_test_info
     - name: Generate docs
-      run: mvn site -B -DskipTests
+      run: mvn verify site -B
     - name: Deploy docs
       run: mvn site:deploy -B -P deployment-site -DskipTests --settings site_settings.xml
