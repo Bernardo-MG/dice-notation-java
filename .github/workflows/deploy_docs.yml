@@ -64,14 +64,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: unit_test_reports
-    - name: Recover integration test reports
+    - name: Recover test artifacts
       uses: actions/download-artifact@v2
       with:
-        name: integration_test_reports
-    - name: Recover coverage test reports
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage_test_reports
+        name: test_artifacts
     - name: Generate docs
       run: mvn site -B -DskipTests
     - name: Deploy docs
