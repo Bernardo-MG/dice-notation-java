@@ -72,10 +72,6 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: coverage_test_reports
-    - name: Recover coverage test info
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage_test_info
     - name: Generate docs
       run: mvn site -B -DskipTests
     - name: Deploy docs

@@ -57,8 +57,3 @@ jobs:
       with:
         name: coverage_test_reports
         path: target/jacoco
-    - name: Save coverage info
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage_test_info
-        path: target/javadoc-bundle-options
