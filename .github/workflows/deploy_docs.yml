@@ -60,10 +60,6 @@ jobs:
         siteUrl: ${{ secrets.DEPLOY_DOCS_SITE }}
         user: ${{ secrets.DEPLOY_DOCS_USER }}
         password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-    - name: Recover unit test reports
-      uses: actions/download-artifact@v2
-      with:
-        name: unit_test_reports
     - name: Recover test artifacts
       uses: actions/download-artifact@v2
       with:
