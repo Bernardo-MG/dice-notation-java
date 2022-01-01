@@ -9,13 +9,13 @@ jobs:
     name: Github deployment
     uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_github.yml@develop
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.GITHUB_TOKEN }}
 
   ossrh:
     name: OSSRH deployment
     uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_ossrh.yml@develop
     secrets:
-      USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      username: ${{ secrets.OSSRH_USERNAME }}
+      password: ${{ secrets.OSSRH_TOKEN }}
+      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}

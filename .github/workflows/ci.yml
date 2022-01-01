@@ -15,9 +15,9 @@ jobs:
       branch: develop
       host: docs.bernardomg.com
     secrets:
-      DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-      DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-      DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
+      url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+      username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
+      password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
 
   deploy_docs:
     name: Deploy docs
@@ -27,6 +27,6 @@ jobs:
       branch: master
       host: docs.bernardomg.com
     secrets:
-      DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
-      DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_USER }}
-      DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
+      url: ${{ secrets.DEPLOY_DOCS_SITE }}
+      username: ${{ secrets.DEPLOY_DOCS_USER }}
+      password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
