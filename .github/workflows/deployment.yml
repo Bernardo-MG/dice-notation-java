@@ -6,14 +6,14 @@ on:
 
 jobs:
   github:
-    name: Github deployment
+    name: Github
     uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_github.yml@develop
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   ossrh:
-    name: OSSRH deployment
-    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_ossrh.yml@develop
+    name: OSSRH
+    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_signed.yml@develop
     secrets:
       username: ${{ secrets.OSSRH_USERNAME }}
       password: ${{ secrets.OSSRH_TOKEN }}
