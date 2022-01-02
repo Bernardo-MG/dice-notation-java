@@ -158,7 +158,13 @@
             Updated dependencies.
          </action>
       </release>
-      <release version="2.3.0" date="2021-12-20" description="">
+      <release version="2.2.1" date="2022-01-02" description="Updated CI workflow">
+         <action dev="bmg" type="update">
+            Using new CI workflow.
+         </action>
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
       </release>
    </body>
 </document>
