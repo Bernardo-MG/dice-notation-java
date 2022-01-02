@@ -7,13 +7,13 @@ on:
 jobs:
   github:
     name: Github
-    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_github.yml@v1.0.0
+    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_github.yml@v1
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   ossrh:
     name: OSSRH
-    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_signed.yml@v1.0.0
+    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_signed.yml@v1
     secrets:
       username: ${{ secrets.OSSRH_USERNAME }}
       password: ${{ secrets.OSSRH_TOKEN }}
