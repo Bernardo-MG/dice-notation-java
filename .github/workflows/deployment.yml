@@ -12,10 +12,29 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   ossrh:
-    name: OSSRH
-    uses: Bernardo-MG/github-workflow/.github/workflows/maven_deploy_signed.yml@v1
-    secrets:
-      USERNAME: ${{ secrets.OSSRH_USERNAME }}
-      PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    name: Deploy OSSRH
+    environment: deployment_ossrh
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: 11
+        distribution: 'adopt'
+        cache: 'maven'
+        server-id: 'deployment_ossrh'
+        server-username: OSSRH_USERNAME
+        server-password: OSSRH_TOKEN
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: GPG_PASSPHRASE
+    - name: Build
+      run: mvn clean package -B -P deployment-ossrh -DskipTests
+    - name: Deploy
+      run: mvn deploy -B -P deployment-ossrh -DskipTests
+      env:
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
