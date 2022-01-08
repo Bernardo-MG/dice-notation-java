@@ -17,5 +17,5 @@ jobs:
     secrets:
       username: ${{ secrets.OSSRH_USERNAME }}
       password: ${{ secrets.OSSRH_TOKEN }}
-      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-      gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      signature-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      signature-passphrase: ${{ secrets.GPG_PASSPHRASE }}
