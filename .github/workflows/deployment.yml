@@ -13,6 +13,7 @@ jobs:
 
   ossrh:
     name: Deploy OSSRH
+
     environment: deployment_ossrh
     runs-on: ubuntu-latest
 
@@ -20,21 +21,19 @@ jobs:
     - name: Check-out
       uses: actions/checkout@v2
     - name: Set up JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v2.1.0
       with:
         java-version: 11
         distribution: 'adopt'
         cache: 'maven'
-        server-id: 'deployment_ossrh'
-        server-username: OSSRH_USERNAME
-        server-password: OSSRH_TOKEN
+        server-id: deployment_ossrh
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: GPG_PASSPHRASE
-    - name: Build
-      run: mvn clean package -B -P deployment-ossrh -DskipTests
     - name: Deploy
       run: mvn deploy -B -P deployment-ossrh -DskipTests
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-        MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
