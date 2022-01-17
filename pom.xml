@@ -440,7 +440,6 @@
                <showTree>true</showTree>
                <entryPoint>notation</entryPoint>
                <grammarName>DiceNotation</grammarName>
-               <lexerName>DiceNotationLexer</lexerName>
                <packageName>com.bernardomg.tabletop.dice.generated</packageName>
                <exampleFiles>src/test/resources/examples</exampleFiles>
             </configuration>
