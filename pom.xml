@@ -240,20 +240,20 @@
       <!-- ============================================== -->
       <antlr.version>4.9.3</antlr.version>
       <junit.jupiter.version>5.8.2</junit.jupiter.version>
-      <lombok.version>1.18.22</lombok.version>
-      <mockito.version>4.2.0</mockito.version>
-      <log4j.version>2.17.1</log4j.version>
-      <slf4j.version>1.7.30</slf4j.version>
+      <lombok.version>1.18.24</lombok.version>
+      <mockito.version>4.6.1</mockito.version>
+      <log4j.version>2.17.2</log4j.version>
+      <slf4j.version>1.7.36</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.antlr.version>${antlr.version}</plugin.antlr.version>
       <plugin.antlr.test.version>1.19</plugin.antlr.test.version>
-      <plugin.buildhelp.version>3.2.0</plugin.buildhelp.version>
+      <plugin.buildhelp.version>3.3.0</plugin.buildhelp.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.2.5</site.skin.version>
+      <site.skin.version>2.2.6</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
       <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=dice-notation-java]]></githubArtifactURL>
    </properties>
