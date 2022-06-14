@@ -228,6 +228,10 @@
 
    <properties>
       <!-- ============================================== -->
+      <!-- =============== MAVEN VERSION ================ -->
+      <!-- ============================================== -->
+      <maven.version>3.8</maven.version>
+      <!-- ============================================== -->
       <!-- ================ JAVA VERSION ================ -->
       <!-- ============================================== -->
       <java.version>11</java.version>
@@ -238,7 +242,7 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.9.3</antlr.version>
+      <antlr.version>4.10.1</antlr.version>
       <junit.jupiter.version>5.8.2</junit.jupiter.version>
       <lombok.version>1.18.24</lombok.version>
       <mockito.version>4.6.1</mockito.version>
@@ -248,7 +252,7 @@
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.antlr.version>${antlr.version}</plugin.antlr.version>
-      <plugin.antlr.test.version>1.19</plugin.antlr.test.version>
+      <plugin.antlr.test.version>1.21</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.3.0</plugin.buildhelp.version>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
