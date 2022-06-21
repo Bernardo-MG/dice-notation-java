@@ -16,7 +16,6 @@
 |[SpotBugs][spotbugs]|Generates a source code report with the SpotBugs Library.|
 |[PMD][pmd]|Verification of coding rules.|
 |[CPD][cpd]|Duplicate code detection.|
-|[JDepend][jdepend]|Quality metrics for the project.|
 |[Tag list][taglist]|List of warning tags found on the code.|
 
 ## Dependencies
@@ -41,7 +40,6 @@
 [dependency-analysis]: ./dependency-analysis.html
 [failsafe]: ./failsafe-report.html
 [jacoco]: ./jacoco/index.html
-[jdepend]: ./jdepend-report.html
 [pmd]: ./pmd.html
 [plugins]: ./plugins.html
 [plugins-manage]: ./plugin-management.html

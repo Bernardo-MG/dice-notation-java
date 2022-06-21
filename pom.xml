@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.1</version>
+      <version>1.5.2</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -197,6 +197,13 @@
       <plugin.antlr.version>${antlr.version}</plugin.antlr.version>
       <plugin.antlr.test.version>1.21</plugin.antlr.test.version>
       <plugin.buildhelp.version>3.3.0</plugin.buildhelp.version>
+      <!-- ============================================== -->
+      <!-- ============ PLUGIN CONFIGURATION ============ -->
+      <!-- ============================================== -->
+      <!-- The customized rules file -->
+      <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
+      <!-- Excludes generated code -->
+      <checkstyle.excludes>**/generated/**/*</checkstyle.excludes>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
@@ -429,19 +436,6 @@
 
    <reporting>
       <plugins>
-         <plugin>
-            <!-- Checkstyle -->
-            <!-- Checks that the source files comply with style standards -->
-            <!-- It is using a customized rules file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-               <!-- The customized rules file -->
-               <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
-               <!-- Excludes generated code -->
-               <excludes>**/generated/**/*</excludes>
-            </configuration>
-         </plugin>
          <plugin>
             <!-- Javadoc -->
             <!-- Generates the javadocs -->
