@@ -200,10 +200,12 @@
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
       <!-- ============================================== -->
-      <!-- The customized rules file -->
+      <!-- Checkstyle customized rules file -->
       <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
-      <!-- Excludes generated code -->
+      <!-- Excludes generated code for Checkstyle -->
       <checkstyle.excludes>**/generated/**/*</checkstyle.excludes>
+      <!-- Exclusion patterns for SpotBugs -->
+      <spotbugs.excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
@@ -463,16 +465,6 @@
                   <!-- Excludes generated code -->
                   <exclude>**/generated/**/*</exclude>
                </excludes>
-            </configuration>
-         </plugin>
-         <plugin>
-             <!-- SpotBugs -->
-             <!-- Checks for patterns which are prone to errors -->
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-maven-plugin</artifactId>
-            <configuration>
-               <!-- Exclusion patterns -->
-               <excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
             </configuration>
          </plugin>
       </plugins>
