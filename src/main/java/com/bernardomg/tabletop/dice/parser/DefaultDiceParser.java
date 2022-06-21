@@ -73,7 +73,7 @@ public final class DefaultDiceParser implements DiceParser {
     }
 
     /**
-     * Constructs a parser with the error listener
+     * Constructs a parser with the error listener.
      * 
      * @param listener
      *            error listener
