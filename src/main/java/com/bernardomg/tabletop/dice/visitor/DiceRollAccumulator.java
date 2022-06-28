@@ -1,17 +1,14 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.bernardomg.tabletop.dice.visitor;
@@ -47,14 +44,12 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceRollAccumulator
-        implements NotationAccumulator<RollHistory> {
+public final class DiceRollAccumulator implements NotationAccumulator<RollHistory> {
 
     /**
      * Logger.
      */
-    private static final Logger              LOGGER  = LoggerFactory
-            .getLogger(DiceRollAccumulator.class);
+    private static final Logger              LOGGER  = LoggerFactory.getLogger(DiceRollAccumulator.class);
 
     /**
      * The last expression received.
@@ -74,16 +69,16 @@ public final class DiceRollAccumulator
     /**
      * The text values generated so far.
      * <p>
-     * It always contain the text representation of all the nodes parsed so far,
-     * along temporal texts to keep building the final result.
+     * It always contain the text representation of all the nodes parsed so far, along temporal texts to keep building
+     * the final result.
      */
     private final Stack<String>              texts   = new Stack<>();
 
     /**
      * The expression values generated so far.
      * <p>
-     * It always contain the sum of all the nodes parsed so far, along temporal
-     * values to keep building the final result.
+     * It always contain the sum of all the nodes parsed so far, along temporal values to keep building the final
+     * result.
      */
     private final Stack<Integer>             values  = new Stack<>();
 
@@ -96,20 +91,19 @@ public final class DiceRollAccumulator
     public DiceRollAccumulator(final Function<Dice, RollResult> generator) {
         super();
 
-        rollGenerator = Objects.requireNonNull(generator,
-                "Received a null pointer as roll generator");
+        rollGenerator = Objects.requireNonNull(generator, "Received a null pointer as roll generator");
     }
 
     @Override
     public final void binaryOperation(final BinaryOperation exp) {
-        final Integer operandA;
-        final Integer operandB;
+        final Integer                               operandA;
+        final Integer                               operandB;
         final BiFunction<Integer, Integer, Integer> operation;
-        final String textA;
-        final String textB;
-        final String op;
-        Integer value;
-        RollResult rollResult;
+        final String                                textA;
+        final String                                textB;
+        final String                                op;
+        Integer                                     value;
+        RollResult                                  rollResult;
 
         // Operation
         // Takes back the two latest values and applies
@@ -124,8 +118,7 @@ public final class DiceRollAccumulator
         textB = texts.pop();
         texts.push(textB + op + textA);
 
-        if ((exp instanceof SubtractionOperation)
-                && (previous instanceof ConstantOperand)) {
+        if ((exp instanceof SubtractionOperation) && (previous instanceof ConstantOperand)) {
             // This is a subtraction
             // The previous value was a constant
             // The sign is changed
@@ -140,7 +133,7 @@ public final class DiceRollAccumulator
 
     @Override
     public final void constantOperand(final ConstantOperand exp) {
-        final Integer value;
+        final Integer    value;
         final RollResult rollResult;
 
         // Constant
@@ -151,7 +144,8 @@ public final class DiceRollAccumulator
 
         values.push(rollResult.getTotalRoll());
 
-        texts.push(rollResult.getTotalRoll().toString());
+        texts.push(rollResult.getTotalRoll()
+            .toString());
 
         previous = exp;
     }
@@ -159,7 +153,7 @@ public final class DiceRollAccumulator
     @Override
     public final void diceOperand(final DiceOperand exp) {
         final RollResult rollResult;
-        final Long totalRolls;
+        final Long       totalRolls;
 
         // Dice
         // Generates a random value
@@ -171,12 +165,15 @@ public final class DiceRollAccumulator
 
         values.push(rollResult.getTotalRoll());
 
-        totalRolls = StreamSupport
-                .stream(rollResult.getAllRolls().spliterator(), false).count();
+        totalRolls = StreamSupport.stream(rollResult.getAllRolls()
+            .spliterator(), false)
+            .count();
         if (totalRolls > 1) {
-            texts.push(rollResult.getAllRolls().toString());
+            texts.push(rollResult.getAllRolls()
+                .toString());
         } else {
-            texts.push(rollResult.getTotalRoll().toString());
+            texts.push(rollResult.getTotalRoll()
+                .toString());
         }
 
         previous = exp;
@@ -184,7 +181,7 @@ public final class DiceRollAccumulator
 
     @Override
     public final RollHistory getValue() {
-        final String text;
+        final String  text;
         final Integer result;
 
         if (values.isEmpty()) {

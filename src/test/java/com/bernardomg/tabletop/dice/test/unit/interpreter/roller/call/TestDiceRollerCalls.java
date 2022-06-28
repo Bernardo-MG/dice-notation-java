@@ -1,17 +1,14 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.call;
@@ -42,34 +39,37 @@ public final class TestDiceRollerCalls {
     @Test
     @DisplayName("The roller function is called when parsing dice")
     public final void testCallsFunction_Dice() {
-        final Dice dice;
-        final DiceNotationExpression expression;
+        final Dice                       dice;
+        final DiceNotationExpression     expression;
         final Function<Dice, RollResult> roller;
 
         // Mocks generator
         roller = Mockito.mock(Function.class);
         Mockito.when(roller.apply(ArgumentMatchers.any()))
-                .thenReturn(Mockito.mock(RollResult.class));
+            .thenReturn(Mockito.mock(RollResult.class));
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
-        Mockito.when(dice.getSides()).thenReturn(1);
+        Mockito.when(dice.getQuantity())
+            .thenReturn(1);
+        Mockito.when(dice.getSides())
+            .thenReturn(1);
 
         expression = new DefaultDiceOperand(dice);
 
         new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(roller, Mockito.times(1)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(1))
+            .apply(ArgumentMatchers.any());
     }
 
     @SuppressWarnings("unchecked")
     @Test
     @DisplayName("The roller function is not called when parsing a subtraction")
     public final void testCallsFunction_Subtraction_NotCalled() {
-        final DiceNotationExpression expression;
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
+        final DiceNotationExpression     expression;
+        final DiceNotationExpression     left;
+        final DiceNotationExpression     right;
         final Function<Dice, RollResult> roller;
 
         // Mocks generator
@@ -83,7 +83,8 @@ public final class TestDiceRollerCalls {
 
         new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(roller, Mockito.times(0)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(0))
+            .apply(ArgumentMatchers.any());
     }
 
 }

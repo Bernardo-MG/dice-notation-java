@@ -1,17 +1,14 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
@@ -35,10 +32,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
     @Test
     @DisplayName("An addition returns the expected structure")
     public final void testParse_Dice_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final DiceOperand diceLeft;        // Left parsed dice
-        final DiceOperand diceRight;       // Right parsed dice
+        final DiceOperand       diceLeft;        // Left parsed dice
+        final DiceOperand       diceRight;       // Right parsed dice
 
         notation = "1d20+2d6";
 
@@ -47,20 +44,24 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 1, diceLeft.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 20, diceLeft.getDice().getSides());
+        Assertions.assertEquals((Integer) 1, diceLeft.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 20, diceLeft.getDice()
+            .getSides());
 
-        Assertions.assertEquals((Integer) 2, diceRight.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, diceRight.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, diceRight.getDice()
+            .getSides());
     }
 
     @Test
     @DisplayName("An addition with a number on the left returns the expected structure")
     public final void testParse_LeftNumber_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+        final IntegerOperand    integer;      // Parsed integer
+        final DiceOperand       dice;            // Parsed dice
 
         notation = "5+2d6";
 
@@ -69,8 +70,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, dice.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, dice.getDice()
+            .getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }
@@ -78,10 +81,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
     @Test
     @DisplayName("An addition with a number on the right returns the expected structure")
     public final void testParse_RightNumber_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+        final IntegerOperand    integer;      // Parsed integer
+        final DiceOperand       dice;            // Parsed dice
 
         notation = "2d6+5";
 
@@ -90,8 +93,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, dice.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, dice.getDice()
+            .getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }
