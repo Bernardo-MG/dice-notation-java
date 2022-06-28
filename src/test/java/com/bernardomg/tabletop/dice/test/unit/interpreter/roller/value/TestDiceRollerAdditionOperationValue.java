@@ -1,14 +1,17 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
@@ -37,10 +40,10 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition returns the expected result")
     public final void testTotalRoll() {
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -48,8 +51,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // 1 + 2
         operation = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), rolled);
     }
@@ -57,10 +59,10 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (right value negative) returns the expected result")
     public final void testTotalRoll_AddNegative() {
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
@@ -68,8 +70,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // 1 + -2
         operation = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-1), rolled);
     }
@@ -77,12 +78,12 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (grouped values with a negative on the right) returns the expected result")
     public final void testTotalRoll_AddNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         value = new IntegerOperand(1);
 
@@ -96,8 +97,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // = 0
         operation = new AdditionOperation(value, grouped);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(0), rolled);
     }
@@ -105,10 +105,10 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (negatives) returns the expected result")
     public final void testTotalRoll_AddNegatives() {
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
@@ -116,8 +116,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // -1 + -2
         operation = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-3), rolled);
     }
@@ -125,10 +124,10 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (left value negative) returns the expected result")
     public final void testTotalRoll_AddToNegative() {
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -136,8 +135,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // -1 + 2
         operation = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(1), rolled);
     }
@@ -145,12 +143,12 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (grouped values with a negative on the left) returns the expected result")
     public final void testTotalRoll_AddToNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation grouped;      // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -164,8 +162,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // = 2
         operation = new AdditionOperation(grouped, value);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
@@ -173,14 +170,14 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (grouped negatives) returns the expected result")
     public final void testTotalRoll_GroupedNegatives() {
-        final BinaryOperation        operation;     // Tested operation
-        final BinaryOperation        groupeda;      // Tested operation
-        final BinaryOperation        groupedb;      // Tested operation
+        final BinaryOperation operation;     // Tested operation
+        final BinaryOperation groupeda;      // Tested operation
+        final BinaryOperation groupedb;      // Tested operation
         final DiceNotationExpression lefta;  // Left operand
         final DiceNotationExpression righta; // Right operand
         final DiceNotationExpression leftb;  // Left operand
         final DiceNotationExpression rightb; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         lefta = new IntegerOperand(1);
         righta = new IntegerOperand(2);
@@ -198,8 +195,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // = -2
         operation = new AdditionOperation(groupeda, groupedb);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
@@ -207,10 +203,10 @@ public final class TestDiceRollerAdditionOperationValue {
     @Test
     @DisplayName("An addition (zeros) returns the expected result")
     public final void testTotalRoll_Zeroes() {
-        final BinaryOperation        operation;    // Tested operation
+        final BinaryOperation operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer                rolled;
+        final Integer rolled;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
@@ -218,8 +214,7 @@ public final class TestDiceRollerAdditionOperationValue {
         // 0 + 0
         operation = new AdditionOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation)
-            .getTotalRoll();
+        rolled = new DiceRoller().transform(operation).getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(0), rolled);
     }

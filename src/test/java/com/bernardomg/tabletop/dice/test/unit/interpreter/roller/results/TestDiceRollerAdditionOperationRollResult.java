@@ -1,14 +1,17 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
@@ -40,11 +43,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult>   results;
-        final Iterator<RollResult>   resultsItr;
-        RollResult                   result;
-        Iterable<Integer>            rolls;
-        Iterator<Integer>            rollValues;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -52,25 +55,24 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // 1 + 2
         expression = new AdditionOperation(left, right);
 
-        results = new DiceRoller().transform(expression)
-            .getRollResults();
+        results = new DiceRoller().transform(expression).getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
-            .count());
+        Assertions.assertEquals(2,
+                StreamSupport.stream(results.spliterator(), false).count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
@@ -82,11 +84,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult>   results;
-        final Iterator<RollResult>   resultsItr;
-        RollResult                   result;
-        Iterable<Integer>            rolls;
-        Iterator<Integer>            rollValues;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -94,25 +96,24 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // -1 + 2
         expression = new AdditionOperation(left, right);
 
-        results = new DiceRoller().transform(expression)
-            .getRollResults();
+        results = new DiceRoller().transform(expression).getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
-            .count());
+        Assertions.assertEquals(2,
+                StreamSupport.stream(results.spliterator(), false).count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
@@ -124,11 +125,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult>   results;
-        final Iterator<RollResult>   resultsItr;
-        RollResult                   result;
-        Iterable<Integer>            rolls;
-        Iterator<Integer>            rollValues;
+        final Iterable<RollResult> results;
+        final Iterator<RollResult> resultsItr;
+        RollResult result;
+        Iterable<Integer> rolls;
+        Iterator<Integer> rollValues;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -136,25 +137,24 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // 1 - 2
         expression = new SubtractionOperation(left, right);
 
-        results = new DiceRoller().transform(expression)
-            .getRollResults();
+        results = new DiceRoller().transform(expression).getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
-            .count());
+        Assertions.assertEquals(2,
+                StreamSupport.stream(results.spliterator(), false).count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertEquals(1,
+                StreamSupport.stream(rolls.spliterator(), false).count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-2), rollValues.next());

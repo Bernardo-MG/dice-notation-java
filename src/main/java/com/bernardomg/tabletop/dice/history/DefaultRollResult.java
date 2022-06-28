@@ -1,14 +1,17 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.bernardomg.tabletop.dice.history;
@@ -59,13 +62,16 @@ public final class DefaultRollResult implements RollResult {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(@NonNull final Dice d, @NonNull final Iterable<Integer> rolls,
+    public DefaultRollResult(@NonNull final Dice d,
+            @NonNull final Iterable<Integer> rolls,
             @NonNull final Integer total) {
         super();
 
         dice = Objects.requireNonNull(d, "Received a null pointer as dice");
-        allRolls = Objects.requireNonNull(rolls, "Received a null pointer as rolls");
-        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
+        allRolls = Objects.requireNonNull(rolls,
+                "Received a null pointer as rolls");
+        totalRoll = Objects.requireNonNull(total,
+                "Received a null pointer as total roll");
     }
 
     /**
@@ -78,7 +84,8 @@ public final class DefaultRollResult implements RollResult {
         super();
 
         dice = new DefaultDice(1, total);
-        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
+        totalRoll = Objects.requireNonNull(total,
+                "Received a null pointer as total roll");
 
         allRolls = Arrays.asList(total);
     }

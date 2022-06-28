@@ -1,14 +1,17 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.bernardomg.tabletop.dice.random;
@@ -24,7 +27,8 @@ import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
 /**
- * Function for transforming a {@code Dice} to a {@code RollResult}, simulating rolls.
+ * Function for transforming a {@code Dice} to a {@code RollResult}, simulating
+ * rolls.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -34,12 +38,14 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
     /**
      * Logger.
      */
-    private static final Logger   LOGGER = LoggerFactory.getLogger(DiceToRollResult.class);
+    private static final Logger   LOGGER = LoggerFactory
+            .getLogger(DiceToRollResult.class);
 
     /**
      * The random numbers generator.
      * <p>
-     * Combined with the data in the rolled this, this will generate a random value in an interval.
+     * Combined with the data in the rolled this, this will generate a random
+     * value in an interval.
      */
     private final NumberGenerator numberGenerator;
 
@@ -61,13 +67,14 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
     public DiceToRollResult(final NumberGenerator generator) {
         super();
 
-        numberGenerator = Objects.requireNonNull(generator, "Received a null pointer as generator");
+        numberGenerator = Objects.requireNonNull(generator,
+                "Received a null pointer as generator");
     }
 
     @Override
     public final RollResult apply(final Dice dice) {
         final Iterable<Integer> rolls;
-        Integer                 total;
+        Integer total;
 
         rolls = numberGenerator.generate(dice);
 

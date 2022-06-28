@@ -1,14 +1,17 @@
 /**
  * Copyright 2014-2022 the original author or authors
  * <p>
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
  * <p>
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package com.bernardomg.tabletop.dice.parser.listener;
@@ -42,15 +45,18 @@ import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
 /**
- * Visitor for an ANTLR4 parser tree. It can return the fully parsed {@link DiceNotationExpression}.
+ * Visitor for an ANTLR4 parser tree. It can return the fully parsed
+ * {@link DiceNotationExpression}.
  * <p>
- * This {@code DiceNotationExpression} is the root for a tree representing the expression received by the parser.
+ * This {@code DiceNotationExpression} is the root for a tree representing the
+ * expression received by the parser.
  * <p>
  * The builder makes use of a stack for storing the objects as they are parsed.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener implements DiceExpressionBuilder {
+public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
+        implements DiceExpressionBuilder {
 
     /**
      * Operator which indicates the operation is an addition.
@@ -66,7 +72,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * Logger.
      */
     private static final Logger                 LOGGER                  = LoggerFactory
-        .getLogger(DefaultDiceExpressionBuilder.class);
+            .getLogger(DefaultDiceExpressionBuilder.class);
 
     /**
      * Operator which indicates the operation is a multiplication.
@@ -79,7 +85,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     private static final String                 SUBTRACTION_OPERATOR    = "-";
 
     /**
-     * Stack to store objects as they are parsed. The last object left inside it will be the root of the parsed tree.
+     * Stack to store objects as they are parsed. The last object left inside it
+     * will be the root of the parsed tree.
      */
     private final Stack<DiceNotationExpression> nodes                   = new Stack<>();
 
@@ -93,15 +100,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     @Override
     public final void exitAddOp(final AddOpContext ctx) {
         final DiceNotationExpression expression;
-        final Collection<String>     operators;
+        final Collection<String> operators;
 
         Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         // Operators are mapped into strings
-        operators = ctx.ADDOPERATOR()
-            .stream()
-            .map(TerminalNode::getText)
-            .collect(Collectors.toList());
+        operators = ctx.ADDOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
 
         expression = getBinaryOperation(operators);
 
@@ -126,15 +131,13 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     @Override
     public final void exitMultOp(final MultOpContext ctx) {
         final DiceNotationExpression expression;
-        final Collection<String>     operators;
+        final Collection<String> operators;
 
         Objects.requireNonNull(ctx, "Received a null pointer as context");
 
         // Operators are mapped into strings
-        operators = ctx.MULTOPERATOR()
-            .stream()
-            .map(TerminalNode::getText)
-            .collect(Collectors.toList());
+        operators = ctx.MULTOPERATOR().stream().map(TerminalNode::getText)
+                .collect(Collectors.toList());
 
         expression = getBinaryOperation(operators);
 
@@ -175,19 +178,22 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Creates a binary operation from the operators received.
      * <p>
-     * By making use of the nodes stack and the received operators it can build any binary operation.
+     * By making use of the nodes stack and the received operators it can build
+     * any binary operation.
      * <p>
-     * The returned expression will be the root which aggregates all the operations parsed into a tree.
+     * The returned expression will be the root which aggregates all the
+     * operations parsed into a tree.
      * 
      * @param operators
      *            parsed operators
      * @return a binary operation
      */
-    private final DiceNotationExpression getBinaryOperation(final Collection<String> operators) {
+    private final DiceNotationExpression
+            getBinaryOperation(final Collection<String> operators) {
         final Stack<DiceNotationExpression> operands;
-        BinaryOperation                     operation;
-        DiceNotationExpression              left;
-        DiceNotationExpression              right;
+        BinaryOperation operation;
+        DiceNotationExpression left;
+        DiceNotationExpression right;
 
         // There are as many operands as operators plus one
         operands = new Stack<>();
@@ -215,7 +221,8 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
                 operation = new DivisionOperation(left, right);
             } else {
                 LOGGER.error("Unknown operator {}", operator);
-                throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
+                throw new IllegalArgumentException(
+                        String.format("The %s operator is invalid", operator));
             }
 
             LOGGER.debug("Parsed operation {}", operation);
@@ -230,38 +237,34 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
     /**
      * Creates a dice operand from the parsed context data.
      * <p>
-     * If the dice is being subtracted then the sign of the dice set is reversed.
+     * If the dice is being subtracted then the sign of the dice set is
+     * reversed.
      * 
      * @param ctx
      *            parsed context
      * @return a dice operand
      */
     private final DiceOperand getDiceOperand(final DiceContext ctx) {
-        final Dice                   dice;                     // Parsed dice
-        final Integer                quantity;              // Number of dice
-        final Integer                sides;                 // Number of sides
+        final Dice dice;                     // Parsed dice
+        final Integer quantity;              // Number of dice
+        final Integer sides;                 // Number of sides
         final Iterator<TerminalNode> digits; // Parsed digits
-        final long                   size;                     // Size of the digit list
+        final long size;                     // Size of the digit list
 
         // Parses the dice data
-        digits = ctx.DIGIT()
-            .iterator();
-        size = StreamSupport.stream(ctx.DIGIT()
-            .spliterator(), false)
-            .count();
+        digits = ctx.DIGIT().iterator();
+        size = StreamSupport.stream(ctx.DIGIT().spliterator(), false).count();
 
         if (size > 1) {
             // Contains the quantity of dice
-            if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR.equals(ctx.ADDOPERATOR()
-                .getText()))) {
+            if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR
+                    .equals(ctx.ADDOPERATOR().getText()))) {
                 // Subtraction
                 LOGGER.debug("This is part of a subtraction. Reversing sign.");
-                quantity = 0 - Integer.parseInt(digits.next()
-                    .getText());
+                quantity = 0 - Integer.parseInt(digits.next().getText());
             } else {
                 // Addition
-                quantity = Integer.parseInt(digits.next()
-                    .getText());
+                quantity = Integer.parseInt(digits.next().getText());
             }
         } else {
             // No quantity of dice defined
@@ -270,8 +273,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             quantity = 1;
         }
 
-        sides = Integer.parseInt(digits.next()
-            .getText());
+        sides = Integer.parseInt(digits.next().getText());
 
         // Creates the dice
         dice = new DefaultDice(quantity, sides);
