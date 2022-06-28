@@ -113,8 +113,7 @@ public final class DefaultDiceParser implements DiceParser {
 
     @Override
     public final DiceNotationExpression parse(final String expression) {
-        final DiceNotationParser     parser;   // ANTLR parser
-        final DiceNotationExpression root; // Root expression
+        final DiceNotationParser parser; // ANTLR parser
 
         Objects.requireNonNull(expression, "Received a null pointer as string");
 

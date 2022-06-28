@@ -33,7 +33,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("An addition using only numbers returns the expression")
     public final void testParse_Number_Add() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1+2";
@@ -46,7 +46,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A long addition using only numbers returns the expression")
     public final void testParse_Number_Add_Long() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1+2+3";
@@ -59,7 +59,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A longer addition using only numbers returns the expression")
     public final void testParse_Number_Add_Longer() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1+2+3+4+5";
@@ -72,7 +72,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("An addition and subtraction using only numbers returns the expression")
     public final void testParse_Number_AddAndSub() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1+2-3";
@@ -85,7 +85,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A subtraction using only numbers returns the expression")
     public final void testParse_Number_Sub() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1-2";
@@ -98,7 +98,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A long subtraction using only numbers returns the expression")
     public final void testParse_Number_Sub_Long() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1-2-3";
@@ -111,7 +111,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A longer subtraction using only numbers returns the expression")
     public final void testParse_Number_Sub_Longer() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "1-2-3-4-5";
@@ -124,7 +124,7 @@ public final class ITDefaultDiceParserNumbersNotation {
     @Test
     @DisplayName("A subtraction followed by an addition using only numbers returns the expression")
     public final void testParse_Number_SubAndAdd() {
-        final String                 notation;                  // Input to parse
+        final String                 notation;  // Input to parse
         final DiceNotationExpression operation; // Parsed operation
 
         notation = "3-1+2";

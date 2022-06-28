@@ -36,7 +36,7 @@ public class TestDefaultDiceOperand {
     @DisplayName("The text expression is generated correctly")
     public final void testTextExpression() {
         final DiceNotationExpression diceOperand; // Tested operand
-        final Dice                   dice;                          // Dice for the operand
+        final Dice                   dice;        // Dice for the operand
 
         dice = Mockito.mock(Dice.class);
         Mockito.when(dice.getQuantity())

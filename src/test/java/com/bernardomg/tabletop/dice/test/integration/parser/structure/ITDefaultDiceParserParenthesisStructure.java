@@ -39,7 +39,7 @@ public final class ITDefaultDiceParserParenthesisStructure {
     @Test
     @DisplayName("An operation with parenthesis returns the expected structure")
     public final void testParse_Number_AddAndMult_Structure() {
-        final String            notation;           // Input to parse
+        final String            notation;  // Input to parse
         final BinaryOperation   operation; // Parsed operation
         final AdditionOperation add;
         IntegerOperand          number;

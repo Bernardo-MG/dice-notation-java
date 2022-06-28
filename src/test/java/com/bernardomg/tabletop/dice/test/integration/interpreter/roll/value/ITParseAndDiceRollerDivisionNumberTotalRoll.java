@@ -36,9 +36,9 @@ public final class ITParseAndDiceRollerDivisionNumberTotalRoll {
     @Disabled
     @DisplayName("An inexact division returns a float value")
     public final void testParse_Division_FloatValue() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "3/2";
 
@@ -53,9 +53,9 @@ public final class ITParseAndDiceRollerDivisionNumberTotalRoll {
     @Test
     @DisplayName("A exact division returns the expected value")
     public final void testParse_Division_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "4/2";
 

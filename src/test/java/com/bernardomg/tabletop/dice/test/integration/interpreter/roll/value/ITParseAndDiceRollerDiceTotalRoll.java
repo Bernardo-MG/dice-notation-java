@@ -36,8 +36,8 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Disabled
     @DisplayName("The largest possible dice returns the expected value")
     public final void testParse_Dice_Biggest() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final String                 notation; // Input to parse
 
         // TODO: Test performance
 
@@ -51,9 +51,9 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Test
     @DisplayName("A negative dice returns the expected value")
     public final void testParse_Dice_Negative_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "-1d1";
 
@@ -68,9 +68,9 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Test
     @DisplayName("A dice with no quantity returns the expected value")
     public final void testParse_Dice_NoQuantity_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "d1";
 
@@ -85,9 +85,9 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Test
     @DisplayName("A dice with zero sides returns the expected value")
     public final void testParse_Dice_NoSides_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1d0";
 
@@ -102,9 +102,9 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Test
     @DisplayName("The smallest possible dice returns the expected value")
     public final void testParse_Dice_Smallest_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1d1";
 
@@ -119,9 +119,9 @@ public final class ITParseAndDiceRollerDiceTotalRoll {
     @Test
     @DisplayName("A dice with zero quantity returns the expected value")
     public final void testParse_Dice_ZeroQuantity_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "0d1";
 

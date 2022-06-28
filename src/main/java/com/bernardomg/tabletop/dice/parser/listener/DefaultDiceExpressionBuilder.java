@@ -240,11 +240,11 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * @return a dice operand
      */
     private final DiceOperand getDiceOperand(final DiceContext ctx) {
-        final Dice                   dice;                     // Parsed dice
-        final Integer                quantity;              // Number of dice
-        final Integer                sides;                 // Number of sides
-        final Iterator<TerminalNode> digits; // Parsed digits
-        final long                   size;                     // Size of the digit list
+        final Dice                   dice;     // Parsed dice
+        final Integer                quantity; // Number of dice
+        final Integer                sides;    // Number of sides
+        final Iterator<TerminalNode> digits;   // Parsed digits
+        final long                   size;     // Size of the digit list
 
         // Parses the dice data
         digits = ctx.DIGIT()

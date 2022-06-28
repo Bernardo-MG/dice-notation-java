@@ -34,9 +34,9 @@ public final class ITParseAndDiceRollerMultiplicationNumberTotalRoll {
     @Test
     @DisplayName("A multiplication returns the expected value")
     public final void testParse_multiplication_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1*2";
 

@@ -37,7 +37,7 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A long subtraction returns the expected structure")
     public final void testParse_Number_Sub_Long_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
         SubtractionOperation       sub;
         IntegerOperand             number;
@@ -62,7 +62,7 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A longer subtraction returns the expected structure")
     public final void testParse_Number_Sub_Longer_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
         SubtractionOperation       sub;
         IntegerOperand             number;
@@ -97,7 +97,7 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A subtraction returns the expected structure")
     public final void testParse_Number_Sub_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
         IntegerOperand             number;
 

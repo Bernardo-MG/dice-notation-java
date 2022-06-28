@@ -40,9 +40,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using dice addition")
     public final void testParse_Addition() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d20+2d6");
 
@@ -68,9 +68,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a complex expression")
     public final void testParse_Complex_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d20-5*1d8+2d6/3d12");
 
@@ -106,9 +106,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a long expression")
     public final void testParse_Long_ReturnsAll() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d20+2d6-1d12+1d6+2d8");
 
@@ -149,7 +149,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using the max integers")
     public final void testParse_Max() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
@@ -165,7 +165,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using a negative dice")
     public final void testParse_Negative() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("-1d6");
 
@@ -181,7 +181,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("No dice are aquired from a constant")
     public final void testParse_NoDice() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         dice;           // Resulting dice
+        final Iterable<Dice>         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1");
 
@@ -195,7 +195,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using the minimal dice")
     public final void testParse_OnesDice_Minimal() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d1");
 
@@ -211,7 +211,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using a simple dice")
     public final void testParse_Simple() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6");
 
@@ -227,9 +227,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using dice subtraction")
     public final void testParse_Subtraction() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6-2d12");
 
@@ -255,9 +255,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using subtraction and addition")
     public final void testParse_SubtractionAddition() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6-2d8+3d10");
 
@@ -288,9 +288,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using subtraction and addition when all the dice are equal")
     public final void testParse_SubtractionAddition_Dice_AllEqual() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6-1d6+1d6");
 
@@ -321,9 +321,9 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using dice and constants")
     public final void testParse_WithConstants() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Iterable<Dice>         sets;           // Parsed dice sets
-        final Iterator<Dice>         itr;            // Parsed dice sets
-        Dice                         dice;                           // Resulting dice
+        final Iterable<Dice>         sets;   // Parsed dice sets
+        final Iterator<Dice>         itr;    // Parsed dice sets
+        Dice                         dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6-2+3d10");
 
@@ -349,7 +349,7 @@ public final class ITParseAndDiceGatherer {
     @DisplayName("Dice can be acquired from a expression using zero for quantity")
     public final void testParse_ZeroQuantity() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("0d6");
 

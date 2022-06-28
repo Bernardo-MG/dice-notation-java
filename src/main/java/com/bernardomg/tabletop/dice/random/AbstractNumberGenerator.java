@@ -51,7 +51,7 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
 
     @Override
     public final Iterable<Integer> generate(final Dice dice) {
-        final Collection<Integer> rolls; // Roll results
+        final Collection<Integer> rolls;       // Roll results
         final Integer             quantity;
         final Supplier<Integer>   rollSupplier;
 

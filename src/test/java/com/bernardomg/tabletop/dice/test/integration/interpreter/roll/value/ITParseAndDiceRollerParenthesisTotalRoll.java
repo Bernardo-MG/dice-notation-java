@@ -34,9 +34,9 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
     @Test
     @DisplayName("A mixed operation with parenthesis returns the expected value")
     public final void testParse_AddAndMult_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "(1+2)*3";
 
@@ -51,9 +51,9 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
     @Test
     @DisplayName("A constant with parenthesis returns the expected value")
     public final void testParse_Number_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "(1)";
 

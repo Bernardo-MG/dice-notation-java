@@ -37,9 +37,9 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication returns the expected result")
     public final void testTotalRoll() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(1);
@@ -57,13 +57,13 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped negatives) returns the expected result")
     public final void testTotalRoll_GroupedNegatives() {
-        final BinaryOperation        operation;     // Tested operation
-        final BinaryOperation        groupeda;      // Tested operation
-        final BinaryOperation        groupedb;      // Tested operation
-        final DiceNotationExpression lefta;  // Left operand
-        final DiceNotationExpression righta; // Right operand
-        final DiceNotationExpression leftb;  // Left operand
-        final DiceNotationExpression rightb; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final BinaryOperation        groupeda;  // Tested operation
+        final BinaryOperation        groupedb;  // Tested operation
+        final DiceNotationExpression lefta;     // Left operand
+        final DiceNotationExpression righta;    // Right operand
+        final DiceNotationExpression leftb;     // Left operand
+        final DiceNotationExpression rightb;    // Right operand
         final Integer                rolled;
 
         lefta = new IntegerOperand(1);
@@ -91,9 +91,9 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (right value negative) returns the expected result")
     public final void testTotalRoll_MultiplyNegative() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(-1);
@@ -111,11 +111,11 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped values with a negative on the left) returns the expected result")
     public final void testTotalRoll_MultiplyNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
+        final BinaryOperation        grouped;   // Tested operation
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
+        final DiceNotationExpression value;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(1);
@@ -139,9 +139,9 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (negative) returns the expected result")
     public final void testTotalRoll_MultiplyNegatives() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(-1);
@@ -159,9 +159,9 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (right value negative) returns the expected result")
     public final void testTotalRoll_MultiplyToNegative() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(1);
@@ -179,11 +179,11 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped values with a negative on the right) returns the expected result")
     public final void testTotalRoll_MultiplyToNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
+        final BinaryOperation        grouped;   // Tested operation
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
+        final DiceNotationExpression value;     // Right operand
         final Integer                rolled;
 
         value = new IntegerOperand(1);
@@ -207,9 +207,9 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (zeroes) returns the expected result")
     public final void testTotalRoll_Zeroes() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(0);

@@ -38,10 +38,10 @@ public final class ITDefaultDiceParserSubstractionDiceStructure {
     @Test
     @DisplayName("An subtraction returns the expected structure")
     public final void testParse_Dice_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        final DiceOperand          diceLeft;           // Left parsed dice
-        final DiceOperand          diceRight;          // Right parsed dice
+        final DiceOperand          diceLeft;  // Left parsed dice
+        final DiceOperand          diceRight; // Right parsed dice
 
         notation = "1d20-2d6";
 
@@ -64,10 +64,10 @@ public final class ITDefaultDiceParserSubstractionDiceStructure {
     @Test
     @DisplayName("An subtraction with a number on the left returns the expected structure")
     public final void testParse_LeftNumber_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        final IntegerOperand       integer;         // Integer operand
-        final DiceOperand          dice;               // Dice operand
+        final IntegerOperand       integer;   // Integer operand
+        final DiceOperand          dice;      // Dice operand
 
         notation = "5-2d6";
 
@@ -87,10 +87,10 @@ public final class ITDefaultDiceParserSubstractionDiceStructure {
     @Test
     @DisplayName("An subtraction with a number on the right returns the expected structure")
     public final void testParse_RightNumber_Structure() {
-        final String               notation;                // Input to parse
+        final String               notation;  // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        final IntegerOperand       integer;         // Integer operand
-        final DiceOperand          dice;               // Dice operand
+        final IntegerOperand       integer;   // Integer operand
+        final DiceOperand          dice;      // Dice operand
 
         notation = "2d6-5";
 

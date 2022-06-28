@@ -41,9 +41,9 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division returns the expected result")
     public final void testTotalRoll() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(2);
@@ -61,9 +61,9 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (negative divisor) returns the expected result")
     public final void testTotalRoll_DivideByNegative() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(2);
@@ -81,11 +81,11 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (grouped divisor with negative) returns the expected result")
     public final void testTotalRoll_DivideByNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
+        final BinaryOperation        grouped;   // Tested operation
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
+        final DiceNotationExpression value;     // Right operand
         final Integer                rolled;
 
         value = new IntegerOperand(1);
@@ -112,9 +112,9 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (negative dividend) returns the expected result")
     public final void testTotalRoll_DivideNegative() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(-2);
@@ -132,11 +132,11 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (grouped dividend with a negative) returns the expected result")
     public final void testTotalRoll_DivideNegative_Grouped() {
-        final BinaryOperation        grouped;      // Tested operation
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
-        final DiceNotationExpression value; // Right operand
+        final BinaryOperation        grouped;   // Tested operation
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
+        final DiceNotationExpression value;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(1);
@@ -160,9 +160,9 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (negative values) returns the expected result")
     public final void testTotalRoll_DivideNegatives() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Integer                rolled;
 
         left = new IntegerOperand(-2);
@@ -180,13 +180,13 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (grouped negatives) returns the expected result")
     public final void testTotalRoll_GroupedNegatives() {
-        final BinaryOperation        operation;     // Tested operation
-        final BinaryOperation        groupeda;      // Tested operation
-        final BinaryOperation        groupedb;      // Tested operation
-        final DiceNotationExpression lefta;  // Left operand
-        final DiceNotationExpression righta; // Right operand
-        final DiceNotationExpression leftb;  // Left operand
-        final DiceNotationExpression rightb; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final BinaryOperation        groupeda;  // Tested operation
+        final BinaryOperation        groupedb;  // Tested operation
+        final DiceNotationExpression lefta;     // Left operand
+        final DiceNotationExpression righta;    // Right operand
+        final DiceNotationExpression leftb;     // Left operand
+        final DiceNotationExpression rightb;    // Right operand
         final Integer                rolled;
 
         lefta = new IntegerOperand(1);
@@ -214,9 +214,9 @@ public final class TestDiceRollerDivisionOperationValue {
     @Test
     @DisplayName("A division (zeros) returns the expected result")
     public final void testTotalRoll_Zeroes() {
-        final BinaryOperation        operation;    // Tested operation
-        final DiceNotationExpression left;  // Left operand
-        final DiceNotationExpression right; // Right operand
+        final BinaryOperation        operation; // Tested operation
+        final DiceNotationExpression left;      // Left operand
+        final DiceNotationExpression right;     // Right operand
         final Executable             closure;
 
         left = new IntegerOperand(0);

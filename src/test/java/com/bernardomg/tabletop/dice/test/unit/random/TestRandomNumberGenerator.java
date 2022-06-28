@@ -49,12 +49,12 @@ public final class TestRandomNumberGenerator {
     @Test
     @DisplayName("The generated numbers are kept inside the expected interval")
     public final void testGenerate_ValuesInBounds() {
-        final NumberGenerator     generator;   // Tested generator
-        final Integer             lowerLimit;          // Lowest allowed number
-        final Integer             upperLimit;          // Highest allowed number
-        final Collection<Integer> numbers; // Generated numbers
-        final Integer             times;               // Times to run the test loop
-        final Integer             max;                 // Max for the number generation
+        final NumberGenerator     generator;  // Tested generator
+        final Integer             lowerLimit; // Lowest allowed number
+        final Integer             upperLimit; // Highest allowed number
+        final Collection<Integer> numbers;    // Generated numbers
+        final Integer             times;      // Times to run the test loop
+        final Integer             max;        // Max for the number generation
 
         generator = new RandomNumberGenerator();
 

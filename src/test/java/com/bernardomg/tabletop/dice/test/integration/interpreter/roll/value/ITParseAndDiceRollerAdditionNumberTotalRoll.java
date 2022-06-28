@@ -34,9 +34,9 @@ public final class ITParseAndDiceRollerAdditionNumberTotalRoll {
     @Test
     @DisplayName("An addition using only dice returns the expected structure")
     public final void testParse_Number_Add_Long_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1+2+3";
 
@@ -51,9 +51,9 @@ public final class ITParseAndDiceRollerAdditionNumberTotalRoll {
     @Test
     @DisplayName("A longer addition returns the expected value")
     public final void testParse_Number_Add_Longer_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1+2+3+4+5";
 
@@ -68,9 +68,9 @@ public final class ITParseAndDiceRollerAdditionNumberTotalRoll {
     @Test
     @DisplayName("An addition returns the expected value")
     public final void testParse_Number_Add_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer                result;                // Resulting value
-        final String                 notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1+2";
 
