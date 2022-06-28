@@ -27,8 +27,7 @@ import com.bernardomg.tabletop.dice.Dice;
 public interface RollResult {
 
     /**
-     * All the values generated from rolling the dice, in the order they were
-     * generated.
+     * All the values generated from rolling the dice, in the order they were generated.
      * 
      * @return all the dice rolls
      */

@@ -35,14 +35,15 @@ public final class ITParseAndDiceRollerNumberTotalRoll {
     @DisplayName("A constant returns the expected value")
     public final void testParse_Number() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "12";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(12), result);
     }
@@ -51,14 +52,15 @@ public final class ITParseAndDiceRollerNumberTotalRoll {
     @DisplayName("A negative returns the expected value")
     public final void testParse_Number_Negative() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "-12";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-12), result);
     }
@@ -67,14 +69,15 @@ public final class ITParseAndDiceRollerNumberTotalRoll {
     @DisplayName("A constant padded by zeros returns the expected value")
     public final void testParse_Number_ZeroPadding() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "001200";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(1200), result);
     }

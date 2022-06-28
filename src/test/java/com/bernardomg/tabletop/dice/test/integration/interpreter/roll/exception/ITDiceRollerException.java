@@ -36,7 +36,7 @@ public final class ITDiceRollerException {
     @DisplayName("Divide by zero throws an exception")
     public final void testParse_DivideByZero() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Executable closure;
+        final Executable             closure;
 
         parsed = new DefaultDiceParser().parse("1/0");
 

@@ -37,23 +37,25 @@ public final class TestDiceToRollResultCalls {
     @Test
     @DisplayName("The generator is called a single time for several dice")
     public final void testApply_GeneratesOnce() {
-        final Dice dice;
+        final Dice            dice;
         final NumberGenerator generator;
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(3);
-        Mockito.when(dice.getSides()).thenReturn(1);
+        Mockito.when(dice.getQuantity())
+            .thenReturn(3);
+        Mockito.when(dice.getSides())
+            .thenReturn(1);
 
         // Mocks generator
         generator = Mockito.mock(NumberGenerator.class);
         Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-                .thenReturn(Arrays.asList(1, 2, 3));
+            .thenReturn(Arrays.asList(1, 2, 3));
 
         new DiceToRollResult(generator).apply(dice);
 
         Mockito.verify(generator, Mockito.times(1))
-                .generate((Dice) ArgumentMatchers.any());
+            .generate((Dice) ArgumentMatchers.any());
     }
 
 }

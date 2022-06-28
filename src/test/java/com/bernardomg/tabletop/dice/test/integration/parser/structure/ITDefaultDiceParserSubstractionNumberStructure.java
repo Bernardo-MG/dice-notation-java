@@ -37,16 +37,15 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A long subtraction returns the expected structure")
     public final void testParse_Number_Sub_Long_Structure() {
-        final String notation;                // Input to parse
+        final String               notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        SubtractionOperation sub;
-        IntegerOperand number;
+        SubtractionOperation       sub;
+        IntegerOperand             number;
 
         notation = "1-2-3";
 
         // ((1-2)-3)
-        operation = (SubtractionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 3, number.getValue());
@@ -63,16 +62,15 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A longer subtraction returns the expected structure")
     public final void testParse_Number_Sub_Longer_Structure() {
-        final String notation;                // Input to parse
+        final String               notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        SubtractionOperation sub;
-        IntegerOperand number;
+        SubtractionOperation       sub;
+        IntegerOperand             number;
 
         notation = "1-2-3-4-5";
 
         // ((((1-2)-3)-4)-5)
-        operation = (SubtractionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 5, number.getValue());
@@ -99,14 +97,13 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
     @Test
     @DisplayName("A subtraction returns the expected structure")
     public final void testParse_Number_Sub_Structure() {
-        final String notation;                // Input to parse
+        final String               notation;                // Input to parse
         final SubtractionOperation operation; // Parsed operation
-        IntegerOperand number;
+        IntegerOperand             number;
 
         notation = "1-2";
 
-        operation = (SubtractionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 2, number.getValue());

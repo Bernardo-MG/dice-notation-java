@@ -37,8 +37,7 @@ public final class DefaultDiceOperand implements DiceOperand {
 
     @Override
     public final String getExpression() {
-        return String.format("%dd%d", getDice().getQuantity(),
-                getDice().getSides());
+        return String.format("%dd%d", getDice().getQuantity(), getDice().getSides());
     }
 
 }

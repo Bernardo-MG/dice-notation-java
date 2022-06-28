@@ -26,8 +26,7 @@ import lombok.NonNull;
 /**
  * Abstract class for binary operations, containing all the common fields.
  * <p>
- * These fields are the operands and the operation, stored as a
- * {@link BiFunction}.
+ * These fields are the operands and the operation, stored as a {@link BiFunction}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -62,8 +61,7 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
      * @param func
      *            operation to apply
      */
-    public AbstractBinaryOperation(
-            @NonNull final DiceNotationExpression leftOperand,
+    public AbstractBinaryOperation(@NonNull final DiceNotationExpression leftOperand,
             @NonNull final DiceNotationExpression rightOperand,
             @NonNull final BiFunction<Integer, Integer, Integer> func) {
         super();

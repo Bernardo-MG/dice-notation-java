@@ -37,10 +37,10 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication returns the expected result")
     public final void testTotalRoll() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -48,7 +48,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
@@ -56,14 +57,14 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped negatives) returns the expected result")
     public final void testTotalRoll_GroupedNegatives() {
-        final BinaryOperation operation;     // Tested operation
-        final BinaryOperation groupeda;      // Tested operation
-        final BinaryOperation groupedb;      // Tested operation
+        final BinaryOperation        operation;     // Tested operation
+        final BinaryOperation        groupeda;      // Tested operation
+        final BinaryOperation        groupedb;      // Tested operation
         final DiceNotationExpression lefta;  // Left operand
         final DiceNotationExpression righta; // Right operand
         final DiceNotationExpression leftb;  // Left operand
         final DiceNotationExpression rightb; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         lefta = new IntegerOperand(1);
         righta = new IntegerOperand(2);
@@ -81,7 +82,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = 1
         operation = new MultiplicationOperation(groupeda, groupedb);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(1), rolled);
     }
@@ -89,10 +91,10 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (right value negative) returns the expected result")
     public final void testTotalRoll_MultiplyNegative() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -100,7 +102,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // -1 * 2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
@@ -108,12 +111,12 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped values with a negative on the left) returns the expected result")
     public final void testTotalRoll_MultiplyNegative_Grouped() {
-        final BinaryOperation grouped;      // Tested operation
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        grouped;      // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -127,7 +130,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = -3
         operation = new MultiplicationOperation(grouped, value);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-3), rolled);
     }
@@ -135,10 +139,10 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (negative) returns the expected result")
     public final void testTotalRoll_MultiplyNegatives() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(-2);
@@ -146,7 +150,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // -1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(2), rolled);
     }
@@ -154,10 +159,10 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (right value negative) returns the expected result")
     public final void testTotalRoll_MultiplyToNegative() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(-2);
@@ -165,7 +170,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 1 * -2
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-2), rolled);
     }
@@ -173,12 +179,12 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (grouped values with a negative on the right) returns the expected result")
     public final void testTotalRoll_MultiplyToNegative_Grouped() {
-        final BinaryOperation grouped;      // Tested operation
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        grouped;      // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
         final DiceNotationExpression value; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         value = new IntegerOperand(1);
 
@@ -192,7 +198,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // = -1
         operation = new MultiplicationOperation(value, grouped);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-1), rolled);
     }
@@ -200,10 +207,10 @@ public final class TestDiceRollerMultiplicationOperationValue {
     @Test
     @DisplayName("A multiplication (zeroes) returns the expected result")
     public final void testTotalRoll_Zeroes() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
-        final Integer rolled;
+        final Integer                rolled;
 
         left = new IntegerOperand(0);
         right = new IntegerOperand(0);
@@ -211,7 +218,8 @@ public final class TestDiceRollerMultiplicationOperationValue {
         // 0 * 0
         operation = new MultiplicationOperation(left, right);
 
-        rolled = new DiceRoller().transform(operation).getTotalRoll();
+        rolled = new DiceRoller().transform(operation)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(0), rolled);
     }

@@ -20,8 +20,7 @@
  * These classes allow creating a tree representing a dice notation expression.
  * <p>
  * It is not recommended instancing the notation classes manually. Instead a
- * {@link com.bernardomg.tabletop.dice.parser.DiceParser DiceParser} should be
- * used.
+ * {@link com.bernardomg.tabletop.dice.parser.DiceParser DiceParser} should be used.
  */
 
 package com.bernardomg.tabletop.dice.notation;

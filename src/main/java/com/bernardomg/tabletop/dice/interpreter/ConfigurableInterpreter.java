@@ -30,10 +30,9 @@ import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
 /**
  * An interpreter which can be customized.
  * <p>
- * It chains a traverser, which is another interpreter returning an
- * {@code Iterable<DiceNotationExpression>}, with a {@link NotationAccumulator}.
- * The traverser will flatten the notation tree, and then the accumulator will
- * go through it.
+ * It chains a traverser, which is another interpreter returning an {@code Iterable<DiceNotationExpression>}, with a
+ * {@link NotationAccumulator}. The traverser will flatten the notation tree, and then the accumulator will go through
+ * it.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -46,7 +45,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      * Logger.
      */
     private static final Logger                                     LOGGER = LoggerFactory
-            .getLogger(ConfigurableInterpreter.class);
+        .getLogger(ConfigurableInterpreter.class);
 
     /**
      * Accumulator for generating the final result.
@@ -66,24 +65,20 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
      * @param accum
      *            accumulator to generate the result
      */
-    public ConfigurableInterpreter(
-            final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
+    public ConfigurableInterpreter(final DiceInterpreter<Iterable<DiceNotationExpression>> trav,
             final NotationAccumulator<V> accum) {
         super();
 
-        traverser = Objects.requireNonNull(trav,
-                "Received a null pointer as traverser");
-        accumulator = Objects.requireNonNull(accum,
-                "Received a null pointer as accumulator");
+        traverser = Objects.requireNonNull(trav, "Received a null pointer as traverser");
+        accumulator = Objects.requireNonNull(accum, "Received a null pointer as accumulator");
     }
 
     @Override
     public final V transform(final DiceNotationExpression expression) {
         final Iterable<DiceNotationExpression> exps;
-        final V result;
+        final V                                result;
 
-        Objects.requireNonNull(expression,
-                "Received a null pointer as expression");
+        Objects.requireNonNull(expression, "Received a null pointer as expression");
 
         LOGGER.debug("Root expression {}", expression);
 
@@ -120,8 +115,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             } else if (current instanceof DiceOperand) {
                 accumulator.diceOperand((DiceOperand) current);
             } else {
-                LOGGER.warn("Unsupported expression of type {}",
-                        current.getClass());
+                LOGGER.warn("Unsupported expression of type {}", current.getClass());
             }
         }
 

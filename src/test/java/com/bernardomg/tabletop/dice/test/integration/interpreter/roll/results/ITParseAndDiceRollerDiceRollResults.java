@@ -40,16 +40,18 @@ public final class ITParseAndDiceRollerDiceRollResults {
     @DisplayName("Returns the expected result for the smallest dice")
     public final void testParse_SmallestDice_Dice() {
         final DiceNotationExpression expression;
-        final RollResult result;
-        final String notation;
-        Dice dice;
+        final RollResult             result;
+        final String                 notation;
+        Dice                         dice;
 
         notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(expression).getRollResults()
-                .iterator().next();
+        result = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator()
+            .next();
 
         dice = result.getDice();
         Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
@@ -60,46 +62,50 @@ public final class ITParseAndDiceRollerDiceRollResults {
     @DisplayName("Returns the expected number of results for the smallest dice")
     public final void testParse_SmallestDice_Quantity() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> rolled;
-        final String notation;
+        final Iterable<RollResult>   rolled;
+        final String                 notation;
 
         notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults();
 
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolled.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolled.spliterator(), false)
+            .count());
     }
 
     @Test
     @DisplayName("Returns the expected rolls for the smallest dice")
     public final void testParse_SmallestDice_Rolls() {
         final DiceNotationExpression expression;
-        final RollResult result;
-        final Iterable<Integer> rolls;
-        final String notation;
+        final RollResult             result;
+        final Iterable<Integer>      rolls;
+        final String                 notation;
 
         notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(expression).getRollResults()
-                .iterator().next();
+        result = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator()
+            .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
-        Assertions.assertEquals(Integer.valueOf(1), rolls.iterator().next());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
+        Assertions.assertEquals(Integer.valueOf(1), rolls.iterator()
+            .next());
     }
 
     @Test
     @DisplayName("Returns the expected total roll for the smallest dice")
     public final void testParse_SmallestDice_TotalRoll() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory history;
+        final String                 notation;
+        final RollHistory            history;
 
         notation = "1d1";
 
@@ -114,15 +120,17 @@ public final class ITParseAndDiceRollerDiceRollResults {
     @DisplayName("Returns the expected total rolls for the smallest dice")
     public final void testParse_SmallestDice_TotalRolls() {
         final DiceNotationExpression expression;
-        final RollResult result;
-        final String notation;
+        final RollResult             result;
+        final String                 notation;
 
         notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(expression).getRollResults()
-                .iterator().next();
+        result = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator()
+            .next();
 
         Assertions.assertEquals(Integer.valueOf(1), result.getTotalRoll());
     }

@@ -35,7 +35,7 @@ public final class TestMultiplicationOperation {
     @Test
     @DisplayName("The text expression is generated correctly for negatives")
     public final void test_TextExpression_Negatives() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 
@@ -50,7 +50,7 @@ public final class TestMultiplicationOperation {
     @Test
     @DisplayName("The text expression is generated correctly")
     public final void test_TextExpression_Positives() {
-        final BinaryOperation operation;    // Tested operation
+        final BinaryOperation        operation;    // Tested operation
         final DiceNotationExpression left;  // Left operand
         final DiceNotationExpression right; // Right operand
 

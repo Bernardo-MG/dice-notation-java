@@ -35,10 +35,10 @@ public final class ITDefaultDiceParserAdditionNumberStructure {
     @Test
     @DisplayName("A long addition returns the expected structure")
     public final void testParse_Number_Add_Long_Structure() {
-        final String notation;           // Input to parse
+        final String          notation;           // Input to parse
         final BinaryOperation operation; // Parsed operation
-        AdditionOperation add;
-        IntegerOperand number;
+        AdditionOperation     add;
+        IntegerOperand        number;
 
         notation = "1+2+3";
 
@@ -60,10 +60,10 @@ public final class ITDefaultDiceParserAdditionNumberStructure {
     @Test
     @DisplayName("A longer addition returns the expected structure")
     public final void testParse_Number_Add_Longer_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        AdditionOperation add;
-        IntegerOperand number;
+        AdditionOperation       add;
+        IntegerOperand          number;
 
         notation = "1+2+3+4+5";
 
@@ -95,9 +95,9 @@ public final class ITDefaultDiceParserAdditionNumberStructure {
     @Test
     @DisplayName("An addition returns the expected structure")
     public final void testParse_Number_Add_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;             // Input to parse
         final AdditionOperation operation; // Parsed operation
-        IntegerOperand number;
+        IntegerOperand          number;
 
         notation = "1+2";
 

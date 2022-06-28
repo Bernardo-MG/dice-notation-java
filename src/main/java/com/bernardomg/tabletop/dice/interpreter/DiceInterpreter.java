@@ -19,8 +19,8 @@ package com.bernardomg.tabletop.dice.interpreter;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Transforms a dice notation expression into another object. The expression
- * received is expected to be the root of a notation tree.
+ * Transforms a dice notation expression into another object. The expression received is expected to be the root of a
+ * notation tree.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *

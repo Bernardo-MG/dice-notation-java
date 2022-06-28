@@ -21,8 +21,7 @@ import java.util.Objects;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Wraps an expression to hide its type. Used for example when pruning a tree,
- * to create a node without children.
+ * Wraps an expression to hide its type. Used for example when pruning a tree, to create a node without children.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -43,8 +42,7 @@ public final class ExpressionWrapper implements DiceNotationExpression {
     public ExpressionWrapper(final DiceNotationExpression exp) {
         super();
 
-        wrappedExpression = Objects.requireNonNull(exp,
-                "Received a null pointer as expression");
+        wrappedExpression = Objects.requireNonNull(exp, "Received a null pointer as expression");
     }
 
     @Override

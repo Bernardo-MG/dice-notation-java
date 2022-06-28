@@ -62,16 +62,13 @@ public final class DefaultRollResult implements RollResult {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(@NonNull final Dice d,
-            @NonNull final Iterable<Integer> rolls,
+    public DefaultRollResult(@NonNull final Dice d, @NonNull final Iterable<Integer> rolls,
             @NonNull final Integer total) {
         super();
 
         dice = Objects.requireNonNull(d, "Received a null pointer as dice");
-        allRolls = Objects.requireNonNull(rolls,
-                "Received a null pointer as rolls");
-        totalRoll = Objects.requireNonNull(total,
-                "Received a null pointer as total roll");
+        allRolls = Objects.requireNonNull(rolls, "Received a null pointer as rolls");
+        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
     }
 
     /**
@@ -84,8 +81,7 @@ public final class DefaultRollResult implements RollResult {
         super();
 
         dice = new DefaultDice(1, total);
-        totalRoll = Objects.requireNonNull(total,
-                "Received a null pointer as total roll");
+        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
 
         allRolls = Arrays.asList(total);
     }

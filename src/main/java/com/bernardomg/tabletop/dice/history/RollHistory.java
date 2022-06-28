@@ -21,8 +21,7 @@ package com.bernardomg.tabletop.dice.history;
  * <p>
  * A {@link RollResult} will be present for each dice set rolled.
  * <p>
- * Note that constants may be represented as dice set with a single side, and as
- * many dice as the value.
+ * Note that constants may be represented as dice set with a single side, and as many dice as the value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *

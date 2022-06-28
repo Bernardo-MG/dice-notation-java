@@ -15,8 +15,7 @@
  */
 
 /**
- * Random generation of numbers. To be used when rolling the expressions, or to
- * customise the random chances.
+ * Random generation of numbers. To be used when rolling the expressions, or to customise the random chances.
  */
 
 package com.bernardomg.tabletop.dice.random;

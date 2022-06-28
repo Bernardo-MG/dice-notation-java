@@ -20,11 +20,9 @@ import com.bernardomg.tabletop.dice.interpreter.DiceInterpreter;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Transforms a dice notation expression, received as a string, into the dice
- * notation model.
+ * Transforms a dice notation expression, received as a string, into the dice notation model.
  * <p>
- * The returned object is expected to be the root node of a tree made up by dice
- * notation model objects.
+ * The returned object is expected to be the root node of a tree made up by dice notation model objects.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -40,8 +38,7 @@ public interface DiceParser {
     public DiceNotationExpression parse(final String expression);
 
     /**
-     * Transforms a dice notation expression into the dice notation model and
-     * applies the received interpreter.
+     * Transforms a dice notation expression into the dice notation model and applies the received interpreter.
      * 
      * @param <V>
      *            type returned by the transformer
@@ -51,7 +48,6 @@ public interface DiceParser {
      *            interpreter to apply
      * @return the expression transformed by the interpreter
      */
-    public <V> V parse(final String expression,
-            final DiceInterpreter<V> interpreter);
+    public <V> V parse(final String expression, final DiceInterpreter<V> interpreter);
 
 }

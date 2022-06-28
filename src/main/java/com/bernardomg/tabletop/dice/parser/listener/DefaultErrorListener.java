@@ -34,8 +34,7 @@ public final class DefaultErrorListener extends BaseErrorListener {
     /**
      * Logger.
      */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(DefaultErrorListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultErrorListener.class);
 
     /**
      * Default constructor.
@@ -45,15 +44,12 @@ public final class DefaultErrorListener extends BaseErrorListener {
     }
 
     @Override
-    public final void syntaxError(final Recognizer<?, ?> recognizer,
-            final Object offendingSymbol, final int line,
-            final int charPositionInLine, final String msg,
-            final RecognitionException e) {
+    public final void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
+            final int charPositionInLine, final String msg, final RecognitionException e) {
         final String message; // Final exception message
 
-        message = String.format(
-                "Failed to parse at line %1$d on char %2$d due to %3$s", line,
-                charPositionInLine + 1, msg);
+        message = String.format("Failed to parse at line %1$d on char %2$d due to %3$s", line, charPositionInLine + 1,
+            msg);
 
         LOGGER.error(message);
 

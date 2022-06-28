@@ -36,7 +36,7 @@ public final class TestDiceRollerConstantText {
     @DisplayName("A negative value returns the expected text")
     public final void testText_Negative_Text() {
         final DiceNotationExpression expression;
-        final RollHistory result;
+        final RollHistory            result;
 
         expression = new IntegerOperand(-1);
 
@@ -49,7 +49,7 @@ public final class TestDiceRollerConstantText {
     @DisplayName("A positive value returns the expected text")
     public final void testText_Positive_Text() {
         final DiceNotationExpression expression;
-        final RollHistory result;
+        final RollHistory            result;
 
         expression = new IntegerOperand(1);
 

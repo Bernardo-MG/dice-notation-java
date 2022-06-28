@@ -23,8 +23,7 @@ import com.bernardomg.tabletop.dice.visitor.DiceAccumulator;
 /**
  * Interpreter which returns all the dice sets contained inside an expression.
  * <p>
- * This will search for dice operands, ignoring all else, and acquire the dice
- * sets inside each of them.
+ * This will search for dice operands, ignoring all else, and acquire the dice sets inside each of them.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -42,13 +41,11 @@ public final class DiceGatherer implements DiceInterpreter<Iterable<Dice>> {
     public DiceGatherer() {
         super();
 
-        wrapped = new ConfigurableInterpreter<>(new InorderTraverser(),
-                new DiceAccumulator());
+        wrapped = new ConfigurableInterpreter<>(new InorderTraverser(), new DiceAccumulator());
     }
 
     @Override
-    public final Iterable<Dice>
-            transform(final DiceNotationExpression expression) {
+    public final Iterable<Dice> transform(final DiceNotationExpression expression) {
         return wrapped.transform(expression);
     }
 

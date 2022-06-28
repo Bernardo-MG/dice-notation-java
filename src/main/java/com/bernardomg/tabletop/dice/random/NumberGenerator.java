@@ -19,11 +19,9 @@ package com.bernardomg.tabletop.dice.random;
 import com.bernardomg.tabletop.dice.Dice;
 
 /**
- * Generates a random integer value. This allows tuning the actual probabilities
- * distributions.
+ * Generates a random integer value. This allows tuning the actual probabilities distributions.
  * <p>
- * The possible values which the generator may return are expected to begin at
- * 1, and end in a specified maximum value.
+ * The possible values which the generator may return are expected to begin at 1, and end in a specified maximum value.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -35,14 +35,15 @@ public final class ITParseAndDiceRollerMultiplicationDiceTotalRoll {
     @DisplayName("A multiplication returns the expected value")
     public final void testParse_Multiply_Dice_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "3d1*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(6), result);
     }
@@ -51,14 +52,15 @@ public final class ITParseAndDiceRollerMultiplicationDiceTotalRoll {
     @DisplayName("Multiplying a number by a dice returns the expected value")
     public final void testParse_Multiply_LeftNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "5*2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(10), result);
     }
@@ -67,14 +69,15 @@ public final class ITParseAndDiceRollerMultiplicationDiceTotalRoll {
     @DisplayName("Multiplying a dice by a number returns the expected value")
     public final void testParse_Multiply_RightNumber_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "2d1*5";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(10), result);
     }

@@ -33,8 +33,7 @@ public final class DivisionOperation extends AbstractBinaryOperation {
      * @param right
      *            the right sided operand
      */
-    public DivisionOperation(final DiceNotationExpression left,
-            final DiceNotationExpression right) {
+    public DivisionOperation(final DiceNotationExpression left, final DiceNotationExpression right) {
         super(left, right, (a, b) -> a / b);
     }
 

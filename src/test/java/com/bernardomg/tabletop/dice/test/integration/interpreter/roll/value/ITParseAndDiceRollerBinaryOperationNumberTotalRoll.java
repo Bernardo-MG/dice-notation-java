@@ -38,14 +38,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("An addition followed by a multiplication returns the expected value")
     public final void testParse_AddAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "1+2*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(7), result);
     }
@@ -54,14 +55,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("An addition followed by a subtraction returns the expected value")
     public final void testParse_AddAndSub_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "1+2-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(0), result);
     }
@@ -70,14 +72,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("An addition with a negative followed by a subtraction returns the expected value")
     public final void testParse_AddNegAndSub_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "1+-2-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-4), result);
     }
@@ -86,14 +89,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A division followed by an addition returns the expected value")
     public final void testParse_DivAndAdd_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "6/2+1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(4), result);
     }
@@ -102,14 +106,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A division followed by a subtraction returns the expected value")
     public final void testParse_DivAndSub_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "6/3-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-1), result);
     }
@@ -118,14 +123,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A multiplication following by an addition returns the expected value")
     public final void testParse_MultAndAdd_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "2*3+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(8), result);
     }
@@ -134,14 +140,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A multiplication followed by a division returns the expected value")
     public final void testParse_MultAndDiv_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "2*4/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(4), result);
     }
@@ -150,14 +157,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A multiplication followed by a subtraction returns the expected value")
     public final void testParse_MultAndSub_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "2*3-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), result);
     }
@@ -166,14 +174,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A subtraction followed by an addition returns the expected value")
     public final void testParse_SubAndAdd_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "3-1+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(4), result);
     }
@@ -182,14 +191,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("An addition followed by a division returns the expected value")
     public final void testParse_SubAndDiv_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "2-8/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-2), result);
     }
@@ -198,14 +208,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A subtraction followed by a multiplication returns the expected value")
     public final void testParse_SubAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "1-2*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-5), result);
     }
@@ -214,14 +225,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A subtraction of a negative followed by an addition returns the expected value")
     public final void testParse_SubNegAndAdd_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "3--1+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(6), result);
     }
@@ -230,14 +242,15 @@ public final class ITParseAndDiceRollerBinaryOperationNumberTotalRoll {
     @DisplayName("A subtraction of a negative followed by an addition of a negative returns the expected value")
     public final void testParse_SubNegAndAddNeg_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "3--1+-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(2), result);
     }

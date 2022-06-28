@@ -20,11 +20,9 @@ import com.bernardomg.tabletop.dice.generated.DiceNotationListener;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
- * Visitor for an ANTLR4 parser tree. It can return the fully parsed
- * {@link DiceNotationExpression}.
+ * Visitor for an ANTLR4 parser tree. It can return the fully parsed {@link DiceNotationExpression}.
  * <p>
- * This {@code DiceNotationExpression} is the root for a tree representing the
- * expression received by the parser.
+ * This {@code DiceNotationExpression} is the root for a tree representing the expression received by the parser.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

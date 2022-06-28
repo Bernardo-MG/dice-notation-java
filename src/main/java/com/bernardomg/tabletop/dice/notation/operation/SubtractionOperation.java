@@ -33,8 +33,7 @@ public final class SubtractionOperation extends AbstractBinaryOperation {
      * @param right
      *            the right sided operand
      */
-    public SubtractionOperation(final DiceNotationExpression left,
-            final DiceNotationExpression right) {
+    public SubtractionOperation(final DiceNotationExpression left, final DiceNotationExpression right) {
         super(left, right, (a, b) -> a - b);
     }
 

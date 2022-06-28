@@ -39,16 +39,15 @@ public final class ITDefaultDiceParserParenthesisStructure {
     @Test
     @DisplayName("An operation with parenthesis returns the expected structure")
     public final void testParse_Number_AddAndMult_Structure() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String            notation;           // Input to parse
+        final BinaryOperation   operation; // Parsed operation
         final AdditionOperation add;
-        IntegerOperand number;
+        IntegerOperand          number;
 
         notation = "(1+2)*3";
 
         // ((1+2)*3)
-        operation = (MultiplicationOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (MultiplicationOperation) new DefaultDiceParser().parse(notation);
 
         add = (AdditionOperation) operation.getLeft();
 

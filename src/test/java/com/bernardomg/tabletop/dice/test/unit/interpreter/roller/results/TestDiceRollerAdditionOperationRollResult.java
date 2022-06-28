@@ -43,11 +43,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult> results;
-        final Iterator<RollResult> resultsItr;
-        RollResult result;
-        Iterable<Integer> rolls;
-        Iterator<Integer> rollValues;
+        final Iterable<RollResult>   results;
+        final Iterator<RollResult>   resultsItr;
+        RollResult                   result;
+        Iterable<Integer>            rolls;
+        Iterator<Integer>            rollValues;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -55,24 +55,25 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // 1 + 2
         expression = new AdditionOperation(left, right);
 
-        results = new DiceRoller().transform(expression).getRollResults();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2,
-                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
+            .count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
@@ -84,11 +85,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult> results;
-        final Iterator<RollResult> resultsItr;
-        RollResult result;
-        Iterable<Integer> rolls;
-        Iterator<Integer> rollValues;
+        final Iterable<RollResult>   results;
+        final Iterator<RollResult>   resultsItr;
+        RollResult                   result;
+        Iterable<Integer>            rolls;
+        Iterator<Integer>            rollValues;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -96,24 +97,25 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // -1 + 2
         expression = new AdditionOperation(left, right);
 
-        results = new DiceRoller().transform(expression).getRollResults();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2,
-                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
+            .count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(2), rollValues.next());
@@ -125,11 +127,11 @@ public final class TestDiceRollerAdditionOperationRollResult {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final Iterable<RollResult> results;
-        final Iterator<RollResult> resultsItr;
-        RollResult result;
-        Iterable<Integer> rolls;
-        Iterator<Integer> rollValues;
+        final Iterable<RollResult>   results;
+        final Iterator<RollResult>   resultsItr;
+        RollResult                   result;
+        Iterable<Integer>            rolls;
+        Iterator<Integer>            rollValues;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -137,24 +139,25 @@ public final class TestDiceRollerAdditionOperationRollResult {
         // 1 - 2
         expression = new SubtractionOperation(left, right);
 
-        results = new DiceRoller().transform(expression).getRollResults();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
         resultsItr = results.iterator();
 
-        Assertions.assertEquals(2,
-                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(2, StreamSupport.stream(results.spliterator(), false)
+            .count());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-2), rollValues.next());

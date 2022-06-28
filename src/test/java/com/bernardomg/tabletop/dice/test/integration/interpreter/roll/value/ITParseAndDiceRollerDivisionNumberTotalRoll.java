@@ -37,14 +37,15 @@ public final class ITParseAndDiceRollerDivisionNumberTotalRoll {
     @DisplayName("An inexact division returns a float value")
     public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Float.valueOf(1.5f), result);
     }
@@ -53,14 +54,15 @@ public final class ITParseAndDiceRollerDivisionNumberTotalRoll {
     @DisplayName("A exact division returns the expected value")
     public final void testParse_Division_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "4/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(2), result);
     }

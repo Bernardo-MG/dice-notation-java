@@ -17,8 +17,7 @@
 package com.bernardomg.tabletop.dice.visitor;
 
 /**
- * Visitor which accumulates values as it goes through dice notation
- * expressions.
+ * Visitor which accumulates values as it goes through dice notation expressions.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *

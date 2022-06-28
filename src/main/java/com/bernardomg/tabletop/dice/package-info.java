@@ -14,8 +14,7 @@
  * the License.
  */
 /**
- * Dice classes, which includes the model, but also a parser and transformers to
- * handle dice notation expressions.
+ * Dice classes, which includes the model, but also a parser and transformers to handle dice notation expressions.
  */
 
 package com.bernardomg.tabletop.dice;

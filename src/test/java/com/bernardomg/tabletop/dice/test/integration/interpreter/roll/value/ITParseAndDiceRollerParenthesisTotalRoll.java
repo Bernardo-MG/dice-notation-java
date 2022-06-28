@@ -35,14 +35,15 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
     @DisplayName("A mixed operation with parenthesis returns the expected value")
     public final void testParse_AddAndMult_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "(1+2)*3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(9), result);
     }
@@ -51,14 +52,15 @@ public final class ITParseAndDiceRollerParenthesisTotalRoll {
     @DisplayName("A constant with parenthesis returns the expected value")
     public final void testParse_Number_Value() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final Integer                result;                // Resulting value
+        final String                 notation;               // Input to parse
 
         notation = "(1)";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(1), result);
     }
