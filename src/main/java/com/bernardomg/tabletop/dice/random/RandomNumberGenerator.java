@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * {@link Random}-based number generator.
  * <p>
  * The generated numbers will be integers in a closed interval, beginning at 1 and ending in a specified maximum value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class RandomNumberGenerator extends AbstractNumberGenerator {
@@ -63,7 +63,7 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
      * This value is in the interval [1,max].
      * <p>
      * TODO: Should be a protected method
-     * 
+     *
      * @param max
      *            the maximum value which can be generated
      * @return a random value in the interval [1,max]

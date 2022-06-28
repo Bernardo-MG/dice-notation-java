@@ -22,14 +22,14 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 
 /**
  * Visitor for dice notation expressions.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface NotationVisitor {
 
     /**
      * Visits a binary operation.
-     * 
+     *
      * @param exp
      *            expression to visit
      */
@@ -37,7 +37,7 @@ public interface NotationVisitor {
 
     /**
      * Visits a constant.
-     * 
+     *
      * @param exp
      *            expression to visit
      */
@@ -45,7 +45,7 @@ public interface NotationVisitor {
 
     /**
      * Visits a dice.
-     * 
+     *
      * @param exp
      *            expression to visit
      */

@@ -43,7 +43,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * Stores all the rolls generated from the expressions.
  * <p>
  * Integer values are handled as a roll, just with a constant value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -87,7 +87,7 @@ public final class DiceRollAccumulator implements NotationAccumulator<RollHistor
 
     /**
      * Constructs an accumulator with the specified arguments.
-     * 
+     *
      * @param generator
      *            roll generator to use
      */
@@ -214,7 +214,7 @@ public final class DiceRollAccumulator implements NotationAccumulator<RollHistor
 
     /**
      * Returns the text value of the received operation.
-     * 
+     *
      * @param exp
      *            expression containing the operation
      * @return text value of the operation

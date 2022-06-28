@@ -23,14 +23,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * Operand for using {@link Dice} as value.
  * <p>
  * Due to the nature of dice this will represent a random value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceOperand extends DiceNotationExpression {
 
     /**
      * Returns the operand dice.
-     * 
+     *
      * @return the operand dice
      */
     public Dice getDice();

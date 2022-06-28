@@ -22,7 +22,7 @@ import com.bernardomg.tabletop.dice.Dice;
  * Generates a random integer value. This allows tuning the actual probabilities distributions.
  * <p>
  * The possible values which the generator may return are expected to begin at 1, and end in a specified maximum value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface NumberGenerator {
@@ -31,7 +31,7 @@ public interface NumberGenerator {
      * Generates a collection of random values from the received {@code Dice}.
      * <p>
      * These are returned in the same order they were generated.
-     * 
+     *
      * @param dice
      *            the dice to roll
      * @return a collection of random values generated from the dice
@@ -42,7 +42,7 @@ public interface NumberGenerator {
      * Generates a random value.
      * <p>
      * This is expected to be in the interval [1,max].
-     * 
+     *
      * @param max
      *            the maximum value which can be generated
      * @return a random value

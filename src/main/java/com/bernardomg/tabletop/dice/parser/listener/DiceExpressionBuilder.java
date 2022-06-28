@@ -23,14 +23,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed {@link DiceNotationExpression}.
  * <p>
  * This {@code DiceNotationExpression} is the root for a tree representing the expression received by the parser.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceExpressionBuilder extends DiceNotationListener {
 
     /**
      * Returns the root for the tree of dice notation model objects.
-     * 
+     *
      * @return the tree of dice notation model objects
      */
     public DiceNotationExpression getDiceExpressionRoot();

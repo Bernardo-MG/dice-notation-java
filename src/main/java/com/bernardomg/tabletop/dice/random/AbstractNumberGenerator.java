@@ -31,7 +31,7 @@ import com.bernardomg.tabletop.dice.Dice;
  * <p>
  * Contains all the logic to generate random values from a dice, but is missing the logic for actually generating a
  * random value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */

@@ -63,7 +63,7 @@ public final class TestRandomNumberGenerator {
         lowerLimit = 1;
         upperLimit = max;
 
-        numbers = new ArrayList<Integer>();
+        numbers = new ArrayList<>();
         for (Integer i = 0; i < times; i++) {
             numbers.add(generator.generate(max));
         }

@@ -20,7 +20,7 @@ import com.bernardomg.tabletop.dice.Dice;
 
 /**
  * Result from rolling a single dice set.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -28,21 +28,21 @@ public interface RollResult {
 
     /**
      * All the values generated from rolling the dice, in the order they were generated.
-     * 
+     *
      * @return all the dice rolls
      */
     public Iterable<Integer> getAllRolls();
 
     /**
      * The dice set which generated the value.
-     * 
+     *
      * @return the dice set
      */
     public Dice getDice();
 
     /**
      * The sum of all the rolled values.
-     * 
+     *
      * @return the sum of all the rolled values
      */
     public Integer getTotalRoll();

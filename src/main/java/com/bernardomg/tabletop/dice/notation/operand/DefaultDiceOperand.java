@@ -23,7 +23,7 @@ import lombok.NonNull;
 
 /**
  * Default implementation of the dice operand.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Data

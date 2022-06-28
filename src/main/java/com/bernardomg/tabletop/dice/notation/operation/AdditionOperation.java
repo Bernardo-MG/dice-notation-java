@@ -20,14 +20,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Addition operation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class AdditionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs an addition operation with the specified operands.
-     * 
+     *
      * @param left
      *            the left sided operand
      * @param right
@@ -39,7 +39,7 @@ public final class AdditionOperation extends AbstractBinaryOperation {
 
     /**
      * Returns the values from the left and right operands added together.
-     * 
+     *
      * @return the left and right values added together
      */
     @Override

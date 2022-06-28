@@ -50,7 +50,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  * This {@code DiceNotationExpression} is the root for a tree representing the expression received by the parser.
  * <p>
  * The builder makes use of a stack for storing the objects as they are parsed.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener implements DiceExpressionBuilder {
@@ -181,7 +181,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * By making use of the nodes stack and the received operators it can build any binary operation.
      * <p>
      * The returned expression will be the root which aggregates all the operations parsed into a tree.
-     * 
+     *
      * @param operators
      *            parsed operators
      * @return a binary operation
@@ -234,7 +234,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * Creates a dice operand from the parsed context data.
      * <p>
      * If the dice is being subtracted then the sign of the dice set is reversed.
-     * 
+     *
      * @param ctx
      *            parsed context
      * @return a dice operand
@@ -284,7 +284,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
     /**
      * Creates an integer operand from the parsed expression.
-     * 
+     *
      * @param expression
      *            parsed expression
      * @return an integer operand

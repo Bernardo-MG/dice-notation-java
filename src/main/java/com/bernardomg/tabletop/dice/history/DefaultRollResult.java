@@ -27,7 +27,7 @@ import lombok.NonNull;
 
 /**
  * Immutable roll result. Contains all the values generated and the sum of them.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -54,7 +54,7 @@ public final class DefaultRollResult implements RollResult {
 
     /**
      * Constructs a roll result with the specified data.
-     * 
+     *
      * @param d
      *            dice which generated the result
      * @param rolls
@@ -73,7 +73,7 @@ public final class DefaultRollResult implements RollResult {
 
     /**
      * Constructs a roll result with a single value.
-     * 
+     *
      * @param total
      *            sum of all the values
      */

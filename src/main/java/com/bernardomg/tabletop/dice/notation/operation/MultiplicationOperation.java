@@ -20,14 +20,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Multiplication operation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class MultiplicationOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs a multiplication operation with the specified operands.
-     * 
+     *
      * @param left
      *            the left sided operand
      * @param right

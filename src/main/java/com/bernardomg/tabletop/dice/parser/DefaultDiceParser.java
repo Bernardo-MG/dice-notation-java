@@ -40,7 +40,7 @@ import com.bernardomg.tabletop.dice.parser.listener.DiceExpressionBuilder;
  * <p>
  * This {@code DiceExpressionBuilder} is a listener making use of the visitor pattern to generate the returned tree of
  * dice notation model objects.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultDiceParser implements DiceParser {
@@ -72,7 +72,7 @@ public final class DefaultDiceParser implements DiceParser {
 
     /**
      * Constructs a parser with the error listener.
-     * 
+     *
      * @param listener
      *            error listener
      */
@@ -85,7 +85,7 @@ public final class DefaultDiceParser implements DiceParser {
 
     /**
      * Constructs a parser with the specified builder.
-     * 
+     *
      * @param builder
      *            builder to generate the returned tree
      */
@@ -98,7 +98,7 @@ public final class DefaultDiceParser implements DiceParser {
 
     /**
      * Constructs a parser with the specified builder and error listener.
-     * 
+     *
      * @param builder
      *            builder to generate the returned tree
      * @param listener
@@ -124,10 +124,8 @@ public final class DefaultDiceParser implements DiceParser {
         // Parses the root rule
         parser.notation();
 
-        root = expressionBuilder.getDiceExpressionRoot();
-
         // Returns the tree root node
-        return root;
+        return expressionBuilder.getDiceExpressionRoot();
     }
 
     @Override
@@ -144,7 +142,7 @@ public final class DefaultDiceParser implements DiceParser {
      * <p>
      * This parser will be tailored to the received expression, but it will still need a listener which, using the
      * visitor pattern, will create the final object.
-     * 
+     *
      * @param expression
      *            expression used to generate the parser
      * @return an ANTLR4 parser tailored for the expression

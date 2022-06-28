@@ -23,14 +23,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  * Transforms a dice notation expression, received as a string, into the dice notation model.
  * <p>
  * The returned object is expected to be the root node of a tree made up by dice notation model objects.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceParser {
 
     /**
      * Transforms a dice notation expression into the dice notation model.
-     * 
+     *
      * @param expression
      *            the expression to parse
      * @return a dice notation expression object
@@ -39,7 +39,7 @@ public interface DiceParser {
 
     /**
      * Transforms a dice notation expression into the dice notation model and applies the received interpreter.
-     * 
+     *
      * @param <V>
      *            type returned by the transformer
      * @param expression

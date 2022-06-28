@@ -27,7 +27,7 @@ import lombok.NonNull;
  * Abstract class for binary operations, containing all the common fields.
  * <p>
  * These fields are the operands and the operation, stored as a {@link BiFunction}.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Data
@@ -53,7 +53,7 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
 
     /**
      * Constructs a subtraction operation with the specified operands.
-     * 
+     *
      * @param leftOperand
      *            the left sided operand
      * @param rightOperand

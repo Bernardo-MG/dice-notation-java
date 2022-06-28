@@ -22,7 +22,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Wraps an expression to hide its type. Used for example when pruning a tree, to create a node without children.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -35,7 +35,7 @@ public final class ExpressionWrapper implements DiceNotationExpression {
 
     /**
      * Constructs a wrapper for the received expression.
-     * 
+     *
      * @param exp
      *            the expression to wrap
      */
@@ -52,7 +52,7 @@ public final class ExpressionWrapper implements DiceNotationExpression {
 
     /**
      * Returns the wrapped expression.
-     * 
+     *
      * @return the wrapped expression
      */
     public final DiceNotationExpression getWrappedExpression() {

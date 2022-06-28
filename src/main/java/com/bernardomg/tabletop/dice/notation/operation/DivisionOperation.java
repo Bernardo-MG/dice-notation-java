@@ -20,14 +20,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Division operation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DivisionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs a division operation with the specified operands.
-     * 
+     *
      * @param left
      *            the left sided operand
      * @param right

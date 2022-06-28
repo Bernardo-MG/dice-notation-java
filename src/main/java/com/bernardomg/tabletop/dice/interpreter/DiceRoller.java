@@ -39,7 +39,7 @@ import com.bernardomg.tabletop.dice.visitor.DiceRollAccumulator;
  * To customise the rolling procedure the constructors may receive some functions, one meant to simulate rolling the
  * dice, and the other to transform the results from rolling. This allows applying functions such as removing the lowest
  * result.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -59,7 +59,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
     /**
      * Constructs a transformer using the received roll generator for simulating rolls.
-     * 
+     *
      * @param roller
      *            the roller to use
      */
@@ -72,7 +72,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Constructs a transformer using the received roll generator for simulating rolls, chaining it to the received
      * transformer.
-     * 
+     *
      * @param roller
      *            the roller to use
      * @param transformer
@@ -90,7 +90,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
 
     /**
      * Constructs a transformer using the received roller for simulating rolls.
-     * 
+     *
      * @param generator
      *            the random number generator to use
      */
@@ -101,7 +101,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     /**
      * Constructs a transformer using the received roller for simulating rolls and the received transformer on the
      * rolls.
-     * 
+     *
      * @param generator
      *            the random number generator to use
      * @param transformer

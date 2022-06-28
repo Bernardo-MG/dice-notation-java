@@ -89,7 +89,7 @@ public final class PostorderTraverser implements DiceInterpreter<Iterable<DiceNo
 
     /**
      * Removes the expression wrappers used to temporally prune the nodes.
-     * 
+     *
      * @param expression
      *            node to unwrap
      * @return unwrapped node

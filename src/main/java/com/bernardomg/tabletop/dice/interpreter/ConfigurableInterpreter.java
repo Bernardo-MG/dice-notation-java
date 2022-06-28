@@ -33,7 +33,7 @@ import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
  * It chains a traverser, which is another interpreter returning an {@code Iterable<DiceNotationExpression>}, with a
  * {@link NotationAccumulator}. The traverser will flatten the notation tree, and then the accumulator will go through
  * it.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  * @param <V>
@@ -59,7 +59,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     /**
      * Constructs an interpreter.
-     * 
+     *
      * @param trav
      *            traverser to flatten the tree
      * @param accum
@@ -97,7 +97,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
     /**
      * Returns the result from applying the accumulator in all the nodes.
-     * 
+     *
      * @param nodes
      *            flattened tree
      * @return the result from applying the accumulator

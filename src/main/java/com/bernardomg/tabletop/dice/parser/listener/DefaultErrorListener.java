@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * Basic error listener for an ANTLR4 parser.
  * <p>
  * It just throws an exception for any error the listener intercepts.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class DefaultErrorListener extends BaseErrorListener {
