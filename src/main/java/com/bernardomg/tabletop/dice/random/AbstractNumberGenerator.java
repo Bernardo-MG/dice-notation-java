@@ -29,9 +29,9 @@ import com.bernardomg.tabletop.dice.Dice;
 /**
  * Abstract number generator for facilitating extensions.
  * <p>
- * Contains all the logic to generate random values from a dice, but is missing
- * the logic for actually generating a random value.
- * 
+ * Contains all the logic to generate random values from a dice, but is missing the logic for actually generating a
+ * random value.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -40,8 +40,7 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
     /**
      * Logger.
      */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(AbstractNumberGenerator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractNumberGenerator.class);
 
     /**
      * Default constructor.
@@ -52,9 +51,9 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
 
     @Override
     public final Iterable<Integer> generate(final Dice dice) {
-        final Collection<Integer> rolls; // Roll results
-        final Integer quantity;
-        final Supplier<Integer> rollSupplier;
+        final Collection<Integer> rolls;       // Roll results
+        final Integer             quantity;
+        final Supplier<Integer>   rollSupplier;
 
         Objects.requireNonNull(dice, "Received a null pointer as dice");
 

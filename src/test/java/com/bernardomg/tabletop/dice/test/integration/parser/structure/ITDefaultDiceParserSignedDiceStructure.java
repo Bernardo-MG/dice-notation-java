@@ -40,10 +40,10 @@ public final class ITDefaultDiceParserSignedDiceStructure {
 
         operation = (DiceOperand) new DefaultDiceParser().parse("-1d1");
 
-        Assertions.assertEquals(Integer.valueOf(-1),
-                operation.getDice().getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1),
-                operation.getDice().getSides());
+        Assertions.assertEquals(Integer.valueOf(-1), operation.getDice()
+            .getQuantity());
+        Assertions.assertEquals(Integer.valueOf(1), operation.getDice()
+            .getSides());
     }
 
     @Test
@@ -53,10 +53,10 @@ public final class ITDefaultDiceParserSignedDiceStructure {
 
         operation = (DiceOperand) new DefaultDiceParser().parse("+1d1");
 
-        Assertions.assertEquals(Integer.valueOf(1),
-                operation.getDice().getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1),
-                operation.getDice().getSides());
+        Assertions.assertEquals(Integer.valueOf(1), operation.getDice()
+            .getQuantity());
+        Assertions.assertEquals(Integer.valueOf(1), operation.getDice()
+            .getSides());
     }
 
 }

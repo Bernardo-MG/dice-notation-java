@@ -27,7 +27,7 @@ import lombok.NonNull;
 
 /**
  * Immutable roll result. Contains all the values generated and the sum of them.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -54,7 +54,7 @@ public final class DefaultRollResult implements RollResult {
 
     /**
      * Constructs a roll result with the specified data.
-     * 
+     *
      * @param d
      *            dice which generated the result
      * @param rolls
@@ -62,21 +62,18 @@ public final class DefaultRollResult implements RollResult {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollResult(@NonNull final Dice d,
-            @NonNull final Iterable<Integer> rolls,
+    public DefaultRollResult(@NonNull final Dice d, @NonNull final Iterable<Integer> rolls,
             @NonNull final Integer total) {
         super();
 
         dice = Objects.requireNonNull(d, "Received a null pointer as dice");
-        allRolls = Objects.requireNonNull(rolls,
-                "Received a null pointer as rolls");
-        totalRoll = Objects.requireNonNull(total,
-                "Received a null pointer as total roll");
+        allRolls = Objects.requireNonNull(rolls, "Received a null pointer as rolls");
+        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
     }
 
     /**
      * Constructs a roll result with a single value.
-     * 
+     *
      * @param total
      *            sum of all the values
      */
@@ -84,8 +81,7 @@ public final class DefaultRollResult implements RollResult {
         super();
 
         dice = new DefaultDice(1, total);
-        totalRoll = Objects.requireNonNull(total,
-                "Received a null pointer as total roll");
+        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
 
         allRolls = Arrays.asList(total);
     }

@@ -37,15 +37,16 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
     @Test
     @DisplayName("An addition using only dice returns the expected value")
     public final void testParse_Add_Dice_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1d1+2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), result);
     }
@@ -53,15 +54,16 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
     @Test
     @DisplayName("An addition with the number to the left and no quantity returns the expected value")
     public final void testParse_Add_LeftNumber_NoQuantity_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "5+d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(6), result);
     }
@@ -69,15 +71,16 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
     @Test
     @DisplayName("An addition with the number to the left returns the expected value")
     public final void testParse_Add_LeftNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "5+2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(7), result);
     }
@@ -85,15 +88,16 @@ public final class ITParseAndDiceRollerAdditionDiceTotalRoll {
     @Test
     @DisplayName("An addition with the number to the right returns the expected value")
     public final void testParse_Add_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "2d1+5";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(7), result);
     }

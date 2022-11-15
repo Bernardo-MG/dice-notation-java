@@ -29,14 +29,12 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 /**
  * Stores all the dice set from the expressions received.
  * <p>
- * It handles negative dice sets. Any dice directly after a subtraction is a
- * negative dice set.
- * 
+ * It handles negative dice sets. Any dice directly after a subtraction is a negative dice set.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class DiceAccumulator
-        implements NotationAccumulator<Iterable<Dice>> {
+public final class DiceAccumulator implements NotationAccumulator<Iterable<Dice>> {
 
     /**
      * All the dice collected so far.
@@ -90,9 +88,8 @@ public final class DiceAccumulator
     }
 
     /**
-     * Reverses the sign of a dice, changing positive values to negatives, and
-     * viceversa.
-     * 
+     * Reverses the sign of a dice, changing positive values to negatives, and viceversa.
+     *
      * @param d
      *            dice to reverse
      * @return dice with the sign reversed

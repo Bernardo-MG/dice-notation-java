@@ -37,7 +37,7 @@ public final class TestDefaultRollHistory {
     @Test
     @DisplayName("The text representation matches the received one")
     public final void testToString() {
-        final RollHistory history;
+        final RollHistory            history;
         final Collection<RollResult> results;
 
         results = new ArrayList<>();

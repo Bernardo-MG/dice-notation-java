@@ -19,17 +19,15 @@ package com.bernardomg.tabletop.dice;
 /**
  * A group of dice, all with the same number of sides.
  * <p>
- * This is meant to represent a group of dice by itself, to handle complex
- * notation the classes in the {@link com.bernardomg.tabletop.dice.notation
- * notation} package should be used.
+ * This is meant to represent a group of dice by itself, to handle complex notation the classes in the
+ * {@link com.bernardomg.tabletop.dice.notation notation} package should be used.
  * <p>
- * The number of dice are expected to be positive or zero, and the number of
- * sides greater than zero, as any other value would make no sense.
+ * The number of dice are expected to be positive or zero, and the number of sides greater than zero, as any other value
+ * would make no sense.
  * <p>
- * No other limitation is expected. In the real world the number of sides which
- * a die may physically have are limited by the rules of geometry, but there is
- * no reason to take care of that.
- * 
+ * No other limitation is expected. In the real world the number of sides which a die may physically have are limited by
+ * the rules of geometry, but there is no reason to take care of that.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface Dice {
@@ -38,7 +36,7 @@ public interface Dice {
      * Returns the number of dice which compose this group.
      * <p>
      * This is expected to be a positive value or zero.
-     * 
+     *
      * @return the number of dice being rolled
      */
     public Integer getQuantity();
@@ -49,7 +47,7 @@ public interface Dice {
      * All the dice will have this same number of sides.
      * <p>
      * This is expected to be a positive value greater than zero.
-     * 
+     *
      * @return the dice's number of sides
      */
     public Integer getSides();

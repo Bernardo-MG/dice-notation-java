@@ -24,10 +24,9 @@ import lombok.NonNull;
 /**
  * Immutable roll history.
  * <p>
- * To allow returning a clean text output of the full history it receives a text
- * history in the constructor. This will be returned by the {@code toString}
- * method.
- * 
+ * To allow returning a clean text output of the full history it receives a text history in the constructor. This will
+ * be returned by the {@code toString} method.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -58,7 +57,7 @@ public final class DefaultRollHistory implements RollHistory {
      * Constructs a roll history with the specified data.
      * <p>
      * The text history will be used for the {@code toString} method.
-     * 
+     *
      * @param results
      *            each roll result
      * @param text
@@ -66,16 +65,13 @@ public final class DefaultRollHistory implements RollHistory {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollHistory(@NonNull final Iterable<RollResult> results,
-            @NonNull final String text, @NonNull final Integer total) {
+    public DefaultRollHistory(@NonNull final Iterable<RollResult> results, @NonNull final String text,
+            @NonNull final Integer total) {
         super();
 
-        rollResults = Objects.requireNonNull(results,
-                "Received a null pointer as roll results");
-        historyText = Objects.requireNonNull(text,
-                "Received a null pointer as history text");
-        totalRoll = Objects.requireNonNull(total,
-                "Received a null pointer as total roll");
+        rollResults = Objects.requireNonNull(results, "Received a null pointer as roll results");
+        historyText = Objects.requireNonNull(text, "Received a null pointer as history text");
+        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
     }
 
     @Override

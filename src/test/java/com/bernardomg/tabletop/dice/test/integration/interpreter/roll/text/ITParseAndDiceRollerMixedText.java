@@ -41,8 +41,8 @@ public final class ITParseAndDiceRollerMixedText {
     @Test
     public final void testRolls_AddSub() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory result;
+        final String                 notation;
+        final RollHistory            result;
 
         notation = "1+2-3";
 
@@ -59,8 +59,8 @@ public final class ITParseAndDiceRollerMixedText {
     @Test
     public final void testRolls_AddSub_Parenthesis() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory result;
+        final String                 notation;
+        final RollHistory            result;
 
         notation = "1+(2-3)";
 
@@ -77,8 +77,8 @@ public final class ITParseAndDiceRollerMixedText {
     @Test
     public final void testRolls_DiceAddAndDiv_Text() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory result;
+        final String                 notation;
+        final RollHistory            result;
 
         notation = "1d1+4d1/2d1";
 
@@ -95,8 +95,8 @@ public final class ITParseAndDiceRollerMixedText {
     @Test
     public final void testRolls_DiceAddAndMult_Text() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory result;
+        final String                 notation;
+        final RollHistory            result;
 
         notation = "1d1+2d1*3d1";
 

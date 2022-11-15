@@ -34,15 +34,16 @@ public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
     @Test
     @DisplayName("A long subtraction returns the expected value")
     public final void testParse_Number_Sub_Long_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1-2-3";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-4), result);
     }
@@ -50,15 +51,16 @@ public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
     @Test
     @DisplayName("A longer subtraction returns the expected value")
     public final void testParse_Number_Sub_Longer_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1-2-3-4-5";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-13), result);
     }
@@ -66,15 +68,16 @@ public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
     @Test
     @DisplayName("A subtraction returns the expected value")
     public final void testParse_Number_Sub_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-1), result);
     }
@@ -82,15 +85,16 @@ public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
     @Test
     @DisplayName("A subtraction of a negative returns the expected value")
     public final void testParse_Number_SubNeg_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1--2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), result);
     }
@@ -98,15 +102,16 @@ public final class ITParseAndDiceRollerSubstractionNumberTotalRoll {
     @Test
     @DisplayName("A subtraction to a negative returns the expected value")
     public final void testParse_Number_SubToNegative_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "-1-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-3), result);
     }

@@ -24,9 +24,8 @@ import org.slf4j.LoggerFactory;
 /**
  * {@link Random}-based number generator.
  * <p>
- * The generated numbers will be integers in a closed interval, beginning at 1
- * and ending in a specified maximum value.
- * 
+ * The generated numbers will be integers in a closed interval, beginning at 1 and ending in a specified maximum value.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class RandomNumberGenerator extends AbstractNumberGenerator {
@@ -34,14 +33,13 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
     /**
      * Logger.
      */
-    private static final Logger  LOGGER      = LoggerFactory
-            .getLogger(RandomNumberGenerator.class);
+    private static final Logger  LOGGER      = LoggerFactory.getLogger(RandomNumberGenerator.class);
 
     /**
      * Lower limit for the number generation procedure.
      * <p>
-     * As dice should always have a positive number of sides, the lowest allowed
-     * value will be one. Even if there are no dice with less that two sides.
+     * As dice should always have a positive number of sides, the lowest allowed value will be one. Even if there are no
+     * dice with less that two sides.
      */
     private static final Integer LOWER_LIMIT = 1;
 
@@ -65,7 +63,7 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
      * This value is in the interval [1,max].
      * <p>
      * TODO: Should be a protected method
-     * 
+     *
      * @param max
      *            the maximum value which can be generated
      * @return a random value in the interval [1,max]
@@ -75,15 +73,11 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
         final Integer result;
 
         if (max < LOWER_LIMIT) {
-            LOGGER.warn(
-                    "Received {} as maximum value, but this is lower than {}",
-                    max, LOWER_LIMIT);
+            LOGGER.warn("Received {} as maximum value, but this is lower than {}", max, LOWER_LIMIT);
             result = 0;
         } else {
-            result = random.nextInt(Math.abs(LOWER_LIMIT - max) + 1)
-                    + LOWER_LIMIT;
-            LOGGER.debug("Using interval [{},{}] generated {}", LOWER_LIMIT,
-                    max, result);
+            result = random.nextInt(Math.abs(LOWER_LIMIT - max) + 1) + LOWER_LIMIT;
+            LOGGER.debug("Using interval [{},{}] generated {}", LOWER_LIMIT, max, result);
         }
 
         return result;

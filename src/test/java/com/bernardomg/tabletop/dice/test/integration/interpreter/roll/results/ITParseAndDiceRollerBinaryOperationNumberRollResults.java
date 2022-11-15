@@ -43,25 +43,26 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
     @DisplayName("Returns the expected number of values")
     public final void testParse_Quantity() {
         final DiceNotationExpression operation;
-        final String notation;
-        final Iterable<RollResult> results;
+        final String                 notation;
+        final Iterable<RollResult>   results;
 
         notation = "1-2+3";
 
         operation = new DefaultDiceParser().parse(notation);
 
-        results = new DiceRoller().transform(operation).getRollResults();
+        results = new DiceRoller().transform(operation)
+            .getRollResults();
 
-        Assertions.assertEquals(3,
-                StreamSupport.stream(results.spliterator(), false).count());
+        Assertions.assertEquals(3, StreamSupport.stream(results.spliterator(), false)
+            .count());
     }
 
     @Test
     @DisplayName("Returns the expected total roll")
     public final void testParse_TotalRoll() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory history;
+        final String                 notation;
+        final RollHistory            history;
 
         notation = "1-2+3";
 
@@ -76,16 +77,17 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
     @DisplayName("Returns the expected total rolls")
     public final void testParse_TotalRolls() {
         final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
+        final Iterator<RollResult>   rolled;
+        final String                 notation;
+        RollResult                   result;
 
         notation = "1-2+3";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator();
 
         result = rolled.next();
 
@@ -104,40 +106,41 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
     @DisplayName("Returns the expected values for each number")
     public final void testParse_Value() {
         final DiceNotationExpression operation;
-        final String notation;
-        final Iterable<RollResult> results;
-        final Iterator<RollResult> resultsItr;
-        RollResult result;
-        Iterable<Integer> rolls;
-        Iterator<Integer> rollValues;
+        final String                 notation;
+        final Iterable<RollResult>   results;
+        final Iterator<RollResult>   resultsItr;
+        RollResult                   result;
+        Iterable<Integer>            rolls;
+        Iterator<Integer>            rollValues;
 
         notation = "1-2+3";
 
         operation = new DefaultDiceParser().parse(notation);
 
-        results = new DiceRoller().transform(operation).getRollResults();
+        results = new DiceRoller().transform(operation)
+            .getRollResults();
         resultsItr = results.iterator();
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-2), rollValues.next());
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(3), rollValues.next());

@@ -20,14 +20,14 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Operand for a constant value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface ConstantOperand extends DiceNotationExpression {
 
     /**
      * Returns the constant value of the operand.
-     * 
+     *
      * @return the constant value
      */
     public Integer getValue();

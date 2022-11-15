@@ -36,24 +36,21 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice with the max values returns the expected structure")
     public final void testParse_Max() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
-        parsed = new DefaultDiceParser()
-                .parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+        parsed = new DefaultDiceParser().parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE),
-                dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE),
-                dice.getSides());
+        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getQuantity());
+        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getSides());
     }
 
     @Test
     @DisplayName("A negative dice returns the expected structure")
     public final void testParse_Negative() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("-1d6");
 
@@ -67,7 +64,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("The smallest dice returns the expected structure")
     public final void testParse_OnesDice() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d1");
 
@@ -81,7 +78,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice returns the expected structure")
     public final void testParse_Simple() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d6");
 
@@ -95,7 +92,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice with the upper case D returns the expected structure")
     public final void testParse_Simple_BigD() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1D6");
 
@@ -109,7 +106,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice with no quantity returns the expected structure")
     public final void testParse_Simple_NoQuantity() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("d6");
 
@@ -123,7 +120,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice zero quantity returns the expected structure")
     public final void testParse_ZeroQuantity() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("0d6");
 
@@ -137,7 +134,7 @@ public final class ITDefaultDiceParserDiceStructure {
     @DisplayName("A dice zero sides returns the expected structure")
     public final void testParse_ZeroSides() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Dice dice;                     // Resulting dice
+        final Dice                   dice;   // Resulting dice
 
         parsed = new DefaultDiceParser().parse("1d0");
 

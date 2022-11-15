@@ -31,20 +31,17 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 /**
  * Breaks down the received expression into a postorder list.
  * <p>
- * The tree {@code ((1 + 2) - 3)} becomes {@code 1 2 + 3 -} with this
- * transformer.
+ * The tree {@code ((1 + 2) - 3)} becomes {@code 1 2 + 3 -} with this transformer.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class PostorderTraverser
-        implements DiceInterpreter<Iterable<DiceNotationExpression>> {
+public final class PostorderTraverser implements DiceInterpreter<Iterable<DiceNotationExpression>> {
 
     /**
      * Logger.
      */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(PostorderTraverser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostorderTraverser.class);
 
     /**
      * Default constructor.
@@ -54,14 +51,12 @@ public final class PostorderTraverser
     }
 
     @Override
-    public final Iterable<DiceNotationExpression>
-            transform(final DiceNotationExpression expression) {
-        final Stack<DiceNotationExpression> nodes;
+    public final Iterable<DiceNotationExpression> transform(final DiceNotationExpression expression) {
+        final Stack<DiceNotationExpression>      nodes;
         final Collection<DiceNotationExpression> exps;
-        DiceNotationExpression current;
+        DiceNotationExpression                   current;
 
-        Objects.requireNonNull(expression,
-                "Received a null pointer as expression");
+        Objects.requireNonNull(expression, "Received a null pointer as expression");
 
         nodes = new Stack<>();
         nodes.push(expression);
@@ -87,18 +82,19 @@ public final class PostorderTraverser
         }
 
         // Recovers pruned nodes
-        return exps.stream().map(this::unwrap).collect(Collectors.toList());
+        return exps.stream()
+            .map(this::unwrap)
+            .collect(Collectors.toList());
     }
 
     /**
      * Removes the expression wrappers used to temporally prune the nodes.
-     * 
+     *
      * @param expression
      *            node to unwrap
      * @return unwrapped node
      */
-    private final DiceNotationExpression
-            unwrap(final DiceNotationExpression expression) {
+    private final DiceNotationExpression unwrap(final DiceNotationExpression expression) {
         final DiceNotationExpression result;
 
         if (expression instanceof ExpressionWrapper) {

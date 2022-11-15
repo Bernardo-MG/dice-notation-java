@@ -36,8 +36,8 @@ public final class ITParseAndDiceRollerAdditionDiceText {
     @DisplayName("Returns the expected text")
     public final void testRolls_Text() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory result;
+        final String                 notation;
+        final RollHistory            result;
 
         notation = "1d1+2d1";
 

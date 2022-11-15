@@ -37,15 +37,16 @@ public final class ITParseAndDiceRollerAdditionSignedNumberTotalRoll {
     @Test
     @DisplayName("Adding a negative returns the expected value")
     public final void testParse_Number_AddNegative_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1+-2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf((-1)), result);
     }
@@ -53,15 +54,16 @@ public final class ITParseAndDiceRollerAdditionSignedNumberTotalRoll {
     @Test
     @DisplayName("Adding to a negative returns the expected value")
     public final void testParse_Number_AddToNegative_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "-1+2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(1), result);
     }

@@ -37,15 +37,16 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
     @Test
     @DisplayName("A division returns the expected value")
     public final void testParse_Division_Dice_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "6d1/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), result);
     }
@@ -53,15 +54,16 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
     @Test
     @DisplayName("Dividing a constant by a dice returns the expected value")
     public final void testParse_Division_LeftNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "10/2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(5), result);
     }
@@ -69,15 +71,16 @@ public final class ITParseAndDiceRollerDivisionDiceTotalRoll {
     @Test
     @DisplayName("Dividing a dice by a constant returns the expected value")
     public final void testParse_Division_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "20d1/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(10), result);
     }

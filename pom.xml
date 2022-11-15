@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.4.4</version>
+      <version>1.5.3</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -20,7 +20,7 @@
 
    <groupId>com.bernardomg.tabletop</groupId>
    <artifactId>dice</artifactId>
-   <version>2.2.1</version>
+   <version>2.2.2</version>
    <packaging>jar</packaging>
 
    <name>Dice Notation Tools for Java</name>
@@ -63,63 +63,9 @@
    <!-- ********************************************** -->
 
    <profiles>
-      <profile>
-         <!-- Profile for the Eclipse Maven plugin -->
-         <!-- Sets the POM so this plugin does not give the usual unregistered goals errors -->
-         <!-- It will be activated automatically on Eclipse if this has the m2e plugin, by detecting the version property -->
-         <id>eclipse-maven</id>
-         <activation>
-            <property>
-               <name>m2e.version</name>
-            </property>
-         </activation>
-         <build>
-            <pluginManagement>
-               <plugins>
-                  <plugin>
-                     <!-- m2e lifecycle mapping -->
-                     <!-- This is used to configure the Maven plugin for Eclipse. -->
-                     <!-- Among other things, it allows registering goals, which Eclipse would otherwise reject. -->
-                     <!-- It has no real effect on Maven. -->
-                     <groupId>org.eclipse.m2e</groupId>
-                     <artifactId>lifecycle-mapping</artifactId>
-                     <version>${plugin.lifecycle.version}</version>
-                     <configuration>
-                        <lifecycleMappingMetadata>
-                           <pluginExecutions>
-                              <pluginExecution>
-                                 <!-- Build helper plugin configuration -->
-                                 <pluginExecutionFilter>
-                                    <groupId>org.codehaus.mojo</groupId>
-                                    <artifactId>build-helper-maven-plugin</artifactId>
-                                    <versionRange>[1.0,)</versionRange>
-                                    <goals>
-                                       <goal>add-source</goal>
-                                       <goal>add-test-source</goal>
-                                       <goal>add-resource</goal>
-                                       <goal>add-test-resource</goal>
-                                       <goal>maven-version</goal>
-                                       <goal>parse-version</goal>
-                                       <goal>timestamp-property</goal>
-                                    </goals>
-                                 </pluginExecutionFilter>
-                                 <action>
-                                    <execute>
-                                       <runOnConfiguration>true</runOnConfiguration>
-                                       <runOnIncremental>true</runOnIncremental>
-                                    </execute>
-                                 </action>
-                              </pluginExecution>
-                           </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                     </configuration>
-                  </plugin>
-               </plugins>
-            </pluginManagement>
-         </build>
-      </profile>
+      <!-- ============================================== -->
+      <!-- ============ DEPLOYMENT PROFILES ============= -->
+      <!-- ============================================== -->
       <profile>
          <!-- Site deployment profile -->
          <!-- Sets the site repository to point to the releases repo -->
@@ -225,9 +171,9 @@
 
    <properties>
       <!-- ============================================== -->
-      <!-- ================ JAVA VERSION ================ -->
+      <!-- =============== MAVEN VERSION ================ -->
       <!-- ============================================== -->
-      <java.version>11</java.version>
+      <maven.version>3.8</maven.version>
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
@@ -235,22 +181,31 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.9.3</antlr.version>
-      <junit.jupiter.version>5.8.2</junit.jupiter.version>
-      <lombok.version>1.18.22</lombok.version>
-      <mockito.version>4.2.0</mockito.version>
-      <log4j.version>2.17.1</log4j.version>
-      <slf4j.version>1.7.30</slf4j.version>
+      <antlr.version>4.11.1</antlr.version>
+      <junit.jupiter.version>5.9.1</junit.jupiter.version>
+      <lombok.version>1.18.24</lombok.version>
+      <mockito.version>4.9.0</mockito.version>
+      <log4j.version>2.19.0</log4j.version>
+      <slf4j.version>2.0.3</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.antlr.version>${antlr.version}</plugin.antlr.version>
-      <plugin.antlr.test.version>1.19</plugin.antlr.test.version>
-      <plugin.buildhelp.version>3.2.0</plugin.buildhelp.version>
+      <plugin.antlr.test.version>1.22</plugin.antlr.test.version>
+      <plugin.buildhelp.version>3.3.0</plugin.buildhelp.version>
+      <!-- ============================================== -->
+      <!-- ============ PLUGIN CONFIGURATION ============ -->
+      <!-- ============================================== -->
+      <!-- Checkstyle customized rules file -->
+      <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
+      <!-- Excludes generated code for Checkstyle -->
+      <checkstyle.excludes>**/generated/**/*</checkstyle.excludes>
+      <!-- Exclusion patterns for SpotBugs -->
+      <spotbugs.excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile>
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.2.5</site.skin.version>
+      <site.skin.version>2.2.7</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
       <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=dice-notation-java]]></githubArtifactURL>
    </properties>
@@ -437,7 +392,6 @@
                <showTree>true</showTree>
                <entryPoint>notation</entryPoint>
                <grammarName>DiceNotation</grammarName>
-               <lexerName>DiceNotationLexer</lexerName>
                <packageName>com.bernardomg.tabletop.dice.generated</packageName>
                <exampleFiles>src/test/resources/examples</exampleFiles>
             </configuration>
@@ -481,19 +435,6 @@
    <reporting>
       <plugins>
          <plugin>
-            <!-- Checkstyle -->
-            <!-- Checks that the source files comply with style standards -->
-            <!-- It is using a customized rules file -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <configuration>
-               <!-- The customized rules file -->
-               <configLocation>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</configLocation>
-               <!-- Excludes generated code -->
-               <excludes>**/generated/**/*</excludes>
-            </configuration>
-         </plugin>
-         <plugin>
             <!-- Javadoc -->
             <!-- Generates the javadocs -->
             <groupId>org.apache.maven.plugins</groupId>
@@ -520,16 +461,6 @@
                   <!-- Excludes generated code -->
                   <exclude>**/generated/**/*</exclude>
                </excludes>
-            </configuration>
-         </plugin>
-         <plugin>
-             <!-- SpotBugs -->
-             <!-- Checks for patterns which are prone to errors -->
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-maven-plugin</artifactId>
-            <configuration>
-               <!-- Exclusion patterns -->
-               <excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
             </configuration>
          </plugin>
       </plugins>

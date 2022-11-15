@@ -20,21 +20,20 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Subtraction operation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class SubtractionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs a subtraction operation with the specified operands.
-     * 
+     *
      * @param left
      *            the left sided operand
      * @param right
      *            the right sided operand
      */
-    public SubtractionOperation(final DiceNotationExpression left,
-            final DiceNotationExpression right) {
+    public SubtractionOperation(final DiceNotationExpression left, final DiceNotationExpression right) {
         super(left, right, (a, b) -> a - b);
     }
 

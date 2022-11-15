@@ -21,7 +21,7 @@ import lombok.NonNull;
 
 /**
  * Operand for an integer constant value.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Data

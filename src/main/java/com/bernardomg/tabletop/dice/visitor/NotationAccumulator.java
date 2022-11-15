@@ -17,9 +17,8 @@
 package com.bernardomg.tabletop.dice.visitor;
 
 /**
- * Visitor which accumulates values as it goes through dice notation
- * expressions.
- * 
+ * Visitor which accumulates values as it goes through dice notation expressions.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  * @param <V>
@@ -29,7 +28,7 @@ public interface NotationAccumulator<V> extends NotationVisitor {
 
     /**
      * Returns the accumulated value.
-     * 
+     *
      * @return accumulated value
      */
     public V getValue();

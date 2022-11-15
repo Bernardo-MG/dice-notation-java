@@ -27,9 +27,8 @@ import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
 
 /**
- * Function for transforming a {@code Dice} to a {@code RollResult}, simulating
- * rolls.
- * 
+ * Function for transforming a {@code Dice} to a {@code RollResult}, simulating rolls.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
@@ -38,14 +37,12 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
     /**
      * Logger.
      */
-    private static final Logger   LOGGER = LoggerFactory
-            .getLogger(DiceToRollResult.class);
+    private static final Logger   LOGGER = LoggerFactory.getLogger(DiceToRollResult.class);
 
     /**
      * The random numbers generator.
      * <p>
-     * Combined with the data in the rolled this, this will generate a random
-     * value in an interval.
+     * Combined with the data in the rolled this, this will generate a random value in an interval.
      */
     private final NumberGenerator numberGenerator;
 
@@ -60,21 +57,20 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
 
     /**
      * Constructs a function with the specified generator.
-     * 
+     *
      * @param generator
      *            generator to use
      */
     public DiceToRollResult(final NumberGenerator generator) {
         super();
 
-        numberGenerator = Objects.requireNonNull(generator,
-                "Received a null pointer as generator");
+        numberGenerator = Objects.requireNonNull(generator, "Received a null pointer as generator");
     }
 
     @Override
     public final RollResult apply(final Dice dice) {
         final Iterable<Integer> rolls;
-        Integer total;
+        Integer                 total;
 
         rolls = numberGenerator.generate(dice);
 

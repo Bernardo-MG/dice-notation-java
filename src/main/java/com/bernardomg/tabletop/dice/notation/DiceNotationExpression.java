@@ -19,12 +19,10 @@ package com.bernardomg.tabletop.dice.notation;
 /**
  * A dice notation expression.
  * <p>
- * This is the root interface for specifying a dice notation expression,
- * implementations will add methods as they need.
+ * This is the root interface for specifying a dice notation expression, implementations will add methods as they need.
  * <p>
- * It is also possible getting the string representation of the dice notation
- * expression it represents.
- * 
+ * It is also possible getting the string representation of the dice notation expression it represents.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DiceNotationExpression {
@@ -33,7 +31,7 @@ public interface DiceNotationExpression {
      * Returns the expression as a string.
      * <p>
      * This will be the dice expression as it is written, for example "2+1d6".
-     * 
+     *
      * @return the expression as a string
      */
     public String getExpression();

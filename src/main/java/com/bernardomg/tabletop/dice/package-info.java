@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 the original author or authors
+ * Copyright 2014-2022 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,8 +14,7 @@
  * the License.
  */
 /**
- * Dice classes, which includes the model, but also a parser and transformers to
- * handle dice notation expressions.
+ * Dice classes, which includes the model, but also a parser and transformers to handle dice notation expressions.
  */
 
 package com.bernardomg.tabletop.dice;

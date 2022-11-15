@@ -40,7 +40,7 @@ public final class TestDiceRollerAdditionOperationRollText {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final RollHistory result;
+        final RollHistory            result;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -59,7 +59,7 @@ public final class TestDiceRollerAdditionOperationRollText {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final RollHistory result;
+        final RollHistory            result;
 
         left = new IntegerOperand(-1);
         right = new IntegerOperand(2);
@@ -78,7 +78,7 @@ public final class TestDiceRollerAdditionOperationRollText {
         final DiceNotationExpression expression;
         final DiceNotationExpression left;
         final DiceNotationExpression right;
-        final RollHistory result;
+        final RollHistory            result;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);

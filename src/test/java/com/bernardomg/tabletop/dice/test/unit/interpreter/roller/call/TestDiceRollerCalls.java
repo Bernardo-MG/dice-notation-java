@@ -42,34 +42,37 @@ public final class TestDiceRollerCalls {
     @Test
     @DisplayName("The roller function is called when parsing dice")
     public final void testCallsFunction_Dice() {
-        final Dice dice;
-        final DiceNotationExpression expression;
+        final Dice                       dice;
+        final DiceNotationExpression     expression;
         final Function<Dice, RollResult> roller;
 
         // Mocks generator
         roller = Mockito.mock(Function.class);
         Mockito.when(roller.apply(ArgumentMatchers.any()))
-                .thenReturn(Mockito.mock(RollResult.class));
+            .thenReturn(Mockito.mock(RollResult.class));
 
         // Mocks dice
         dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity()).thenReturn(1);
-        Mockito.when(dice.getSides()).thenReturn(1);
+        Mockito.when(dice.getQuantity())
+            .thenReturn(1);
+        Mockito.when(dice.getSides())
+            .thenReturn(1);
 
         expression = new DefaultDiceOperand(dice);
 
         new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(roller, Mockito.times(1)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(1))
+            .apply(ArgumentMatchers.any());
     }
 
     @SuppressWarnings("unchecked")
     @Test
     @DisplayName("The roller function is not called when parsing a subtraction")
     public final void testCallsFunction_Subtraction_NotCalled() {
-        final DiceNotationExpression expression;
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
+        final DiceNotationExpression     expression;
+        final DiceNotationExpression     left;
+        final DiceNotationExpression     right;
         final Function<Dice, RollResult> roller;
 
         // Mocks generator
@@ -83,7 +86,8 @@ public final class TestDiceRollerCalls {
 
         new DiceRoller(roller).transform(expression);
 
-        Mockito.verify(roller, Mockito.times(0)).apply(ArgumentMatchers.any());
+        Mockito.verify(roller, Mockito.times(0))
+            .apply(ArgumentMatchers.any());
     }
 
 }

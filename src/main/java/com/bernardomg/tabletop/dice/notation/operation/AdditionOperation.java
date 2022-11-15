@@ -20,27 +20,26 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * Addition operation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class AdditionOperation extends AbstractBinaryOperation {
 
     /**
      * Constructs an addition operation with the specified operands.
-     * 
+     *
      * @param left
      *            the left sided operand
      * @param right
      *            the right sided operand
      */
-    public AdditionOperation(final DiceNotationExpression left,
-            final DiceNotationExpression right) {
+    public AdditionOperation(final DiceNotationExpression left, final DiceNotationExpression right) {
         super(left, right, (a, b) -> a + b);
     }
 
     /**
      * Returns the values from the left and right operands added together.
-     * 
+     *
      * @return the left and right values added together
      */
     @Override

@@ -40,10 +40,10 @@ public final class ITDefaultDiceParserBinaryOperationNumberStructure {
     @Test
     @DisplayName("An addition and multiplication returns the expected structure")
     public final void testParse_Number_AddAndMult_Structure() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String                  notation;  // Input to parse
+        final BinaryOperation         operation; // Parsed operation
         final MultiplicationOperation mult;
-        IntegerOperand number;
+        IntegerOperand                number;
 
         notation = "1+2*3";
 
@@ -65,16 +65,15 @@ public final class ITDefaultDiceParserBinaryOperationNumberStructure {
     @Test
     @DisplayName("An addition and subtraction returns the expected structure")
     public final void testParse_Number_AddAndSub_Structure() {
-        final String notation;           // Input to parse
-        final BinaryOperation operation; // Parsed operation
+        final String            notation;  // Input to parse
+        final BinaryOperation   operation; // Parsed operation
         final AdditionOperation add;
-        IntegerOperand number;
+        IntegerOperand          number;
 
         notation = "1+2-3";
 
         // ((1+2)-3)
-        operation = (SubtractionOperation) new DefaultDiceParser()
-                .parse(notation);
+        operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
         Assertions.assertEquals((Integer) 3, number.getValue());
@@ -91,10 +90,10 @@ public final class ITDefaultDiceParserBinaryOperationNumberStructure {
     @Test
     @DisplayName("A subtraction and addition returns the expected structure")
     public final void testParse_Number_SubAndAdd_Structure() {
-        final String notation;           // Input to parse
+        final String          notation;  // Input to parse
         final BinaryOperation operation; // Parsed operation
-        SubtractionOperation sub;
-        IntegerOperand number;
+        SubtractionOperation  sub;
+        IntegerOperand        number;
 
         notation = "3-1+2";
 

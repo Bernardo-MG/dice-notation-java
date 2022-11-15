@@ -35,10 +35,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
     @Test
     @DisplayName("An addition returns the expected structure")
     public final void testParse_Dice_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;  // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final DiceOperand diceLeft;        // Left parsed dice
-        final DiceOperand diceRight;       // Right parsed dice
+        final DiceOperand       diceLeft;  // Left parsed dice
+        final DiceOperand       diceRight; // Right parsed dice
 
         notation = "1d20+2d6";
 
@@ -47,20 +47,24 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 1, diceLeft.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 20, diceLeft.getDice().getSides());
+        Assertions.assertEquals((Integer) 1, diceLeft.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 20, diceLeft.getDice()
+            .getSides());
 
-        Assertions.assertEquals((Integer) 2, diceRight.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, diceRight.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, diceRight.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, diceRight.getDice()
+            .getSides());
     }
 
     @Test
     @DisplayName("An addition with a number on the left returns the expected structure")
     public final void testParse_LeftNumber_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;  // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+        final IntegerOperand    integer;   // Parsed integer
+        final DiceOperand       dice;      // Parsed dice
 
         notation = "5+2d6";
 
@@ -69,8 +73,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, dice.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, dice.getDice()
+            .getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }
@@ -78,10 +84,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
     @Test
     @DisplayName("An addition with a number on the right returns the expected structure")
     public final void testParse_RightNumber_Structure() {
-        final String notation;             // Input to parse
+        final String            notation;  // Input to parse
         final AdditionOperation operation; // Parsed operation
-        final IntegerOperand integer;      // Parsed integer
-        final DiceOperand dice;            // Parsed dice
+        final IntegerOperand    integer;   // Parsed integer
+        final DiceOperand       dice;      // Parsed dice
 
         notation = "2d6+5";
 
@@ -90,8 +96,10 @@ public final class ITDefaultDiceParserAdditionDiceStructure {
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice().getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice().getSides());
+        Assertions.assertEquals((Integer) 2, dice.getDice()
+            .getQuantity());
+        Assertions.assertEquals((Integer) 6, dice.getDice()
+            .getSides());
 
         Assertions.assertEquals((Integer) 5, integer.getValue());
     }

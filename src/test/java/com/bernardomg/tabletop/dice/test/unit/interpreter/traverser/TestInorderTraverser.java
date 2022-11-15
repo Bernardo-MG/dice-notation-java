@@ -42,14 +42,14 @@ public final class TestInorderTraverser {
     @Test
     @DisplayName("Parses the tree correctly")
     public final void testList() {
-        final AdditionOperation addition;
-        final SubtractionOperation subtraction;
-        final DiceNotationExpression left;
-        final DiceNotationExpression right;
-        final DiceNotationExpression rightSecond;
+        final AdditionOperation                addition;
+        final SubtractionOperation             subtraction;
+        final DiceNotationExpression           left;
+        final DiceNotationExpression           right;
+        final DiceNotationExpression           rightSecond;
         final Iterable<DiceNotationExpression> result;
         final Iterator<DiceNotationExpression> exps;
-        DiceNotationExpression exp;
+        DiceNotationExpression                 exp;
 
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
@@ -65,31 +65,28 @@ public final class TestInorderTraverser {
         // 1 + 2 - 3
         result = new InorderTraverser().transform(subtraction);
 
-        Assertions.assertEquals(5,
-                StreamSupport.stream(result.spliterator(), false).count());
+        Assertions.assertEquals(5, StreamSupport.stream(result.spliterator(), false)
+            .count());
 
         exps = result.iterator();
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(1),
-                ((IntegerOperand) exp).getValue());
+        Assertions.assertEquals(Integer.valueOf(1), ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof AdditionOperation);
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(2),
-                ((IntegerOperand) exp).getValue());
+        Assertions.assertEquals(Integer.valueOf(2), ((IntegerOperand) exp).getValue());
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof SubtractionOperation);
 
         exp = exps.next();
         Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(3),
-                ((IntegerOperand) exp).getValue());
+        Assertions.assertEquals(Integer.valueOf(3), ((IntegerOperand) exp).getValue());
     }
 
 }

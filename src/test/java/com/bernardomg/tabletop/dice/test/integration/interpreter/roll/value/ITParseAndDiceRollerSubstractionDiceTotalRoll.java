@@ -34,15 +34,16 @@ public final class ITParseAndDiceRollerSubstractionDiceTotalRoll {
     @Test
     @DisplayName("A subtraction to a negative dice returns the expected value")
     public final void testParse_Sub_Dice_Negative_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "-1d1-2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-3), result);
     }
@@ -50,15 +51,16 @@ public final class ITParseAndDiceRollerSubstractionDiceTotalRoll {
     @Test
     @DisplayName("A subtraction returns the expected value")
     public final void testParse_Sub_Dice_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "1d1-2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-1), result);
     }
@@ -66,15 +68,16 @@ public final class ITParseAndDiceRollerSubstractionDiceTotalRoll {
     @Test
     @DisplayName("A subtraction with a constant to the left returns the expected value")
     public final void testParse_Sub_LeftNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "5-2d1";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(3), result);
     }
@@ -82,15 +85,16 @@ public final class ITParseAndDiceRollerSubstractionDiceTotalRoll {
     @Test
     @DisplayName("A subtraction with a constant to the right returns the expected value")
     public final void testParse_Sub_RightNumber_Value() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Integer result;                // Resulting value
-        final String notation;               // Input to parse
+        final DiceNotationExpression parsed;   // Parsed expression
+        final Integer                result;   // Resulting value
+        final String                 notation; // Input to parse
 
         notation = "2d1-5";
 
         parsed = new DefaultDiceParser().parse(notation);
 
-        result = new DiceRoller().transform(parsed).getTotalRoll();
+        result = new DiceRoller().transform(parsed)
+            .getTotalRoll();
 
         Assertions.assertEquals(Integer.valueOf(-3), result);
     }

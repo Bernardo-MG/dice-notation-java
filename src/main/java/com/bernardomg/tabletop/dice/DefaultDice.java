@@ -22,10 +22,9 @@ import lombok.NonNull;
 /**
  * Immutable group of dice.
  * <p>
- * Some basic constraints are applied to the dice values. The quantity should be
- * equal or higher than zero, and the number of sides equal or higher than one.
- * If any other value is received then an exception will be thrown.
- * 
+ * Some basic constraints are applied to the dice values. The quantity should be equal or higher than zero, and the
+ * number of sides equal or higher than one. If any other value is received then an exception will be thrown.
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Data

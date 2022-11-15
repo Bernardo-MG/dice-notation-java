@@ -22,28 +22,28 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
  * A binary operation for the dice notation.
- * 
+ *
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface BinaryOperation extends DiceNotationExpression {
 
     /**
      * Returns the left sided operand.
-     * 
+     *
      * @return the left sided operand
      */
     public DiceNotationExpression getLeft();
 
     /**
      * Returns the operation to apply.
-     * 
+     *
      * @return the operation
      */
     public BiFunction<Integer, Integer, Integer> getOperation();
 
     /**
      * Returns the right sided operand.
-     * 
+     *
      * @return the right sided operand
      */
     public DiceNotationExpression getRight();

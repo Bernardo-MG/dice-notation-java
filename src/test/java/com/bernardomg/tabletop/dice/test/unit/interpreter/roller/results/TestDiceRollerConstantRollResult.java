@@ -40,21 +40,23 @@ public final class TestDiceRollerConstantRollResult {
     @DisplayName("A negative value generates the expected rolls")
     public final void testRolls_Negative() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> results;
-        final RollResult result;
-        final Iterable<Integer> rolls;
-        final Iterator<Integer> rollValues;
+        final Iterable<RollResult>   results;
+        final RollResult             result;
+        final Iterable<Integer>      rolls;
+        final Iterator<Integer>      rollValues;
 
         expression = new IntegerOperand(-4);
 
-        results = new DiceRoller().transform(expression).getRollResults();
-        result = results.iterator().next();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
+        result = results.iterator()
+            .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1,
-                StreamSupport.stream(results.spliterator(), false).count());
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(results.spliterator(), false)
+            .count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(-4), rollValues.next());
@@ -64,14 +66,16 @@ public final class TestDiceRollerConstantRollResult {
     @DisplayName("The default dice is generated for negative values")
     public final void testRolls_Negative_Dice() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> results;
-        final RollResult result;
-        final Dice dice;
+        final Iterable<RollResult>   results;
+        final RollResult             result;
+        final Dice                   dice;
 
         expression = new IntegerOperand(-4);
 
-        results = new DiceRoller().transform(expression).getRollResults();
-        result = results.iterator().next();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
+        result = results.iterator()
+            .next();
 
         dice = result.getDice();
 
@@ -83,21 +87,23 @@ public final class TestDiceRollerConstantRollResult {
     @DisplayName("A positive value generates the expected rolls")
     public final void testRolls_Positive() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> results;
-        final RollResult result;
-        final Iterable<Integer> rolls;
-        final Iterator<Integer> rollValues;
+        final Iterable<RollResult>   results;
+        final RollResult             result;
+        final Iterable<Integer>      rolls;
+        final Iterator<Integer>      rollValues;
 
         expression = new IntegerOperand(4);
 
-        results = new DiceRoller().transform(expression).getRollResults();
-        result = results.iterator().next();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
+        result = results.iterator()
+            .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1,
-                StreamSupport.stream(results.spliterator(), false).count());
-        Assertions.assertEquals(1,
-                StreamSupport.stream(rolls.spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(results.spliterator(), false)
+            .count());
+        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
+            .count());
 
         rollValues = rolls.iterator();
         Assertions.assertEquals(Integer.valueOf(4), rollValues.next());
@@ -107,14 +113,16 @@ public final class TestDiceRollerConstantRollResult {
     @DisplayName("The default dice is generated for positive values")
     public final void testRolls_Positive_Dice() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> results;
-        final RollResult result;
-        final Dice dice;
+        final Iterable<RollResult>   results;
+        final RollResult             result;
+        final Dice                   dice;
 
         expression = new IntegerOperand(4);
 
-        results = new DiceRoller().transform(expression).getRollResults();
-        result = results.iterator().next();
+        results = new DiceRoller().transform(expression)
+            .getRollResults();
+        result = results.iterator()
+            .next();
 
         dice = result.getDice();
 

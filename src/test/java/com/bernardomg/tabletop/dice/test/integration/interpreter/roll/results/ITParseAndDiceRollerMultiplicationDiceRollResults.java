@@ -44,17 +44,18 @@ public final class ITParseAndDiceRollerMultiplicationDiceRollResults {
     @DisplayName("Returns the expected dice")
     public final void testParse_Dice() {
         final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
-        Dice dice;
+        final Iterator<RollResult>   rolled;
+        final String                 notation;
+        RollResult                   result;
+        Dice                         dice;
 
         notation = "1d1*2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator();
 
         result = rolled.next();
 
@@ -73,47 +74,53 @@ public final class ITParseAndDiceRollerMultiplicationDiceRollResults {
     @DisplayName("Returns the expected number of results")
     public final void testParse_Quantity() {
         final DiceNotationExpression expression;
-        final Iterable<RollResult> rolled;
-        final String notation;
+        final Iterable<RollResult>   rolled;
+        final String                 notation;
 
         notation = "1d1*2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults();
 
-        Assertions.assertEquals(2,
-                StreamSupport.stream(rolled.spliterator(), false).count());
+        Assertions.assertEquals(2, StreamSupport.stream(rolled.spliterator(), false)
+            .count());
     }
 
     @Test
     @DisplayName("Returns the expected rolls")
     public final void testParse_Rolls() {
         final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
-        Iterator<Integer> rolls;
+        final Iterator<RollResult>   rolled;
+        final String                 notation;
+        RollResult                   result;
+        Iterator<Integer>            rolls;
 
         notation = "1d1*2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator();
 
         result = rolled.next();
-        rolls = result.getAllRolls().iterator();
+        rolls = result.getAllRolls()
+            .iterator();
 
-        Assertions.assertEquals(1, StreamSupport
-                .stream(result.getAllRolls().spliterator(), false).count());
+        Assertions.assertEquals(1, StreamSupport.stream(result.getAllRolls()
+            .spliterator(), false)
+            .count());
         Assertions.assertEquals(Integer.valueOf(1), rolls.next());
 
         result = rolled.next();
-        rolls = result.getAllRolls().iterator();
+        rolls = result.getAllRolls()
+            .iterator();
 
-        Assertions.assertEquals(2, StreamSupport
-                .stream(result.getAllRolls().spliterator(), false).count());
+        Assertions.assertEquals(2, StreamSupport.stream(result.getAllRolls()
+            .spliterator(), false)
+            .count());
         Assertions.assertEquals(Integer.valueOf(1), rolls.next());
         Assertions.assertEquals(Integer.valueOf(1), rolls.next());
     }
@@ -122,8 +129,8 @@ public final class ITParseAndDiceRollerMultiplicationDiceRollResults {
     @DisplayName("Returns the expected total roll")
     public final void testParse_TotalRoll() {
         final DiceNotationExpression expression;
-        final String notation;
-        final RollHistory history;
+        final String                 notation;
+        final RollHistory            history;
 
         notation = "1d1*2d1";
 
@@ -138,16 +145,17 @@ public final class ITParseAndDiceRollerMultiplicationDiceRollResults {
     @DisplayName("Returns the expected total rolls")
     public final void testParse_TotalRolls() {
         final DiceNotationExpression expression;
-        final Iterator<RollResult> rolled;
-        final String notation;
-        RollResult result;
+        final Iterator<RollResult>   rolled;
+        final String                 notation;
+        RollResult                   result;
 
         notation = "1d1*2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
-        rolled = new DiceRoller().transform(expression).getRollResults()
-                .iterator();
+        rolled = new DiceRoller().transform(expression)
+            .getRollResults()
+            .iterator();
 
         result = rolled.next();
 
