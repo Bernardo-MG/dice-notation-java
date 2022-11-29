@@ -205,7 +205,7 @@
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.2.8</site.skin.version>
+      <site.skin.version>2.2.9</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
       <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=dice-notation-java]]></githubArtifactURL>
    </properties>
