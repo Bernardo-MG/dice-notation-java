@@ -4,8 +4,13 @@ on: [push, pull_request]
 
 jobs:
   tests:
-    name: Tests
+    name: Tests with JDK ${{ matrix.jdk }}
+    strategy:
+      matrix:
+        jdk: [ 11, 17 ]
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
+    with:
+      jdk: ${{ matrix.jdk }}
 
   deploy_develop_docs:
     name: Deploy development docs
