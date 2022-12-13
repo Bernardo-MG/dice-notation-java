@@ -8,30 +8,29 @@ jobs:
     strategy:
       matrix:
         jdk: [ 11, 17 ]
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@feature/extended_syntax
     with:
       jdk: ${{ matrix.jdk }}
 
-  deploy_develop_docs:
-    name: Deploy development docs
-    needs: tests
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
-    with:
-      branch: develop
-      host: docs.bernardomg.com
-    secrets:
-      url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-      username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-      password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-
   deploy_docs:
-    name: Deploy docs
+    name: Deploy development docs
+    strategy:
+      matrix:
+        include:
+          - branch: develop
+            url: DEPLOY_DOCS_DEVELOP_SITE
+            username: DEPLOY_DOCS_DEVELOP_USER
+            password: DEPLOY_DOCS_DEVELOP_PASSWORD
+          - branch: master
+            url: DEPLOY_DOCS_SITE
+            username: DEPLOY_DOCS_USER
+            password: DEPLOY_DOCS_PASSWORD
     needs: tests
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@feature/extended_syntax
     with:
-      branch: master
+      branch: ${{ matrix.branch }}
       host: docs.bernardomg.com
     secrets:
-      url: ${{ secrets.DEPLOY_DOCS_SITE }}
-      username: ${{ secrets.DEPLOY_DOCS_USER }}
-      password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
+      url: ${{ secrets[matrix.url] }}
+      username: ${{ secrets[matrix.username] }}
+      password: ${{ secrets[matrix.password] }}
