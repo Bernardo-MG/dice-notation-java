@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         jdk: [ 11, 17 ]
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@feature/extended_syntax
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
     with:
       jdk: ${{ matrix.jdk }}
 
@@ -26,7 +26,7 @@ jobs:
             username: DEPLOY_DOCS_USER
             password: DEPLOY_DOCS_PASSWORD
     needs: tests
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@feature/extended_syntax
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
     with:
       branch: ${{ matrix.branch }}
       host: docs.bernardomg.com
