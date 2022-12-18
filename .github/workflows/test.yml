@@ -3,11 +3,14 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  tests:
-    name: Tests with JDK ${{ matrix.jdk }}
-    strategy:
-      matrix:
-        jdk: [ 11, 17 ]
+  tests_11:
+    name: Tests with JDK 11
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
     with:
-      jdk: ${{ matrix.jdk }}
+      jdk: 11
+
+  tests_17:
+    name: Tests with JDK 17
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
+    with:
+      jdk: 17
