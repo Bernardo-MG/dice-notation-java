@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy_docs:
-    name: Deploy docs for ${matrix.branch}
+    name: Deploy docs for ${{ matrix.branch }}
     strategy:
       matrix:
         include:
