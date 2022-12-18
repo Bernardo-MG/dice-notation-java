@@ -1,0 +1,30 @@
+name: Doc deployment
+
+on:
+  push:
+    branches:
+    - master
+    - develop
+
+jobs:
+  deploy_docs:
+    name: Deploy development docs
+    strategy:
+      matrix:
+        include:
+          - branch: develop
+            url: DEPLOY_DOCS_DEVELOP_SITE
+            username: DEPLOY_DOCS_DEVELOP_USER
+            password: DEPLOY_DOCS_DEVELOP_PASSWORD
+          - branch: master
+            url: DEPLOY_DOCS_SITE
+            username: DEPLOY_DOCS_USER
+            password: DEPLOY_DOCS_PASSWORD
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
+    with:
+      branch: ${{ matrix.branch }}
+      host: docs.bernardomg.com
+    secrets:
+      url: ${{ secrets[matrix.url] }}
+      username: ${{ secrets[matrix.username] }}
+      password: ${{ secrets[matrix.password] }}
