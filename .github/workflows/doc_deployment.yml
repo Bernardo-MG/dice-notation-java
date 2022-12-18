@@ -7,24 +7,24 @@ on:
     - develop
 
 jobs:
-  deploy_docs:
-    name: Deploy docs for ${{ matrix.branch }}
-    strategy:
-      matrix:
-        include:
-          - branch: develop
-            url: DEPLOY_DOCS_DEVELOP_SITE
-            username: DEPLOY_DOCS_DEVELOP_USER
-            password: DEPLOY_DOCS_DEVELOP_PASSWORD
-          - branch: master
-            url: DEPLOY_DOCS_SITE
-            username: DEPLOY_DOCS_USER
-            password: DEPLOY_DOCS_PASSWORD
+  deploy_develop_docs:
+    name: Deploy docs for develop
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
     with:
-      branch: ${{ matrix.branch }}
+      branch: develop
       host: docs.bernardomg.com
     secrets:
-      url: ${{ secrets[matrix.url] }}
-      username: ${{ secrets[matrix.username] }}
-      password: ${{ secrets[matrix.password] }}
+      url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+      username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
+      password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
+      
+  deploy_master_docs:
+    name: Deploy docs for master
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_site.yml@v1
+    with:
+      branch: master
+      host: docs.bernardomg.com
+    secrets:
+      url: ${{ secrets.DEPLOY_DOCS_SITE }}
+      username: ${{ secrets.DEPLOY_DOCS_USER }}
+      password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
