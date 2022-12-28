@@ -1,6 +1,5 @@
 # Usage example
 
-
 The project includes a model for dice and dice notation grammar. But the strong point are the parsers.
 
 ## Parsing Common Dice Notation
