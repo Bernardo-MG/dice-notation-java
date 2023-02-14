@@ -24,8 +24,6 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
@@ -44,6 +42,8 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed {@link DiceNotationExpression}.
  * <p>
@@ -53,6 +53,7 @@ import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Slf4j
 public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener implements DiceExpressionBuilder {
 
     /**
@@ -64,12 +65,6 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
      * Operator which indicates the operation is a division.
      */
     private static final String                 DIVISION_OPERATOR       = "/";
-
-    /**
-     * Logger.
-     */
-    private static final Logger                 LOGGER                  = LoggerFactory
-        .getLogger(DefaultDiceExpressionBuilder.class);
 
     /**
      * Operator which indicates the operation is a multiplication.
@@ -108,7 +103,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getBinaryOperation(operators);
 
-        LOGGER.debug("Parsed addition operation: {}", expression);
+        log.debug("Parsed addition operation: {}", expression);
 
         nodes.push(expression);
     }
@@ -121,7 +116,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getDiceOperand(ctx);
 
-        LOGGER.debug("Parsed dice: {}", expression);
+        log.debug("Parsed dice: {}", expression);
 
         nodes.push(expression);
     }
@@ -141,7 +136,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getBinaryOperation(operators);
 
-        LOGGER.debug("Parsed multiplication operation: {}", expression);
+        log.debug("Parsed multiplication operation: {}", expression);
 
         nodes.push(expression);
     }
@@ -154,7 +149,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
         expression = getIntegerOperand(ctx.getText());
 
-        LOGGER.debug("Parsed number: {}", expression);
+        log.debug("Parsed number: {}", expression);
 
         nodes.push(expression);
     }
@@ -166,7 +161,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         // The last value added to the stack will be the root
 
         if (nodes.isEmpty()) {
-            LOGGER.trace("No nodes. Returning null");
+            log.trace("No nodes. Returning null");
             root = null;
         } else {
             root = nodes.peek();
@@ -205,23 +200,23 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
 
             // Checks which kind of operation this is and builds it
             if (ADDITION_OPERATOR.equals(operator)) {
-                LOGGER.trace("Addition operation");
+                log.trace("Addition operation");
                 operation = new AdditionOperation(left, right);
             } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-                LOGGER.trace("Subtraction operation");
+                log.trace("Subtraction operation");
                 operation = new SubtractionOperation(left, right);
             } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
-                LOGGER.trace("Multiplication operation");
+                log.trace("Multiplication operation");
                 operation = new MultiplicationOperation(left, right);
             } else if (DIVISION_OPERATOR.equals(operator)) {
-                LOGGER.trace("Division operation");
+                log.trace("Division operation");
                 operation = new DivisionOperation(left, right);
             } else {
-                LOGGER.error("Unknown operator {}", operator);
+                log.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
             }
 
-            LOGGER.debug("Parsed operation {}", operation);
+            log.debug("Parsed operation {}", operation);
 
             // Each new expression is stored back for the next iteration
             operands.push(operation);
@@ -258,7 +253,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
             if ((ctx.ADDOPERATOR() != null) && (SUBTRACTION_OPERATOR.equals(ctx.ADDOPERATOR()
                 .getText()))) {
                 // Subtraction
-                LOGGER.debug("This is part of a subtraction. Reversing sign.");
+                log.debug("This is part of a subtraction. Reversing sign.");
                 quantity = 0 - Integer.parseInt(digits.next()
                     .getText());
             } else {
@@ -269,7 +264,7 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener
         } else {
             // No quantity of dice defined
             // Defaults to 1
-            LOGGER.trace("No dice quantity defined. Defaulting to 1");
+            log.trace("No dice quantity defined. Defaulting to 1");
             quantity = 1;
         }
 

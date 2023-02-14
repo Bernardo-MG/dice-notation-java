@@ -19,12 +19,11 @@ package com.bernardomg.tabletop.dice.random;
 import java.util.Objects;
 import java.util.function.Function;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
 import com.bernardomg.tabletop.dice.history.RollResult;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Function for transforming a {@code Dice} to a {@code RollResult}, simulating rolls.
@@ -32,12 +31,8 @@ import com.bernardomg.tabletop.dice.history.RollResult;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Slf4j
 public final class DiceToRollResult implements Function<Dice, RollResult> {
-
-    /**
-     * Logger.
-     */
-    private static final Logger   LOGGER = LoggerFactory.getLogger(DiceToRollResult.class);
 
     /**
      * The random numbers generator.
@@ -79,9 +74,9 @@ public final class DiceToRollResult implements Function<Dice, RollResult> {
             total += roll;
         }
 
-        LOGGER.debug("Rolled {}", dice);
-        LOGGER.debug("Generated rolls: {}", rolls);
-        LOGGER.debug("Total roll: {}", total);
+        log.debug("Rolled {}", dice);
+        log.debug("Generated rolls: {}", rolls);
+        log.debug("Total roll: {}", total);
 
         return new DefaultRollResult(dice, rolls, total);
     }
