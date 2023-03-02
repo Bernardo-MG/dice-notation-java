@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dice.visitor;
 
 import java.util.Objects;
 import java.util.Stack;
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.StreamSupport;
 
@@ -94,14 +94,14 @@ public final class DiceRollAccumulator implements NotationAccumulator<RollHistor
 
     @Override
     public final void binaryOperation(final BinaryOperation exp) {
-        final Integer                               operandA;
-        final Integer                               operandB;
-        final BiFunction<Integer, Integer, Integer> operation;
-        final String                                textA;
-        final String                                textB;
-        final String                                op;
-        Integer                                     value;
-        RollResult                                  rollResult;
+        final Integer                 operandA;
+        final Integer                 operandB;
+        final BinaryOperator<Integer> operation;
+        final String                  textA;
+        final String                  textB;
+        final String                  op;
+        Integer                       value;
+        RollResult                    rollResult;
 
         // Operation
         // Takes back the two latest values and applies

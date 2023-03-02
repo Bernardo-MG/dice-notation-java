@@ -40,7 +40,7 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
     /**
      * Default constructor.
      */
-    public AbstractNumberGenerator() {
+    protected AbstractNumberGenerator() {
         super();
     }
 

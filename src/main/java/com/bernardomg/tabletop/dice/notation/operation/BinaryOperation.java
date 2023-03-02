@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.notation.operation;
 
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
@@ -39,7 +39,7 @@ public interface BinaryOperation extends DiceNotationExpression {
      *
      * @return the operation
      */
-    public BiFunction<Integer, Integer, Integer> getOperation();
+    public BinaryOperator<Integer> getOperation();
 
     /**
      * Returns the right sided operand.

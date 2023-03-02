@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.interpreter;
 
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
@@ -78,7 +79,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * @param transformer
      *            transformer to apply
      */
-    public DiceRoller(final Function<Dice, RollResult> roller, final Function<RollResult, RollResult> transformer) {
+    public DiceRoller(final Function<Dice, RollResult> roller, final UnaryOperator<RollResult> transformer) {
         super();
 
         final Function<Dice, RollResult> finalRoller;
@@ -107,7 +108,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * @param transformer
      *            transformer to apply
      */
-    public DiceRoller(final NumberGenerator generator, final Function<RollResult, RollResult> transformer) {
+    public DiceRoller(final NumberGenerator generator, final UnaryOperator<RollResult> transformer) {
         super();
 
         final Function<Dice, RollResult> finalRoller;
