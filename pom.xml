@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
    <modelVersion>4.0.0</modelVersion>
@@ -11,7 +12,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.3</version>
+      <version>1.5.4</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -181,18 +182,17 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.11.1</antlr.version>
-      <junit.jupiter.version>5.9.2</junit.jupiter.version>
-      <lombok.version>1.18.26</lombok.version>
-      <mockito.version>5.1.1</mockito.version>
-      <log4j.version>2.19.0</log4j.version>
-      <slf4j.version>2.0.6</slf4j.version>
+      <antlr.version>4.13.0</antlr.version>
+      <junit.jupiter.version>5.9.3</junit.jupiter.version>
+      <lombok.version>1.18.28</lombok.version>
+      <mockito.version>5.4.0</mockito.version>
+      <log4j.version>2.20.0</log4j.version>
+      <slf4j.version>2.0.7</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.antlr.version>${antlr.version}</plugin.antlr.version>
       <plugin.antlr.test.version>1.22</plugin.antlr.test.version>
-      <plugin.buildhelp.version>3.3.0</plugin.buildhelp.version>
       <!-- ============================================== -->
       <!-- ============ PLUGIN CONFIGURATION ============ -->
       <!-- ============================================== -->
@@ -281,6 +281,12 @@
          <groupId>org.junit.platform</groupId>
          <artifactId>junit-platform-runner</artifactId>
          <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>junit</groupId>
+               <artifactId>junit</artifactId>
+            </exclusion>
+         </exclusions>
       </dependency>
       <dependency>
          <!-- Mockito -->
@@ -312,13 +318,6 @@
                <groupId>com.khubla.antlr</groupId>
                <artifactId>antlr4test-maven-plugin</artifactId>
                <version>${plugin.antlr.test.version}</version>
-            </plugin>
-            <plugin>
-               <!-- Build helper -->
-               <!-- Adds the generated files to the Maven classpath -->
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>build-helper-maven-plugin</artifactId>
-               <version>${plugin.buildhelp.version}</version>
             </plugin>
          </plugins>
       </pluginManagement>
@@ -449,7 +448,8 @@
          </plugin>
          <plugin>
             <!-- PMD -->
-            <!-- Checks that the code complies with a series of code quality rules -->
+            <!-- Checks that the code complies with a series of code quality
+            rules -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-pmd-plugin</artifactId>
             <configuration>

@@ -19,7 +19,6 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.dice;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -187,7 +186,7 @@ public final class ITParseAndDiceGatherer {
 
         dice = new DiceGatherer().transform(parsed);
 
-        Assert.assertEquals(0, StreamSupport.stream(dice.spliterator(), false)
+        Assertions.assertEquals(0, StreamSupport.stream(dice.spliterator(), false)
             .count());
     }
 
