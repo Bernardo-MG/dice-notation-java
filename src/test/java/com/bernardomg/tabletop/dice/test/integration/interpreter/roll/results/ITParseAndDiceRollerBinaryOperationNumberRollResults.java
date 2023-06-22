@@ -19,11 +19,10 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -53,24 +52,9 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
         results = new DiceRoller().transform(operation)
             .getRollResults();
 
-        Assertions.assertEquals(3, StreamSupport.stream(results.spliterator(), false)
-            .count());
-    }
-
-    @Test
-    @DisplayName("Returns the expected total roll")
-    public final void testParse_TotalRoll() {
-        final DiceNotationExpression expression;
-        final String                 notation;
-        final RollHistory            history;
-
-        notation = "1-2+3";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        history = new DiceRoller().transform(expression);
-
-        Assertions.assertEquals(Integer.valueOf(2), history.getTotalRoll());
+        Assertions.assertThat(StreamSupport.stream(results.spliterator(), false)
+            .count())
+            .isEqualTo(3);
     }
 
     @Test
@@ -91,15 +75,18 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(1);
 
         result = rolled.next();
 
-        Assertions.assertEquals(Integer.valueOf(-2), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(-2);
 
         result = rolled.next();
 
-        Assertions.assertEquals(Integer.valueOf(3), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(3);
     }
 
     @Test
@@ -123,27 +110,33 @@ public final class ITParseAndDiceRollerBinaryOperationNumberRollResults {
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(Integer.valueOf(1), rollValues.next());
+        Assertions.assertThat(rollValues.next())
+            .isEqualTo(1);
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(Integer.valueOf(-2), rollValues.next());
+        Assertions.assertThat(rollValues.next())
+            .isEqualTo(-2);
 
         result = resultsItr.next();
         rolls = result.getAllRolls();
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(Integer.valueOf(3), rollValues.next());
+        Assertions.assertThat(rollValues.next())
+            .isEqualTo(3);
     }
 
 }

@@ -16,70 +16,61 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.RollAndResultArgumentsProvider;
 
-@DisplayName("DiceRoller returns the expected total roll for multiplications")
-public final class ITParseAndDiceRollerMultiplicationDiceTotalRoll {
+@DisplayName("DiceRoller returns the expected total roll")
+public final class ITParseAndDiceRollerTotalRoll {
 
-    public ITParseAndDiceRollerMultiplicationDiceTotalRoll() {
+    /**
+     * Default constructor.
+     */
+    public ITParseAndDiceRollerTotalRoll() {
         super();
     }
 
-    @Test
-    @DisplayName("A multiplication returns the expected value")
-    public final void testParse_Multiply_Dice_Value() {
-        final DiceNotationExpression parsed;   // Parsed expression
-        final Integer                result;   // Resulting value
-        final String                 notation; // Input to parse
-
-        notation = "3d1*2d1";
+    @ParameterizedTest(name = "{0} = {1}")
+    @ArgumentsSource(RollAndResultArgumentsProvider.class)
+    @DisplayName("The notation parses into the expected value")
+    public final void testParse_Add_Dice_Value(final String notation, final Number expected) {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer                result; // Resulting value
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(6), result);
+        Assertions.assertThat(result)
+            .isEqualTo(expected);
     }
 
     @Test
-    @DisplayName("Multiplying a number by a dice returns the expected value")
-    public final void testParse_Multiply_LeftNumber_Value() {
+    @Disabled
+    @DisplayName("An inexact division returns a float value")
+    public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed;   // Parsed expression
         final Integer                result;   // Resulting value
         final String                 notation; // Input to parse
 
-        notation = "5*2d1";
+        notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(10), result);
-    }
-
-    @Test
-    @DisplayName("Multiplying a dice by a number returns the expected value")
-    public final void testParse_Multiply_RightNumber_Value() {
-        final DiceNotationExpression parsed;   // Parsed expression
-        final Integer                result;   // Resulting value
-        final String                 notation; // Input to parse
-
-        notation = "2d1*5";
-
-        parsed = new DefaultDiceParser().parse(notation);
-
-        result = new DiceRoller().transform(parsed)
-            .getTotalRoll();
-
-        Assertions.assertEquals(Integer.valueOf(10), result);
+        Assertions.assertThat(result)
+            .isEqualTo(1.5);
     }
 
 }

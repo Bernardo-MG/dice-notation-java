@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.text;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,8 @@ public final class ITParseAndDiceRollerAdditionDiceText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1]", result.toString());
+        Assertions.assertThat(result.toString())
+            .isEqualTo("1 + [1, 1]");
     }
 
 }

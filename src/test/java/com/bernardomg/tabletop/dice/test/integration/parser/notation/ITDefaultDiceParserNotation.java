@@ -16,70 +16,21 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.notation;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationArgumentsProvider;
 
 @DisplayName("DefaultDiceParser returns back the parsed expression")
 public final class ITDefaultDiceParserNotation {
 
     public ITDefaultDiceParserNotation() {
         super();
-    }
-
-    @Test
-    @DisplayName("Addition returns the expression")
-    public final void testParse_Add_Dice() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "1d20+2d6";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("Addition with a number on the left returns the expression")
-    public final void testParse_Add_LeftNumber() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "5+2d6";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("Addition with a number on the right returns the expression")
-    public final void testParse_Add_RightNumber() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "2d6+5";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("A dice expression returns the expression")
-    public final void testParse_Dice() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "1d6";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
     }
 
     @Test
@@ -92,20 +43,8 @@ public final class ITDefaultDiceParserNotation {
 
         operation = new DefaultDiceParser().parse(notation);
 
-        Assertions.assertEquals("1d6", operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("A mixed expression returns the expression")
-    public final void testParse_Mixed() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "1d20-5*1d8+2d6/3d12";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
+        Assertions.assertThat(operation.getExpression())
+            .isEqualTo("1d6");
     }
 
     @Test
@@ -118,46 +57,20 @@ public final class ITDefaultDiceParserNotation {
 
         operation = new DefaultDiceParser().parse(notation);
 
-        Assertions.assertEquals("1d6", operation.getExpression());
+        Assertions.assertThat(operation.getExpression())
+            .isEqualTo("1d6");
     }
 
-    @Test
-    @DisplayName("A subtraction returns the expression")
-    public final void testParse_Sub_Dice() {
-        final String                 notation;  // Input to parse
+    @ParameterizedTest(name = "{0}")
+    @ArgumentsSource(NotationArgumentsProvider.class)
+    @DisplayName("Can recover the parsed notation")
+    public final void testParse_ReturnsNotation(final String notation) {
         final DiceNotationExpression operation; // Parsed operation
-
-        notation = "1d20-2d6";
 
         operation = new DefaultDiceParser().parse(notation);
 
-        Assertions.assertEquals(notation, operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("A subtraction with a number on the left returns the expression")
-    public final void testParse_Sub_LeftNumber() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "5-2d6";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
-    }
-
-    @Test
-    @DisplayName("A subtraction with a number on the right returns the expression")
-    public final void testParse_Sub_RightNumber() {
-        final String                 notation;  // Input to parse
-        final DiceNotationExpression operation; // Parsed operation
-
-        notation = "2d6-5";
-
-        operation = new DefaultDiceParser().parse(notation);
-
-        Assertions.assertEquals(notation, operation.getExpression());
+        Assertions.assertThat(operation.getExpression())
+            .isEqualTo(notation);
     }
 
 }
