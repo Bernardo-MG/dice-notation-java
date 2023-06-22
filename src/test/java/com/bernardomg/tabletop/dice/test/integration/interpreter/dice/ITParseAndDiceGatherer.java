@@ -22,17 +22,44 @@ import java.util.stream.StreamSupport;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceGatherer;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
 
 @DisplayName("DiceGatherer with a parsed expression")
 public final class ITParseAndDiceGatherer {
 
     public ITParseAndDiceGatherer() {
         super();
+    }
+
+    @ParameterizedTest(name = "{0} = {1} dice with {2} sides")
+    @ArgumentsSource(NotationAndValuesArgumentsProvider.class)
+    @DisplayName("Dice can be acquired from a expression")
+    public final void testParse(final String notation, final Integer quantity, final Integer sides) {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
+            .next();
+
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(quantity);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(sides);
     }
 
     @Test
@@ -170,42 +197,6 @@ public final class ITParseAndDiceGatherer {
     }
 
     @Test
-    @DisplayName("Dice can be acquired from a expression using the max integers")
-    public final void testParse_Max() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertThat(dice.getQuantity())
-            .isEqualTo(Integer.valueOf(Integer.MAX_VALUE));
-        Assertions.assertThat(dice.getSides())
-            .isEqualTo(Integer.valueOf(Integer.MAX_VALUE));
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using a negative dice")
-    public final void testParse_Negative() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("-1d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertThat(dice.getQuantity())
-            .isEqualTo(-1);
-        Assertions.assertThat(dice.getSides())
-            .isEqualTo(6);
-    }
-
-    @Test
     @DisplayName("No dice are aquired from a constant")
     public final void testParse_NoDice() {
         final DiceNotationExpression parsed; // Parsed expression
@@ -218,42 +209,6 @@ public final class ITParseAndDiceGatherer {
         Assertions.assertThat(StreamSupport.stream(dice.spliterator(), false)
             .count())
             .isZero();
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using the minimal dice")
-    public final void testParse_OnesDice_Minimal() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d1");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertThat(dice.getQuantity())
-            .isEqualTo(1);
-        Assertions.assertThat(dice.getSides())
-            .isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using a simple dice")
-    public final void testParse_Simple() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertThat(dice.getQuantity())
-            .isEqualTo(1);
-        Assertions.assertThat(dice.getSides())
-            .isEqualTo(6);
     }
 
     @Test
@@ -400,24 +355,6 @@ public final class ITParseAndDiceGatherer {
             .isEqualTo(3);
         Assertions.assertThat(dice.getSides())
             .isEqualTo(10);
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using zero for quantity")
-    public final void testParse_ZeroQuantity() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("0d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertThat(dice.getQuantity())
-            .isEqualTo(0);
-        Assertions.assertThat(dice.getSides())
-            .isEqualTo(6);
     }
 
 }
