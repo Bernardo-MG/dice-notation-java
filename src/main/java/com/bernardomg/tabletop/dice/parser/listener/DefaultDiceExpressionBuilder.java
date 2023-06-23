@@ -27,7 +27,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.generated.DiceNotationBaseListener;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParserBaseListener;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.AddOpContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.DiceContext;
 import com.bernardomg.tabletop.dice.generated.DiceNotationParser.MultOpContext;
@@ -54,7 +54,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Slf4j
-public final class DefaultDiceExpressionBuilder extends DiceNotationBaseListener implements DiceExpressionBuilder {
+public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseListener implements DiceExpressionBuilder {
 
     /**
      * Operator which indicates the operation is an addition.

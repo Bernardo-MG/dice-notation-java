@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.parser.listener;
 
-import com.bernardomg.tabletop.dice.generated.DiceNotationListener;
+import com.bernardomg.tabletop.dice.generated.DiceNotationParserListener;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
@@ -26,7 +26,7 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DiceExpressionBuilder extends DiceNotationListener {
+public interface DiceExpressionBuilder extends DiceNotationParserListener {
 
     /**
      * Returns the root for the tree of dice notation model objects.
