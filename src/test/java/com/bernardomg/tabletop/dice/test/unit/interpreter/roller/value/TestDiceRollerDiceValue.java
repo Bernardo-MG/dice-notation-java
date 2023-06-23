@@ -16,13 +16,17 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
 
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
@@ -30,8 +34,15 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 
+@ExtendWith(MockitoExtension.class)
 @DisplayName("DiceRoller handles dice operations")
 public final class TestDiceRollerDiceValue {
+
+    @Mock
+    private Dice            dice;
+
+    @Mock
+    private NumberGenerator generator;
 
     /**
      * Default constructor.
@@ -43,22 +54,11 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("The expected value is returned when using a generator and multiple values")
     public final void testTotalRoll_CustomGenerator_MultipleValues() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
-        final NumberGenerator        generator;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(3);
-        Mockito.when(dice.getSides())
-            .thenReturn(1);
 
         // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-            .thenReturn(Arrays.asList(1, 2, 3));
+        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(1, 2, 3));
 
         expression = new DefaultDiceOperand(dice);
 
@@ -72,22 +72,11 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("The expected value is returned when using a generator")
     public final void testTotalRoll_Generator() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
-        final NumberGenerator        generator;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(1);
-        Mockito.when(dice.getSides())
-            .thenReturn(1);
 
         // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
-            .thenReturn(Arrays.asList(5));
+        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(5));
 
         expression = new DefaultDiceOperand(dice);
 
@@ -101,16 +90,12 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("A dice with negative quantity returns the expected result")
     public final void testTotalRoll_NegativeQuantity() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
 
         // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(-1);
-        Mockito.when(dice.getSides())
-            .thenReturn(1);
+        when(dice.getQuantity()).thenReturn(-1);
+        when(dice.getSides()).thenReturn(1);
 
         expression = new DefaultDiceOperand(dice);
 
@@ -124,16 +109,12 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("A dice with negative sides returns the expected result")
     public final void testTotalRoll_NegativeSides() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
 
         // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(1);
-        Mockito.when(dice.getSides())
-            .thenReturn(-1);
+        when(dice.getQuantity()).thenReturn(1);
+        when(dice.getSides()).thenReturn(-1);
 
         expression = new DefaultDiceOperand(dice);
 
@@ -147,16 +128,8 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("A dice with no quantity returns the expected result")
     public final void testTotalRoll_NoQuantity() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(0);
-        Mockito.when(dice.getSides())
-            .thenReturn(6);
 
         expression = new DefaultDiceOperand(dice);
 
@@ -170,16 +143,12 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("A dice with no sides returns the expected result")
     public final void testTotalRoll_NoSides() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
 
         // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(1);
-        Mockito.when(dice.getSides())
-            .thenReturn(0);
+        when(dice.getQuantity()).thenReturn(1);
+        when(dice.getSides()).thenReturn(0);
 
         expression = new DefaultDiceOperand(dice);
 
@@ -193,16 +162,12 @@ public final class TestDiceRollerDiceValue {
     @Test
     @DisplayName("The smallest possible dice returns the expected result")
     public final void testTotalRoll_Smallest() {
-        final Dice                   dice;
         final DiceNotationExpression expression;
         final Integer                rolled;
 
         // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(1);
-        Mockito.when(dice.getSides())
-            .thenReturn(1);
+        when(dice.getQuantity()).thenReturn(1);
+        when(dice.getSides()).thenReturn(1);
 
         expression = new DefaultDiceOperand(dice);
 

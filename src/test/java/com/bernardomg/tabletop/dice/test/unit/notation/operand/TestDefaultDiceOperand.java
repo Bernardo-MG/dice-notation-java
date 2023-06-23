@@ -16,19 +16,27 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
+import static org.mockito.Mockito.when;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
 import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
 
+@ExtendWith(MockitoExtension.class)
 @DisplayName("Tests for DefaultDiceOperand")
 public class TestDefaultDiceOperand {
+
+    @Mock
+    private Dice dice; // Dice for the operand
 
     public TestDefaultDiceOperand() {
         super();
@@ -39,13 +47,9 @@ public class TestDefaultDiceOperand {
     @DisplayName("The text expression is generated correctly")
     public final void testTextExpression(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression diceOperand; // Tested operand
-        final Dice                   dice;        // Dice for the operand
 
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(quantity);
-        Mockito.when(dice.getSides())
-            .thenReturn(sides);
+        when(dice.getQuantity()).thenReturn(quantity);
+        when(dice.getSides()).thenReturn(sides);
 
         diceOperand = new DefaultDiceOperand(dice);
 
