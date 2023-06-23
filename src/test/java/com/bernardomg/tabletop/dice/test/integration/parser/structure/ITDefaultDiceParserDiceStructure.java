@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,8 +42,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(Integer.MAX_VALUE);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(Integer.MAX_VALUE);
     }
 
     @Test
@@ -56,8 +58,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf((-1)), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(-1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -70,8 +74,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(1);
     }
 
     @Test
@@ -84,8 +90,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -98,8 +106,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -112,8 +122,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -126,8 +138,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(0), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(0);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -140,8 +154,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(0), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(0);
     }
 
 }

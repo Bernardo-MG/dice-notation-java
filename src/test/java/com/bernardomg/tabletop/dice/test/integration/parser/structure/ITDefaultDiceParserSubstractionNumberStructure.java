@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,15 +48,18 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
         operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
-        Assertions.assertEquals((Integer) 3, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(3);
 
         sub = (SubtractionOperation) operation.getLeft();
 
         number = (IntegerOperand) sub.getRight();
-        Assertions.assertEquals((Integer) 2, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(2);
 
         number = (IntegerOperand) sub.getLeft();
-        Assertions.assertEquals((Integer) 1, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(1);
     }
 
     @Test
@@ -73,25 +76,30 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
         operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
-        Assertions.assertEquals((Integer) 5, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(5);
 
         sub = (SubtractionOperation) operation.getLeft();
 
         number = (IntegerOperand) sub.getRight();
-        Assertions.assertEquals((Integer) 4, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(4);
 
         sub = (SubtractionOperation) sub.getLeft();
 
         number = (IntegerOperand) sub.getRight();
-        Assertions.assertEquals((Integer) 3, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(3);
 
         sub = (SubtractionOperation) sub.getLeft();
 
         number = (IntegerOperand) sub.getRight();
-        Assertions.assertEquals((Integer) 2, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(2);
 
         number = (IntegerOperand) sub.getLeft();
-        Assertions.assertEquals((Integer) 1, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(1);
     }
 
     @Test
@@ -106,10 +114,12 @@ public final class ITDefaultDiceParserSubstractionNumberStructure {
         operation = (SubtractionOperation) new DefaultDiceParser().parse(notation);
 
         number = (IntegerOperand) operation.getRight();
-        Assertions.assertEquals((Integer) 2, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(2);
 
         number = (IntegerOperand) operation.getLeft();
-        Assertions.assertEquals((Integer) 1, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(1);
     }
 
 }

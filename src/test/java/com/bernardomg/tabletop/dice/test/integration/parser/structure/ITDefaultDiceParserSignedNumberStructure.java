@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,8 @@ public final class ITDefaultDiceParserSignedNumberStructure {
 
         operation = (IntegerOperand) new DefaultDiceParser().parse("-12");
 
-        Assertions.assertEquals(Integer.valueOf(0 - 12), operation.getValue());
+        Assertions.assertThat(operation.getValue())
+            .isEqualTo(-12);
     }
 
     @Test
@@ -50,7 +51,8 @@ public final class ITDefaultDiceParserSignedNumberStructure {
 
         operation = (IntegerOperand) new DefaultDiceParser().parse("+12");
 
-        Assertions.assertEquals(Integer.valueOf(12), operation.getValue());
+        Assertions.assertThat(operation.getValue())
+            .isEqualTo(12);
     }
 
 }

@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,15 +50,19 @@ public final class ITDefaultDiceParserDivisionDiceStructure {
         diceLeft = (DiceOperand) operation.getLeft();
         diceRight = (DiceOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 1, diceLeft.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 20, diceLeft.getDice()
-            .getSides());
+        Assertions.assertThat(diceLeft.getDice()
+            .getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(diceLeft.getDice()
+            .getSides())
+            .isEqualTo(20);
 
-        Assertions.assertEquals((Integer) 2, diceRight.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 6, diceRight.getDice()
-            .getSides());
+        Assertions.assertThat(diceRight.getDice()
+            .getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(diceRight.getDice()
+            .getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -76,12 +80,15 @@ public final class ITDefaultDiceParserDivisionDiceStructure {
         dice = (DiceOperand) operation.getRight();
         integer = (IntegerOperand) operation.getLeft();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice()
-            .getSides());
+        Assertions.assertThat(dice.getDice()
+            .getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getDice()
+            .getSides())
+            .isEqualTo(6);
 
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertThat(integer.getValue())
+            .isEqualTo(5);
     }
 
     @Test
@@ -99,12 +106,15 @@ public final class ITDefaultDiceParserDivisionDiceStructure {
         dice = (DiceOperand) operation.getLeft();
         integer = (IntegerOperand) operation.getRight();
 
-        Assertions.assertEquals((Integer) 2, dice.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 6, dice.getDice()
-            .getSides());
+        Assertions.assertThat(dice.getDice()
+            .getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getDice()
+            .getSides())
+            .isEqualTo(6);
 
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertThat(integer.getValue())
+            .isEqualTo(5);
     }
 
 }

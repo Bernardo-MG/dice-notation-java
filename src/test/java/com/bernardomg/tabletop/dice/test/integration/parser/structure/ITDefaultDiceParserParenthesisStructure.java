@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,13 +52,16 @@ public final class ITDefaultDiceParserParenthesisStructure {
         add = (AdditionOperation) operation.getLeft();
 
         number = (IntegerOperand) add.getLeft();
-        Assertions.assertEquals((Integer) 1, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(1);
 
         number = (IntegerOperand) add.getRight();
-        Assertions.assertEquals((Integer) 2, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(2);
 
         number = (IntegerOperand) operation.getRight();
-        Assertions.assertEquals((Integer) 3, number.getValue());
+        Assertions.assertThat(number.getValue())
+            .isEqualTo(3);
     }
 
 }
