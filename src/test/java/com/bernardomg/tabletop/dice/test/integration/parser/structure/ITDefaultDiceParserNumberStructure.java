@@ -49,7 +49,7 @@ public final class ITDefaultDiceParserNumberStructure {
         value = (IntegerOperand) new DefaultDiceParser().parse("0");
 
         Assertions.assertThat(value.getValue())
-            .isEqualTo(0);
+            .isZero();
     }
 
 }

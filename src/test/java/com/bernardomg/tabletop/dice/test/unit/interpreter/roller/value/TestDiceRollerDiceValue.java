@@ -122,7 +122,7 @@ public final class TestDiceRollerDiceValue {
             .getTotalRoll();
 
         Assertions.assertThat(rolled)
-            .isEqualTo(0);
+            .isZero();
     }
 
     @Test
@@ -137,7 +137,7 @@ public final class TestDiceRollerDiceValue {
             .getTotalRoll();
 
         Assertions.assertThat(rolled)
-            .isEqualTo(0);
+            .isZero();
     }
 
     @Test
@@ -156,7 +156,7 @@ public final class TestDiceRollerDiceValue {
             .getTotalRoll();
 
         Assertions.assertThat(rolled)
-            .isEqualTo(0);
+            .isZero();
     }
 
     @Test

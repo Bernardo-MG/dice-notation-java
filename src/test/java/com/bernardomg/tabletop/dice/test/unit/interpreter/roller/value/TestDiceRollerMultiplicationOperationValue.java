@@ -229,7 +229,7 @@ public final class TestDiceRollerMultiplicationOperationValue {
             .getTotalRoll();
 
         Assertions.assertThat(rolled)
-            .isEqualTo(0);
+            .isZero();
     }
 
 }
