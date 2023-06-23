@@ -29,7 +29,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
-import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
+import com.bernardomg.tabletop.dice.test.argument.NotationQuantityAndSidesArgumentsProvider;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Tests for DefaultDiceOperand")
@@ -43,7 +43,7 @@ public class TestDefaultDiceOperand {
     }
 
     @ParameterizedTest(name = "{1} dice with {2} sides = {0}")
-    @ArgumentsSource(NotationAndValuesArgumentsProvider.class)
+    @ArgumentsSource(NotationQuantityAndSidesArgumentsProvider.class)
     @DisplayName("The text expression is generated correctly")
     public final void testTextExpression(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression diceOperand; // Tested operand

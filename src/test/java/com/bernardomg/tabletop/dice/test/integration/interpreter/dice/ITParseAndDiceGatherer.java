@@ -29,7 +29,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceGatherer;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
+import com.bernardomg.tabletop.dice.test.argument.NotationQuantityAndSidesArgumentsProvider;
 
 @DisplayName("DiceGatherer with a parsed expression")
 public final class ITParseAndDiceGatherer {
@@ -39,7 +39,7 @@ public final class ITParseAndDiceGatherer {
     }
 
     @ParameterizedTest(name = "{0} = {1} dice with {2} sides")
-    @ArgumentsSource(NotationAndValuesArgumentsProvider.class)
+    @ArgumentsSource(NotationQuantityAndSidesArgumentsProvider.class)
     @DisplayName("Dice can be acquired from a expression")
     public final void testParse(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression parsed;

@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.bernardomg.tabletop.dice.test.argument.RollAndResultArgumentsProvider;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndRollResultArgumentsProvider;
 
 @DisplayName("DiceRoller returns the expected total roll")
 public final class ITParseAndDiceRollerTotalRoll {
@@ -39,7 +39,7 @@ public final class ITParseAndDiceRollerTotalRoll {
     }
 
     @ParameterizedTest(name = "{0} = {1}")
-    @ArgumentsSource(RollAndResultArgumentsProvider.class)
+    @ArgumentsSource(NotationAndRollResultArgumentsProvider.class)
     @DisplayName("The notation parses into the expected value")
     public final void testParse_Add_Dice_Value(final String notation, final Number expected) {
         final DiceNotationExpression parsed; // Parsed expression

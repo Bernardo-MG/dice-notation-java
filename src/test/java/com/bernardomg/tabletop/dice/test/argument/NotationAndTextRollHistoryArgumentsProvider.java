@@ -23,16 +23,19 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 
 /**
- * Tests arguments for invalid dice notation.
+ * Tests arguments using notation which always gives the same result, and the roll history.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-public final class InvalidNotationArgumentsProvider implements ArgumentsProvider {
+public final class NotationAndTextRollHistoryArgumentsProvider implements ArgumentsProvider {
 
     @Override
     public final Stream<? extends Arguments> provideArguments(final ExtensionContext context) throws Exception {
-        return Stream.of(Arguments.of(""), Arguments.of("abc"), Arguments.of("6d6y"));
+        return Stream.of(Arguments.of("1d1+2d1", "1 + [1, 1]"), Arguments.of("1d1+3+2d1", "1 + 3 + [1, 1]"),
+            Arguments.of("1+2-3", "1 + 2 - 3"), Arguments.of("1+(2-3)", "1 + 2 - 3"),
+            Arguments.of("1d1+4d1/2d1", "1 + [1, 1, 1, 1] / [1, 1]"),
+            Arguments.of("1d1+2d1*3d1", "1 + [1, 1] * [1, 1, 1]"));
     }
 
 }

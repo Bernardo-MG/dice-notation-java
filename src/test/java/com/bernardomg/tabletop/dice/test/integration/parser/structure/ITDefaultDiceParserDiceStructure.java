@@ -26,7 +26,7 @@ import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
+import com.bernardomg.tabletop.dice.test.argument.NotationQuantityAndSidesArgumentsProvider;
 
 @DisplayName("DefaultDiceParser parses the expected structure for dice")
 public final class ITDefaultDiceParserDiceStructure {
@@ -36,7 +36,7 @@ public final class ITDefaultDiceParserDiceStructure {
     }
 
     @ParameterizedTest(name = "{0} = {1} dice with {2} sides")
-    @ArgumentsSource(NotationAndValuesArgumentsProvider.class)
+    @ArgumentsSource(NotationQuantityAndSidesArgumentsProvider.class)
     @DisplayName("A parsed dice returns the expected structure")
     public final void testParse_Max(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression parsed; // Parsed expression

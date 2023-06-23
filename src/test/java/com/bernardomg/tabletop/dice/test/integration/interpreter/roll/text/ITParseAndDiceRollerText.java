@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
-import com.bernardomg.tabletop.dice.test.argument.NotationAndRollsArgumentsProvider;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndTextRollHistoryArgumentsProvider;
 
 @DisplayName("DiceRoller returns the expected history text representation")
 public final class ITParseAndDiceRollerText {
@@ -38,7 +38,7 @@ public final class ITParseAndDiceRollerText {
     }
 
     @ParameterizedTest(name = "{0} = {1}")
-    @ArgumentsSource(NotationAndRollsArgumentsProvider.class)
+    @ArgumentsSource(NotationAndTextRollHistoryArgumentsProvider.class)
     @DisplayName("The notation parses into the expected roll history")
     public final void testParse_Add_Dice_Value(final String notation, final String history) {
         final DiceNotationExpression expression;
