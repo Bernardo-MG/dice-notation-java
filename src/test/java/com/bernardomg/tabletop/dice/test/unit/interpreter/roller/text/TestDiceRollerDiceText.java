@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.text;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -62,7 +62,8 @@ public final class TestDiceRollerDiceText {
 
         result = new DiceRoller(generator).transform(expression);
 
-        Assertions.assertEquals("5", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("5");
     }
 
     @Test
@@ -89,7 +90,8 @@ public final class TestDiceRollerDiceText {
 
         result = new DiceRoller(generator).transform(expression);
 
-        Assertions.assertEquals("[5, 7, 2]", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("[5, 7, 2]");
     }
 
     @Test
@@ -110,7 +112,8 @@ public final class TestDiceRollerDiceText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("[1, 1, 1]", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("[1, 1, 1]");
     }
 
     @Test
@@ -131,7 +134,8 @@ public final class TestDiceRollerDiceText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("1");
     }
 
 }

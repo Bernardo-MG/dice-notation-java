@@ -196,6 +196,28 @@ public final class ITParseAndDiceGatherer {
             .isEqualTo(8);
     }
 
+    @DisplayName("Dice can be acquired from a expression which is missing the quantity")
+    public final void testParse_MissingQuantity() {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
+
+        parsed = new DefaultDiceParser().parse("d6");
+
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
+            .next();
+
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
+    }
+
     @Test
     @DisplayName("No dice are aquired from a constant")
     public final void testParse_NoDice() {
@@ -317,6 +339,28 @@ public final class ITParseAndDiceGatherer {
             .isEqualTo(6);
 
         dice = itr.next();
+
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
+    }
+
+    @DisplayName("Dice can be acquired from a expression which using an upper caps separator")
+    public final void testParse_UpperCapsSeparator() {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
+
+        parsed = new DefaultDiceParser().parse("1D6");
+
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
+            .next();
 
         Assertions.assertThat(dice.getQuantity())
             .isEqualTo(1);

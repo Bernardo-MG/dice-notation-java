@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -65,7 +65,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller(generator).transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(6), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(6);
     }
 
     @Test
@@ -93,7 +94,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller(generator).transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(5), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(5);
     }
 
     @Test
@@ -115,7 +117,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller().transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(-1), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(-1);
     }
 
     @Test
@@ -137,7 +140,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller().transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(0), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(0);
     }
 
     @Test
@@ -159,7 +163,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller().transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(0), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(0);
     }
 
     @Test
@@ -181,7 +186,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller().transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(0), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(0);
     }
 
     @Test
@@ -203,7 +209,8 @@ public final class TestDiceRollerDiceValue {
         rolled = new DiceRoller().transform(expression)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(1), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(1);
     }
 
 }

@@ -16,14 +16,16 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DefaultDiceOperand;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndValuesArgumentsProvider;
 
 @DisplayName("Tests for DefaultDiceOperand")
 public class TestDefaultDiceOperand {
@@ -32,21 +34,23 @@ public class TestDefaultDiceOperand {
         super();
     }
 
-    @Test
+    @ParameterizedTest(name = "{1} dice with {2} sides = {0}")
+    @ArgumentsSource(NotationAndValuesArgumentsProvider.class)
     @DisplayName("The text expression is generated correctly")
-    public final void testTextExpression() {
+    public final void testTextExpression(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression diceOperand; // Tested operand
         final Dice                   dice;        // Dice for the operand
 
         dice = Mockito.mock(Dice.class);
         Mockito.when(dice.getQuantity())
-            .thenReturn(2);
+            .thenReturn(quantity);
         Mockito.when(dice.getSides())
-            .thenReturn(6);
+            .thenReturn(sides);
 
         diceOperand = new DefaultDiceOperand(dice);
 
-        Assertions.assertEquals("2d6", diceOperand.getExpression());
+        Assertions.assertThat(diceOperand.getExpression())
+            .isEqualTo(notation);
     }
 
 }

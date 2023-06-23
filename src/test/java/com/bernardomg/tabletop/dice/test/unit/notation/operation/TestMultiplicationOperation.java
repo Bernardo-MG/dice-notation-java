@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operation;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +44,8 @@ public final class TestMultiplicationOperation {
 
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals("-1*-2", operation.getExpression());
+        Assertions.assertThat(operation.getExpression())
+            .isEqualTo("-1*-2");
     }
 
     @Test
@@ -59,7 +60,8 @@ public final class TestMultiplicationOperation {
 
         operation = new MultiplicationOperation(left, right);
 
-        Assertions.assertEquals("1*2", operation.getExpression());
+        Assertions.assertThat(operation.getExpression())
+            .isEqualTo("1*2");
     }
 
 }

@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.test.unit.roll;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -58,7 +58,8 @@ public final class TestDiceToRollResult {
         rolled = new DiceToRollResult(generator).apply(dice)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(5), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(5);
     }
 
     @Test
@@ -83,7 +84,8 @@ public final class TestDiceToRollResult {
         rolled = new DiceToRollResult(generator).apply(dice)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(6), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(6);
     }
 
     @Test
@@ -109,8 +111,10 @@ public final class TestDiceToRollResult {
             .getAllRolls()
             .iterator();
 
-        Assertions.assertEquals(Integer.valueOf(1), rolled.next());
-        Assertions.assertEquals(Integer.valueOf(2), rolled.next());
+        Assertions.assertThat(rolled.next())
+            .isEqualTo(1);
+        Assertions.assertThat(rolled.next())
+            .isEqualTo(2);
     }
 
     @Test
@@ -135,8 +139,10 @@ public final class TestDiceToRollResult {
         returned = new DiceToRollResult(generator).apply(dice)
             .getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), returned.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(2), returned.getSides());
+        Assertions.assertThat(returned.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(returned.getSides())
+            .isEqualTo(2);
     }
 
 }

@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public class TestIntegerOperand {
 
         operand = new IntegerOperand(1);
 
-        Assertions.assertEquals("1", operand.getExpression());
+        Assertions.assertThat(operand.getExpression())
+            .isEqualTo("1");
     }
 
     @Test
@@ -47,7 +48,8 @@ public class TestIntegerOperand {
 
         operand = new IntegerOperand(-1);
 
-        Assertions.assertEquals("-1", operand.getExpression());
+        Assertions.assertThat(operand.getExpression())
+            .isEqualTo("-1");
     }
 
 }
