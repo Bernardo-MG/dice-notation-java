@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.text;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +50,8 @@ public final class TestDiceRollerAdditionOperationRollText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + 2", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("1 + 2");
     }
 
     @Test
@@ -69,7 +70,8 @@ public final class TestDiceRollerAdditionOperationRollText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("-1 + 2", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("-1 + 2");
     }
 
     @Test
@@ -88,7 +90,8 @@ public final class TestDiceRollerAdditionOperationRollText {
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 - 2", result.toString());
+        Assertions.assertThat(result)
+            .hasToString("1 - 2");
     }
 
 }

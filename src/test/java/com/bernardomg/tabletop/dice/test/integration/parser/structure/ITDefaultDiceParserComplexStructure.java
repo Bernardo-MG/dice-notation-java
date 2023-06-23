@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,19 +55,24 @@ public final class ITDefaultDiceParserComplexStructure {
         integer = (IntegerOperand) operationSecond.getRight();
 
         // Leftmost dice was parsed correctly
-        Assertions.assertEquals((Integer) 2, rightDice.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 6, rightDice.getDice()
-            .getSides());
+        Assertions.assertThat(rightDice.getDice()
+            .getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(rightDice.getDice()
+            .getSides())
+            .isEqualTo(6);
 
         // Rightmost dice was parsed correctly
-        Assertions.assertEquals((Integer) 1, leftDice.getDice()
-            .getQuantity());
-        Assertions.assertEquals((Integer) 20, leftDice.getDice()
-            .getSides());
+        Assertions.assertThat(leftDice.getDice()
+            .getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(leftDice.getDice()
+            .getSides())
+            .isEqualTo(20);
 
         // Integer value was parsed correctly
-        Assertions.assertEquals((Integer) 5, integer.getValue());
+        Assertions.assertThat(integer.getValue())
+            .isEqualTo(5);
     }
 
 }

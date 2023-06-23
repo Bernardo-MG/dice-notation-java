@@ -16,36 +16,40 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.text;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndTextRollHistoryArgumentsProvider;
 
-@DisplayName("DiceRoller returns the expected text representation for addition operations")
-public final class ITParseAndDiceRollerAdditionDiceText {
+@DisplayName("DiceRoller returns the expected history text representation")
+public final class ITParseAndDiceRollerText {
 
-    public ITParseAndDiceRollerAdditionDiceText() {
+    /**
+     * Default constructor.
+     */
+    public ITParseAndDiceRollerText() {
         super();
     }
 
-    @Test
-    @DisplayName("Returns the expected text")
-    public final void testRolls_Text() {
+    @ParameterizedTest(name = "{0} = {1}")
+    @ArgumentsSource(NotationAndTextRollHistoryArgumentsProvider.class)
+    @DisplayName("The notation parses into the expected roll history")
+    public final void testParse_Add_Dice_Value(final String notation, final String history) {
         final DiceNotationExpression expression;
-        final String                 notation;
         final RollHistory            result;
-
-        notation = "1d1+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(expression);
 
-        Assertions.assertEquals("1 + [1, 1]", result.toString());
+        Assertions.assertThat(result)
+            .hasToString(history);
     }
 
 }

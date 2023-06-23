@@ -16,14 +16,17 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationQuantityAndSidesArgumentsProvider;
 
 @DisplayName("DefaultDiceParser parses the expected structure for dice")
 public final class ITDefaultDiceParserDiceStructure {
@@ -32,60 +35,21 @@ public final class ITDefaultDiceParserDiceStructure {
         super();
     }
 
-    @Test
-    @DisplayName("A dice with the max values returns the expected structure")
-    public final void testParse_Max() {
+    @ParameterizedTest(name = "{0} = {1} dice with {2} sides")
+    @ArgumentsSource(NotationQuantityAndSidesArgumentsProvider.class)
+    @DisplayName("A parsed dice returns the expected structure")
+    public final void testParse_Max(final String notation, final Integer quantity, final Integer sides) {
         final DiceNotationExpression parsed; // Parsed expression
         final Dice                   dice;   // Resulting dice
 
-        parsed = new DefaultDiceParser().parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+        parsed = new DefaultDiceParser().parse(notation);
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("A negative dice returns the expected structure")
-    public final void testParse_Negative() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("-1d6");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(Integer.valueOf((-1)), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("The smallest dice returns the expected structure")
-    public final void testParse_OnesDice() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d1");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("A dice returns the expected structure")
-    public final void testParse_Simple() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d6");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(quantity);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(sides);
     }
 
     @Test
@@ -98,8 +62,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -112,36 +78,10 @@ public final class ITDefaultDiceParserDiceStructure {
 
         dice = ((DiceOperand) parsed).getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("A dice zero quantity returns the expected structure")
-    public final void testParse_ZeroQuantity() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("0d6");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(Integer.valueOf(0), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("A dice zero sides returns the expected structure")
-    public final void testParse_ZeroSides() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d0");
-
-        dice = ((DiceOperand) parsed).getDice();
-
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(0), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
 }

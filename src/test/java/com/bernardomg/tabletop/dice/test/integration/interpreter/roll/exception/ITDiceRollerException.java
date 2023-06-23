@@ -16,10 +16,10 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.exception;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -36,13 +36,14 @@ public final class ITDiceRollerException {
     @DisplayName("Divide by zero throws an exception")
     public final void testParse_DivideByZero() {
         final DiceNotationExpression parsed; // Parsed expression
-        final Executable             closure;
+        final ThrowingCallable       closure;
 
         parsed = new DefaultDiceParser().parse("1/0");
 
         closure = () -> new DiceRoller().transform(parsed);
 
-        Assertions.assertThrows(Exception.class, closure);
+        Assertions.assertThatThrownBy(closure)
+            .isInstanceOf(Exception.class);
     }
 
 }

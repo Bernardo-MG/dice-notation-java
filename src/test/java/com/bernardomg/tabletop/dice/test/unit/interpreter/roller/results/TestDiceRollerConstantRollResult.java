@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.results;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,13 +53,16 @@ public final class TestDiceRollerConstantRollResult {
             .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, StreamSupport.stream(results.spliterator(), false)
-            .count());
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(results.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(Integer.valueOf(-4), rollValues.next());
+        Assertions.assertThat(rollValues.next())
+            .isEqualTo(-4);
     }
 
     @Test
@@ -79,8 +82,10 @@ public final class TestDiceRollerConstantRollResult {
 
         dice = result.getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(-4), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(-4);
     }
 
     @Test
@@ -100,13 +105,16 @@ public final class TestDiceRollerConstantRollResult {
             .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, StreamSupport.stream(results.spliterator(), false)
-            .count());
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(results.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
 
         rollValues = rolls.iterator();
-        Assertions.assertEquals(Integer.valueOf(4), rollValues.next());
+        Assertions.assertThat(rollValues.next())
+            .isEqualTo(4);
     }
 
     @Test
@@ -126,8 +134,10 @@ public final class TestDiceRollerConstantRollResult {
 
         dice = result.getDice();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(4), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(4);
     }
 
 }

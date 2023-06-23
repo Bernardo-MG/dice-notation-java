@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public final class ITDefaultDiceParserNumberStructure {
 
         value = (IntegerOperand) new DefaultDiceParser().parse("12");
 
-        Assertions.assertEquals((Integer) 12, value.getValue());
+        Assertions.assertThat(value.getValue())
+            .isEqualTo(12);
     }
 
     @Test
@@ -47,7 +48,8 @@ public final class ITDefaultDiceParserNumberStructure {
 
         value = (IntegerOperand) new DefaultDiceParser().parse("0");
 
-        Assertions.assertEquals((Integer) 0, value.getValue());
+        Assertions.assertThat(value.getValue())
+            .isZero();
     }
 
 }

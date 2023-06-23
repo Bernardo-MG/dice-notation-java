@@ -19,20 +19,47 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.dice;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.interpreter.DiceGatherer;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationQuantityAndSidesArgumentsProvider;
 
 @DisplayName("DiceGatherer with a parsed expression")
 public final class ITParseAndDiceGatherer {
 
     public ITParseAndDiceGatherer() {
         super();
+    }
+
+    @ParameterizedTest(name = "{0} = {1} dice with {2} sides")
+    @ArgumentsSource(NotationQuantityAndSidesArgumentsProvider.class)
+    @DisplayName("Dice can be acquired from a expression")
+    public final void testParse(final String notation, final Integer quantity, final Integer sides) {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
+
+        parsed = new DefaultDiceParser().parse(notation);
+
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
+            .next();
+
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(quantity);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(sides);
     }
 
     @Test
@@ -47,20 +74,25 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(2);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(20), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(20);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -75,30 +107,39 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(4, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(4);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(20), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(20);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(8), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(8);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(3), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(12), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(3);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(12);
     }
 
     @Test
@@ -113,67 +154,68 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(5, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(5);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(20), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(20);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(-1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(12), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(-1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(12);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(8), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(8);
     }
 
-    @Test
-    @DisplayName("Dice can be acquired from a expression using the max integers")
-    public final void testParse_Max() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
+    @DisplayName("Dice can be acquired from a expression which is missing the quantity")
+    public final void testParse_MissingQuantity() {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
 
-        parsed = new DefaultDiceParser().parse(Integer.MAX_VALUE + "d" + Integer.MAX_VALUE);
+        parsed = new DefaultDiceParser().parse("d6");
 
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
             .next();
 
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(Integer.MAX_VALUE), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using a negative dice")
-    public final void testParse_Negative() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("-1d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertEquals(Integer.valueOf(-1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -186,40 +228,9 @@ public final class ITParseAndDiceGatherer {
 
         dice = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(0, StreamSupport.stream(dice.spliterator(), false)
-            .count());
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using the minimal dice")
-    public final void testParse_OnesDice_Minimal() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d1");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using a simple dice")
-    public final void testParse_Simple() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("1d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(StreamSupport.stream(dice.spliterator(), false)
+            .count())
+            .isZero();
     }
 
     @Test
@@ -234,20 +245,25 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(2);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(-2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(12), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(-2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(12);
     }
 
     @Test
@@ -262,25 +278,32 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(3, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(3);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(-2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(8), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(-2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(8);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(3), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(10), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(3);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(10);
     }
 
     @Test
@@ -295,25 +318,54 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(3, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(3);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(-1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(-1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
+    }
+
+    @DisplayName("Dice can be acquired from a expression which using an upper caps separator")
+    public final void testParse_UpperCapsSeparator() {
+        final DiceNotationExpression parsed;
+        final Dice                   dice;
+        final Iterable<Dice>         gathered;
+
+        parsed = new DefaultDiceParser().parse("1D6");
+
+        gathered = new DiceGatherer().transform(parsed);
+        Assertions.assertThat(StreamSupport.stream(gathered.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+
+        dice = gathered.iterator()
+            .next();
+
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
     }
 
     @Test
@@ -328,36 +380,25 @@ public final class ITParseAndDiceGatherer {
 
         sets = new DiceGatherer().transform(parsed);
 
-        Assertions.assertEquals(2, StreamSupport.stream(sets.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(sets.spliterator(), false)
+            .count())
+            .isEqualTo(2);
 
         itr = sets.iterator();
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(6);
 
         dice = itr.next();
 
-        Assertions.assertEquals(Integer.valueOf(3), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(10), dice.getSides());
-    }
-
-    @Test
-    @DisplayName("Dice can be acquired from a expression using zero for quantity")
-    public final void testParse_ZeroQuantity() {
-        final DiceNotationExpression parsed; // Parsed expression
-        final Dice                   dice;   // Resulting dice
-
-        parsed = new DefaultDiceParser().parse("0d6");
-
-        dice = new DiceGatherer().transform(parsed)
-            .iterator()
-            .next();
-
-        Assertions.assertEquals(Integer.valueOf(0), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(6), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(3);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(10);
     }
 
 }

@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.test.unit.random;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,8 @@ public final class TestRandomNumberGenerator {
 
         generated = generator.generate(-1);
 
-        Assertions.assertEquals((Integer) (0), generated);
+        Assertions.assertThat(generated)
+            .isZero();
     }
 
     @Test
@@ -69,8 +70,9 @@ public final class TestRandomNumberGenerator {
         }
 
         for (final Integer number : numbers) {
-            Assertions.assertTrue(number >= lowerLimit);
-            Assertions.assertTrue(number <= upperLimit);
+            Assertions.assertThat(number)
+                .isGreaterThanOrEqualTo(lowerLimit)
+                .isLessThanOrEqualTo(upperLimit);
         }
     }
 
@@ -84,7 +86,8 @@ public final class TestRandomNumberGenerator {
 
         generated = generator.generate(0);
 
-        Assertions.assertEquals((Integer) (0), generated);
+        Assertions.assertThat(generated)
+            .isZero();
     }
 
 }
