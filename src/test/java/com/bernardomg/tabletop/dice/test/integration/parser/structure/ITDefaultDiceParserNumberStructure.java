@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.structure;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public final class ITDefaultDiceParserNumberStructure {
 
         value = (IntegerOperand) new DefaultDiceParser().parse("12");
 
-        Assertions.assertEquals((Integer) 12, value.getValue());
+        Assertions.assertThat(value.getValue())
+            .isEqualTo(12);
     }
 
     @Test
@@ -47,7 +48,8 @@ public final class ITDefaultDiceParserNumberStructure {
 
         value = (IntegerOperand) new DefaultDiceParser().parse("0");
 
-        Assertions.assertEquals((Integer) 0, value.getValue());
+        Assertions.assertThat(value.getValue())
+            .isZero();
     }
 
 }

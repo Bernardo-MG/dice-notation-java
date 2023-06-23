@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.test.unit.interpreter.traverser;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -62,28 +62,37 @@ public final class TestPreorderTraverser {
         // - + 1 2 3
         result = new PreorderTraverser().transform(subtraction);
 
-        Assertions.assertEquals(5, StreamSupport.stream(result.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(result.spliterator(), false)
+            .count())
+            .isEqualTo(5);
 
         exps = result.iterator();
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof SubtractionOperation);
+        Assertions.assertThat(exp)
+            .isExactlyInstanceOf(SubtractionOperation.class);
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof AdditionOperation);
+        Assertions.assertThat(exp)
+            .isExactlyInstanceOf(AdditionOperation.class);
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(1), ((IntegerOperand) exp).getValue());
+        Assertions.assertThat(exp)
+            .isExactlyInstanceOf(IntegerOperand.class);
+        Assertions.assertThat(((IntegerOperand) exp).getValue())
+            .isEqualTo(1);
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(2), ((IntegerOperand) exp).getValue());
+        Assertions.assertThat(exp)
+            .isExactlyInstanceOf(IntegerOperand.class);
+        Assertions.assertThat(((IntegerOperand) exp).getValue())
+            .isEqualTo(2);
 
         exp = exps.next();
-        Assertions.assertTrue(exp instanceof IntegerOperand);
-        Assertions.assertEquals(Integer.valueOf(3), ((IntegerOperand) exp).getValue());
+        Assertions.assertThat(exp)
+            .isExactlyInstanceOf(IntegerOperand.class);
+        Assertions.assertThat(((IntegerOperand) exp).getValue())
+            .isEqualTo(3);
     }
 
 }

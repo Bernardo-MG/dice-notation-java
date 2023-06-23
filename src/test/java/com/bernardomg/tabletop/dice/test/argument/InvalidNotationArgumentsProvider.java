@@ -14,28 +14,25 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dice.notation.operand;
+package com.bernardomg.tabletop.dice.test.argument;
 
-import lombok.Data;
-import lombok.NonNull;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
 
 /**
- * Operand for an integer constant value.
+ * Tests arguments for invalid dice notation.
  *
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-@Data
-public final class IntegerOperand implements ConstantOperand {
-
-    /**
-     * Operand value.
-     */
-    @NonNull
-    private final Integer value;
+public final class InvalidNotationArgumentsProvider implements ArgumentsProvider {
 
     @Override
-    public final String getExpression() {
-        return getValue().toString();
+    public final Stream<? extends Arguments> provideArguments(final ExtensionContext context) throws Exception {
+        return Stream.of(Arguments.of(""), Arguments.of("abc"), Arguments.of("6d6y"));
     }
 
 }

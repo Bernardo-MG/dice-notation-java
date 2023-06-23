@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.notation.operation;
 
 import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
@@ -37,19 +38,19 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
      * Left sided operand.
      */
     @NonNull
-    private final DiceNotationExpression                left;
+    private final DiceNotationExpression  left;
 
     /**
      * Operation to apply.
      */
     @NonNull
-    private final BiFunction<Integer, Integer, Integer> operation;
+    private final BinaryOperator<Integer> operation;
 
     /**
      * Right sided operand.
      */
     @NonNull
-    private final DiceNotationExpression                right;
+    private final DiceNotationExpression  right;
 
     /**
      * Constructs a subtraction operation with the specified operands.
@@ -61,9 +62,8 @@ public abstract class AbstractBinaryOperation implements BinaryOperation {
      * @param func
      *            operation to apply
      */
-    public AbstractBinaryOperation(@NonNull final DiceNotationExpression leftOperand,
-            @NonNull final DiceNotationExpression rightOperand,
-            @NonNull final BiFunction<Integer, Integer, Integer> func) {
+    protected AbstractBinaryOperation(@NonNull final DiceNotationExpression leftOperand,
+            @NonNull final DiceNotationExpression rightOperand, @NonNull final BinaryOperator<Integer> func) {
         super();
 
         left = leftOperand;

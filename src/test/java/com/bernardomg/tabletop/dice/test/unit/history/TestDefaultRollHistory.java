@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,13 +19,15 @@ package com.bernardomg.tabletop.dice.test.unit.history;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
+import com.bernardomg.tabletop.dice.test.argument.NotationArgumentsProvider;
 
 @DisplayName("Tests for DefaultRollHistory")
 public final class TestDefaultRollHistory {
@@ -34,17 +36,19 @@ public final class TestDefaultRollHistory {
         super();
     }
 
-    @Test
+    @ParameterizedTest(name = "{0}")
+    @ArgumentsSource(NotationArgumentsProvider.class)
     @DisplayName("The text representation matches the received one")
-    public final void testToString() {
+    public final void testToString(final String notation) {
         final RollHistory            history;
         final Collection<RollResult> results;
 
         results = new ArrayList<>();
 
-        history = new DefaultRollHistory(results, "1+2", 0);
+        history = new DefaultRollHistory(results, notation, 0);
 
-        Assertions.assertEquals("1+2", history.toString());
+        Assertions.assertThat(history)
+            .hasToString(notation);
     }
 
 }

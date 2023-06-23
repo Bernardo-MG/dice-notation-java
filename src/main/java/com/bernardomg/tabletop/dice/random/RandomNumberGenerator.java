@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,8 +18,7 @@ package com.bernardomg.tabletop.dice.random;
 
 import java.util.Random;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link Random}-based number generator.
@@ -28,12 +27,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Slf4j
 public final class RandomNumberGenerator extends AbstractNumberGenerator {
-
-    /**
-     * Logger.
-     */
-    private static final Logger  LOGGER      = LoggerFactory.getLogger(RandomNumberGenerator.class);
 
     /**
      * Lower limit for the number generation procedure.
@@ -73,11 +68,11 @@ public final class RandomNumberGenerator extends AbstractNumberGenerator {
         final Integer result;
 
         if (max < LOWER_LIMIT) {
-            LOGGER.warn("Received {} as maximum value, but this is lower than {}", max, LOWER_LIMIT);
+            log.warn("Received {} as maximum value, but this is lower than {}", max, LOWER_LIMIT);
             result = 0;
         } else {
             result = random.nextInt(Math.abs(LOWER_LIMIT - max) + 1) + LOWER_LIMIT;
-            LOGGER.debug("Using interval [{},{}] generated {}", LOWER_LIMIT, max, result);
+            log.debug("Using interval [{},{}] generated {}", LOWER_LIMIT, max, result);
         }
 
         return result;

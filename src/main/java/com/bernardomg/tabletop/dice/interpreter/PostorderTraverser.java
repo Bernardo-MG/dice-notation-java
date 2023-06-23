@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,11 +22,10 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Breaks down the received expression into a postorder list.
@@ -36,12 +35,8 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Slf4j
 public final class PostorderTraverser implements DiceInterpreter<Iterable<DiceNotationExpression>> {
-
-    /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PostorderTraverser.class);
 
     /**
      * Default constructor.
@@ -64,19 +59,19 @@ public final class PostorderTraverser implements DiceInterpreter<Iterable<DiceNo
         exps = new ArrayList<>();
         while (!nodes.isEmpty()) {
             current = nodes.pop();
-            LOGGER.debug("Transforming current node {}", current);
+            log.debug("Transforming current node {}", current);
             if (current instanceof BinaryOperation) {
                 // Binary operation
                 // Temporally prunes node and stores left and right nodes
-                LOGGER.trace("The current node is a binary node");
-                LOGGER.trace("Pushing node and branches into stack");
+                log.trace("The current node is a binary node");
+                log.trace("Pushing node and branches into stack");
                 nodes.push(new ExpressionWrapper(current));
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
             } else {
                 // Leaf node
-                LOGGER.trace("The current node is a leaf node");
-                LOGGER.debug("Stored current node {} into return", current);
+                log.trace("The current node is a leaf node");
+                log.debug("Stored current node {} into return", current);
                 exps.add(current);
             }
         }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.notation.operand;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public class TestIntegerOperand {
 
         operand = new IntegerOperand(1);
 
-        Assertions.assertEquals("1", operand.getExpression());
+        Assertions.assertThat(operand.getExpression())
+            .isEqualTo("1");
     }
 
     @Test
@@ -47,7 +48,8 @@ public class TestIntegerOperand {
 
         operand = new IntegerOperand(-1);
 
-        Assertions.assertEquals("-1", operand.getExpression());
+        Assertions.assertThat(operand.getExpression())
+            .isEqualTo("-1");
     }
 
 }

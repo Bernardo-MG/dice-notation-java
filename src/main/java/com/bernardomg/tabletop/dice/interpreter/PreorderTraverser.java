@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,11 +21,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Stack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Breaks down the received expression into a preorder list.
@@ -35,12 +34,8 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Slf4j
 public final class PreorderTraverser implements DiceInterpreter<Iterable<DiceNotationExpression>> {
-
-    /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(PreorderTraverser.class);
 
     /**
      * Default constructor.
@@ -63,14 +58,14 @@ public final class PreorderTraverser implements DiceInterpreter<Iterable<DiceNot
         exps = new ArrayList<>();
         while (!nodes.empty()) {
             current = nodes.pop();
-            LOGGER.debug("Transforming current node {}", current);
+            log.debug("Transforming current node {}", current);
 
-            LOGGER.debug("Stored current node {} into return", current);
+            log.debug("Stored current node {} into return", current);
             exps.add(current);
 
             if (current instanceof BinaryOperation) {
-                LOGGER.trace("The current node is a binary node");
-                LOGGER.trace("Pushing branches into stack");
+                log.trace("The current node is a binary node");
+                log.trace("Pushing branches into stack");
                 nodes.push(((BinaryOperation) current).getRight());
                 nodes.push(((BinaryOperation) current).getLeft());
             }

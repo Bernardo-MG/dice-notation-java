@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,53 +16,61 @@
 
 package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.value;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.NotationAndRollResultArgumentsProvider;
 
-@DisplayName("DiceRoller returns the expected total roll for constants using parenthesis")
-public final class ITParseAndDiceRollerParenthesisTotalRoll {
+@DisplayName("DiceRoller returns the expected total roll")
+public final class ITParseAndDiceRollerTotalRoll {
 
-    public ITParseAndDiceRollerParenthesisTotalRoll() {
+    /**
+     * Default constructor.
+     */
+    public ITParseAndDiceRollerTotalRoll() {
         super();
     }
 
-    @Test
-    @DisplayName("A mixed operation with parenthesis returns the expected value")
-    public final void testParse_AddAndMult_Value() {
-        final DiceNotationExpression parsed;   // Parsed expression
-        final Integer                result;   // Resulting value
-        final String                 notation; // Input to parse
-
-        notation = "(1+2)*3";
+    @ParameterizedTest(name = "{0} = {1}")
+    @ArgumentsSource(NotationAndRollResultArgumentsProvider.class)
+    @DisplayName("The notation parses into the expected value")
+    public final void testParse_Add_Dice_Value(final String notation, final Number expected) {
+        final DiceNotationExpression parsed; // Parsed expression
+        final Integer                result; // Resulting value
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(9), result);
+        Assertions.assertThat(result)
+            .isEqualTo(expected);
     }
 
     @Test
-    @DisplayName("A constant with parenthesis returns the expected value")
-    public final void testParse_Number_Value() {
+    @Disabled
+    @DisplayName("An inexact division returns a float value")
+    public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed;   // Parsed expression
         final Integer                result;   // Resulting value
         final String                 notation; // Input to parse
 
-        notation = "(1)";
+        notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 
         result = new DiceRoller().transform(parsed)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(1), result);
+        Assertions.assertThat(result)
+            .isEqualTo(1.5);
     }
 
 }

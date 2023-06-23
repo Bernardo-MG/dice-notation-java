@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,6 +17,7 @@
 package com.bernardomg.tabletop.dice.interpreter;
 
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.RollHistory;
@@ -78,7 +79,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * @param transformer
      *            transformer to apply
      */
-    public DiceRoller(final Function<Dice, RollResult> roller, final Function<RollResult, RollResult> transformer) {
+    public DiceRoller(final Function<Dice, RollResult> roller, final UnaryOperator<RollResult> transformer) {
         super();
 
         final Function<Dice, RollResult> finalRoller;
@@ -107,7 +108,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
      * @param transformer
      *            transformer to apply
      */
-    public DiceRoller(final NumberGenerator generator, final Function<RollResult, RollResult> transformer) {
+    public DiceRoller(final NumberGenerator generator, final UnaryOperator<RollResult> transformer) {
         super();
 
         final Function<Dice, RollResult> finalRoller;

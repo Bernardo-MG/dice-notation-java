@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,12 +16,14 @@
 
 package com.bernardomg.tabletop.dice.test.integration.parser.exception;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import com.bernardomg.tabletop.dice.parser.DefaultDiceParser;
+import com.bernardomg.tabletop.dice.test.argument.InvalidNotationArgumentsProvider;
 
 @DisplayName("DefaultDiceParser handles exceptions")
 public final class ITDefaultDiceParserException {
@@ -30,34 +32,16 @@ public final class ITDefaultDiceParserException {
         super();
     }
 
-    @Test
-    @DisplayName("An empty expression throws an exception")
-    public final void testParse_Empty() {
-        final Executable closure;
+    @ParameterizedTest(name = "Notation: {0}")
+    @ArgumentsSource(InvalidNotationArgumentsProvider.class)
+    @DisplayName("An invalid notation causes an exception")
+    public final void testParse(final String notation) {
+        final ThrowingCallable closure;
 
-        closure = () -> new DefaultDiceParser().parse("");
+        closure = () -> new DefaultDiceParser().parse(notation);
 
-        Assertions.assertThrows(Exception.class, closure);
-    }
-
-    @Test
-    @DisplayName("An invalid expression throws an exception")
-    public final void testParse_Invalid() {
-        final Executable closure;
-
-        closure = () -> new DefaultDiceParser().parse("abc");
-
-        Assertions.assertThrows(Exception.class, closure);
-    }
-
-    @Test
-    @DisplayName("A partially valid expression throws an exception")
-    public final void testParse_PartiallyValid() {
-        final Executable closure;
-
-        closure = () -> new DefaultDiceParser().parse("6d6y");
-
-        Assertions.assertThrows(Exception.class, closure);
+        Assertions.assertThatThrownBy(closure)
+            .isInstanceOf(Exception.class);
     }
 
 }

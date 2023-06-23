@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,12 +19,11 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -57,14 +56,18 @@ public final class ITParseAndDiceRollerAdditionDiceRollResults {
         result = rolled.next();
 
         dice = result.getDice();
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(1);
 
         result = rolled.next();
 
         dice = result.getDice();
-        Assertions.assertEquals(Integer.valueOf(2), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(2);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(1);
     }
 
     @Test
@@ -81,8 +84,9 @@ public final class ITParseAndDiceRollerAdditionDiceRollResults {
         rolled = new DiceRoller().transform(expression)
             .getRollResults();
 
-        Assertions.assertEquals(2, StreamSupport.stream(rolled.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(rolled.spliterator(), false)
+            .count())
+            .isEqualTo(2);
     }
 
     @Test
@@ -106,36 +110,25 @@ public final class ITParseAndDiceRollerAdditionDiceRollResults {
         rolls = result.getAllRolls()
             .iterator();
 
-        Assertions.assertEquals(1, StreamSupport.stream(result.getAllRolls()
+        Assertions.assertThat(StreamSupport.stream(result.getAllRolls()
             .spliterator(), false)
-            .count());
-        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
+            .count())
+            .isEqualTo(1);
+        Assertions.assertThat(rolls.next())
+            .isEqualTo(1);
 
         result = rolled.next();
         rolls = result.getAllRolls()
             .iterator();
 
-        Assertions.assertEquals(2, StreamSupport.stream(result.getAllRolls()
+        Assertions.assertThat(StreamSupport.stream(result.getAllRolls()
             .spliterator(), false)
-            .count());
-        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
-        Assertions.assertEquals(Integer.valueOf(1), rolls.next());
-    }
-
-    @Test
-    @DisplayName("Returns the expected total roll")
-    public final void testParse_TotalRoll() {
-        final DiceNotationExpression expression;
-        final String                 notation;
-        final RollHistory            history;
-
-        notation = "1d1+2d1";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        history = new DiceRoller().transform(expression);
-
-        Assertions.assertEquals(Integer.valueOf(3), history.getTotalRoll());
+            .count())
+            .isEqualTo(2);
+        Assertions.assertThat(rolls.next())
+            .isEqualTo(1);
+        Assertions.assertThat(rolls.next())
+            .isEqualTo(1);
     }
 
     @Test
@@ -156,11 +149,13 @@ public final class ITParseAndDiceRollerAdditionDiceRollResults {
 
         result = rolled.next();
 
-        Assertions.assertEquals(Integer.valueOf(1), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(1);
 
         result = rolled.next();
 
-        Assertions.assertEquals(Integer.valueOf(2), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(2);
     }
 
 }

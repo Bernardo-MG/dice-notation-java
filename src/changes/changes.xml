@@ -179,5 +179,13 @@
             Updated dependencies.
          </action>
       </release>
+      <release version="2.2.4" date="2023-06-23" description="Updated dependencies">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="update">
+            Updated grammar to match the copy on ANTLR repo.
+         </action>
+      </release>
    </body>
 </document>

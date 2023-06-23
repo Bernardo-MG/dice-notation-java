@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.value;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +54,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(3), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(3);
     }
 
     @Test
@@ -74,7 +75,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(-1), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(-1);
     }
 
     @Test
@@ -102,7 +104,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(0), rolled);
+        Assertions.assertThat(rolled)
+            .isZero();
     }
 
     @Test
@@ -122,7 +125,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(-3), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(-3);
     }
 
     @Test
@@ -142,7 +146,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(1), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(1);
     }
 
     @Test
@@ -170,7 +175,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(2), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(2);
     }
 
     @Test
@@ -204,7 +210,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(-2), rolled);
+        Assertions.assertThat(rolled)
+            .isEqualTo(-2);
     }
 
     @Test
@@ -224,7 +231,8 @@ public final class TestDiceRollerAdditionOperationValue {
         rolled = new DiceRoller().transform(operation)
             .getTotalRoll();
 
-        Assertions.assertEquals(Integer.valueOf(0), rolled);
+        Assertions.assertThat(rolled)
+            .isZero();
     }
 
 }

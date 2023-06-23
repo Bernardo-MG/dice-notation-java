@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dice.test.unit.random;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,8 @@ public final class TestRandomNumberGenerator {
 
         generated = generator.generate(-1);
 
-        Assertions.assertEquals((Integer) (0), generated);
+        Assertions.assertThat(generated)
+            .isZero();
     }
 
     @Test
@@ -69,8 +70,9 @@ public final class TestRandomNumberGenerator {
         }
 
         for (final Integer number : numbers) {
-            Assertions.assertTrue(number >= lowerLimit);
-            Assertions.assertTrue(number <= upperLimit);
+            Assertions.assertThat(number)
+                .isGreaterThanOrEqualTo(lowerLimit)
+                .isLessThanOrEqualTo(upperLimit);
         }
     }
 
@@ -84,7 +86,8 @@ public final class TestRandomNumberGenerator {
 
         generated = generator.generate(0);
 
-        Assertions.assertEquals((Integer) (0), generated);
+        Assertions.assertThat(generated)
+            .isZero();
     }
 
 }

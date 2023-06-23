@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,12 +18,11 @@ package com.bernardomg.tabletop.dice.test.integration.interpreter.roll.results;
 
 import java.util.stream.StreamSupport;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.bernardomg.tabletop.dice.Dice;
-import com.bernardomg.tabletop.dice.history.RollHistory;
 import com.bernardomg.tabletop.dice.history.RollResult;
 import com.bernardomg.tabletop.dice.interpreter.DiceRoller;
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
@@ -54,8 +53,10 @@ public final class ITParseAndDiceRollerDiceRollResults {
             .next();
 
         dice = result.getDice();
-        Assertions.assertEquals(Integer.valueOf(1), dice.getQuantity());
-        Assertions.assertEquals(Integer.valueOf(1), dice.getSides());
+        Assertions.assertThat(dice.getQuantity())
+            .isEqualTo(1);
+        Assertions.assertThat(dice.getSides())
+            .isEqualTo(1);
     }
 
     @Test
@@ -72,8 +73,9 @@ public final class ITParseAndDiceRollerDiceRollResults {
         rolled = new DiceRoller().transform(expression)
             .getRollResults();
 
-        Assertions.assertEquals(1, StreamSupport.stream(rolled.spliterator(), false)
-            .count());
+        Assertions.assertThat(StreamSupport.stream(rolled.spliterator(), false)
+            .count())
+            .isEqualTo(1);
     }
 
     @Test
@@ -94,26 +96,12 @@ public final class ITParseAndDiceRollerDiceRollResults {
             .next();
         rolls = result.getAllRolls();
 
-        Assertions.assertEquals(1, StreamSupport.stream(rolls.spliterator(), false)
-            .count());
-        Assertions.assertEquals(Integer.valueOf(1), rolls.iterator()
-            .next());
-    }
-
-    @Test
-    @DisplayName("Returns the expected total roll for the smallest dice")
-    public final void testParse_SmallestDice_TotalRoll() {
-        final DiceNotationExpression expression;
-        final String                 notation;
-        final RollHistory            history;
-
-        notation = "1d1";
-
-        expression = new DefaultDiceParser().parse(notation);
-
-        history = new DiceRoller().transform(expression);
-
-        Assertions.assertEquals(Integer.valueOf(1), history.getTotalRoll());
+        Assertions.assertThat(StreamSupport.stream(rolls.spliterator(), false)
+            .count())
+            .isEqualTo(1);
+        Assertions.assertThat(rolls.iterator()
+            .next())
+            .isEqualTo(1);
     }
 
     @Test
@@ -132,7 +120,8 @@ public final class ITParseAndDiceRollerDiceRollResults {
             .iterator()
             .next();
 
-        Assertions.assertEquals(Integer.valueOf(1), result.getTotalRoll());
+        Assertions.assertThat(result.getTotalRoll())
+            .isEqualTo(1);
     }
 
 }

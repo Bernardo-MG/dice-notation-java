@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,14 +18,13 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import java.util.Objects;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * An interpreter which can be customized.
@@ -39,13 +38,8 @@ import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
  * @param <V>
  *            type of the generated object
  */
+@Slf4j
 public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
-
-    /**
-     * Logger.
-     */
-    private static final Logger                                     LOGGER = LoggerFactory
-        .getLogger(ConfigurableInterpreter.class);
 
     /**
      * Accumulator for generating the final result.
@@ -80,17 +74,17 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
 
         Objects.requireNonNull(expression, "Received a null pointer as expression");
 
-        LOGGER.debug("Root expression {}", expression);
+        log.debug("Root expression {}", expression);
 
         // The expression is broken down
         exps = traverser.transform(expression);
 
-        LOGGER.trace("Traversed root into {}", exps);
+        log.trace("Traversed root into {}", exps);
 
         // The expressions are filtered, taking all the dice
         result = process(exps);
 
-        LOGGER.trace("Processed expressions into {}", result);
+        log.trace("Processed expressions into {}", result);
 
         return result;
     }
@@ -107,7 +101,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
         accumulator.reset();
 
         for (final DiceNotationExpression current : nodes) {
-            LOGGER.debug("Current expression: {}", current);
+            log.debug("Current expression: {}", current);
             if (current instanceof BinaryOperation) {
                 accumulator.binaryOperation((BinaryOperation) current);
             } else if (current instanceof ConstantOperand) {
@@ -115,7 +109,7 @@ public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
             } else if (current instanceof DiceOperand) {
                 accumulator.diceOperand((DiceOperand) current);
             } else {
-                LOGGER.warn("Unsupported expression of type {}", current.getClass());
+                log.warn("Unsupported expression of type {}", current.getClass());
             }
         }
 

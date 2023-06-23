@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,19 +16,32 @@
 
 package com.bernardomg.tabletop.dice.test.unit.roll;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.random.DiceToRollResult;
 import com.bernardomg.tabletop.dice.random.NumberGenerator;
 
+@ExtendWith(MockitoExtension.class)
 @DisplayName("DiceToRollResult calls its dependencies")
 public final class TestDiceToRollResultCalls {
+
+    @Mock
+    private Dice            dice;
+
+    @Mock
+    private NumberGenerator generator;
 
     public TestDiceToRollResultCalls() {
         super();
@@ -37,24 +50,14 @@ public final class TestDiceToRollResultCalls {
     @Test
     @DisplayName("The generator is called a single time for several dice")
     public final void testApply_GeneratesOnce() {
-        final Dice            dice;
-        final NumberGenerator generator;
-
-        // Mocks dice
-        dice = Mockito.mock(Dice.class);
-        Mockito.when(dice.getQuantity())
-            .thenReturn(3);
-        Mockito.when(dice.getSides())
-            .thenReturn(1);
 
         // Mocks generator
-        generator = Mockito.mock(NumberGenerator.class);
-        Mockito.when(generator.generate((Dice) ArgumentMatchers.any()))
+       when(generator.generate((Dice) ArgumentMatchers.any()))
             .thenReturn(Arrays.asList(1, 2, 3));
 
         new DiceToRollResult(generator).apply(dice);
 
-        Mockito.verify(generator, Mockito.times(1))
+       verify(generator,times(1))
             .generate((Dice) ArgumentMatchers.any());
     }
 

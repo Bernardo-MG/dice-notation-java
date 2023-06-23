@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,8 +19,8 @@ package com.bernardomg.tabletop.dice.parser.listener;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Basic error listener for an ANTLR4 parser.
@@ -29,12 +29,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Slf4j
 public final class DefaultErrorListener extends BaseErrorListener {
-
-    /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultErrorListener.class);
 
     /**
      * Default constructor.
@@ -51,7 +47,7 @@ public final class DefaultErrorListener extends BaseErrorListener {
         message = String.format("Failed to parse at line %1$d on char %2$d due to %3$s", line, charPositionInLine + 1,
             msg);
 
-        LOGGER.error(message);
+        log.error(message);
 
         throw new IllegalStateException(message, e);
     }

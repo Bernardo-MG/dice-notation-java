@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,11 +21,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Stack;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Breaks down the received expression into an inorder list.
@@ -35,12 +34,8 @@ import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Slf4j
 public final class InorderTraverser implements DiceInterpreter<Iterable<DiceNotationExpression>> {
-
-    /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(InorderTraverser.class);
 
     /**
      * Default constructor.
@@ -62,21 +57,21 @@ public final class InorderTraverser implements DiceInterpreter<Iterable<DiceNota
         nodes = new Stack<>();
         exps = new ArrayList<>();
         while ((!nodes.isEmpty()) || (current != null)) {
-            LOGGER.debug("Transforming current node {}", current);
+            log.debug("Transforming current node {}", current);
             if (current == null) {
                 // Left nodes exhausted
                 // Moves to the previous right node
                 current = nodes.pop();
-                LOGGER.debug("No current node. Recovered {} from stack", current);
+                log.debug("No current node. Recovered {} from stack", current);
 
                 // This is the next node for inorder traverse
-                LOGGER.debug("Stored current node {} into return", current);
+                log.debug("Stored current node {} into return", current);
                 exps.add(current);
 
                 if (current instanceof BinaryOperation) {
                     // Moves to a right node
                     current = ((BinaryOperation) current).getRight();
-                    LOGGER.trace("Moved to right node {}", current);
+                    log.trace("Moved to right node {}", current);
                 } else {
                     // Not binary node
                     // There is no right node
@@ -85,11 +80,11 @@ public final class InorderTraverser implements DiceInterpreter<Iterable<DiceNota
             } else {
                 // Store and keep moving
                 nodes.push(current);
-                LOGGER.trace("Pushed node into stack");
+                log.trace("Pushed node into stack");
                 if (current instanceof BinaryOperation) {
                     // Next left node
                     current = ((BinaryOperation) current).getLeft();
-                    LOGGER.trace("Moved to left node {}", current);
+                    log.trace("Moved to left node {}", current);
                 } else {
                     // Not binary node
                     // There is no left node

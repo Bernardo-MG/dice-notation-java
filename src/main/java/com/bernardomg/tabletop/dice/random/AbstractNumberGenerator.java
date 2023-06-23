@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2022 the original author or authors
+ * Copyright 2014-2023 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -21,10 +21,9 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.bernardomg.tabletop.dice.Dice;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract number generator for facilitating extensions.
@@ -35,17 +34,13 @@ import com.bernardomg.tabletop.dice.Dice;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
+@Slf4j
 public abstract class AbstractNumberGenerator implements NumberGenerator {
-
-    /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractNumberGenerator.class);
 
     /**
      * Default constructor.
      */
-    public AbstractNumberGenerator() {
+    protected AbstractNumberGenerator() {
         super();
     }
 
@@ -59,12 +54,12 @@ public abstract class AbstractNumberGenerator implements NumberGenerator {
 
         if (dice.getQuantity() < 0) {
             // Negative dice set (-1d6)
-            LOGGER.trace("Negative dice set");
+            log.trace("Negative dice set");
             quantity = 0 - dice.getQuantity();
             rollSupplier = () -> (0 - generate(dice.getSides()));
         } else {
             // Positive dice set (1d6)
-            LOGGER.trace("Positive dice set");
+            log.trace("Positive dice set");
             quantity = dice.getQuantity();
             rollSupplier = () -> (generate(dice.getSides()));
         }
