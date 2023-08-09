@@ -26,7 +26,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -63,7 +62,7 @@ public final class TestDiceRollerDiceRollResult {
         final Iterator<Integer>      rolls;
 
         // Mocks generator
-        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(1, 2));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(1, 2));
 
         expression = new DefaultDiceOperand(dice);
 

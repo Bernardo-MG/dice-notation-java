@@ -25,7 +25,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -53,7 +52,7 @@ public final class TestDiceToRollResult {
         final Integer rolled;
 
         // Mocks generator
-        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(5));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(5));
 
         rolled = new DiceToRollResult(generator).apply(dice)
             .getTotalRoll();
@@ -68,7 +67,7 @@ public final class TestDiceToRollResult {
         final Integer rolled;
 
         // Mocks generator
-        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(1, 2, 3));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(1, 2, 3));
 
         rolled = new DiceToRollResult(generator).apply(dice)
             .getTotalRoll();
@@ -83,7 +82,7 @@ public final class TestDiceToRollResult {
         final Iterator<Integer> rolled;
 
         // Mocks generator
-        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(1, 2));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(1, 2));
 
         rolled = new DiceToRollResult(generator).apply(dice)
             .getAllRolls()
@@ -105,7 +104,7 @@ public final class TestDiceToRollResult {
         when(dice.getSides()).thenReturn(2);
 
         // Mocks generator
-        when(generator.generate((Dice) ArgumentMatchers.any())).thenReturn(Arrays.asList(5));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(5));
 
         returned = new DiceToRollResult(generator).apply(dice)
             .getDice();

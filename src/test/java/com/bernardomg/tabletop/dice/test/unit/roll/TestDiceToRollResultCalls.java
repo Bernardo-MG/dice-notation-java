@@ -25,7 +25,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -52,13 +51,13 @@ public final class TestDiceToRollResultCalls {
     public final void testApply_GeneratesOnce() {
 
         // Mocks generator
-       when(generator.generate((Dice) ArgumentMatchers.any()))
+       when(generator.generate(dice))
             .thenReturn(Arrays.asList(1, 2, 3));
 
         new DiceToRollResult(generator).apply(dice);
 
        verify(generator,times(1))
-            .generate((Dice) ArgumentMatchers.any());
+            .generate(dice);
     }
 
 }
