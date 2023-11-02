@@ -8,9 +8,13 @@ jobs:
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
     with:
       jdk: 11
-
   tests_17:
     name: Tests with JDK 17
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
     with:
       jdk: 17
+  tests_20:
+    name: Tests with JDK 20
+    uses: Bernardo-MG/github-workflow-maven/.github/workflows/testing.yml@v1
+    with:
+      jdk: 20
