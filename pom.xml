@@ -186,13 +186,13 @@
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.13.0</antlr.version>
+      <antlr.version>4.13.1</antlr.version>
       <assertj.version>3.24.2</assertj.version>
-      <junit.jupiter.version>5.9.3</junit.jupiter.version>
-      <lombok.version>1.18.28</lombok.version>
-      <mockito.version>5.4.0</mockito.version>
+      <junit.jupiter.version>5.10.1</junit.jupiter.version>
+      <lombok.version>1.18.30</lombok.version>
+      <mockito.version>5.8.0</mockito.version>
       <log4j.version>2.20.0</log4j.version>
-      <slf4j.version>2.0.7</slf4j.version>
+      <slf4j.version>2.0.9</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
