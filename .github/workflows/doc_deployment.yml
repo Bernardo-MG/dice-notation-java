@@ -13,6 +13,7 @@ jobs:
     with:
       branch: develop
       host: docs.bernardomg.com
+      jdk: 17
     secrets:
       url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
       username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -24,6 +25,7 @@ jobs:
     with:
       branch: master
       host: docs.bernardomg.com
+      jdk: 17
     secrets:
       url: ${{ secrets.DEPLOY_DOCS_SITE }}
       username: ${{ secrets.DEPLOY_DOCS_USER }}

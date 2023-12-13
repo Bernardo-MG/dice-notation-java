@@ -8,6 +8,8 @@ jobs:
   github:
     name: Github
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_github.yml@v1
+    with:
+      jdk: 11
     permissions: 
       contents: read
       packages: write
@@ -17,6 +19,8 @@ jobs:
   ossrh:
     name: OSSRH
     uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_signed.yml@v1
+    with:
+      jdk: 11
     secrets:
       username: ${{ secrets.OSSRH_USERNAME }}
       password: ${{ secrets.OSSRH_TOKEN }}
