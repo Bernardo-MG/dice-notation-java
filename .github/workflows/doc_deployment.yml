@@ -5,28 +5,8 @@ on:
     branches:
     - master
     - develop
-    - doc_deploy
 
 jobs:
-  deploy_develop_test:
-    name: Deploy docs for test
-    environment: deployment_site
-    concurrency:
-      group: deploy-site-${{ github.ref }}
-      cancel-in-progress: true
-    if: ${{ github.ref == format('refs/heads/{0}', 'doc_deploy') }}
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Deploy site
-      uses: bernardo-mg/maven-site-deployment-action@develop
-      with:
-        host: docs.bernardomg.com
-        url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
-        username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-        password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-        jdk: 17
-
   deploy_develop_docs:
     name: Deploy docs for develop
     environment: deployment_site
