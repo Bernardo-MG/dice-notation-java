@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Deploy site
-      uses: bernardo-mg/maven-site-deployment-action@develop
+      uses: bernardo-mg/maven-site-deployment-action@v1
       with:
         host: docs.bernardomg.com
         url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
@@ -35,7 +35,7 @@ jobs:
 
     steps:
     - name: Deploy site
-      uses: bernardo-mg/maven-site-deployment-action@develop
+      uses: bernardo-mg/maven-site-deployment-action@v1
       with:
         host: docs.bernardomg.com
         url: ${{ secrets.DEPLOY_DOCS_SITE }}
