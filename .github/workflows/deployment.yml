@@ -6,16 +6,27 @@ on:
 
 jobs:
   github:
-    name: Github
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_github.yml@v1
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    name: Github deployment
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      packages: write
+
+    steps:
+    - name: Deploy to Github
+      uses: bernardo-mg/maven-github-deployment-action@develop
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   ossrh:
-    name: OSSRH
-    uses: Bernardo-MG/github-workflow-maven/.github/workflows/deploy_signed.yml@v1
-    secrets:
-      username: ${{ secrets.OSSRH_USERNAME }}
-      password: ${{ secrets.OSSRH_TOKEN }}
-      gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-      gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+    name: OSSRH deployment
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy
+      uses: bernardo-mg/maven-signed-deployment-action@develop
+      with:
+        username: ${{ secrets.OSSRH_USERNAME }}
+        password: ${{ secrets.OSSRH_TOKEN }}
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}

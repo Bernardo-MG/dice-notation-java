@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dice.test.unit.interpreter.roller.call;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,7 +27,6 @@ import java.util.function.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -60,13 +61,13 @@ public final class TestDiceRollerCalls {
         final DiceNotationExpression expression;
 
         // Mocks generator
-        when(roller.apply(ArgumentMatchers.any())).thenReturn(rollResult);
+        when(roller.apply(dice)).thenReturn(rollResult);
 
         expression = new DefaultDiceOperand(dice);
 
         new DiceRoller(roller).transform(expression);
 
-        verify(roller, times(1)).apply(ArgumentMatchers.any());
+        verify(roller, times(1)).apply(dice);
     }
 
     @Test
@@ -76,16 +77,14 @@ public final class TestDiceRollerCalls {
         final DiceNotationExpression left;
         final DiceNotationExpression right;
 
-        // Mocks generator
+        // 1 - 2
         left = new IntegerOperand(1);
         right = new IntegerOperand(2);
-
-        // 1 - 2
         expression = new SubtractionOperation(left, right);
 
         new DiceRoller(roller).transform(expression);
 
-        verify(roller, times(0)).apply(ArgumentMatchers.any());
+        verify(roller, never()).apply(any());
     }
 
 }
