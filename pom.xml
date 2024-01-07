@@ -187,7 +187,7 @@
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
       <antlr.version>4.13.1</antlr.version>
-      <assertj.version>3.24.2</assertj.version>
+      <assertj.version>3.25.1</assertj.version>
       <junit.jupiter.version>5.10.1</junit.jupiter.version>
       <lombok.version>1.18.30</lombok.version>
       <mockito.version>5.8.0</mockito.version>
