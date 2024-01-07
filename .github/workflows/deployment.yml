@@ -31,7 +31,7 @@ jobs:
 
     steps:
     - name: Deploy
-      uses: bernardo-mg/maven-signed-deployment-action@develop
+      uses: bernardo-mg/maven-signed-deployment-action@v1
       with:
         username: ${{ secrets.OSSRH_USERNAME }}
         password: ${{ secrets.OSSRH_TOKEN }}
