@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Default" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+<ruleset name="Default"
+   xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
@@ -8,20 +9,10 @@
    </description>
 
    <rule ref="category/java/bestpractices.xml" />
-   <rule ref="category/java/codestyle.xml">
-      <exclude name="AvoidFinalLocalVariable" />
-      <exclude name="UnnecessaryConstructor" />
-      <exclude name="UnnecessaryModifier" />
-      <exclude name="UselessParentheses" />
-   </rule>
-   <rule ref="category/java/design.xml">
-      <exclude name="DataClass" />
-      <exclude name="LawOfDemeter" />
-   </rule>
+   <rule ref="category/java/codestyle.xml" />
+   <rule ref="category/java/design.xml" />
    <rule ref="category/java/errorprone.xml" />
-   <rule ref="category/java/multithreading.xml">
-      <exclude name="UseConcurrentHashMap" />
-   </rule>
+   <rule ref="category/java/multithreading.xml" />
    <rule ref="category/java/performance.xml" />
 
 </ruleset>
