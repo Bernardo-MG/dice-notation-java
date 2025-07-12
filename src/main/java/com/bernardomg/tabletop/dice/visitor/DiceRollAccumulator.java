@@ -22,6 +22,9 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.StreamSupport;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.tabletop.dice.Dice;
 import com.bernardomg.tabletop.dice.history.DefaultRollHistory;
 import com.bernardomg.tabletop.dice.history.DefaultRollResult;
@@ -36,8 +39,6 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Stores all the rolls generated from the expressions.
  * <p>
@@ -46,8 +47,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Slf4j
 public final class DiceRollAccumulator implements NotationAccumulator<RollHistory> {
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger              log     = LoggerFactory.getLogger(DiceRollAccumulator.class);
 
     /**
      * The last expression received.

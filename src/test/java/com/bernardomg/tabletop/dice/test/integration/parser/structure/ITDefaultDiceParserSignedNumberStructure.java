@@ -36,9 +36,7 @@ public final class ITDefaultDiceParserSignedNumberStructure {
     @Test
     @DisplayName("A negative number returns the expected structure")
     public final void testParse_Negative() {
-        final IntegerOperand operation; // Parsed expression
-
-        operation = (IntegerOperand) new DefaultDiceParser().parse("-12");
+        final IntegerOperand operation = (IntegerOperand) new DefaultDiceParser().parse("-12");
 
         Assertions.assertThat(operation.getValue())
             .isEqualTo(-12);
@@ -47,9 +45,7 @@ public final class ITDefaultDiceParserSignedNumberStructure {
     @Test
     @DisplayName("A positive number returns the expected structure")
     public final void testParse_Positive() {
-        final IntegerOperand operation; // Parsed expression
-
-        operation = (IntegerOperand) new DefaultDiceParser().parse("+12");
+        final IntegerOperand operation = (IntegerOperand) new DefaultDiceParser().parse("+12");
 
         Assertions.assertThat(operation.getValue())
             .isEqualTo(12);

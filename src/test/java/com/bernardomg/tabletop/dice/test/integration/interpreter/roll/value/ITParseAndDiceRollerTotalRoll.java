@@ -60,9 +60,7 @@ public final class ITParseAndDiceRollerTotalRoll {
     public final void testParse_Division_FloatValue() {
         final DiceNotationExpression parsed;   // Parsed expression
         final Integer                result;   // Resulting value
-        final String                 notation; // Input to parse
-
-        notation = "3/2";
+        final String                 notation = "3/2";
 
         parsed = new DefaultDiceParser().parse(notation);
 

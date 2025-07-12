@@ -22,10 +22,11 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Breaks down the received expression into a postorder list.
@@ -35,8 +36,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Slf4j
 public final class PostorderTraverser implements DiceInterpreter<Iterable<DiceNotationExpression>> {
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger log = LoggerFactory.getLogger(PostorderTraverser.class);
 
     /**
      * Default constructor.
