@@ -35,11 +35,11 @@ public final record DefaultRollHistory(Iterable<RollResult> rollResults, String 
      * <p>
      * The text history will be used for the {@code toString} method.
      *
-     * @param results
+     * @param rollResults
      *            each roll result
-     * @param text
+     * @param historyText
      *            history text
-     * @param total
+     * @param totalRoll
      *            sum of all the values
      */
     public DefaultRollHistory(final Iterable<RollResult> rollResults, final String historyText,
