@@ -195,5 +195,13 @@
             Updated dependencies.
          </action>
       </release>
+      <release version="2.2.6" date="2025-07-12" description="Updated dependencies">
+         <action dev="bmg" type="update">
+            Updated dependencies.
+         </action>
+         <action dev="bmg" type="remove">
+            Removed Lombok.
+         </action>
+      </release>
    </body>
 </document>

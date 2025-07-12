@@ -51,13 +51,11 @@ public final class TestDiceToRollResultCalls {
     public final void testApply_GeneratesOnce() {
 
         // Mocks generator
-       when(generator.generate(dice))
-            .thenReturn(Arrays.asList(1, 2, 3));
+        when(generator.generate(dice)).thenReturn(Arrays.asList(1, 2, 3));
 
         new DiceToRollResult(generator).apply(dice);
 
-       verify(generator,times(1))
-            .generate(dice);
+        verify(generator, times(1)).generate(dice);
     }
 
 }

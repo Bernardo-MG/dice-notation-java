@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
@@ -42,8 +44,6 @@ import com.bernardomg.tabletop.dice.notation.operation.DivisionOperation;
 import com.bernardomg.tabletop.dice.notation.operation.MultiplicationOperation;
 import com.bernardomg.tabletop.dice.notation.operation.SubtractionOperation;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Visitor for an ANTLR4 parser tree. It can return the fully parsed {@link DiceNotationExpression}.
  * <p>
@@ -53,7 +53,6 @@ import lombok.extern.slf4j.Slf4j;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Slf4j
 public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseListener
         implements DiceExpressionBuilder {
 
@@ -66,6 +65,12 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseLi
      * Operator which indicates the operation is a division.
      */
     private static final String                 DIVISION_OPERATOR       = "/";
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger                 log                     = LoggerFactory
+        .getLogger(DefaultDiceExpressionBuilder.class);
 
     /**
      * Operator which indicates the operation is a multiplication.
@@ -200,21 +205,30 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseLi
             right = operands.pop();
 
             // Checks which kind of operation this is and builds it
-            if (ADDITION_OPERATOR.equals(operator)) {
-                log.trace("Addition operation");
-                operation = new AdditionOperation(left, right);
-            } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-                log.trace("Subtraction operation");
-                operation = new SubtractionOperation(left, right);
-            } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
-                log.trace("Multiplication operation");
-                operation = new MultiplicationOperation(left, right);
-            } else if (DIVISION_OPERATOR.equals(operator)) {
-                log.trace("Division operation");
-                operation = new DivisionOperation(left, right);
-            } else {
+            if (operator == null) {
                 log.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
+            }
+            switch (operator) {
+                case ADDITION_OPERATOR:
+                    log.trace("Addition operation");
+                    operation = new AdditionOperation(left, right);
+                    break;
+                case SUBTRACTION_OPERATOR:
+                    log.trace("Subtraction operation");
+                    operation = new SubtractionOperation(left, right);
+                    break;
+                case MULTIPLICATION_OPERATOR:
+                    log.trace("Multiplication operation");
+                    operation = new MultiplicationOperation(left, right);
+                    break;
+                case DIVISION_OPERATOR:
+                    log.trace("Division operation");
+                    operation = new DivisionOperation(left, right);
+                    break;
+                default:
+                    log.error("Unknown operator {}", operator);
+                    throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
             }
 
             log.debug("Parsed operation {}", operation);
@@ -286,10 +300,9 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseLi
      * @return an integer operand
      */
     private final IntegerOperand getIntegerOperand(final String expression) {
-        final Integer value;
 
         // Parses the value
-        value = Integer.parseInt(expression);
+        final Integer value = Integer.parseInt(expression);
 
         return new IntegerOperand(value);
     }

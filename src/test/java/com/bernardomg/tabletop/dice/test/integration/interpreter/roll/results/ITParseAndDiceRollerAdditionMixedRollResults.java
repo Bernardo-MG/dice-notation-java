@@ -86,9 +86,7 @@ public final class ITParseAndDiceRollerAdditionMixedRollResults {
     public final void testParse_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult>   rolled;
-        final String                 notation;
-
-        notation = "1d1+3+2d1";
+        final String                 notation = "1d1+3+2d1";
 
         expression = new DefaultDiceParser().parse(notation);
 

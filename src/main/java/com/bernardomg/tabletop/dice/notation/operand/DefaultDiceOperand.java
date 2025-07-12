@@ -18,26 +18,21 @@ package com.bernardomg.tabletop.dice.notation.operand;
 
 import com.bernardomg.tabletop.dice.Dice;
 
-import lombok.Data;
-import lombok.NonNull;
-
 /**
  * Default implementation of the dice operand.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Data
-public final class DefaultDiceOperand implements DiceOperand {
-
-    /**
-     * Operand dice value.
-     */
-    @NonNull
-    private final Dice dice;
+public final record DefaultDiceOperand(Dice dice) implements DiceOperand {
 
     @Override
     public final String getExpression() {
         return String.format("%dd%d", getDice().getQuantity(), getDice().getSides());
+    }
+
+    @Override
+    public final Dice getDice() {
+        return dice;
     }
 
 }

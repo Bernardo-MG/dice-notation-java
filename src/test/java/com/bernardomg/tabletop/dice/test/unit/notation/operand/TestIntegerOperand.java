@@ -33,9 +33,7 @@ public class TestIntegerOperand {
     @Test
     @DisplayName("The text expression is generated correctly")
     public final void testTextExpression() {
-        final DiceNotationExpression operand; // Tested operand
-
-        operand = new IntegerOperand(1);
+        final DiceNotationExpression operand = new IntegerOperand(1);
 
         Assertions.assertThat(operand.getExpression())
             .isEqualTo("1");
@@ -44,9 +42,7 @@ public class TestIntegerOperand {
     @Test
     @DisplayName("The text expression is generated correctly for negatives")
     public final void testTextExpression_negative() {
-        final DiceNotationExpression operand; // Tested operand
-
-        operand = new IntegerOperand(-1);
+        final DiceNotationExpression operand = new IntegerOperand(-1);
 
         Assertions.assertThat(operand.getExpression())
             .isEqualTo("-1");

@@ -21,9 +21,10 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import com.bernardomg.tabletop.dice.Dice;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import lombok.extern.slf4j.Slf4j;
+import com.bernardomg.tabletop.dice.Dice;
 
 /**
  * Abstract number generator for facilitating extensions.
@@ -34,8 +35,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Slf4j
 public abstract class AbstractNumberGenerator implements NumberGenerator {
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger log = LoggerFactory.getLogger(AbstractNumberGenerator.class);
 
     /**
      * Default constructor.

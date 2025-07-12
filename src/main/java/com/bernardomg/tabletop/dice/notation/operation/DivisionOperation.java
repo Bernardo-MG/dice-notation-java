@@ -16,6 +16,9 @@
 
 package com.bernardomg.tabletop.dice.notation.operation;
 
+import java.util.Objects;
+import java.util.function.BinaryOperator;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 
 /**
@@ -23,7 +26,8 @@ import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class DivisionOperation extends AbstractBinaryOperation {
+public final record DivisionOperation(DiceNotationExpression left, DiceNotationExpression right)
+        implements BinaryOperation {
 
     /**
      * Constructs a division operation with the specified operands.
@@ -34,7 +38,8 @@ public final class DivisionOperation extends AbstractBinaryOperation {
      *            the right sided operand
      */
     public DivisionOperation(final DiceNotationExpression left, final DiceNotationExpression right) {
-        super(left, right, (a, b) -> a / b);
+        this.left = Objects.requireNonNull(left, "Received a null pointer as left operand");
+        this.right = Objects.requireNonNull(right, "Received a null pointer as right operand");
     }
 
     @Override
@@ -46,6 +51,21 @@ public final class DivisionOperation extends AbstractBinaryOperation {
         right = getRight().getExpression();
 
         return String.format("%s/%s", left, right);
+    }
+
+    @Override
+    public DiceNotationExpression getLeft() {
+        return left;
+    }
+
+    @Override
+    public BinaryOperator<Integer> getOperation() {
+        return (a, b) -> a / b;
+    }
+
+    @Override
+    public DiceNotationExpression getRight() {
+        return right;
     }
 
 }
