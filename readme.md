@@ -10,12 +10,6 @@ Its usefulness is very clear, it allows working with specific random values dist
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.bernardomg.tabletop/dice.svg)][maven-repo]
 
-[![Release docs](https://img.shields.io/badge/docs-release-blue.svg)][site-release]
-[![Development docs](https://img.shields.io/badge/docs-develop-blue.svg)][site-develop]
-
-[![Release javadocs](https://img.shields.io/badge/javadocs-release-blue.svg)][javadoc-release]
-[![Development javadocs](https://img.shields.io/badge/javadocs-develop-blue.svg)][javadoc-develop]
-
 ## Features
 
 - ANTLR4 grammar
@@ -38,16 +32,6 @@ The grammar is included among the [ANTLR4 sample grammars][antrl-grammars].
 - [Dice Notation Tools CLI][dice-notation-java-cli], a CLI to roll expressions through line command
 
 ## Documentation
-
-Documentation is always generated for the latest release, kept in the 'master' branch:
-
-- The [latest release documentation page][site-release].
-- The [the latest release Javadoc site][javadoc-release].
-
-Documentation is also generated from the latest snapshot, taken from the 'develop' branch:
-
-- The [the latest snapshot documentation page][site-develop].
-- The [the latest snapshot Javadoc site][javadoc-develop].
 
 The documentation site sources come along the source code (as it is a Maven site), so it is always possible to generate them using the following Maven command:
 
@@ -95,7 +79,7 @@ rolls = parser.parse("1d6+12", roller);
 System.out.println(rolls.getTotalRoll());
 ```
 
-For more examples and details check the [docs][site-release].
+For more examples and details check the documentation.
 
 ## Collaborate
 
@@ -119,11 +103,7 @@ The project has been released under version 2.0 of the [Apache License][license]
 [antrl-grammars]: https://github.com/antlr/grammars-v4
 [maven-repo]: http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice
 [issues]: https://github.com/Bernardo-MG/dice-notation-java/issues
-[javadoc-develop]: https://docs.bernardomg.com/development/maven/dice-notation-java/apidocs
-[javadoc-release]: https://docs.bernardomg.com/maven/dice-notation-java/apidocs
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [scm]: http://github.com/Bernardo-MG/dice-notation-java
-[site-develop]: https://docs.bernardomg.com/development/maven/dice-notation-java
-[site-release]: https://docs.bernardomg.com/maven/dice-notation-java
 
 [dice-notation-java-cli]: https://github.com/Bernardo-MG/dice-notation-java-cli

@@ -41,9 +41,7 @@ public final class ITDefaultDiceParserComplexStructure {
         final IntegerOperand       integer;
         final DiceOperand          leftDice;
         final DiceOperand          rightDice;
-        final String               notation;
-
-        notation = "1d20-5+2d6";
+        final String               notation = "1d20-5+2d6";
 
         // ((1d20-5)+2d6)
         operationFirst = (AdditionOperation) new DefaultDiceParser().parse(notation);

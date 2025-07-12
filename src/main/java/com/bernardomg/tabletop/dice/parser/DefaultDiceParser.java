@@ -129,9 +129,7 @@ public final class DefaultDiceParser implements DiceParser {
 
     @Override
     public final <V> V parse(final String expression, final DiceInterpreter<V> interpreter) {
-        final DiceNotationExpression parsed;
-
-        parsed = parse(expression);
+        final DiceNotationExpression parsed = parse(expression);
 
         return interpreter.transform(parsed);
     }

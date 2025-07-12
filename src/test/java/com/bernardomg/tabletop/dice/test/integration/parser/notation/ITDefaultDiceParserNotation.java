@@ -65,9 +65,7 @@ public final class ITDefaultDiceParserNotation {
     @ArgumentsSource(NotationArgumentsProvider.class)
     @DisplayName("Can recover the parsed notation")
     public final void testParse_ReturnsNotation(final String notation) {
-        final DiceNotationExpression operation; // Parsed operation
-
-        operation = new DefaultDiceParser().parse(notation);
+        final DiceNotationExpression operation = new DefaultDiceParser().parse(notation);
 
         Assertions.assertThat(operation.getExpression())
             .isEqualTo(notation);

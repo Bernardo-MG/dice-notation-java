@@ -64,9 +64,7 @@ public final class ITParseAndDiceRollerDiceRollResults {
     public final void testParse_SmallestDice_Quantity() {
         final DiceNotationExpression expression;
         final Iterable<RollResult>   rolled;
-        final String                 notation;
-
-        notation = "1d1";
+        final String                 notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
@@ -84,9 +82,7 @@ public final class ITParseAndDiceRollerDiceRollResults {
         final DiceNotationExpression expression;
         final RollResult             result;
         final Iterable<Integer>      rolls;
-        final String                 notation;
-
-        notation = "1d1";
+        final String                 notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 
@@ -109,9 +105,7 @@ public final class ITParseAndDiceRollerDiceRollResults {
     public final void testParse_SmallestDice_TotalRolls() {
         final DiceNotationExpression expression;
         final RollResult             result;
-        final String                 notation;
-
-        notation = "1d1";
+        final String                 notation = "1d1";
 
         expression = new DefaultDiceParser().parse(notation);
 

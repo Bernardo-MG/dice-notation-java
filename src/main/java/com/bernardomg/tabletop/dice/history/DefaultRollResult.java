@@ -22,68 +22,53 @@ import java.util.Objects;
 import com.bernardomg.tabletop.dice.DefaultDice;
 import com.bernardomg.tabletop.dice.Dice;
 
-import lombok.Data;
-import lombok.NonNull;
-
 /**
  * Immutable roll result. Contains all the values generated and the sum of them.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Data
-public final class DefaultRollResult implements RollResult {
-
-    /**
-     * All the generated values.
-     */
-    @NonNull
-    private final Iterable<Integer> allRolls;
-
-    /**
-     * Rolled dice.
-     */
-    @NonNull
-    private final Dice              dice;
-
-    /**
-     * Sum of all the generated values.
-     */
-    @NonNull
-    private final Integer           totalRoll;
+public final record DefaultRollResult(Dice dice, Iterable<Integer> allRolls, Integer totalRoll) implements RollResult {
 
     /**
      * Constructs a roll result with the specified data.
      *
-     * @param d
+     * @param dice
      *            dice which generated the result
-     * @param rolls
+     * @param allRolls
      *            generated values
-     * @param total
+     * @param totalRoll
      *            sum of all the values
      */
-    public DefaultRollResult(@NonNull final Dice d, @NonNull final Iterable<Integer> rolls,
-            @NonNull final Integer total) {
-        super();
-
-        dice = Objects.requireNonNull(d, "Received a null pointer as dice");
-        allRolls = Objects.requireNonNull(rolls, "Received a null pointer as rolls");
-        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
+    public DefaultRollResult(final Dice dice, final Iterable<Integer> allRolls, final Integer totalRoll) {
+        this.dice = Objects.requireNonNull(dice, "Received a null pointer as dice");
+        this.allRolls = Objects.requireNonNull(allRolls, "Received a null pointer as rolls");
+        this.totalRoll = Objects.requireNonNull(totalRoll, "Received a null pointer as total roll");
     }
 
     /**
      * Constructs a roll result with a single value.
      *
-     * @param total
+     * @param totalRoll
      *            sum of all the values
      */
-    public DefaultRollResult(@NonNull final Integer total) {
-        super();
+    public DefaultRollResult(final Integer totalRoll) {
+        this(new DefaultDice(1, totalRoll), Arrays.asList(totalRoll), totalRoll);
+    }
 
-        dice = new DefaultDice(1, total);
-        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
+    @Override
+    public final Iterable<Integer> getAllRolls() {
+        return allRolls;
+    }
 
-        allRolls = Arrays.asList(total);
+    @Override
+    public final Dice getDice() {
+        return dice;
+    }
+
+    @Override
+    public final Integer getTotalRoll() {
+        return totalRoll;
     }
 
 }

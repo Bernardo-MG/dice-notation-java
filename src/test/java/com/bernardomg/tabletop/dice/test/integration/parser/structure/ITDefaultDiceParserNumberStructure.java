@@ -33,9 +33,7 @@ public final class ITDefaultDiceParserNumberStructure {
     @Test
     @DisplayName("A number returns the expected structure")
     public final void testParse() {
-        final IntegerOperand value;
-
-        value = (IntegerOperand) new DefaultDiceParser().parse("12");
+        final IntegerOperand value = (IntegerOperand) new DefaultDiceParser().parse("12");
 
         Assertions.assertThat(value.getValue())
             .isEqualTo(12);
@@ -44,9 +42,7 @@ public final class ITDefaultDiceParserNumberStructure {
     @Test
     @DisplayName("Zero returns the expected structure")
     public final void testParse_Zero() {
-        final IntegerOperand value;
-
-        value = (IntegerOperand) new DefaultDiceParser().parse("0");
+        final IntegerOperand value = (IntegerOperand) new DefaultDiceParser().parse("0");
 
         Assertions.assertThat(value.getValue())
             .isZero();

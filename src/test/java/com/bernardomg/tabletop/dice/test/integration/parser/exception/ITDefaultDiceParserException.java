@@ -36,9 +36,7 @@ public final class ITDefaultDiceParserException {
     @ArgumentsSource(InvalidNotationArgumentsProvider.class)
     @DisplayName("An invalid notation causes an exception")
     public final void testParse(final String notation) {
-        final ThrowingCallable closure;
-
-        closure = () -> new DefaultDiceParser().parse(notation);
+        final ThrowingCallable closure = () -> new DefaultDiceParser().parse(notation);
 
         Assertions.assertThatThrownBy(closure)
             .isInstanceOf(Exception.class);

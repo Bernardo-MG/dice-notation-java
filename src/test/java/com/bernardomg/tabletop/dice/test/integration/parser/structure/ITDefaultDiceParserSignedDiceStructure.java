@@ -36,9 +36,7 @@ public final class ITDefaultDiceParserSignedDiceStructure {
     @Test
     @DisplayName("A negative dice returns the expected structure")
     public final void testParse_OnesDice_SignedNegative() {
-        final DiceOperand operation; // Parsed expression
-
-        operation = (DiceOperand) new DefaultDiceParser().parse("-1d1");
+        final DiceOperand operation = (DiceOperand) new DefaultDiceParser().parse("-1d1");
 
         Assertions.assertThat(operation.getDice()
             .getQuantity())
@@ -51,9 +49,7 @@ public final class ITDefaultDiceParserSignedDiceStructure {
     @Test
     @DisplayName("A positive dice returns the expected structure")
     public final void testParse_OnesDice_SignedPositive() {
-        final DiceOperand operation; // Parsed expression
-
-        operation = (DiceOperand) new DefaultDiceParser().parse("+1d1");
+        final DiceOperand operation = (DiceOperand) new DefaultDiceParser().parse("+1d1");
 
         Assertions.assertThat(operation.getDice()
             .getQuantity())

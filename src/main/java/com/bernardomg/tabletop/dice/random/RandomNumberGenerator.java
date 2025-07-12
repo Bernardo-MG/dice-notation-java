@@ -18,7 +18,8 @@ package com.bernardomg.tabletop.dice.random;
 
 import java.util.Random;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link Random}-based number generator.
@@ -27,8 +28,12 @@ import lombok.extern.slf4j.Slf4j;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Slf4j
 public final class RandomNumberGenerator extends AbstractNumberGenerator {
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger  log         = LoggerFactory.getLogger(RandomNumberGenerator.class);
 
     /**
      * Lower limit for the number generation procedure.

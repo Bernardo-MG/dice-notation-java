@@ -18,13 +18,14 @@ package com.bernardomg.tabletop.dice.interpreter;
 
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bernardomg.tabletop.dice.notation.DiceNotationExpression;
 import com.bernardomg.tabletop.dice.notation.operand.ConstantOperand;
 import com.bernardomg.tabletop.dice.notation.operand.DiceOperand;
 import com.bernardomg.tabletop.dice.notation.operation.BinaryOperation;
 import com.bernardomg.tabletop.dice.visitor.NotationAccumulator;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * An interpreter which can be customized.
@@ -38,8 +39,13 @@ import lombok.extern.slf4j.Slf4j;
  * @param <V>
  *            type of the generated object
  */
-@Slf4j
 public final class ConfigurableInterpreter<V> implements DiceInterpreter<V> {
+
+    /**
+     * Logger for the class.
+     */
+    private static final Logger                                     log = LoggerFactory
+        .getLogger(ConfigurableInterpreter.class);
 
     /**
      * Accumulator for generating the final result.

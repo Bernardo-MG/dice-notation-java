@@ -12,7 +12,7 @@
    <parent>
       <groupId>com.bernardomg.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.5.6</version>
+      <version>1.5.11</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -68,23 +68,6 @@
       <!-- ============ DEPLOYMENT PROFILES ============= -->
       <!-- ============================================== -->
       <profile>
-         <!-- Site deployment profile -->
-         <!-- Sets the site repository to point to the releases repo -->
-         <id>deployment-site</id>
-         <activation>
-            <!-- Active by default so the repository appears in the reports -->
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <distributionManagement>
-            <site>
-               <id>site</id>
-               <name>Project Documentation Site</name>
-               <!-- The URL should be set externally -->
-               <url>${site.url}</url>
-            </site>
-         </distributionManagement>
-      </profile>
-      <profile>
          <!-- Github deployment profile. -->
          <id>deployment-github</id>
          <distributionManagement>
@@ -92,31 +75,17 @@
                <!-- Github repository -->
                <id>github</id>
                <name>GitHub Packages</name>
-               <url>https://maven.pkg.github.com/Bernardo-MG/dice-notation-java</url>
+               <url>https://maven.pkg.github.com/bernardo-mg/java-validation</url>
             </repository>
          </distributionManagement>
       </profile>
       <profile>
-         <!-- OSSRH deployment profile. -->
-         <id>deployment-ossrh</id>
-         <distributionManagement>
-            <repository>
-               <!-- OSSRH repository -->
-               <id>ossrh</id>
-               <name>Central Repository OSSRH</name>
-               <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-            </repository>
-            <snapshotRepository>
-               <!-- OSSRH snapshots repository -->
-               <id>ossrh</id>
-               <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            </snapshotRepository>
-         </distributionManagement>
+         <!-- Central deployment profile. -->
+         <id>deployment-central</id>
          <build>
             <plugins>
                <plugin>
                   <!-- GPG -->
-                  <!-- Signs the artifacts -->
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-gpg-plugin</artifactId>
                   <executions>
@@ -134,6 +103,17 @@
                         <arg>--pinentry-mode</arg>
                         <arg>loopback</arg>
                      </gpgArguments>
+                  </configuration>
+               </plugin>
+               <plugin>
+                  <!-- Maven Central publishing -->
+                  <groupId>org.sonatype.central</groupId>
+                  <artifactId>central-publishing-maven-plugin</artifactId>
+                  <extensions>true</extensions>
+                  <configuration>
+                     <publishingServerId>central</publishingServerId>
+                     <autoPublish>true</autoPublish>
+                     <waitUntil>published</waitUntil>
                   </configuration>
                </plugin>
             </plugins>
@@ -176,23 +156,18 @@
       <!-- ============================================== -->
       <maven.version>3.8</maven.version>
       <!-- ============================================== -->
-      <!-- ================ JAVA VERSION ================ -->
-      <!-- ============================================== -->
-      <java.version>11</java.version>
-      <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
       <manifest.name>com/bernardomg/tabletop/dice</manifest.name>
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
-      <antlr.version>4.13.1</antlr.version>
-      <assertj.version>3.25.1</assertj.version>
-      <junit.jupiter.version>5.10.1</junit.jupiter.version>
-      <lombok.version>1.18.30</lombok.version>
-      <mockito.version>5.8.0</mockito.version>
-      <log4j.version>2.20.0</log4j.version>
-      <slf4j.version>2.0.9</slf4j.version>
+      <antlr.version>4.13.2</antlr.version>
+      <assertj.version>3.27.3</assertj.version>
+      <junit.jupiter.version>5.13.3</junit.jupiter.version>
+      <mockito.version>5.18.0</mockito.version>
+      <log4j.version>2.25.0</log4j.version>
+      <slf4j.version>2.0.17</slf4j.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
@@ -210,7 +185,7 @@
       <!-- ============================================== -->
       <!-- ================= MAVEN SITE ================= -->
       <!-- ============================================== -->
-      <site.skin.version>2.3.2</site.skin.version>
+      <site.skin.version>2.4.1</site.skin.version>
       <mavenURL>http://mvnrepository.com/artifact/com.bernardomg.tabletop/dice</mavenURL>
       <githubArtifactURL><![CDATA[https://github.com/Bernardo-MG?tab=packages&amp;repo_name=dice-notation-java]]></githubArtifactURL>
    </properties>
@@ -238,16 +213,6 @@
          <groupId>org.antlr</groupId>
          <artifactId>antlr4</artifactId>
          <version>${antlr.version}</version>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================== LOMBOK ==================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Lombok -->
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-         <version>${lombok.version}</version>
-         <scope>provided</scope>
       </dependency>
       <!-- ============================================== -->
       <!-- ================== LOGGERS =================== -->

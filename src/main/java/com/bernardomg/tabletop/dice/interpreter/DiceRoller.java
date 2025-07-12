@@ -82,9 +82,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     public DiceRoller(final Function<Dice, RollResult> roller, final UnaryOperator<RollResult> transformer) {
         super();
 
-        final Function<Dice, RollResult> finalRoller;
-
-        finalRoller = roller.andThen(transformer);
+        final Function<Dice, RollResult> finalRoller = roller.andThen(transformer);
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(), new DiceRollAccumulator(finalRoller));
     }
@@ -111,9 +109,7 @@ public final class DiceRoller implements DiceInterpreter<RollHistory> {
     public DiceRoller(final NumberGenerator generator, final UnaryOperator<RollResult> transformer) {
         super();
 
-        final Function<Dice, RollResult> finalRoller;
-
-        finalRoller = new DiceToRollResult(generator).andThen(transformer);
+        final Function<Dice, RollResult> finalRoller = new DiceToRollResult(generator).andThen(transformer);
 
         wrapped = new ConfigurableInterpreter<>(new PostorderTraverser(), new DiceRollAccumulator(finalRoller));
     }
