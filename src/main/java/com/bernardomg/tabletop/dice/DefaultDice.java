@@ -16,8 +16,7 @@
 
 package com.bernardomg.tabletop.dice;
 
-import lombok.Data;
-import lombok.NonNull;
+import java.util.Objects;
 
 /**
  * Immutable group of dice.
@@ -27,23 +26,21 @@ import lombok.NonNull;
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Data
-public final class DefaultDice implements Dice {
+public final record DefaultDice(Integer quantity, Integer sides) implements Dice {
 
-    /**
-     * Number of dice.
-     * <p>
-     * This is greater or equal to zero.
-     */
-    @NonNull
-    private final Integer quantity;
+    public DefaultDice(final Integer quantity, final Integer sides) {
+        this.quantity = Objects.requireNonNull(quantity, "Received a null pointer as quantity");
+        this.sides = Objects.requireNonNull(sides, "Received a null pointer as sides");
+    }
 
-    /**
-     * Number of sides in each die.
-     * <p>
-     * This is greater than zero.
-     */
-    @NonNull
-    private final Integer sides;
+    @Override
+    public final Integer getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public final Integer getSides() {
+        return sides;
+    }
 
 }

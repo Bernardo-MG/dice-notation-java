@@ -18,9 +18,6 @@ package com.bernardomg.tabletop.dice.history;
 
 import java.util.Objects;
 
-import lombok.Data;
-import lombok.NonNull;
-
 /**
  * Immutable roll history.
  * <p>
@@ -30,28 +27,8 @@ import lombok.NonNull;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Data
-public final class DefaultRollHistory implements RollHistory {
-
-    /**
-     * The text representation of the roll history.
-     * <p>
-     * Used as the string representation of the history.
-     */
-    @NonNull
-    private final String               historyText;
-
-    /**
-     * The results of each expression.
-     */
-    @NonNull
-    private final Iterable<RollResult> rollResults;
-
-    /**
-     * Sum of all the generated values.
-     */
-    @NonNull
-    private final Integer              totalRoll;
+public final record DefaultRollHistory(Iterable<RollResult> rollResults, String historyText, Integer totalRoll)
+        implements RollHistory {
 
     /**
      * Constructs a roll history with the specified data.
@@ -65,18 +42,27 @@ public final class DefaultRollHistory implements RollHistory {
      * @param total
      *            sum of all the values
      */
-    public DefaultRollHistory(@NonNull final Iterable<RollResult> results, @NonNull final String text,
-            @NonNull final Integer total) {
-        super();
+    public DefaultRollHistory(final Iterable<RollResult> rollResults, final String historyText,
+            final Integer totalRoll) {
 
-        rollResults = Objects.requireNonNull(results, "Received a null pointer as roll results");
-        historyText = Objects.requireNonNull(text, "Received a null pointer as history text");
-        totalRoll = Objects.requireNonNull(total, "Received a null pointer as total roll");
+        this.rollResults = Objects.requireNonNull(rollResults, "Received a null pointer as roll results");
+        this.historyText = Objects.requireNonNull(historyText, "Received a null pointer as history text");
+        this.totalRoll = Objects.requireNonNull(totalRoll, "Received a null pointer as total roll");
     }
 
     @Override
     public final String toString() {
         return historyText;
+    }
+
+    @Override
+    public final Iterable<RollResult> getRollResults() {
+        return rollResults;
+    }
+
+    @Override
+    public final Integer getTotalRoll() {
+        return totalRoll;
     }
 
 }

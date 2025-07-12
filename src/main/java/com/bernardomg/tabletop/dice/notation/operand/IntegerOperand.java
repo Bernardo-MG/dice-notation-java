@@ -16,26 +16,21 @@
 
 package com.bernardomg.tabletop.dice.notation.operand;
 
-import lombok.Data;
-import lombok.NonNull;
-
 /**
  * Operand for an integer constant value.
  *
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Data
-public final class IntegerOperand implements ConstantOperand {
-
-    /**
-     * Operand value.
-     */
-    @NonNull
-    private final Integer value;
+public final record IntegerOperand(Integer value) implements ConstantOperand {
 
     @Override
     public final String getExpression() {
         return getValue().toString();
+    }
+
+    @Override
+    public final Integer getValue() {
+        return value;
     }
 
 }

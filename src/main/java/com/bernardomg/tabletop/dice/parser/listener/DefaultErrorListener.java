@@ -42,10 +42,8 @@ public final class DefaultErrorListener extends BaseErrorListener {
     @Override
     public final void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
             final int charPositionInLine, final String msg, final RecognitionException e) {
-        final String message; // Final exception message
-
-        message = String.format("Failed to parse at line %1$d on char %2$d due to %3$s", line, charPositionInLine + 1,
-            msg);
+        final String message = String.format("Failed to parse at line %1$d on char %2$d due to %3$s", line, charPositionInLine + 1,
+                    msg);
 
         log.error(message);
 

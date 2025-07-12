@@ -200,18 +200,28 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseLi
             right = operands.pop();
 
             // Checks which kind of operation this is and builds it
-            if (ADDITION_OPERATOR.equals(operator)) {
-                log.trace("Addition operation");
-                operation = new AdditionOperation(left, right);
-            } else if (SUBTRACTION_OPERATOR.equals(operator)) {
-                log.trace("Subtraction operation");
-                operation = new SubtractionOperation(left, right);
-            } else if (MULTIPLICATION_OPERATOR.equals(operator)) {
-                log.trace("Multiplication operation");
-                operation = new MultiplicationOperation(left, right);
-            } else if (DIVISION_OPERATOR.equals(operator)) {
-                log.trace("Division operation");
-                operation = new DivisionOperation(left, right);
+            if (operator != null) {
+                switch (operator) {
+                    case ADDITION_OPERATOR:
+                        log.trace("Addition operation");
+                        operation = new AdditionOperation(left, right);
+                        break;
+                    case SUBTRACTION_OPERATOR:
+                        log.trace("Subtraction operation");
+                        operation = new SubtractionOperation(left, right);
+                        break;
+                    case MULTIPLICATION_OPERATOR:
+                        log.trace("Multiplication operation");
+                        operation = new MultiplicationOperation(left, right);
+                        break;
+                    case DIVISION_OPERATOR:
+                        log.trace("Division operation");
+                        operation = new DivisionOperation(left, right);
+                        break;
+                    default:
+                        log.error("Unknown operator {}", operator);
+                        throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
+                }
             } else {
                 log.error("Unknown operator {}", operator);
                 throw new IllegalArgumentException(String.format("The %s operator is invalid", operator));
@@ -286,10 +296,10 @@ public final class DefaultDiceExpressionBuilder extends DiceNotationParserBaseLi
      * @return an integer operand
      */
     private final IntegerOperand getIntegerOperand(final String expression) {
-        final Integer value;
+        
 
         // Parses the value
-        value = Integer.parseInt(expression);
+        final Integer value = Integer.parseInt(expression);
 
         return new IntegerOperand(value);
     }
